@@ -7,7 +7,7 @@ parent: AiSecOps
 # Azure 
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -20,13 +20,13 @@ parent: AiSecOps
 
 
 
-## Automate compliance in Azure using OpenAI
+## Автоматизация соблюдения нормативных требований в Azure с помощью OpenAI
 
 
 
-- [ ] Azure Policy
+- [ ] Политика Azure
 
-Azure Policy is a service that enables you to create, assign, and enforce policies across your Azure environment. It helps you maintain compliance by defining and enforcing rules and regulations.
+Azure Policy - это служба, позволяющая создавать, назначать и внедрять политики в среде Azure. Она помогает поддерживать соответствие требованиям, определяя и применяя правила и нормы.
 
 ```
 az policy assignment create --name <assignment-name> --scope <scope> --policy <policy-definition-id>
@@ -35,9 +35,9 @@ az policy assignment create --name <assignment-name> --scope <scope> --policy <p
 
 
 
-- [ ] Azure Security Center
+- [ ] Центр безопасности Azure
 
-Azure Security Center provides a unified view of security across your Azure resources. It offers recommendations and security alerts to help you identify and address security vulnerabilities and compliance issues.
+Azure Security Center обеспечивает единое представление безопасности всех ресурсов Azure. Он предлагает рекомендации и предупреждения о безопасности, чтобы помочь вам выявить и устранить уязвимости в системе безопасности и проблемы с соблюдением нормативных требований.
 
 ```
 az security assessment create --name <assessment-name> --resource-group <resource-group> --scopes <scopes> --standard-name <standard-name>
@@ -47,9 +47,9 @@ az security assessment create --name <assessment-name> --resource-group <resourc
 
 
 
-- [ ] Azure DevOps Pipelines
+- [ ] Конвейеры Azure DevOps
 
-Azure DevOps Pipelines is a CI/CD platform that allows you to automate the build, test, and deployment processes of your applications and infrastructure.
+Azure DevOps Pipelines - это платформа CI/CD, которая позволяет автоматизировать процессы сборки, тестирования и развертывания приложений и инфраструктуры.
 
 ```
 - task: AzureCLI@2
@@ -58,18 +58,18 @@ Azure DevOps Pipelines is a CI/CD platform that allows you to automate the build
     azureSubscription: '<subscription>'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      # Run compliance check command here
+      # Выполните команду проверки соответствия здесь
 ```
 
 
-## Logical Storage Isolation
+## Логическая изоляция хранилища
 
 
 
 
-- [ ] Azure Storage Accounts
+- [ ] Учетные записи хранилищ Azure
 
-Azure Storage Accounts provide a scalable and secure storage solution in Azure. You can create multiple storage accounts to achieve logical isolation of your data.
+Учетные записи хранения Azure обеспечивают масштабируемое и безопасное решение для хранения данных в Azure. Вы можете создать несколько учетных записей хранения, чтобы добиться логической изоляции данных.
 
 ```
 az storage account create --name <storage-account-name> --resource-group <resource-group> --location <location> --kind StorageV2 --sku Standard_LRS
@@ -77,9 +77,9 @@ az storage account create --name <storage-account-name> --resource-group <resour
 
 
 
-- [ ] Azure Virtual Networks
+- [ ] Виртуальные сети Azure
 
-Azure Virtual Networks allow you to create isolated network environments within Azure. You can associate your storage accounts with specific virtual networks to achieve logical network isolation.
+Виртуальные сети Azure позволяют создавать изолированные сетевые среды в Azure. Вы можете связать свои учетные записи хранения с определенными виртуальными сетями, чтобы добиться логической изоляции сети.
 
 ```
 az network vnet create --name <virtual-network-name> --resource-group <resource-group> --location <location> --address-prefixes 10.0.0.0/16
@@ -87,9 +87,9 @@ az network vnet create --name <virtual-network-name> --resource-group <resource-
 
 
 
-- [ ] Azure RBAC (Role-Based Access Control)
+- [ ] Azure RBAC (управление доступом на основе ролей)
 
-Azure RBAC enables you to manage access to Azure resources. By assigning appropriate roles and permissions, you can control who has access to your storage accounts and enforce logical access controls.
+Azure RBAC позволяет управлять доступом к ресурсам Azure. Назначив соответствующие роли и разрешения, вы можете контролировать, кто имеет доступ к вашим учетным записям хранилища, и применять логический контроль доступа.
 
 ```
 az role assignment create --assignee <user-or-group-id> --role <role-name> --scope <scope>
@@ -98,14 +98,14 @@ az role assignment create --assignee <user-or-group-id> --role <role-name> --sco
 
 
 
-## Enable encryption at rest
+## Включите шифрование в состоянии покоя
 
 
 
 
-- [ ] Azure Storage Service Encryption
+- [ ] Шифрование службы хранения данных Azure
 
-Azure Storage Service Encryption automatically encrypts your data at rest in Azure Storage Accounts. It uses Microsoft-managed keys to provide seamless encryption without any additional configuration.
+Служба Azure Storage Service Encryption автоматически шифрует данные, находящиеся в состоянии покоя в учетных записях Azure Storage. Она использует управляемые Microsoft ключи для обеспечения бесшовного шифрования без дополнительной настройки.
 
 ```
 az storage account update --name <storage-account-name> --resource-group <resource-group> --encryption-services blob --encryption-key-type Account --encryption-key-source Microsoft
@@ -113,9 +113,9 @@ az storage account update --name <storage-account-name> --resource-group <resour
 
 
 
-- [ ] Azure Disk Encryption
+- [ ] Шифрование дисков Azure
 
-Azure Disk Encryption enables you to encrypt the OS and data disks of Azure Virtual Machines. It uses Azure Key Vault to securely store and manage the encryption keys.
+Azure Disk Encryption позволяет шифровать диски с ОС и данными виртуальных машин Azure. Оно использует Azure Key Vault для безопасного хранения и управления ключами шифрования.
 
 ```
 az vm encryption enable --name <vm-name> --resource-group <resource-group> --disk-encryption-keyvault <key-vault-name> --volume-type all
@@ -123,9 +123,9 @@ az vm encryption enable --name <vm-name> --resource-group <resource-group> --dis
 
 
 
-- [ ] Azure Key Vault
+- [ ] Хранилище ключей Azure
 
-Azure Key Vault is a centralized cloud service for managing and safeguarding cryptographic keys, certificates, and secrets. You can use Key Vault to manage encryption keys used for encryption at rest in Azure.
+Azure Key Vault - это централизованная облачная служба для управления и защиты криптографических ключей, сертификатов и секретов. Вы можете использовать Key Vault для управления ключами шифрования, используемыми для шифрования в состоянии покоя в Azure.
 
 ```
 az keyvault create --name <key-vault-name> --resource-group <resource-group> --location <location>
@@ -133,15 +133,15 @@ az keyvault create --name <key-vault-name> --resource-group <resource-group> --l
 
 
 
-## Encryption in transit 
+## Шифрование в пути 
 
 
 
 
-- [ ] Azure Application Gateway
+- [ ] Шлюз приложений Azure
 
 
-Azure Application Gateway is a web traffic load balancer that enables SSL termination at the gateway to ensure secure communication between clients and the backend servers.
+Azure Application Gateway - это балансировщик нагрузки веб-трафика, который позволяет завершать SSL на шлюзе для обеспечения безопасной связи между клиентами и внутренними серверами.
 
 ```
 az network application-gateway create --name <app-gateway-name> --resource-group <resource-group> --frontend-ip-name <frontend-ip-name> --http-settings-cookie-based-affinity Disabled --http-settings-protocol Https --frontend-port 443 --http-settings-port 443 --ssl-cert <ssl-cert-name> --servers <backend-server-ips> --sku Standard_v2 --public-ip-address <public-ip-name> --subnet <subnet-name> --vnet-name <vnet-name>
@@ -149,9 +149,9 @@ az network application-gateway create --name <app-gateway-name> --resource-group
 
 
 
-- [ ] Azure Load Balancer
+- [ ] Балансировщик нагрузки Azure
 
-Azure Load Balancer distributes incoming network traffic across multiple resources to improve availability and scale applications. You can configure a Load Balancer with SSL/TLS termination to enable encryption in transit.
+Балансировщик нагрузки Azure распределяет входящий сетевой трафик между несколькими ресурсами для повышения доступности и масштабирования приложений. Вы можете настроить балансировщик нагрузки с завершением SSL/TLS, чтобы обеспечить шифрование при передаче.
 
 ```
 az network lb create --name <load-balancer-name> --resource-group <resource-group> --frontend-ip-name <frontend-ip-name> --backend-pool-name <backend-pool-name> --public-ip-address <public-ip-name> --protocol Tcp --frontend-port 443 --backend-port 443 --enable-tcp-reset --sku Standard
@@ -159,9 +159,9 @@ az network lb create --name <load-balancer-name> --resource-group <resource-grou
 
 
 
-- [ ] Azure Traffic Manager
+- [ ] Диспетчер трафика Azure
 
-Azure Traffic Manager enables you to distribute incoming traffic across multiple endpoints in different regions or Azure Availability Zones. It supports SSL/TLS termination at the Traffic Manager level to ensure secure communication.
+Azure Traffic Manager позволяет распределять входящий трафик между несколькими конечными точками в разных регионах или зонах доступности Azure. Он поддерживает завершение SSL/TLS на уровне Traffic Manager для обеспечения безопасной связи.
 
 ```
 az network traffic-manager profile create --name <tm-profile-name> --resource-group <resource-group> --routing-method Priority --unique-dns-name <unique-dns-name> --protocol Https --port 443 --path /
@@ -171,15 +171,15 @@ az network traffic-manager profile create --name <tm-profile-name> --resource-gr
 
 
 
-## Customer-Managed Keys
+## Ключи, управляемые клиентом
 
 
 
 
-- [ ] Azure Key Vault
+- [ ] Хранилище ключей Azure
 
 
-Azure Key Vault is a cloud service that enables you to safeguard and control cryptographic keys, secrets, and certificates used by your applications and services.
+Azure Key Vault - это облачная служба, которая позволяет вам защищать и контролировать криптографические ключи, секреты и сертификаты, используемые вашими приложениями и службами.
 
 ```
 az keyvault create --name <key-vault-name> --resource-group <resource-group> --location <location>
@@ -187,11 +187,11 @@ az keyvault create --name <key-vault-name> --resource-group <resource-group> --l
 
 
 
-- [ ] Azure Disk Encryption
+- [ ] Шифрование дисков Azure
 
 
 
-Azure Disk Encryption provides encryption at rest for virtual machine disks by using keys and secrets stored in Azure Key Vault.
+Azure Disk Encryption обеспечивает шифрование в состоянии покоя для дисков виртуальных машин с помощью ключей и секретов, хранящихся в Azure Key Vault.
 
 
 ```
@@ -200,10 +200,10 @@ az vm encryption enable --name <vm-name> --resource-group <resource-group> --dis
 
 
 
-- [ ] Azure Disk Encryption Set
+- [ ] Набор шифрования дисков Azure
 
 
-Azure Disk Encryption Set is a grouping of Azure managed disks that share the same encryption settings and policies.
+Набор шифрования дисков Azure - это группа управляемых дисков Azure, которые имеют одинаковые настройки и политики шифрования.
 
 ```
 az disk encryption-set create --name <encryption-set-name> --resource-group <resource-group> --source-vault <key-vault-url> --encryption-key <encryption-key-url> --key-encryption-key <key-encryption-key-url>
