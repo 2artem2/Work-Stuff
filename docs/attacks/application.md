@@ -4,11 +4,11 @@ title: Application Attacks
 parent: Attacks
 ---
 
-# Application Attacks
+# Атаки на приложения
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,35 +19,35 @@ parent: Attacks
 
 
 
-### Exposure of sensitive information
+### Раскрытие конфиденциальной информации
 
-Exposure of sensitive information refers to the unintentional or unauthorized disclosure of confidential or private data to individuals or systems that are not supposed to have access to it. This can occur through various means, such as insecure storage, transmission, or handling of sensitive data.
+Под раскрытием конфиденциальной информации понимается непреднамеренное или несанкционированное раскрытие конфиденциальных или частных данных лицам или системам, которые не должны иметь к ним доступ. Это может произойти различными способами, например, в результате небезопасного хранения, передачи или обработки конфиденциальных данных.
 
-Sensitive information can include personally identifiable information (PII) like names, addresses, social security numbers, financial data, login credentials, medical records, or any other data that, if exposed, could lead to identity theft, financial loss, or other harmful consequences.
+К конфиденциальной информации может относиться персонально идентифицируемая информация (PII), например имена, адреса, номера социального страхования, финансовые данные, учетные данные для входа в систему, медицинские карты или любые другие данные, раскрытие которых может привести к краже личных данных, финансовым потерям или другим вредным последствиям.
 
-To prevent exposure of sensitive information, it is important to implement appropriate security measures. Here are some preventive measures:
+Чтобы предотвратить раскрытие конфиденциальной информации, важно применять соответствующие меры безопасности. Вот некоторые превентивные меры:
 
-1. Data classification: Classify your data based on sensitivity and define access controls accordingly. Identify and categorize sensitive information so that you can apply stronger security measures to protect it.
+1. Классификация данных: Классифицируйте данные по степени важности и определите соответствующие средства контроля доступа. Определите и классифицируйте конфиденциальную информацию, чтобы применить более надежные меры безопасности для ее защиты.
 
-1. Secure storage: Use secure storage mechanisms to protect sensitive data, such as encryption, hashing, or tokenization. Ensure that data is stored in a secure environment, whether it's in databases, file systems, or other storage mediums.
+2. Безопасное хранение: Используйте механизмы безопасного хранения для защиты конфиденциальных данных, такие как шифрование, хэширование или токенизация. Убедитесь, что данные хранятся в безопасной среде, будь то базы данных, файловые системы или другие носители.
 
-1. Secure transmission: Implement secure communication protocols, such as HTTPS, SSL/TLS, or other encryption mechanisms, when transmitting sensitive data over networks. This helps prevent eavesdropping or unauthorized interception of data during transit.
+3. Безопасная передача данных: При передаче конфиденциальных данных по сети используйте защищенные протоколы связи, такие как HTTPS, SSL/TLS или другие механизмы шифрования. Это поможет предотвратить подслушивание или несанкционированный перехват данных во время их передачи.
 
-1. Access controls: Implement strong access controls to limit access to sensitive information. Use authentication and authorization mechanisms to ensure that only authorized individuals or systems can access and modify sensitive data.
+4. Контроль доступа: Внедрите строгие средства контроля доступа, чтобы ограничить доступ к конфиденциальной информации. Используйте механизмы аутентификации и авторизации, чтобы гарантировать, что только уполномоченные лица или системы могут получать доступ к конфиденциальным данным и изменять их.
 
-1. Secure coding practices: Follow secure coding practices to avoid common vulnerabilities, such as injection attacks or insecure direct object references. Validate and sanitize user input to prevent malicious data from being processed or displayed.
+5. Практика безопасного кодирования: Соблюдайте правила безопасного кодирования, чтобы избежать распространенных уязвимостей, таких как инъекционные атаки или небезопасные прямые ссылки на объекты. Проверяйте и обеззараживайте вводимые пользователем данные, чтобы предотвратить обработку или отображение вредоносных данных.
 
-1. Secure configuration: Ensure that your systems and applications are securely configured, including the use of strong passwords, disabling unnecessary services or features, and regularly updating and patching software to address security vulnerabilities.
+6. Безопасная конфигурация: Обеспечьте безопасную настройку систем и приложений, включая использование надежных паролей, отключение ненужных служб и функций, а также регулярное обновление и исправление программного обеспечения для устранения уязвимостей безопасности.
 
-1. Regular security assessments: Conduct regular security assessments, including vulnerability scanning and penetration testing, to identify any potential weaknesses or vulnerabilities that could lead to the exposure of sensitive information.
+7. Регулярные оценки безопасности: Регулярно проводите оценку безопасности, включая сканирование уязвимостей и тестирование на проникновение, чтобы выявить все потенциальные слабые места или уязвимости, которые могут привести к раскрытию конфиденциальной информации.
 
-1. Employee training and awareness: Train your employees on security best practices, including how to handle sensitive information, the importance of data protection, and how to recognize and report security incidents or suspicious activities.
+8. Обучение и информирование сотрудников: Обучите своих сотрудников передовым методам обеспечения безопасности, в том числе правилам обращения с конфиденциальной информацией, важности защиты данных, а также тому, как распознавать и сообщать об инцидентах безопасности или подозрительных действиях.
 
-1. Data minimization: Collect and retain only the necessary data. Avoid storing or keeping sensitive information for longer than necessary.
+9. Минимизация данных: Собирайте и храните только необходимые данные. Не храните конфиденциальную информацию дольше, чем это необходимо.
 
-1. Privacy by design: Incorporate privacy and security considerations into the design and development of your systems and applications. Implement privacy-enhancing technologies and practices from the outset.
+10. Конфиденциальность при проектировании: Учитывайте соображения конфиденциальности и безопасности при проектировании и разработке систем и приложений. С самого начала внедряйте технологии и методы, повышающие конфиденциальность.
 
-By implementing these preventive measures and adopting a comprehensive approach to data security, you can significantly reduce the risk of sensitive information exposure and protect the privacy and confidentiality of your data.
+Применяя эти превентивные меры и используя комплексный подход к обеспечению безопасности данных, вы сможете значительно снизить риск раскрытия конфиденциальной информации и защитить конфиденциальность и секретность ваших данных.
 
 
 
@@ -88,31 +88,31 @@ requests:
 
 
 
-### Insertion of Sensitive Information Into Sent Data
+### Вставка конфиденциальной информации в отправляемые данные
 
-Insertion of sensitive information into sent data refers to the inadvertent inclusion of confidential or private data into logs, error messages, debug output, or any other form of data that is sent or logged externally. This can occur when sensitive information, such as passwords, API keys, or personally identifiable information (PII), is included in plaintext or unencrypted form, making it accessible to unauthorized individuals or systems.
+Вставка конфиденциальной информации в отправляемые данные - это непреднамеренное включение конфиденциальных или частных данных в журналы, сообщения об ошибках, отладочные данные или любые другие формы данных, которые отправляются или регистрируются во внешней среде. Это может произойти, когда конфиденциальная информация, такая как пароли, ключи API или персональная информация (PII), включается в открытый текст или незашифрованном виде, что делает ее доступной для неавторизованных лиц или систем.
 
-To prevent the insertion of sensitive information into sent data, you can follow these preventive measures:
+Чтобы предотвратить вставку конфиденциальной информации в отправляемые данные, вы можете принять следующие превентивные меры:
 
-1. Data masking: Avoid including sensitive information in logs, error messages, or any other form of output. Implement data masking techniques, such as replacing sensitive data with placeholders or obfuscating it, to prevent the exposure of sensitive information.
+1. Маскировка данных: Избегайте включения конфиденциальной информации в журналы, сообщения об ошибках или любые другие формы выходных данных. Для предотвращения раскрытия конфиденциальной информации используйте методы маскировки данных, например, заменяйте конфиденциальные данные заполнителями или обфусцируйте их.
 
-1. Secure logging: Configure logging mechanisms to exclude sensitive information from being logged. Implement proper log filtering or redaction techniques to remove or mask sensitive data before it is written to log files.
+2. Безопасное ведение журнала: Настройте механизмы ведения журналов таким образом, чтобы исключить запись конфиденциальной информации. Применяйте надлежащие методы фильтрации или редактирования журналов для удаления или маскировки конфиденциальных данных перед их записью в файлы журналов.
 
-1. Context-based logging: When logging or outputting data, consider the context and purpose of the logged information. Exclude any unnecessary or sensitive data from being included in the logs or output.
+3. Ведение журнала на основе контекста: При регистрации или выводе данных учитывайте контекст и назначение регистрируемой информации. Исключите включение в журнал или вывод ненужных или конфиденциальных данных.
 
-1. Tokenization or encryption: If it is necessary to include sensitive information in logs or output for debugging or troubleshooting purposes, tokenize or encrypt the sensitive data to render it unreadable. Ensure that only authorized individuals or systems have access to the keys or tokens required for decryption.
+4. Токенизация или шифрование: Если необходимо включить конфиденциальную информацию в журналы или выходные данные для целей отладки или устранения неполадок, токенизируйте или шифруйте конфиденциальные данные, чтобы сделать их нечитаемыми. Убедитесь, что только уполномоченные лица или системы имеют доступ к ключам или маркерам, необходимым для расшифровки.
 
-1. Secure error handling: When handling errors, avoid displaying sensitive information in error messages presented to users. Instead, provide generic error messages that do not reveal specific details about the underlying sensitive data or system.
+5. Безопасная обработка ошибок: При обработке ошибок избегайте отображения конфиденциальной информации в сообщениях об ошибках, выдаваемых пользователям. Вместо этого выдавайте общие сообщения об ошибках, которые не раскрывают конкретных деталей о конфиденциальных данных или системе.
 
-1. Secure coding practices: Follow secure coding practices to prevent unintentional insertion of sensitive information into sent data. Ensure that sensitive data is properly handled, encrypted, or obfuscated throughout the application's lifecycle.
+6. Безопасные методы кодирования: Соблюдайте правила безопасного кодирования, чтобы предотвратить непреднамеренную вставку конфиденциальной информации в отправляемые данные. Убедитесь, что конфиденциальные данные должным образом обрабатываются, шифруются или обфусцируются на протяжении всего жизненного цикла приложения.
 
-1. Data separation: Consider separating sensitive data from other non-sensitive data, both in storage and during transmission. Implement proper data segregation mechanisms to reduce the risk of sensitive information being inadvertently included in sent data.
+7. Разделение данных: Рассмотрите возможность отделения конфиденциальных данных от других нечувствительных данных как при хранении, так и при передаче. Внедрите надлежащие механизмы разделения данных, чтобы снизить риск случайного включения конфиденциальной информации в отправляемые данные.
 
-1. Regular code reviews and testing: Conduct regular code reviews and security testing to identify any potential areas where sensitive information might be included in sent data. Perform thorough testing to ensure that sensitive data is not exposed during normal system operations or error conditions.
+8. Регулярные проверки и тестирование кода: Регулярно проводите анализ кода и тестирование безопасности для выявления возможных мест, где конфиденциальная информация может быть включена в отправляемые данные. Проводите тщательное тестирование, чтобы убедиться, что конфиденциальные данные не будут раскрыты во время нормальной работы системы или при возникновении ошибок.
 
-1. Employee training and awareness: Train your development team and system administrators about the importance of handling sensitive information securely. Educate them on best practices for data protection and the potential risks associated with the insertion of sensitive information into sent data.
+9. Обучение и информирование сотрудников: Обучите команду разработчиков и системных администраторов важности безопасного обращения с конфиденциальной информацией. Обучите их передовым методам защиты данных и потенциальным рискам, связанным со вставкой конфиденциальной информации в отправляемые данные.
 
-By implementing these preventive measures, you can reduce the risk of sensitive information being inadvertently included in sent data, protecting the confidentiality and privacy of your data and minimizing the potential impact of a security breach.
+Применяя эти профилактические меры, вы сможете снизить риск случайного включения конфиденциальной информации в отправляемые данные, защитить конфиденциальность и секретность ваших данных и свести к минимуму потенциальные последствия нарушения безопасности.
 
 
 
@@ -163,32 +163,32 @@ requests:
 
 
 
-### Cross-Site Request Forgery (CSRF)
+### Подделка межсайтовых запросов (CSRF)
 
 
-Cross-Site Request Forgery (CSRF) is a type of web vulnerability where an attacker tricks a victim into unknowingly executing unwanted actions on a web application in which the victim is authenticated. The attack occurs when the victim visits a malicious website or clicks on a specially crafted link, resulting in unauthorized actions being performed on their behalf on the targeted web application.
+Подделка межсайтовых запросов (CSRF) - это тип веб-уязвимости, когда злоумышленник обманом заставляет жертву неосознанно выполнять нежелательные действия в веб-приложении, в котором жертва прошла аутентификацию. Атака происходит, когда жертва посещает вредоносный веб-сайт или нажимает на специально созданную ссылку, в результате чего от ее имени выполняются несанкционированные действия в целевом веб-приложении.
 
-To prevent Cross-Site Request Forgery attacks, you can follow these preventive measures:
+Чтобы предотвратить атаки Cross-Site Request Forgery, вы можете выполнить следующие профилактические меры:
 
-1. CSRF tokens: Implement CSRF tokens as a defense mechanism. Include a unique token in each HTML form or request that modifies state on the server. This token should be validated on the server-side to ensure that the request is legitimate and originated from the same site.
+1. CSRF-токены: Внедрите CSRF-токены в качестве защитного механизма. Включите уникальный токен в каждую HTML-форму или запрос, который изменяет состояние на сервере. Этот токен должен проверяться на стороне сервера, чтобы убедиться, что запрос легитимен и исходит с того же сайта.
 
-1. Same-Site cookies: Set the SameSite attribute on your session cookies to Strict or Lax. This prevents cookies from being sent in cross-origin requests, effectively mitigating CSRF attacks.
+2. Куки-файлы того же сайта: Установите для атрибута SameSite ваших сессионных cookie-файлов значение Strict или Lax. Это предотвратит отправку файлов cookie в межсайтовых запросах, эффективно защищая от атак CSRF.
 
-1. Anti-CSRF frameworks: Utilize anti-CSRF frameworks or libraries provided by your web development framework. These frameworks often automate the generation and validation of CSRF tokens, making it easier to implement and maintain protection against CSRF attacks.
+3. Анти-CSRF-фреймворки: Используйте анти-CSRF-фреймворки или библиотеки, предоставляемые вашим фреймворком для веб-разработки. Эти фреймворки часто автоматизируют генерацию и проверку CSRF-токенов, что упрощает реализацию и поддержку защиты от CSRF-атак.
 
-1. Unique session identifiers: Ensure that each user session has a unique identifier. This helps prevent session fixation attacks, which could be used in combination with CSRF attacks.
+4. Уникальные идентификаторы сеансов: Убедитесь, что каждая пользовательская сессия имеет уникальный идентификатор. Это поможет предотвратить атаки с фиксацией сеанса, которые могут быть использованы в сочетании с CSRF-атаками.
 
-1. Request validation: Validate the integrity and authenticity of incoming requests on the server-side. Check for the presence and correctness of CSRF tokens, referer headers, or other request attributes that can help identify the origin of the request.
+5. Проверка запросов: Проверяйте целостность и подлинность входящих запросов на стороне сервера. Проверьте наличие и корректность CSRF-токенов, заголовков referer или других атрибутов запроса, которые могут помочь определить происхождение запроса.
 
-1. Strict access controls: Enforce strict access controls on sensitive operations and resources. Implement proper authentication and authorization mechanisms to ensure that only authorized users can perform critical actions.
+6. Строгий контроль доступа: Обеспечьте строгий контроль доступа к важным операциям и ресурсам. Внедрите надлежащие механизмы аутентификации и авторизации, чтобы гарантировать, что только авторизованные пользователи могут выполнять важные действия.
 
-1. User awareness: Educate your users about the risks of CSRF attacks and encourage them to be cautious when clicking on links or visiting unfamiliar websites. Provide guidance on recognizing and reporting suspicious behavior.
+7. Информирование пользователей: Расскажите пользователям о рисках CSRF-атак и убедите их быть осторожными при переходе по ссылкам или посещении незнакомых сайтов. Предоставьте рекомендации по распознаванию и сообщению о подозрительном поведении.
 
-1. Secure coding practices: Follow secure coding practices to minimize the risk of introducing vulnerabilities. Validate and sanitize user input, implement proper access controls, and regularly update and patch your software to address any potential security vulnerabilities.
+8. Практика безопасного кодирования: Соблюдайте правила безопасного кодирования, чтобы свести к минимуму риск появления уязвимостей. Проверяйте и обеззараживайте вводимые пользователем данные, внедряйте надлежащие средства контроля доступа, регулярно обновляйте и исправляйте программное обеспечение, чтобы устранить все потенциальные уязвимости в системе безопасности.
 
-1. Security testing: Perform regular security testing, including vulnerability scanning and penetration testing, to identify and address any potential CSRF vulnerabilities in your web application.
+9. Тестирование безопасности: Регулярно проводите тестирование безопасности, включая сканирование уязвимостей и тестирование на проникновение, чтобы выявить и устранить любые потенциальные уязвимости CSRF в вашем веб-приложении.
 
-By implementing these preventive measures and maintaining a strong security posture, you can significantly reduce the risk of Cross-Site Request Forgery attacks and protect the integrity of your web application and user data.
+Применяя эти превентивные меры и поддерживая надежную защиту, вы сможете значительно снизить риск атак Cross-Site Request Forgery и защитить целостность вашего веб-приложения и пользовательских данных.
 
 
 
@@ -230,31 +230,31 @@ requests:
 
 
 
-### Use of Hard-coded Password
+### Использование жестко закодированных паролей
 
-The use of hard-coded passwords refers to the practice of embedding passwords directly into source code or configuration files, making them easily discoverable by anyone with access to the code or files. This is considered a poor security practice as it can lead to unauthorized access and compromise of sensitive information.
+Использование жестко закодированных паролей - это практика встраивания паролей непосредственно в исходный код или конфигурационные файлы, что делает их легкодоступными для любого, кто имеет доступ к коду или файлам. Это считается плохим способом обеспечения безопасности, поскольку может привести к несанкционированному доступу и компрометации конфиденциальной информации.
 
-To prevent the use of hard-coded passwords, you can follow these preventive measures:
+Чтобы предотвратить использование жестко закодированных паролей, можно предпринять следующие профилактические меры:
 
-1. Use secure credential storage: Instead of hard-coding passwords, utilize secure credential storage mechanisms provided by your development platform or framework. These mechanisms allow you to securely store and retrieve passwords, such as using secure key stores, environment variables, or configuration files with restricted access.
+1. Используйте безопасное хранение учетных данных: Вместо жесткого кодирования паролей используйте механизмы безопасного хранения учетных данных, предоставляемые вашей платформой разработки или фреймворком. Эти механизмы позволяют безопасно хранить и извлекать пароли, например с помощью защищенных хранилищ ключей, переменных среды или конфигурационных файлов с ограниченным доступом.
 
-1. Implement authentication mechanisms: Implement proper authentication mechanisms instead of relying solely on hard-coded passwords. Use strong password hashing algorithms, salted hashes, or better yet, consider using more secure authentication methods like token-based authentication or OAuth.
+2. Внедрите механизмы аутентификации: Внедрите надлежащие механизмы аутентификации вместо того, чтобы полагаться только на жестко заданные пароли. Используйте надежные алгоритмы хеширования паролей, соленые хеши, а еще лучше - рассмотрите возможность использования более безопасных методов аутентификации, таких как аутентификация на основе маркеров или OAuth.
 
-1. Separate configuration from code: Keep sensitive information, including passwords, separate from your codebase. Store them in secure configuration files or use environment variables to store sensitive configuration details. Ensure that these files or variables are not accessible by unauthorized individuals.
+3. Отделяйте конфигурацию от кода: Храните конфиденциальную информацию, включая пароли, отдельно от кодовой базы. Храните их в защищенных конфигурационных файлах или используйте переменные окружения для хранения конфиденциальных сведений о конфигурации. Убедитесь, что эти файлы или переменные недоступны для неавторизованных лиц.
 
-1. Apply access controls: Limit access to configuration files or secure credential storage to only authorized individuals or systems. Follow the principle of least privilege, granting access only to those who need it for operational purposes.
+4. Применяйте средства контроля доступа: Ограничьте доступ к файлам конфигурации или безопасному хранилищу учетных данных только авторизованными лицами или системами. Следуйте принципу наименьших привилегий, предоставляя доступ только тем, кому он необходим в рабочих целях.
 
-1. Utilize secrets management tools: Leverage secrets management tools or platforms that provide secure storage, rotation, and access control for sensitive information such as passwords, API keys, and cryptographic keys. These tools often offer encryption, access logging, and additional security features to protect your secrets.
+5. Используйте инструменты управления секретами: Используйте инструменты или платформы для управления секретами, которые обеспечивают безопасное хранение, ротацию и контроль доступа к конфиденциальной информации, такой как пароли, API-ключи и криптографические ключи. Эти инструменты часто предлагают шифрование, ведение журнала доступа и дополнительные функции безопасности для защиты ваших секретов.
 
-1. Secure deployment process: Implement secure deployment practices to ensure that passwords are not exposed during deployment or in version control systems. Avoid including sensitive information in code repositories or build artifacts.
+6. Безопасный процесс развертывания: Внедрите методы безопасного развертывания, чтобы исключить возможность раскрытия паролей во время развертывания или в системах контроля версий. Избегайте включения конфиденциальной информации в репозитории кода или артефакты сборки.
 
-1. Regularly rotate passwords: Enforce a password rotation policy to regularly update passwords. This reduces the impact of compromised credentials and limits the window of opportunity for attackers.
+7. Регулярно меняйте пароли: Обеспечьте соблюдение политики ротации паролей, чтобы регулярно обновлять их. Это уменьшает влияние скомпрометированных учетных данных и ограничивает возможности злоумышленников.
 
-1. Secure code review: Conduct regular code reviews to identify and remove any instances of hard-coded passwords. Train developers to be aware of the risks associated with hard-coding passwords and provide them with secure alternatives and best practices.
+8. Безопасный просмотр кода: Регулярно проводите анализ кода, чтобы выявить и устранить все случаи использования жестко закодированных паролей. Обучайте разработчиков, чтобы они знали о рисках, связанных с жестким кодированием паролей, и предоставляйте им безопасные альтернативы и лучшие практики.
 
-1. Automated security tools: Use automated security scanning tools or static code analysis tools to identify instances of hard-coded passwords and other security vulnerabilities in your codebase.
+9. Автоматизированные инструменты безопасности: Используйте автоматизированные средства сканирования безопасности или инструменты статического анализа кода для выявления случаев использования жестких паролей и других уязвимостей в коде.
 
-By implementing these preventive measures, you can minimize the risk of hard-coded passwords and enhance the security of your application and sensitive data. It is crucial to follow secure coding practices, regularly review and update security controls, and stay informed about emerging best practices and vulnerabilities to maintain a strong security posture.
+Применяя эти превентивные меры, вы сможете минимизировать риск использования жестко закодированных паролей и повысить безопасность вашего приложения и конфиденциальных данных. Для поддержания надежной защиты очень важно следовать практике безопасного кодирования, регулярно пересматривать и обновлять средства контроля безопасности, а также быть в курсе появляющихся передовых методов и уязвимостей.
 
 
 ```
@@ -303,31 +303,31 @@ requests:
 
 
 
-### Broken or Risky Crypto Algorithm
+### Сломанный или рискованный криптоалгоритм
 
-A broken or risky cryptographic algorithm refers to the use of encryption or hashing algorithms that have known vulnerabilities or weaknesses. These vulnerabilities could be due to outdated or deprecated algorithms, insecure key sizes, poor implementation, or inadequate cryptographic practices. Such weaknesses can be exploited by attackers, potentially compromising the confidentiality, integrity, or authenticity of sensitive data.
+Неработающий или рискованный криптографический алгоритм - это использование алгоритмов шифрования или хеширования, которые имеют известные уязвимости или слабые места. Эти уязвимости могут быть вызваны устаревшими или неактуальными алгоритмами, небезопасными размерами ключей, плохой реализацией или неадекватной криптографической практикой. Такие слабые места могут быть использованы злоумышленниками, что может привести к нарушению конфиденциальности, целостности или подлинности конфиденциальных данных.
 
-To prevent the use of broken or risky crypto algorithms, you can follow these preventive measures:
+Чтобы предотвратить использование неработающих или рискованных криптоалгоритмов, вы можете принять следующие профилактические меры:
 
-1. Stay updated with cryptographic standards: Keep abreast of the latest cryptographic standards and recommendations from reputable sources, such as NIST (National Institute of Standards and Technology) or IETF (Internet Engineering Task Force). Stay informed about any vulnerabilities or weaknesses discovered in existing algorithms and make necessary updates to your cryptographic implementations.
+1. Следите за обновлением криптографических стандартов: Следите за последними криптографическими стандартами и рекомендациями из авторитетных источников, таких как NIST (Национальный институт стандартов и технологий) или IETF (Целевая группа по разработке Интернета). Будьте в курсе всех уязвимостей и недостатков, обнаруженных в существующих алгоритмах, и вносите необходимые обновления в свои криптографические реализации.
 
-1. Use strong and approved algorithms: Select cryptographic algorithms that are widely recognized, thoroughly tested, and recommended by cryptographic experts. Examples of secure algorithms include AES (Advanced Encryption Standard) for symmetric encryption, RSA or ECDSA for asymmetric encryption, and SHA-256 or SHA-3 for hashing.
+2. Используйте надежные и одобренные алгоритмы: Выбирайте криптографические алгоритмы, которые широко известны, тщательно протестированы и рекомендованы экспертами в области криптографии. Примерами надежных алгоритмов являются AES (Advanced Encryption Standard) для симметричного шифрования, RSA или ECDSA для асимметричного шифрования и SHA-256 или SHA-3 для хэширования.
 
-1. Avoid deprecated or weakened algorithms: Stay away from deprecated or weakened cryptographic algorithms, such as DES (Data Encryption Standard) or MD5 (Message Digest Algorithm 5). These algorithms have known vulnerabilities and are no longer considered secure for most applications.
+3. Избегайте устаревших или ослабленных алгоритмов: Держитесь подальше от устаревших или ослабленных криптографических алгоритмов, таких как DES (Data Encryption Standard) или MD5 (Message Digest Algorithm 5). Эти алгоритмы имеют известные уязвимости и больше не считаются безопасными для большинства приложений.
 
-1. Use appropriate key sizes: Ensure that the key sizes used in your cryptographic algorithms are appropriate for the level of security required. Use key sizes recommended by cryptographic standards, taking into account the strength of the algorithm and the anticipated lifespan of the data being protected.
+4. Используйте подходящие размеры ключей: Убедитесь, что размеры ключей, используемых в ваших криптографических алгоритмах, соответствуют требуемому уровню безопасности. Используйте размеры ключей, рекомендованные криптографическими стандартами, с учетом стойкости алгоритма и предполагаемого срока службы защищаемых данных.
 
-1. Secure key management: Implement robust key management practices, including the secure generation, storage, and distribution of cryptographic keys. Protect keys from unauthorized access, and regularly rotate or update keys as per best practices.
+5. Безопасное управление ключами: Внедрите надежные методы управления ключами, включая безопасную генерацию, хранение и распространение криптографических ключей. Защитите ключи от несанкционированного доступа, регулярно ротируйте или обновляйте их в соответствии с передовой практикой.
 
-1. Use secure random number generation: Cryptographic operations often rely on random numbers for key generation, initialization vectors, and nonces. Use a cryptographically secure random number generator (CSPRNG) to ensure the randomness and unpredictability of these values.
+6. Используйте безопасную генерацию случайных чисел: Криптографические операции часто опираются на случайные числа для генерации ключей, векторов инициализации и несов. Используйте криптографически безопасный генератор случайных чисел (CSPRNG) для обеспечения случайности и непредсказуемости этих значений.
 
-1. Third-party library evaluation: When using cryptographic libraries or frameworks, evaluate their reputation, security track record, and community support. Choose well-established libraries that have undergone security audits and are actively maintained to minimize the risk of using broken or insecure crypto algorithms.
+7. Оценка сторонних библиотек: При использовании криптографических библиотек или фреймворков оцените их репутацию, уровень безопасности и поддержку сообщества. Выбирайте хорошо зарекомендовавшие себя библиотеки, прошедшие аудит безопасности и активно поддерживаемые, чтобы свести к минимуму риск использования неработающих или небезопасных криптоалгоритмов.
 
-1. Independent security reviews: Conduct independent security reviews or audits of your cryptographic implementations to identify any weaknesses, vulnerabilities, or misconfigurations. Engage security professionals or external auditors with expertise in cryptography to assess your cryptographic practices.
+8. Независимые проверки безопасности: Проводите независимые проверки безопасности или аудиты ваших криптографических реализаций, чтобы выявить любые слабые места, уязвимости или неправильную конфигурацию. Привлеките специалистов по безопасности или внешних аудиторов с опытом работы в области криптографии для оценки ваших криптографических методов.
 
-1. Ongoing monitoring and updates: Stay vigilant about emerging cryptographic vulnerabilities or attacks. Monitor security advisories and updates from cryptographic standards organizations, vendors, and the broader security community. Apply patches, updates, or configuration changes as necessary to address any identified vulnerabilities.
+9. Постоянный мониторинг и обновления: Будьте бдительны в отношении возникающих криптографических уязвимостей или атак. Следите за рекомендациями по безопасности и обновлениями от организаций криптографических стандартов, поставщиков и более широкого сообщества безопасности. Применяйте патчи, обновления или изменения конфигурации по мере необходимости для устранения выявленных уязвимостей.
 
-By following these preventive measures and adopting strong cryptographic practices, you can significantly reduce the risk of using broken or risky crypto algorithms and enhance the security of your application's sensitive data. It is essential to maintain an active stance in staying informed about cryptographic best practices and evolving security threats to ensure the continued security of your cryptographic implementations.
+Соблюдение этих профилактических мер и использование надежных криптографических методов позволит вам значительно снизить риск использования неработающих или рискованных криптоалгоритмов и повысить безопасность конфиденциальных данных вашего приложения. Для обеспечения постоянной безопасности ваших криптографических реализаций необходимо активно информировать о передовых методах криптографии и возникающих угрозах безопасности.
 
 
 
@@ -375,32 +375,32 @@ requests:
 ```
 
 
-### Risky Crypto Algorithm
+### Рискованный криптоалгоритм
 
 
-A broken or risky cryptographic algorithm refers to the use of encryption or hashing algorithms that have known vulnerabilities or weaknesses. These vulnerabilities could be due to outdated or deprecated algorithms, insecure key sizes, poor implementation, or inadequate cryptographic practices. Such weaknesses can be exploited by attackers, potentially compromising the confidentiality, integrity, or authenticity of sensitive data.
+Неработающий или рискованный криптографический алгоритм - это использование алгоритмов шифрования или хеширования, которые имеют известные уязвимости или слабые места. Эти уязвимости могут быть вызваны устаревшими или неактуальными алгоритмами, небезопасными размерами ключей, плохой реализацией или неадекватной криптографической практикой. Такие слабые места могут быть использованы злоумышленниками, что может привести к нарушению конфиденциальности, целостности или подлинности конфиденциальных данных.
 
-To prevent the use of broken or risky crypto algorithms, you can follow these preventive measures:
+Чтобы предотвратить использование неработающих или рискованных криптоалгоритмов, вы можете принять следующие профилактические меры:
 
-1. Stay updated with cryptographic standards: Keep abreast of the latest cryptographic standards and recommendations from reputable sources, such as NIST (National Institute of Standards and Technology) or IETF (Internet Engineering Task Force). Stay informed about any vulnerabilities or weaknesses discovered in existing algorithms and make necessary updates to your cryptographic implementations.
+1. Следите за обновлением криптографических стандартов: Следите за последними криптографическими стандартами и рекомендациями из авторитетных источников, таких как NIST (Национальный институт стандартов и технологий) или IETF (Целевая группа по разработке Интернета). Будьте в курсе всех уязвимостей и недостатков, обнаруженных в существующих алгоритмах, и вносите необходимые обновления в свои криптографические реализации.
 
-1. Use strong and approved algorithms: Select cryptographic algorithms that are widely recognized, thoroughly tested, and recommended by cryptographic experts. Examples of secure algorithms include AES (Advanced Encryption Standard) for symmetric encryption, RSA or ECDSA for asymmetric encryption, and SHA-256 or SHA-3 for hashing.
+2. Используйте надежные и одобренные алгоритмы: Выбирайте криптографические алгоритмы, которые широко известны, тщательно протестированы и рекомендованы экспертами в области криптографии. Примерами надежных алгоритмов являются AES (Advanced Encryption Standard) для симметричного шифрования, RSA или ECDSA для асимметричного шифрования и SHA-256 или SHA-3 для хэширования.
 
-1. Avoid deprecated or weakened algorithms: Stay away from deprecated or weakened cryptographic algorithms, such as DES (Data Encryption Standard) or MD5 (Message Digest Algorithm 5). These algorithms have known vulnerabilities and are no longer considered secure for most applications.
+3. Избегайте устаревших или ослабленных алгоритмов: Держитесь подальше от устаревших или ослабленных криптографических алгоритмов, таких как DES (Data Encryption Standard) или MD5 (Message Digest Algorithm 5). Эти алгоритмы имеют известные уязвимости и больше не считаются безопасными для большинства приложений.
 
-1. Use appropriate key sizes: Ensure that the key sizes used in your cryptographic algorithms are appropriate for the level of security required. Use key sizes recommended by cryptographic standards, taking into account the strength of the algorithm and the anticipated lifespan of the data being protected.
+4. Используйте подходящие размеры ключей: Убедитесь, что размеры ключей, используемых в ваших криптографических алгоритмах, соответствуют требуемому уровню безопасности. Используйте размеры ключей, рекомендованные криптографическими стандартами, с учетом стойкости алгоритма и предполагаемого срока службы защищаемых данных.
 
-1. Secure key management: Implement robust key management practices, including the secure generation, storage, and distribution of cryptographic keys. Protect keys from unauthorized access, and regularly rotate or update keys as per best practices.
+5. Безопасное управление ключами: Внедрите надежные методы управления ключами, включая безопасную генерацию, хранение и распространение криптографических ключей. Защитите ключи от несанкционированного доступа, регулярно ротируйте или обновляйте их в соответствии с передовой практикой.
 
-1. Use secure random number generation: Cryptographic operations often rely on random numbers for key generation, initialization vectors, and nonces. Use a cryptographically secure random number generator (CSPRNG) to ensure the randomness and unpredictability of these values.
+6. Используйте безопасную генерацию случайных чисел: Криптографические операции часто опираются на случайные числа для генерации ключей, векторов инициализации и несов. Используйте криптографически безопасный генератор случайных чисел (CSPRNG) для обеспечения случайности и непредсказуемости этих значений.
 
-1. Third-party library evaluation: When using cryptographic libraries or frameworks, evaluate their reputation, security track record, and community support. Choose well-established libraries that have undergone security audits and are actively maintained to minimize the risk of using broken or insecure crypto algorithms.
+7. Оценка сторонних библиотек: При использовании криптографических библиотек или фреймворков оцените их репутацию, уровень безопасности и поддержку сообщества. Выбирайте хорошо зарекомендовавшие себя библиотеки, прошедшие аудит безопасности и активно поддерживаемые, чтобы свести к минимуму риск использования неработающих или небезопасных криптоалгоритмов.
 
-Independent security reviews: Conduct independent security reviews or audits of your cryptographic implementations to identify any weaknesses, vulnerabilities, or misconfigurations. Engage security professionals or external auditors with expertise in cryptography to assess your cryptographic practices.
+Независимые проверки безопасности: Проводите независимые проверки безопасности или аудиты ваших криптографических реализаций, чтобы выявить любые слабые места, уязвимости или неправильную конфигурацию. Привлеките специалистов по безопасности или внешних аудиторов с опытом работы в области криптографии для оценки ваших криптографических методов.
 
-1. Ongoing monitoring and updates: Stay vigilant about emerging cryptographic vulnerabilities or attacks. Monitor security advisories and updates from cryptographic standards organizations, vendors, and the broader security community. Apply patches, updates, or configuration changes as necessary to address any identified vulnerabilities.
+8. Постоянный мониторинг и обновления: Будьте бдительны в отношении возникающих криптографических уязвимостей или атак. Следите за рекомендациями по безопасности и обновлениями от организаций криптографических стандартов, поставщиков и более широкого сообщества безопасности. Применяйте патчи, обновления или изменения конфигурации по мере необходимости для устранения выявленных уязвимостей.
 
-By following these preventive measures and adopting strong cryptographic practices, you can significantly reduce the risk of using broken or risky crypto algorithms and enhance the security of your application's sensitive data. It is essential to maintain an active stance in staying informed about cryptographic best practices and evolving security threats to ensure the continued security of your cryptographic implementations.
+Соблюдение этих профилактических мер и использование надежных криптографических методов позволит вам значительно снизить риск использования неработающих или рискованных криптоалгоритмов и повысить безопасность конфиденциальных данных вашего приложения. Для обеспечения постоянной безопасности ваших криптографических реализаций необходимо активно информировать о передовых методах криптографии и возникающих угрозах безопасности.
 
 
 ```
