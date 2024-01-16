@@ -4,10 +4,10 @@ title: Driver
 parent: AiSecOps
 ---
 
-# Driver
+# Драйвер
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -20,7 +20,6 @@ parent: AiSecOps
 
 ## OWASP Top 10 LLM
 
-The OWASP Top 10 for Large Language Model Applications is a standard awareness document for developers and web application security. It represents a broad consensus about the most critical security risks to Large Language Model (LLM) applications.
-
+OWASP Top 10 для Large Language Model Applications - это стандартный информационный документ для разработчиков и специалистов по безопасности веб-приложений. Он представляет собой широкий консенсус относительно наиболее критических рисков безопасности для приложений с большой языковой моделью (LLM).
 
 https://github.com/OWASP/www-project-top-10-for-large-language-model-applications
