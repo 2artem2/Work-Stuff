@@ -1,30 +1,30 @@
 
 <p align="center">
-    <h1 align="center">DevSecOps Guides</h1>
-    <p align="center">Comprehensive resource for integrating security into the software development lifecycle.</p>
+    <h1 align="center">Руководство DevSecOps</h1>
+    <p align="center">Всеобъемлющий ресурс по интеграции безопасности в жизненный цикл разработки программного обеспечения.</p>
     <br><br><br>
 </p>
 
 
-## About
+## О сайте
 
 
-Welcome to DevSecOpsGuides, a comprehensive resource for developers, security professionals, and operations teams who want to learn about the world of DevSecOps. DevSecOps is the practice of integrating security into the entire software development lifecycle, from code creation to deployment and beyond. This approach ensures that security is a top priority at every stage of the development process, leading to more secure and reliable applications.
+Добро пожаловать на DevSecOpsGuides, всеобъемлющий ресурс для разработчиков, специалистов по безопасности и операционных команд, которые хотят узнать о мире DevSecOps. DevSecOps - это практика интеграции безопасности во весь жизненный цикл разработки программного обеспечения, от создания кода до развертывания и далее. Такой подход гарантирует, что безопасность является главным приоритетом на каждом этапе процесса разработки, что приводит к созданию более безопасных и надежных приложений.
 
-Our guides cover a wide range of topics related to DevSecOps, including:
+Наши руководства охватывают широкий спектр тем, связанных с DevSecOps, включая:
 
-1. Secure coding practices: Learn how to write code that is resistant to common security threats such as SQL injection, cross-site scripting, and buffer overflow.
+1. Практика безопасного кодирования: Узнайте, как писать код, устойчивый к таким распространенным угрозам безопасности, как SQL-инъекции, межсайтовый скриптинг и переполнение буфера.
 
-2. Threat modeling: Learn how to identify potential security vulnerabilities in your applications and prioritize them based on their impact and likelihood of occurrence.
+2. Моделирование угроз: Узнайте, как выявлять потенциальные уязвимости безопасности в приложениях и определять их приоритетность в зависимости от их влияния и вероятности возникновения.
 
-3. Security testing: Learn about different types of security testing, such as penetration testing, vulnerability scanning, and code review, and how to incorporate them into your DevSecOps workflow.
+3. Тестирование безопасности: Узнайте о различных видах тестирования безопасности, таких как тестирование на проникновение, сканирование уязвимостей и обзор кода, и о том, как включить их в рабочий процесс DevSecOps.
 
-4. Infrastructure security: Learn about securing the infrastructure that supports your applications, including servers, networks, and databases.
+4. Безопасность инфраструктуры: Узнайте о защите инфраструктуры, поддерживающей ваши приложения, включая серверы, сети и базы данных.
 
-5. Compliance and regulations: Learn about compliance requirements and regulations such as GDPR, HIPAA, and PCI-DSS, and how to ensure that your applications meet these standards.
+5. Соответствие нормативным требованиям и правилам: Узнайте о требованиях и нормах соответствия, таких как GDPR, HIPAA и PCI-DSS, и о том, как обеспечить соответствие ваших приложений этим стандартам.
 
-6. Incident response: Learn how to respond to security incidents quickly and effectively, minimizing the impact on your organization and customers.
+6. Реагирование на инциденты: Узнайте, как быстро и эффективно реагировать на инциденты безопасности, сводя к минимуму их последствия для вашей организации и клиентов.
 
-Our guides are written by experts in the field of DevSecOps, and are designed to be accessible to developers, security professionals, and operations teams at all levels of experience. Whether you are just getting started with DevSecOps or are looking to deepen your knowledge and skills, DevSecOpsGuides is the perfect resource for you.
+Наши руководства написаны экспертами в области DevSecOps и предназначены для разработчиков, специалистов по безопасности и операционных команд с любым уровнем опыта. Если вы только начинаете работать с DevSecOps или хотите углубить свои знания и навыки, DevSecOpsGuides - идеальный ресурс для вас.
 
 
