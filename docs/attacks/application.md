@@ -1046,33 +1046,33 @@ requests:
 ```
 
 
-### Vulnerable and Outdated Components
+### Уязвимые и устаревшие компоненты
 
-Vulnerable and outdated components refer to third-party libraries, frameworks, or software components that have known security vulnerabilities or are no longer supported with security patches. Using such components can introduce security risks into your application or system, as attackers can exploit these vulnerabilities to gain unauthorized access or compromise your system.
+Уязвимые и устаревшие компоненты - это сторонние библиотеки, фреймворки или программные компоненты, которые имеют известные уязвимости в системе безопасности или больше не поддерживаются исправлениями. Использование таких компонентов может создать риски для безопасности вашего приложения или системы, поскольку злоумышленники могут использовать эти уязвимости для получения несанкционированного доступа или компрометации системы.
 
-To prevent the use of vulnerable and outdated components, you should follow these preventive measures:
+Чтобы предотвратить использование уязвимых и устаревших компонентов, необходимо соблюдать следующие профилактические меры:
 
-1. Maintain an inventory of components: Create and maintain an inventory of all the third-party components used in your application or system. Keep track of the version numbers and the sources of these components.
+1. Вести инвентаризацию компонентов: Создайте и ведите реестр всех сторонних компонентов, используемых в вашем приложении или системе. Следите за номерами версий и источниками этих компонентов.
 
-1. Stay informed about security updates: Stay updated with the latest security advisories and vulnerability reports for the components you use. Subscribe to security mailing lists or follow official sources to receive notifications about security patches and updates.
+1. Будьте в курсе обновлений безопасности: Следите за последними рекомендациями по безопасности и отчетами об уязвимостях используемых компонентов. Подпишитесь на списки рассылки по безопасности или следите за официальными источниками, чтобы получать уведомления об исправлениях и обновлениях безопасности.
 
-1. Regularly update components: Regularly update the components in your application or system to the latest stable and secure versions. Check for security releases and apply the patches promptly. Ensure that your update process is well-documented and regularly tested.
+1. Регулярно обновляйте компоненты: Регулярно обновляйте компоненты вашего приложения или системы до последних стабильных и безопасных версий. Проверяйте наличие обновлений безопасности и своевременно применяйте исправления. Убедитесь, что процесс обновления хорошо документирован и регулярно тестируется.
 
-1. Utilize vulnerability databases: Make use of vulnerability databases and security resources that provide information on known vulnerabilities in components. Check these resources regularly to identify any vulnerabilities in the components you use and take appropriate action.
+1. Используйте базы данных уязвимостей: Используйте базы данных уязвимостей и ресурсы по безопасности, которые предоставляют информацию об известных уязвимостях в компонентах. Регулярно проверяйте эти ресурсы, чтобы выявить уязвимости в используемых компонентах и принять соответствующие меры.
 
-1. Perform security assessments: Conduct regular security assessments and vulnerability scans to identify any vulnerabilities introduced by the components. Use automated tools or engage security professionals to perform security testing and code reviews.
+1. Проводите оценку безопасности: Регулярно проводите оценку безопасности и сканирование уязвимостей, чтобы выявить все уязвимости, созданные компонентами. Используйте автоматизированные инструменты или привлекайте специалистов по безопасности для проведения тестирования безопасности и проверки кода.
 
-1. Monitor component support: Keep track of the support status of the components you use. If a component is no longer maintained or has reached its end-of-life, consider finding alternative components or solutions. Unsupported components are more likely to have unpatched vulnerabilities.
+1. Следите за поддержкой компонентов: Следите за статусом поддержки используемых компонентов. Если компонент больше не поддерживается или его срок службы истек, подумайте о поиске альтернативных компонентов или решений. В неподдерживаемых компонентах с большей вероятностью будут присутствовать непропатченные уязвимости.
 
-1. Implement a patch management process: Establish a patch management process to ensure that security patches and updates are promptly applied to the components. This process should include testing patches in a controlled environment before deploying them to production.
+1. Внедрите процесс управления исправлениями: Установите процесс управления исправлениями, чтобы обеспечить своевременное применение исправлений и обновлений безопасности для компонентов. Этот процесс должен включать тестирование патчей в контролируемой среде перед их развертыванием в производстве.
 
-1. Consider using security monitoring tools: Implement security monitoring tools that can detect and alert you about vulnerabilities or potential risks associated with the components you use. These tools can help you identify any security issues early on and take necessary mitigation steps.
+1. Рассмотрите возможность использования средств мониторинга безопасности: Внедрите средства мониторинга безопасности, которые могут обнаруживать и предупреждать вас об уязвимостях или потенциальных рисках, связанных с используемыми компонентами. Эти инструменты помогут вам выявить любые проблемы безопасности на ранней стадии и предпринять необходимые шаги по их устранению.
 
-1. Follow secure coding practices: Develop secure coding practices to minimize the introduction of vulnerabilities in your own code. Regularly review and update your code to ensure that it does not rely on vulnerable or outdated components.
+1. Соблюдайте правила безопасного кодирования: Разработайте методы безопасного кодирования, чтобы свести к минимуму вероятность появления уязвимостей в вашем собственном коде. Регулярно просматривайте и обновляйте свой код, чтобы убедиться, что он не использует уязвимые или устаревшие компоненты.
 
-1. Include component assessment in the procurement process: When selecting new components, consider their security track record, update frequency, and community support. Choose components that have a good reputation for security and are actively maintained.
+1. Включите оценку компонентов в процесс закупок: При выборе новых компонентов учитывайте их репутацию в области безопасности, частоту обновлений и поддержку сообщества. Выбирайте компоненты, которые имеют хорошую репутацию в области безопасности и активно поддерживаются.
 
-By following these preventive measures, you can reduce the risk of using vulnerable and outdated components in your application or system. Regularly updating components, staying informed about security updates, and conducting security assessments are essential to maintain a secure software ecosystem.
+Следуя этим профилактическим мерам, вы сможете снизить риск использования уязвимых и устаревших компонентов в вашем приложении или системе. Регулярное обновление компонентов, информирование об обновлениях безопасности и проведение оценок безопасности - все это необходимо для поддержания безопасной экосистемы программного обеспечения.
 
 
 ```
@@ -1112,33 +1112,33 @@ requests:
 ```
 
 
-### Improper Validation of Certificate with Host Mismatch
+### Неправильная проверка сертификата с несоответствием хоста
 
-Improper Validation of Certificate with Host Mismatch is a security vulnerability that occurs when a client application fails to properly validate the server's SSL/TLS certificate during a secure communication handshake. This vulnerability allows an attacker to impersonate the server by presenting a certificate that does not match the expected host.
+Improper Validation of Certificate with Host Mismatch - это уязвимость безопасности, которая возникает, когда клиентское приложение не может должным образом проверить сертификат SSL/TLS сервера во время безопасного рукопожатия связи. Эта уязвимость позволяет злоумышленнику выдать себя за сервер, представив сертификат, который не соответствует ожидаемому хосту.
 
-To prevent Improper Validation of Certificate with Host Mismatch, you should follow these preventive measures:
+Чтобы предотвратить проблему Improper Validation of Certificate with Host Mismatch, необходимо выполнить следующие профилактические меры:
 
-1. Properly validate SSL/TLS certificates: Implement a robust certificate validation mechanism in your client application. Ensure that the SSL/TLS library or framework being used verifies the certificate chain, expiration date, revocation status, and other relevant fields.
+1. Правильно проверяйте сертификаты SSL/TLS: Реализуйте надежный механизм проверки сертификатов в клиентском приложении. Убедитесь, что используемая библиотека или фреймворк SSL/TLS проверяет цепочку сертификатов, дату истечения срока действия, статус отзыва и другие соответствующие поля.
 
-1. Check for host name mismatch: Verify that the common name (CN) or subject alternative name (SAN) field in the certificate matches the host to which the client is connecting. Perform a strict comparison and reject the connection if there is a mismatch.
+1. Проверка на несоответствие имени хоста: Убедитесь, что поле общего имени (CN) или альтернативного имени субъекта (SAN) в сертификате соответствует хосту, к которому подключается клиент. Выполните строгое сравнение и отклоните соединение, если есть несоответствие.
 
-1. Use a trusted certificate authority (CA): Obtain SSL/TLS certificates from reputable CAs that follow industry best practices for certificate issuance. Trust certificates only from well-known CAs to reduce the risk of obtaining fraudulent or improperly issued certificates.
+1. Используйте доверенный центр сертификации (ЦС): Получайте сертификаты SSL/TLS от авторитетных ЦС, которые следуют лучшим отраслевым практикам выпуска сертификатов. Доверяйте сертификатам только известных ЦС, чтобы снизить риск получения мошеннических или неправильно выпущенных сертификатов.
 
-1. Implement certificate pinning: Consider implementing certificate pinning, also known as public key pinning, in your client application. Pinning involves associating a specific server's public key or certificate fingerprint with a known and trusted value. This helps prevent certificate substitution attacks.
+1. Реализуйте привязку сертификатов: Рассмотрите возможность внедрения в клиентском приложении функции привязки сертификата, также известной как привязка открытого ключа. Привязка сертификата подразумевает ассоциацию открытого ключа или отпечатка сертификата определенного сервера с известным и надежным значением. Это помогает предотвратить атаки с подменой сертификата.
 
-1. Stay up to date with CA revocations: Regularly update the list of revoked certificates and perform certificate revocation checks during the validation process. Check certificate revocation status using online certificate revocation lists (CRLs) or the Online Certificate Status Protocol (OCSP).
+1. Следите за отзывами сертификатов из ЦС: Регулярно обновляйте список отозванных сертификатов и выполняйте проверку отзыва сертификата в процессе проверки. Проверяйте статус отзыва сертификата с помощью онлайн-списков отзыва сертификатов (CRL) или протокола Online Certificate Status Protocol (OCSP).
 
-1. Enable strict SSL/TLS configuration: Configure your SSL/TLS settings to use secure and up-to-date protocols (e.g., TLS 1.2 or higher) and cryptographic algorithms. Disable deprecated or weak protocols and algorithms to prevent potential vulnerabilities.
+1. Включите строгую конфигурацию SSL/TLS: Настройте параметры SSL/TLS так, чтобы использовать безопасные и современные протоколы (например, TLS 1.2 или выше) и криптографические алгоритмы. Отключите устаревшие или слабые протоколы и алгоритмы, чтобы предотвратить потенциальные уязвимости.
 
-1. Perform thorough testing: Conduct rigorous testing to ensure that certificate validation is working correctly in your client application. Test scenarios should include cases where certificates have expired, are revoked, or have host mismatches. Automated security testing tools can also help identify potential vulnerabilities.
+1. Проводите тщательное тестирование: Проведите тщательное тестирование, чтобы убедиться, что проверка сертификатов работает корректно в вашем клиентском приложении. Тестовые сценарии должны включать случаи, когда срок действия сертификатов истек, они отозваны или имеют несоответствия с хостом. Автоматизированные средства тестирования безопасности также могут помочь выявить потенциальные уязвимости.
 
-1. Implement user awareness and education: Educate users about the importance of verifying SSL/TLS certificates and recognizing warning messages related to certificate errors. Encourage users to report any suspicious certificate-related issues.
+1. Обеспечьте информированность и обучение пользователей: Проинформируйте пользователей о важности проверки сертификатов SSL/TLS и распознавания предупреждающих сообщений, связанных с ошибками сертификатов. Поощряйте пользователей сообщать о любых подозрительных проблемах, связанных с сертификатами.
 
-1. Monitor and log certificate validation errors: Implement logging mechanisms to capture and monitor SSL/TLS certificate validation errors. Monitor logs for any unexpected or suspicious activities related to certificate validation.
+1. Отслеживайте и регистрируйте ошибки проверки сертификатов: Внедрите механизмы ведения журналов для регистрации и мониторинга ошибок проверки сертификатов SSL/TLS. Отслеживайте журналы на предмет любых неожиданных или подозрительных действий, связанных с проверкой сертификатов.
 
-1. Regularly update SSL/TLS libraries and frameworks: Keep your SSL/TLS libraries and frameworks up to date with the latest security patches and updates. This ensures that you have the latest fixes for any known vulnerabilities related to certificate validation.
+1. Регулярно обновляйте библиотеки и фреймворки SSL/TLS: Поддерживайте библиотеки и фреймворки SSL/TLS в актуальном состоянии с помощью последних исправлений и обновлений безопасности. Это гарантирует, что у вас есть последние исправления всех известных уязвимостей, связанных с проверкой сертификатов.
 
-By following these preventive measures, you can mitigate the risk of Improper Validation of Certificate with Host Mismatch and ensure secure SSL/TLS connections in your client applications. Proper certificate validation is crucial for establishing trust and authenticity during secure communications.
+Соблюдая эти профилактические меры, вы сможете снизить риск неправильной проверки сертификата с несоответствием хоста и обеспечить безопасные SSL/TLS-соединения в своих клиентских приложениях. Правильная проверка сертификата имеет решающее значение для установления доверия и подлинности при безопасных соединениях.
 
 
 ```
@@ -1176,33 +1176,33 @@ requests:
                   - "Certificate host mismatch detected"
 ```
 
-### Improper Authentication
+### Неправильная аутентификация
 
-Improper Authentication is a security vulnerability that occurs when an application fails to properly authenticate and verify the identity of users or entities. This vulnerability allows attackers to bypass authentication mechanisms and gain unauthorized access to sensitive resources or perform actions on behalf of other users.
+Неправильная аутентификация - это уязвимость в системе безопасности, которая возникает, когда приложение не может должным образом аутентифицировать и проверить личность пользователей или субъектов. Эта уязвимость позволяет злоумышленникам обойти механизмы аутентификации и получить несанкционированный доступ к конфиденциальным ресурсам или выполнить действия от имени других пользователей.
 
-To prevent Improper Authentication, you should follow these preventive measures:
+Чтобы предотвратить неправильную аутентификацию, необходимо соблюдать следующие профилактические меры:
 
-1. Implement strong authentication mechanisms: Use strong authentication methods, such as multi-factor authentication (MFA), to enhance the security of user authentication. MFA combines multiple factors, such as passwords, biometrics, or hardware tokens, to verify the user's identity.
+1. Внедрите надежные механизмы аутентификации: Используйте надежные методы аутентификации, такие как многофакторная аутентификация (MFA), для повышения безопасности аутентификации пользователей. MFA объединяет несколько факторов, таких как пароли, биометрические данные или аппаратные маркеры, для проверки личности пользователя.
 
-1. Use secure password policies: Enforce strong password policies that require users to create complex passwords and regularly update them. Encourage the use of unique passwords for each application or service and consider implementing password strength indicators.
+1. Используйте надежные политики паролей: Применяйте политики надежных паролей, требующие от пользователей создавать сложные пароли и регулярно их обновлять. Поощряйте использование уникальных паролей для каждого приложения или службы и рассмотрите возможность внедрения индикаторов надежности паролей.
 
-1. Protect authentication credentials: Safeguard authentication credentials, such as passwords, tokens, or session IDs, from unauthorized access or disclosure. Use secure storage mechanisms, such as hashing and encryption, to protect sensitive information related to authentication.
+1. Защищайте учетные данные аутентификации: Защищайте учетные данные аутентификации, такие как пароли, маркеры или идентификаторы сеансов, от несанкционированного доступа или раскрытия. Используйте безопасные механизмы хранения, такие как хэширование и шифрование, для защиты конфиденциальной информации, связанной с аутентификацией.
 
-1. Implement secure session management: Ensure secure session management practices, such as generating unique session IDs, properly handling session expiration and invalidation, and using secure transport protocols (e.g., HTTPS) to transmit session-related data.
+1. Внедрите безопасное управление сеансами: Обеспечьте безопасное управление сеансами, например, генерируйте уникальные идентификаторы сеансов, правильно обрабатывайте истечение срока действия и аннулирование сеанса и используйте безопасные транспортные протоколы (например, HTTPS) для передачи данных, связанных с сеансом.
 
-1. Enforce secure login controls: Implement measures to prevent common attacks, such as brute-force attacks and credential stuffing. Enforce account lockouts or introduce CAPTCHA challenges after a certain number of failed login attempts.
+1. Обеспечьте контроль безопасного входа в систему: Применяйте меры по предотвращению распространенных атак, таких как брутфорс и подстановка учетных данных. Обеспечьте блокировку учетных записей или вводите CAPTCHA после определенного количества неудачных попыток входа.
 
-1. Implement secure password reset processes: Establish secure password reset processes that require additional verification steps to confirm the user's identity. This may include sending a verification email, asking security questions, or utilizing a secondary authentication factor.
+1. Внедрите безопасные процессы сброса паролей: Установите безопасные процессы сброса пароля, которые требуют дополнительных шагов проверки для подтверждения личности пользователя. Это может быть отправка проверочного электронного письма, задавание вопросов безопасности или использование дополнительного фактора аутентификации.
 
-1. Protect against session fixation attacks: Implement measures to prevent session fixation attacks by regenerating session IDs upon successful authentication, avoiding session ID propagation in URLs, and restricting the ability to fixate session IDs.
+1. Защита от атак с фиксацией сеанса: Реализуйте меры по предотвращению атак с фиксацией сеанса путем регенерации идентификаторов сеанса при успешной аутентификации, избегайте распространения идентификаторов сеанса в URL-адресах и ограничивайте возможность фиксации идентификаторов сеанса.
 
-1. Implement secure account recovery: Establish secure procedures for account recovery to ensure that only authorized users can regain access to their accounts. This may involve verifying the user's identity through a multi-step verification process.
+1. Внедрите безопасное восстановление учетных записей: Установите безопасные процедуры восстановления учетных записей, чтобы только авторизованные пользователи могли получить доступ к своим учетным записям. Это может включать в себя проверку личности пользователя с помощью многоступенчатого процесса проверки.
 
-1. Regularly update and patch: Keep the authentication mechanisms, libraries, and frameworks up to date with the latest security patches and updates. Stay informed about any security advisories or vulnerabilities related to the authentication mechanisms used in your application.
+1. Регулярно обновляйте и ставьте исправления: Поддерживайте механизмы аутентификации, библиотеки и фреймворки в актуальном состоянии с помощью последних исправлений и обновлений безопасности. Будьте в курсе всех рекомендаций по безопасности и уязвимостей, связанных с механизмами аутентификации, используемыми в вашем приложении.
 
-1. Conduct security testing: Perform regular security testing, including vulnerability assessments and penetration testing, to identify and remediate any authentication-related vulnerabilities. Test the effectiveness of authentication controls and verify that they cannot be easily bypassed or exploited.
+1. Проводите тестирование безопасности: Регулярно проводите тестирование безопасности, включая оценку уязвимостей и тестирование на проникновение, чтобы выявить и устранить любые уязвимости, связанные с аутентификацией. Проверяйте эффективность элементов управления аутентификацией и убедитесь, что их невозможно легко обойти или использовать.
 
-By implementing these preventive measures, you can mitigate the risk of Improper Authentication and strengthen the security of user authentication in your application or system. Robust authentication practices are essential to protect user accounts, sensitive data, and ensure that only authorized individuals can access protected resources.
+Применяя эти превентивные меры, вы сможете снизить риск неправильной аутентификации и укрепить безопасность аутентификации пользователей в вашем приложении или системе. Надежные методы аутентификации необходимы для защиты учетных записей пользователей, конфиденциальных данных и обеспечения доступа к защищенным ресурсам только уполномоченных лиц.
 
 
 ```
@@ -1246,33 +1246,33 @@ requests:
                   - "Authentication failed: host mismatch detected"
 ```
 
-### Session Fixation
+### Фиксация сеанса
 
-Session Fixation is a security vulnerability that occurs when an attacker establishes or manipulates a user's session identifier (session ID) to gain unauthorized access to the user's session. The attacker tricks the user into using a known session ID, which the attacker can then use to hijack the session.
+Фиксация сеанса - это уязвимость безопасности, которая возникает, когда злоумышленник устанавливает или манипулирует идентификатором сеанса пользователя (ID сеанса), чтобы получить несанкционированный доступ к сеансу пользователя. Злоумышленник обманывает пользователя, заставляя его использовать известный идентификатор сеанса, который затем может быть использован для перехвата сеанса.
 
-To prevent Session Fixation, you should follow these preventive measures:
+Чтобы предотвратить фиксацию сеанса, необходимо соблюдать следующие профилактические меры:
 
-1. Regenerate session ID upon authentication: Generate a new session ID for the user upon successful authentication. This ensures that the user is assigned a different session ID than the one initially used before authentication.
+1. Регенерируйте идентификатор сеанса при аутентификации: Генерируйте новый идентификатор сеанса для пользователя после успешной аутентификации. Это гарантирует, что пользователю будет присвоен идентификатор сеанса, отличный от того, который изначально использовался при аутентификации.
 
-1. Use a secure random session ID: Generate session IDs using a strong cryptographic random number generator. This helps prevent session ID prediction or brute-force attacks where attackers try to guess valid session IDs.
+1. Использовать безопасный случайный идентификатор сеанса: Генерируйте идентификаторы сеансов с помощью надежного криптографического генератора случайных чисел. Это помогает предотвратить предсказание идентификатора сеанса или атаки методом "грубой силы", когда злоумышленники пытаются угадать действительный идентификатор сеанса.
 
-1. Implement session expiration and inactivity timeouts: Set appropriate session expiration and inactivity timeouts to limit the lifespan of a session. When a session expires or times out, the user needs to reauthenticate, preventing the use of old session IDs by attackers.
+1. Установите таймауты истечения срока действия и неактивности сеанса: Установите соответствующие таймауты истечения срока действия сеанса и бездействия, чтобы ограничить время жизни сеанса. Когда сеанс истекает или заканчивается, пользователю необходимо пройти повторную аутентификацию, что предотвращает использование старых идентификаторов сеанса злоумышленниками.
 
-1. Implement secure session management: Implement secure session management practices, such as securely transmitting session IDs over encrypted channels (e.g., HTTPS) and avoiding exposing session IDs in URLs.
+1. Внедрите безопасное управление сеансами: Внедрите методы безопасного управления сеансами, например, безопасную передачу идентификаторов сеансов по зашифрованным каналам (например, HTTPS) и избегайте раскрытия идентификаторов сеансов в URL-адресах.
 
-1. Avoid session ID disclosure: Avoid including session IDs in URLs, logs, or other client-side visible locations. Exposing session IDs increases the risk of session fixation attacks as attackers can easily obtain valid session IDs.
+1. Избегайте раскрытия идентификатора сеанса: Избегайте включения идентификаторов сеансов в URL, журналы или другие видимые на стороне клиента места. Раскрытие идентификаторов сеансов повышает риск атак с фиксацией сеанса, поскольку злоумышленники могут легко получить действительные идентификаторы сеансов.
 
-1. Use cookie attributes: Set secure attributes for session cookies, such as the "Secure" flag to ensure they are only transmitted over HTTPS, and the "HttpOnly" flag to prevent client-side scripts from accessing the cookie.
+1. Используйте атрибуты cookie: Установите безопасные атрибуты для сессионных файлов cookie, например флаг "Secure", чтобы обеспечить их передачу только по HTTPS, и флаг "HttpOnly", чтобы предотвратить доступ к файлу cookie сценариев на стороне клиента.
 
-1. Conduct user awareness and education: Educate users about session security best practices, such as the importance of logging out after using shared or public devices and being cautious of session ID manipulation attempts.
+1. Проведите разъяснительную работу с пользователями: Проинформируйте пользователей о передовых методах обеспечения безопасности сеансов, например о важности выхода из системы после использования общих или публичных устройств и об осторожности при попытках манипулирования идентификатором сеанса.
 
-1. Implement IP validation: Consider implementing IP validation checks as an additional security measure. Verify that the IP address of the user's requests remains consistent throughout the session. This can help detect and prevent session hijacking attempts.
+1. Внедрите проверку IP-адресов: В качестве дополнительной меры безопасности рассмотрите возможность внедрения проверки IP-адресов. Убедитесь, что IP-адрес запросов пользователя остается неизменным на протяжении всего сеанса. Это поможет обнаружить и предотвратить попытки перехвата сеанса.
 
-1. Monitor session activity: Monitor session activity and log events related to session creation, expiration, and invalidation. Monitor for unusual session behavior, such as simultaneous sessions from different locations or devices.
+1. Отслеживайте активность сеанса: Отслеживайте активность сеанса и регистрируйте события, связанные с созданием, истечением срока действия и аннулированием сеанса. Отслеживайте необычное поведение сеанса, например одновременные сеансы с разных мест или устройств.
 
-1. Regularly update and patch: Keep your web application and session management components up to date with the latest security patches and updates. Stay informed about any security advisories or vulnerabilities related to session management in your application framework or libraries.
+1. Регулярно обновляйте и ставьте заплатки: Поддерживайте веб-приложение и компоненты управления сеансами в актуальном состоянии с помощью последних исправлений и обновлений безопасности. Будьте в курсе всех рекомендаций по безопасности или уязвимостей, связанных с управлением сеансами, в вашем фреймворке или библиотеках приложения.
 
-By implementing these preventive measures, you can reduce the risk of Session Fixation and help ensure the integrity and security of user sessions. Secure session management practices are essential to protect user accounts and prevent unauthorized access to sensitive data and functionality.
+Применяя эти профилактические меры, вы сможете снизить риск исправления сеансов и обеспечить целостность и безопасность пользовательских сеансов. Безопасное управление сеансами необходимо для защиты учетных записей пользователей и предотвращения несанкционированного доступа к конфиденциальным данным и функциональности.
 
 
 ```
@@ -1321,33 +1321,33 @@ requests:
 ```
 
 
-### Inclusion of Functionality from Untrusted Control
+### Включение функциональности из недоверенного управления
 
-Inclusion of Functionality from Untrusted Control, also known as Remote Code Execution (RCE), is a security vulnerability that occurs when an application incorporates and executes code from an untrusted or external source without proper validation or security measures. This vulnerability allows attackers to execute arbitrary code on the target system, potentially leading to unauthorized access, data breaches, or system compromise.
+Включение функциональности из ненадежного источника, также известное как удаленное выполнение кода (Remote Code Execution, RCE), - это уязвимость безопасности, возникающая, когда приложение включает и выполняет код из ненадежного или внешнего источника без надлежащей проверки или мер безопасности. Эта уязвимость позволяет злоумышленникам выполнять произвольный код на целевой системе, что потенциально может привести к несанкционированному доступу, утечке данных или компрометации системы.
 
-To prevent the Inclusion of Functionality from Untrusted Control, you should follow these preventive measures:
+Чтобы предотвратить включение функциональности из ненадежных элементов управления, необходимо соблюдать следующие профилактические меры:
 
-1. Avoid dynamic code execution: Minimize or avoid executing code from untrusted sources whenever possible. Limit the execution of code to trusted and well-defined components within your application.
+1. Избегайте динамического выполнения кода: По возможности сократите или избегайте выполнения кода из недоверенных источников. Ограничьте выполнение кода доверенными и четко определенными компонентами в вашем приложении.
 
-1. Implement strict input validation: Validate and sanitize all user inputs and external data before using them in dynamic code execution. Apply input validation techniques such as whitelisting, blacklisting, or input filtering to ensure only safe and expected inputs are processed.
+1. Реализуйте строгую проверку ввода: Проверяйте и обеззараживайте все вводимые пользователем данные и внешние данные, прежде чем использовать их в динамическом выполнении кода. Применяйте такие методы проверки ввода, как "белые", "черные" списки или фильтрация ввода, чтобы гарантировать, что обрабатываются только безопасные и ожидаемые данные.
 
-1. Use safe alternatives for dynamic code execution: If dynamic code execution is necessary, consider using safe alternatives, such as predefined functions or libraries with built-in security measures. Avoid using functions or features that allow arbitrary code execution or evaluation.
+1. Используйте безопасные альтернативы для динамического выполнения кода: Если необходимо выполнить динамический код, рассмотрите возможность использования безопасных альтернатив, таких как предопределенные функции или библиотеки со встроенными мерами безопасности. Избегайте использования функций или возможностей, позволяющих выполнять или оценивать произвольный код.
 
-1. Implement strong access controls: Apply strict access controls and permissions to limit the execution of code or the inclusion of functionality to trusted and authorized sources only. Restrict access to critical system resources and prevent unauthorized code execution.
+1. Применяйте строгие средства контроля доступа: Применяйте строгие средства контроля доступа и разрешения, чтобы ограничить выполнение кода или включение функциональности только доверенными и авторизованными источниками. Ограничьте доступ к критическим системным ресурсам и предотвратите несанкционированное выполнение кода.
 
-1. Isolate untrusted code: If you need to execute untrusted code, isolate it in a sandboxed or restricted environment with limited privileges. Use technologies like containers or virtual machines to create isolated execution environments.
+1. Изолируйте недоверенный код: Если вам необходимо выполнить недоверенный код, изолируйте его в песочнице или среде с ограниченными привилегиями. Используйте такие технологии, как контейнеры или виртуальные машины, для создания изолированных сред выполнения.
 
-1. Implement code signing and verification: Digitally sign your code and verify the integrity and authenticity of external components before including or executing them. This helps ensure that the code comes from a trusted source and has not been tampered with.
+1. Реализуйте подписание и проверку кода: Ставьте цифровую подпись на свой код и проверяйте целостность и подлинность внешних компонентов перед их включением или выполнением. Это поможет убедиться, что код получен из надежного источника и не был подделан.
 
-1. Regularly update and patch: Keep your application, libraries, and frameworks up to date with the latest security patches and updates. Stay informed about any security advisories or vulnerabilities related to the components used in your application.
+1. Регулярно обновляйте и ставьте заплатки: Поддерживайте приложения, библиотеки и фреймворки в актуальном состоянии с помощью последних патчей и обновлений безопасности. Будьте в курсе всех рекомендаций по безопасности и уязвимостей, связанных с компонентами, используемыми в вашем приложении.
 
-1. Perform security testing: Conduct regular security testing, including static code analysis, dynamic analysis, and penetration testing, to identify and mitigate vulnerabilities related to the inclusion of untrusted functionality. Test for code injection and RCE vulnerabilities to ensure the application can withstand potential attacks.
+1. Выполняйте тестирование безопасности: Регулярно проводите тестирование безопасности, включая статический анализ кода, динамический анализ и тестирование на проникновение, чтобы выявить и устранить уязвимости, связанные с включением недоверенной функциональности. Проверяйте уязвимости, связанные с внедрением кода и RCE, чтобы убедиться, что приложение способно противостоять потенциальным атакам.
 
-1. Implement secure coding practices: Follow secure coding practices, such as input validation, output encoding, and secure configuration management, to minimize the risk of code injection vulnerabilities. Train your development team on secure coding practices to build a robust and secure application.
+1. Внедряйте методы безопасного кодирования: Следуйте практикам безопасного кодирования, таким как проверка ввода, кодирование вывода и безопасное управление конфигурацией, чтобы свести к минимуму риск возникновения уязвимостей, связанных с внедрением кода. Обучите свою команду разработчиков методам безопасного кодирования, чтобы создать надежное и безопасное приложение.
 
-1. Implement a Web Application Firewall (WAF): Consider using a WAF that can detect and block malicious code injection attempts. WAFs can provide an additional layer of protection by inspecting incoming requests and filtering out potentially dangerous code.
+1. Внедрите брандмауэр веб-приложений (WAF): Рассмотрите возможность использования WAF, который может обнаруживать и блокировать попытки внедрения вредоносного кода. WAF может обеспечить дополнительный уровень защиты, проверяя входящие запросы и отфильтровывая потенциально опасный код.
 
-By implementing these preventive measures, you can reduce the risk of Inclusion of Functionality from Untrusted Control and enhance the security of your application. Proper validation, access controls, and secure coding practices are essential to mitigate the risks associated with executing code from untrusted sources.
+Применяя эти превентивные меры, вы сможете снизить риск включения функциональности из недоверенного управления и повысить безопасность вашего приложения. Для снижения рисков, связанных с выполнением кода из недоверенных источников, необходимы правильная проверка, контроль доступа и безопасное кодирование.
 
 ```
 id: untrusted-control-inclusion
@@ -1376,34 +1376,34 @@ requests:
 ```
 
 
-### Download of Code Without Integrity Check
+### Загрузка кода без проверки целостности
 
 
-Download of Code Without Integrity Check is a security vulnerability that occurs when code or files are downloaded from a remote source without verifying their integrity. This vulnerability allows attackers to manipulate or replace the downloaded code, leading to potential injection of malicious code or unauthorized modifications.
+Загрузка кода без проверки целостности - это уязвимость безопасности, возникающая при загрузке кода или файлов из удаленного источника без проверки их целостности. Эта уязвимость позволяет злоумышленникам манипулировать загруженным кодом или заменять его, что может привести к внедрению вредоносного кода или несанкционированным модификациям.
 
-To prevent Download of Code Without Integrity Check, you should follow these preventive measures:
+Чтобы предотвратить загрузку кода без проверки целостности, необходимо соблюдать следующие профилактические меры:
 
-1. Implement code signing: Digitally sign the code or files you distribute or download. Code signing ensures that the code or files have not been tampered with and come from a trusted source. Verify the digital signatures before executing or using the downloaded code.
+1. Внедрите подписание кода: Подписывайте цифровой подписью распространяемый или загружаемый код или файлы. Подписание кода гарантирует, что код или файлы не были подделаны и получены из надежного источника. Проверяйте цифровые подписи перед выполнением или использованием загруженного кода.
 
-1. Use secure and trusted sources: Obtain code or files from trusted and reputable sources. Avoid downloading code or files from untrusted or unknown sources. Trusted sources provide assurance of the integrity and authenticity of the code.
+1. Используйте безопасные и надежные источники: Получайте код или файлы из надежных и авторитетных источников. Избегайте загрузки кода или файлов из ненадежных или неизвестных источников. Доверенные источники гарантируют целостность и подлинность кода.
 
-1. Verify checksums or hashes: Provide checksums or hashes (e.g., MD5, SHA-256) for the downloaded code or files. Before using the downloaded content, calculate the checksum or hash of the file and compare it with the provided value. If they match, it indicates that the file has not been altered during the download process.
+1. Проверяйте контрольные суммы или хэши: Предоставляйте контрольные суммы или хэши (например, MD5, SHA-256) для загруженного кода или файлов. Перед использованием загруженного содержимого вычислите контрольную сумму или хэш файла и сравните его с предоставленным значением. Если они совпадают, это означает, что файл не был изменен в процессе загрузки.
 
-1. Use secure protocols: Download code or files using secure protocols such as HTTPS, which provides encryption and integrity checks during transmission. Secure protocols help prevent tampering or interception of the downloaded content.
+1. Используйте безопасные протоколы: Загружайте код или файлы, используя безопасные протоколы, например HTTPS, который обеспечивает шифрование и проверку целостности при передаче. Безопасные протоколы помогают предотвратить фальсификацию или перехват загружаемого содержимого.
 
-1. Perform file integrity checks: Implement file integrity checks after the download process. This can include comparing the downloaded code or files against a known good version or using file integrity monitoring tools to detect any unauthorized modifications.
+1. Выполняйте проверки целостности файлов: Выполните проверку целостности файлов после процесса загрузки. Это может включать сравнение загруженного кода или файлов с известной хорошей версией или использование инструментов мониторинга целостности файлов для обнаружения любых несанкционированных модификаций.
 
-1. Regularly update and patch: Keep the software or application that handles the downloading process up to date with the latest security patches and updates. Security vulnerabilities in the download functionality can be addressed through software updates.
+1. Регулярно обновляйте и ставьте заплатки: Поддерживайте программное обеспечение или приложение, которое управляет процессом загрузки, в актуальном состоянии с помощью последних патчей и обновлений безопасности. Уязвимости в функциональности загрузки могут быть устранены с помощью обновлений программного обеспечения.
 
-1. Implement secure coding practices: Follow secure coding practices when developing the code that handles the download process. Input validation, secure file handling, and secure network communication should be considered to prevent code injection or tampering during the download.
+1. Применяйте методы безопасного кодирования: При разработке кода, обрабатывающего процесс загрузки, следуйте практикам безопасного кодирования. Необходимо учитывать проверку ввода, безопасную работу с файлами и безопасное сетевое взаимодействие, чтобы предотвратить внедрение кода или несанкционированное вмешательство в процесс загрузки.
 
-1. Implement strong access controls: Restrict access to the download functionality and ensure that only authorized users or systems can initiate or access the download process. Implement proper authentication and authorization mechanisms to prevent unauthorized downloads.
+1. Внедрите строгие средства контроля доступа: Ограничьте доступ к функциям загрузки и убедитесь, что только авторизованные пользователи или системы могут инициировать процесс загрузки или получить к нему доступ. Внедрите надлежащие механизмы аутентификации и авторизации для предотвращения несанкционированной загрузки.
 
-1. Perform security testing: Conduct regular security testing, including vulnerability scanning and penetration testing, to identify potential weaknesses or vulnerabilities in the download functionality. Test for code injection, tampering, or unauthorized file replacement scenarios.
+1. Проводите тестирование безопасности: Регулярно проводите тестирование безопасности, включая сканирование уязвимостей и тестирование на проникновение, для выявления потенциальных слабых мест или уязвимостей в функциональности загрузки. Проверяйте сценарии внедрения кода, взлома или несанкционированной замены файлов.
 
-1. Educate users: Educate users about the importance of downloading code or files from trusted sources and the risks associated with downloading from untrusted or unknown sources. Encourage users to verify the integrity of downloaded files using provided checksums or hashes.
+1. Просвещение пользователей: Проинформируйте пользователей о важности загрузки кода или файлов из надежных источников и о рисках, связанных с загрузкой из ненадежных или неизвестных источников. Поощряйте пользователей проверять целостность загруженных файлов с помощью предоставленных контрольных сумм или хэшей.
 
-By implementing these preventive measures, you can reduce the risk of Download of Code Without Integrity Check and ensure that the downloaded code or files are trustworthy and have not been tampered with. Verifying integrity, using secure sources, and implementing secure coding practices are critical for maintaining the integrity and security of downloaded code or files.
+Применяя эти профилактические меры, вы сможете снизить риск загрузки кода без проверки целостности и убедиться, что загруженный код или файлы заслуживают доверия и не были подделаны. Проверка целостности, использование безопасных источников и применение методов безопасного кодирования очень важны для поддержания целостности и безопасности загружаемого кода или файлов.
 
 
 ```
@@ -1433,33 +1433,33 @@ requests:
 ```
 
 
-### Deserialization of Untrusted Data
+### Десериализация недоверенных данных
 
-Deserialization of Untrusted Data is a security vulnerability that occurs when untrusted or malicious data is deserialized by an application without proper validation and safeguards. Deserialization vulnerabilities can lead to various attacks, such as remote code execution, injection of malicious objects, or data tampering.
+Десериализация недоверенных данных - это уязвимость безопасности, которая возникает, когда недоверенные или вредоносные данные десериализуются приложением без надлежащей проверки и защиты. Уязвимости десериализации могут привести к различным атакам, таким как удаленное выполнение кода, внедрение вредоносных объектов или подделка данных.
 
-To prevent Deserialization of Untrusted Data, you should follow these preventive measures:
+Чтобы предотвратить десериализацию недоверенных данных, необходимо соблюдать следующие профилактические меры:
 
-1. Implement input validation: Validate and sanitize all inputs, including serialized data, before deserialization. Apply strict input validation to ensure that only expected and safe data is processed.
+1. Внедрите проверку ввода: Проверяйте и обеззараживайте все входные данные, включая сериализованные, перед десериализацией. Применяйте строгую проверку ввода, чтобы гарантировать, что обрабатываются только ожидаемые и безопасные данные.
 
-1. Use secure deserialization libraries: Utilize secure and trusted deserialization libraries or frameworks that provide built-in protections against common deserialization vulnerabilities. These libraries often include features like input filtering, type checking, or automatic validation.
+1. Используйте безопасные библиотеки десериализации: Используйте безопасные и надежные библиотеки десериализации или фреймворки, которые обеспечивают встроенную защиту от распространенных уязвимостей десериализации. Такие библиотеки часто включают такие функции, как фильтрация ввода, проверка типов или автоматическая валидация.
 
-1. Implement whitelisting: Define and enforce a whitelist of allowed classes or types during deserialization. Restrict the deserialization process to only known and trusted classes, preventing the instantiation of potentially malicious or unexpected objects.
+1. Внедрите белые списки: Определите и внедрите белый список разрешенных классов или типов при десериализации. Ограничьте процесс десериализации только известными и доверенными классами, предотвращая инстанцирование потенциально вредоносных или неожиданных объектов.
 
-1. Implement integrity checks: Include integrity checks or digital signatures within the serialized data. Verify the integrity of the serialized data before deserialization to ensure that it has not been tampered with or modified.
+1. Реализуйте проверки целостности: Включите проверки целостности или цифровые подписи в сериализованные данные. Проверяйте целостность сериализованных данных перед десериализацией, чтобы убедиться, что они не были подделаны или изменены.
 
-1. Isolate deserialization functionality: Isolate the deserialization process in a separate and controlled environment. Use mechanisms like sandboxes, containers, or restricted execution environments to mitigate the impact of any potential deserialization vulnerabilities.
+1. Изолируйте функциональность десериализации: Изолируйте процесс десериализации в отдельной контролируемой среде. Используйте такие механизмы, как песочницы, контейнеры или среды ограниченного выполнения, чтобы уменьшить влияние любых потенциальных уязвимостей десериализации.
 
-1. Enforce strict access controls: Limit access to deserialization functionality to only authorized components or systems. Implement proper authentication and authorization mechanisms to prevent unauthorized deserialization.
+1. Обеспечьте строгий контроль доступа: Ограничьте доступ к функциям десериализации только авторизованными компонентами или системами. Внедрите надлежащие механизмы аутентификации и авторизации для предотвращения несанкционированной десериализации.
 
-1. Implement secure defaults: Configure deserialization settings with secure defaults. Disable or minimize the use of dangerous deserialization features or options that may introduce security risks.
+1. Внедрить безопасные настройки по умолчанию: Настройте параметры десериализации с помощью безопасных значений по умолчанию. Отключите или сведите к минимуму использование опасных функций и опций десериализации, которые могут создавать риски для безопасности.
 
-1. Update deserialization libraries: Keep deserialization libraries or frameworks up to date with the latest security patches and updates. Stay informed about any security advisories or vulnerabilities related to the deserialization components used in your application.
+1. Обновляйте библиотеки десериализации: Поддерживайте библиотеки десериализации или фреймворки в актуальном состоянии с помощью последних исправлений и обновлений безопасности. Будьте в курсе всех рекомендаций по безопасности или уязвимостей, связанных с компонентами десериализации, используемыми в вашем приложении.
 
-1. Perform security testing: Conduct thorough security testing, including static analysis, dynamic analysis, and penetration testing, to identify and remediate deserialization vulnerabilities. Test for deserialization attacks, such as object injection or remote code execution.
+1. Проводите тестирование безопасности: Проводите тщательное тестирование безопасности, включая статический анализ, динамический анализ и тестирование на проникновение, для выявления и устранения уязвимостей десериализации. Проведите тестирование на наличие атак на десериализацию, таких как внедрение объектов или удаленное выполнение кода.
 
-1. Educate developers: Provide training and guidance to developers on secure coding practices, emphasizing the importance of proper validation and handling of deserialized data. Encourage developers to follow best practices for secure deserialization.
+1. Обучать разработчиков: Предоставьте разработчикам обучение и рекомендации по безопасному кодированию, подчеркивая важность правильной проверки и обработки десериализованных данных. Поощряйте разработчиков следовать лучшим практикам безопасной десериализации.
 
-By implementing these preventive measures, you can mitigate the risk of Deserialization of Untrusted Data and protect your application from potential attacks. Validating inputs, using secure libraries, implementing access controls, and maintaining up-to-date software are essential steps to prevent deserialization vulnerabilities.
+Применяя эти превентивные меры, вы сможете снизить риск десериализации недоверенных данных и защитить свое приложение от возможных атак. Валидация входных данных, использование безопасных библиотек, внедрение средств контроля доступа и поддержка актуального программного обеспечения - вот основные шаги по предотвращению уязвимостей десериализации.
 
 ```
 id: deserialization-untrusted-data
@@ -1488,33 +1488,33 @@ requests:
 ```
 
 
-### Insufficient Logging
+### Недостаточное протоколирование
 
-Insufficient Logging is a security vulnerability that occurs when an application fails to generate or retain sufficient logs to detect and investigate security incidents. Inadequate logging can hinder incident response efforts, making it difficult to identify and analyze security events or suspicious activities.
+Недостаточное протоколирование - это уязвимость безопасности, которая возникает, когда приложение не генерирует или не сохраняет достаточное количество журналов для обнаружения и расследования инцидентов безопасности. Недостаточное ведение журналов может затруднить работу по реагированию на инциденты, затрудняя выявление и анализ событий безопасности или подозрительных действий.
 
-To prevent Insufficient Logging, you should follow these preventive measures:
+Для предотвращения недостаточного протоколирования необходимо соблюдать следующие профилактические меры:
 
-1. Implement comprehensive logging: Ensure that your application logs relevant security-related events and activities. Log information such as user authentication attempts, access control failures, critical application actions, input validation errors, and any other security-sensitive events.
+1. Внедрите комплексное протоколирование: Убедитесь, что ваше приложение регистрирует соответствующие события и действия, связанные с безопасностью. Заносите в журнал такие сведения, как попытки аутентификации пользователей, сбои в управлении доступом, критические действия приложения, ошибки проверки ввода и любые другие события, важные для безопасности.
 
-1. Include contextual information: Log additional contextual information that can aid in incident investigation, such as user IDs, timestamps, source IP addresses, affected resources, and relevant request/response data. This information can assist in understanding the scope and impact of security incidents.
+1. Включите контекстную информацию: Заносите в журнал дополнительную контекстную информацию, которая может помочь в расследовании инцидента, например идентификаторы пользователей, временные метки, IP-адреса источников, затронутые ресурсы и соответствующие данные запросов/ответов. Эта информация поможет понять масштабы и последствия инцидентов безопасности.
 
-1. Set appropriate log levels: Define appropriate log levels for different types of events, ranging from debug and informational messages to more critical error and warning logs. Use log levels consistently to capture both routine and exceptional events.
+1. Установите соответствующие уровни журналов: Определите соответствующие уровни журналов для различных типов событий - от отладочных и информационных сообщений до более важных журналов ошибок и предупреждений. Используйте уровни журналов последовательно, чтобы фиксировать как обычные, так и исключительные события.
 
-1. Ensure log storage and retention: Set up sufficient storage capacity to retain logs for an adequate period, considering compliance requirements and incident response needs. Retain logs for a timeframe that allows for timely incident detection, response, and forensic analysis.
+1. Обеспечьте хранение и сохранение журналов: Установите достаточный объем памяти для хранения журналов в течение определенного периода времени с учетом требований к соответствию и необходимости реагирования на инциденты. Храните журналы в течение периода времени, позволяющего своевременно обнаружить инцидент, отреагировать на него и провести криминалистический анализ.
 
-1. Encrypt and protect logs: Apply encryption mechanisms to protect log files at rest and during transit. Properly configure file permissions and access controls to prevent unauthorized access to log files. Protect log files from tampering or deletion by employing file integrity monitoring or secure log management systems.
+1. Шифруйте и защищайте журналы: Применяйте механизмы шифрования для защиты файлов журналов в состоянии покоя и во время транспортировки. Правильно настройте разрешения на файлы и контроль доступа, чтобы предотвратить несанкционированный доступ к файлам журналов. Защитите файлы журналов от подделки или удаления, используя контроль целостности файлов или безопасные системы управления журналами.
 
-1. Monitor log files: Regularly monitor log files for any suspicious or unexpected activities. Implement automated log analysis and intrusion detection systems to detect security events, anomalies, or patterns indicative of potential attacks.
+1. Контролируйте файлы журналов: Регулярно отслеживайте файлы журналов на предмет подозрительных или неожиданных действий. Внедрите автоматический анализ журналов и системы обнаружения вторжений для выявления событий безопасности, аномалий или шаблонов, указывающих на потенциальные атаки.
 
-1. Implement centralized log management: Centralize log storage and management in a dedicated log server or security information and event management (SIEM) system. Centralization enables correlation and analysis of logs from multiple sources, improving incident detection and response capabilities.
+1. Внедрите централизованное управление журналами: Централизуйте хранение и управление журналами на специальном сервере журналов или в системе управления информацией о безопасности и событиями (SIEM). Централизация позволяет коррелировать и анализировать журналы из разных источников, улучшая возможности обнаружения и реагирования на инциденты.
 
-1. Perform log analysis and reporting: Regularly analyze log data for security insights, trends, or anomalies. Create customized reports or dashboards that provide a summary of important security-related events. Identify areas for improvement or potential security weaknesses based on log analysis results.
+1. Выполняйте анализ журналов и создание отчетов: Регулярно анализируйте данные журналов на предмет выявления идей безопасности, тенденций и аномалий. Создавайте настраиваемые отчеты или информационные панели, содержащие краткое описание важных событий, связанных с безопасностью. Выявление областей для улучшения или потенциальных слабых мест в системе безопасности на основе результатов анализа журналов.
 
-1. Implement log integrity checks: Implement mechanisms to detect and alert on any tampering or modification of log files. Use digital signatures, checksums, or secure logging frameworks to ensure the integrity of log data.
+1. Внедрите проверку целостности журналов: Внедрите механизмы для обнаружения и оповещения о любой фальсификации или модификации файлов журналов. Используйте цифровые подписи, контрольные суммы или механизмы безопасного протоколирования для обеспечения целостности данных журнала.
 
-1. Regularly review and update logging practices: Continuously review and update your logging practices based on evolving security requirements and industry best practices. Stay informed about emerging threats and logging-related vulnerabilities to ensure your logging mechanisms remain effective.
+1. Регулярно проверяйте и обновляйте методы ведения журналов: Постоянно анализируйте и обновляйте методы ведения журналов с учетом меняющихся требований безопасности и лучших отраслевых практик. Будьте в курсе возникающих угроз и уязвимостей, связанных с протоколированием, чтобы обеспечить эффективность механизмов протоколирования.
 
-By implementing these preventive measures, you can enhance your application's logging capabilities, facilitate incident detection and response, and improve your overall security posture. Comprehensive and secure logging practices play a vital role in detecting and investigating security incidents, aiding in timely incident response, and facilitating forensic analysis when necessary.
+Реализация этих превентивных мер позволит вам расширить возможности протоколирования в приложениях, облегчить обнаружение и реагирование на инциденты и повысить общую безопасность. Комплексные и безопасные методы ведения журналов играют важную роль в обнаружении и расследовании инцидентов безопасности, помогают своевременно реагировать на них и, при необходимости, способствуют проведению криминалистического анализа.
 
 
 ```
@@ -1551,34 +1551,34 @@ requests:
 ```
 
 
-### Improper Output Neutralization for Logs
+### Неправильная нейтрализация выходных данных в журналах
 
 
-Improper Output Neutralization for Logs, also known as Log Injection, is a security vulnerability that occurs when untrusted user input is not properly sanitized or neutralized before being included in log statements. This can lead to log forging, injection of malicious content, or the disclosure of sensitive information within log files.
+Неправильная нейтрализация вывода для журналов, также известная как Log Injection, - это уязвимость безопасности, которая возникает, когда ввод недоверенного пользователя не проходит надлежащую санитарную обработку или нейтрализацию перед включением в журналы. Это может привести к подделке журналов, внедрению вредоносного содержимого или раскрытию конфиденциальной информации в файлах журналов.
 
-To prevent Improper Output Neutralization for Logs, you should follow these preventive measures:
+Чтобы предотвратить неправильную нейтрализацию выходных данных в журналах, необходимо соблюдать следующие профилактические меры:
 
-1. Apply proper input validation and sanitization: Treat log messages as untrusted user input and validate and sanitize any user-controlled data before including it in log statements. Remove or escape characters that could be interpreted as control characters or log syntax.
+1. Применяйте надлежащую проверку и санацию ввода: Рассматривайте сообщения журнала как недоверенный пользовательский ввод и проверяйте и обеззараживайте любые данные, контролируемые пользователем, перед включением их в сообщения журнала. Удалите или исключите символы, которые могут быть интерпретированы как управляющие символы или синтаксис журнала.
 
-1. Use secure logging frameworks: Utilize logging frameworks that provide built-in mechanisms for proper output neutralization. These frameworks often include features like parameterized logging or context-specific escaping, which can help prevent log injection vulnerabilities.
+1. Используйте безопасные средства ведения журналов: Используйте фреймворки протоколирования, которые обеспечивают встроенные механизмы нейтрализации вывода. Такие системы часто включают такие функции, как параметризованное ведение журнала или контекстно-зависимое экранирование, которые помогают предотвратить уязвимости, связанные с инъекциями в журнал.
 
-1. Avoid concatenation of untrusted data: Do not concatenate untrusted user input directly into log statements. Instead, use placeholder values or formatting options provided by the logging framework to ensure proper neutralization of user-controlled data.
+1. Избегайте конкатенации недоверенных данных: Не объединяйте введенные пользователем недоверенные данные непосредственно в сообщения журнала. Вместо этого используйте значения-заместители или параметры форматирования, предоставляемые системой ведения журнала, чтобы обеспечить надлежащую нейтрализацию данных, контролируемых пользователем.
 
-1. Implement context-specific output encoding: If the logging framework does not provide automatic neutralization mechanisms, implement context-specific output encoding to prevent injection attacks. Use the appropriate encoding technique based on the log format and syntax, such as HTML entity encoding or URL encoding.
+1. Реализуйте кодирование вывода с учетом контекста: Если система протоколирования не предоставляет механизмов автоматической нейтрализации, для предотвращения инъекционных атак внедрите кодирование вывода в зависимости от контекста. Используйте соответствующую методику кодирования в зависимости от формата и синтаксиса журнала, например кодирование сущностей HTML или кодирование URL.
 
-1. Limit the verbosity of log messages: Be mindful of the information logged and avoid including sensitive data in log statements. Only log the necessary details required for troubleshooting or auditing purposes, while excluding sensitive information like passwords, Personally Identifiable Information (PII), or authentication tokens.
+1. Ограничьте многословность сообщений журнала: Будьте внимательны к регистрируемой информации и не включайте конфиденциальные данные в сообщения журнала. Записывайте в журнал только те сведения, которые необходимы для устранения неполадок или аудита, исключая конфиденциальную информацию, например пароли, персональные данные (PII) или маркеры аутентификации.
 
-1. Configure log file permissions: Ensure that log files have appropriate permissions to restrict unauthorized access. Restrict read and write permissions to only authorized users or system processes. Regularly monitor and manage access control settings for log files.
+1. Настройте разрешения файлов журнала: Убедитесь, что файлы журнала имеют соответствующие разрешения для ограничения несанкционированного доступа. Ограничьте права на чтение и запись только для авторизованных пользователей или системных процессов. Регулярно контролируйте и управляйте настройками контроля доступа к файлам журналов.
 
-1. Implement centralized log management: Centralize log storage and management in a dedicated log server or a Security Information and Event Management (SIEM) system. Centralization allows for better control, monitoring, and analysis of log data, minimizing the risk of log injection and facilitating detection of suspicious activities.
+1. Внедрите централизованное управление журналами: Централизуйте хранение и управление журналами на специальном сервере журналов или в системе управления информацией и событиями безопасности (SIEM). Централизация позволяет лучше контролировать, отслеживать и анализировать данные журналов, минимизировать риск инъекции журналов и облегчить обнаружение подозрительных действий.
 
-1. Regularly monitor and review logs: Regularly review log files for any signs of log injection attempts or suspicious log entries. Implement automated log analysis and intrusion detection systems to identify potential log injection attacks or anomalous log patterns.
+1. Регулярно контролируйте и просматривайте журналы: Регулярно просматривайте файлы журналов на предмет обнаружения признаков попыток инъекции журналов или подозрительных записей в журналах. Внедрите автоматизированные системы анализа журналов и обнаружения вторжений для выявления потенциальных атак с использованием журналов или аномальных шаблонов журналов.
 
-1. Keep logging frameworks up to date: Keep your logging frameworks and libraries up to date with the latest security patches and updates. Stay informed about any security advisories or vulnerabilities related to the logging components used in your application.
+1. Следите за обновлением фреймворков для ведения журналов: следите за тем, чтобы ваши фреймворки и библиотеки для ведения журналов обновлялись с помощью последних патчей и обновлений безопасности. Будьте в курсе всех рекомендаций по безопасности и уязвимостей, связанных с компонентами протоколирования, используемыми в вашем приложении.
 
-1. Educate developers: Provide training and guidance to developers on secure coding practices for logging. Emphasize the importance of proper input validation, output neutralization, and the risks associated with log injection vulnerabilities.
+1. Обучайте разработчиков: Обучите разработчиков методам безопасного кодирования для ведения журнала. Подчеркните важность правильной проверки ввода, нейтрализации вывода и рисков, связанных с уязвимостями инъекций в журнал.
 
-By implementing these preventive measures, you can mitigate the risk of Improper Output Neutralization for Logs and ensure that your log files remain reliable, accurate, and free from malicious content. Proper input validation, secure logging frameworks, context-specific output encoding, and regular log monitoring are essential steps to prevent log injection vulnerabilities.
+Применяя эти профилактические меры, вы сможете снизить риск неправильной нейтрализации выходных данных в журналах и обеспечить надежность, точность и отсутствие вредоносного содержимого в ваших лог-файлах. Правильная проверка ввода, безопасные механизмы ведения журналов, кодирование вывода в зависимости от контекста и регулярный мониторинг журналов - вот основные шаги по предотвращению уязвимостей инъекций в журналы.
 
 
 ```
@@ -1615,33 +1615,33 @@ requests:
 ```
 
 
-### Omission of Security-relevant Information
+### Пропуск информации, имеющей отношение к безопасности
 
-Omission of Security-relevant Information is a security vulnerability that occurs when an application fails to log or report important security-related events or incidents. This omission can result in a lack of visibility into potential security threats or the inability to detect and respond to security incidents in a timely manner.
+Пропуск информации, имеющей отношение к безопасности, - это уязвимость безопасности, которая возникает, когда приложение не регистрирует или не сообщает о важных событиях или инцидентах, связанных с безопасностью. Такое упущение может привести к отсутствию видимости потенциальных угроз безопасности или невозможности своевременного обнаружения и реагирования на инциденты безопасности.
 
-To prevent the Omission of Security-relevant Information, you should follow these preventive measures:
+Чтобы предотвратить пропуск важной для безопасности информации, необходимо соблюдать следующие профилактические меры:
 
-1. Identify security-relevant events: Determine the types of security-related events that are crucial for monitoring and detection within your application. This may include failed login attempts, access control failures, suspicious activities, or any other security-related incidents specific to your application and environment.
+1. Определите события, имеющие отношение к безопасности: Определите типы событий, связанных с безопасностью, которые необходимо отслеживать и выявлять в вашем приложении. К ним могут относиться неудачные попытки входа в систему, сбои в контроле доступа, подозрительные действия или любые другие инциденты, связанные с безопасностью, характерные для вашего приложения и среды.
 
-1. Implement comprehensive logging: Ensure that your application logs all identified security-relevant events. Log the necessary details such as timestamps, user information, affected resources, and relevant context that can assist in incident investigation and response.
+1. Внедрите всестороннее протоколирование: Убедитесь, что ваше приложение регистрирует все идентифицированные события, имеющие отношение к безопасности. Записывайте в журнал все необходимые данные, такие как временные метки, информацию о пользователях, затронутых ресурсах и соответствующий контекст, который может помочь в расследовании и реагировании на инциденты.
 
-1. Set appropriate log levels: Define appropriate log levels for different security events based on their criticality. Use log levels consistently to ensure that security-relevant events are captured and logged accordingly.
+1. Установите соответствующие уровни регистрации: Определите соответствующие уровни журналов для различных событий безопасности в зависимости от их критичности. Последовательно используйте уровни журналов, чтобы гарантировать, что события, имеющие отношение к безопасности, будут фиксироваться и записываться в журнал соответствующим образом.
 
-1. Implement centralized log management: Centralize log storage and management in a dedicated log server or a Security Information and Event Management (SIEM) system. Centralization allows for better visibility, correlation, and analysis of security events across your application or infrastructure.
+1. Внедрите централизованное управление журналами: Централизуйте хранение и управление журналами на специальном сервере журналов или в системе управления информацией и событиями безопасности (SIEM). Централизация обеспечивает лучшую видимость, корреляцию и анализ событий безопасности во всем приложении или инфраструктуре.
 
-1. Regularly review and analyze logs: Establish a routine practice of reviewing and analyzing logs for security events and incidents. Assign responsibility to a designated team or individual to regularly monitor and analyze log data for any potential security threats or anomalies.
+1. Регулярно просматривайте и анализируйте журналы: Установите рутинную практику просмотра и анализа журналов на предмет событий и инцидентов безопасности. Назначьте ответственного за регулярный мониторинг и анализ журналов на предмет потенциальных угроз безопасности или аномалий.
 
-1. Implement log retention policies: Define log retention policies that align with your compliance requirements and incident response needs. Retain logs for an appropriate period to ensure that historical data is available for security investigations or forensic analysis.
+1. Внедрите политику хранения журналов: Определите политику хранения журналов, соответствующую требованиям соответствия и потребностям реагирования на инциденты. Храните журналы в течение определенного периода времени, чтобы обеспечить доступность исторических данных для расследований безопасности или криминалистического анализа.
 
-1. Automate log analysis: Implement automated log analysis tools or intrusion detection systems to assist in the detection of security events or anomalies. Use these tools to monitor log files in real-time and generate alerts or notifications for potential security incidents.
+1. Автоматизируйте анализ журналов: Внедрите автоматизированные средства анализа журналов или системы обнаружения вторжений, чтобы помочь в обнаружении событий безопасности или аномалий. Используйте эти инструменты для мониторинга файлов журналов в режиме реального времени и создания предупреждений или уведомлений о потенциальных инцидентах безопасности.
 
-1. Implement real-time monitoring: Use real-time monitoring techniques to actively track and respond to security events as they occur. Implement mechanisms such as log streaming, event triggers, or alerting systems to ensure prompt notifications and response to security incidents.
+1. Внедрите мониторинг в реальном времени: Используйте методы мониторинга в реальном времени для активного отслеживания и реагирования на события безопасности по мере их возникновения. Внедрите такие механизмы, как потоковая передача журналов, триггеры событий или системы оповещения, чтобы обеспечить оперативное оповещение и реагирование на инциденты безопасности.
 
-1. Perform regular security assessments: Conduct regular security assessments and penetration testing to identify any gaps or vulnerabilities in your application's logging and monitoring capabilities. Use the results of these assessments to make necessary improvements and address any security weaknesses.
+1. Регулярно проводите оценку безопасности: Регулярно проводите оценку безопасности и тестирование на проникновение, чтобы выявить любые пробелы или уязвимости в возможностях ведения журналов и мониторинга вашего приложения. Используйте результаты этих оценок для внесения необходимых улучшений и устранения слабых мест в системе безопасности.
 
-1. Stay updated with security best practices: Stay informed about the latest security best practices, frameworks, and guidelines related to logging and security monitoring. Regularly update your logging mechanisms and practices to align with industry standards and emerging security threats.
+1. Постоянно обновляйте лучшие практики безопасности: Будьте в курсе последних передовых практик, рамок и рекомендаций, связанных с протоколированием и мониторингом безопасности. Регулярно обновляйте механизмы и методы протоколирования, чтобы они соответствовали отраслевым стандартам и новым угрозам безопасности.
 
-By implementing these preventive measures, you can ensure that security-relevant information is properly logged and reported, enabling effective detection and response to security incidents. Comprehensive and accurate logging practices are essential for maintaining the security of your application and infrastructure, facilitating incident investigations, and supporting compliance requirements.
+Применяя эти превентивные меры, вы сможете обеспечить правильную регистрацию и отчетность по важной для безопасности информации, что позволит эффективно обнаруживать и реагировать на инциденты безопасности. Всестороннее и точное протоколирование необходимо для поддержания безопасности приложений и инфраструктуры, облегчения расследования инцидентов и обеспечения соответствия требованиям.
 
 
 ```
@@ -1677,33 +1677,33 @@ requests:
           - "Access denied"
 ```
 
-### Sensitive Information into Log File
+### Чувствительная информация в файле журнала
 
-Sensitive Information into Log File refers to the unintentional logging or inclusion of sensitive data within log files. This can occur when application logs capture and store sensitive information such as passwords, credit card numbers, personally identifiable information (PII), or any other confidential data. Storing sensitive information in log files poses a significant security risk as it increases the potential for unauthorized access, data leakage, and compliance violations.
+Чувствительная информация в файле журнала - это непреднамеренная регистрация или включение конфиденциальных данных в файлы журнала. Это может произойти, когда в журналы приложений попадает и хранится конфиденциальная информация, такая как пароли, номера кредитных карт, персональная информация (PII) или любые другие конфиденциальные данные. Хранение конфиденциальной информации в файлах журналов представляет собой значительный риск для безопасности, поскольку повышает вероятность несанкционированного доступа, утечки данных и нарушения нормативных требований.
 
-To prevent the inclusion of sensitive information into log files, consider the following preventive measures:
+Чтобы предотвратить включение конфиденциальной информации в файлы журналов, примите следующие превентивные меры:
 
-1. Implement a logging policy: Define a logging policy that explicitly prohibits the logging of sensitive information. Clearly outline what types of data should not be included in log files and educate developers and system administrators about the policy.
+1. Внедрите политику ведения журналов: Определите политику ведения журналов, которая однозначно запрещает запись конфиденциальной информации в журналы. Четко определите, какие типы данных не должны включаться в файлы журналов, и ознакомьте разработчиков и системных администраторов с этой политикой.
 
-1. Apply proper data sanitization: Implement proper data sanitization techniques to prevent sensitive information from being logged inadvertently. Develop a logging framework or use existing libraries that automatically redact or obfuscate sensitive data before logging. Apply techniques such as masking, truncation, or encryption to protect sensitive information.
+1. Применяйте надлежащую санацию данных: Применяйте надлежащие методы обеззараживания данных, чтобы предотвратить случайную запись конфиденциальной информации в журнал. Разработайте фреймворк для ведения журнала или используйте существующие библиотеки, которые автоматически редактируют или обфусцируют конфиденциальные данные перед записью в журнал. Применяйте такие методы, как маскировка, усечение или шифрование для защиты конфиденциальной информации.
 
-1. Utilize appropriate log levels: Ensure that sensitive information is not logged at inappropriate log levels. Set log levels in a way that sensitive data is not included in logs intended for debugging, development, or general information purposes. Properly categorize log levels based on the sensitivity of the information being logged.
+1. Используйте соответствующие уровни регистрации: Убедитесь, что конфиденциальная информация не регистрируется на несоответствующих уровнях журнала. Установите уровни журналов таким образом, чтобы конфиденциальные данные не попадали в журналы, предназначенные для отладки, разработки или получения общей информации. Правильно классифицируйте уровни журналов в зависимости от чувствительности регистрируемой информации.
 
-1. Avoid logging sensitive input parameters: Exercise caution when logging input parameters, especially if they contain sensitive data. If necessary, consider logging only non-sensitive portions of the input data or use a whitelist approach to explicitly exclude sensitive fields from being logged.
+1. Избегайте регистрации чувствительных входных параметров: Соблюдайте осторожность при регистрации входных параметров, особенно если они содержат конфиденциальные данные. При необходимости следует регистрировать только нечувствительные части входных данных или использовать белый список, чтобы явно исключить из регистрации чувствительные поля.
 
-1. Implement log filtering: Apply log filtering mechanisms to remove or obfuscate sensitive information from log files. Use regular expressions or predefined patterns to detect and filter out sensitive data before it is stored in log files. Regularly review and update the filtering rules as necessary.
+1. Реализуйте фильтрацию журналов: Применяйте механизмы фильтрации журналов для удаления или маскировки конфиденциальной информации в файлах журналов. Используйте регулярные выражения или предопределенные шаблоны для обнаружения и фильтрации конфиденциальных данных до их сохранения в файлах журнала. Регулярно просматривайте и обновляйте правила фильтрации по мере необходимости.
 
-1. Use secure logging storage: Ensure that log files are stored securely with appropriate access controls. Limit access to log files to authorized personnel only. Implement encryption or encryption at rest mechanisms to protect log files from unauthorized access or disclosure.
+1. Используйте безопасное хранение журналов: Обеспечьте безопасное хранение файлов журналов с соответствующим контролем доступа. Ограничьте доступ к файлам журналов только для уполномоченного персонала. Внедрите механизмы шифрования или шифрования в состоянии покоя для защиты файлов журналов от несанкционированного доступа или раскрытия.
 
-1. Regularly review log files: Perform regular log file reviews to identify any instances of sensitive information being logged. Implement automated log analysis tools or manual inspection techniques to detect and remediate any inadvertent logging of sensitive data.
+1. Регулярно проверяйте файлы журналов: Регулярно проверяйте файлы журналов, чтобы выявить все случаи записи конфиденциальной информации. Используйте автоматизированные средства анализа журналов или ручные методы проверки для обнаружения и устранения непреднамеренной регистрации конфиденциальных данных.
 
-1. Pseudonymize or anonymize data: If there is a need to log certain sensitive information for debugging or analysis purposes, consider pseudonymizing or anonymizing the data. Replace actual sensitive values with pseudonyms or anonymized identifiers to protect the privacy and confidentiality of the data.
+1. Псевдонимизация или анонимизация данных: Если необходимо регистрировать определенную конфиденциальную информацию в целях отладки или анализа, рассмотрите возможность псевдонимизации или анонимизации данных. Замените фактические конфиденциальные значения псевдонимами или анонимизированными идентификаторами, чтобы защитить конфиденциальность и секретность данных.
 
-1. Establish proper access controls: Implement strict access controls for log files, including file permissions and user authentication mechanisms. Only grant access to log files to authorized individuals who require it for operational or security purposes.
+1. Установите надлежащий контроль доступа: Установите строгий контроль доступа к файлам журнала, включая права доступа к файлам и механизмы аутентификации пользователей. Предоставляйте доступ к файлам журналов только уполномоченным лицам, которым это необходимо в целях эксплуатации или безопасности.
 
-1. Train and educate personnel: Provide training and education to developers, system administrators, and other personnel involved in log file management. Raise awareness about the risks associated with logging sensitive information and promote best practices for secure logging.
+1. Обучайте и просвещайте персонал: Обеспечьте обучение и подготовку разработчиков, системных администраторов и других сотрудников, участвующих в управлении файлами журналов. Повышайте осведомленность о рисках, связанных с записью конфиденциальной информации в журнал, и пропагандируйте передовые методы безопасного ведения журнала.
 
-By implementing these preventive measures, you can reduce the risk of sensitive information being unintentionally logged and stored in log files. Taking proactive steps to protect the confidentiality and integrity of log data helps maintain compliance with data protection regulations, mitigates the risk of data breaches, and preserves the privacy of sensitive information.
+Применяя эти профилактические меры, вы сможете снизить риск непреднамеренной регистрации конфиденциальной информации и ее хранения в файлах журналов. Принятие упреждающих мер по защите конфиденциальности и целостности данных журнала помогает обеспечить соответствие нормам защиты данных, снизить риск утечки данных и сохранить конфиденциальность конфиденциальной информации.
 
 
 ```
@@ -1741,33 +1741,33 @@ requests:
 
 
 
-### Server-Side Request Forgery (SSRF)
+### Подделка запросов со стороны сервера (SSRF)
 
-Server-Side Request Forgery (SSRF) is a vulnerability that allows an attacker to manipulate the server-side functionality of an application to make arbitrary requests on behalf of the server. The attacker typically exploits this vulnerability to interact with internal resources, perform port scanning, or make requests to other external systems. SSRF attacks can lead to sensitive data exposure, unauthorized access to internal resources, and potential remote code execution.
+Подделка запросов со стороны сервера (SSRF) - это уязвимость, позволяющая злоумышленнику манипулировать серверной функциональностью приложения для выполнения произвольных запросов от имени сервера. Как правило, злоумышленник использует эту уязвимость для взаимодействия с внутренними ресурсами, сканирования портов или выполнения запросов к другим внешним системам. Атаки SSRF могут привести к раскрытию конфиденциальных данных, несанкционированному доступу к внутренним ресурсам и возможному удаленному выполнению кода.
 
-To prevent Server-Side Request Forgery (SSRF) vulnerabilities, consider the following preventive measures:
+Чтобы предотвратить уязвимости Server-Side Request Forgery (SSRF), примите следующие профилактические меры:
 
-1. Input validation and whitelisting: Implement strong input validation and enforce strict whitelisting of allowed URLs or domains. Validate and sanitize user-supplied input, such as URLs or IP addresses, to prevent injection of malicious or unexpected values. Use a whitelist of trusted domains or IP addresses that the server is allowed to communicate with.
+1. Проверка ввода и белые списки: Внедрите строгую проверку ввода и строгий "белый список" разрешенных URL или доменов. Проверяйте и обеззараживайте вводимые пользователем данные, такие как URL или IP-адреса, чтобы предотвратить внедрение вредоносных или неожиданных значений. Используйте белый список доверенных доменов или IP-адресов, с которыми разрешено взаимодействовать серверу.
 
-1. Restrict network access: Configure network firewalls and security groups to restrict outbound network access from the server. Only allow connections to necessary resources and services, blocking access to internal or sensitive systems that should not be accessed by the server.
+1. Ограничьте доступ к сети: Настройте сетевые брандмауэры и группы безопасности, чтобы ограничить исходящий сетевой доступ с сервера. Разрешите подключения только к необходимым ресурсам и службам, блокируя доступ к внутренним или чувствительным системам, к которым сервер не должен иметь доступа.
 
-1. Use secure protocols and APIs: When making outgoing requests, use secure protocols such as HTTPS to communicate with external systems. Validate the SSL/TLS certificates of the target servers to ensure the integrity and authenticity of the communication. Avoid using insecure or deprecated protocols and APIs that may be vulnerable to SSRF attacks.
+1. Используйте безопасные протоколы и API: При выполнении исходящих запросов используйте безопасные протоколы, такие как HTTPS, для связи с внешними системами. Проверяйте сертификаты SSL/TLS целевых серверов, чтобы убедиться в целостности и подлинности связи. Избегайте использования небезопасных или устаревших протоколов и API, которые могут быть уязвимы для атак SSRF.
 
-1. Isolate server components: Utilize network segmentation and isolate server components to prevent direct access to internal resources. Place servers in separate network segments or subnets, and restrict their access to only necessary resources and services.
+1. Изолируйте компоненты сервера: Используйте сегментацию сети и изолируйте компоненты сервера, чтобы предотвратить прямой доступ к внутренним ресурсам. Разместите серверы в отдельных сегментах сети или подсетях и ограничьте их доступ только к необходимым ресурсам и службам.
 
-1. Configure strong server-side controls: Implement server-side controls to prevent SSRF attacks. This may include implementing allowlists of allowed protocols, ports, and domains, as well as enforcing appropriate security policies at the server level.
+1. Настройте надежные средства контроля на стороне сервера: Внедрите средства контроля на стороне сервера для предотвращения атак SSRF. Это может включать в себя составление списков разрешенных протоколов, портов и доменов, а также применение соответствующих политик безопасности на уровне сервера.
 
-1. Implement request validation and filtering: Validate and filter user-supplied URLs and input to ensure they conform to expected patterns and protocols. Consider using security libraries or frameworks that provide built-in protection against SSRF attacks, such as URL validation and sanitization functions.
+1. Реализуйте проверку и фильтрацию запросов: Проверяйте и фильтруйте URL-адреса и вводимые пользователем данные, чтобы убедиться в их соответствии ожидаемым шаблонам и протоколам. Рассмотрите возможность использования библиотек безопасности или фреймворков, которые обеспечивают встроенную защиту от атак SSRF, например, функции проверки и санации URL.
 
-1. Least privilege principle: Ensure that the server's permissions and privileges are limited to what is necessary for its intended functionality. Avoid running the server with excessive privileges or accessing sensitive resources that are not required for its operation.
+1. Принцип наименьших привилегий: убедитесь, что разрешения и привилегии сервера ограничены тем, что необходимо для его работы. Избегайте запуска сервера с чрезмерными привилегиями или доступа к конфиденциальным ресурсам, которые не требуются для его работы.
 
-1. Secure session management: Implement secure session management practices, including strong session identifiers, session expiration, and secure session storage. This helps prevent attackers from leveraging SSRF vulnerabilities to hijack active sessions or perform unauthorized actions.
+1. Безопасное управление сеансами: Внедрите методы безопасного управления сеансами, включая надежные идентификаторы сеансов, истечение срока действия сеанса и безопасное хранение сеансов. Это поможет предотвратить использование злоумышленниками уязвимостей SSRF для перехвата активных сеансов или выполнения несанкционированных действий.
 
-1. Regular security updates and patches: Keep server software, libraries, and frameworks up to date with the latest security patches and updates. SSRF vulnerabilities can be present in various components, including web servers, frameworks, or third-party libraries. Regularly monitor and apply security updates to mitigate known vulnerabilities.
+1. Регулярные обновления и исправления безопасности: Поддерживайте серверное программное обеспечение, библиотеки и фреймворки в актуальном состоянии с помощью последних исправлений и обновлений безопасности. Уязвимости SSRF могут присутствовать в различных компонентах, включая веб-серверы, фреймворки или библиотеки сторонних разработчиков. Регулярно отслеживайте и применяйте обновления безопасности для устранения известных уязвимостей.
 
-1. Perform security testing and code review: Conduct regular security testing, including vulnerability scanning and penetration testing, to identify and remediate SSRF vulnerabilities. Additionally, perform code reviews to identify potential SSRF-prone code patterns and ensure secure coding practices are followed.
+1. Проводите тестирование безопасности и обзор кода: Регулярно проводите тестирование безопасности, включая сканирование уязвимостей и тестирование на проникновение, для выявления и устранения уязвимостей SSRF. Кроме того, проводите анализ кода, чтобы выявить потенциальные шаблоны кода, подверженные SSRF, и обеспечить соблюдение правил безопасного кодирования.
 
-By implementing these preventive measures, you can significantly reduce the risk of SSRF vulnerabilities and protect your application from unauthorized access to internal resources and potential data breaches. It is important to adopt a security-first mindset throughout the application development lifecycle and regularly assess and enhance the security posture of your systems.
+Реализовав эти превентивные меры, вы сможете значительно снизить риск возникновения уязвимостей SSRF и защитить свое приложение от несанкционированного доступа к внутренним ресурсам и потенциальной утечки данных. Важно придерживаться концепции безопасности на протяжении всего жизненного цикла разработки приложений, а также регулярно оценивать и повышать уровень безопасности своих систем.
 
 
 ```
@@ -1804,58 +1804,59 @@ requests:
 
 ## API
 
-### Category: Broken Access Control
+### Категория: Нарушенный контроль доступа
 
-Inadequate enforcement of access controls, allowing unauthorized users to access sensitive resources or perform unauthorized actions.
-Example of attacks: Accessing restricted data or functionality, privilege escalation, horizontal/vertical privilege escalation.
-
-### Category: Excessive Data Exposure
-
-APIs exposing more data than necessary, potentially leaking sensitive information.
-Example of attacks: Exposure of personally identifiable information (PII), financial data, or sensitive business data through API responses.
-
-### Category: Broken Authentication
-
-Flaws in authentication mechanisms that can lead to unauthorized access or account takeover.
-Example of attacks: Credential stuffing, session fixation, brute-forcing authentication tokens or passwords.
-
-### Category: Injection Attacks
-
-Lack of proper input validation and sanitization, enabling attackers to inject malicious code or exploit vulnerabilities.
-Example of attacks: SQL injection, OS command injection, XML/XXE injection, NoSQL injection.
-
-### Category: Improper Error Handling
-
-APIs revealing excessive or sensitive error details, which can aid attackers in exploiting vulnerabilities.
-Example of attacks: Information disclosure, error-based enumeration, bypassing security controls using error messages.
-
-### Category: Security Misconfiguration
-
-Poorly configured API settings, default credentials, or inadequate security configurations.
-Example of attacks: Unauthorized access to API endpoints, access to sensitive configuration data, exploitation of default credentials.
-
-### Category: Insecure Direct Object References
-
-Improper access control mechanisms that allow attackers to directly reference internal objects or resources.
-Example of attacks: Accessing other users' data, tampering with internal object references, bypassing authorization checks.
-
-### Category: Insufficient Logging and Monitoring
-
-Lack of proper logging and monitoring, hindering the detection and response to security incidents.
-Example of attacks: Unauthorized access attempts, API abuse, suspicious activity going unnoticed due to insufficient logging.
-
-### Category: Insecure Serverless Deployments
-
-Security weaknesses in serverless architectures, including issues with configuration, event handling, and access controls.
-Example of attacks: Unauthorized execution of serverless functions, sensitive data exposure through serverless configurations.
-
-### Category: Denial of Service (DoS)
-
-Vulnerabilities that can be exploited to overload or disrupt the availability of API services.
-Example of attacks: Sending excessive requests, resource exhaustion, API rate limiting bypass, flooding API endpoints.
+Неадекватное применение средств контроля доступа, позволяющее неавторизованным пользователям получать доступ к важным ресурсам или выполнять несанкционированные действия.
+Примеры атак: Доступ к ограниченным данным или функциональным возможностям, повышение привилегий, горизонтальное/вертикальное повышение привилегий.
 
 
-### Ref
+### Категория: Чрезмерное раскрытие данных
+
+API, раскрывающие больше данных, чем необходимо, что может привести к утечке конфиденциальной информации.
+Пример атак: Раскрытие персональной информации (PII), финансовых данных или конфиденциальных бизнес-данных через ответы API.
+
+### Категория: Нарушенная аутентификация
+
+Недостатки в механизмах аутентификации, которые могут привести к несанкционированному доступу или захвату учетной записи.
+Примеры атак: Вброс учетных данных, фиксация сеанса, перебор токенов аутентификации или паролей.
+
+### Категория: Инъекционные атаки
+
+Отсутствие надлежащей проверки и санации ввода, что позволяет злоумышленникам внедрять вредоносный код или использовать уязвимости.
+Примеры атак: SQL-инъекция, инъекция команд ОС, XML/XXE-инъекция, NoSQL-инъекция.
+
+### Категория: Неправильная обработка ошибок
+
+API, раскрывающие излишнюю или чувствительную информацию об ошибках, которая может помочь злоумышленникам использовать уязвимости.
+Примеры атак: Раскрытие информации, перечисление на основе ошибок, обход средств контроля безопасности с помощью сообщений об ошибках.
+
+### Категория: Неправильная конфигурация безопасности
+
+Плохо настроенные параметры API, учетные данные по умолчанию или неадекватные конфигурации безопасности.
+Примеры атак: Несанкционированный доступ к конечным точкам API, доступ к конфиденциальным данным конфигурации, использование учетных данных по умолчанию.
+
+### Категория: Небезопасные прямые ссылки на объекты
+
+Неправильные механизмы контроля доступа, позволяющие злоумышленникам напрямую ссылаться на внутренние объекты или ресурсы.
+Примеры атак: Доступ к данным других пользователей, подделка ссылок на внутренние объекты, обход проверок авторизации.
+
+### Категория: Недостаточное протоколирование и мониторинг
+
+Отсутствие надлежащего протоколирования и мониторинга, затрудняющее обнаружение и реагирование на инциденты безопасности.
+Примеры атак: Попытки несанкционированного доступа, злоупотребление API, подозрительная активность, остающаяся незамеченной из-за недостаточного протоколирования.
+
+### Категория: Небезопасные бессерверные развертывания
+
+Слабые места в безопасности бессерверных архитектур, включая проблемы с конфигурацией, обработкой событий и контролем доступа.
+Примеры атак: Несанкционированное выполнение бессерверных функций, раскрытие конфиденциальных данных через бессерверные конфигурации.
+
+### Категория: Отказ в обслуживании (DoS)
+
+Уязвимости, которые могут быть использованы для перегрузки или нарушения доступности сервисов API.
+Примеры атак: Отправка чрезмерных запросов, исчерпание ресурсов, обход ограничения скорости API, переполнение конечных точек API.
+
+
+### Ссылка
 
 * https://capec.mitre.org/index.html
 
