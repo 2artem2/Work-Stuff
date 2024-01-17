@@ -447,33 +447,32 @@ requests:
 ```
 
 
-### Insufficient Entropy
+### Недостаточная энтропия
 
 
-Insufficient entropy refers to a lack of randomness or unpredictability in the generation of cryptographic keys, random numbers, or other security-critical values. Insufficient entropy can weaken cryptographic algorithms and make them more susceptible to brute-force attacks or other cryptographic attacks.
+Недостаточная энтропия - это отсутствие случайности или непредсказуемости при генерации криптографических ключей, случайных чисел или других важных для безопасности значений. Недостаточная энтропия может ослабить криптографические алгоритмы и сделать их более восприимчивыми к атакам методом "грубой силы" или другим криптографическим атакам.
 
-To prevent insufficient entropy, you can follow these preventive measures:
+Для предотвращения недостаточной энтропии можно выполнить следующие профилактические меры:
 
-1. Use a cryptographically secure random number generator (CSPRNG): Use a CSPRNG instead of relying on pseudo-random number generators (PRNGs) or non-secure random sources. A CSPRNG ensures that the generated random numbers are sufficiently unpredictable and suitable for cryptographic purposes.
+1. Используйте криптографически защищенный генератор случайных чисел (CSPRNG): Используйте CSPRNG вместо того, чтобы полагаться на генераторы псевдослучайных чисел (PRNG) или небезопасные источники случайных чисел. CSPRNG гарантирует, что генерируемые случайные числа достаточно непредсказуемы и подходят для криптографических целей.
 
-1. Collect entropy from diverse sources: Gather entropy from a variety of sources, such as hardware events (e.g., mouse movements, keyboard presses, disk activity), system-level events, environmental factors, or dedicated hardware random number generators. Combine these entropy sources to increase the randomness and unpredictability of the generated values.
+1. Сбор энтропии из различных источников: Собирайте энтропию из различных источников, таких как аппаратные события (например, движения мыши, нажатия на клавиатуру, активность диска), события на уровне системы, факторы окружающей среды или специальные аппаратные генераторы случайных чисел. Комбинируйте эти источники энтропии, чтобы увеличить случайность и непредсказуемость генерируемых значений.
 
-1. Periodically reseed the random number generator: Regularly reseed the random number generator with fresh entropy to maintain a high level of randomness. This helps prevent the depletion of entropy over time.
+1. Периодически перезагружайте генератор случайных чисел: Регулярно пополняйте генератор случайных чисел свежей энтропией, чтобы поддерживать высокий уровень случайности. Это поможет предотвратить истощение энтропии со временем.
 
-1. Use hardware-based random number generation: If available, consider utilizing dedicated hardware random number generators (RNGs) that provide a high degree of randomness. These RNGs use physical processes, such as electronic noise or radioactive decay, to generate random values.
+1. Используйте аппаратную генерацию случайных чисел: Если есть возможность, используйте специализированные аппаратные генераторы случайных чисел (ГСЧ), которые обеспечивают высокую степень случайности. Эти ГСЧ используют физические процессы, такие как электронный шум или радиоактивный распад, для генерации случайных значений.
 
-1. Test and monitor entropy levels: Implement mechanisms to test and monitor the entropy levels in your system. You can use tools or libraries to assess the quality of randomness and ensure that it meets the required entropy threshold. Monitor entropy pools to identify any potential depletion or insufficient entropy conditions.
+1. Проверка и мониторинг уровня энтропии: Реализуйте механизмы для тестирования и мониторинга уровня энтропии в вашей системе. Вы можете использовать инструменты или библиотеки для оценки качества случайности и убедиться, что она соответствует требуемому порогу энтропии. Контролируйте пулы энтропии, чтобы выявить возможное истощение или недостаточное количество энтропии.
 
-1. Avoid deterministic algorithms for key generation: Use algorithms that incorporate randomness and avoid deterministic algorithms for key generation. Deterministic algorithms generate the same output for the same input, making them predictable and susceptible to attacks.
+1. Избегайте детерминированных алгоритмов генерации ключей: Используйте алгоритмы, включающие случайность, и избегайте детерминированных алгоритмов для генерации ключей. Детерминированные алгоритмы генерируют один и тот же результат на один и тот же вход, что делает их предсказуемыми и подверженными атакам.
 
-1. Periodically rotate cryptographic keys: Regularly rotate cryptographic keys, especially for long-lived cryptographic operations. This minimizes the impact of compromised keys and provides an opportunity to introduce fresh entropy during the key generation process.
+1. Периодически поворачивайте криптографические ключи: Регулярно чередуйте криптографические ключи, особенно для долгоживущих криптографических операций. Это минимизирует влияние скомпрометированных ключей и дает возможность внести новую энтропию в процесс генерации ключей.
 
-1. Perform security testing and code review: Conduct security testing, including vulnerability scanning and code review, to identify any weaknesses or vulnerabilities related to entropy generation. Review the implementation of random number generation functions and ensure they meet cryptographic best practices.
+1. Проводите тестирование безопасности и обзор кода: Проведите тестирование безопасности, включая сканирование уязвимостей и обзор кода, чтобы выявить любые слабые места или уязвимости, связанные с генерацией энтропии. Проанализируйте реализацию функций генерации случайных чисел и убедитесь, что они соответствуют лучшим криптографическим практикам.
 
-1. Follow cryptographic standards and best practices: Adhere to established cryptographic standards, guidelines, and best practices. Standards organizations like NIST and IETF provide recommendations and guidelines for generating and managing cryptographic keys, random numbers, and entropy.
+1. Следовать криптографическим стандартам и передовым практикам: Придерживайтесь установленных криптографических стандартов, рекомендаций и лучших практик. Такие организации по стандартизации, как NIST и IETF, предоставляют рекомендации и руководства по генерации и управлению криптографическими ключами, случайными числами и энтропией.
 
-By implementing these preventive measures, you can enhance the entropy generation process and ensure the strength and unpredictability of cryptographic operations. It is crucial to regularly assess and update your entropy generation mechanisms to adapt to evolving security requirements and best practices.
-
+Применяя эти превентивные меры, вы сможете улучшить процесс генерации энтропии и обеспечить стойкость и непредсказуемость криптографических операций. Очень важно регулярно оценивать и обновлять механизмы генерации энтропии, чтобы адаптироваться к изменяющимся требованиям безопасности и передовым практикам.
 
 ```
 id: insufficient-entropy
@@ -519,32 +518,31 @@ requests:
 ### XSS
 
 
-XSS (Cross-Site Scripting) is a type of web vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. It occurs when user-supplied data is improperly validated or escaped and is directly included in a web page without proper sanitization.
+XSS (Cross-Site Scripting) - это тип веб-уязвимости, позволяющий злоумышленникам внедрять вредоносные скрипты на веб-страницы, просматриваемые другими пользователями. Это происходит, когда данные, предоставленные пользователем, неправильно проверяются или экранируются и напрямую включаются в веб-страницу без надлежащей санитарной обработки.
 
-To prevent XSS attacks, you can follow these preventive measures:
+Чтобы предотвратить XSS-атаки, вы можете следовать следующим профилактическим мерам:
 
-1. Input validation and filtering: Validate and sanitize all user-generated input, including form fields, URL parameters, and HTTP headers. Apply input validation to ensure that only expected data types and formats are accepted. Filter out or escape characters that can be used for malicious purposes, such as HTML tags, JavaScript code, or SQL commands.
+1. Проверка и фильтрация вводимых данных: Проверяйте и обеззараживайте все вводимые пользователем данные, включая поля форм, параметры URL и HTTP-заголовки. Применяйте проверку ввода, чтобы убедиться, что принимаются только ожидаемые типы и форматы данных. Отфильтруйте или исключите символы, которые могут быть использованы в злонамеренных целях, например HTML-теги, код JavaScript или команды SQL.
 
-1. Use secure coding practices: Implement secure coding practices that promote the separation of code and data. Use appropriate context-aware output encoding or escaping techniques when displaying user-supplied data in HTML, JavaScript, CSS, or other contexts.
+1. Используйте методы безопасного кодирования: Внедряйте методы безопасного кодирования, которые способствуют разделению кода и данных. Используйте соответствующие методы кодирования или экранирования вывода с учетом контекста при отображении данных, предоставленных пользователем, в HTML, JavaScript, CSS и других контекстах.
 
-1. Use a secure templating system: If using a templating system, make sure it automatically escapes or sanitizes user input by default. Avoid using string concatenation or manual HTML construction for displaying user-supplied data.
+1. Используйте безопасную систему шаблонов: Если вы используете систему шаблонов, убедитесь, что она по умолчанию автоматически экранирует или дезинфицирует вводимые пользователем данные. Избегайте использования конкатенации строк или ручного построения HTML для отображения данных, предоставленных пользователем.
 
-1. Content Security Policy (CSP): Implement and enforce a Content Security Policy that restricts the types of content that can be loaded or executed on a web page. CSP helps mitigate XSS attacks by defining the sources from which various content, such as scripts or stylesheets, can be loaded.
+1. Политика безопасности содержимого (CSP): внедрите и применяйте политику безопасности содержимого, ограничивающую типы содержимого, которое может быть загружено или выполнено на веб-странице. CSP помогает предотвратить XSS-атаки, определяя источники, из которых может быть загружен различный контент, например скрипты или таблицы стилей.
 
-1. HTTP-only cookies: Use the HttpOnly flag when setting cookies to prevent client-side scripts from accessing sensitive cookies. This helps protect against session hijacking attacks.
+1. Куки только для HTTP: Используйте флаг HttpOnly при настройке файлов cookie, чтобы предотвратить доступ клиентских скриптов к конфиденциальным файлам cookie. Это помогает защититься от атак с перехватом сеанса.
 
-1. Escape output appropriately: When dynamically generating HTML, JavaScript, or other content, ensure that user-supplied data is properly escaped to prevent it from being interpreted as code. Use context-aware escaping functions provided by your programming framework or language.
+1. Правильно экранируйте вывод: При динамической генерации HTML, JavaScript или другого содержимого убедитесь, что данные, предоставленные пользователем, правильно экранированы, чтобы они не были интерпретированы как код. Используйте контекстно-зависимые функции экранирования, предоставляемые вашим фреймворком или языком программирования.
 
-1. Secure development frameworks and libraries: Utilize secure development frameworks and libraries that have built-in protections against XSS attacks. These frameworks often provide mechanisms to automatically escape or sanitize user input when rendering templates or generating HTML.
+1. Безопасные фреймворки и библиотеки разработки: Используйте безопасные фреймворки и библиотеки, которые имеют встроенные средства защиты от XSS-атак. Такие фреймворки часто предоставляют механизмы для автоматического экранирования или санации пользовательского ввода при рендеринге шаблонов или генерации HTML.
 
-1. Regularly update and patch: Keep all web application components, including frameworks, libraries, and plugins, up to date with the latest security patches. XSS vulnerabilities may be discovered in these components, and updates often address these vulnerabilities.
+1. Регулярно обновляйте и ставьте заплатки: Поддерживайте все компоненты веб-приложения, включая фреймворки, библиотеки и плагины, в актуальном состоянии с помощью последних патчей безопасности. В этих компонентах могут быть обнаружены XSS-уязвимости, и обновления часто устраняют эти уязвимости.
 
-1. Educate and train developers: Provide security training and awareness programs to developers to educate them about the risks of XSS attacks and secure coding practices. Teach them how to properly validate, sanitize, and escape user input to prevent XSS vulnerabilities.
+1. Обучайте и тренируйте разработчиков: Организуйте для разработчиков программы обучения и повышения осведомленности в области безопасности, чтобы ознакомить их с рисками XSS-атак и практикой безопасного кодирования. Научите их правильно проверять, обеззараживать и устранять пользовательский ввод для предотвращения XSS-уязвимостей.
 
-1. Penetration testing and security scanning: Regularly conduct penetration testing and security scanning to identify any XSS vulnerabilities in your web application. Utilize automated vulnerability scanners or engage security professionals to perform manual security assessments.
+1. Тестирование на проникновение и сканирование безопасности: Регулярно проводите тестирование на проникновение и сканирование безопасности, чтобы выявить любые XSS-уязвимости в вашем веб-приложении. Используйте автоматические сканеры уязвимостей или привлекайте специалистов по безопасности для ручной оценки безопасности.
 
-By following these preventive measures, you can significantly reduce the risk of XSS attacks and protect your web application and users from potential malicious activities. It is essential to implement a layered approach to security, combining secure coding practices, input validation, output encoding, and regular security testing to maintain a strong defense against XSS vulnerabilities.
-
+Соблюдая эти превентивные меры, вы сможете значительно снизить риск XSS-атак и защитить свое веб-приложение и пользователей от возможных вредоносных действий. Для обеспечения надежной защиты от XSS-уязвимостей необходимо применять многоуровневый подход к безопасности, сочетая методы безопасного кодирования, проверку ввода, кодирование вывода и регулярное тестирование безопасности.
 
 ```
 id: xss
@@ -589,31 +587,32 @@ requests:
 ### SQL Injection
 
 
-SQL Injection is a web application vulnerability that occurs when an attacker is able to manipulate an SQL query by inserting malicious SQL code. It happens when user-supplied input is not properly validated or sanitized and is directly concatenated into an SQL statement, allowing the attacker to execute unauthorized database operations, view sensitive data, or modify the database.
+SQL Injection - это уязвимость веб-приложения, которая возникает, когда злоумышленник может манипулировать SQL-запросом, вставляя вредоносный SQL-код. Это происходит, когда вводимые пользователем данные не проходят надлежащую проверку или санацию и напрямую объединяются в SQL-запрос, что позволяет злоумышленнику выполнять несанкционированные операции с базой данных, просматривать конфиденциальные данные или изменять базу данных.
 
-To prevent SQL Injection attacks, you can follow these preventive measures:
+Чтобы предотвратить атаки SQL Injection, вы можете следовать следующим профилактическим мерам:
 
-1. Use parameterized queries or prepared statements: Instead of dynamically building SQL queries by concatenating user input, use parameterized queries or prepared statements. These mechanisms allow you to separate the SQL code from the user-supplied input, preventing the injection of malicious SQL code.
+1. Используйте параметризованные запросы или подготовленные операторы: Вместо того чтобы динамически создавать SQL-запросы путем конкатенации пользовательского ввода, используйте параметризованные запросы или подготовленные операторы. Эти механизмы позволяют отделить SQL-код от пользовательского ввода, что предотвращает внедрение вредоносного SQL-кода.
 
-1. Input validation and sanitization: Validate and sanitize all user-generated input before using it in SQL queries. Validate input to ensure it matches the expected data type, length, and format. Sanitize input by removing or escaping special characters that can be used for SQL injection, such as single quotes or semicolons.
+1. Проверка и обеззараживание ввода: Проверяйте и обеззараживайте все вводимые пользователем данные, прежде чем использовать их в SQL-запросах. Проверяйте вводимые данные, чтобы убедиться, что они соответствуют ожидаемому типу, длине и формату. Удаляйте или экранируйте специальные символы, которые могут быть использованы для SQL-инъекций, например одинарные кавычки или точки с запятой.
 
-1. Avoid dynamic SQL queries: Whenever possible, avoid dynamically building SQL queries using string concatenation. Instead, use ORM (Object-Relational Mapping) frameworks or query builders that provide built-in protection against SQL injection. These frameworks automatically handle the proper escaping and parameter binding.
+1. Избегайте динамических SQL-запросов: По возможности избегайте динамического построения SQL-запросов с использованием конкатенации строк. Вместо этого используйте фреймворки ORM (Object-Relational Mapping) или конструкторы запросов, которые обеспечивают встроенную защиту от SQL-инъекций. Такие фреймворки автоматически обрабатывают правильное экранирование и привязку параметров.
 
-1. Least privilege principle: Ensure that the database user account used by the web application has the least privilege necessary to perform its required operations. Restrict the permissions to only those specific tables and operations required by the application, reducing the potential impact of a successful SQL injection attack.
+1. Принцип наименьших привилегий: убедитесь, что учетная запись пользователя базы данных, используемая веб-приложением, обладает наименьшими привилегиями, необходимыми для выполнения требуемых операций. Ограничьте права только теми конкретными таблицами и операциями, которые требуются приложению, что уменьшит потенциальное воздействие успешной атаки SQL-инъекции.
 
-1. Securely manage database credentials: Store and manage database credentials securely. Avoid hard-coding credentials in the source code or configuration files. Instead, use secure credential storage mechanisms such as environment variables or secure key stores.
+1. Безопасное управление учетными данными базы данных: Храните и управляйте учетными данными базы данных безопасно. Избегайте жесткого кодирования учетных данных в исходном коде или конфигурационных файлах. Вместо этого используйте безопасные механизмы хранения учетных данных, такие как переменные среды или безопасные хранилища ключей.
 
-1. Implement input validation on the server-side: While client-side input validation provides a better user experience, it should not be solely relied upon for security. Always perform input validation and sanitization on the server-side as well, as client-side validation can be bypassed or manipulated.
+1. Реализуйте проверку ввода на стороне сервера: Хотя проверка ввода на стороне клиента обеспечивает лучший пользовательский опыт, на нее не следует полагаться в вопросах безопасности. Всегда выполняйте проверку и санацию ввода и на стороне сервера, поскольку проверку на стороне клиента можно обойти или манипулировать ею.
 
-1. Regularly update and patch: Keep your database management system (DBMS) up to date with the latest security patches. DBMS vendors often release updates to address security vulnerabilities, including those related to SQL injection.
+1. Регулярно обновляйте и ставьте заплатки: Поддерживайте свою систему управления базами данных (СУБД) в актуальном состоянии с помощью последних патчей безопасности. Производители СУБД часто выпускают обновления для устранения уязвимостей, в том числе связанных с SQL-инъекциями.
 
-1. Implement strong access controls: Implement strong access controls at the application level to restrict user access and actions. Use role-based access control (RBAC) and properly authenticate and authorize users to ensure they only have access to the appropriate resources and actions.
+1. Внедрите строгий контроль доступа: Внедрите строгий контроль доступа на уровне приложений, чтобы ограничить доступ и действия пользователей. Используйте контроль доступа на основе ролей (RBAC), правильно аутентифицируйте и авторизуйте пользователей, чтобы они имели доступ только к соответствующим ресурсам и действиям.
 
-1. Security testing and code review: Conduct regular security testing, including penetration testing and code review, to identify any SQL injection vulnerabilities in your web application. Utilize automated vulnerability scanners and engage security professionals to perform manual security assessments.
+1. Тестирование безопасности и проверка кода: Регулярно проводите тестирование безопасности, включая тестирование на проникновение и анализ кода, для выявления уязвимостей SQL-инъекций в вашем веб-приложении. Используйте автоматические сканеры уязвимостей и привлекайте специалистов по безопасности для ручной оценки безопасности.
 
-1. Secure development practices: Promote secure coding practices within your development team. Educate developers about the risks of SQL injection and provide training on secure coding techniques and best practices. Encourage the use of secure coding frameworks and libraries that offer protection against SQL injection.
+1. Безопасные методы разработки: Продвигайте практику безопасного кодирования в своей команде разработчиков. Просветите разработчиков о рисках, связанных с SQL-инъекциями, и организуйте обучение методам безопасного кодирования и лучшим практикам. Поощряйте использование фреймворков и библиотек безопасного кодирования, которые обеспечивают защиту от SQL-инъекций.
 
-By implementing these preventive measures, you can significantly reduce the risk of SQL Injection attacks and protect your web application from unauthorized database access or manipulation. It is important to adopt a proactive approach to security, combining secure coding practices, input validation, parameterized queries, and regular security testing to maintain the integrity and security of your application's database interactions.
+Применяя эти превентивные меры, вы сможете значительно снизить риск атак SQL Injection и защитить свое веб-приложение от несанкционированного доступа к базе данных или манипуляций с ней. Важно применять проактивный подход к обеспечению безопасности, сочетая методы безопасного кодирования, проверку ввода, параметризованные запросы и регулярное тестирование безопасности для поддержания целостности и безопасности взаимодействия вашего приложения с базой данных.
+
 
 
 ```
@@ -653,33 +652,33 @@ requests:
 ```
 
 
-### External Control of File Name or Path
+### Внешнее управление именем или путем файла
 
-External Control of File Name or Path is a vulnerability that occurs when an attacker can manipulate the file name or path used in file operations, leading to unintended or unauthorized access to files on the system. This vulnerability can be exploited to read, overwrite, or execute arbitrary files, potentially compromising the security and integrity of the application and the underlying system.
+Внешнее управление именем или путем файла - это уязвимость, возникающая, когда злоумышленник может манипулировать именем или путем файла, используемым в файловых операциях, что приводит к непреднамеренному или несанкционированному доступу к файлам в системе. Эта уязвимость может быть использована для чтения, перезаписи или выполнения произвольных файлов, что потенциально может нарушить безопасность и целостность приложения и базовой системы.
 
-To prevent External Control of File Name or Path vulnerabilities, you can follow these preventive measures:
+Чтобы предотвратить уязвимость External Control of File Name or Path, можно выполнить следующие профилактические меры:
 
-1. Validate and sanitize file inputs: Validate and sanitize any file-related inputs received from users or external sources. Verify that the file names or paths conform to the expected format and do not contain any unexpected or malicious characters. Sanitize the input by removing or escaping any characters that can be used for path traversal or command injection.
+1. Проверяйте и обеззараживайте вводимые файлы: Проверяйте и обеззараживайте любые связанные с файлами данные, полученные от пользователей или из внешних источников. Убедитесь, что имена файлов или пути к ним соответствуют ожидаемому формату и не содержат неожиданных или вредоносных символов. Санируйте входные данные, удаляя или экранируя любые символы, которые могут быть использованы для обхода путей или внедрения команд.
 
-1. Use whitelisting: Implement a whitelist approach for allowed file names or paths. Define a list of permitted characters, file extensions, or directory paths that are considered safe and reject any inputs that do not match the whitelist. This helps prevent unauthorized access to sensitive files or system directories.
+1. Используйте белые списки: Реализуйте подход "белых списков" для разрешенных имен файлов или путей. Определите список разрешенных символов, расширений файлов или путей к каталогам, которые считаются безопасными, и отклоняйте любые входные данные, которые не соответствуют белому списку. Это поможет предотвратить несанкционированный доступ к конфиденциальным файлам или системным каталогам.
 
-1. Avoid user-controlled file names or paths: Whenever possible, avoid using user-supplied input directly as file names or paths. Generate file names or paths programmatically using trusted and validated data sources, such as a database or internal configuration. If user input is necessary, consider using a secure file upload mechanism that stores uploaded files in a designated, non-executable directory.
+1. Избегайте имен и путей к файлам, задаваемых пользователем: По возможности избегайте использования вводимых пользователем данных непосредственно в качестве имен файлов или путей к ним. Генерируйте имена файлов или пути программно, используя надежные и проверенные источники данных, такие как база данных или внутренняя конфигурация. Если ввод данных пользователем необходим, рассмотрите возможность использования защищенного механизма загрузки файлов, который хранит загруженные файлы в специально отведенном неисполняемом каталоге.
 
-1. Restrict file system access permissions: Set appropriate access permissions on files and directories to limit the privileges of the application or process accessing them. Ensure that the application runs with the least privilege necessary to perform its operations and restrict access to sensitive files or system directories.
+1. Ограничьте права доступа к файловой системе: Установите соответствующие разрешения на доступ к файлам и каталогам, чтобы ограничить привилегии приложения или процесса, обращающегося к ним. Убедитесь, что приложение запускается с наименьшими привилегиями, необходимыми для выполнения его операций, и ограничьте доступ к конфиденциальным файлам или системным каталогам.
 
-1. Use platform-specific secure file APIs: Utilize secure file access APIs provided by the programming language or framework you're using. These APIs often include built-in protections against path traversal attacks or command injection. Avoid using low-level file system access methods that may be more susceptible to vulnerabilities.
+1. Используйте специфические для платформы API-интерфейсы безопасного доступа к файлам: Используйте API-интерфейсы безопасного доступа к файлам, предоставляемые используемым языком программирования или фреймворком. Эти API часто содержат встроенные средства защиты от атак обхода пути или внедрения команд. Избегайте использования низкоуровневых методов доступа к файловой системе, которые могут быть более подвержены уязвимостям.
 
-1. Implement file access controls: Implement proper file access controls within your application. Authenticate and authorize users to ensure they have the necessary permissions to access specific files or directories. Enforce file-level access controls based on user roles or privileges.
+1. Внедрите средства контроля доступа к файлам: Реализуйте надлежащий контроль доступа к файлам в вашем приложении. Аутентифицируйте и авторизуйте пользователей, чтобы убедиться, что у них есть необходимые разрешения на доступ к определенным файлам или каталогам. Обеспечьте контроль доступа на уровне файлов на основе ролей или привилегий пользователей.
 
-1. Secure file upload and download: Implement secure file upload and download mechanisms that validate file types, check file sizes, and perform virus/malware scanning. Restrict the allowed file extensions, set size limits, and ensure the uploaded files are stored in a secure location.
+1. Безопасная загрузка и выгрузка файлов: Реализуйте механизмы безопасной загрузки и выгрузки файлов, которые проверяют типы файлов, их размеры и выполняют проверку на наличие вирусов и вредоносного ПО. Ограничьте допустимые расширения файлов, установите ограничения на размер и убедитесь, что загруженные файлы хранятся в безопасном месте.
 
-1. Regularly update and patch: Keep the underlying operating system, libraries, and dependencies up to date with the latest security patches. Patches often address vulnerabilities related to file system operations and can help mitigate the risk of external control of file name or path attacks.
+1. Регулярно обновляйте и ставьте заплатки: Поддерживайте базовую операционную систему, библиотеки и зависимые компоненты в актуальном состоянии с помощью последних патчей безопасности. Патчи часто устраняют уязвимости, связанные с операциями файловой системы, и могут помочь снизить риск атак с внешним контролем имени файла или пути.
 
-1. Security testing and code review: Conduct regular security testing, including penetration testing and code review, to identify any vulnerabilities related to file operations. Utilize automated vulnerability scanners or engage security professionals to perform manual security assessments.
+1. Тестирование безопасности и обзор кода: Регулярно проводите тестирование безопасности, включая тестирование на проникновение и анализ кода, для выявления уязвимостей, связанных с файловыми операциями. Используйте автоматические сканеры уязвимостей или привлекайте специалистов по безопасности для проведения оценки безопасности вручную.
 
-1. Educate developers: Provide training and education to developers about secure file handling practices and the risks associated with external control of file name or path vulnerabilities. Promote secure coding techniques and best practices within your development team.
+1. Обучайте разработчиков: Организуйте обучение разработчиков безопасным методам работы с файлами и рискам, связанным с уязвимостями внешнего контроля имени файла или пути к нему. Продвигайте методы безопасного кодирования и лучшие практики в своей команде разработчиков.
 
-By implementing these preventive measures, you can significantly reduce the risk of external control of file name or path vulnerabilities and protect your application from unauthorized file access or manipulation. It is crucial to follow secure coding practices, validate and sanitize file inputs, and regularly update your systems to address any emerging security issues.
+Реализовав эти превентивные меры, вы сможете значительно снизить риск возникновения уязвимостей, связанных с внешним контролем имени файла или пути к нему, и защитить свое приложение от несанкционированного доступа к файлам или манипулирования ими. Очень важно следовать практикам безопасного кодирования, проверять и обеззараживать вводимые файлы, а также регулярно обновлять свои системы для решения возникающих проблем безопасности.
 
 
 ```
@@ -718,33 +717,33 @@ requests:
 
 
 
-### Generation of Error Message Containing Sensitive Information
+### Генерация сообщения об ошибке, содержащего конфиденциальную информацию
 
-The Generation of Error Message Containing Sensitive Information is a vulnerability that occurs when error messages generated by an application reveal sensitive or confidential information. This can include details such as database connection strings, stack traces, user credentials, or other sensitive data. Attackers can exploit this information to gain insights into the system's architecture, identify potential weaknesses, or launch further attacks.
+Generation of Error Message Containing Sensitive Information - это уязвимость, которая возникает, когда сообщения об ошибках, генерируемые приложением, раскрывают конфиденциальную или секретную информацию. Это могут быть такие сведения, как строки подключения к базе данных, трассировка стека, учетные данные пользователя или другие конфиденциальные данные. Злоумышленники могут использовать эту информацию для получения информации об архитектуре системы, выявления потенциальных слабых мест или проведения дальнейших атак.
 
-To prevent the generation of error messages containing sensitive information, you can follow these preventive measures:
+Чтобы предотвратить генерацию сообщений об ошибках, содержащих конфиденциальную информацию, можно принять следующие профилактические меры:
 
-1. Disable detailed error messages in production: Ensure that your application's production environment is configured to display generic error messages instead of detailed technical information. This helps to prevent the inadvertent exposure of sensitive data in error messages.
+1. Отключите подробные сообщения об ошибках в производстве: Убедитесь, что производственная среда вашего приложения настроена на отображение общих сообщений об ошибках вместо подробной технической информации. Это поможет предотвратить непреднамеренное раскрытие конфиденциальных данных в сообщениях об ошибках.
 
-1. Implement custom error handling: Create custom error handling mechanisms that capture and handle application errors without disclosing sensitive information. Customize error messages to provide generic and user-friendly feedback to users, without revealing specific technical details.
+1. Реализуйте пользовательскую обработку ошибок: Создайте пользовательские механизмы обработки ошибок, которые перехватывают и обрабатывают ошибки приложения, не раскрывая конфиденциальную информацию. Настройте сообщения об ошибках так, чтобы они предоставляли пользователям общую и удобную обратную связь, не раскрывая конкретных технических деталей.
 
-1. Log errors securely: If your application logs errors, ensure that sensitive information is not included in the log entries. Review your logging configuration to ensure that only necessary information is logged, and sanitize any logged data to remove sensitive details.
+1. Безопасно регистрируйте ошибки: Если ваше приложение регистрирует ошибки, убедитесь, что конфиденциальная информация не включена в записи журнала. Проверьте конфигурацию журнала, чтобы убедиться, что в него записывается только необходимая информация, и проведите санитарную обработку всех записанных в журнал данных, чтобы удалить конфиденциальные сведения.
 
-1. Avoid displaying sensitive information: Avoid displaying sensitive information in error messages altogether. Refrain from including sensitive data such as user credentials, database connection strings, or internal system paths in error messages. Instead, focus on providing useful and actionable information to users without revealing sensitive details.
+1. Избегайте отображения конфиденциальной информации: Полностью откажитесь от отображения конфиденциальной информации в сообщениях об ошибках. Воздержитесь от включения в сообщения об ошибках таких конфиденциальных данных, как учетные данные пользователя, строки подключения к базе данных или внутренние пути системы. Вместо этого сосредоточьтесь на предоставлении пользователям полезной и действенной информации, не раскрывая конфиденциальных данных.
 
-1. Use exception handling best practices: Employ proper exception handling techniques in your code. Catch and handle exceptions gracefully, avoiding the propagation of sensitive information in error messages. Implement structured exception handling mechanisms to capture and handle errors effectively.
+1. Используйте передовые методы обработки исключений: Используйте в коде правильные методы обработки исключений. Ловите и обрабатывайте исключения изящно, избегая распространения конфиденциальной информации в сообщениях об ошибках. Реализуйте структурированные механизмы обработки исключений, чтобы эффективно перехватывать и обрабатывать ошибки.
 
-1. Regularly test error handling: Perform thorough testing of your application's error handling mechanisms. Include scenarios where exceptions are intentionally triggered to ensure that sensitive information is not disclosed in error messages. Use automated vulnerability scanning tools or engage security professionals to identify potential information leakage.
+1. Регулярно тестируйте обработку ошибок: Проводите тщательное тестирование механизмов обработки ошибок в вашем приложении. Включите сценарии, в которых исключения намеренно вызываются, чтобы гарантировать, что конфиденциальная информация не будет раскрыта в сообщениях об ошибках. Используйте автоматические средства сканирования уязвимостей или привлекайте специалистов по безопасности для выявления потенциальных утечек информации.
 
-1. Implement input validation and sanitization: Validate and sanitize user input to prevent malicious input from triggering errors that reveal sensitive information. Proper input validation helps to prevent common attack vectors, such as injection attacks, that can lead to the generation of error messages containing sensitive data.
+1. Внедрите проверку и санацию ввода: Проверяйте и обеззараживайте вводимые пользователем данные, чтобы предотвратить возникновение ошибок, раскрывающих конфиденциальную информацию. Правильная проверка ввода помогает предотвратить распространенные векторы атак, такие как инъекционные атаки, которые могут привести к созданию сообщений об ошибках, содержащих конфиденциальные данные.
 
-1. Follow secure coding practices: Adhere to secure coding practices and guidelines. Keep sensitive information separate from error messages and ensure that error handling code is robust and secure. Apply secure coding principles throughout the development lifecycle to minimize the likelihood of vulnerabilities.
+1. Соблюдайте правила безопасного кодирования: Соблюдайте правила и рекомендации по безопасному кодированию. Храните конфиденциальную информацию отдельно от сообщений об ошибках и убедитесь, что код обработки ошибок надежен и безопасен. Применяйте принципы безопасного кодирования на протяжении всего жизненного цикла разработки, чтобы свести к минимуму вероятность возникновения уязвимостей.
 
-1. Regularly update and patch: Keep your application and its dependencies up to date with the latest security patches. Software updates often address security vulnerabilities, including those related to error handling and the potential exposure of sensitive information.
+1. Регулярно обновляйте и ставьте заплатки: Поддерживайте приложение и его зависимости в актуальном состоянии с помощью последних патчей безопасности. Обновления программного обеспечения часто устраняют уязвимости безопасности, в том числе связанные с обработкой ошибок и потенциальным раскрытием конфиденциальной информации.
 
-1. Educate developers: Provide training and awareness programs to educate developers about the risks associated with error messages containing sensitive information. Promote secure coding practices and emphasize the importance of properly handling and securing error messages.
+1. Обучайте разработчиков: Организуйте программы обучения и повышения осведомленности, чтобы рассказать разработчикам о рисках, связанных с сообщениями об ошибках, содержащими конфиденциальную информацию. Пропагандируйте практику безопасного кодирования и подчеркивайте важность правильной обработки и защиты сообщений об ошибках.
 
-By implementing these preventive measures, you can minimize the risk of exposing sensitive information in error messages and enhance the security of your application. It is crucial to prioritize the protection of sensitive data and regularly review and update your error handling mechanisms to ensure they align with best practices and evolving security standards.
+Реализовав эти превентивные меры, вы сможете минимизировать риск раскрытия конфиденциальной информации в сообщениях об ошибках и повысить уровень безопасности вашего приложения. Очень важно уделять приоритетное внимание защите конфиденциальных данных и регулярно пересматривать и обновлять механизмы обработки ошибок, чтобы они соответствовали лучшим практикам и развивающимся стандартам безопасности.
 
 
 ```
@@ -786,33 +785,33 @@ requests:
 
 
 
-### Unprotected storage of credentials
+### Незащищенное хранение учетных данных
 
-Unprotected storage of credentials refers to the practice of storing sensitive credentials, such as usernames, passwords, API keys, or access tokens, in an insecure manner. This can include storing credentials in plain text, using weak encryption, or storing them in easily accessible locations, making them vulnerable to unauthorized access and potential misuse by attackers.
+Под незащищенным хранением учетных данных понимается практика хранения конфиденциальных данных, таких как имена пользователей, пароли, ключи API или маркеры доступа, небезопасным способом. Это может включать хранение учетных данных открытым текстом, использование слабого шифрования или хранение их в легкодоступных местах, что делает их уязвимыми для несанкционированного доступа и потенциального использования злоумышленниками.
 
-To prevent unprotected storage of credentials, you should follow these preventive measures:
+Чтобы предотвратить незащищенное хранение учетных данных, необходимо соблюдать следующие профилактические меры:
 
-1. Use secure credential storage mechanisms: Utilize secure methods for storing credentials, such as secure databases, encrypted files, or dedicated credential management systems. These mechanisms should provide strong encryption and access controls to protect the confidentiality and integrity of the stored credentials.
+1. Используйте безопасные механизмы хранения учетных данных: Используйте безопасные методы хранения учетных данных, такие как защищенные базы данных, зашифрованные файлы или специальные системы управления учетными данными. Эти механизмы должны обеспечивать надежное шифрование и контроль доступа для защиты конфиденциальности и целостности хранимых учетных данных.
 
-1. Avoid storing plain text passwords: Never store passwords or sensitive credentials in plain text. Instead, use strong cryptographic techniques, such as one-way hashing with salt or key derivation functions, to securely store and verify passwords.
+1. Избегайте хранения паролей в виде обычного текста: Никогда не храните пароли и конфиденциальные учетные данные в виде обычного текста. Вместо этого используйте надежные криптографические методы, такие как одностороннее хеширование с солью или функции выведения ключа, для безопасного хранения и проверки паролей.
 
-1. Implement strong encryption: If you need to store credentials in a file or database, ensure that the data is encrypted using robust encryption algorithms and keys. Utilize industry-standard encryption libraries and algorithms to protect the credentials from unauthorized access.
+1. Применяйте надежное шифрование: Если вам необходимо хранить учетные данные в файле или базе данных, убедитесь, что они зашифрованы с помощью надежных алгоритмов и ключей шифрования. Используйте стандартные библиотеки и алгоритмы шифрования, чтобы защитить учетные данные от несанкционированного доступа.
 
-1. Separate credentials from source code: Avoid storing credentials directly in source code or configuration files that are part of version control systems. Separate the credentials from the codebase and use environment-specific configuration files or secure secrets management tools to provide the necessary credentials during runtime.
+1. Отделяйте учетные данные от исходного кода: Избегайте хранения учетных данных непосредственно в исходном коде или конфигурационных файлах, которые являются частью систем контроля версий. Отделите учетные данные от кодовой базы и используйте конфигурационные файлы для конкретного окружения или средства управления безопасными секретами для предоставления необходимых учетных данных во время выполнения.
 
-1. Securely manage API keys and access tokens: When working with API keys or access tokens, follow best practices provided by the respective service or framework. Avoid hardcoding these credentials and instead use secure environment variables or dedicated configuration files to store and retrieve them.
+1. Безопасное управление ключами API и маркерами доступа: При работе с API-ключами или маркерами доступа следуйте лучшим практикам, предоставляемым соответствующим сервисом или фреймворком. Избегайте жесткого кодирования этих учетных данных, а вместо этого используйте безопасные переменные окружения или специальные файлы конфигурации для их хранения и получения.
 
-1. Implement access controls: Enforce proper access controls to limit access to sensitive credentials. Grant access only to authorized individuals who require it for their specific roles or tasks. Regularly review and update access permissions to ensure that only trusted individuals have access to the credentials.
+1. Внедрите средства контроля доступа: Обеспечьте надлежащий контроль доступа, чтобы ограничить доступ к конфиденциальным учетным данным. Предоставляйте доступ только тем уполномоченным лицам, которым он необходим для выполнения определенных ролей или задач. Регулярно проверяйте и обновляйте разрешения на доступ, чтобы убедиться, что только доверенные лица имеют доступ к учетным данным.
 
-1. Regularly rotate credentials: Implement a credential rotation policy that mandates periodic password changes, key rotation, or the issuance of new access tokens. Regularly rotating credentials reduces the risk of long-term exposure and unauthorized access to sensitive systems.
+1. Регулярно ротируйте учетные данные: Внедрите политику ротации учетных данных, которая предусматривает периодическую смену паролей, ротацию ключей или выдачу новых маркеров доступа. Регулярная ротация учетных данных снижает риск длительного воздействия и несанкционированного доступа к важным системам.
 
-1. Monitor and log credential access: Implement logging and monitoring mechanisms to track access to sensitive credentials. Regularly review logs for any suspicious or unauthorized access attempts. Monitoring helps detect any potential breaches or unauthorized usage of credentials.
+1. Контролируйте и регистрируйте доступ к учетным данным: Внедрите механизмы регистрации и мониторинга для отслеживания доступа к конфиденциальным учетным данным. Регулярно просматривайте журналы на предмет любых подозрительных или несанкционированных попыток доступа. Мониторинг помогает обнаружить любые потенциальные нарушения или несанкционированное использование учетных данных.
 
-1. Educate users about secure credential management: Provide training and awareness programs to educate users and developers about the importance of secure credential management practices. Emphasize the risks associated with unprotected storage of credentials and promote secure coding and handling techniques.
+1. Обучите пользователей безопасному управлению учетными данными: Организуйте программы обучения и повышения осведомленности, чтобы рассказать пользователям и разработчикам о важности безопасного управления учетными данными. Подчеркните риски, связанные с незащищенным хранением учетных данных, и пропагандируйте безопасное кодирование и методы работы с ними.
 
-1. Regularly assess and audit: Conduct regular security assessments and audits to identify any potential vulnerabilities or weaknesses in the storage and management of credentials. Utilize automated scanning tools or engage security professionals to perform thorough assessments.
+1. Регулярная оценка и аудит: Проводите регулярные оценки и аудиты безопасности, чтобы выявить любые потенциальные уязвимости и недостатки в хранении и управлении учетными данными. Используйте автоматизированные средства сканирования или привлекайте специалистов по безопасности для проведения тщательной оценки.
 
-By implementing these preventive measures, you can significantly reduce the risk of unprotected storage of credentials and enhance the security of your application and systems. Safeguarding sensitive credentials is crucial for protecting user data, preventing unauthorized access, and maintaining the trust of your users.
+Применяя эти превентивные меры, вы сможете значительно снизить риск незащищенного хранения учетных данных и повысить безопасность ваших приложений и систем. Защита конфиденциальных учетных данных имеет решающее значение для защиты пользовательских данных, предотвращения несанкционированного доступа и сохранения доверия пользователей.
 
 
 ```
@@ -847,34 +846,33 @@ requests:
 ```
 
 
-### Trust Boundary Violation
+### Нарушение границ доверия
 
-Trust Boundary Violation refers to a security vulnerability that occurs when data or control crosses a trust boundary without proper validation or authorization. It happens when data from an untrusted source is treated as trusted or when there is a failure to enforce proper access controls at the boundary between trusted and untrusted components or systems. This violation can lead to unauthorized access, data breaches, privilege escalation, or the execution of malicious code.
+Нарушение границ доверия - это уязвимость безопасности, которая возникает, когда данные или управление пересекают границу доверия без надлежащей проверки или авторизации. Это происходит, когда данные из недоверенного источника рассматриваются как доверенные или когда не обеспечивается надлежащий контроль доступа на границе между доверенными и недоверенными компонентами или системами. Такое нарушение может привести к несанкционированному доступу, утечке данных, повышению привилегий или выполнению вредоносного кода.
 
-To prevent Trust Boundary Violation, you should follow these preventive measures:
+Чтобы предотвратить нарушение границ доверия, необходимо соблюдать следующие профилактические меры:
 
-1. Validate and sanitize inputs: Validate and sanitize all inputs received from untrusted sources, such as user input, API calls, or data from external systems. Implement strict input validation and filtering techniques to ensure that only safe and expected data is passed across trust boundaries.
+1. Проверяйте и обеззараживайте вводимые данные: Проверяйте и обеззараживайте все входные данные, полученные из недоверенных источников, таких как пользовательский ввод, вызовы API или данные из внешних систем. Применяйте строгие методы проверки и фильтрации входных данных, чтобы гарантировать, что только безопасные и ожидаемые данные передаются через границы доверия.
 
-1. Implement strong authentication and authorization: Enforce robust authentication and authorization mechanisms to ensure that only authorized entities can access sensitive resources or perform critical operations. Implement access controls at trust boundaries to prevent unauthorized access.
+1. Внедряйте надежную аутентификацию и авторизацию: Применяйте надежные механизмы аутентификации и авторизации, чтобы только уполномоченные лица могли получить доступ к важным ресурсам или выполнять критические операции. Внедрите средства контроля доступа на границах доверия для предотвращения несанкционированного доступа.
 
-1. Apply the principle of least privilege: Grant users, components, or systems only the minimum privileges necessary to perform their tasks. Avoid giving unnecessary permissions or elevated privileges that can potentially lead to trust boundary violations.
+1. Применяйте принцип наименьших привилегий: Предоставляйте пользователям, компонентам или системам только минимальные привилегии, необходимые для выполнения их задач. Избегайте предоставления ненужных разрешений или повышенных привилегий, которые потенциально могут привести к нарушению границ доверия.
 
-1. Use secure communication protocols: When data crosses trust boundaries, ensure that secure communication protocols, such as SSL/TLS, are used to protect the confidentiality and integrity of the data in transit. Encrypt sensitive data to prevent interception or tampering.
+1. Используйте безопасные протоколы связи: Когда данные пересекают границы доверия, убедитесь, что используются безопасные протоколы связи, такие как SSL/TLS, для защиты конфиденциальности и целостности данных при передаче. Шифруйте конфиденциальные данные, чтобы предотвратить их перехват или фальсификацию.
 
-1. Implement secure session management: If sessions are used to maintain user state or context, ensure that proper session management practices are followed. Use secure session tokens, enforce session timeouts, and protect against session fixation or session hijacking attacks.
+1. Внедрите безопасное управление сеансами: Если сеансы используются для сохранения состояния или контекста пользователя, обеспечьте надлежащее управление сеансами. Используйте маркеры безопасных сеансов, обеспечивайте таймауты сеансов и защищайте от атак фиксации или перехвата сеанса.
 
-1. Segregate and isolate components: Clearly define and enforce trust boundaries between different components or systems. Isolate untrusted components or systems from trusted ones to minimize the impact of a potential breach or compromise.
+1. Разделяйте и изолируйте компоненты: Четко определите границы доверия между различными компонентами или системами и обеспечьте их соблюдение. Изолируйте ненадежные компоненты или системы от надежных, чтобы минимизировать последствия потенциального нарушения или компрометации.
 
-1. Regularly update and patch: Keep all components, frameworks, libraries, and systems up to date with the latest security patches. Regularly review and update security configurations to address any known vulnerabilities that may lead to trust boundary violations.
+1. Регулярно обновляйте и ставьте заплатки: Поддерживайте все компоненты, фреймворки, библиотеки и системы в актуальном состоянии с помощью последних патчей безопасности. Регулярно проверяйте и обновляйте конфигурации безопасности, чтобы устранить все известные уязвимости, которые могут привести к нарушению границ доверия.
 
-1. Implement runtime monitoring and anomaly detection: Deploy monitoring systems that can detect and alert on unusual or unexpected behaviors across trust boundaries. Monitor for suspicious activities, unexpected data flows, or unauthorized access attempts.
+1. Реализуйте мониторинг во время выполнения и обнаружение аномалий: Разверните системы мониторинга, способные обнаруживать и предупреждать о необычном или неожиданном поведении на границах доверия. Отслеживайте подозрительные действия, неожиданные потоки данных или попытки несанкционированного доступа.
 
-1. Perform security testing and code reviews: Conduct regular security testing, including penetration testing and code reviews, to identify and address any trust boundary vulnerabilities. Test the resilience of your system to boundary violations and validate the effectiveness of implemented security controls.
+1. Проводите тестирование безопасности и анализ кода: Регулярно проводите тестирование безопасности, включая тестирование на проникновение и анализ кода, чтобы выявить и устранить все уязвимости границ доверия. Проверяйте устойчивость системы к нарушениям границ и эффективность внедренных средств контроля безопасности.
 
-1. Provide security awareness training: Educate developers and system administrators about the risks and consequences of trust boundary violations. Promote security awareness and provide training on secure coding practices, secure configuration management, and the importance of enforcing trust boundaries.
+1. Проводите обучение по вопросам безопасности: Проинформируйте разработчиков и системных администраторов о рисках и последствиях нарушения границ доверия. Пропагандируйте осведомленность о безопасности и проводите тренинги по безопасному кодированию, безопасному управлению конфигурацией и важности соблюдения границ доверия.
 
-By following these preventive measures, you can mitigate the risk of trust boundary violations and enhance the overall security posture of your application or system. It is crucial to establish clear trust boundaries, implement appropriate security controls, and regularly monitor and update your systems to prevent unauthorized access or compromise across trust boundaries.
-
+Следуя этим профилактическим мерам, вы сможете снизить риск нарушения границ доверия и повысить общую безопасность вашего приложения или системы. Очень важно установить четкие границы доверия, внедрить соответствующие средства контроля безопасности, а также регулярно контролировать и обновлять свои системы, чтобы предотвратить несанкционированный доступ или компрометацию через границы доверия.
 
 ```
 id: trust-boundary-violation
@@ -908,35 +906,35 @@ requests:
 ```
 
 
-### Insufficiently Protected Credentials
+### Недостаточно защищенные учетные данные
 
-Insufficiently Protected Credentials is a security vulnerability that occurs when sensitive credentials, such as usernames, passwords, API keys, or access tokens, are not adequately protected, making them susceptible to unauthorized access or misuse. This can happen due to weak encryption, improper storage, or inadequate access controls, putting sensitive information at risk.
+Недостаточно защищенные учетные данные - это уязвимость безопасности, которая возникает, когда конфиденциальные данные, такие как имена пользователей, пароли, ключи API или маркеры доступа, не защищены должным образом, что делает их уязвимыми для несанкционированного доступа или неправомерного использования. Это может произойти из-за слабого шифрования, ненадлежащего хранения или неадекватного контроля доступа, что подвергает риску конфиденциальную информацию.
 
-To prevent Insufficiently Protected Credentials, you should follow these preventive measures:
+Чтобы предотвратить использование недостаточно защищенных учетных данных, необходимо соблюдать следующие профилактические меры:
 
-1. Use strong encryption: Ensure that sensitive credentials are properly encrypted using strong encryption algorithms and keys. Employ industry-standard encryption practices to protect the confidentiality and integrity of the stored credentials.
+1. Используйте надежное шифрование: Убедитесь, что конфиденциальные данные должным образом зашифрованы с использованием надежных алгоритмов и ключей шифрования. Используйте стандартные методы шифрования для защиты конфиденциальности и целостности хранимых учетных данных.
 
-1. Implement secure storage mechanisms: Store credentials in secure storage systems, such as encrypted databases or secure key stores, that provide appropriate access controls and protection against unauthorized access. Avoid storing credentials in plain text or insecurely accessible locations.
+1. Используйте безопасные механизмы хранения: Храните учетные данные в защищенных системах хранения, таких как зашифрованные базы данных или защищенные хранилища ключей, которые обеспечивают соответствующий контроль доступа и защиту от несанкционированного доступа. Избегайте хранения учетных данных в виде открытого текста или в незащищенных местах.
 
-1. Avoid hardcoding credentials: Hardcoding credentials directly in source code or configuration files should be avoided. Instead, utilize environment variables, secure secrets management tools, or configuration files with restricted access to store and retrieve credentials.
+1. Избегайте жесткого кодирования учетных данных: Следует избегать жесткого кодирования учетных данных непосредственно в исходном коде или конфигурационных файлах. Вместо этого используйте переменные среды, безопасные инструменты управления секретами или файлы конфигурации с ограниченным доступом для хранения и извлечения учетных данных.
 
-1. Implement secure credential transmission: When transmitting credentials, use secure communication protocols such as SSL/TLS to encrypt the data in transit. Avoid transmitting credentials over insecure channels or including them in URL parameters.
+1. Реализуйте безопасную передачу учетных данных: При передаче учетных данных используйте защищенные протоколы связи, такие как SSL/TLS, для шифрования передаваемых данных. Не передавайте учетные данные по незащищенным каналам и не включайте их в параметры URL.
 
-1. Apply the principle of least privilege: Grant credentials only the minimum privileges required for the intended functionality. Avoid providing unnecessary or excessive privileges to reduce the potential impact of a credential compromise.
+1. Применяйте принцип наименьших привилегий: Предоставляйте учетным данным только минимальные привилегии, необходимые для обеспечения требуемой функциональности. Избегайте предоставления ненужных или чрезмерных привилегий, чтобы уменьшить потенциальное воздействие компрометации учетных данных.
 
-1. Enforce strong password policies: Implement strong password policies that encourage users to create complex and unique passwords. Enforce password expiration and provide mechanisms for password resets or account recovery.
+1. Применяйте строгие политики паролей: Внедряйте политики надежных паролей, поощряющие пользователей к созданию сложных и уникальных паролей. Обеспечьте истечение срока действия пароля и предоставьте механизмы для сброса пароля или восстановления учетной записи.
 
-1. Implement multi-factor authentication (MFA): Utilize MFA to add an extra layer of security. Require users to provide additional authentication factors, such as a time-based one-time password (TOTP) or biometric data, to access sensitive resources.
+1. Внедрите многофакторную аутентификацию (MFA): Используйте MFA для обеспечения дополнительного уровня безопасности. Требуйте от пользователей предоставления дополнительных факторов аутентификации, таких как одноразовый пароль, основанный на времени (TOTP) или биометрические данные, для доступа к важным ресурсам.
 
-1. Regularly rotate credentials: Establish a credential rotation policy that mandates periodic password changes, key rotation, or token regeneration. Regularly update and rotate credentials to limit the exposure window in case of a compromise.
+1. Регулярная ротация учетных данных: Установите политику ротации учетных данных, которая предусматривает периодическую смену паролей, ротацию ключей или восстановление токенов. Регулярно обновляйте и ротируйте учетные данные, чтобы ограничить окно риска в случае компрометации.
 
-1. Implement secure coding practices: Follow secure coding practices to minimize the risk of inadvertently exposing credentials. Avoid logging or displaying credentials in error messages or debug output. Implement secure coding techniques to protect against common vulnerabilities like injection attacks.
+1. Внедряйте методы безопасного кодирования: Соблюдайте правила безопасного кодирования, чтобы свести к минимуму риск непреднамеренного раскрытия учетных данных. Избегайте регистрации или отображения учетных данных в сообщениях об ошибках или отладочных выводах. Применяйте методы безопасного кодирования для защиты от таких распространенных уязвимостей, как инъекционные атаки.
 
-1. Conduct regular security assessments: Perform regular security assessments and penetration testing to identify vulnerabilities and weaknesses in credential protection. Engage security professionals or utilize automated vulnerability scanning tools to identify potential issues.
+1. Регулярно проводите оценку безопасности: Регулярно проводите оценку безопасности и тестирование на проникновение, чтобы выявить уязвимости и слабые места в защите учетных данных. Привлекайте специалистов по безопасности или используйте автоматизированные средства сканирования уязвимостей для выявления потенциальных проблем.
 
-1. Educate users and developers: Raise awareness among users and developers about the importance of protecting credentials. Provide training on secure coding practices, password management, and the risks associated with insufficiently protected credentials.
+1. Обучайте пользователей и разработчиков: Повысьте осведомленность пользователей и разработчиков о важности защиты учетных данных. Организуйте обучение методам безопасного кодирования, управления паролями и рискам, связанным с недостаточной защитой учетных данных.
 
-By implementing these preventive measures, you can significantly reduce the risk of Insufficiently Protected Credentials and enhance the security of your systems. Protecting sensitive credentials is crucial for safeguarding user data, preventing unauthorized access, and maintaining the trust of your users.
+Применяя эти превентивные меры, вы сможете значительно снизить риск использования недостаточно защищенных учетных данных и повысить безопасность своих систем. Защита конфиденциальных учетных данных имеет решающее значение для обеспечения сохранности пользовательских данных, предотвращения несанкционированного доступа и поддержания доверия пользователей.
 
 
 
@@ -978,33 +976,33 @@ requests:
 ```
 
 
-### Restriction of XML External Entity Reference
+### Ограничение ссылки на внешнюю сущность XML
 
-Restriction of XML External Entity (XXE) Reference is a security vulnerability that occurs when an XML parser processes external entities included in the XML input. Attackers can exploit this vulnerability to read sensitive data from the server or perform denial-of-service attacks.
+Ограничение ссылки на внешние сущности XML (XXE) - это уязвимость безопасности, которая возникает, когда парсер XML обрабатывает внешние сущности, включенные в XML-вход. Злоумышленники могут использовать эту уязвимость для чтения конфиденциальных данных с сервера или проведения атак типа "отказ в обслуживании".
 
-To prevent XXE vulnerabilities, you should follow these preventive measures:
+Для предотвращения XXE-уязвимостей необходимо соблюдать следующие профилактические меры:
 
-1. Disable external entity processing: Configure the XML parser to disable the processing of external entities. This prevents the XML parser from resolving and including external entities in the XML input.
+1. Отключите обработку внешних сущностей: Настройте парсер XML на отключение обработки внешних сущностей. Это не позволит парсеру XML разрешать и включать внешние сущности в XML-вход.
 
-1. Validate and sanitize XML inputs: Implement proper input validation and sanitization techniques to ensure that only expected and safe XML data is processed. Use strict parsing settings and reject or sanitize any untrusted or unexpected XML input.
+1. Валидация и санитарная обработка входных данных XML: Применяйте надлежащие методы проверки и обеззараживания входных данных, чтобы гарантировать, что обрабатываются только ожидаемые и безопасные XML-данные. Используйте строгие настройки синтаксического анализа и отклоняйте или обеззараживайте любые недоверенные или неожиданные входные данные XML.
 
-1. Use whitelisting and filtering: Implement whitelisting or filtering mechanisms to allow only known safe XML structures and reject or remove any potentially malicious XML constructs or elements.
+1. Используйте белые списки и фильтрацию: Внедрите механизмы "белых списков" или фильтрации, чтобы разрешить только известные безопасные XML-структуры и отклонить или удалить любые потенциально вредоносные XML-конструкции или элементы.
 
-1. Upgrade to a secure XML parser: Use the latest version of a secure and well-maintained XML parser library. Older versions of XML parsers may have known vulnerabilities that can be exploited by attackers.
+1. Перейдите на безопасный парсер XML: Используйте последнюю версию безопасной и хорошо поддерживаемой библиотеки парсера XML. Старые версии XML-парсеров могут иметь известные уязвимости, которые могут быть использованы злоумышленниками.
 
-1. Implement least privilege: Restrict access privileges of the XML parser to minimize the potential impact of an XXE attack. Ensure that the XML parser runs with the least privileges required to perform its functionality.
+1. Реализуйте наименьшие привилегии: Ограничьте привилегии доступа к XML-парсеру, чтобы свести к минимуму потенциальное воздействие атаки XXE. Убедитесь, что парсер XML запускается с минимальными привилегиями, необходимыми для выполнения его функций.
 
-1. Avoid using user-controlled XML: Avoid using user-controlled XML in sensitive operations or processing. If user-supplied XML is required, ensure strict validation and sanitization of the input to mitigate the risk of XXE vulnerabilities.
+1. Избегайте использования управляемого пользователем XML: Избегайте использования управляемого пользователем XML в конфиденциальных операциях или при обработке. Если требуется использование пользовательского XML, обеспечьте строгую проверку и санацию входных данных, чтобы снизить риск возникновения уязвимостей XXE.
 
-1. Implement server-side filtering and input validation: Apply server-side input validation and filtering techniques to prevent XXE vulnerabilities. Validate and sanitize all XML data received from clients before processing it on the server.
+1. Реализуйте фильтрацию и проверку ввода на стороне сервера: Применяйте методы проверки и фильтрации ввода на стороне сервера для предотвращения уязвимостей XXE. Проверяйте и обеззараживайте все XML-данные, полученные от клиентов, перед их обработкой на сервере.
 
-1. Follow secure coding practices: Adhere to secure coding practices when handling XML data. Avoid concatenating XML strings or building XML dynamically using untrusted input, as it can introduce XML injection vulnerabilities.
+1. Соблюдайте правила безопасного кодирования: При работе с XML-данными придерживайтесь практики безопасного кодирования. Избегайте конкатенации XML-строк или динамического построения XML с использованием недоверенных входных данных, поскольку это может привести к появлению уязвимостей XML-инъекций.
 
-1. Regularly update and patch: Keep the XML parser and associated libraries up to date with the latest security patches. Stay informed about any security advisories or updates related to the XML parser to address any known vulnerabilities.
+1. Регулярно обновляйте и ставьте заплатки: Поддерживайте парсер XML и связанные с ним библиотеки в актуальном состоянии с помощью последних исправлений безопасности. Будьте в курсе всех рекомендаций по безопасности или обновлений, связанных с парсером XML, чтобы устранить все известные уязвимости.
 
-1. Perform security testing: Conduct security testing, including vulnerability assessments and penetration testing, to identify and remediate XXE vulnerabilities. Test the resilience of the application against various XXE attack vectors and verify the effectiveness of implemented security controls.
+1. Проводите тестирование безопасности: Проводите тестирование безопасности, включая оценку уязвимостей и тестирование на проникновение, для выявления и устранения уязвимостей XXE. Проверьте устойчивость приложения к различным векторам атак XXE и убедитесь в эффективности внедренных средств контроля безопасности.
 
-By implementing these preventive measures, you can reduce the risk of XXE vulnerabilities and enhance the security of your XML processing. It is essential to be cautious when handling XML data, implement secure coding practices, and keep the XML parser up to date to prevent attackers from exploiting XXE vulnerabilities.
+Применяя эти превентивные меры, вы сможете снизить риск возникновения уязвимостей XXE и повысить безопасность обработки XML. Необходимо быть осторожным при работе с XML-данными, применять безопасные методы кодирования и поддерживать парсер XML в актуальном состоянии, чтобы предотвратить использование уязвимостей XXE злоумышленниками.
 
 
 ```
