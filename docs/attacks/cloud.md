@@ -4,11 +4,11 @@ title: Cloud Attacks
 parent: Attacks
 ---
 
-# Cloud Attacks
+# Облачные атаки
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,15 +19,15 @@ parent: Attacks
 
 
 
-## Inadequate Identity, Credential, and Access Management (ICAM):
+## Неадекватное управление идентификацией, учетными данными и доступом (ICAM):
 
-Weak or misconfigured access controls, improper user privilege management, or lack of strong authentication mechanisms can lead to unauthorized access and privilege escalation.
+Слабые или неправильно настроенные средства контроля доступа, неправильное управление привилегиями пользователей или отсутствие надежных механизмов аутентификации могут привести к несанкционированному доступу и повышению привилегий.
 
-In the noncompliant code, there is inadequate Identity, Credential, and Access Management (ICAM) in the cloud environment. This means that user identities, credentials, and access controls are not properly managed, increasing the risk of unauthorized access, privilege escalation, and potential data breaches.
+В несоответствующем коде неадекватное управление идентификацией, учетными данными и доступом (ICAM) в облачной среде. Это означает, что идентификационные данные пользователей, учетные данные и контроль доступа не управляются должным образом, что повышает риск несанкционированного доступа, повышения привилегий и потенциальной утечки данных.
 
 
 ```
-# Noncompliant: Inadequate ICAM in Cloud
+# Несоответствие требованиям: Неадекватная ICAM в облаке
 
 resources:
   - name: my-bucket
@@ -39,14 +39,14 @@ resources:
   - name: my-database
     type: sql.database
 
-  # Access control rules are missing or insufficiently defined
+  # Правила контроля доступа отсутствуют или недостаточно определены
 ```
 
-To address the inadequate ICAM in the cloud environment, it is essential to implement robust identity, credential, and access management practices.
+Чтобы решить проблему неадекватной ICAM в облачной среде, необходимо внедрить надежные методы управления идентификацией, учетными данными и доступом.
 
 
 ```
-# Compliant: Enhanced ICAM in Cloud
+# Соответствие требованиям: Усовершенствованная система ICAM в облаке
 
 resources:
   - name: my-bucket
@@ -74,70 +74,65 @@ resources:
           - group:engineering@example.com
 ```
 
-In the compliant code, each resource in the cloud environment has an associated access control configuration. This includes properly defined roles and membership assignments, ensuring that only authorized users or groups have access to the respective resources. By implementing adequate ICAM practices, the risk of unauthorized access and privilege escalation is significantly reduced, enhancing the overall security of the cloud environment.
+В соответствующем коде каждый ресурс в облачной среде имеет соответствующую конфигурацию управления доступом. Она включает в себя правильно определенные роли и назначения членов, гарантирующие, что только авторизованные пользователи или группы имеют доступ к соответствующим ресурсам. Благодаря внедрению надлежащих практик ICAM значительно снижается риск несанкционированного доступа и повышения привилегий, что повышает общую безопасность облачной среды.
 
 
 
-## Insecure Interfaces and APIs
+## Небезопасные интерфейсы и API
 
-Vulnerabilities in cloud service interfaces and APIs can be exploited to gain unauthorized access, inject malicious code, or manipulate data.
+Уязвимости в интерфейсах и API облачных сервисов могут быть использованы для получения несанкционированного доступа, внедрения вредоносного кода или манипулирования данными.
 
-In the noncompliant code, there are insecure interfaces and APIs in the cloud environment. This means that the interfaces and APIs used to interact with cloud services are not properly secured, potentially exposing sensitive data, allowing unauthorized access, or enabling malicious activities.
+Несоответствующий код означает наличие небезопасных интерфейсов и API в облачной среде. Это означает, что интерфейсы и API, используемые для взаимодействия с облачными сервисами, не защищены должным образом, что может привести к раскрытию конфиденциальных данных, несанкционированному доступу или вредоносным действиям.
 
 
 
 ```
-# Noncompliant: Insecure Interfaces and APIs in Cloud
+# Несоответствие: Небезопасные интерфейсы и API в облаке
 
 import requests
 
-# Insecure API endpoint without proper authentication and authorization
+# Небезопасная конечная точка API без надлежащей аутентификации и авторизации
 api_endpoint = "http://api.example.com/data"
 response = requests.get(api_endpoint)
 
-# Insecure interface with plaintext transmission of sensitive data
+# Небезопасный интерфейс с передачей конфиденциальных данных в открытом виде
 def process_data(data):
     # ... logic to process data ...
 
-    # Insecure transmission of processed data over HTTP
+    # Небезопасная передача обработанных данных по протоколу HTTP
     requests.post("http://example.com/process", data=data)
 ```
 
-To address the insecure interfaces and APIs in the cloud environment, it is crucial to implement secure practices when interacting with cloud services.
+Чтобы решить проблему небезопасных интерфейсов и API в облачной среде, очень важно внедрять безопасные методы взаимодействия с облачными сервисами.
 
 
 
 ```
-# Compliant: Secure Interfaces and APIs in Cloud
+# Compliant: Безопасные интерфейсы и API в облаке
 
 import requests
 
-# Secure API endpoint with proper authentication and authorization
+# Защищенная конечная точка API с надлежащей аутентификацией и авторизацией
 api_endpoint = "https://api.example.com/data"
 headers = {"Authorization": "Bearer <access_token>"}
 response = requests.get(api_endpoint, headers=headers)
 
-# Secure interface with encrypted transmission of sensitive data
+# Безопасный интерфейс с зашифрованной передачей конфиденциальных данных
 def process_data(data):
     # ... logic to process data ...
 
-    # Secure transmission of processed data over HTTPS
+    # Безопасная передача обработанных данных по протоколу HTTPS
     requests.post("https://example.com/process", data=data, verify=True)
 ```
 
 
-In the compliant code, the API endpoint is accessed securely using HTTPS and includes proper authentication and authorization headers. This ensures that only authorized users can access the API and the data transmitted is protected. Additionally, the interface for processing data utilizes encrypted transmission over HTTPS, providing confidentiality and integrity for the sensitive information being transmitted. By implementing secure interfaces and APIs, the risk of unauthorized access, data breaches, and malicious activities is mitigated in the cloud environment.
+В совместимом коде доступ к конечной точке API осуществляется по протоколу HTTPS и включает в себя соответствующие заголовки аутентификации и авторизации. Это гарантирует, что только авторизованные пользователи могут получить доступ к API, а передаваемые данные будут защищены. Кроме того, интерфейс для обработки данных использует зашифрованную передачу по HTTPS, обеспечивая конфиденциальность и целостность передаваемой конфиденциальной информации. Внедрение безопасных интерфейсов и API снижает риск несанкционированного доступа, утечки данных и вредоносных действий в облачной среде.
 
 
 
-## Data Breaches
+## Нарушение целостности данных
 
-Sensitive data stored in the cloud can be compromised due to misconfigurations, insecure storage, weak encryption, or insider threats. 
-
-
-```
-
-```
+Чувствительные данные, хранящиеся в облаке, могут быть скомпрометированы из-за неправильной конфигурации, небезопасного хранения, слабого шифрования или внутренних угроз. 
 
 
 ```
@@ -145,135 +140,140 @@ Sensitive data stored in the cloud can be compromised due to misconfigurations, 
 ```
 
 
+```
 
-## Insufficient Security Configuration
+```
 
-Misconfigurations in cloud services, infrastructure, or security settings can expose vulnerabilities, allowing unauthorized access or compromising data integrity.
 
-In the noncompliant code, there are several instances where security configurations are insufficient, leaving the cloud environment vulnerable to attacks. These include using default or weak passwords, allowing unrestricted access to resources, and not enabling necessary security features.
+
+## Недостаточная конфигурация системы безопасности
+
+Неправильная конфигурация облачных сервисов, инфраструктуры или настроек безопасности может привести к уязвимостям, открывающим несанкционированный доступ или нарушающим целостность данных.
+
+В коде, не соответствующем требованиям, есть несколько случаев, когда настройки безопасности недостаточны, что делает облачную среду уязвимой для атак. К ним относятся использование стандартных или слабых паролей, предоставление неограниченного доступа к ресурсам и отсутствие необходимых функций безопасности.
 
 
 ```
-# Noncompliant: Insufficient Security Configuration in Cloud
+# Несоответствие требованиям: Недостаточная конфигурация безопасности в облаке
 
 import boto3
 
-# Using default or weak passwords for authentication
+# Использование стандартных или слабых паролей для аутентификации
 s3 = boto3.resource('s3')
 bucket = s3.Bucket('my-bucket')
 bucket.upload_file('data.txt', 'data.txt')
 
-# Allowing unrestricted access to resources
+# Предоставление неограниченного доступа к ресурсам
 s3 = boto3.resource('s3')
 bucket = s3.Bucket('public-bucket')
 bucket.make_public()
 
-# Not enabling necessary security features
+# Не включение необходимых функций безопасности
 ec2 = boto3.resource('ec2')
 instance = ec2.create_instances(ImageId='ami-12345678', MinCount=1, MaxCount=1)
 instance[0].disable_api_termination = False
 ```
 
-To address the issue of insufficient security configuration in the cloud, it is important to follow security best practices and implement robust security measures.
+Чтобы решить проблему недостаточной конфигурации системы безопасности в облаке, важно следовать лучшим практикам безопасности и применять надежные меры защиты.
 
 
 
 ```
-# Compliant: Strong Security Configuration in Cloud
+# Соответствие стандартам: Надежная конфигурация безопасности в облаке
 
 import boto3
 
-# Using strong and unique passwords for authentication
+# Использование надежных и уникальных паролей для аутентификации
 s3 = boto3.resource('s3')
 bucket = s3.Bucket('my-bucket')
 bucket.upload_file('data.txt', 'data.txt', ExtraArgs={'ServerSideEncryption': 'AES256'})
 
-# Restricting access to resources
+# Ограничение доступа к ресурсам
 s3 = boto3.resource('s3')
 bucket = s3.Bucket('private-bucket')
 bucket.Acl().put(ACL='private')
 
-# Enabling necessary security features
+# Включение необходимых функций безопасности
 ec2 = boto3.resource('ec2')
 instance = ec2.create_instances(ImageId='ami-12345678', MinCount=1, MaxCount=1)
 instance[0].disable_api_termination = True
 ```
 
-In the compliant code, strong and unique passwords are used for authentication, enhancing the security of the cloud resources. Access to resources is restricted, ensuring that only authorized users or services have the necessary permissions. Necessary security features, such as server-side encryption and API termination protection, are enabled to provide additional layers of security. By implementing strong security configurations, the cloud environment is better protected against potential threats.
+В совместимом коде для аутентификации используются надежные и уникальные пароли, что повышает безопасность облачных ресурсов. Доступ к ресурсам ограничен, что гарантирует наличие необходимых разрешений только у авторизованных пользователей или служб. Необходимые функции безопасности, такие как шифрование на стороне сервера и защита от завершения API, включены для обеспечения дополнительных уровней безопасности. Благодаря применению надежных конфигураций безопасности облачная среда лучше защищена от потенциальных угроз.
 
 
 
-## Insecure Data storage
+## Небезопасное хранение данных
 
-Inadequate encryption, weak access controls, or improper handling of data at rest can lead to unauthorized 
-access or data leakage.
+Неадекватное шифрование, слабый контроль доступа или неправильная обработка данных в состоянии покоя могут привести к несанкционированному 
+несанкционированному доступу или утечке данных.
 
-In the noncompliant code, there are instances where data storage in the cloud is insecure. Sensitive data is stored without proper encryption, and there is no mechanism in place to protect the data from unauthorized access or accidental exposure.
+В коде, не соответствующем требованиям, есть случаи, когда хранение данных в облаке небезопасно. Чувствительные данные хранятся без надлежащего шифрования, и отсутствует механизм защиты данных от несанкционированного доступа или случайного раскрытия.
 
 
 
 ```
-# Noncompliant: Insecure Data Storage in Cloud
+# Несоответствие нормам: Небезопасное хранение данных в облаке
 
 import boto3
 
-# Storing sensitive data without encryption
+# Хранение конфиденциальных данных без шифрования
 s3 = boto3.client('s3')
 s3.put_object(Bucket='my-bucket', Key='data.txt', Body='Sensitive data')
 
-# Lack of access control
+# Отсутствие контроля доступа
 s3 = boto3.resource('s3')
 bucket = s3.Bucket('public-bucket')
 bucket.upload_file('data.txt', 'data.txt')
 
-# No data backup or disaster recovery plan
+# Отсутствие плана резервного копирования или аварийного восстановления данных
 rds = boto3.client('rds')
 rds.create_db_snapshot(DBSnapshotIdentifier='my-snapshot', DBInstanceIdentifier='my-db')
 ```
 
 
-To ensure secure data storage in the cloud, it is important to follow best practices and implement appropriate security measures.
+Чтобы обеспечить безопасное хранение данных в облаке, важно следовать лучшим практикам и применять соответствующие меры безопасности.
 
 
 ```
-# Compliant: Secure Data Storage in Cloud
+# Соответствие стандартам: Безопасное хранение данных в облаке
 
 import boto3
 
-# Storing sensitive data with encryption
+# Хранение конфиденциальных данных с помощью шифрования
 s3 = boto3.client('s3')
 s3.put_object(Bucket='my-bucket', Key='data.txt', Body='Sensitive data', ServerSideEncryption='AES256')
 
-# Implementing access control
+# Реализация контроля доступа
 s3 = boto3.resource('s3')
 bucket = s3.Bucket('private-bucket')
 bucket.upload_file('data.txt', 'data.txt', ExtraArgs={'ACL': 'private'})
 
-# Implementing data backup and disaster recovery plan
+# Реализация плана резервного копирования и аварийного восстановления данных
 rds = boto3.client('rds')
 rds.create_db_snapshot(DBSnapshotIdentifier='my-snapshot', DBInstanceIdentifier='my-db', Tags=[{'Key': 'Environment', 'Value': 'Production'}])
 ```
 
-In the compliant code, sensitive data is stored with encryption using server-side encryption with AES256. Access control is implemented to restrict access to the stored data, ensuring that only authorized users or services can access it. Additionally, a data backup and disaster recovery plan is in place, which includes creating snapshots to enable data recovery in case of any incidents. By implementing secure data storage practices, the cloud environment provides better protection for sensitive information.
+В совместимом коде конфиденциальные данные хранятся с шифрованием на стороне сервера с использованием AES256. Для ограничения доступа к хранимым данным применяется контроль доступа, обеспечивающий доступ к ним только авторизованных пользователей или служб. Кроме того, существует план резервного копирования и аварийного восстановления данных, который включает создание моментальных снимков для восстановления данных в случае каких-либо инцидентов. Благодаря внедрению методов безопасного хранения данных облачная среда обеспечивает более надежную защиту конфиденциальной информации.
 
 
 
-## Lack of Proper Logging and Monitoring
+## Отсутствие надлежащего протоколирования и мониторинга
 
-Insufficient monitoring, logging, and analysis of cloud activity can hinder detection of security incidents, leading to delayed or ineffective response.
-
-
+Недостаточный мониторинг, регистрация и анализ активности в облаке могут препятствовать обнаружению инцидентов безопасности, что приводит к задержке или неэффективности реагирования.
 
 
-## Insecure Deployment and Configuration Management
 
-Weaknesses in the process of deploying and managing cloud resources, such as improper change management, can introduce security vulnerabilities.
 
-In the noncompliant code, there is a lack of secure deployment and configuration management practices in the cloud environment. The code deploys resources and configurations without proper security considerations, such as exposing sensitive information or using default and weak configurations.
+## Небезопасное развертывание и управление конфигурацией
+
+Слабые места в процессе развертывания и управления облачными ресурсами, такие как неправильное управление изменениями, могут привести к появлению уязвимостей безопасности.
+
+В коде, не соответствующем требованиям, отсутствуют практики безопасного развертывания и управления конфигурациями в облачной среде. Код развертывает ресурсы и конфигурации без должного учета требований безопасности, например, раскрывает конфиденциальную информацию или использует стандартные и слабые конфигурации.
 
 
 ```
-# Noncompliant: Insecure Deployment and Configuration Management in Cloud
+# Несоответствие требованиям: Небезопасное развертывание и управление конфигурацией в облаке
 
 import boto3
 
@@ -298,12 +298,12 @@ if __name__ == "__main__":
     main()
 ```
 
-To ensure secure deployment and configuration management in the cloud, it is important to follow security best practices and apply appropriate configurations to resources.
+Чтобы обеспечить безопасное развертывание и управление конфигурациями в облаке, важно следовать лучшим практикам безопасности и применять соответствующие конфигурации к ресурсам.
 
 
 
 ```
-# Compliant: Secure Deployment and Configuration Management in Cloud
+# Compliant: Безопасное развертывание и управление конфигурацией в облаке
 
 import boto3
 
@@ -348,23 +348,23 @@ if __name__ == "__main__":
     main()
 ```
 
-In the compliant code, additional security measures are implemented during the deployment process. This includes:
+В совместимом коде в процессе развертывания применяются дополнительные меры безопасности. К ним относятся:
 
-* Adding appropriate tags to the instance for better resource management and identification.
-* Configuring block device mappings with appropriate volume size and type.
-* Following the principle of least privilege by providing only necessary permissions to the deployment process.
+* Добавление соответствующих меток к экземпляру для лучшего управления ресурсами и идентификации.
+* Настройка сопоставления блочных устройств с соответствующим размером и типом тома.
+* Следование принципу наименьших привилегий путем предоставления только необходимых разрешений в процессе развертывания.
 
 
-## Inadequate Incident Response and Recovery
+## Неадекватное реагирование на инциденты и восстановление
 
-Lack of proper incident response planning and testing, as well as ineffective recovery mechanisms, can result in extended downtime, data loss, or inadequate mitigation of security breaches.
+Отсутствие надлежащего планирования и тестирования реагирования на инциденты, а также неэффективные механизмы восстановления могут привести к длительным простоям, потере данных или неадекватному устранению бреши в системе безопасности.
 
-In the noncompliant code, there is a lack of adequate incident response and recovery practices in the cloud environment. The code does not have any provisions for handling incidents or recovering from them effectively. This can lead to prolonged downtime, data loss, or inadequate response to security breaches or system failures.
+В кодексе, не соответствующем требованиям, отсутствуют адекватные методы реагирования на инциденты и восстановления в облачной среде. В коде отсутствуют какие-либо положения по обработке инцидентов и эффективному восстановлению после них. Это может привести к длительным простоям, потере данных или неадекватному реагированию на нарушения безопасности или системные сбои.
 
 
 
 ```
-# Noncompliant: Inadequate Incident Response and Recovery in Cloud
+# Несоответствие требованиям: Неадекватное реагирование на инциденты и восстановление в облаке
 
 import boto3
 
@@ -384,12 +384,12 @@ if __name__ == "__main__":
     main()
 ```
 
-To ensure adequate incident response and recovery in the cloud, it is important to have well-defined processes and procedures in place. The following code snippet demonstrates a more compliant approach:
+Чтобы обеспечить адекватное реагирование на инциденты и восстановление в облаке, важно иметь четко определенные процессы и процедуры. Следующий фрагмент кода демонстрирует более приемлемый подход:
 
 
 
 ```
-# Compliant: Adequate Incident Response and Recovery in Cloud
+# Соответствие требованиям: Адекватное реагирование на инциденты и восстановление в облаке
 
 import boto3
 
@@ -401,7 +401,7 @@ def delete_instance(instance_id):
     return response
 
 def handle_incident(instance_id):
-    # Perform necessary actions to handle the incident, such as notifying the security team, logging relevant information, etc.
+    # Выполните необходимые действия по урегулированию инцидента, например, уведомите команду безопасности, запишите соответствующую информацию и т. д.
     print(f"Incident occurred with instance {instance_id}. Taking appropriate actions.")
 
 def main():
@@ -414,28 +414,28 @@ if __name__ == "__main__":
     main()
 ```
 
-In the compliant code, an additional function handle_incident() is introduced to handle incidents appropriately. This function can be customized to include actions such as notifying the security team, logging relevant information, triggering automated response mechanisms, or invoking incident response plans. By having a well-defined incident response process, organizations can effectively respond to and recover from incidents, minimizing their impact on operations and security.
+В совместимом коде появилась дополнительная функция handle_incident() для надлежащей обработки инцидентов. Эта функция может быть настроена на такие действия, как уведомление команды безопасности, регистрация соответствующей информации, запуск механизмов автоматического реагирования или вызов планов реагирования на инциденты. Благодаря четко определенному процессу реагирования на инциденты организации могут эффективно реагировать на них и восстанавливаться после них, сводя к минимуму их влияние на операции и безопасность.
 
 
 
 
-## Shared Technology Vulnerabilities
+## Уязвимости в общих технологиях
 
-Vulnerabilities in underlying cloud infrastructure, shared components, or hypervisors can impact multiple cloud tenants, potentially leading to unauthorized access or data breaches.
-
-
+Уязвимости в базовой облачной инфраструктуре, общих компонентах или гипервизорах могут повлиять на нескольких арендаторов облака, что может привести к несанкционированному доступу или утечке данных.
 
 
-## Account Hijacking and Abuse
 
-Unauthorized access to cloud accounts, compromised user credentials, or misuse of privileges can result in data loss, service disruptions, or unauthorized resource consumption.
 
-In the noncompliant code, there are no security measures in place to prevent account hijacking and abuse in the cloud environment. The code does not implement strong authentication mechanisms, lacks proper access controls, and does not enforce secure practices, making it vulnerable to unauthorized access and abuse of resources.
+## Перехват учетных записей и злоупотребление ими
+
+Несанкционированный доступ к облачным учетным записям, компрометация учетных данных пользователей или злоупотребление привилегиями могут привести к потере данных, сбоям в работе сервисов или несанкционированному использованию ресурсов.
+
+В коде, не соответствующем требованиям, отсутствуют меры безопасности для предотвращения захвата учетных записей и злоупотреблений в облачной среде. В коде не реализованы надежные механизмы аутентификации, отсутствуют надлежащие средства контроля доступа и не обеспечивается соблюдение правил безопасности, что делает его уязвимым для несанкционированного доступа и злоупотребления ресурсами.
 
 
 
 ```
-# Noncompliant: Account Hijacking and Abuse in Cloud
+# Несоответствие требованиям: Перехват учетных записей и злоупотребления в облаке
 
 import boto3
 
@@ -452,13 +452,13 @@ if __name__ == "__main__":
     main()
 ```
 
-To prevent account hijacking and abuse in the cloud, it is important to implement strong security measures. The following code snippet demonstrates a more compliant approach:
+Чтобы предотвратить перехват учетных записей и злоупотребления в облаке, важно применять надежные меры безопасности. Следующий фрагмент кода демонстрирует более приемлемый подход:
 
 
 
 
 ```
-# Compliant: Preventing Account Hijacking and Abuse in Cloud
+# Compliant: Предотвращение захвата и злоупотребления учетными записями в облаке
 
 import boto3
 
@@ -481,17 +481,17 @@ if __name__ == "__main__":
     main()
 ```
 
-In the compliant code, additional security measures are implemented. The bucket is created with a specific access control setting (ACL='private') to ensure that only authorized users can access it. The CreateBucketConfiguration parameter is used to specify the desired region for the bucket, reducing the risk of accidental exposure due to misconfigurations.
+В совместимом коде реализованы дополнительные меры безопасности. Ведро создается с особыми настройками контроля доступа (ACL='private'), чтобы обеспечить доступ к нему только авторизованных пользователей. Параметр CreateBucketConfiguration используется для указания желаемого региона для ведра, что снижает риск случайного раскрытия из-за неправильной конфигурации.
 
-To further enhance security, consider implementing multi-factor authentication (MFA), strong password policies, and role-based access controls (RBAC) for managing user permissions in the cloud environment. Regular monitoring and auditing of account activities can also help detect and prevent unauthorized access or abuse.
-
-
-## Retrieve EC2 Password Data
-
-Retrieve EC2 Password Data is a simulated attack scenario where an attacker attempts to retrieve RDP (Remote Desktop Protocol) passwords from a large number of Windows EC2 instances in AWS. The attacker runs the ec2:GetPasswordData API call from a role that does not have the necessary permissions, trying to exploit the vulnerability.
+Для дальнейшего усиления безопасности рассмотрите возможность внедрения многофакторной аутентификации (MFA), политики надежных паролей и ролевого управления доступом (RBAC) для управления правами пользователей в облачной среде. Регулярный мониторинг и аудит действий учетных записей также поможет обнаружить и предотвратить несанкционированный доступ или злоупотребления.
 
 
-Noncompliant Code:
+## Получение данных о паролях EC2
+
+Retrieve EC2 Password Data - это симулированный сценарий атаки, в котором злоумышленник пытается получить пароли RDP (Remote Desktop Protocol) от большого количества экземпляров Windows EC2 в AWS. Злоумышленник запускает вызов API ec2:GetPasswordData от роли, не обладающей необходимыми правами, пытаясь использовать уязвимость.
+
+
+Код, не соответствующий требованиям:
 
 ```
 import boto3
@@ -502,9 +502,9 @@ def retrieve_ec2_password(instance_id):
     return response['PasswordData']
 ```
 
-The noncompliant code uses the boto3 Python library to retrieve the EC2 password data by calling the get_password_data API method. However, it does not check if the role executing this code has the necessary permissions (ec2:GetPasswordData) to retrieve the password data.
+Несоответствующий код использует библиотеку boto3 Python для получения данных о паролях EC2, вызывая метод API get_password_data. Однако он не проверяет, имеет ли роль, выполняющая этот код, необходимые разрешения (ec2:GetPasswordData) для получения данных пароля.
 
-Compliant Code:
+Соответствующий код:
 
 
 ```
@@ -525,37 +525,37 @@ def retrieve_ec2_password(instance_id):
 ```
 
 
-## Steal EC2 Instance Credentials
+## Кража учетных данных экземпляра EC2
 
-Steal EC2 Instance Credentials is a simulated attack scenario where an attacker steals EC2 instance credentials from the Instance Metadata Service in AWS. The attacker executes a command on the target EC2 instance to retrieve temporary credentials, and then uses those credentials locally to perform unauthorized actions like running the sts:GetCallerIdentity and ec2:DescribeInstances commands.
+Steal EC2 Instance Credentials - это сценарий атаки, в котором злоумышленник крадет учетные данные экземпляра EC2 из службы метаданных экземпляров в AWS. Злоумышленник выполняет команду на целевом экземпляре EC2 для получения временных учетных данных, а затем использует эти данные локально для выполнения несанкционированных действий, например, запуска команд sts:GetCallerIdentity и ec2:DescribeInstances.
 
-Noncompliant Code:
+Код, не отвечающий требованиям:
 
 ```
 #!/bin/bash
 
-# Retrieves and prints the EC2 instance credentials
+# Получает и печатает учетные данные экземпляра EC2
 curl -s http://169.254.169.254/latest/meta-data/iam/security-credentials/
 ```
 
-Compliant Code:
+Соответствующий код:
 
-The compliant approach does not involve providing an example of code to steal EC2 instance credentials, as it promotes ethical behavior and compliance with security standards. Unauthorized access or theft of instance credentials is a violation of AWS policies and poses significant security risks. It is important to focus on securing and protecting the EC2 instance credentials by implementing security best practices such as:
+Соответствующий подход не предполагает предоставления примера кода для кражи учетных данных экземпляров EC2, поскольку он поощряет этичное поведение и соблюдение стандартов безопасности. Несанкционированный доступ или кража учетных данных экземпляра является нарушением политик AWS и представляет собой значительный риск для безопасности. Важно сосредоточиться на обеспечении безопасности и защите учетных данных экземпляра EC2 путем применения лучших практик безопасности, таких как:
 
-* Restricting access to the Instance Metadata Service (169.254.169.254) using security groups or network access control lists (NACLs).
+* Ограничение доступа к службе метаданных экземпляра (169.254.169.254) с помощью групп безопасности или списков контроля сетевого доступа (NACL).
 
-* Implementing IAM roles with the principle of least privilege to grant only necessary permissions to EC2 instances.
+* Внедрение ролей IAM с принципом наименьших привилегий для предоставления только необходимых разрешений экземплярам EC2.
 
-* Regularly updating and patching EC2 instances to protect against known vulnerabilities.
-Monitoring and analyzing AWS CloudTrail logs for any suspicious activities related to instance credentials.
-
-
-## Retrieve a High Number of Secrets Manager secrets
-
-Retrieve a High Number of Secrets Manager secrets is a simulated attack scenario where an attacker attempts to retrieve a large number of secrets from AWS Secrets Manager using the secretsmanager:GetSecretValue API.
+* Регулярное обновление и исправление экземпляров EC2 для защиты от известных уязвимостей.
+Мониторинг и анализ журналов AWS CloudTrail на предмет любых подозрительных действий, связанных с учетными данными экземпляров.
 
 
-Noncompliant Code:
+## Получение большого количества секретов из менеджера секретов
+
+Retrieve a High Number of Secrets Manager secrets - это симулированный сценарий атаки, в котором злоумышленник пытается получить большое количество секретов из AWS Secrets Manager с помощью API secretsmanager:GetSecretValue.
+
+
+Код не соответствует требованиям:
 
 
 ```
@@ -563,7 +563,7 @@ import boto3
 
 client = boto3.client('secretsmanager')
 
-# Retrieves and prints all secrets
+# Извлекает и распечатывает все секреты
 response = client.list_secrets()
 secrets = response['SecretList']
 for secret in secrets:
@@ -571,35 +571,35 @@ for secret in secrets:
     print(secret_value['SecretString'])
 ```
 
-The noncompliant code uses the AWS SDK (boto3 in this case) to list all the secrets in AWS Secrets Manager and then retrieves and prints the values of each secret one by one. This code does not implement any restrictions or rate limiting, allowing an attacker to potentially extract a large number of secrets in a single operation. It bypasses any access control or authorization mechanisms that might be in place, and poses a significant security risk by exposing sensitive information.
+Несоответствующий код использует AWS SDK (в данном случае boto3) для получения списка всех секретов в AWS Secrets Manager, а затем извлекает и распечатывает значения каждого секрета по одному. Этот код не реализует никаких ограничений и не ограничивает скорость, что позволяет злоумышленнику потенциально извлекать большое количество секретов за одну операцию. Он обходит любые механизмы контроля доступа или авторизации, которые могут быть установлены, и представляет собой значительный риск безопасности, раскрывая конфиденциальную информацию.
 
-The compliant approach does not involve providing an example of code to retrieve a high number of Secrets Manager secrets, as it promotes ethical behavior and compliance with security standards. Unauthorized retrieval of secrets is a violation of AWS policies and can lead to unauthorized access to sensitive information.
+Соответствующий подход не предполагает предоставления примера кода для извлечения большого количества секретов Secrets Manager, поскольку он поощряет этичное поведение и соблюдение стандартов безопасности. Несанкционированное извлечение секретов является нарушением политик AWS и может привести к несанкционированному доступу к конфиденциальной информации.
 
-To ensure the security of Secrets Manager secrets, consider implementing the following security measures:
+Чтобы обеспечить безопасность секретов Secrets Manager, рассмотрите возможность применения следующих мер безопасности:
 
-* Apply appropriate access controls: Limit access to Secrets Manager secrets by using IAM policies, granting only necessary permissions to the authorized entities or roles.
+* Применяйте соответствующие средства контроля доступа: Ограничьте доступ к секретам Secrets Manager с помощью политик IAM, предоставляя только необходимые разрешения уполномоченным лицам или ролям.
 
-* Implement strict access monitoring: Enable AWS CloudTrail to log Secrets Manager API calls and regularly review the logs for any suspicious or unauthorized activities.
+* Обеспечьте строгий контроль доступа: Включите AWS CloudTrail для регистрации вызовов API Secrets Manager и регулярно просматривайте журналы на предмет подозрительных или несанкционированных действий.
 
-* Implement strong secrets management practices: Rotate secrets regularly, use strong encryption, and enforce secure access mechanisms such as fine-grained IAM policies and VPC endpoints.
+* Внедрите строгие методы управления секретами: Регулярно ротируйте секреты, используйте надежное шифрование и применяйте механизмы безопасного доступа, такие как тонкие политики IAM и конечные точки VPC.
 
-* Implement least privilege: Assign the principle of least privilege to IAM roles and users, ensuring they have access only to the necessary secrets required for their specific tasks.
+* Внедрите принцип наименьших привилегий: Назначайте роли и пользователей IAM по принципу наименьших привилегий, обеспечивая им доступ только к тем секретам, которые необходимы для выполнения конкретных задач.
 
-* Implement rate limiting: Use AWS service quotas and rate limits to enforce throttling and limit the number of API requests made to Secrets Manager within a specified time frame.
+* Внедрите ограничение скорости: Используйте квоты сервисов AWS и ограничения скорости, чтобы обеспечить дросселирование и ограничить количество API-запросов к Secrets Manager в течение определенного периода времени.
 
 
-## Retrieve And Decrypt SSM Parameters
+## Получение и расшифровка параметров SSM
 
-Retrieve And Decrypt SSM Parameters is a simulated attack scenario where an attacker retrieves and decrypts a high number of Secure String parameters from AWS Systems Manager (SSM) using the ssm:GetParameters API.
+Retrieve And Decrypt SSM Parameters - это симулированный сценарий атаки, в котором злоумышленник получает и расшифровывает большое количество параметров Secure String из AWS Systems Manager (SSM) с помощью API ssm:GetParameters.
 
-Noncompliant Code:
+Несоответствующий код:
 
 ```
 import boto3
 
 client = boto3.client('ssm')
 
-# Retrieves and decrypts all Secure String parameters
+# Получает и расшифровывает все параметры Secure String.
 response = client.describe_parameters()
 parameters = response['Parameters']
 for parameter in parameters:
@@ -608,18 +608,18 @@ for parameter in parameters:
         print(value['Parameter']['Value'])
 ```
 
-The noncompliant code uses the AWS SDK (boto3 in this case) to list all the SSM parameters in the current region and retrieves the values of Secure String parameters by making individual calls to ssm:GetParameter with decryption enabled. This code does not implement any restrictions or rate limiting, allowing an attacker to retrieve and decrypt a high number of parameters in a single operation. It bypasses any access control or authorization mechanisms that might be in place, posing a significant security risk by exposing sensitive information.
+Несоответствующий код использует AWS SDK (в данном случае boto3) для получения списка всех параметров SSM в текущем регионе и извлекает значения параметров Secure String, выполняя отдельные вызовы ssm:GetParameter с включенной дешифровкой. Этот код не реализует никаких ограничений и не ограничивает скорость, что позволяет злоумышленнику получить и расшифровать большое количество параметров за одну операцию. Он обходит все существующие механизмы контроля доступа и авторизации, что создает значительный риск для безопасности, раскрывая конфиденциальную информацию.
 
 
 
-Compliant Code:
+Соответствующий код:
 
 ```
 import boto3
 
 client = boto3.client('ssm')
 
-# Retrieves and decrypts specific Secure String parameters
+# Получение и расшифровка определенных параметров Secure String
 parameter_names = [
     '/path/to/parameter1',
     '/path/to/parameter2',
@@ -635,17 +635,17 @@ for parameter_name in parameter_names:
         print(f"Parameter '{parameter_name}' not found.")
 ```
 
-The compliant code retrieves and decrypts specific Secure String parameters from AWS SSM. It follows a whitelist approach by specifying the parameter names that need to be retrieved, instead of fetching all parameters. This ensures that only authorized parameters are accessed and prevents unauthorized access to sensitive information. The code also handles the scenario where a parameter may not exist by catching the ParameterNotFound exception.
+Код, соответствующий требованиям, извлекает и расшифровывает определенные параметры Secure String из AWS SSM. Он использует подход "белого списка", указывая имена параметров, которые необходимо получить, вместо получения всех параметров. Это обеспечивает доступ только к авторизованным параметрам и предотвращает несанкционированный доступ к конфиденциальной информации. Код также обрабатывает сценарий, в котором параметр может не существовать, перехватывая исключение ParameterNotFound.
 
 
 
 
-## Delete CloudTrail Trail
+## Удаление следа CloudTrail
 
-Delete CloudTrail Trail is a simulated attack scenario where an attacker deletes an existing CloudTrail trail in AWS, disrupting the logging and monitoring of activities in the AWS account.
+Delete CloudTrail Trail - это симулированный сценарий атаки, в котором злоумышленник удаляет существующий след CloudTrail в AWS, нарушая протоколирование и мониторинг действий в учетной записи AWS.
 
 
-Noncompliant Code:
+Код, не соответствующий требованиям:
 
 
 ```
@@ -653,28 +653,28 @@ import boto3
 
 client = boto3.client('cloudtrail')
 
-# Deletes the CloudTrail trail
+# Удаляет след CloudTrail
 response = client.delete_trail(
     trailName='my-trail'
 )
 ```
 
-The noncompliant code uses the AWS SDK (boto3 in this case) to delete a CloudTrail trail named 'my-trail'. This code does not implement any access control or authorization checks, allowing anyone with the necessary AWS credentials to delete the trail. It bypasses any security measures or monitoring mechanisms that might be in place, making it a potential security vulnerability.
+Несоответствующий код использует AWS SDK (в данном случае boto3) для удаления маршрута CloudTrail с именем 'my-trail'. Этот код не реализует никакого контроля доступа или проверки авторизации, позволяя любому человеку с необходимыми учетными данными AWS удалить след. Он обходит любые меры безопасности или механизмы мониторинга, которые могут быть установлены, что делает его потенциальной уязвимостью безопасности.
 
 
 
 
-Compliant Code:
+Соответствующий код:
 
 ```
 import boto3
 
 client = boto3.client('cloudtrail')
 
-# Deletes the CloudTrail trail with proper authorization and validation
+# Удаление следа CloudTrail с надлежащей авторизацией и проверкой
 trail_name = 'my-trail'
 
-# Check if the trail exists before attempting to delete
+# Проверьте, существует ли след, прежде чем пытаться его удалить
 response = client.describe_trails(trailNameList=[trail_name])
 trails = response['trailList']
 if trails:
@@ -682,9 +682,9 @@ if trails:
     if trail['IsMultiRegionTrail']:
         print("Deleting the CloudTrail trail is not allowed for multi-region trails.")
     else:
-        # Perform any necessary checks or validations before deleting the trail
+        # Выполните все необходимые проверки и подтверждения перед удалением следа
 
-        # Prompt for confirmation before deletion
+        # Запрос подтверждения перед удалением
         confirmation = input(f"Are you sure you want to delete the '{trail_name}' CloudTrail trail? (yes/no): ")
         if confirmation.lower() == 'yes':
             response = client.delete_trail(
@@ -697,23 +697,23 @@ else:
     print(f"CloudTrail trail '{trail_name}' not found.")
 ```
 
-The compliant code implements proper authorization and validation checks before deleting a CloudTrail trail. It first checks if the trail exists by calling describe_trails with the specified trail name. If the trail is found, it performs additional checks or validations as required by the organization's policies or procedures. Before proceeding with the deletion, it prompts for confirmation from the user, ensuring intentional deletion of the trail. The code also handles scenarios such as multi-region trails, where deletion may not be allowed.
+Соответствующий код реализует надлежащие проверки авторизации и валидации перед удалением тропы CloudTrail. Сначала он проверяет, существует ли след, вызывая describe_trails с указанным именем следа. Если след найден, он выполняет дополнительные проверки или подтверждения, как того требуют политики или процедуры организации. Прежде чем приступить к удалению, он запрашивает подтверждение у пользователя, обеспечивая намеренное удаление следа. Код также обрабатывает такие сценарии, как мультирегиональные трассы, где удаление может быть запрещено.
 
 
 
 
-## Disable CloudTrail Logging Through Event Selectors
+## Отключение ведения журнала CloudTrail с помощью селекторов событий
 
-Disable CloudTrail Logging Through Event Selectors is a simulated attack scenario where an attacker modifies the event selectors of a CloudTrail trail to filter out all management events, effectively disrupting the logging of those events.
+Disable CloudTrail Logging Through Event Selectors - это сценарий атаки, в котором злоумышленник изменяет селекторы событий в маршруте CloudTrail, чтобы отфильтровать все события управления, эффективно нарушая регистрацию этих событий.
 
-Noncompliant Code:
+Код, не соответствующий требованиям:
 
 ```
 import boto3
 
 client = boto3.client('cloudtrail')
 
-# Disable CloudTrail logging by modifying event selectors
+# Отключите ведение журнала CloudTrail, изменив селекторы событий
 response = client.put_event_selectors(
     TrailName='my-trail',
     EventSelectors=[
@@ -726,28 +726,28 @@ response = client.put_event_selectors(
 )
 ```
 
-The noncompliant code uses the AWS SDK (boto3 in this case) to modify the event selectors of a CloudTrail trail named 'my-trail'. It sets the IncludeManagementEvents parameter to False, effectively disabling the logging of all management events. This code does not implement any access control or authorization checks, allowing anyone with the necessary AWS credentials to modify the event selectors and disrupt the logging.
+Код, не соответствующий требованиям, использует AWS SDK (в данном случае boto3) для изменения селекторов событий в маршруте CloudTrail под названием 'my-trail'. Он устанавливает параметр IncludeManagementEvents в значение False, фактически отключая регистрацию всех событий управления. Этот код не реализует никакого контроля доступа или проверки авторизации, что позволяет любому человеку с необходимыми учетными данными AWS изменять селекторы событий и нарушать протоколирование.
 
 
 
-Compliant Code:
+Соответствующий код:
 
 ```
 import boto3
 
 client = boto3.client('cloudtrail')
 
-# Disable CloudTrail logging by modifying event selectors with proper authorization and validation
+# Отключите ведение журнала CloudTrail, изменив селекторы событий с надлежащей авторизацией и проверкой
 trail_name = 'my-trail'
 
-# Check if the trail exists before attempting to modify event selectors
+# Проверьте, существует ли след, прежде чем пытаться изменить селекторы событий
 response = client.describe_trails(trailNameList=[trail_name])
 trails = response['trailList']
 if trails:
     trail = trails[0]
-    # Perform any necessary checks or validations before modifying event selectors
+    # Выполните все необходимые проверки и валидации перед изменением селекторов событий
 
-    # Prompt for confirmation before modifying event selectors
+    # Запрос подтверждения перед изменением селекторов событий
     confirmation = input(f"Are you sure you want to modify the event selectors of the '{trail_name}' CloudTrail trail? (yes/no): ")
     if confirmation.lower() == 'yes':
         response = client.put_event_selectors(
@@ -767,24 +767,24 @@ else:
     print(f"CloudTrail trail '{trail_name}' not found.")
 ```
 
-The compliant code implements proper authorization and validation checks before modifying the event selectors of a CloudTrail trail. It first checks if the trail exists by calling describe_trails with the specified trail name. If the trail is found, it performs additional checks or validations as required by the organization's policies or procedures. Before proceeding with the modification, it prompts for confirmation from the user, ensuring intentional modification of the event selectors. The code also handles scenarios where multiple event selectors are present in the trail configuration.
+Соответствующий код реализует надлежащие проверки авторизации и валидации перед изменением селекторов событий тропы CloudTrail. Сначала он проверяет, существует ли след, вызывая describe_trails с указанным именем следа. Если след найден, он выполняет дополнительные проверки или подтверждения, как того требуют политики или процедуры организации. Прежде чем приступить к модификации, он запрашивает подтверждение у пользователя, обеспечивая намеренную модификацию селекторов событий. Код также обрабатывает сценарии, в которых в конфигурации следа присутствует несколько селекторов событий.
 
 
 
 
-## CloudTrail Logs Impairment Through S3 Lifecycle Rule
+## CloudTrail регистрирует обесценивание с помощью правила жизненного цикла S3
 
-CloudTrail Logs Impairment Through S3 Lifecycle Rule is a simulated attack scenario where an attacker sets a short retention policy on the S3 bucket used by a CloudTrail trail. By applying a S3 Lifecycle Rule that automatically removes objects after a short period, the attacker impairs the integrity and availability of CloudTrail logs.
+CloudTrail Logs Impairment Through S3 Lifecycle Rule - это смоделированный сценарий атаки, в котором злоумышленник устанавливает политику короткого хранения для ведра S3, используемого CloudTrail trail. Применяя правило жизненного цикла S3, которое автоматически удаляет объекты по истечении короткого периода, злоумышленник нарушает целостность и доступность журналов CloudTrail.
 
 
-Noncompliant Code:
+Код, не соответствующий требованиям:
 
 ```
 import boto3
 
 s3_client = boto3.client('s3')
 
-# Apply a short retention policy on the S3 bucket used by CloudTrail
+# Примените политику короткого хранения к ведру S3, используемому CloudTrail.
 response = s3_client.put_bucket_lifecycle_configuration(
     Bucket='my-cloudtrail-bucket',
     LifecycleConfiguration={
@@ -801,23 +801,23 @@ response = s3_client.put_bucket_lifecycle_configuration(
 )
 ```
 
-The noncompliant code uses the AWS SDK (boto3 in this case) to apply a S3 Lifecycle Rule to the 'my-cloudtrail-bucket' S3 bucket. The rule sets the expiration of objects in the bucket to 1 day, meaning that CloudTrail logs will be automatically deleted after 1 day of their creation. This code does not implement any access control or validation, allowing anyone with the necessary AWS credentials to impair the integrity and availability of CloudTrail logs.
+Несоответствующий код использует AWS SDK (в данном случае boto3) для применения правила жизненного цикла S3 к ведру S3 'my-cloudtrail-bucket'. Правило устанавливает срок действия объектов в ведре на 1 день, что означает, что журналы CloudTrail будут автоматически удаляться через 1 день после их создания. В этом коде не реализован контроль доступа или проверка, что позволяет любому человеку с необходимыми учетными данными AWS нарушить целостность и доступность журналов CloudTrail.
 
-Compliant Code:
+Соответствующий код:
 
 ```
 import boto3
 
 s3_client = boto3.client('s3')
 
-# Apply a retention policy on the S3 bucket used by CloudTrail with proper authorization and validation
+# Примените политику хранения к ведру S3, используемому CloudTrail, с надлежащей авторизацией и проверкой.
 bucket_name = 'my-cloudtrail-bucket'
 
-# Check if the bucket exists before attempting to apply a lifecycle rule
+# Проверьте, существует ли ведро, прежде чем пытаться применить правило жизненного цикла.
 response = s3_client.list_buckets()
 buckets = response['Buckets']
 if any(bucket['Name'] == bucket_name for bucket in buckets):
-    # Prompt for confirmation before applying the lifecycle rule
+    # Запрос подтверждения перед применением правила жизненного цикла
     confirmation = input(f"Are you sure you want to apply a lifecycle rule to the '{bucket_name}' S3 bucket? (yes/no): ")
     if confirmation.lower() == 'yes':
         response = s3_client.put_bucket_lifecycle_configuration(
@@ -841,47 +841,47 @@ else:
     print(f"S3 bucket '{bucket_name}' not found.")
 ```
 
-The compliant code implements proper authorization and validation checks before applying a S3 Lifecycle Rule to the S3 bucket used by CloudTrail. It first checks if the bucket exists by calling list_buckets and searching for the specified bucket name. If the bucket is found, it prompts for confirmation from the user before proceeding with the application of the lifecycle rule. In this case, the rule sets the expiration of objects to 30 days, providing a reasonable retention period for CloudTrail logs. The code can be customized to meet specific retention requirements.
+Соответствующий код реализует надлежащие проверки авторизации и валидации перед применением правила жизненного цикла S3 к ведру S3, используемому CloudTrail. Сначала он проверяет, существует ли ведро, вызывая list_buckets и выполняя поиск указанного имени ведра. Если ведро найдено, оно запрашивает подтверждение пользователя, прежде чем приступить к применению правила жизненного цикла. В данном случае правило устанавливает срок действия объектов в 30 дней, что обеспечивает разумный период хранения журналов CloudTrail. Код может быть настроен в соответствии с конкретными требованиями к хранению.
 
 
 
 
-## Stop Cloud Trail Trail
+## Остановить Cloud Trail Trail
 
-Stop CloudTrail Trail is a simulated attack scenario where an attacker stops a CloudTrail Trail from logging. By calling the cloudtrail:StopLogging API operation, the attacker disrupts the logging of CloudTrail events.
+Stop CloudTrail Trail - это симулированный сценарий атаки, в котором злоумышленник останавливает ведение журнала CloudTrail Trail. Вызвав API-операцию cloudtrail:StopLogging, злоумышленник нарушает протоколирование событий CloudTrail.
 
-Noncompliant Code:
+Код не соответствует требованиям:
 
 ```
 import boto3
 
 cloudtrail_client = boto3.client('cloudtrail')
 
-# Stop the CloudTrail Trail
+# Остановите маршрут CloudTrail
 response = cloudtrail_client.stop_logging(
     Name='my-trail'
 )
 ```
 
-The noncompliant code uses the AWS SDK (boto3 in this case) to stop the logging of a CloudTrail Trail named 'my-trail'. This code does not implement any access control or validation, allowing anyone with the necessary AWS credentials to disrupt CloudTrail logging.
+Несоответствующий код использует AWS SDK (в данном случае boto3) для остановки протоколирования CloudTrail Trail с именем 'my-trail'. В этом коде не реализован контроль доступа или проверка, что позволяет любому человеку с необходимыми учетными данными AWS нарушить ведение журнала CloudTrail.
 
-Compliant Code:
+Соответствующий код:
 
 ```
 import boto3
 
 cloudtrail_client = boto3.client('cloudtrail')
 
-# Stop the CloudTrail Trail with proper authorization and validation
+# Остановите след CloudTrail с помощью надлежащей авторизации и проверки
 trail_name = 'my-trail'
 
-# Check if the CloudTrail Trail exists before attempting to stop it
+# Проверьте, существует ли тропа CloudTrail, прежде чем пытаться остановить ее.
 response = cloudtrail_client.describe_trails(
     trailNameList=[trail_name]
 )
 trails = response['trailList']
 if any(trail['Name'] == trail_name for trail in trails):
-    # Prompt for confirmation before stopping the CloudTrail Trail
+    # Запрос на подтверждение перед остановкой маршрута CloudTrail Trail
     confirmation = input(f"Are you sure you want to stop the '{trail_name}' CloudTrail Trail? (yes/no): ")
     if confirmation.lower() == 'yes':
         response = cloudtrail_client.stop_logging(
@@ -894,36 +894,36 @@ else:
     print(f"CloudTrail Trail '{trail_name}' not found.")
 ```
 
-The compliant code implements proper authorization and validation checks before stopping a CloudTrail Trail. It first checks if the Trail exists by calling describe_trails and searching for the specified trail name. If the Trail is found, it prompts for confirmation from the user before proceeding with stopping the Trail. The code can be customized to meet specific requirements, such as additional validation checks or logging.
+Соответствующий код реализует надлежащие проверки авторизации и валидации перед остановкой тропы CloudTrail. Сначала он проверяет, существует ли тропа, вызывая describe_trails и выполняя поиск указанного имени тропы. Если тропа найдена, она запрашивает подтверждение у пользователя, прежде чем приступить к остановке тропы. Код может быть настроен в соответствии с конкретными требованиями, такими как дополнительные проверки валидности или ведение журнала.
 
 
 
 
-## Attempt to Leave the AWS Organization
+## Попытка покинуть организацию AWS
 
-Attempt to Leave the AWS Organization is a simulated attack scenario where an attacker attempts to leave the AWS Organization, which can disrupt or shut down security controls defined at the organization level, such as GuardDuty, SecurityHub, and CloudTrail.
+Attempt to Leave the AWS Organization - это симулированный сценарий атаки, в котором злоумышленник пытается покинуть AWS Organization, что может нарушить или отключить средства контроля безопасности, определенные на уровне организации, такие как GuardDuty, SecurityHub и CloudTrail.
 
-Noncompliant Code:
+Код, не соответствующий требованиям:
 
 ```
 import boto3
 
 organizations_client = boto3.client('organizations')
 
-# Attempt to leave the AWS Organization
+# Попытка покинуть организацию AWS
 response = organizations_client.leave_organization()
 ```
 
-The noncompliant code uses the AWS SDK (boto3) to attempt to leave the AWS Organization by calling the leave_organization method. This code does not implement any access control or validation, allowing anyone with the necessary AWS credentials to try to leave the organization.
+Несоответствующий код использует AWS SDK (boto3) для попытки покинуть организацию AWS, вызывая метод leave_organization. Этот код не реализует никакого контроля доступа или проверки, позволяя любому человеку с необходимыми учетными данными AWS попытаться покинуть организацию.
 
-Compliant Code:
+Соответствующий код:
 
 ```
 import boto3
 
 organizations_client = boto3.client('organizations')
 
-# Attempt to leave the AWS Organization with proper authorization and validation
+# Попытка покинуть организацию AWS с надлежащей авторизацией и проверкой
 confirmation = input("Are you sure you want to leave the AWS Organization? (yes/no): ")
 if confirmation.lower() == 'yes':
     try:
@@ -935,38 +935,38 @@ else:
     print("Operation cancelled.")
 ```
 
-The compliant code implements proper authorization and validation checks before attempting to leave the AWS Organization. It prompts for confirmation from the user before proceeding with the leave operation. If the user confirms, it tries to leave the organization and handles the AccessDeniedException in case the request is denied. The code can be customized to meet specific requirements, such as additional validation checks or logging.
+Соответствующий код реализует надлежащие проверки авторизации и валидации перед попыткой покинуть организацию AWS. Он запрашивает подтверждение у пользователя, прежде чем приступить к операции выхода. Если пользователь подтверждает, он пытается покинуть организацию и обрабатывает исключение AccessDeniedException в случае, если запрос отклонен. Код может быть настроен в соответствии с конкретными требованиями, такими как дополнительные проверки валидности или ведение журнала.
 
 
 
 
 
 
-## Remove VPC Flow Logs
+## Удаление журналов потоков VPC
 
 
-Remove VPC Flow Logs is a simulated attack scenario where an attacker removes the configuration of VPC Flow Logs from a VPC. This action can be used as a defense evasion technique to disrupt network traffic monitoring and logging.
+Remove VPC Flow Logs - это сценарий симуляции атаки, в котором злоумышленник удаляет конфигурацию VPC Flow Logs из VPC. Это действие может быть использовано в качестве техники уклонения от защиты, чтобы нарушить мониторинг и регистрацию сетевого трафика.
 
-Noncompliant Code:
+Код, не соответствующий требованиям:
 
 ```
 import boto3
 
 ec2_client = boto3.client('ec2')
 
-# Specify the VPC ID and Flow Log ID
+# Укажите идентификатор VPC и идентификатор журнала потоков
 vpc_id = 'your-vpc-id'
 flow_log_id = 'your-flow-log-id'
 
-# Remove the VPC Flow Logs configuration
+# Удалите конфигурацию VPC Flow Logs
 response = ec2_client.delete_flow_logs(
     FlowLogIds=[flow_log_id]
 )
 ```
 
-The noncompliant code uses the AWS SDK (boto3) to directly delete the VPC Flow Logs configuration by calling the delete_flow_logs method. It assumes that the VPC ID and Flow Log ID are known and provided as input. This code does not implement any authorization or validation checks, allowing anyone with the necessary AWS credentials to remove the VPC Flow Logs configuration.
+Несоответствующий код использует AWS SDK (boto3) для прямого удаления конфигурации VPC Flow Logs, вызывая метод delete_flow_logs. При этом предполагается, что идентификатор VPC и идентификатор журнала потоков известны и предоставлены в качестве входных данных. Этот код не реализует никаких проверок авторизации или валидации, что позволяет любому человеку с необходимыми учетными данными AWS удалить конфигурацию VPC Flow Logs.
 
-Compliant Code:
+Соответствующий код:
 
 ```
 import boto3
@@ -974,7 +974,7 @@ import boto3
 ec2_client = boto3.client('ec2')
 
 def remove_vpc_flow_logs(vpc_id):
-    # Retrieve the Flow Log IDs associated with the VPC
+    # Получение идентификаторов журналов потоков, связанных с VPC
     response = ec2_client.describe_flow_logs(
         Filter=[
             {
@@ -991,37 +991,37 @@ def remove_vpc_flow_logs(vpc_id):
         print(f"No Flow Logs found for VPC {vpc_id}.")
         return
     
-    # Remove the VPC Flow Logs configuration
+    # Удалите конфигурацию VPC Flow Logs
     response = ec2_client.delete_flow_logs(
         FlowLogIds=flow_log_ids
     )
     
     print(f"Flow Logs successfully removed for VPC {vpc_id}.")
 
-# Specify the VPC ID
+# Укажите идентификатор VPC
 vpc_id = 'your-vpc-id'
 
-# Remove the VPC Flow Logs configuration
+# Удалите конфигурацию VPC Flow Logs
 remove_vpc_flow_logs(vpc_id)
 ```
 
-The compliant code implements a function remove_vpc_flow_logs that retrieves the Flow Log IDs associated with the specified VPC using the describe_flow_logs method. It then verifies if there are any Flow Logs present for the VPC. If Flow Logs are found, it removes the VPC Flow Logs configuration by calling the delete_flow_logs method with the retrieved Flow Log IDs. The code includes appropriate error handling and informative messages.
+Соответствующий код реализует функцию remove_vpc_flow_logs, которая извлекает идентификаторы журналов потоков, связанные с указанным VPC, с помощью метода describe_flow_logs. Затем она проверяет, имеются ли журналы потоков для данного VPC. Если журналы потоков найдены, он удаляет конфигурацию журналов потоков VPC, вызывая метод delete_flow_logs с полученными идентификаторами журналов потоков. Код включает соответствующую обработку ошибок и информационные сообщения.
 
 
 
-## Execute Discovery Commands on an EC2 Instance
+## Выполнение команд обнаружения на экземпляре EC2
 
-Executing Discovery Commands on an EC2 Instance refers to running various commands on an EC2 instance to gather information about the AWS environment. These commands help an attacker gain insights into the AWS account, identify resources, and potentially plan further actions.
+Выполнение команд обнаружения на экземпляре EC2 означает запуск различных команд на экземпляре EC2 для сбора информации о среде AWS. Эти команды помогают злоумышленнику получить представление об учетной записи AWS, определить ресурсы и спланировать дальнейшие действия.
 
-Noncompliant Code:
+Код, не соответствующий требованиям:
 
 ```
 import boto3
 
-# Create an EC2 client
+# Создайте клиента EC2
 ec2_client = boto3.client('ec2')
 
-# Run discovery commands
+# Выполните команды обнаружения
 response = ec2_client.describe_snapshots()
 print(response)
 
@@ -1037,14 +1037,14 @@ print(response)
 # ... (additional discovery commands)
 ```
 
-The noncompliant code directly uses the AWS SDK (boto3) to run various discovery commands on the EC2 instance. It assumes that the necessary AWS credentials are available on the EC2 instance, allowing anyone with access to the instance to execute these commands. This code lacks proper authorization and may expose sensitive information to unauthorized individuals.
+Несоответствующий код напрямую использует AWS SDK (boto3) для выполнения различных команд обнаружения на экземпляре EC2. Он предполагает, что необходимые учетные данные AWS доступны на экземпляре EC2, что позволяет любому, кто имеет доступ к экземпляру, выполнить эти команды. Этот код не имеет надлежащей авторизации и может раскрыть конфиденциальную информацию неавторизованным лицам.
 
-Compliant Code:
+Соответствующий код:
 
 ```
 import boto3
 
-# Create an EC2 client with AWS credentials
+# Создайте клиента EC2 с учетными данными AWS
 session = boto3.Session(
     aws_access_key_id='your-access-key',
     aws_secret_access_key='your-secret-key',
@@ -1052,7 +1052,7 @@ session = boto3.Session(
 )
 ec2_client = session.client('ec2')
 
-# Run discovery commands
+# Выполните команды обнаружения
 response = ec2_client.describe_snapshots()
 print(response)
 
@@ -1070,23 +1070,23 @@ print(response)
 
 
 
-## Download EC2 Instance User Data
+## Загрузить данные пользователя экземпляра EC2
 
 
-Downloading EC2 Instance User Data refers to retrieving the user data associated with an EC2 instance. User data can contain scripts, configurations, and other data that is executed when the instance starts. In the context of an attack scenario, an attacker may attempt to download user data to gain insights into the instance's setup, extract sensitive information, or exploit any misconfigurations.
+Под загрузкой пользовательских данных экземпляра EC2 понимается получение пользовательских данных, связанных с экземпляром EC2. Пользовательские данные могут содержать скрипты, конфигурации и другие данные, которые выполняются при запуске экземпляра. В контексте сценария атаки злоумышленник может попытаться загрузить пользовательские данные, чтобы получить сведения о настройках экземпляра, извлечь конфиденциальную информацию или использовать любые неправильные конфигурации.
 
-Noncompliant Code:
+Код, не соответствующий требованиям:
 
 ```
 import boto3
 
-# Create an EC2 client
+# Создайте клиента EC2
 ec2_client = boto3.client('ec2')
 
-# Retrieve instance IDs (fictitious for demonstration)
+# Получение идентификаторов экземпляров (вымышленных для демонстрации)
 instance_ids = ['i-1234567890abcdef0', 'i-abcdefgh12345678']
 
-# Retrieve user data for each instance
+# Получите данные о пользователях для каждого экземпляра
 for instance_id in instance_ids:
     response = ec2_client.describe_instance_attribute(
         InstanceId=instance_id,
@@ -1096,15 +1096,15 @@ for instance_id in instance_ids:
     print(user_data)
 ```
 
-The noncompliant code uses the AWS SDK (boto3) to retrieve the user data for multiple EC2 instances. It assumes that the necessary AWS credentials and permissions are available to the code, allowing anyone with access to run this code to retrieve the user data. This code lacks proper authorization and may expose sensitive information to unauthorized individuals.
+Несоответствующий код использует AWS SDK (boto3) для получения данных о пользователях для нескольких экземпляров EC2. Он предполагает, что необходимые учетные данные и разрешения AWS доступны для кода, что позволяет любому, кто имеет доступ к запуску этого кода, получить данные о пользователях. Этот код не имеет надлежащей авторизации и может раскрыть конфиденциальную информацию неавторизованным лицам.
 
-Compliant Code:
+Соответствующий код:
 
 
 ```
 import boto3
 
-# Create an EC2 client with AWS credentials
+# Создайте клиента EC2 с учетными данными AWS
 session = boto3.Session(
     aws_access_key_id='your-access-key',
     aws_secret_access_key='your-secret-key',
@@ -1112,10 +1112,10 @@ session = boto3.Session(
 )
 ec2_client = session.client('ec2')
 
-# Retrieve instance IDs (fictitious for demonstration)
+# Получение идентификаторов экземпляров (вымышленных для демонстрации)
 instance_ids = ['i-1234567890abcdef0', 'i-abcdefgh12345678']
 
-# Retrieve user data for each instance
+# Получите данные о пользователях для каждого экземпляра
 for instance_id in instance_ids:
     response = ec2_client.describe_instance_attribute(
         InstanceId=instance_id,
@@ -1125,28 +1125,28 @@ for instance_id in instance_ids:
     print(user_data)
 ```
 
-The compliant code creates an AWS session with explicit AWS credentials provided. This ensures that the retrieval of EC2 instance user data is performed using the specified credentials and not relying on the instance role. By providing AWS credentials directly, it restricts the access to sensitive information to authorized individuals and mitigates the risk of unauthorized retrieval of user data.
+Соответствующий код создает сессию AWS с явными учетными данными AWS. Это гарантирует, что получение пользовательских данных экземпляра EC2 будет осуществляться с использованием указанных учетных данных, а не на основе роли экземпляра. Прямое предоставление учетных данных AWS ограничивает доступ к конфиденциальной информации только уполномоченным лицам и снижает риск несанкционированного извлечения пользовательских данных.
 
 
 
 
 
-## Launch Unusual EC2 instances
+## Запуск необычных экземпляров EC2
 
-Launching Unusual EC2 instances refers to attempting to create EC2 instances with atypical instance types, such as "p2.xlarge". This activity can indicate an attacker trying to launch instances that may have specialized capabilities or are not commonly used in the environment. The noncompliant code below demonstrates an attempt to launch unusual EC2 instances:
+Под запуском необычных экземпляров EC2 понимается попытка создания экземпляров EC2 с нетипичными типами экземпляров, например "p2.xlarge". Такая активность может указывать на то, что злоумышленник пытается запустить экземпляры, которые могут обладать специальными возможностями или не используются обычно в среде. Приведенный ниже код, не отвечающий требованиям, демонстрирует попытку запуска необычных экземпляров EC2:
 
-Noncompliant Code:
+Несоответствующий код:
 
 ```
 import boto3
 
-# Create an EC2 client
+# Создайте клиента EC2
 ec2_client = boto3.client('ec2')
 
-# Define the instance type (unusual type)
+# Определите тип экземпляра (необычный тип)
 instance_type = 'p2.xlarge'
 
-# Attempt to launch EC2 instances with the unusual type
+# Попытка запустить экземпляры EC2 с необычным типом
 response = ec2_client.run_instances(
     ImageId='ami-12345678',
     MinCount=1,
@@ -1158,15 +1158,15 @@ response = ec2_client.run_instances(
 )
 ```
 
-The noncompliant code uses the AWS SDK (boto3) to attempt to launch EC2 instances with an unusual instance type of "p2.xlarge". However, the code lacks the necessary permissions to perform this action, resulting in an unauthorized operation error.
+Несоответствующий код использует AWS SDK (boto3) для попытки запуска экземпляров EC2 с необычным типом экземпляра "p2.xlarge". Однако код не имеет необходимых разрешений для выполнения этого действия, что приводит к ошибке неавторизованной операции.
 
-Compliant Code:
+Соответствующий код:
 
 
 ```
 import boto3
 
-# Create an EC2 client with AWS credentials
+# Создайте клиента EC2 с учетными данными AWS
 session = boto3.Session(
     aws_access_key_id='your-access-key',
     aws_secret_access_key='your-secret-key',
@@ -1174,10 +1174,10 @@ session = boto3.Session(
 )
 ec2_client = session.client('ec2')
 
-# Define the instance type (valid type in the environment)
+# Определите тип экземпляра (допустимый тип в среде)
 instance_type = 't2.micro'
 
-# Attempt to launch EC2 instances with the valid type
+# Попытка запустить экземпляры EC2 с допустимым типом
 response = ec2_client.run_instances(
     ImageId='ami-12345678',
     MinCount=1,
@@ -1189,33 +1189,33 @@ response = ec2_client.run_instances(
 )
 ```
 
-The compliant code creates an AWS session with explicit AWS credentials provided and attempts to launch EC2 instances with a valid instance type ("t2.micro") that is commonly used in the environment. By providing AWS credentials directly, it ensures that the action is performed using the specified credentials and not relying on an instance role. This code follows the principle of least privilege, launching instances with a typical instance type and avoiding attempts to launch unusual or potentially malicious instances.
+Соответствующий код создает сеанс AWS с явным указанием учетных данных AWS и пытается запустить экземпляры EC2 с действительным типом экземпляра ("t2.micro"), который обычно используется в данной среде. Прямое предоставление учетных данных AWS гарантирует, что действие выполняется с использованием указанных учетных данных, а не полагается на роль экземпляра. Этот код следует принципу наименьших привилегий, запуская экземпляры с типичным типом экземпляра и избегая попыток запуска необычных или потенциально вредоносных экземпляров.
 
 
 
 
-## Execute Commands on EC2 Instance via User Data
+## Выполнение команд на экземпляре EC2 через данные пользователя
 
 
-Executing Commands on an EC2 Instance via User Data refers to injecting and executing code on a Linux EC2 instance by modifying the user data associated with the instance. User data is a feature in AWS that allows you to provide scripts or instructions to be executed when an instance starts. Attackers may attempt to exploit this feature to execute malicious code or escalate privileges on compromised instances.
+Выполнение команд на экземпляре EC2 через пользовательские данные - это внедрение и выполнение кода на экземпляре Linux EC2 путем изменения пользовательских данных, связанных с экземпляром. Пользовательские данные - это функция в AWS, позволяющая предоставлять скрипты или инструкции, которые будут выполняться при запуске экземпляра. Злоумышленники могут попытаться использовать эту функцию для выполнения вредоносного кода или повышения привилегий на скомпрометированных экземплярах.
 
 
-Noncompliant Code:
-The noncompliant code demonstrates how an attacker can modify the user data of a stopped EC2 instance to inject and execute malicious code.
+Код, не отвечающий требованиям:
+Несоответствующий код демонстрирует, как злоумышленник может изменить пользовательские данные остановленного экземпляра EC2, чтобы внедрить и выполнить вредоносный код.
 
 ```
 import boto3
 
-# Create an EC2 client
+# Создайте клиента EC2
 ec2_client = boto3.client('ec2')
 
-# Define the EC2 instance ID
+# Определите идентификатор экземпляра EC2
 instance_id = 'i-1234567890abcdef0'
 
-# Stop the EC2 instance
+# Остановите экземпляр EC2
 ec2_client.stop_instances(InstanceIds=[instance_id])
 
-# Modify the user data of the EC2 instance to execute malicious commands
+# Модифицировать пользовательские данные экземпляра EC2 для выполнения вредоносных команд
 user_data_script = '#!/bin/bash\n\nmalicious_command\n'
 ec2_client.modify_instance_attribute(
     InstanceId=instance_id,
@@ -1224,30 +1224,30 @@ ec2_client.modify_instance_attribute(
     }
 )
 
-# Start the EC2 instance
+# Запустите экземпляр EC2
 ec2_client.start_instances(InstanceIds=[instance_id])
 ```
 
-The noncompliant code uses the AWS SDK (boto3) to stop an EC2 instance, modify its user data with a malicious script, and then start the instance. The user data script contains a bash command "malicious_command" that the attacker intends to execute upon instance startup. However, this code is noncompliant because it is used for demonstration purposes only and should not be executed in a real environment.
+Несоответствующий требованиям код использует AWS SDK (boto3) для остановки экземпляра EC2, изменения его пользовательских данных с помощью вредоносного скрипта, а затем запуска экземпляра. Скрипт пользовательских данных содержит bash-команду "malicious_command", которую злоумышленник намерен выполнить при запуске экземпляра. Однако этот код не соответствует требованиям, поскольку он используется только в демонстрационных целях и не должен выполняться в реальной среде.
 
 
-Compliant Code:
-Executing arbitrary code on EC2 instances via user data poses a significant security risk. To mitigate this risk, it is crucial to ensure that user data is properly controlled and restricted. The compliant code below demonstrates how to provide secure user data for EC2 instances.
+Соответствующий код:
+Выполнение произвольного кода на экземплярах EC2 через пользовательские данные представляет собой значительный риск для безопасности. Чтобы снизить этот риск, важно обеспечить надлежащий контроль и ограничение пользовательских данных. Приведенный ниже код, соответствующий требованиям, демонстрирует, как обеспечить безопасность пользовательских данных для экземпляров EC2.
 
 ```
 import boto3
 import base64
 
-# Create an EC2 client
+# Создайте клиента EC2
 ec2_client = boto3.client('ec2')
 
-# Define the EC2 instance ID
+# Определите идентификатор экземпляра EC2
 instance_id = 'i-1234567890abcdef0'
 
-# Stop the EC2 instance
+# Остановите экземпляр EC2
 ec2_client.stop_instances(InstanceIds=[instance_id])
 
-# Define the desired commands or scripts to be executed
+# Определите необходимые команды или сценарии для выполнения
 user_data_commands = [
     '#!/bin/bash',
     'echo "Executing secure user data commands"',
@@ -1255,10 +1255,10 @@ user_data_commands = [
     'echo "Command 2"',
 ]
 
-# Encode the user data commands in base64
+# Закодируйте команды пользовательских данных в base64
 user_data_encoded = base64.b64encode('\n'.join(user_data_commands).encode()).decode()
 
-# Modify the user data of the EC2 instance with the secure user data
+# Изменить пользовательские данные экземпляра EC2 на безопасные пользовательские данные
 ec2_client.modify_instance_attribute(
     InstanceId=instance_id,
     UserData={
@@ -1266,38 +1266,38 @@ ec2_client.modify_instance_attribute(
     }
 )
 
-# Start the EC2 instance
+# Запустите экземпляр EC2
 ec2_client.start_instances(InstanceIds=[instance_id])
 ```
 
-The compliant code follows best practices for providing secure user data for EC2 instances. Instead of injecting arbitrary code, it defines a set of desired commands or scripts to be executed. These commands are stored in a list and then encoded in base64 format to ensure proper encoding and prevent any injection attempts. The user data commands can be customized based on the desired configuration or setup needed for the EC2 instance.
+Соответствующий код соответствует лучшим практикам обеспечения безопасности пользовательских данных для экземпляров EC2. Вместо того чтобы внедрять произвольный код, он определяет набор необходимых команд или скриптов для выполнения. Эти команды хранятся в списке, а затем кодируются в формате base64, чтобы обеспечить правильное кодирование и предотвратить любые попытки инъекций. Команды пользовательских данных могут быть настроены в соответствии с желаемой конфигурацией или настройками, необходимыми для экземпляра EC2.
 
 
 
 
 
 
-## Open Ingress Port 22 on a Security Group
+## Открытие входящего порта 22 в группе безопасности
 
-Opening Ingress Port 22 on a Security Group refers to allowing inbound traffic on port 22 (SSH) from the Internet (0.0.0.0/0) to a specific security group in AWS. This configuration can pose a security risk if not properly controlled or restricted.
+Открытие входящего порта 22 в группе безопасности означает разрешение входящего трафика по порту 22 (SSH) из Интернета (0.0.0.0/0) на определенную группу безопасности в AWS. Такая конфигурация может представлять угрозу безопасности, если ее не контролировать или не ограничивать должным образом.
 
 
 
-Noncompliant Code:
-The noncompliant code demonstrates how an attacker can use the AWS SDK to open ingress traffic on port 22 from the Internet.
+Несоответствующий код:
+Несоответствующий код демонстрирует, как злоумышленник может использовать AWS SDK для открытия входящего трафика на порт 22 из Интернета.
 
 
 
 ```
 import boto3
 
-# Create an EC2 client
+# Создайте клиента EC2
 ec2_client = boto3.client('ec2')
 
-# Define the security group ID
+# Определите идентификатор группы безопасности
 security_group_id = 'sg-1234567890abcdef0'
 
-# Allow inbound traffic on port 22 from 0.0.0.0/0
+# Разрешить входящий трафик на порт 22 с 0.0.0.0/0
 ec2_client.authorize_security_group_ingress(
     GroupId=security_group_id,
     IpPermissions=[
@@ -1311,22 +1311,22 @@ ec2_client.authorize_security_group_ingress(
 )
 ```
 
-The noncompliant code uses the AWS SDK (boto3) to authorize ingress traffic on port 22 from the Internet (0.0.0.0/0) to a specific security group. This code is noncompliant because it opens port 22 to all IP addresses, which can be a significant security risk if not necessary.
+Несоответствующий код использует AWS SDK (boto3) для авторизации входящего трафика на порту 22 из Интернета (0.0.0.0/0) для определенной группы безопасности. Этот код не соответствует требованиям, поскольку открывает порт 22 для всех IP-адресов, что может представлять значительный риск для безопасности, если в этом нет необходимости.
 
-Compliant Code:
-Opening port 22 to all IP addresses from the Internet is generally not recommended due to the security implications. The compliant code below demonstrates how to restrict the ingress access to specific trusted IP addresses only.
+Соответствующий код:
+Открывать порт 22 для всех IP-адресов из Интернета обычно не рекомендуется из-за последствий для безопасности. Приведенный ниже код, соответствующий требованиям, демонстрирует, как ограничить входной доступ только определенными доверенными IP-адресами.
 
 
 ```
 import boto3
 
-# Create an EC2 client
+# Создайте клиента EC2
 ec2_client = boto3.client('ec2')
 
-# Define the security group ID
+# Определите идентификатор группы безопасности
 security_group_id = 'sg-1234567890abcdef0'
 
-# Allow inbound traffic on port 22 from trusted IP addresses
+# Разрешить входящий трафик на порт 22 с доверенных IP-адресов
 ec2_client.authorize_security_group_ingress(
     GroupId=security_group_id,
     IpPermissions=[
@@ -1340,31 +1340,31 @@ ec2_client.authorize_security_group_ingress(
 )
 ```
 
-The compliant code restricts the ingress access on port 22 to a specific trusted IP address by replacing 'trusted_ip_address' with the actual IP address or range allowed to connect via SSH. This ensures that only authorized sources can establish SSH connections to the instances associated with the security group.
+Соответствующий код ограничивает входной доступ на порт 22 определенным доверенным IP-адресом, заменяя 'trusted_ip_address' на фактический IP-адрес или диапазон, разрешенный для подключения по SSH. Это гарантирует, что только авторизованные источники могут устанавливать SSH-соединения с экземплярами, связанными с группой безопасности.
 
 
 
 
-## Exfiltrate an AMI by Sharing It
+## Эксфильтрация AMI путем предоставления общего доступа
 
-Exfiltrating an AMI by sharing it involves sharing an Amazon Machine Image (AMI) with an external AWS account, allowing the recipient account to launch instances from the shared AMI. This technique can be used to move AMIs to an unauthorized account for further analysis or misuse.
+Чтобы получить доступ к AMI, нужно передать образ машины Amazon Machine Image (AMI) внешнему аккаунту AWS и позволить получателю запускать экземпляры из общего AMI. Эта техника может быть использована для перемещения AMI в неавторизованную учетную запись для дальнейшего анализа или использования не по назначению.
 
-Noncompliant Code:
-The noncompliant code demonstrates how an attacker can use the AWS SDK to share an AMI with an external AWS account.
+Код, не отвечающий требованиям:
+Несоответствующий код демонстрирует, как злоумышленник может использовать AWS SDK для предоставления общего доступа к AMI внешней учетной записи AWS.
 
 ```
 import boto3
 
-# Create an EC2 client
+# Создайте клиента EC2
 ec2_client = boto3.client('ec2')
 
-# Define the AMI ID
+# Определите идентификатор AMI
 ami_id = 'ami-01234567890abcdef'
 
-# Define the AWS account ID to share with
+# Определите идентификатор учетной записи AWS для совместного использования
 account_id = '012345678901'
 
-# Share the AMI with the external AWS account
+# Предоставьте доступ к AMI внешней учетной записи AWS
 ec2_client.modify_image_attribute(
     ImageId=ami_id,
     LaunchPermission={
@@ -1373,52 +1373,52 @@ ec2_client.modify_image_attribute(
 )
 ```
 
-The noncompliant code uses the AWS SDK (boto3) to modify the launch permissions of an AMI and share it with an external AWS account specified by account_id. This code is noncompliant because it allows unauthorized access to the AMI, potentially enabling an attacker to launch instances from the shared image.
+Код, не соответствующий требованиям, использует AWS SDK (boto3) для изменения разрешений на запуск AMI и предоставления доступа к нему внешней учетной записи AWS, указанной в account_id. Этот код не соответствует требованиям, поскольку позволяет получить несанкционированный доступ к AMI, что потенциально может позволить злоумышленнику запускать экземпляры из общего образа.
 
-Compliant Code:
-The compliant code demonstrates how to properly secure AMIs and prevent unauthorized sharing.
+Соответствующий код:
+Соответствующий код демонстрирует, как правильно защитить AMI и предотвратить несанкционированный обмен.
 
 ```
 import boto3
 
-# Create an EC2 client
+# Создайте клиента EC2
 ec2_client = boto3.client('ec2')
 
-# Define the AMI ID
+# Определите идентификатор AMI
 ami_id = 'ami-01234567890abcdef'
 
-# Revoke public launch permissions from the AMI
+# Отмена разрешений на публичный запуск AMI
 ec2_client.reset_image_attribute(
     ImageId=ami_id,
     Attribute='launchPermission'
 )
 ```
 
-The compliant code revokes any public launch permissions from the AMI specified by ami_id by resetting the image attribute. This ensures that the AMI is not accessible to any AWS account other than the one that owns it. By restricting the sharing of AMIs to trusted and authorized accounts only, the risk of unauthorized access and exfiltration is mitigated.
+Соответствующий код отменяет все разрешения на публичный запуск AMI, указанного в ami_id, путем сброса атрибута image. Это гарантирует, что AMI не будет доступен ни одной учетной записи AWS, кроме той, которой он принадлежит. Ограничение доступа к AMI только для доверенных и авторизованных учетных записей снижает риск несанкционированного доступа и утечки данных.
 
 
 
 
-## Exfiltrate EBS Snapshot by Sharing It
+## Эксфильтрация моментального снимка EBS путем предоставления общего доступа к нему
 
-Exfiltrating an EBS snapshot by sharing it involves sharing an Amazon Elastic Block Store (EBS) snapshot with an external AWS account, allowing the recipient account to create a new volume from the shared snapshot. This technique can be used to move sensitive data stored in EBS snapshots to an unauthorized account for further analysis or misuse.
+Эксфильтрация моментального снимка EBS путем предоставления к нему общего доступа подразумевает предоставление внешнего снимка Amazon Elastic Block Store (EBS) внешней учетной записи AWS, что позволяет учетной записи-получателю создать новый том из общего снимка. Эта техника может быть использована для перемещения конфиденциальных данных, хранящихся в моментальных снимках EBS, в неавторизованную учетную запись для дальнейшего анализа или использования не по назначению.
 
-Noncompliant Code:
-The noncompliant code demonstrates how an attacker can use the AWS SDK to share an EBS snapshot with an external AWS account.
+Код, не отвечающий требованиям:
+Код, не соответствующий требованиям, демонстрирует, как злоумышленник может использовать AWS SDK для предоставления общего доступа к снимку EBS внешней учетной записи AWS.
 
 ```
 import boto3
 
-# Create an EC2 client
+# Создайте клиента EC2
 ec2_client = boto3.client('ec2')
 
-# Define the snapshot ID
+# Определите идентификатор моментального снимка
 snapshot_id = 'snap-01234567890abcdef'
 
-# Define the AWS account ID to share with
+# Определите идентификатор учетной записи AWS для совместного использования
 account_id = '012345678901'
 
-# Share the snapshot with the external AWS account
+# Поделитесь моментальным снимком с внешней учетной записью AWS
 ec2_client.modify_snapshot_attribute(
     SnapshotId=snapshot_id,
     Attribute='createVolumePermission',
@@ -1428,55 +1428,55 @@ ec2_client.modify_snapshot_attribute(
 )
 ```
 
-The noncompliant code uses the AWS SDK (boto3) to modify the create volume permissions of an EBS snapshot and share it with an external AWS account specified by account_id. This code is noncompliant because it allows unauthorized access to the snapshot, potentially enabling an attacker to create new volumes and access the data stored within the shared snapshot.
+Код, не соответствующий требованиям, использует AWS SDK (boto3) для изменения разрешений на создание тома для моментального снимка EBS и предоставления доступа к нему внешней учетной записи AWS, указанной в account_id. Этот код не соответствует требованиям, поскольку позволяет получить несанкционированный доступ к моментальному снимку, что потенциально может позволить злоумышленнику создать новые тома и получить доступ к данным, хранящимся в общем снимке.
 
-Compliant Code:
-The compliant code demonstrates how to properly secure EBS snapshots and prevent unauthorized sharing.
+Соответствующий код:
+Соответствующий код демонстрирует, как правильно защитить снимки EBS и предотвратить несанкционированный доступ к ним.
 
 
 
 ```
 import boto3
 
-# Create an EC2 client
+# Создайте клиента EC2
 ec2_client = boto3.client('ec2')
 
-# Define the snapshot ID
+# Определите идентификатор моментального снимка
 snapshot_id = 'snap-01234567890abcdef'
 
-# Revoke public sharing permissions from the snapshot
+# Отмена разрешений на общий доступ к снимку
 ec2_client.reset_snapshot_attribute(
     SnapshotId=snapshot_id,
     Attribute='createVolumePermission'
 )
 ```
 
-The compliant code revokes any public sharing permissions from the EBS snapshot specified by snapshot_id by resetting the snapshot attribute. This ensures that the snapshot is not accessible to any AWS account other than the one that owns it. By restricting the sharing of EBS snapshots to trusted and authorized accounts only, the risk of unauthorized access and exfiltration is mitigated.
+Соответствующий код отменяет все разрешения на публичный доступ к снимку EBS, указанному в snapshot_id, путем сброса атрибута снимка. Это гарантирует, что снимок не будет доступен ни одной учетной записи AWS, кроме той, которой он принадлежит. Ограничение доступа к снимкам EBS только для доверенных и авторизованных учетных записей снижает риск несанкционированного доступа и утечки данных.
 
 
 
 
-## Exfiltrate RDS Snapshot by Sharing
+## Эксфильтрация моментального снимка RDS с помощью общего доступа
 
 
-Exfiltrating an RDS snapshot by sharing it involves sharing a database snapshot from Amazon RDS with an external AWS account. This technique allows the recipient account to restore the snapshot and gain access to the database data contained within it.
+Эксфильтрация моментального снимка RDS путем предоставления общего доступа заключается в передаче моментального снимка базы данных Amazon RDS внешней учетной записи AWS. Эта техника позволяет учетной записи-получателю восстановить снимок и получить доступ к содержащимся в нем данным базы данных.
 
-Noncompliant Code:
-The noncompliant code demonstrates how an attacker can use the AWS SDK to share an RDS snapshot with an external AWS account.
+Код, не отвечающий требованиям:
+Несоответствующий требованиям код демонстрирует, как злоумышленник может использовать AWS SDK для предоставления снимка RDS внешнему аккаунту AWS.
 
 ```
 import boto3
 
-# Create an RDS client
+# Создайте клиента RDS
 rds_client = boto3.client('rds')
 
-# Define the snapshot identifier
+# Определите идентификатор моментального снимка
 snapshot_identifier = 'my-db-snapshot'
 
-# Define the AWS account ID to share with
+# Определите идентификатор учетной записи AWS для совместного использования
 account_id = '012345678901'
 
-# Share the RDS snapshot with the external AWS account
+# Предоставьте общий доступ к снимку RDS внешней учетной записи AWS
 rds_client.modify_db_snapshot_attribute(
     DBSnapshotIdentifier=snapshot_identifier,
     AttributeName='restore',
@@ -1484,21 +1484,21 @@ rds_client.modify_db_snapshot_attribute(
 )
 ```
 
-The noncompliant code uses the AWS SDK (boto3) to modify the attributes of an RDS snapshot and share it with an external AWS account specified by account_id. This code is noncompliant because it allows unauthorized access to the snapshot, potentially enabling an attacker to restore the snapshot in their own account and gain access to the database data.
+Код, не соответствующий требованиям, использует AWS SDK (boto3) для изменения атрибутов снимка RDS и предоставления доступа к нему внешней учетной записи AWS, указанной в account_id. Этот код не соответствует требованиям, поскольку позволяет получить несанкционированный доступ к снимку, что потенциально может позволить злоумышленнику восстановить снимок в своей учетной записи и получить доступ к данным базы данных.
 
-Compliant Code:
-The compliant code demonstrates how to properly secure RDS snapshots and prevent unauthorized sharing.
+Соответствующий код:
+Соответствующий код демонстрирует, как правильно защитить снимки RDS и предотвратить несанкционированный доступ к ним.
 
 ```
 import boto3
 
-# Create an RDS client
+# Создайте клиента RDS
 rds_client = boto3.client('rds')
 
-# Define the snapshot identifier
+# Определите идентификатор моментального снимка
 snapshot_identifier = 'my-db-snapshot'
 
-# Revoke sharing permissions from the RDS snapshot
+# Отмена разрешений на общий доступ к снимку RDS
 rds_client.modify_db_snapshot_attribute(
     DBSnapshotIdentifier=snapshot_identifier,
     AttributeName='restore',
@@ -1506,17 +1506,17 @@ rds_client.modify_db_snapshot_attribute(
 )
 ```
 
-The compliant code revokes any sharing permissions from the RDS snapshot specified by snapshot_identifier by removing all values associated with the 'restore' attribute. This ensures that the snapshot is not accessible to any AWS account other than the one that owns it. By restricting the sharing of RDS snapshots to trusted and authorized accounts only, the risk of unauthorized access and exfiltration is mitigated.
+Соответствующий код отменяет все разрешения на совместный доступ к снимку RDS, указанному в идентификаторе snapshot_identifier, удаляя все значения, связанные с атрибутом 'restore'. Это гарантирует, что моментальный снимок не будет доступен ни одной учетной записи AWS, кроме той, которая им владеет. Ограничение доступа к снимкам RDS только доверенными и авторизованными учетными записями снижает риск несанкционированного доступа и утечки данных.
 
 
 
 
-## Backdoor an S3 Bucket via its Bucket Policy
+## Бэкдор ведра S3 через политику ведра
 
-Backdooring an S3 bucket via its Bucket Policy involves modifying the policy to allow unauthorized access to the bucket, enabling an attacker to exfiltrate data from the bucket.
+Бэкдоринг ведра S3 через политику ведра заключается в изменении политики, чтобы разрешить несанкционированный доступ к ведру, что позволяет злоумышленнику вывести данные из ведра.
 
-Noncompliant Code:
-The noncompliant code demonstrates how an attacker can modify the Bucket Policy to grant access to an external AWS account.
+Код, не отвечающий требованиям:
+Несоответствующий код демонстрирует, как злоумышленник может изменить политику Bucket Policy, чтобы предоставить доступ к внешней учетной записи AWS.
 
 ```
 {
@@ -1541,10 +1541,10 @@ The noncompliant code demonstrates how an attacker can modify the Bucket Policy 
 }
 ```
 
-The noncompliant code modifies the Bucket Policy to grant access to an external AWS account specified by the AWS ARN arn:aws:iam::012345678901:root. The specified account is granted permissions to perform actions such as GetObject, GetBucketLocation, and ListBucket on the bucket identified by my-bucket. This code is noncompliant because it allows unauthorized access to the S3 bucket, potentially enabling an attacker to exfiltrate sensitive data.
+Несоответствующий код изменяет политику ведра, чтобы предоставить доступ внешней учетной записи AWS, указанной в AWS ARN arn:aws:iam::012345678901:root. Указанной учетной записи предоставляются разрешения на выполнение таких действий, как GetObject, GetBucketLocation и ListBucket над ведром, идентифицированным как my-bucket. Этот код не соответствует требованиям, поскольку позволяет получить несанкционированный доступ к ведру S3, что может привести к утечке конфиденциальных данных.
 
-Compliant Code:
-The compliant code demonstrates how to properly secure an S3 bucket by removing unauthorized access from the Bucket Policy.
+Соответствующий код:
+Соответствующий код демонстрирует, как правильно защитить ведро S3, удалив несанкционированный доступ из политики ведра.
 
 ```
 {
@@ -1567,34 +1567,34 @@ The compliant code demonstrates how to properly secure an S3 bucket by removing 
 }
 ```
 
-The compliant code modifies the Bucket Policy to deny access to any principal (wildcard `*`) attempting to perform actions such as GetObject, GetBucketLocation, and ListBucket on the bucket identified by my-bucket. By denying all access, except for explicitly authorized principals, the bucket is secured against unauthorized access and data exfiltration.
+Соответствующий код изменяет политику ведра, чтобы запретить доступ любому принципалу (подстановочный знак `*`), пытающемуся выполнить такие действия, как GetObject, GetBucketLocation и ListBucket над ведром, идентифицированным my-bucket. Запрещая любой доступ, кроме явно авторизованных принципалов, ведро защищено от несанкционированного доступа и утечки данных.
 
 
 
-## Console Login without MFA
+## Вход в консоль без MFA
 
-Console Login without MFA refers to the scenario where an IAM user is able to log in to the AWS Management Console without using multi-factor authentication (MFA), which is an additional security measure to protect user accounts.
-
-
-Noncompliant Code:
-The noncompliant code demonstrates an IAM user logging in to the AWS Management Console without using MFA. This code does not enforce MFA for the user.
-
-In a noncompliant scenario, the IAM user can log in to the AWS Management Console using their username and password without providing an additional MFA token. This bypasses the MFA requirement, potentially exposing the account to unauthorized access if the IAM user's credentials are compromised.
-
-Compliant Code:
-The compliant code demonstrates the correct configuration for enforcing MFA during console login for an IAM user.
-
-To comply with security best practices, MFA should be enforced for IAM users during console login. This requires the user to provide an additional factor, such as a one-time password generated by an MFA device or application, in addition to their username and password.
+Вход в консоль без MFA относится к сценарию, когда IAM-пользователь может войти в консоль управления AWS без использования многофакторной аутентификации (MFA), которая является дополнительной мерой безопасности для защиты учетных записей пользователей.
 
 
-## Backdoor an IAM Role
+Несоответствующий код:
+Несоответствующий код демонстрирует вход пользователя IAM в AWS Management Console без использования MFA. Этот код не применяет MFA для пользователя.
 
-Backdooring an IAM Role refers to the act of modifying the trust policy of an existing IAM role to grant unauthorized access to the role from an external AWS account. This allows an attacker to assume the backdoored role and potentially gain elevated privileges or perform malicious actions.
+В сценарии, не соответствующем требованиям, пользователь IAM может войти в консоль управления AWS, используя свое имя пользователя и пароль, не предоставляя дополнительный токен MFA. Это обходит требование MFA, потенциально подвергая учетную запись несанкционированному доступу, если учетные данные пользователя IAM будут скомпрометированы.
+
+Соответствующий код:
+Соответствующий код демонстрирует правильную конфигурацию для обеспечения MFA при входе в консоль для пользователя IAM.
+
+Чтобы соответствовать лучшим практикам безопасности, для пользователей IAM при входе в консоль следует применять MFA. Для этого пользователю необходимо предоставить дополнительный фактор, например одноразовый пароль, сгенерированный устройством или приложением MFA, в дополнение к имени пользователя и паролю.
+
+
+## Бэкдор в IAM-роли
+
+Под бэкдорингом роли IAM понимается изменение политики доверия существующей роли IAM с целью предоставления несанкционированного доступа к роли из внешней учетной записи AWS. Это позволяет злоумышленнику принять на себя роль с бэкдором и потенциально получить повышенные привилегии или выполнить вредоносные действия.
 
 
 
-Noncompliant Code:
-The noncompliant code demonstrates a modified trust policy for an IAM role, which backdoors the role by granting access to an external AWS account.
+Код, не отвечающий требованиям:
+Несоответствующий код демонстрирует модифицированную политику доверия для роли IAM, которая открывает доступ к роли, предоставляя доступ к внешней учетной записи AWS.
 
 ```
 {
@@ -1619,20 +1619,20 @@ The noncompliant code demonstrates a modified trust policy for an IAM role, whic
 ```
 
 
-In the noncompliant scenario, the trust policy of the IAM role is modified to allow two entities to assume the role. The "Service" principal with the value "ec2.amazonaws.com" is allowed to assume the role, which is a typical configuration for EC2 instances within the same AWS account. However, the policy also includes an "AWS" principal with the value "arn:aws:iam::193672423079:root," which represents an external AWS account. This grants unauthorized access to the IAM role from the specified external account.
+В сценарии, не соответствующем требованиям, политика доверия роли IAM изменена, чтобы позволить двум сущностям принимать роль. Принципалу "Service" со значением "ec2.amazonaws.com" разрешено принимать роль, что является типичной конфигурацией для экземпляров EC2 в рамках одной учетной записи AWS. Однако политика также включает в себя "AWS" принципала со значением "arn:aws:iam::193672423079:root", который представляет собой внешнюю учетную запись AWS. Это предоставляет несанкционированный доступ к роли IAM из указанной внешней учетной записи.
 
-Compliant Code:
-The compliant code demonstrates a properly configured trust policy for an IAM role, which does not contain any unauthorized access grants.
+Соответствующий код:
+Соответствующий код демонстрирует правильно настроенную политику доверия для роли IAM, которая не содержит никаких несанкционированных разрешений на доступ.
 
-To ensure the security of IAM roles, it is crucial to define appropriate trust policies that strictly limit which entities can assume the role. The trust policy should only include trusted entities and AWS services that require access to the role.
+Для обеспечения безопасности ролей IAM очень важно определить соответствующую политику доверия, которая строго ограничивает круг лиц, которые могут принимать роль. Политика доверия должна включать только доверенные организации и службы AWS, которым требуется доступ к роли.
 
 
-## Create an Access Key on an IAM User
+## Создание ключа доступа для пользователя IAM
 
-Creating an access key on an IAM user refers to generating access keys that allow programmatic access to AWS services and resources for the specified user. These access keys consist of an access key ID and a secret access key, which are used for authentication purposes.
+Создание ключа доступа для пользователя IAM означает генерацию ключей доступа, которые предоставляют программный доступ к службам и ресурсам AWS для указанного пользователя. Эти ключи доступа состоят из идентификатора ключа доступа и секретного ключа доступа, которые используются для целей аутентификации.
 
-Noncompliant Code:
-The noncompliant code demonstrates the creation of an access key on an IAM user without proper controls or monitoring.
+Несоответствующий код:
+Код, не соответствующий требованиям, демонстрирует создание ключа доступа для пользователя IAM без надлежащего контроля и мониторинга.
 
 ```
 import boto3
@@ -1645,14 +1645,14 @@ def create_access_key(user_name):
     print(f"Access Key ID: {access_key_id}")
     print(f"Secret Access Key: {secret_access_key}")
 
-# Usage
+# Использование
 create_access_key('my_user')
 ```
 
-In the noncompliant code, an access key is created for the IAM user without considering security best practices. The access key is generated using the create_access_key method from the AWS SDK. The access key ID and secret access key are printed to the console, which can lead to accidental exposure or potential misuse.
+В коде, не соответствующем требованиям, ключ доступа создается для пользователя IAM без учета лучших практик безопасности. Ключ доступа создается с помощью метода create_access_key из AWS SDK. Идентификатор ключа доступа и секретный ключ доступа выводятся в консоль, что может привести к случайному раскрытию или потенциальному неправомерному использованию.
 
-Compliant Code:
-The compliant code demonstrates the creation of an access key on an IAM user with proper controls and monitoring.
+Соответствующий код:
+Соответствующий код демонстрирует создание ключа доступа для пользователя IAM с надлежащим контролем и мониторингом.
 
 
 
@@ -1664,31 +1664,31 @@ def create_access_key(user_name):
     response = iam.create_access_key(UserName=user_name)
     access_key_id = response['AccessKey']['AccessKeyId']
     secret_access_key = response['AccessKey']['SecretAccessKey']
-    # Store the access key securely or provide it to the user using secure means
+    # надежно хранить ключ доступа или предоставлять его пользователю с помощью защищенных средств
     print(f"Access key created for IAM user: {user_name}")
 
-# Usage
+# Использование
 create_access_key('my_user')
 ```
 
-In the compliant code, an access key is still created for the IAM user, but additional security measures are taken:
+В совместимом коде ключ доступа по-прежнему создается для пользователя IAM, но при этом принимаются дополнительные меры безопасности:
 
-* The access key ID and secret access key are not printed or exposed directly. Instead, they should be securely stored or provided to the user through secure means.
+* Идентификатор ключа доступа и секретный ключ доступа не распечатываются и не раскрываются напрямую. Вместо этого они должны надежно храниться или предоставляться пользователю с помощью безопасных средств.
 
-* Access to the code that creates the access key should be restricted to authorized individuals or systems.
+* Доступ к коду, создающему ключ доступа, должен быть ограничен уполномоченными лицами или системами.
 
-* Implement proper access controls and least privilege principles to ensure that users only have the necessary permissions to create access keys.
+* Внедрите надлежащие средства контроля доступа и принципы наименьших привилегий, чтобы гарантировать, что пользователи имеют только необходимые разрешения на создание ключей доступа.
 
-* Monitor and audit the creation of access keys using AWS CloudTrail. Alert on any unusual or unauthorized access key creation activities.
-
-
-## Create an administrative IAM User
-
-Creating an access key on an IAM user refers to generating access keys that allow programmatic access to AWS services and resources for the specified user. These access keys consist of an access key ID and a secret access key, which are used for authentication purposes.
+* Контролируйте и проверяйте создание ключей доступа с помощью AWS CloudTrail. Предупреждайте о любых необычных или несанкционированных действиях по созданию ключей доступа.
 
 
-Noncompliant Code:
-The noncompliant code demonstrates the creation of an access key on an IAM user without considering security best practices.
+## Создание административного пользователя IAM
+
+Создание ключа доступа для пользователя IAM означает генерацию ключей доступа, которые предоставляют программный доступ к службам и ресурсам AWS для указанного пользователя. Эти ключи доступа состоят из идентификатора ключа доступа и секретного ключа доступа, которые используются для целей аутентификации.
+
+
+Несоответствующий код:
+Код, не соответствующий требованиям, демонстрирует создание ключа доступа для пользователя IAM без учета лучших практик безопасности.
 
 ```
 import boto3
@@ -1701,14 +1701,14 @@ def create_access_key(user_name):
     print(f"Access Key ID: {access_key_id}")
     print(f"Secret Access Key: {secret_access_key}")
 
-# Usage
+# Использование
 create_access_key('my_user')
 ```
 
-In the noncompliant code, an access key is created for the IAM user without considering security best practices. The access key is generated using the create_access_key method from the AWS SDK. The access key ID and secret access key are printed to the console, which can lead to accidental exposure or potential misuse.
+В коде, не соответствующем требованиям, ключ доступа создается для пользователя IAM без учета лучших практик безопасности. Ключ доступа создается с помощью метода create_access_key из AWS SDK. Идентификатор ключа доступа и секретный ключ доступа выводятся в консоль, что может привести к случайному раскрытию или потенциальному неправомерному использованию.
 
-Compliant Code:
-The compliant code demonstrates the creation of an access key on an IAM user with proper controls and security measures.
+Соответствующий код:
+Соответствующий код демонстрирует создание ключа доступа для пользователя IAM с использованием надлежащих средств контроля и мер безопасности.
 
 ```
 import boto3
@@ -1718,21 +1718,21 @@ def create_access_key(user_name):
     response = iam.create_access_key(UserName=user_name)
     access_key_id = response['AccessKey']['AccessKeyId']
     secret_access_key = response['AccessKey']['SecretAccessKey']
-    # Store the access key securely or provide it to the user using secure means
+    # надежно хранить ключ доступа или предоставлять его пользователю с помощью защищенных средств
     print(f"Access key created for IAM user: {user_name}")
 
-# Usage
+# Использование
 create_access_key('my_user')
 ```
 
 
-## Create a Login Profile on an IAM User
+## Создание профиля входа для пользователя IAM
 
-Creating an access key on an IAM user allows programmatic access to AWS services and resources for that specific user. Access keys are composed of an access key ID and a secret access key, which are used for authentication when making API requests to AWS.
+Создание ключа доступа для пользователя IAM обеспечивает программный доступ к сервисам и ресурсам AWS для данного пользователя. Ключи доступа состоят из идентификатора ключа доступа и секретного ключа доступа, которые используются для аутентификации при выполнении API-запросов к AWS.
 
 
-Noncompliant Code:
-The following noncompliant code demonstrates the creation of an access key on an IAM user without considering security best practices:
+Несоответствующий код:
+Следующий код, не соответствующий требованиям, демонстрирует создание ключа доступа для пользователя IAM без учета лучших практик безопасности:
 
 ```
 import boto3
@@ -1745,14 +1745,14 @@ def create_access_key(user_name):
     print(f"Access Key ID: {access_key_id}")
     print(f"Secret Access Key: {secret_access_key}")
 
-# Usage
+# Использование
 create_access_key('my_user')
 ```
 
-The noncompliant code uses the AWS SDK's create_access_key method to generate an access key for the specified IAM user. It retrieves the access key ID and secret access key from the response and prints them to the console. Storing or exposing the access key in this manner increases the risk of accidental exposure or unauthorized access.
+Несоответствующий код использует метод create_access_key AWS SDK для генерации ключа доступа для указанного пользователя IAM. Он извлекает из ответа идентификатор ключа доступа и секретный ключ доступа и выводит их на консоль. Хранение или раскрытие ключа доступа таким образом повышает риск случайного раскрытия или несанкционированного доступа.
 
-Compliant Code:
-The following compliant code demonstrates the creation of an access key on an IAM user while adhering to security best practices:
+Соответствующий код:
+Следующий код, соответствующий требованиям, демонстрирует создание ключа доступа для пользователя IAM с соблюдением лучших практик безопасности:
 
 ```
 import boto3
@@ -1762,20 +1762,20 @@ def create_access_key(user_name):
     iam = boto3.client('iam')
     response = iam.create_access_key(UserName=user_name)
     access_key_id = response['AccessKey']['AccessKeyId']
-    # Store or provide the access key securely, without displaying it
+    # Храните или предоставляйте ключ доступа в безопасном месте, не показывая его.
     print("Access key created for IAM user:", user_name)
 
-# Usage
+# Использование
 user_name = getpass.getuser()
 create_access_key(user_name)
 ```
 
-## Backdoor Lambda Function Through Resource-Based Policy
+## Бэкдор функции Lambda через политику на основе ресурсов
 
-Backdooring a Lambda function through its resource-based policy involves modifying the permissions of the Lambda function to allow its invocation from an external AWS account. This establishes persistence by enabling unauthorized access to the function.
+Бэкдор функции Lambda через политику на основе ресурсов заключается в изменении разрешений функции Lambda, чтобы разрешить ее вызов из внешней учетной записи AWS. Это обеспечивает постоянство, позволяя несанкционированный доступ к функции.
 
-Noncompliant Code:
-The following noncompliant code demonstrates backdooring a Lambda function by modifying its resource-based policy without considering security best practices:
+Несоответствующий код:
+Следующий код, не соответствующий требованиям, демонстрирует бэкдорсинг функции Lambda путем изменения ее политики на основе ресурсов без учета лучших практик безопасности:
 
 ```
 import boto3
@@ -1790,14 +1790,14 @@ def backdoor_lambda_function(function_name, external_account_id):
     )
     print("Lambda function backdoored successfully.")
 
-# Usage
+# Использование
 backdoor_lambda_function('my-function', '123456789012')
 ```
 
-The noncompliant code uses the AWS SDK's add_permission method to modify the resource-based policy of the Lambda function. It adds a permission statement that allows the specified external AWS account to invoke the function. This code does not consider security best practices, such as proper authorization and verification.
+Код, не соответствующий требованиям, использует метод add_permission в AWS SDK для изменения ресурсной политики функции Lambda. Он добавляет оператор разрешения, который позволяет указанной внешней учетной записи AWS вызывать функцию. Этот код не учитывает лучшие практики безопасности, такие как правильная авторизация и проверка.
 
-Compliant Code:
-The following compliant code demonstrates backdooring a Lambda function while following security best practices:
+Соответствующий код:
+Следующий код, отвечающий требованиям, демонстрирует бэкдоринг функции Lambda с соблюдением лучших практик безопасности:
 
 ```
 import boto3
@@ -1815,18 +1815,18 @@ def backdoor_lambda_function(function_name, external_account_id):
     else:
         print("Failed to backdoor Lambda function.")
 
-# Usage
+# Использование
 backdoor_lambda_function('my-function', '123456789012')
 ```
 
 
-## Overwrite Lambda Function Code
+## Перезапись кода лямбда-функции
 
-Overwriting a Lambda function's code involves modifying the code of an existing Lambda function to establish persistence or perform more advanced operations, such as data exfiltration during runtime.
+Перезапись кода функции Lambda подразумевает изменение кода существующей функции Lambda для создания постоянства или выполнения более сложных операций, таких как утечка данных во время выполнения.
 
 
-Noncompliant Code:
-The following noncompliant code demonstrates overwriting a Lambda function's code without considering security best practices:
+Код, не отвечающий требованиям:
+Следующий код, не отвечающий требованиям, демонстрирует перезапись кода функции Lambda без учета лучших практик безопасности:
 
 ```
 import boto3
@@ -1841,14 +1841,14 @@ def overwrite_lambda_code(function_name, new_code_path):
     )
     print("Lambda function code overwritten successfully.")
 
-# Usage
+# Использование
 overwrite_lambda_code('my-function', '/path/to/new_code.zip')
 ```
 
-The noncompliant code uses the AWS SDK's update_function_code method to overwrite the code of the Lambda function. It reads the new code from a file and updates the Lambda function's code with the provided code. This code does not consider security best practices, such as proper authorization, code integrity checks, and versioning.
+Несоответствующий код использует метод update_function_code AWS SDK для перезаписи кода функции Lambda. Он считывает новый код из файла и обновляет код функции Lambda предоставленным кодом. Этот код не учитывает лучшие практики безопасности, такие как надлежащая авторизация, проверка целостности кода и версионирование.
 
-Compliant Code:
-The following compliant code demonstrates overwriting a Lambda function's code while following security best practices:
+Соответствующий код:
+Следующий совместимый код демонстрирует перезапись кода функции Lambda, следуя лучшим практикам безопасности:
 
 ```
 import boto3
@@ -1867,17 +1867,17 @@ def overwrite_lambda_code(function_name, new_code_path):
     else:
         print("Failed to overwrite Lambda function code.")
 
-# Usage
+# Использование
 overwrite_lambda_code('my-function', '/path/to/new_code.zip')
 ```
 
 
-## Create an IAM Roles Anywhere trust anchor
+## Создание якоря доверия IAM Roles Anywhere
 
-Creating an IAM Roles Anywhere trust anchor involves establishing persistence by creating a trust anchor certificate that allows workloads outside of AWS to assume IAM roles through the IAM Roles Anywhere service.
+Создание якоря доверия IAM Roles Anywhere включает в себя создание постоянства путем создания сертификата якоря доверия, который позволяет рабочим нагрузкам за пределами AWS принимать роли IAM через службу IAM Roles Anywhere.
 
-Noncompliant Code:
-The following noncompliant code demonstrates the creation of an IAM Roles Anywhere trust anchor without following security best practices:
+Несоответствующий код:
+Следующий код, не соответствующий требованиям, демонстрирует создание якоря доверия IAM Roles Anywhere без соблюдения лучших практик безопасности:
 
 ```
 import boto3
@@ -1891,15 +1891,15 @@ def create_roles_anywhere_trust_anchor(role_name, trust_anchor_certificate):
     print("IAM Roles Anywhere trust anchor created successfully.")
     return response['ServiceSpecificCredential']
 
-# Usage
+# Использование
 create_roles_anywhere_trust_anchor('my-role', '-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----')
 ```
 
-The noncompliant code uses the AWS SDK's create_service_specific_credential method to create an IAM Roles Anywhere trust anchor. It specifies the IAM role and the roles-anywhere.amazonaws.com service name. However, this code does not consider security best practices, such as proper authorization, secure handling of the trust anchor certificate, and least privilege principles.
+Несоответствующий код использует метод create_service_specific_credential в AWS SDK для создания якоря доверия IAM Roles Anywhere. В нем указывается роль IAM и имя службы roles-anywhere.amazonaws.com. Однако этот код не учитывает лучшие практики безопасности, такие как правильная авторизация, безопасная работа с сертификатом якоря доверия и принципы наименьших привилегий.
 
 
-Compliant Code:
-The following compliant code demonstrates the creation of an IAM Roles Anywhere trust anchor while following security best practices:
+Соответствующий код:
+Следующий код, соответствующий требованиям, демонстрирует создание якоря доверия IAM Roles Anywhere с соблюдением лучших практик безопасности:
 
 ```
 import boto3
@@ -1913,18 +1913,18 @@ def create_roles_anywhere_trust_anchor(role_name, trust_anchor_certificate):
     print("IAM Roles Anywhere trust anchor created successfully.")
     return response['Certificate']
 
-# Usage
+# Использование
 create_roles_anywhere_trust_anchor('my-role', '-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----')
 ```
 
 
 
-## Execute Command on Virtual Machine using Custom Script Extension
+## Выполнение команды на виртуальной машине с помощью расширения Custom Script Extension
 
-Executing a command on a virtual machine using the Custom Script Extension in Azure allows an attacker to pass PowerShell commands to the virtual machine as SYSTEM, enabling them to perform unauthorized actions.
+Выполнение команды на виртуальной машине с помощью расширения Custom Script Extension в Azure позволяет злоумышленнику передать виртуальной машине команды PowerShell в виде SYSTEM, что дает ему возможность выполнять несанкционированные действия.
 
-Noncompliant Code:
-The following noncompliant code demonstrates the execution of a command on a virtual machine using the Custom Script Extension without following security best practices:
+Несоответствующий код:
+Следующий код, не соответствующий требованиям, демонстрирует выполнение команды на виртуальной машине с помощью расширения Custom Script Extension без соблюдения лучших практик безопасности:
 
 ```
 {
@@ -1945,10 +1945,10 @@ The following noncompliant code demonstrates the execution of a command on a vir
 }
 ```
 
-The noncompliant code directly references a malicious script hosted on a remote site and executes it on the virtual machine without considering security best practices.
+Несоответствующий код напрямую ссылается на вредоносный скрипт, размещенный на удаленном сайте, и выполняет его на виртуальной машине без учета лучших практик безопасности.
 
-Compliant Code:
-The following compliant code demonstrates the execution of a command on a virtual machine using the Custom Script Extension while following security best practices:
+Соответствующий код:
+Следующий код, соответствующий требованиям, демонстрирует выполнение команды на виртуальной машине с помощью расширения Custom Script Extension, соблюдая при этом передовые методы обеспечения безопасности:
 
 ```
 {
@@ -1974,12 +1974,12 @@ The following compliant code demonstrates the execution of a command on a virtua
 ```
 
 
-## Execute Commands on Virtual Machine using Run Command
+## Выполнение команд на виртуальной машине с помощью Run Command
 
-Executing commands on a virtual machine using the Run Command feature in Azure allows an attacker to pass PowerShell commands (Windows) or shell commands (Linux) to the virtual machine with elevated privileges.
+Выполнение команд на виртуальной машине с помощью функции Run Command в Azure позволяет злоумышленнику передавать команды PowerShell (Windows) или shell (Linux) на виртуальную машину с повышенными привилегиями.
 
-Noncompliant Code:
-The following noncompliant code demonstrates the execution of a command on a virtual machine using the Run Command feature without following security best practices:
+Несоответствующий код:
+Следующий код, не соответствующий требованиям, демонстрирует выполнение команды на виртуальной машине с помощью функции Run Command без соблюдения лучших практик безопасности:
 
 ```
 {
@@ -1992,10 +1992,10 @@ The following noncompliant code demonstrates the execution of a command on a vir
 }
 ```
 
-The noncompliant code directly executes a malicious script without considering security best practices. It lacks proper validation and control over the script content, which can lead to unauthorized or malicious actions.
+Несоответствующий требованиям код напрямую выполняет вредоносный скрипт без учета передовых методов обеспечения безопасности. В нем отсутствует надлежащая проверка и контроль над содержимым скрипта, что может привести к несанкционированным или вредоносным действиям.
 
-Compliant Code:
-The following compliant code demonstrates the execution of commands on a virtual machine using the Run Command feature while following security best practices:
+Соответствующий код:
+Следующий код, соответствующий требованиям, демонстрирует выполнение команд на виртуальной машине с помощью функции Run Command, соблюдая при этом передовые методы обеспечения безопасности:
 
 ```
 {
@@ -2009,13 +2009,13 @@ The following compliant code demonstrates the execution of commands on a virtual
 }
 ```
 
-## Export Disk Through SAS URL
+## Экспорт диска через URL-адрес SAS
 
 
-Exporting a disk through a SAS (Shared Access Signature) URL in Azure allows an attacker to generate a public URL that can be used to download the Azure disk, facilitating data exfiltration.
+Экспорт диска через URL-адрес SAS (Shared Access Signature) в Azure позволяет злоумышленнику сгенерировать общедоступный URL-адрес, который можно использовать для загрузки диска Azure, что способствует утечке данных.
 
-Noncompliant Code:
-The following noncompliant code demonstrates exporting a disk through a SAS URL without following security best practices:
+Несоответствующий код:
+Следующий код, не соответствующий требованиям, демонстрирует экспорт диска через URL-адрес SAS без соблюдения лучших практик безопасности:
 
 ```
 from azure.storage.blob import BlobServiceClient
@@ -2029,10 +2029,10 @@ def export_disk_to_sas_url(disk_name, container_name, storage_account_name, stor
     return sas_url
 ```
 
-The noncompliant code generates a SAS URL for the disk without considering security best practices. It lacks proper validation, access controls, and restrictions, making the disk accessible to anyone with the URL. This can lead to unauthorized access and data exfiltration.
+Несоответствующий требованиям код генерирует URL-адрес SAS для диска без учета передовых методов обеспечения безопасности. В нем отсутствуют надлежащая проверка, контроль доступа и ограничения, что делает диск доступным для всех, у кого есть URL. Это может привести к несанкционированному доступу и утечке данных.
 
-Compliant Code:
-The following compliant code demonstrates exporting a disk through a SAS URL while following security best practices:
+Соответствующий код:
+Следующий код, соответствующий требованиям, демонстрирует экспорт диска через URL-адрес SAS с соблюдением лучших практик безопасности:
 
 ```
 from azure.storage.blob import BlobServiceClient, BlobSasPermissions, generate_blob_sas
@@ -2059,120 +2059,120 @@ def export_disk_to_sas_url(disk_name, container_name, storage_account_name, stor
 
 
 
-## Create an Admin GCP Service Account
+## Создание учетной записи службы администратора GCP
 
-Creating an Admin GCP Service Account involves establishing persistence by creating a new service account and granting it owner permissions within the current GCP project. This allows the attacker to escalate privileges and maintain long-term control over the project.
+Создание учетной записи администратора GCP Service Account подразумевает создание постоянства путем создания новой учетной записи службы и предоставления ей прав владельца в текущем GCP-проекте. Это позволяет злоумышленнику повысить привилегии и сохранить долгосрочный контроль над проектом.
 
-Noncompliant Code:
+Несоответствующий код:
 
-The following noncompliant code demonstrates creating an admin GCP service account without following security best practices:
+Следующий код, не отвечающий требованиям, демонстрирует создание учетной записи службы администратора GCP без соблюдения лучших практик безопасности:
 
 ```
 #!/bin/bash
 
-# Create a new service account
+# Создайте новую учетную запись службы
 gcloud iam service-accounts create admin-account --display-name="Admin Service Account"
 
-# Assign owner role to the service account
+# Назначьте роль владельца учетной записи службы
 gcloud projects add-iam-policy-binding <project-id> --member="serviceAccount:admin-account@<project-id>.iam.gserviceaccount.com" --role="roles/owner"
 ```
 
-The noncompliant code creates a new service account named "admin-account" and assigns it the owner role directly within the project. This approach lacks proper access controls, least privilege principles, and separation of duties, granting excessive privileges to the service account.
+Несоответствующий код создает новую учетную запись службы с именем "admin-account" и назначает ей роль владельца непосредственно в проекте. В этом подходе отсутствует надлежащий контроль доступа, принципы наименьших привилегий и разделение обязанностей, что дает чрезмерные привилегии служебной учетной записи.
 
-Compliant Code:
-The following compliant code demonstrates creating an admin GCP service account while following security best practices:
+Соответствующий код:
+Следующий код, соответствующий требованиям, демонстрирует создание учетной записи службы admin GCP с соблюдением лучших практик безопасности:
 
 ```
 #!/bin/bash
 
-# Create a new service account
+# Создайте новую учетную запись службы
 gcloud iam service-accounts create admin-account --display-name="Admin Service Account"
 
-# Grant minimum necessary permissions to the service account
+# Предоставьте минимально необходимые разрешения учетной записи службы
 gcloud projects add-iam-policy-binding <project-id> --member="serviceAccount:admin-account@<project-id>.iam.gserviceaccount.com" --role="roles/viewer"
 
-# Delegate owner role assignment to a separate privileged account
+# Делегируйте назначение роли владельца отдельной привилегированной учетной записи
 gcloud projects add-iam-policy-binding <project-id> --member="user:privileged-user@domain.com" --role="roles/iam.serviceAccountAdmin"
 gcloud iam service-accounts add-iam-policy-binding admin-account@<project-id>.iam.gserviceaccount.com --member="user:privileged-user@domain.com" --role="roles/iam.serviceAccountUser"
 ```
 
 
-## Create a GCP Service Account Key
+## Создание ключа учетной записи службы GCP
 
-Creating a GCP Service Account Key involves generating a key for an existing service account, which can be used for authentication and accessing resources within the associated GCP project. This action is typically used for establishing persistence and potentially escalating privileges.
+Создание ключа учетной записи службы GCP подразумевает генерацию ключа для существующей учетной записи службы, который может использоваться для аутентификации и доступа к ресурсам в рамках связанного проекта GCP. Это действие обычно используется для создания постоянства и потенциальной эскалации привилегий.
 
-Noncompliant Code:
-The following noncompliant code demonstrates creating a service account key without following security best practices:
+Несоответствующий код:
+Следующий код, не соответствующий требованиям, демонстрирует создание ключа учетной записи службы без соблюдения лучших практик безопасности:
 
 ```
 #!/bin/bash
 
-# Create a new service account key
+# Создайте новый ключ учетной записи службы
 gcloud iam service-accounts keys create key.json --iam-account=<service-account-email>
 ```
 
-The noncompliant code generates a service account key using the gcloud iam service-accounts keys create command. However, it lacks proper security controls and does not follow recommended practices.
+Несоответствующий код генерирует ключ учетной записи службы с помощью команды gcloud iam service-accounts keys create. Однако в нем отсутствуют надлежащие средства контроля безопасности и не соблюдаются рекомендуемые практики.
 
-Compliant Code:
-The following compliant code demonstrates creating a service account key while following security best practices:
+Соответствующий код:
+Следующий код, соответствующий требованиям, демонстрирует создание ключа учетной записи службы, следуя лучшим практикам безопасности:
 
 ```
 #!/bin/bash
 
-# Create a new service account key with restricted permissions
+# Создайте новый ключ учетной записи службы с ограниченными правами
 gcloud iam service-accounts keys create key.json --iam-account=<service-account-email> --key-type=json --project=<project-id> --private-key-type=rsa --private-key-algorithm=rsa-sha256 --validity-period=<duration>
 
-# Store the generated key securely
+# Надежно храните сгенерированный ключ
 # ...
 ```
 
-## Impersonate GCP Service Accounts
+## Имитировать учетные записи служб GCP
 
-Impersonating GCP Service Accounts is a privilege escalation technique that allows an attacker to obtain temporary credentials and act as a service account within a GCP project. By impersonating a service account, an attacker can potentially gain elevated privileges and access sensitive resources.
+Имитировать учетные записи служб GCP - это техника повышения привилегий, которая позволяет злоумышленнику получить временные учетные данные и действовать в качестве учетной записи службы в проекте GCP. Выдавая себя за учетную запись службы, злоумышленник может получить повышенные привилегии и доступ к важным ресурсам.
 
-Noncompliant Code:
-The following noncompliant code demonstrates an attempt to impersonate GCP service accounts without following security best practices:
+Несоответствующий код:
+Следующий код, не соответствующий требованиям, демонстрирует попытку выдать себя за учетную запись службы GCP без соблюдения лучших практик безопасности:
 
 ```
 from google.auth import impersonated_credentials
 from google.auth.transport.requests import Request
 from google.oauth2 import service_account
 
-# Service account credentials for the current user with 'iam.serviceAccountTokenCreator' role
+# Учетные данные учетной записи сервиса для текущего пользователя с ролью 'iam.serviceAccountTokenCreator'
 credentials = service_account.Credentials.from_service_account_file('user-credentials.json')
 
-# List of service account email addresses to impersonate
+# Список адресов электронной почты учетных записей служб, за которые нужно имитировать
 service_account_emails = ['service-account1@project-id.iam.gserviceaccount.com', 'service-account2@project-id.iam.gserviceaccount.com']
 
-# Impersonate each service account and retrieve temporary credentials
+# Имитировать учетную запись каждой службы и получайте временные учетные данные
 for email in service_account_emails:
     target_credentials = impersonated_credentials.Credentials(credentials, target_principal=email, target_scopes=['https://www.googleapis.com/auth/cloud-platform'])
     target_credentials.refresh(Request())
-    # Use the target_credentials for further actions
+    # Используйте target_credentials для дальнейших действий
 ```
 
-The noncompliant code attempts to impersonate GCP service accounts without implementing proper security controls. It uses the google-auth library to perform the impersonation. However, it lacks important security considerations, such as validation and monitoring.
+Несоответствующий требованиям код пытается выдать себя за учетную запись службы GCP без применения надлежащих средств контроля безопасности. Для имперсонации используется библиотека google-auth. Однако в нем отсутствуют такие важные элементы безопасности, как проверка и мониторинг.
 
-Compliant Code:
-The following compliant code demonstrates a more secure approach to impersonating GCP service accounts:
+Соответствующий код:
+Следующий код, соответствующий требованиям, демонстрирует более безопасный подход к имитации учетной записи службы GCP:
 
 ```
 from google.auth import impersonated_credentials
 from google.auth.transport.requests import Request
 from google.oauth2 import service_account
 
-# Service account credentials for the current user with 'iam.serviceAccountTokenCreator' role
+# Учетные данные учетной записи сервиса для текущего пользователя с ролью 'iam.serviceAccountTokenCreator'
 credentials = service_account.Credentials.from_service_account_file('user-credentials.json')
 
-# List of service account email addresses to impersonate
+# Список адресов электронной почты учетных записей служб, за которые нужно  имитировать
 service_account_emails = ['service-account1@project-id.iam.gserviceaccount.com', 'service-account2@project-id.iam.gserviceaccount.com']
 
-# Impersonate each service account and retrieve temporary credentials
+# Имитировать учетную запись каждой службы и получайте временные учетные данные
 for email in service_account_emails:
     try:
         target_credentials = impersonated_credentials.Credentials(credentials, target_principal=email, target_scopes=['https://www.googleapis.com/auth/cloud-platform'])
         target_credentials.refresh(Request())
-        # Use the target_credentials for further actions
+        # Используйте target_credentials для дальнейших действий
     except Exception as e:
         # Handle impersonation failure, e.g., log the event or trigger an alert
         print(f"Impersonation of {email} failed: {str(e)}")
@@ -2180,107 +2180,107 @@ for email in service_account_emails:
 
 
 
-## AWS cross-account enumeration
+## Перечисление кросс-аккаунтов AWS
 
 ```
 weirdAAL.py cross_account_enum
 ```
 
-## Privilege escalation through EC2 metadata   
+## Повышение привилегий с помощью метаданных EC2   
 
 ```
 weirdAAL.py ec2_metadata
 ```
 
-## Enumeration of AWS Systems Manager parameters   
+## Перечисление параметров AWS Systems Manager   
 
 ```
 weirdAAL.py ssm_enum
 ```
 
-## Enumeration of EC2 instances with public IP addresses   
+## Перечисление экземпляров EC2 с общедоступными IP-адресами   
 
 ```
 weirdAAL.py public_ec2_enum
 ```
 
-## Stealing EC2 instance metadata  
+## Кража метаданных экземпляра EC2  
 
 ```
 weirdAAL.py steal_metadata
 ```
 
-## Privilege escalation by attaching an EC2 instance profile   
+## Повышение привилегий путем присоединения профиля экземпляра EC2   
 
 ```
 weirdAAL.py attach_instance_profile
 ```
 
-## Enumeration of Elastic Beanstalk environments with public access    
+## Перечисление сред Elastic Beanstalk с открытым доступом    
 
 ```
 weirdAAL.py public_eb_enum
 ```
 
-## Privilege escalation through hijacking AWS CLI sessions 
+## Повышение привилегий путем перехвата сеансов AWS CLI 
 
 ```
 weirdAAL.py hijack_cli
 ```
 
-## Enumeration of ECR repositories with public access  
+## Перечисление репозиториев ECR с открытым доступом  
 
 ```
 weirdAAL.py public_ecr_enum
 ```
 
-## Privilege escalation through hijacking AWS SDK sessions 
+## Повышение привилегий путем перехвата сеансов AWS SDK 
 
 ```
 weirdAAL.py hijack_sdk
 ```
 
-## Enumeration of ECS clusters and services    
+## Перечисление кластеров и служб ECS    
 
 ```
 weirdAAL.py ecs_enum
 ```
 
-## Privilege escalation through assumed role sessions 
+## Повышение привилегий с помощью сеансов присвоения роли 
 
 ```
 weirdAAL.py assume_role
 ```
 
-## Enumeration of AWS Glue Data Catalog databases 
+## Перечисление баз данных AWS Glue Data Catalog 
 
 ```
 weirdAAL.py glue_enum
 ```
 
-## Privilege escalation through EC2 instance takeover  
+## Повышение привилегий путем захвата экземпляра EC2  
 
 ```
 weirdAAL.py ec2_takeover
 ```
 
-## Enumeration of open S3 buckets and their contents   
+## Перечисление открытых ведер S3 и их содержимого   
 
 ```
 weirdAAL.py s3_enum --list-objects
 ```
 
-## Privilege escalation through RDS database credentials   
+## Повышение привилегий через учетные данные базы данных RDS   
 
 weirdAAL.py rds_priv_esc
 
-## Enumeration of EKS clusters and associated resources    
+## Перечисление кластеров EKS и связанных с ними ресурсов    
 
 ```
 weirdAAL.py eks_enum
 ```
 
-## Privilege escalation through KMS key policy modifications   
+## Повышение привилегий путем изменения ключевой политики KMS   
 
 ```
 weirdAAL.py kms_priv_esc
