@@ -4,11 +4,11 @@ title: Container Attacks
 parent: Attacks
 ---
 
-# Container Attacks
+# Атаки на контейнеры
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -17,11 +17,11 @@ parent: Attacks
 ---
 
 
-## Insecure Container Images: 
+## Небезопасные образы контейнеров: 
 
-Using container images that contain vulnerable or outdated software components, which can be exploited by attackers. Example: A container image that includes a vulnerable version of a web server software.
+Использование образов контейнеров, содержащих уязвимые или устаревшие программные компоненты, которые могут быть использованы злоумышленниками. Пример: Образ контейнера, содержащий уязвимую версию программного обеспечения веб-сервера.
 
-### Malicious Images via Aqua
+### Вредоносные изображения через Aqua
 
 * docker-network-bridge-
 * ipv6:0.0.2
@@ -68,7 +68,7 @@ Using container images that contain vulnerable or outdated software components, 
 * kuben2
 
 
-### Other Images
+### Другие изображения
 
 * OfficialImagee
 * Ubuntuu
@@ -79,203 +79,203 @@ Using container images that contain vulnerable or outdated software components, 
 
 
 
-## Privileged Container
+## Контейнер с привилегиями
 
-Running containers with elevated privileges, allowing potential attackers to gain control over the underlying host system. Example: Running a container with root-level access and unrestricted capabilities.
+Запуск контейнеров с повышенными привилегиями, позволяющий потенциальным злоумышленникам получить контроль над базовой хост-системой. Пример: Запуск контейнера с доступом на уровне root и неограниченными возможностями.
 
-In the noncompliant code, the container is launched with the --privileged flag, enabling privileged mode. This grants the container unrestricted access to the host system, potentially compromising its security boundaries.
+В коде, не соответствующем требованиям, контейнер запускается с флагом --privileged, что включает привилегированный режим. Это предоставляет контейнеру неограниченный доступ к хост-системе, потенциально нарушая ее границы безопасности.
 
 
 
 ```
-# Noncompliant: Privileged container
+# Несоответствие требованиям: Привилегированный контейнер
 
 FROM ubuntu
 ...
-# Running container in privileged mode
+# Запуск контейнера в привилегированном режиме
 RUN docker run -it --privileged ubuntu /bin/bash
 ```
 
-The compliant code addresses the vulnerability by running the container without privileged mode. This restricts the container's access to system resources and reduces the risk of privilege escalation and unauthorized access to the host.
+Соответствующий код устраняет уязвимость, запуская контейнер без привилегированного режима. Это ограничивает доступ контейнера к системным ресурсам и снижает риск повышения привилегий и несанкционированного доступа к хосту.
 
 
 
 
 ```
-# Compliant: Non-privileged container
+# Соответствует требованиям: Непривилегированный контейнер
 
 FROM ubuntu
 ...
-# Running container without privileged mode
+# Запуск контейнера без привилегированного режима
 RUN docker run -it ubuntu /bin/bash
 ```
 
-## Exposed Container APIs 
+## Открытые API-интерфейсы контейнеров 
 
-Insecurely exposing container APIs without proper authentication or access controls, allowing attackers to manipulate or extract sensitive information from containers. Example: Exposing Docker API without any authentication or encryption.
+Небезопасное раскрытие API-интерфейсов контейнеров без надлежащей аутентификации или контроля доступа, что позволяет злоумышленникам манипулировать контейнерами или извлекать из них конфиденциальную информацию. Пример: Раскрытие API Docker без какой-либо аутентификации или шифрования.
 
-In the noncompliant code, the container's API is exposed on port 8080 without any authentication or authorization mechanisms in place. This allows unrestricted access to the container API, making it susceptible to unauthorized access and potential attacks.
+В коде, не соответствующем требованиям, API контейнера открыт на порту 8080 без каких-либо механизмов аутентификации или авторизации. Это позволяет получить неограниченный доступ к API контейнера, что делает его уязвимым для несанкционированного доступа и потенциальных атак.
 
 
 
 ```
-# Noncompliant: Exposed container API without authentication/authorization
+# Несоответствие требованиям: Открытый API контейнера без аутентификации/авторизации
 
 FROM nginx
 ...
-# Expose container API on port 8080
+# Открыть API контейнера на порту 8080
 EXPOSE 8080
 ```
 
-The compliant code addresses the vulnerability by exposing the container's API internally on port 8080 and leveraging a reverse proxy or API gateway for authentication and authorization. The reverse proxy or API gateway acts as a security layer, handling authentication/authorization requests before forwarding them to the container API.
+Соответствующий код устраняет уязвимость, открывая API контейнера на внутреннем порту 8080 и используя обратный прокси или API-шлюз для аутентификации и авторизации. Обратный прокси или API-шлюз выступает в качестве уровня безопасности, обрабатывая запросы на аутентификацию/авторизацию перед их передачей в API контейнера.
 
-To further enhance the security of exposed container APIs, consider the following best practices:
+Чтобы еще больше повысить безопасность открытых API-интерфейсов контейнеров, обратите внимание на следующие лучшие практики:
 
-1. Implement strong authentication and authorization mechanisms: Use industry-standard authentication protocols (e.g., OAuth, JWT) and enforce access controls based on user roles and permissions.
-1. Employ Transport Layer Security (TLS) encryption: Secure the communication between clients and the container API using TLS certificates to protect against eavesdropping and tampering.
-1. Regularly monitor and log API activity: Implement logging and monitoring mechanisms to detect and respond to suspicious or malicious activity.
-1. Apply rate limiting and throttling: Protect the API from abuse and denial-of-service attacks by enforcing rate limits and throttling requests.
+1. Внедряйте надежные механизмы аутентификации и авторизации: Используйте стандартные протоколы аутентификации (например, OAuth, JWT) и применяйте контроль доступа на основе ролей и разрешений пользователей.
+1. Используйте шифрование на транспортном уровне (Transport Layer Security, TLS): Защитите обмен данными между клиентами и API контейнера с помощью сертификатов TLS для защиты от подслушивания и несанкционированного доступа.
+1. Регулярно отслеживайте и регистрируйте активность API: Внедрите механизмы регистрации и мониторинга для обнаружения и реагирования на подозрительную или вредоносную активность.
+1. Применяйте ограничение скорости и дросселирование: Защитите API от злоупотреблений и атак типа "отказ в обслуживании", применяя ограничения скорости и дросселирование запросов.
 
 
 ```
-# Compliant: Secured container API with authentication/authorization
+# Соответствие требованиям: Защищенный контейнерный API с аутентификацией/авторизацией
 
 FROM nginx
 ...
-# Expose container API on port 8080 (internal)
+# Открыть API контейнера на порту 8080 (внутренний)
 EXPOSE 8080
 
-# Use a reverse proxy or API gateway for authentication/authorization
+# Используйте обратный прокси-сервер или API-шлюз для аутентификации/авторизации
 ```
 
 
-## Container Escape
+## Побег из контейнера
 
-Exploiting vulnerabilities in the container runtime or misconfigurations to break out of the container's isolation and gain unauthorized access to the host operating system. Example: Exploiting a vulnerability in the container runtime to access the host system and other containers.
+Использование уязвимостей во времени выполнения контейнера или неправильной конфигурации для выхода из изоляции контейнера и получения несанкционированного доступа к операционной системе хоста. Пример: Эксплуатация уязвимости во времени выполнения контейнера для получения доступа к хост-системе и другим контейнерам.
 
 
-The below code creates and starts a container without any security isolation measures. This leaves the container susceptible to container escape attacks, where an attacker can exploit vulnerabilities in the container runtime or misconfigured security settings to gain unauthorized access to the host system.
+Приведенный ниже код создает и запускает контейнер без каких-либо мер изоляции безопасности. Это делает контейнер уязвимым для атак на выход из контейнера, когда злоумышленник может использовать уязвимости во времени выполнения контейнера или неверно настроенные параметры безопасности для получения несанкционированного доступа к хост-системе.
 
 ```
-# Noncompliant: Running a container without proper security isolation
+# Несоответствие требованиям: Запуск контейнера без надлежащей изоляции безопасности
 
 require 'docker'
 
-# Create a container with default settings
+# Создайте контейнер с настройками по умолчанию
 container = Docker::Container.create('Image' => 'nginx')
 container.start
 ```
 
-we introduce security enhancements to mitigate the risk of container escape. The HostConfig parameter is used to configure the container's security settings. Here, we:
+Мы вводим усовершенствования безопасности, чтобы снизить риск побега контейнера. Параметр HostConfig используется для настройки параметров безопасности контейнера. Здесь мы:
 
-Set 'Privileged' => false to disable privileged mode, which restricts access to host devices and capabilities.
-Use 'CapDrop' => ['ALL'] to drop all capabilities from the container, minimizing the potential attack surface.
-Add 'SecurityOpt' => ['no-new-privileges'] to prevent privilege escalation within the container.
+Устанавливаем 'Privileged' => false, чтобы отключить привилегированный режим, который ограничивает доступ к устройствам и возможностям хоста.
+Используем 'CapDrop' => ['ALL'], чтобы исключить все возможности из контейнера, минимизируя потенциальную поверхность атаки.
+Добавьте 'SecurityOpt' => ['no-new-privileges'], чтобы предотвратить повышение привилегий внутри контейнера.
 
 
 ```
-# Compliant: Running a container with enhanced security isolation
+# Соответствие требованиям: Запуск контейнера с усиленной изоляцией безопасности
 
 require 'docker'
 
-# Create a container with enhanced security settings
+# Создание контейнера с повышенными параметрами безопасности
 container = Docker::Container.create(
   'Image' => 'nginx',
   'HostConfig' => {
-    'Privileged' => false,           # Disable privileged mode
-    'CapDrop' => ['ALL'],            # Drop all capabilities
-    'SecurityOpt' => ['no-new-privileges']  # Prevent privilege escalation
+    'Privileged' => false,           # Отключить привилегированный режим
+    'CapDrop' => ['ALL'],            # Отбросьте все возможности
+    'SecurityOpt' => ['no-new-privileges']  # Предотвращение эскалации привилегий
   }
 )
 container.start
 ```
 
 
-## Container Image Tampering
+## Подделка образов контейнеров
 
-Modifying or replacing container images with malicious versions that may contain malware, backdoors, or vulnerable components. Example: Tampering with a container image to inject malicious code that steals sensitive information.
+Изменение или замена образов контейнеров на вредоносные версии, которые могут содержать вредоносное ПО, бэкдоры или уязвимые компоненты. Пример: Внесение изменений в образ контейнера с целью внедрения вредоносного кода, похищающего конфиденциальную информацию.
 
 
-The below code directly pulls and runs a container image without verifying its integrity. This leaves the application vulnerable to container image tampering, where an attacker can modify the container image to include malicious code or compromise the application's security.
+Приведенный ниже код напрямую извлекает и запускает образ контейнера, не проверяя его целостность. Это делает приложение уязвимым к взлому образа контейнера, когда злоумышленник может изменить образ контейнера, включив в него вредоносный код или нарушив безопасность приложения.
 
 ```
-#Pulling and running a container image without verifying integrity
+#Извлечение и запуск образа контейнера без проверки целостности
 
 require 'docker'
 
-# Pull the container image
+# Извлеките образ контейнера
 image = Docker::Image.create('fromImage' => 'nginx')
 
-# Run the container image
+# Запустите образ контейнера
 container = Docker::Container.create('Image' => image.id)
 container.start
 ```
 
-we address this issue by introducing integrity verification. The code calculates the expected digest of the pulled image using the SHA256 hash algorithm. It then compares this expected digest with the actual digest of the image obtained from the Docker API. If the digests do not match, an integrity verification failure is raised, indicating that the image may have been tampered with.
+мы решаем эту проблему, внедряя проверку целостности. Код вычисляет ожидаемый дайджест извлеченного образа с помощью хэш-алгоритма SHA256. Затем он сравнивает этот ожидаемый дайджест с фактическим дайджестом образа, полученным из Docker API. Если дайджесты не совпадают, выдается сообщение о сбое проверки целостности, указывающее на то, что образ мог быть подделан.
 
 ```
-# Compliant: Pulling and running a container image with integrity verification
+# Соответствие требованиям: Извлечение и запуск образа контейнера с проверкой целостности
 
 require 'docker'
 require 'digest'
 
-# Image name and tag
+# Название и тег изображения
 image_name = 'nginx'
 image_tag = 'latest'
 
-# Pull the container image
+# Извлеките образ контейнера
 image = Docker::Image.create('fromImage' => "#{image_name}:#{image_tag}")
 
-# Verify the integrity of the pulled image
+# Проверьте целостность извлеченного изображения
 expected_digest = Digest::SHA256.hexdigest(image.connection.get("/images/#{image.id}/json").body)
 actual_digest = image.info['RepoDigests'].first.split('@').last
 if expected_digest != actual_digest
   raise "Integrity verification failed for image: #{image_name}:#{image_tag}"
 end
 
-# Run the container image
+# Запустите образ контейнера
 container = Docker::Container.create('Image' => image.id)
 container.start
 ```
 
-## Insecure Container Configuration
+## Небезопасная конфигурация контейнера
 
-Misconfigurations in container settings, such as weak access controls or excessive permissions, allowing attackers to compromise the container or its environment. Example: Running a container with unnecessary capabilities or insecure mount points.
+Ошибки в настройках контейнера, такие как слабый контроль доступа или чрезмерные разрешения, позволяющие злоумышленникам скомпрометировать контейнер или его окружение. Пример: Запуск контейнера с ненужными возможностями или небезопасными точками монтирования.
 
-The noncompliant code creates and starts a container with default settings, which may have insecure configurations. These misconfigurations can lead to vulnerabilities, such as privilege escalation, excessive container privileges, or exposure of sensitive resources.
+Несоответствующий требованиям код создает и запускает контейнер с настройками по умолчанию, которые могут иметь небезопасные конфигурации. Эти неправильные конфигурации могут привести к уязвимостям, таким как повышение привилегий, чрезмерные привилегии контейнера или раскрытие конфиденциальных ресурсов.
 
 
 ```
-# Noncompliant: Running a container with insecure configuration
+# Несоответствие требованиям: Запуск контейнера с небезопасной конфигурацией
 
 require 'docker'
 
-# Create a container with default settings
+# Создайте контейнер с настройками по умолчанию
 container = Docker::Container.create('Image' => 'nginx')
 container.start
 ```
 
-In the compliant code, we address these security concerns by applying secure container configurations. The HostConfig parameter is used to specify the container's configuration. Here, we:
+В совместимом коде мы решаем эти проблемы безопасности, применяя безопасные конфигурации контейнеров. Параметр HostConfig используется для указания конфигурации контейнера. Здесь мы:
 
-Set 'ReadOnly' => true to make the container's filesystem read-only, preventing potential tampering and unauthorized modifications.
-Use 'CapDrop' => ['ALL'] to drop all capabilities from the container, minimizing the attack surface and reducing the potential impact of privilege escalation.
-Add 'SecurityOpt' => ['no-new-privileges'] to prevent the container from gaining additional privileges.
-Specify 'NetworkMode' => 'bridge' to isolate the container in a bridge network, ensuring separation from the host and other containers.
-Use 'PortBindings' to bind the container's port to a specific host port ('80/tcp' => [{ 'HostPort' => '8080' }]). This restricts network access to the container and avoids exposing unnecessary ports.
+Устанавливаем 'ReadOnly' => true, чтобы сделать файловую систему контейнера доступной только для чтения, что предотвращает возможные взломы и несанкционированные модификации.
+Используем 'CapDrop' => ['ALL'], чтобы отбросить все возможности контейнера, минимизируя поверхность атаки и снижая потенциальное влияние повышения привилегий.
+Добавьте 'SecurityOpt' => ['no-new-privileges'], чтобы предотвратить получение контейнером дополнительных привилегий.
+Укажите 'NetworkMode' => 'bridge', чтобы изолировать контейнер в мостовой сети, обеспечивая разделение с хостом и другими контейнерами.
+Используйте 'PortBindings', чтобы привязать порт контейнера к определенному порту хоста ('80/tcp' => [{ 'HostPort' => '8080' }]). Это ограничивает сетевой доступ к контейнеру и позволяет не открывать лишние порты.
 
 ```
-# Compliant: Running a container with secure configuration
+# Соответствие требованиям: Запуск контейнера с безопасной конфигурацией
 
 require 'docker'
 
-# Create a container with secure settings
+# Создание контейнера с безопасными настройками
 container = Docker::Container.create(
   'Image' => 'nginx',
   'HostConfig' => {
-    'ReadOnly' => true,               # Set container as read-only
-    'CapDrop' => ['ALL'],             # Drop all capabilities
-    'SecurityOpt' => ['no-new-privileges'],  # Prevent privilege escalation
-    'NetworkMode' => 'bridge',        # Use a bridge network for isolation
+    'ReadOnly' => true,               # Установите контейнер как доступный только для чтения
+    'CapDrop' => ['ALL'],             # Отбросьте все возможности
+    'SecurityOpt' => ['no-new-privileges'],  # Предотвращение эскалации привилегий
+    'NetworkMode' => 'bridge',        # Используйте мостовую сеть для изоляции
     'PortBindings' => { '80/tcp' => [{ 'HostPort' => '8080' }] }  # Bind container port to a specific host port
   }
 )
@@ -284,18 +284,18 @@ container.start
 
 
 
-## Denial-of-Service (DoS)
+## Отказ в обслуживании (DoS)
 
-Overloading container resources or exploiting vulnerabilities in the container runtime to disrupt the availability of containerized applications. Example: Launching a DoS attack against a container by overwhelming it with excessive requests.
+Перегрузка ресурсов контейнера или использование уязвимостей во времени выполнения контейнера для нарушения доступности контейнерных приложений. Пример: Осуществление DoS-атаки на контейнер путем перегрузки его чрезмерными запросами.
 
 
-The noncompliant code snippet shows a Dockerfile that is vulnerable to resource overloading and DoS attacks. It does not implement any resource limitations or restrictions, allowing the container to consume unlimited resources. This can lead to a DoS situation if an attacker overwhelms the container with excessive requests or exploits vulnerabilities in the container runtime.
+Фрагмент кода, не соответствующий требованиям, показывает Dockerfile, который уязвим для перегрузки ресурсов и DoS-атак. В нем не реализовано никаких ограничений на ресурсы, что позволяет контейнеру потреблять неограниченное количество ресурсов. Это может привести к DoS-ситуации, если злоумышленник перегрузит контейнер чрезмерными запросами или воспользуется уязвимостями во времени выполнения контейнера.
 
 
 
 
 ```
-# Noncompliant: Vulnerable Dockerfile with unlimited resource allocation
+# Несоответствие требованиям: Уязвимый Dockerfile с неограниченным распределением ресурсов
 
 FROM nginx:latest
 
@@ -306,7 +306,7 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-The compliant code snippet addresses this vulnerability by not explicitly setting any resource limitations. However, it is essential to implement resource management and limit container resources based on your application's requirements and the resources available in your environment. This can be achieved by configuring resource limits such as CPU, memory, and network bandwidth using container orchestration platforms or Docker-compose files.
+Соответствующий фрагмент кода устраняет эту уязвимость, не устанавливая явных ограничений на ресурсы. Однако необходимо реализовать управление ресурсами и ограничить ресурсы контейнера в зависимости от требований приложения и ресурсов, доступных в вашей среде. Этого можно достичь, настроив ограничения ресурсов, таких как процессор, память и пропускная способность сети, с помощью платформ оркестровки контейнеров или файлов Docker-compose.
 
 
 
@@ -327,88 +327,88 @@ services:
 ```
 
 
-## Kernel Vulnerabilities
+## Уязвимости ядра
 
-Exploiting vulnerabilities in the kernel or host operating system to gain unauthorized access or control over containers. Example: Exploiting a kernel vulnerability to escalate privileges and compromise containers.
+Использование уязвимостей в ядре или операционной системе хоста для получения несанкционированного доступа или контроля над контейнерами. Пример: Эксплуатация уязвимости ядра для повышения привилегий и компрометации контейнеров.
 
 
 ```
-# Noncompliant: Ignoring kernel vulnerabilities
+# Несоответствие требованиям: Игнорирование уязвимостей ядра
 
 docker run -d ubuntu:latest /bin/bash
 ```
 
-To mitigate kernel vulnerabilities, it is important to regularly check for updates and apply security patches to the host system. Additionally, you can use tools to scan and assess the vulnerability status of the kernel before creating a Docker container.
+Чтобы снизить уязвимость ядра, важно регулярно проверять наличие обновлений и применять патчи безопасности на хост-системе. Кроме того, вы можете использовать инструменты для сканирования и оценки состояния уязвимости ядра перед созданием контейнера Docker.
 
-Here's an example of compliant code that incorporates checking for kernel vulnerabilities using the kubehunter tool before creating the container:
+Вот пример совместимого кода, включающего проверку уязвимостей ядра с помощью инструмента kubehunter перед созданием контейнера:
 
 ```
-# Compliant: Checking kernel vulnerabilities
+# Соответствие требованиям: Проверка уязвимостей ядра
 
-# Perform vulnerability assessment using kubehunter
+# Выполните оценку уязвимостей с помощью kubehunter
 kubehunter scan
 
-# Check the output for kernel vulnerabilities
+# Проверьте вывод на наличие уязвимостей в ядре
 
-# If vulnerabilities are found, take necessary steps to address them
+# Если уязвимости обнаружены, примите необходимые меры для их устранения
 
-# Create the Docker container
+# Создайте контейнер Docker
 docker run -d ubuntu:latest /bin/bash
 ```
 
-In the compliant code snippet, the kubehunter tool is used to perform a vulnerability assessment, including checking for kernel vulnerabilities. The output of the tool is examined, and if any vulnerabilities are found, appropriate steps are taken to address them before creating the Docker container.
+В фрагменте кода, соответствующем требованиям, инструмент kubehunter используется для оценки уязвимости, в том числе для проверки уязвимостей ядра. Результаты работы инструмента изучаются, и если уязвимости найдены, то перед созданием Docker-контейнера предпринимаются соответствующие шаги по их устранению.
 
 
 
-## Shared Kernel Exploitation
+## Эксплуатация общего ядра
 
-Containers sharing the same kernel can be vulnerable to attacks that exploit kernel vulnerabilities, allowing attackers to affect multiple containers. Example: Exploiting a kernel vulnerability to gain unauthorized access to multiple containers on the same host.
+Контейнеры, использующие одно и то же ядро, могут быть уязвимы к атакам, использующим уязвимости ядра, что позволяет злоумышленникам воздействовать на несколько контейнеров. Пример: Эксплуатация уязвимости ядра для получения несанкционированного доступа к нескольким контейнерам на одном хосте.
 
 
-In the noncompliant code, the Docker image installs a vulnerable package and runs a vulnerable application. If an attacker manages to exploit a kernel vulnerability within the container, they could potentially escape the container and compromise the host or other containers.
+В несоответствующем коде образ Docker устанавливает уязвимый пакет и запускает уязвимое приложение. Если злоумышленнику удастся использовать уязвимость ядра в контейнере, он может выйти из контейнера и скомпрометировать хост или другие контейнеры.
 
 
 
 ```
-# Noncompliant: Vulnerable to container breakout
+# Не соответствует требованиям: Уязвимость к прорыву контейнера
 
 FROM ubuntu:latest
 
-# Install vulnerable package
+# Установите уязвимый пакет
 RUN apt-get update && apt-get install -y vulnerable-package
 
-# Run vulnerable application
+# Запустите уязвимое приложение
 CMD ["vulnerable-app"]
 ```
 
 
-The compliant code addresses the vulnerability by ensuring that the container image only includes necessary and secure packages. It performs regular updates and includes security patches to mitigate known vulnerabilities. By running a secure application within the container, the risk of a container breakout is reduced.
+Соответствующий код устраняет уязвимость, гарантируя, что образ контейнера включает только необходимые и безопасные пакеты. Он регулярно обновляется и включает исправления безопасности для устранения известных уязвимостей. Запуск безопасного приложения внутри контейнера снижает риск его взлома.
 
-To further enhance security, additional measures can be taken such as utilizing container isolation techniques like running containers with restricted privileges, leveraging security-enhanced kernels (such as those provided by certain container platforms), and monitoring and logging container activity to detect potential exploitation attempts.
+Для дальнейшего повышения безопасности можно принять дополнительные меры, например, использовать методы изоляции контейнеров, например, запускать контейнеры с ограниченными привилегиями, использовать ядра с усиленной защитой (например, предоставляемые некоторыми контейнерными платформами), а также отслеживать и регистрировать активность контейнеров для выявления потенциальных попыток эксплуатации.
 
 ```
-# Compliant: Mitigated container breakout vulnerability
+# Соответствует требованиям: Устранена уязвимость прорыва контейнера
 
 FROM ubuntu:latest
 
-# Install security updates and necessary packages
+# Установите обновления безопасности и необходимые пакеты
 RUN apt-get update && apt-get upgrade -y && apt-get install -y secure-package
 
-# Run secure application
+# Запуск безопасного приложения
 CMD ["secure-app"]
 ```
 
 
-## Insecure Container Orchestration
+## Небезопасная оркестровка контейнеров
 
-Misconfigurations or vulnerabilities in container orchestration platforms, such as Kubernetes, can lead to unauthorized access, privilege escalation, or exposure of sensitive information. Example: Exploiting a misconfigured Kubernetes cluster to gain unauthorized access to sensitive resources.
+Неправильная конфигурация или уязвимости в платформах для оркестровки контейнеров, таких как Kubernetes, могут привести к несанкционированному доступу, повышению привилегий или раскрытию конфиденциальной информации. Пример: Использование неправильно сконфигурированного кластера Kubernetes для получения несанкционированного доступа к важным ресурсам.
 
 
-In the noncompliant code, the Pod definition enables privileged mode for the container, granting it elevated privileges within the container orchestration environment. If an attacker gains access to this container, they could exploit the elevated privileges to perform malicious actions on the host or compromise other containers.
+В коде, не соответствующем требованиям, определение Pod включает привилегированный режим для контейнера, предоставляя ему повышенные привилегии в среде оркестровки контейнеров. Если злоумышленник получит доступ к этому контейнеру, он сможет использовать повышенные привилегии для выполнения вредоносных действий на хосте или компрометации других контейнеров.
 
 
 ```
-# Noncompliant: Vulnerable to privilege escalation
+# Несоответствие требованиям: Уязвимость для повышения привилегий
 
 apiVersion: v1
 kind: Pod
@@ -422,12 +422,12 @@ spec:
         privileged: true  # Privileged mode enabled
 ```
 
-The compliant code addresses the vulnerability by explicitly disabling privileged mode for the container. By running containers with reduced privileges, the impact of a potential compromise is limited, and the attack surface is minimized.
+Соответствующий код устраняет уязвимость путем явного отключения привилегированного режима для контейнера. Запуск контейнеров с пониженными привилегиями ограничивает последствия потенциальной компрометации и минимизирует площадь атаки.
 
-In addition to disabling privileged mode, other security measures should be implemented to enhance the security of container orchestration. This includes configuring appropriate RBAC (Role-Based Access Control) policies, enabling network segmentation and isolation, regularly applying security patches to the orchestration system, and monitoring the environment for suspicious activities.
+Помимо отключения привилегированного режима, для повышения безопасности оркестровки контейнеров следует применять и другие меры безопасности. К ним относятся настройка соответствующих политик RBAC (Role-Based Access Control), включение сегментации и изоляции сети, регулярное применение патчей безопасности для системы оркестровки и мониторинг среды на предмет подозрительной активности.
 
 ```
-# Compliant: Mitigated privilege escalation
+# Соответствует требованиям: Смягчение эскалации привилегий
 
 apiVersion: v1
 kind: Pod
@@ -442,79 +442,80 @@ spec:
 ```
 
 
-## Dump All Secrets
+## Сбросить все секреты
 
-Dumping all secrets in a Kubernetes cluster refers to an unauthorized extraction of sensitive information stored as secrets within the cluster. This attack allows an attacker with the right permissions to access and exfiltrate all secrets, potentially leading to further compromise.
+Под сбросом всех секретов в кластере Kubernetes понимается несанкционированное извлечение конфиденциальной информации, хранящейся в кластере в виде секретов. Эта атака позволяет злоумышленнику с соответствующими правами получить доступ ко всем секретам и вывести их из-под контроля, что может привести к дальнейшей компрометации.
 
-Noncompliant Code:
-The following noncompliant code demonstrates an attempt to dump all secrets from a Kubernetes cluster without proper authorization:
+Несоответствующий код:
+Следующий код, не отвечающий требованиям, демонстрирует попытку сбросить все секреты из кластера Kubernetes без надлежащей авторизации:
 
 ```
-# Retrieve all secrets using kubectl command
+# Получите все секреты с помощью команды kubectl
 kubectl get secrets --all-namespaces -o json > secrets.json
 ```
 
-The noncompliant code utilizes the kubectl get secrets command to retrieve all secrets in the cluster across all namespaces. This action assumes that the attacker has the necessary permissions to access and list secrets, potentially leading to unauthorized access to sensitive information.
+Несоответствующий код использует команду kubectl get secrets для получения всех секретов в кластере во всех пространствах имен. Это действие предполагает, что у злоумышленника есть необходимые разрешения на доступ и список секретов, что потенциально может привести к несанкционированному доступу к конфиденциальной информации.
 
-Compliant Code:
-Dumping all secrets in a Kubernetes cluster is considered a malicious activity, and providing compliant code for it would be inappropriate. Instead, I can provide you with guidelines on how to ensure the security of secrets in a Kubernetes cluster:
+Соответствующий код:
+Сброс всех секретов в кластере Kubernetes считается вредоносным действием, и предоставление совместимого кода для него было бы неуместным. Вместо этого я могу предоставить вам рекомендации по обеспечению безопасности секретов в кластере Kubernetes:
 
-* Implement Least Privilege: Follow the principle of least privilege when granting permissions to users and service accounts. Only assign the necessary privileges required for specific tasks, and regularly review and audit these permissions.
+* Реализуйте принцип наименьших привилегий: Следуйте принципу наименьших привилегий при предоставлении прав пользователям и учетным записям служб. Назначайте только те привилегии, которые необходимы для выполнения конкретных задач, и регулярно проверяйте и аудируйте эти разрешения.
 
-* Implement Role-Based Access Control (RBAC): Configure RBAC rules to restrict access to secrets based on the principle of least privilege. Assign appropriate roles to users and service accounts, ensuring they have the minimum necessary permissions.
+* Внедрите контроль доступа на основе ролей (RBAC): Настройте правила RBAC для ограничения доступа к секретам на основе принципа наименьших привилегий. Назначьте соответствующие роли пользователям и учетным записям служб, обеспечив им минимально необходимые разрешения.
 
-* Use Namespaces: Leverage Kubernetes namespaces to logically segregate resources and isolate secrets. Limit access to secrets within specific namespaces based on the principle of least privilege.
+* Используйте пространства имен: Используйте пространства имен Kubernetes для логического разделения ресурсов и изоляции секретов. Ограничьте доступ к секретам в определенных пространствах имен на основе принципа наименьших привилегий.
 
-* Implement Secrets Encryption: Encrypt secrets at rest and in transit. Kubernetes provides mechanisms such as the Secrets Encryption Configuration feature, which encrypts secrets stored in etcd, the Kubernetes cluster's key-value store.
+* Реализуйте шифрование секретов: Шифруйте секреты в состоянии покоя и при передаче. Kubernetes предоставляет такие механизмы, как функция Secrets Encryption Configuration, которая шифрует секреты, хранящиеся в etcd, хранилище ключевых значений кластера Kubernetes.
 
-* Monitor Kubernetes API Server Audit Logs: Enable and monitor Kubernetes API server audit logs to detect and investigate suspicious activities, such as unauthorized access attempts or abnormal querying of secrets.
+* Мониторинг журналов аудита сервера Kubernetes API: Включите и отслеживайте журналы аудита сервера Kubernetes API, чтобы обнаружить и расследовать подозрительные действия, такие как попытки несанкционированного доступа или ненормальные запросы к секретам.
 
-* Regularly Rotate Secrets: Implement a process to regularly rotate secrets to minimize the impact of potential compromise. This includes setting expiry times for secrets and automating the rotation process.
+* Регулярная ротация секретов: внедрите процесс регулярной ротации секретов, чтобы свести к минимуму последствия потенциальной компрометации. Это включает в себя установку времени истечения срока действия секретов и автоматизацию процесса ротации.
 
-* Secure Cluster Access: Secure access to the Kubernetes cluster by implementing strong authentication mechanisms, such as using strong passwords, multi-factor authentication (MFA), or integration with an identity provider.
-
-
+* Безопасный доступ к кластеру: Защитите доступ к кластеру Kubernetes, внедрив надежные механизмы аутентификации, такие как использование надежных паролей, многофакторная аутентификация (MFA) или интеграция с поставщиком идентификационных данных.
 
 
-## Steal Pod Service Account Token
 
-Stealing a pod's service account token refers to the unauthorized extraction of the service account token from a running pod in a Kubernetes cluster. The service account token is a sensitive credential that grants access to the Kubernetes API and other resources within the cluster.
 
-Noncompliant Code:
-The following noncompliant code demonstrates an attempt to steal the service account token from a running pod:
+## Кража токена учетной записи службы стручка
+
+Под кражей токена учетной записи сервиса понимается несанкционированное извлечение токена учетной записи сервиса из запущенного стручка в кластере Kubernetes. Токен учетной записи сервиса - это конфиденциальная учетная запись, предоставляющая доступ к API Kubernetes и другим ресурсам в кластере.
+
+Несоответствующий код:
+Следующий несоответствующий код демонстрирует попытку украсть токен учетной записи сервиса из запущенного стручка:
 
 ```
-# Execute command to read the service account token from within the pod
+# Выполните команду для чтения токена учетной записи службы из капсулы
 kubectl exec <pod-name> -- cat /var/run/secrets/kubernetes.io/serviceaccount/token
 ```
 
-The noncompliant code uses the kubectl exec command to execute a command (cat /var/run/secrets/kubernetes.io/serviceaccount/token) inside the specified pod. This command reads and outputs the contents of the service account token file. An attacker with sufficient access to the cluster could use this method to steal the token and gain unauthorized access to Kubernetes resources.
+Несоответствующий код использует команду kubectl exec для выполнения команды (cat /var/run/secrets/kubernetes.io/serviceaccount/token) внутри указанного стручка. Эта команда считывает и выводит содержимое файла токена учетной записи сервиса. Злоумышленник, имеющий достаточный доступ к кластеру, может использовать этот метод для кражи токена и получения несанкционированного доступа к ресурсам Kubernetes.
 
 
-Compliant Code:
-It is essential to adhere to security best practices and prevent the theft of service account tokens. Below are some recommendations for securing pod service account tokens:
+Код соответствия:
+Очень важно придерживаться лучших практик безопасности и предотвращать кражу токенов учетных записей служб. Ниже приведены некоторые рекомендации по защите токенов учетных записей служб pod:
 
-* Limit Pod Permissions: Assign minimal permissions to pods by using the principle of least privilege. Only grant the necessary access required for the pod to function properly.
+* Ограничьте разрешения подкатов: Назначьте минимальные разрешения для стручков, используя принцип наименьших привилегий. Предоставляйте только необходимый доступ, требуемый для правильной работы капсулы.
 
-* Use Role-Based Access Control (RBAC): Implement RBAC rules to restrict pod permissions and limit the ability to execute privileged commands or access sensitive files.
+* Используйте контроль доступа на основе ролей (RBAC): Внедрите правила RBAC, чтобы ограничить права доступа для подкад и ограничить возможность выполнения привилегированных команд или доступа к конфиденциальным файлам.
 
-* Avoid Mounting Service Account Tokens: When creating pods, avoid mounting the service account token as a volume or exposing it as an environment variable. Minimize the attack surface by not making the token easily accessible within the pod.
+* Избегайте монтирования токенов учетных записей служб: При создании стручков избегайте монтирования маркера учетной записи службы в качестве тома или раскрытия его как переменной окружения. Минимизируйте поверхность атаки, не делая токен легкодоступным внутри капсулы.
 
-* Regularly Rotate Service Account Tokens: Implement a process to periodically rotate service account tokens. This helps mitigate the impact of a compromised token and reduces the window of opportunity for attackers.
+* Регулярная ротация токенов учетных записей служб: Внедрите процесс периодической ротации токенов учетных записей служб. Это поможет смягчить воздействие скомпрометированного токена и сократить возможности для злоумышленников.
 
-* Monitor Pod Activity: Enable logging and monitoring for pod activities. Regularly review logs and detect any suspicious or unauthorized access attempts.
+* Мониторинг активности подсистем: Включите ведение журналов и мониторинг активности подсистем. Регулярно просматривайте журналы и выявляйте любые подозрительные или несанкционированные попытки доступа.
 
-* Implement Pod Security Policies: Utilize Pod Security Policies (PSPs) to enforce security controls on pod creation, including restrictions on executing privileged commands or accessing sensitive files.
+* Внедрение политик безопасности: Используйте политики безопасности стручков (PSP) для обеспечения контроля безопасности при создании стручков, включая ограничения на выполнение привилегированных команд или доступ к конфиденциальным файлам.
 
-## Create Admin ClusterRole
 
-Create Admin ClusterRole refers to the process of creating a Kubernetes ClusterRole with administrative permissions. It involves creating a Service Account bound to the ClusterRole and establishing a Cluster Role Binding to associate the Service Account with the desired privileges.
+## Создайте роль администратора кластера
 
-Noncompliant Code:
-The following noncompliant code demonstrates the creation of an Admin ClusterRole:
+Create Admin ClusterRole относится к процессу создания Kubernetes ClusterRole с административными правами. Он включает в себя создание учетной записи службы, связанной с ClusterRole, и создание привязки роли кластера, чтобы связать учетную запись службы с необходимыми привилегиями.
+
+Несоответствующий код:
+Следующий код, не отвечающий требованиям, демонстрирует создание роли Admin ClusterRole:
 
 ```
-# Create an Admin ClusterRole
+# Создание роли администратора кластера
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -524,14 +525,14 @@ rules:
   resources: ["*"]
   verbs: ["*"]
 
-# Create a Service Account in the kube-system namespace
+# Создайте учетную запись службы в пространстве имен kube-system
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: admin-serviceaccount
   namespace: kube-system
 
-# Create a Cluster Role Binding to associate the Service Account with the ClusterRole
+# Создайте привязку роли кластера, чтобы связать учетную запись службы с ролью ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -546,13 +547,13 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-The noncompliant code creates an Admin ClusterRole named "admin-clusterrole" with wide-ranging permissions (apiGroups: [""], resources: [""], verbs: [""]). It also creates a Service Account named "admin-serviceaccount" in the kube-system namespace and binds it to the Admin ClusterRole using a Cluster Role Binding named "admin-clusterrolebinding". This configuration grants the Service Account administrative access to all resources in the cluster, which is not recommended for security reasons.
+Несоответствующий код создает роль Admin ClusterRole с именем "admin-clusterrole" с широкими полномочиями (apiGroups: [""], resources: [""], verbs: [""]). Также создается учетная запись службы с именем "admin-serviceaccount" в пространстве имен kube-system и привязывается к роли Admin ClusterRole с помощью привязки роли кластера с именем "admin-clusterrolebinding". Эта конфигурация предоставляет учетной записи службы административный доступ ко всем ресурсам в кластере, что не рекомендуется по соображениям безопасности.
 
-Compliant Code:
-When creating a ClusterRole with administrative permissions, it is important to follow the principle of least privilege and assign only the necessary privileges to the Service Account. Below is an example of compliant code:
+Соответствующий код:
+При создании ClusterRole с административными правами важно следовать принципу наименьших привилегий и назначать только необходимые привилегии учетной записи службы. Ниже приведен пример совместимого кода:
 
 ```
-# Create a ClusterRole with appropriate administrative permissions
+# Создайте роль ClusterRole с соответствующими административными полномочиями
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -562,14 +563,14 @@ rules:
   resources: ["pods", "deployments"]
   verbs: ["get", "list", "create", "update", "delete"]
 
-# Create a Service Account in the kube-system namespace
+# Создайте учетную запись службы в пространстве имен kube-system
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: admin-serviceaccount
   namespace: kube-system
 
-# Create a Cluster Role Binding to associate the Service Account with the ClusterRole
+# Создайте привязку роли кластера, чтобы связать учетную запись службы с ролью ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -584,35 +585,35 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-The compliant code creates an Admin ClusterRole named "admin-clusterrole" with specific permissions for managing pods and deployments. It limits the verbs to "get", "list", "create", "update", and "delete" for those resources. This approach follows the principle of least privilege, granting only the necessary permissions to the Service Account. By adopting this approach, the Service Account associated with the Admin ClusterRole has restricted administrative access, reducing the potential impact of any compromise or misuse of the account.
+Соответствующий код создает роль администратора кластера с именем "admin-clusterrole" со специальными полномочиями для управления стручками и развертываниями. Он ограничивает глаголы "получить", "перечислить", "создать", "обновить" и "удалить" для этих ресурсов. Этот подход следует принципу наименьших привилегий, предоставляя учетной записи службы только необходимые разрешения. Благодаря такому подходу учетная запись службы, связанная с ролью Admin ClusterRole, имеет ограниченный административный доступ, что снижает потенциальное воздействие любого компрометации или неправильного использования этой учетной записи.
 
 
 
-## Create Client Certificate Credential
+## Создание мандата клиентского сертификата
 
-Create Client Certificate Credential refers to the process of generating a client certificate for a privileged user in a Kubernetes cluster. The client certificate can be used to authenticate and access the cluster with the assigned privileges.
+Create Client Certificate Credential - это процесс создания клиентского сертификата для привилегированного пользователя в кластере Kubernetes. Сертификат клиента может быть использован для аутентификации и доступа к кластеру с назначенными привилегиями.
 
-Noncompliant Code:
-The following noncompliant code demonstrates the creation of a client certificate:
+Несоответствующий код:
+Следующий код, не отвечающий требованиям, демонстрирует создание клиентского сертификата:
 
 ```
-# Generate a private key
+# Сгенерируйте закрытый ключ
 openssl genrsa -out client.key 2048
 
-# Create a certificate signing request (CSR)
+# Создайте запрос на подписание сертификата (CSR)
 openssl req -new -key client.key -out client.csr -subj "/CN=client"
 
-# Print the CSR
+# Печать CSR
 cat client.csr
 ```
 
-The noncompliant code manually generates a private key using OpenSSL and creates a certificate signing request (CSR) for a client with the Common Name (CN) "client". However, this code snippet alone does not include the step to approve the CSR and issue the client certificate. It is important to note that this noncompliant code does not adhere to best practices and security requirements for managing client certificates within a Kubernetes cluster.
+Несоответствующий код вручную генерирует закрытый ключ с помощью OpenSSL и создает запрос на подписание сертификата (CSR) для клиента с общим именем (CN) "клиент". Однако этот фрагмент кода не содержит шагов по утверждению CSR и выпуску сертификата клиента. Важно отметить, что этот несоответствующий код не соответствует лучшим практикам и требованиям безопасности для управления клиентскими сертификатами в кластере Kubernetes.
 
-Compliant Code:
-To create a client certificate credential in a compliant manner, it is recommended to use the Kubernetes Certificate Signing Request (CSR) API and follow the proper procedures for certificate generation and approval. Below is an example of compliant code:
+Соответствующий код:
+Для создания клиентского сертификата в соответствии с требованиями безопасности рекомендуется использовать API Kubernetes Certificate Signing Request (CSR) и следовать надлежащим процедурам генерации и утверждения сертификата. Ниже приведен пример совместимого кода:
 
 ```
-# Create a CertificateSigningRequest object
+# Создайте объект CertificateSigningRequest
 apiVersion: certificates.k8s.io/v1beta1
 kind: CertificateSigningRequest
 metadata:
@@ -624,13 +625,13 @@ spec:
   usages:
   - client auth
 
-# Approve the CertificateSigningRequest
+# Утвердить CertificateSigningRequest
 kubectl certificate approve client-csr
 
-# Retrieve the signed certificate
+# Получение подписанного сертификата
 kubectl get csr client-csr -o jsonpath='{.status.certificate}' | base64 -d > client.crt
 
-# Print the client certificate and private key
+# Печать сертификата и закрытого ключа клиента
 echo "Client Certificate:"
 cat client.crt
 
@@ -638,35 +639,35 @@ echo "Client Private Key:"
 openssl rsa -in client.key -text
 ```
 
-The compliant code demonstrates the proper approach for creating a client certificate credential. It involves creating a CertificateSigningRequest (CSR) object with the appropriate metadata, including the base64-encoded CSR and specified usages. The CSR is then approved using the kubectl certificate approve command, and the signed certificate is retrieved using kubectl get csr. Finally, the client certificate and private key are printed.
+Код, соответствующий требованиям, демонстрирует правильный подход к созданию учетной записи клиентского сертификата. Он включает в себя создание объекта CertificateSigningRequest (CSR) с соответствующими метаданными, включая CSR в base64-кодировке и указанные использования. Затем CSR утверждается с помощью команды kubectl certificate approve, а подписанный сертификат извлекается с помощью kubectl get csr. Наконец, сертификат клиента и закрытый ключ распечатываются.
 
 
 
-## Create Long-Lived Token
+## Создание долгоживущего токена
 
 
-Create Long-Lived Token refers to the process of generating a token with an extended expiration period for a service account in a Kubernetes cluster. This allows an attacker to establish persistence by creating a long-lived token that grants ongoing access to the compromised cluster.
+Create Long-Lived Token - это процесс генерации токена с увеличенным сроком действия для учетной записи сервиса в кластере Kubernetes. Это позволяет злоумышленнику установить постоянство путем создания долгоживущего токена, который предоставляет постоянный доступ к взломанному кластеру.
 
-Noncompliant Code:
-The following noncompliant code demonstrates the creation of a long-lived token:
+Несоответствующий код:
+Следующий несоответствующий код демонстрирует создание долгоживущего токена:
 
 ```
-# Create a service account token
+# Создайте токен учетной записи службы
 kubectl create serviceaccount long-lived-token-sa
 
-# Get the token
+# Получить токен
 kubectl get secret $(kubectl get serviceaccount long-lived-token-sa -o jsonpath='{.secrets[0].name}') -o jsonpath='{.data.token}' | base64 -d
 ```
 
-The noncompliant code generates a service account token for a newly created service account. It retrieves the token from the associated secret and decodes it using base64. However, this code snippet alone does not specify an extended expiration for the token, and the default token expiration policy of the cluster will be applied. It is important to note that this noncompliant code does not adhere to the concept of creating a long-lived token explicitly.
+Несоответствующий код генерирует токен учетной записи службы для вновь созданной учетной записи службы. Он извлекает токен из связанного секрета и декодирует его с помощью base64. Однако в этом фрагменте кода не указан срок действия токена, и будет применена политика истечения срока действия токена по умолчанию в кластере. Важно отметить, что этот несоответствующий код не придерживается концепции создания долгоживущего токена в явном виде.
 
 
 
-Compliant Code:
-To create a long-lived token, a compliant approach would involve defining a custom TokenRequest with a specific expiration time. Here's an example of compliant code:
+Соответствующий код:
+Для создания долгоживущего токена совместимый подход предполагает определение пользовательского TokenRequest с определенным сроком действия. Вот пример совместимого кода:
 
 ```
-# Create a TokenRequest with extended expiration
+# Создание TokenRequest с продленным сроком действия
 apiVersion: authentication.k8s.io/v1
 kind: TokenRequest
 metadata:
@@ -679,25 +680,25 @@ spec:
       name: serviceaccount-name
       namespace: namespace-name
 
-# Create the TokenRequest
+# Создание TokenRequest
 kubectl create -f token-request.yaml
 
-# Get the token
+# Получить токен
 kubectl get secret $(kubectl get tokenrequest long-lived-token -o jsonpath='{.status.secretName}') -o jsonpath='{.data.token}' | base64 -d
 ```
 
-The compliant code defines a TokenRequest object specifying the desired expiration time for the token (e.g., 30 days). It also includes the name of the service account and the namespace. The TokenRequest is then created using kubectl create with the YAML file containing the object definition. Finally, the token is retrieved by accessing the associated secret and decoding the token value.
+Соответствующий код определяет объект TokenRequest, в котором указывается желаемое время действия токена (например, 30 дней). Он также включает имя учетной записи службы и пространство имен. Затем TokenRequest создается с помощью kubectl create с YAML-файлом, содержащим определение объекта. Наконец, токен извлекается путем доступа к связанному секрету и декодирования значения токена.
 
 
 
 
 
-## Container breakout via hostPath volume mount
+## Вынос контейнера через монтирование тома hostPath
 
-Container breakout via hostPath volume mount is a privilege escalation technique in Kubernetes where a malicious actor creates a pod that mounts the entire node's root filesystem using the hostPath volume. This allows the attacker to escape the pod's containerized environment and access sensitive files or execute privileged actions on the underlying host system.
+Прорыв контейнера через монтирование тома hostPath - это техника повышения привилегий в Kubernetes, при которой злоумышленник создает подкад, монтирующий корневую файловую систему всего узла с помощью тома hostPath. Это позволяет злоумышленнику выйти из контейнерного окружения капсулы и получить доступ к конфиденциальным файлам или выполнить привилегированные действия на базовой хост-системе.
 
-Noncompliant Code:
-The following noncompliant code demonstrates the creation of a pod with a hostPath volume mount:
+Несоответствующий код:
+Следующий код, не соответствующий требованиям, демонстрирует создание pod с монтированием тома hostPath:
 
 ```
 apiVersion: v1
@@ -719,12 +720,12 @@ spec:
       path: /
 ```
 
-The noncompliant code defines a pod named "hostpath-container-breakout" with a single container based on the "busybox" image. The container executes the command "cat /host/etc/passwd" to read the "/etc/passwd" file on the host system. The hostPath volume is mounted at "/host", allowing access to the node's root filesystem.
+Несоответствующий код определяет подкапсулу с именем "hostpath-container-breakout" с одним контейнером, основанным на образе "busybox". Контейнер выполняет команду "cat /host/etc/passwd" для чтения файла "/etc/passwd" на хост-системе. Том hostPath монтируется в "/host", обеспечивая доступ к корневой файловой системе узла.
 
 
 
-Compliant Code:
-To prevent container breakout via hostPath volume mount, it is essential to apply proper security controls and restrictions to limit access to the host system. Here's an example of compliant code that mitigates this issue:
+Соответствующий код:
+Чтобы предотвратить взлом контейнера через монтирование тома hostPath, необходимо применять надлежащие средства контроля безопасности и ограничения для ограничения доступа к хост-системе. Вот пример совместимого кода, позволяющего решить эту проблему:
 
 ```
 apiVersion: v1
@@ -741,16 +742,16 @@ spec:
       allowPrivilegeEscalation: false
 ```
 
-The compliant code defines a pod named "secure-pod" with a single container based on the "busybox" image. The container executes a command that simply echoes "Access denied" to indicate restricted access. The securityContext section is added with the "allowPrivilegeEscalation" field set to false, which prevents privilege escalation attempts within the container.
+Код, соответствующий требованиям, определяет стручок с именем "secure-pod" с единственным контейнером, основанным на образе "busybox". Контейнер выполняет команду, которая просто выдает эхо "Access denied", чтобы указать на ограниченный доступ. Секция securityContext добавляется с полем "allowPrivilegeEscalation", установленным в false, что предотвращает попытки повышения привилегий внутри контейнера.
 
 
 
-## Privilege escalation through node/proxy permissions
+## Повышение привилегий с помощью разрешений узла/прокси
 
-Privilege escalation through node/proxy permissions is a technique in Kubernetes that leverages the node proxy API to escalate privileges. By using this technique, an attacker with the nodes/proxy permission can bypass admission control checks and API server logging to escalate their privileges to cluster administrator.
+Повышение привилегий через разрешения узлов/прокси - это техника в Kubernetes, использующая API-прокси узлов для повышения привилегий. Используя эту технику, злоумышленник с правами nodes/proxy может обойти проверки контроля допуска и логирование сервера API, чтобы повысить свои привилегии до администратора кластера.
 
-Noncompliant Code:
-The following noncompliant code demonstrates the creation of a cluster role with nodes/proxy permissions and binding it to a service account:
+Несоответствующий код:
+Следующий код, не соответствующий требованиям, демонстрирует создание роли кластера с правами nodes/proxy и привязку ее к учетной записи службы:
 
 ```
 apiVersion: rbac.authorization.k8s.io/v1
@@ -776,12 +777,12 @@ subjects:
   namespace: your-namespace
 ```
 
-The noncompliant code creates a cluster role named "nodes-proxy-role" with rules granting full access to the nodes/proxy resource. It also creates a cluster role binding named "nodes-proxy-binding" that binds the role to a service account named "nodes-proxy-sa" in a specific namespace.
+Несоответствующий код создает кластерную роль с именем "nodes-proxy-role" с правилами, предоставляющими полный доступ к ресурсу nodes/proxy. Он также создает привязку кластерной роли с именем "nodes-proxy-binding", которая связывает роль с учетной записью службы с именем "nodes-proxy-sa" в определенном пространстве имен.
 
 
 
-Compliant Code:
-To mitigate privilege escalation through node/proxy permissions, it's crucial to implement the principle of least privilege and restrict access to sensitive resources. Here's an example of compliant code:
+Соответствующий код:
+Чтобы предотвратить повышение привилегий через разрешения узлов/прокси, очень важно реализовать принцип наименьших привилегий и ограничить доступ к важным ресурсам. Вот пример совместимого кода:
 
 ```
 apiVersion: rbac.authorization.k8s.io/v1
@@ -807,16 +808,16 @@ subjects:
   namespace: your-namespace
 ```
 
-The compliant code creates a cluster role named "restricted-nodes-proxy-role" with a rule that allows only the "get" verb for the nodes/proxy resource. This significantly limits the permissions associated with the role, reducing the risk of privilege escalation.
+Соответствующий код создает роль кластера с именем "restricted-nodes-proxy-role" с правилом, которое разрешает только глагол "get" для ресурса nodes/proxy. Это значительно ограничивает разрешения, связанные с ролью, снижая риск повышения привилегий.
 
 
 
-## Run a Privileged Pod
+## Запуск привилегированной капсулы
 
-Running a privileged pod in Kubernetes refers to launching a pod with elevated privileges, equivalent to running as root on the worker node. Privileged pods can be used as a vector for privilege escalation within the cluster.
+Запуск привилегированного стручка в Kubernetes означает запуск стручка с повышенными привилегиями, что эквивалентно запуску от имени root на рабочем узле. Привилегированные стручки могут использоваться в качестве вектора повышения привилегий в кластере.
 
-Noncompliant Code:
-The following noncompliant code demonstrates the creation of a privileged pod:
+Несоответствующий код:
+Следующий код, не соответствующий требованиям, демонстрирует создание привилегированной капсулы:
 
 ```
 apiVersion: v1
@@ -833,11 +834,11 @@ spec:
       privileged: true
 ```
 
-The noncompliant code creates a pod named "privileged-pod" within a specific namespace. It contains a single container named "privileged-container" running the "busybox:latest" image. The securityContext.privileged field is set to true, indicating that the pod should run with elevated privileges.
+Несоответствующий код создает подкапсулу с именем "privileged-pod" в определенном пространстве имен. Он содержит один контейнер с именем "privileged-container", в котором запущен образ "busybox:latest". Поле securityContext.privileged установлено в true, что указывает на то, что pod должен работать с повышенными привилегиями.
 
 
-Compliant Code:
-To ensure the security and integrity of the cluster, it's important to follow the principle of least privilege and avoid running privileged pods whenever possible. Here's an example of compliant code:
+Соответствующий код:
+Чтобы обеспечить безопасность и целостность кластера, важно следовать принципу наименьших привилегий и по возможности избегать запуска привилегированных подсистем. Вот пример совместимого кода:
 
 ```
 apiVersion: v1
@@ -852,7 +853,7 @@ spec:
     command: ["sleep", "3600"]
 ```
 
-The compliant code creates a pod named "non-privileged-pod" within a specific namespace. It contains a single container named "non-privileged-container" running the "busybox:latest" image.
+Соответствующий код создает капсулу с именем "non-privileged-pod" в определенном пространстве имен. Он содержит один контейнер с именем "non-privileged-container", в котором запущен образ "busybox:latest".
 
-By omitting the securityContext.privileged field or setting it to false (the default), the pod and its container will run with standard user privileges. This reduces the risk of privilege escalation and helps maintain the security boundaries within the cluster.
+Если опустить поле securityContext.privileged или задать ему значение false (по умолчанию), pod и его контейнер будут работать с обычными привилегиями пользователя. Это снижает риск повышения привилегий и помогает поддерживать границы безопасности в кластере.
 
