@@ -16,30 +16,29 @@ parent: Build & Test
 ---
 
 
-Smoke tests are typically conducted on a small subset of the application's functionality, and are designed to be quick and easy to execute. They may include basic checks such as verifying that the application can be launched, that key features are functional, and that data is being processed correctly. If the smoke test passes, the application can be considered ready for further testing.
+Smoke tests обычно проводятся на небольшом подмножестве функциональных возможностей приложения и рассчитаны на быстрое и простое выполнение. Они могут включать в себя базовые проверки, такие как проверка возможности запуска приложения, работоспособности ключевых функций и корректности обработки данных. Если дымовой тест пройден, приложение можно считать готовым к дальнейшему тестированию.
+
+Примеры команд для проведения Smoke тестов в DevSecOps:
+
+## HTTP-запросы:
+
+* Используйте такие инструменты, как c URL или HTTP, для выполнения HTTP-запросов к конечным точкам приложения и проверки того, что они возвращают ожидаемые ответы.
+* Например, вы можете выполнить команду `curl http://localhost:8080/api/health`, чтобы проверить работоспособность приложения.
 
 
-Example commands for performing smoke tests in DevSecOps:
+## Запросы к базе данных:
 
-## HTTP requests:
-
-* Use tools like cURL or HTTPie to make HTTP requests to the application's endpoints and verify that they return the expected responses.
-* For example, you might run a command like `curl http://localhost:8080/api/health` to check the health of the application.
+* Используйте SQL-запросы, чтобы проверить, правильно ли приложение читает из базы данных и записывает в нее данные.
+* Например, можно выполнить команду `mysql -u user -p password -e "SELECT * FROM users WHERE id=1"`, чтобы убедиться, что пользователь с идентификатором 1 существует в базе данных.
 
 
-## Database queries:
+## Сценарные тесты:
 
-* Use SQL queries to verify that the application is correctly reading from and writing to the database.
-* For example, you might run a command like `mysql -u user -p password -e "SELECT * FROM users WHERE id=1"` to verify that a user with ID 1 exists in the database.
-
-
-## Scripted tests:
-
-* Use testing frameworks like Selenium or Puppeteer to automate browser-based tests and verify that the application's UI is working correctly.
-* For example, you might create a script using Puppeteer that logs in to the application and verifies that the user profile page is displayed correctly.
+* Используйте фреймворки тестирования, такие как Selenium или Puppeteer, для автоматизации браузерных тестов и проверки правильности работы пользовательского интерфейса приложения.
+* Например, с помощью Puppeteer можно создать сценарий, который будет входить в приложение и проверять, правильно ли отображается страница профиля пользователя.
 
 
-## Unit tests:
+## Модульные тесты:
 
-* Use unit testing frameworks like JUnit or NUnit to test individual functions and methods in the application.
-* For example, you might run a command like `mvn test` to run all of the unit tests in a Java application.
+* Используйте фреймворки для модульного тестирования, такие как JUnit или NUnit, для тестирования отдельных функций и методов в приложении.
+* Например, можно выполнить команду `mvn test`, чтобы запустить все модульные тесты в Java-приложении.
