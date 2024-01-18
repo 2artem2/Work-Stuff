@@ -4,10 +4,10 @@ title: Configuration Management
 parent: Build & Test
 ---
 
-# Configuration Management
+# Управление конфигурацией
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,40 +15,40 @@ parent: Build & Test
 
 ---
 
-Configuration management is the process of managing and maintaining the configuration of an application or system in a consistent and reliable manner. In a DevSecOps environment, configuration management is an important component of ensuring that applications are secure and reliable. Here are some common tools and practices used in configuration management in DevSecOps:
+Управление конфигурацией - это процесс управления и поддержания конфигурации приложения или системы в неизменном и надежном виде. В среде DevSecOps управление конфигурацией является важным компонентом обеспечения безопасности и надежности приложений. Вот некоторые общие инструменты и практики, используемые для управления конфигурацией в DevSecOps:
 
 
-1. Infrastructure as Code (IaC): IaC is a practice that involves writing code to define and manage the infrastructure and configuration of an application or system. This approach provides a more automated and repeatable way of managing configurations, and helps to ensure that the infrastructure is consistent across different environments.
+1. Инфраструктура как код (IaC): IaC - это практика, которая предполагает написание кода для определения и управления инфраструктурой и конфигурацией приложения или системы. Такой подход обеспечивает более автоматизированный и повторяемый способ управления конфигурациями, а также помогает обеспечить согласованность инфраструктуры в различных средах.
 
-2. Configuration Management Tools: There are a number of configuration management tools that can be used to manage configurations in a DevSecOps environment. Some popular examples include Ansible, Chef, Puppet, and SaltStack.
+2. Инструменты управления конфигурацией: Существует ряд инструментов управления конфигурацией, которые можно использовать для управления конфигурациями в среде DevSecOps. Среди популярных примеров - Ansible, Chef, Puppet и SaltStack.
 
-3. Version Control: Version control systems like Git can be used to manage changes to configurations over time, making it easier to track changes and roll back to previous configurations if necessary.
+3. Контроль версий: Системы контроля версий, такие как Git, можно использовать для управления изменениями конфигураций с течением времени, что облегчает отслеживание изменений и откат к предыдущим конфигурациям в случае необходимости.
 
-4. Continuous Integration and Deployment (CI/CD): CI/CD pipelines can be used to automate the deployment and configuration of applications in a DevSecOps environment. This can help to ensure that configurations are consistent and up-to-date across different environments.
+4. Непрерывная интеграция и развертывание (CI/CD): Конвейеры CI/CD могут использоваться для автоматизации развертывания и настройки приложений в среде DevSecOps. Это поможет обеспечить согласованность и актуальность конфигураций в различных средах.
 
-5. Security Configuration Management: Security configuration management involves ensuring that the configurations of applications and systems are secure and meet industry standards and best practices. This can include configuring firewalls, encryption, access controls, and other security measures.
+5. Управление конфигурацией безопасности: Управление конфигурацией безопасности включает в себя обеспечение безопасности конфигураций приложений и систем и их соответствия отраслевым стандартам и передовым практикам. Это может включать настройку брандмауэров, шифрования, контроля доступа и других мер безопасности.
 
 
 
-To achieve this, you can use a configuration management tool like Ansible or Puppet to manage the configuration of the system. Here's a high-level overview of how this might work:
+Для этого можно использовать инструмент управления конфигурацией, например Ansible или Puppet, для управления конфигурацией системы. Вот высокоуровневый обзор того, как это может работать:
 
-1. Define the configuration: You define the configuration of the system in a configuration file or script. This includes things like the software packages to be installed, the network settings, the user accounts, and any other system settings.
+1. Определение конфигурации: Вы определяете конфигурацию системы в конфигурационном файле или сценарии. Сюда входят такие параметры, как устанавливаемые пакеты программного обеспечения, сетевые настройки, учетные записи пользователей и любые другие настройки системы.
 
-2. Version control: You use version control tools like Git to track changes to the configuration file, and to maintain a history of changes.
+2. Контроль версий: Вы используете инструменты контроля версий, такие как Git, для отслеживания изменений в конфигурационном файле и ведения истории изменений.
 
-3. Continuous integration and deployment: You use a CI/CD pipeline to build and test the application, and to deploy the containers to the different environments. The configuration management tool is integrated into the pipeline, so that any changes to the configuration are automatically applied to the containers as they are deployed.
+3. Непрерывная интеграция и развертывание: Вы используете конвейер CI/CD для сборки и тестирования приложения, а также для развертывания контейнеров в различных средах. Инструмент управления конфигурацией интегрирован в конвейер, поэтому любые изменения в конфигурации автоматически применяются к контейнерам по мере их развертывания.
 
-4. Automation: The configuration management tool automates the process of configuring the system, so that the same configuration is applied consistently across all environments. This reduces the risk of configuration errors and makes it easier to maintain the system.
+4. Автоматизация: Инструмент управления конфигурацией автоматизирует процесс конфигурирования системы, благодаря чему одна и та же конфигурация применяется последовательно во всех средах. Это снижает риск ошибок в конфигурации и упрощает обслуживание системы.
 
-5. Monitoring and reporting: The configuration management tool provides monitoring and reporting capabilities, so that you can track the status of the system and identify any issues or errors.
+5. Мониторинг и отчетность: Инструмент управления конфигурацией предоставляет возможности мониторинга и отчетности, чтобы вы могли отслеживать состояние системы и выявлять любые проблемы и ошибки.
 
 
 
 ### Ansible 
 
-#### Ansible Playbooks
+#### Плейбуки Ansible
 
-Playbooks are the heart of Ansible, and define the configuration steps for your infrastructure.
+Плейбуки являются сердцем Ansible и определяют шаги по настройке вашей инфраструктуры.
 
 ```
 # playbook.yml
@@ -67,7 +67,7 @@ Playbooks are the heart of Ansible, and define the configuration steps for your 
 
 
 
-#### Ansible Variables
+#### Переменные Ansible
 
 
 ```
@@ -88,7 +88,7 @@ Playbooks are the heart of Ansible, and define the configuration steps for your 
 ```
 
 
-### Ansible Ad-Hoc Commands
+### Команды Ansible Ad-Hoc
 
 
 ```
@@ -99,7 +99,7 @@ $ ansible web_servers -a "apt update && apt upgrade -y"
 
 ### Ansible Vault
 
-Vault allows you to encrypt sensitive data, like passwords and API keys.
+Vault позволяет шифровать конфиденциальные данные, такие как пароли и ключи API.
 
 ```
 $ ansible-vault create secrets.yml
@@ -116,10 +116,10 @@ api_key: ABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 
 
-#### Secure File Management
+#### Безопасное управление файлами
 
 
-SaltStack provides secure file management through the use of the file.managed state module, which ensures the integrity and security of files on Salt Minions.
+SaltStack обеспечивает безопасное управление файлами с помощью модуля состояния file.managed, который обеспечивает целостность и безопасность файлов на миньонах Salt.
 
 ```
 /etc/sudoers:
@@ -131,12 +131,12 @@ SaltStack provides secure file management through the use of the file.managed st
     - backup: minion
 ```
 
-This command manages the /etc/sudoers file on Salt Minions, ensuring that it is sourced from the Salt Master (salt://files/sudoers), owned by the root user and group, has the mode set to 440, and creates a backup of the previous file.
+Эта команда управляет файлом /etc/sudoers на миньонах Salt, гарантируя, что он берется из Salt Master (salt://files/sudoers), принадлежит пользователю и группе root, его режим установлен на 440, и создает резервную копию предыдущего файла.
 
 
-#### State Management
+#### State Управление
 
-SaltStack's state management allows you to define and enforce desired system configurations, ensuring consistency and security across Salt Minions.
+Управление состоянием SaltStack позволяет определять и внедрять желаемые конфигурации системы, обеспечивая согласованность и безопасность всех миньонов Salt.
 
 
 ```
@@ -150,12 +150,12 @@ apache_service_running:
     - enable: True
 ```
 
-This command defines two states: apache_package_installed and apache_service_running. The first state ensures that the apache2 package is installed on the Salt Minion, and the second state ensures that the apache2 service is running and enabled.
+Эта команда определяет два состояния: apache_package_installed и apache_service_running. Первое состояние гарантирует, что пакет apache2 установлен на Salt Minion, а второе - что служба apache2 запущена и включена.
 
 
-#### Vulnerability Scanning Integration
+#### Интеграция сканирования уязвимостей
 
-SaltStack can be integrated with vulnerability scanning tools to identify and remediate vulnerabilities on Salt Minions.
+SaltStack может быть интегрирован с инструментами сканирования уязвимостей для выявления и устранения уязвимостей в Salt Minions.
 
 
 ```
@@ -166,7 +166,7 @@ openvas_scan:
     - create_task: True
 ```
 
-This command initiates a vulnerability scan using OpenVAS on all Salt Minions (`target: '*'`). It generates a report with the ID `scan_report` and creates a scan task if it doesn't already exist.
+Эта команда инициирует проверку уязвимостей с помощью OpenVAS на всех Salt Minions (`target: '*'`). Она генерирует отчет с идентификатором `scan_report` и создает задачу сканирования, если она еще не существует.
 
 
 
