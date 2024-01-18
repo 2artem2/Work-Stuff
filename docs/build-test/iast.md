@@ -4,10 +4,10 @@ title: IAST
 parent: Build & Test
 ---
 
-# IAST
+# IAST- Интерактивное тестирование безопасности приложений
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,36 +16,36 @@ parent: Build & Test
 ---
 
 
-IAST stands for Interactive Application Security Testing. It is a type of application security testing that combines the benefits of SAST (Static Application Security Testing) and DAST (Dynamic Application Security Testing) tools.
+IAST расшифровывается как Interactive Application Security Testing. Это тип тестирования безопасности приложений, который сочетает в себе преимущества инструментов SAST (Static Application Security Testing) и DAST (Dynamic Application Security Testing).
 
-IAST tools are designed to be integrated into the application being tested, and work by instrumenting the application's code to provide real-time feedback on any security vulnerabilities that are identified during runtime. This allows IAST tools to detect vulnerabilities that may not be visible through other forms of testing, such as those that are introduced by the application's configuration or environment.
+Инструменты IAST предназначены для интеграции в тестируемое приложение и работают путем инструментального анализа кода приложения, обеспечивая обратную связь в режиме реального времени по любым уязвимостям безопасности, выявленным во время выполнения. Это позволяет инструментам IAST обнаруживать уязвимости, которые могут быть не видны при других видах тестирования, например те, которые возникают из-за конфигурации приложения или его окружения.
 
-Here are some key features of IAST:
+Вот некоторые ключевые особенности IAST:
 
-1. Real-time feedback: IAST tools provide real-time feedback on security vulnerabilities as they are identified during runtime, allowing developers to fix them as they are found.
+1. Обратная связь в реальном времени: Инструменты IAST предоставляют информацию об уязвимостях безопасности в режиме реального времени по мере их обнаружения во время выполнения, что позволяет разработчикам устранять их по мере обнаружения.
 
-2. Accuracy: IAST tools have a high degree of accuracy because they are able to detect vulnerabilities in the context of the application's runtime environment.
+2. Точность: инструменты IAST обладают высокой степенью точности, поскольку способны обнаруживать уязвимости в контексте среды выполнения приложения.
 
-3. Low false positive rate: IAST tools have a low false positive rate because they are able to distinguish between actual vulnerabilities and benign code.
+3. Низкий процент ложных срабатываний: Инструменты IAST имеют низкий процент ложных срабатываний, поскольку они способны отличить реальные уязвимости от доброкачественного кода.
 
-4. Integration: IAST tools can be integrated into the development process, allowing developers to incorporate security testing into their workflows.
+4. Интеграция: Инструменты IAST могут быть интегрированы в процесс разработки, что позволяет разработчикам включать тестирование безопасности в свои рабочие процессы.
 
-5. Automation: IAST tools can be automated, allowing for continuous testing and faster feedback on vulnerabilities.
+5. Автоматизация: Инструменты IAST могут быть автоматизированы, что позволяет проводить непрерывное тестирование и быстрее получать информацию об уязвимостях.
 
-6. Coverage: IAST tools can provide coverage for a wide range of security vulnerabilities, including those that may be difficult to detect through other forms of testing.
+6. Покрытие: Инструменты IAST могут обеспечить покрытие широкого спектра уязвимостей безопасности, включая те, которые трудно обнаружить с помощью других видов тестирования.
 
 
-| IAST Tool    | Description   | 
+| IAST Инструмент    | Описание   | 
 |:---------------|:---------------------|
-| `Contrast Security` | an IAST tool that automatically identifies and tracks vulnerabilities in real-time during the software development process. It can be integrated into a CI/CD pipeline to provide continuous monitoring and protection.	 | 
-| `Hdiv Security` | an IAST solution that detects and prevents attacks by monitoring the runtime behavior of applications. It provides detailed insights into vulnerabilities and generates reports for developers and security teams.	 | 
-| `RIPS Technologies` | a security testing tool that combines IAST with SAST (Static Application Security Testing) to provide comprehensive security analysis of web applications. It supports multiple programming languages and frameworks.	 | 
-| `Acunetix` | a web application security tool that offers IAST capabilities for detecting vulnerabilities in real-time. It provides detailed reports and integrates with CI/CD pipelines to automate the security testing process.	 | 
-| `AppSecEngineer` | an open-source IAST tool for detecting and preventing security vulnerabilities in web applications. It integrates with popular web frameworks such as Spring, Django, and Ruby on Rails, and provides detailed reports of vulnerabilities and attack attempts.	 | 
+| `Contrast Security` | инструмент IAST, который автоматически выявляет и отслеживает уязвимости в режиме реального времени в процессе разработки программного обеспечения. Его можно интегрировать в конвейер CI/CD для обеспечения непрерывного мониторинга и защиты.	 | 
+| `Hdiv Security` | решение IAST, которое обнаруживает и предотвращает атаки, отслеживая поведение приложений во время выполнения. Оно предоставляет подробную информацию об уязвимостях и генерирует отчеты для разработчиков и команд безопасности.	 | 
+| `RIPS Technologies` | инструмент тестирования безопасности, сочетающий в себе IAST и SAST (Static Application Security Testing) для всестороннего анализа безопасности веб-приложений. Он поддерживает множество языков программирования и фреймворков.	 | 
+| `Acunetix` | инструмент для обеспечения безопасности веб-приложений, предлагающий возможности IAST для обнаружения уязвимостей в режиме реального времени. Он предоставляет подробные отчеты и интегрируется с конвейерами CI/CD для автоматизации процесса тестирования безопасности.	 | 
+| `AppSecEngineer` | инструмент IAST с открытым исходным кодом для обнаружения и предотвращения уязвимостей в веб-приложениях. Он интегрируется с такими популярными веб-фреймворками, как Spring, Django и Ruby on Rails, и предоставляет подробные отчеты об уязвимостях и попытках атак.	 | 
 
 
 
-an example of a CI/CD pipeline with IAST using Contrast Security:
+пример пайплайна CI/CD с IAST с использованием Contrast Security:
 
 ```
 stages:
@@ -79,6 +79,6 @@ deploy:
     - master
 ```
 
-In this pipeline, the IAST stage is added after the test stage. The script in the IAST stage starts the Contrast Security agent using the Java command with the `-javaagent` option, and then starts the application using the `jar` command. The agent will monitor the application for security vulnerabilities and provide real-time feedback.
+В этом конвейере этап IAST добавляется после этапа тестирования. Сценарий на этапе IAST запускает агент Contrast Security с помощью команды Java с опцией `-javaagent`, а затем запускает приложение с помощью команды `jar`. Агент будет отслеживать приложение на предмет уязвимостей в системе безопасности и предоставлять обратную связь в режиме реального времени.
 
-Note that this is just an example pipeline and it can be customized according to your needs. Also, make sure to configure the IAST tool properly and follow best practices for secure development and deployment.
+Обратите внимание, что это всего лишь пример конвейера, и его можно настроить в соответствии с вашими потребностями. Кроме того, не забудьте правильно настроить инструмент IAST и следовать лучшим практикам безопасной разработки и развертывания.
