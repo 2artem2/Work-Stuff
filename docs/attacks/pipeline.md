@@ -346,16 +346,16 @@ stages:
 
 
 
-## Insecure Build and Deployment Processes: 
+## Небезопасные процессы сборки и развертывания: 
 
-Weak controls and improper validation during the build and deployment processes, enabling the inclusion of malicious code or unauthorized changes into the pipeline.
+Слабые средства контроля и ненадлежащая проверка в процессах сборки и развертывания, позволяющие включать в конвейер вредоносный код или несанкционированные изменения.
 
-In the noncompliant code, the build and deployment processes lack proper controls and validation, making them vulnerable to the inclusion of malicious code or unauthorized changes. This can lead to the deployment of compromised or insecure applications.
+В несоответствующем коде процессы сборки и развертывания не имеют надлежащего контроля и проверки, что делает их уязвимыми для включения вредоносного кода или несанкционированных изменений. Это может привести к развертыванию скомпрометированных или небезопасных приложений.
 
 
 
 ```
-# Noncompliant: Insecure Build and Deployment Processes in pipeline
+# Несоответствие требованиям: Небезопасные процессы сборки и развертывания в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -363,22 +363,22 @@ stages:
       - name: Build Application
         command: |
           echo "Building application..."
-          # Building the application without proper validation
+          # Создание приложения без надлежащей проверки
           insecure-build-tool build
       - name: Deploy Application
         command: |
           echo "Deploying application..."
-          # Deploying the application without proper controls
+          # Развертывание приложения без надлежащего контроля
           insecure-deploy-tool deploy -f deployment.yaml
 ```
 
-To address the security vulnerabilities in the build and deployment processes, it is essential to implement secure controls and validation measures.
+Чтобы устранить уязвимости в процессах сборки и развертывания, необходимо внедрить надежные средства контроля и проверки.
 
 
 
 
 ```
-# Compliant: Secure Build and Deployment Processes in pipeline
+# Соответствие стандартам: Безопасные процессы сборки и развертывания в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -386,28 +386,28 @@ stages:
       - name: Build Application
         command: |
           echo "Building application..."
-          # Building the application with proper validation
+          # Создание приложения с надлежащей проверкой
           secure-build-tool build --validate
       - name: Deploy Application
         command: |
           echo "Deploying application..."
-          # Deploying the application with proper controls
+          # Развертывание приложения с надлежащим контролем
           secure-deploy-tool deploy -f deployment.yaml --verify
 ```
 
-In the compliant code snippet, the build and deployment processes have been enhanced with secure controls and validation. The build process includes proper validation steps to ensure that only valid and authorized code is included in the deployment package. Similarly, the deployment process incorporates controls to verify the integrity and authenticity of the deployed application, preventing unauthorized changes or inclusion of malicious code.
+В фрагменте кода, соответствующем требованиям, процессы сборки и развертывания дополнены безопасными средствами контроля и проверки. Процесс сборки включает в себя надлежащие шаги по проверке, чтобы гарантировать, что в пакет развертывания включен только действительный и авторизованный код. Аналогично, процесс развертывания включает элементы управления для проверки целостности и подлинности развернутого приложения, предотвращая несанкционированные изменения или включение вредоносного кода.
 
 
 
-## Exposed Credentials: 
+## Открытые учетные данные: 
 
-Storage or transmission of sensitive credentials, such as API keys or access tokens, in an insecure manner within the pipeline, making them susceptible to unauthorized access or misuse.
+Хранение или передача конфиденциальных учетных данных, таких как ключи API или маркеры доступа, в трубопроводе незащищенным способом, что делает их уязвимыми для несанкционированного доступа или неправомерного использования.
 
-In the noncompliant code, credentials are hardcoded or exposed in plain text within the pipeline configuration or scripts. This makes them vulnerable to unauthorized access or disclosure, putting the sensitive information at risk.
+В коде, не соответствующем требованиям, учетные данные жестко закодированы или открыты открытым текстом в конфигурации конвейера или скриптах. Это делает их уязвимыми для несанкционированного доступа или раскрытия, подвергая риску конфиденциальную информацию.
 
 
 ```
-# Noncompliant: Exposed Credentials in pipeline
+# Несоответствие требованиям: Раскрытые учетные данные в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -426,12 +426,12 @@ stages:
           deploy-tool --username=$DATABASE_USERNAME --password=$DATABASE_PASSWORD
 ```
 
-To address the security concern of exposed credentials in the pipeline, it is crucial to adopt secure practices for handling sensitive information.
+Для решения проблемы безопасности, связанной с открытыми учетными данными в пайплайне, очень важно внедрить безопасные методы работы с конфиденциальной информацией.
 
 
 
 ```
-# Compliant: Secure Handling of Credentials in pipeline
+# Соответствие требованиям: Безопасная обработка учетных данных в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -450,21 +450,21 @@ stages:
           deploy-tool --username=$DATABASE_USERNAME --password=$DATABASE_PASSWORD
 ```
 
-In the compliant code snippet, the sensitive credentials are retrieved securely from a secure vault or secret management system. This ensures that the credentials are not exposed directly in the pipeline configuration or scripts. By using a secure vault, the credentials remain encrypted and are accessed only when needed during the pipeline execution.
+В фрагменте кода, соответствующем требованиям, конфиденциальные учетные данные безопасно извлекаются из надежного хранилища или системы управления секретами. Это гарантирует, что учетные данные не будут открыты непосредственно в конфигурации пайплайна или сценариях. Благодаря использованию безопасного хранилища учетные данные остаются зашифрованными, и доступ к ним осуществляется только в случае необходимости во время выполнения пайплайна.
 
 
 
 
-## Insufficient Monitoring and Logging: 
+## Недостаточный мониторинг и протоколирование: 
 
-Lack of robust monitoring and logging mechanisms in the pipeline, hindering the detection and response to security incidents or unusual activities.
+Отсутствие надежных механизмов мониторинга и протоколирования в пайплайне, затрудняющее обнаружение и реагирование на инциденты безопасности или необычные действия.
 
-In the noncompliant code, there is a lack of proper monitoring and logging practices in the pipeline. This means that important events, errors, or security-related activities are not adequately captured or logged, making it challenging to detect and respond to potential issues or security incidents.
+В коде, не соответствующем требованиям, в конвейере отсутствуют надлежащие методы мониторинга и протоколирования. Это означает, что важные события, ошибки или действия, связанные с безопасностью, не фиксируются и не протоколируются должным образом, что затрудняет обнаружение и реагирование на потенциальные проблемы или инциденты безопасности.
 
 
 
 ```
-# Noncompliant: Insufficient Monitoring and Logging in pipeline
+# Несоответствие требованиям: Недостаточный мониторинг и протоколирование в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -479,12 +479,12 @@ stages:
           deploy-tool
 ```
 
-To address the insufficient monitoring and logging in the pipeline, it is essential to implement proper logging and monitoring practices.
+Для решения проблемы недостаточного мониторинга и протоколирования в пайплайне необходимо внедрить надлежащие методы протоколирования и мониторинга.
 
 
 
 ```
-# Compliant: Implementing Monitoring and Logging in pipeline
+# Соответствие требованиям: Реализация мониторинга и протоколирования в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -511,22 +511,22 @@ stages:
           monitor-pipeline
 ```
 
-In the compliant code snippet, an additional stage called "Monitor and Log" is introduced to handle monitoring and logging activities. This stage includes steps to send pipeline logs to a centralized logging system and monitor the performance and health of the pipeline.
+В фрагменте кода, соответствующем требованиям, введен дополнительный этап под названием "Мониторинг и журнал" для обработки действий по мониторингу и протоколированию. Этот этап включает в себя шаги по отправке журналов трубопровода в централизованную систему протоколирования и отслеживанию производительности и работоспособности пайплайна.
 
-By sending the pipeline logs to a centralized logging system, you can gather and analyze log data from multiple pipeline runs, enabling better visibility into pipeline activities and potential issues. Monitoring the pipeline's performance and health helps identify any abnormalities or bottlenecks, allowing for proactive remediation.
+Отправляя журналы пайплайна в централизованную систему регистрации, вы можете собирать и анализировать данные журналов, полученные в результате нескольких запусков пайплайна, что позволяет лучше видеть деятельность пайплайна и потенциальные проблемы. Мониторинг производительности и состояния пайплайна помогает выявить любые отклонения от нормы или узкие места, что позволяет заблаговременно принять меры по их устранению.
 
 
 
-## Misconfigured Access Controls: 
+## Неправильно настроенные средства контроля доступа: 
 
-Improperly configured access controls, permissions, or roles within the pipeline, allowing unauthorized users or malicious actors to gain elevated privileges or access to critical resources.
+Неправильно настроенные средства контроля доступа, разрешения или роли в конвейере, позволяющие неавторизованным пользователям или злоумышленникам получить повышенные привилегии или доступ к критическим ресурсам.
 
-In the noncompliant code, there is a lack of proper access controls in the pipeline. This means that unauthorized individuals may have access to sensitive information or critical pipeline components, leading to potential security breaches or unauthorized actions.
+В коде, не соответствующем требованиям, отсутствует надлежащий контроль доступа в пайплайне. Это означает, что неавторизованные лица могут иметь доступ к конфиденциальной информации или критическим компонентам пайплайна, что может привести к потенциальным нарушениям безопасности или несанкционированным действиям.
 
 
 
 ```
-# Noncompliant: Misconfigured Access Controls in pipeline
+# Несоответствие требованиям: Неправильно настроенные средства контроля доступа в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -541,12 +541,12 @@ stages:
           deploy-tool
 ```
 
-To mitigate the risk of misconfigured access controls in the pipeline, it is crucial to implement proper access controls and authentication mechanisms.
+Чтобы снизить риск неправильной настройки контроля доступа в пайплайне, очень важно внедрить надлежащие механизмы контроля доступа и аутентификации.
 
 
 
 ```
-# Compliant: Enhanced Access Controls in pipeline
+# Соответствие требованиям: Усиленный контроль доступа в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -565,7 +565,7 @@ stages:
           - role: build-deploy
 ```
 
-In the compliant code, each step in the pipeline has an associated security configuration that specifies the necessary roles or permissions required to execute that step. This ensures that only authorized individuals or entities can perform specific actions in the pipeline.
+В совместимом коде каждый этап пайплайна имеет соответствующую конфигурацию безопасности, в которой указаны необходимые роли или разрешения, требуемые для выполнения этого этапа. Это гарантирует, что только уполномоченные лица или организации могут выполнять определенные действия в пайплайне.
 
 
 
