@@ -4,7 +4,7 @@ title: Pipeline Attacks
 parent: Attacks
 ---
 
-# Pipeline Attacks
+# Атаки на пайплайны
 {: .no_toc }
 
 
@@ -19,17 +19,17 @@ parent: Attacks
 
 
 
-## Insecure Configuration Management: 
+## Небезопасное управление конфигурацией: 
 
-Misconfiguration of configuration files, secrets, or environment variables in the pipeline, leading to unauthorized access or exposure of sensitive information.
+Неправильная настройка конфигурационных файлов, секретов или переменных окружения в пайплайне, что приводит к несанкционированному доступу или раскрытию конфиденциальной информации.
 
 
-In the noncompliant code, there is a lack of encryption in the pipeline. This means that sensitive data transmitted within the pipeline, such as configuration files, credentials, or deployment artifacts, are not adequately protected, increasing the risk of unauthorized access or data leakage.
+В коде, не соответствующем требованиям, отсутствует шифрование в пайплайне. Это означает, что конфиденциальные данные, передаваемые в рамках пайплайна, такие как файлы конфигурации, учетные данные или артефакты развертывания, не защищены должным образом, что повышает риск несанкционированного доступа или утечки данных.
 
 
 
 ```
-# Noncompliant: Lack of Encryption in pipeline
+# Несоответствие требованиям: Отсутствие шифрования в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -48,13 +48,13 @@ stages:
           upload-tool
 ```
 
-To address the lack of encryption in the pipeline, it is essential to implement encryption mechanisms to protect sensitive data.
+Чтобы решить проблему отсутствия шифрования в пайплайне, необходимо внедрить механизмы шифрования для защиты конфиденциальных данных.
 
 
 
 
 ```
-# Compliant: Enhanced Encryption in pipeline
+# Соответствие требованиям: Усовершенствованное шифрование в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -80,20 +80,22 @@ stages:
 ```
 
 
-In the compliant code, each step in the pipeline has an associated security configuration that enables encryption. This ensures that sensitive data is encrypted during transmission within the pipeline, providing an additional layer of protection against unauthorized access or data exposure.
+
+В соответствующем коде каждый этап в пайплайне имеет соответствующую конфигурацию безопасности, которая включает шифрование. Это обеспечивает шифрование чувствительных данных во время их передачи внутри пайплайна, предоставляя дополнительный уровень защиты от несанкционированного доступа или раскрытия данных.
 
 
 
-## Weak Authentication and Authorization: 
+## Слабая аутентификация и авторизация: 
 
-Inadequate authentication mechanisms and weak authorization controls in the pipeline, allowing unauthorized access to critical resources or actions.
 
-In the noncompliant code, weak or inadequate authentication and authorization mechanisms are used in the pipeline. This can lead to unauthorized access, privilege escalation, or other security issues.
+Ненадёжные механизмы аутентификации и слабые контроли авторизации в пайплайне могут привести к несанкционированному доступу к критическим ресурсам или операциям.
+
+В коде, не соответствующем требованиям, в пайплайне используются слабые или ненадёжные механизмы аутентификации и авторизации. Это может привести к несанкционированному доступу, повышению привилегий или другим проблемам безопасности.
 
 
 
 ```
-# Noncompliant: Weak authentication and authorization in pipeline
+# Несоответствие требованиям: Слабая аутентификация и авторизация в пайплайне
 
 stages:
   - name: Deploy to Production
@@ -101,7 +103,7 @@ stages:
       - name: Authenticate with Production Environment
         command: |
           echo "Authenticating with production environment..."
-          # Weak authentication mechanism
+          # Слабый механизм аутентификации
           kubectl config set-credentials admin --username=admin --password=weakpassword
           kubectl config use-context production
       - name: Deploy Application
@@ -110,12 +112,12 @@ stages:
           kubectl apply -f deployment.yaml
 ```
 
-In the compliant code snippet, strong authentication mechanisms such as service accounts or OAuth tokens are used to authenticate with the production environment. These mechanisms provide stronger security controls and help prevent unauthorized access to sensitive resources.
+В фрагменте кода, соответствующем требованиям, для аутентификации в производственной среде используются механизмы строгой аутентификации, такие как учетные записи служб или токены OAuth. Эти механизмы обеспечивают более надежный контроль безопасности и помогают предотвратить несанкционированный доступ к важным ресурсам.
 
 
 
 ```
-# Compliant: Strong authentication and authorization in pipeline
+# Соответствие стандартам: Строгая аутентификация и авторизация в пайплайне
 
 stages:
   - name: Deploy to Production
@@ -123,7 +125,7 @@ stages:
       - name: Authenticate with Production Environment
         command: |
           echo "Authenticating with production environment..."
-          # Strong authentication mechanism (e.g., using a service account or OAuth tokens)
+          # Надежный механизм аутентификации (например, с помощью учетной записи службы или токенов OAuth)
           kubectl config set-credentials prod-service-account --token=strongtoken
           kubectl config use-context production
       - name: Deploy Application
@@ -132,16 +134,16 @@ stages:
           kubectl apply -f deployment.yaml
 ```
 
-## Insecure CI/CD Tools: 
+## Небезопасные инструменты CI/CD: 
 
-Vulnerabilities in the Continuous Integration/Continuous Deployment (CI/CD) tools used in the pipeline, such as outdated software versions or insecure configurations, leading to potential exploits or unauthorized access.
+Уязвимости в инструментах непрерывной интеграции/непрерывного развертывания (CI/CD), используемых в пайплайне, например устаревшие версии программного обеспечения или небезопасные конфигурации, что приводит к потенциальным эксплойтам или несанкционированному доступу.
 
 
-In the noncompliant code, insecure CI/CD tools are used in the pipeline, which can pose security risks. This may include using outdated or vulnerable versions of CI/CD tools, relying on insecure configurations, or using tools with known security vulnerabilities.
+В коде, не соответствующем требованиям, в пайплайне используются небезопасные инструменты CI/CD, которые могут представлять угрозу безопасности. Это может быть использование устаревших или уязвимых версий CI/CD-инструментов, использование небезопасных конфигураций или инструментов с известными уязвимостями безопасности.
 
 
 ```
-# Compliant: Secure CI/CD Tools in pipeline
+# Соответствие стандартам: Безопасные инструменты CI/CD в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -149,7 +151,7 @@ stages:
       - name: Scan for Vulnerabilities
         command: |
           echo "Scanning for vulnerabilities..."
-          # Using a secure and up-to-date version of the CI/CD tool
+          # Использование безопасной и актуальной версии инструмента CI/CD
           secure-cicd-tool scan --version 2.0.0
       - name: Deploy Application
         command: |
@@ -157,13 +159,13 @@ stages:
           secure-cicd-tool deploy -f deployment.yaml
 ```
 
-In the compliant code snippet, secure and up-to-date versions of the CI/CD tools are used, which have been reviewed for security vulnerabilities. Additionally, it is important to ensure that the configurations of these tools are properly secured and follow security best practices.
+В фрагменте кода, соответствующем требованиям, используются безопасные и актуальные версии инструментов CI/CD, которые были проверены на наличие уязвимостей. Кроме того, важно убедиться, что конфигурация этих инструментов должным образом защищена и соответствует лучшим практикам безопасности.
 
 
 
 
 ```
-# Compliant: Secure CI/CD Tools in pipeline
+# Соответствие стандартам: Безопасные инструменты CI/CD в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -171,7 +173,7 @@ stages:
       - name: Scan for Vulnerabilities
         command: |
           echo "Scanning for vulnerabilities..."
-          # Using a secure and up-to-date version of the CI/CD tool
+          # Использование безопасной и актуальной версии инструмента CI/CD
           secure-cicd-tool scan --version 2.0.0
       - name: Deploy Application
         command: |
@@ -181,16 +183,16 @@ stages:
 ```
 
 
-## Lack of Secure Coding Practices: 
+## Отсутствие практики безопасного кодинга: 
 
-Development teams not following secure coding practices, leading to the introduction of vulnerabilities, such as code injection, cross-site scripting (XSS), or SQL injection, into the pipeline.
+Команды разработчиков не следуют практикам безопасного кодинга, что приводит к появлению в коде уязвимостей, таких как инъекции кода, межсайтовый скриптинг (XSS) или SQL-инъекции.
 
 
-In the noncompliant code, there is a lack of secure coding practices in the pipeline. This can include the absence of code review, the use of insecure libraries or frameworks, and the lack of security testing and validation during the development and deployment process.
+Несоответствующий требованиям код свидетельствует об отсутствии практики безопасного кодирования на конвейере. Это может включать отсутствие проверки кода, использование небезопасных библиотек или фреймворков, а также отсутствие тестирования и проверки безопасности в процессе разработки и развертывания.
 
 
 ```
-# Noncompliant: Lack of Secure Coding Practices in pipeline
+# Несоответствие требованиям: Отсутствие практики безопасного кодинга в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -198,23 +200,23 @@ stages:
       - name: Build Application
         command: |
           echo "Building application..."
-          # Building the application without any code review or security testing
+          # Создание приложения без анализа кода и тестирования безопасности
           insecure-build-tool build
       - name: Deploy Application
         command: |
           echo "Deploying application..."
-          # Deploying the application without ensuring secure coding practices
+          # Развертывание приложения без обеспечения безопасности кодинга
           insecure-deploy-tool deploy -f deployment.yaml
 ```
 
-To address the lack of secure coding practices in the pipeline, it is important to adopt and implement secure coding practices throughout the development and deployment process. This includes incorporating code reviews, using secure coding guidelines, and performing security testing and validation.
+Чтобы решить проблему отсутствия практики безопасного кодинга на этапе разработки, важно внедрять и применять практику безопасного кодинга на протяжении всего процесса разработки и развертывания. Это включает в себя проверку кода, использование рекомендаций по безопасному кодингу, а также тестирование и проверку безопасности.
 
-In the compliant code snippet, secure coding practices are implemented by incorporating code review and security testing during the build process. This ensures that potential security vulnerabilities are identified and addressed early in the development cycle. Additionally, the deployment process includes the use of secure deployment tools that prioritize secure coding practices.
+В фрагменте кода, соответствующем требованиям, практика безопасного кодинга реализована путем включения проверки кода и тестирования безопасности в процессе сборки. Это гарантирует, что потенциальные уязвимости безопасности будут выявлены и устранены на ранних этапах цикла разработки. Кроме того, процесс развертывания включает в себя использование инструментов безопасного развертывания, в которых приоритет отдается практикам безопасного кодинга.
 
 
 
 ```
-# Compliant: Implementation of Secure Coding Practices in pipeline
+# Соответствие требованиям: Внедрение практики безопасного кодинга в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -222,25 +224,25 @@ stages:
       - name: Build Application
         command: |
           echo "Building application..."
-          # Incorporating code review and security testing during the build process
+          # Включение обзора кода и тестирования безопасности в процесс сборки
           secure-build-tool build --code-review --security-testing
       - name: Deploy Application
         command: |
           echo "Deploying application..."
-          # Deploying the application with secure coding practices
+          # Развертывание приложения с использованием методов безопасного кодинга
           secure-deploy-tool deploy -f deployment.yaml
 ```
 
-## Insecure Third-Party Dependencies: 
+## Небезопасные сторонние зависимости: 
 
-Integration of insecure or outdated third-party libraries or components into the pipeline, exposing the pipeline to known vulnerabilities or exploits.
+Интеграция в конвейер небезопасных или устаревших сторонних библиотек или компонентов, подвергающих пайплайн известным уязвимостям или эксплойтам.
 
-In the noncompliant code, there is a lack of consideration for insecure third-party dependencies in the pipeline. This can include the use of outdated or vulnerable libraries, frameworks, or plugins without proper validation or risk assessment.
+В несоответствующем коде не учитываются небезопасные сторонние зависимости в пайплайне. Это может включать использование устаревших или уязвимых библиотек, фреймворков или плагинов без надлежащей валидации или оценки рисков.
 
 
 
 ```
-# Noncompliant: Lack of Insecure Third-Party Dependencies in pipeline
+# Несоответствие требованиям: Отсутствие небезопасных зависимостей от третьих сторон в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -248,20 +250,20 @@ stages:
       - name: Build Application
         command: |
           echo "Building application..."
-          # Building the application without considering insecure third-party dependencies
+          # Создание приложения без учета небезопасных сторонних зависимостей
           insecure-build-tool build
       - name: Deploy Application
         command: |
           echo "Deploying application..."
-          # Deploying the application without validating the security of third-party dependencies
+          # Развертывание приложения без проверки безопасности сторонних зависимостей
           insecure-deploy-tool deploy -f deployment.yaml
 ```
 
-To address the lack of consideration for insecure third-party dependencies in the pipeline, it is crucial to implement proper validation and management practices. This includes conducting regular vulnerability assessments, using dependency management tools, and maintaining an updated inventory of dependencies.
+Чтобы решить проблему отсутствия учета небезопасных зависимостей от сторонних производителей, важно внедрить надлежащие методы проверки и управления. Это включает в себя проведение регулярных оценок уязвимостей, использование инструментов управления зависимостями и ведение обновленного реестра зависимостей.
 
 
 ```
-# Compliant: Validation and Management of Third-Party Dependencies in pipeline
+# Соответствующий код: Валидация и управление зависимостями от сторонних поставщиков в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -269,31 +271,31 @@ stages:
       - name: Build Application
         command: |
           echo "Building application..."
-          # Building the application with vulnerability assessment and secure dependency management
+          # Создание приложения с оценкой уязвимостей и безопасным управлением зависимостями
           secure-build-tool build --vulnerability-scan --dependency-management
       - name: Deploy Application
         command: |
           echo "Deploying application..."
-          # Deploying the application after validating the security of third-party dependencies
+          # Развертывание приложения после проверки безопасности сторонних зависимостей
           secure-deploy-tool deploy -f deployment.yaml
 
 ```
 
-In the compliant code snippet, validation and management practices for third-party dependencies are implemented in the pipeline. This includes conducting vulnerability scans and utilizing dependency management tools to ensure that only secure and up-to-date dependencies are used in the application. By addressing insecure third-party dependencies, the pipeline can significantly reduce the risk of introducing vulnerabilities and improve the overall security of the deployed application.
+В фрагменте кода, соответствующем требованиям, в пайплайне реализованы методы проверки и управления зависимостями от сторонних производителей. Это включает в себя проведение сканирования уязвимостей и использование инструментов управления зависимостями для обеспечения использования в приложении только безопасных и актуальных зависимостей. Путем решения проблем с небезопасными зависимостями от сторонних поставщиков, пайплайн может значительно снизить риск появления уязвимостей и улучшить общую безопасность развернутого приложения.
 
 
 
 
-## Insufficient Testing: 
+## Ненадлежащее тестирование:
 
-Inadequate testing processes, including lack of security testing, vulnerability scanning, or penetration testing, allowing potential vulnerabilities to go undetected in the pipeline.
+Неполные процессы тестирования, включая отсутствие тестирования безопасности, сканирования уязвимостей или пенетрационного тестирования, позволяют потенциальным уязвимостям оставаться незамеченными в пайплайне.
 
-In the noncompliant code, there is a lack of sufficient testing in the pipeline. This means that the pipeline does not include appropriate testing stages, such as unit tests, integration tests, or security tests, to ensure the quality and security of the deployed application.
+В коде, не соответствующим требованиям, отсутствует надлежащее тестирование в пайплайне. Это означает, что в пайплайне отсутствуют соответствующие этапы тестирования, такие как модульные тесты, интеграционные тесты или тесты безопасности, что гарантировало бы качество и безопасность развернутого приложения.
 
 
 
 ```
-# Noncompliant: Insufficient Testing in pipeline
+# Несоответствующий код: Ненадлежащее тестирование в пайплайне
 
 stages:
   - name: Build and Deploy
@@ -301,21 +303,21 @@ stages:
       - name: Build Application
         command: |
           echo "Building application..."
-          # Building the application without running tests
+          # Создание приложения без выполнения тестов
           insecure-build-tool build
       - name: Deploy Application
         command: |
           echo "Deploying application..."
-          # Deploying the application without running tests
+          # Развертывание приложения без выполнения тестов
           insecure-deploy-tool deploy -f deployment.yaml
 ```
 
-To address the lack of sufficient testing in the pipeline, it is crucial to incorporate comprehensive testing stages to validate the functionality, quality, and security of the application.
+Для устранения ненадлежащего тестирования в пайплайне крайне важно внедрить комплексные этапы тестирования для проверки функциональности, качества и безопасности приложения.
 
 
 
 ```
-# Compliant: Comprehensive Testing in pipeline
+# Соответствует требованиям: Всестороннее тестирование в пайплайне
 
 stages:
   - name: Build and Test
@@ -323,24 +325,24 @@ stages:
       - name: Build Application
         command: |
           echo "Building application..."
-          # Building the application with unit tests
+          # Создание приложения с помощью модульных тестов
           secure-build-tool build --unit-tests
       - name: Run Integration Tests
         command: |
           echo "Running integration tests..."
-          # Running integration tests to validate the application's behavior and interactions
+          # Выполнение интеграционных тестов для проверки поведения и взаимодействия приложения
           secure-test-tool run --integration-tests
   - name: Deploy
     steps:
       - name: Deploy Application
         command: |
           echo "Deploying application..."
-          # Deploying the application after successful build and tests
+          # Развертывание приложения после успешной сборки и тестирования
           secure-deploy-tool deploy -f deployment.yaml
 
 ```
 
-In the compliant code snippet, a separate testing stage is added before the deployment stage. This testing stage includes unit tests and integration tests to validate the application's functionality and behavior. By running comprehensive tests, potential issues and vulnerabilities can be identified early in the pipeline, ensuring a higher level of quality and security for the deployed application.
+В фрагменте кода, соответствующем требованиям, перед этапом развертывания добавляется отдельный этап тестирования. Этот этап тестирования включает модульные и интеграционные тесты для проверки функциональности и поведения приложения. Проведение комплексных тестов позволяет выявить потенциальные проблемы и уязвимости на ранних этапах работы, обеспечивая более высокий уровень качества и безопасности развернутого приложения.
 
 
 
