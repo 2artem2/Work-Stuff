@@ -4,10 +4,10 @@ title: Artifacts
 parent: Build & Test
 ---
 
-# Artifacts
+# Артефакты
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,56 +15,56 @@ parent: Build & Test
 
 ---
 
-Artifacts are typically created during the build and deployment process, and are stored in a repository or other storage location so that they can be easily retrieved and deployed as needed. There are a number of methods that can be used to save artifacts in a DevSecOps environment, including:
+Артефакты обычно создаются в процессе сборки и развертывания и хранятся в репозитории или другом месте хранения, чтобы их можно было легко извлечь и развернуть при необходимости. Для сохранения артефактов в среде DevSecOps можно использовать несколько методов, в том числе:
 
-1. Build Artifacts: Build artifacts are created during the build process and include compiled code, libraries, and other files that are needed to deploy and run the application. These artifacts can be saved in a repository or other storage location for later use.
+1. Артефакты сборки: Артефакты сборки создаются в процессе сборки и включают скомпилированный код, библиотеки и другие файлы, необходимые для развертывания и запуска приложения. Эти артефакты могут быть сохранены в репозитории или другом месте хранения для последующего использования.
 
-2. Container Images: Container images are a type of artifact that contain everything needed to run the application, including the code, runtime, and dependencies. These images can be saved in a container registry or other storage location and can be easily deployed to any environment that supports containers.
+2. Образы контейнеров: Образы контейнеров - это тип артефактов, которые содержат все необходимое для запуска приложения, включая код, время выполнения и зависимости. Эти образы можно сохранить в реестре контейнеров или другом месте хранения и легко развернуть в любой среде, поддерживающей контейнеры.
 
-3. Infrastructure as Code (IaC) Artifacts: IaC artifacts are created as part of the configuration management process and include scripts, templates, and other files that are used to define and manage the infrastructure of the application. These artifacts can be stored in a repository or other storage location and can be used to deploy the infrastructure to any environment.
+3. Артефакты инфраструктуры как код (IaC): Артефакты IaC создаются в рамках процесса управления конфигурацией и включают в себя скрипты, шаблоны и другие файлы, которые используются для определения и управления инфраструктурой приложения. Эти артефакты могут храниться в репозитории или другом месте хранения и использоваться для развертывания инфраструктуры в любой среде.
 
-4. Test Artifacts: Test artifacts include test scripts, test results, and other files that are created as part of the testing process. These artifacts can be stored in a repository or other storage location for later reference and analysis.
-
-
-
-
-## Checklist for developing an artifact in DevSecOps
+4. Тестовые артефакты: Артефакты тестирования включают сценарии тестирования, результаты тестирования и другие файлы, которые создаются в процессе тестирования. Эти артефакты могут храниться в репозитории или другом месте хранения данных для последующего использования и анализа.
 
 
 
-1- Create a secure development environment:
 
-* Set up a development environment that is separate from production.
-* Use version control to track changes to the source code.
-* Use secrets management tools to store sensitive information like API keys and passwords.
+## Контрольный список для разработки артефакта в DevSecOps
 
-2- Implement security testing into the development process:
 
-* Use static analysis security testing (SAST) tools to analyze the source code for vulnerabilities.
-* Use dynamic application security testing (DAST) tools to test the application in a real-world environment.
-* Use interactive application security testing (IAST) tools to detect vulnerabilities in real-time during testing.
 
-3- Automate the build process:
+1 - Создайте безопасную среду разработки:
 
-Use build automation tools like Maven or Gradle to compile the source code and build the artifact.
-Include security testing tools in the build process.
+* Создайте среду разработки, отдельную от производственной.
+* Используйте контроль версий для отслеживания изменений в исходном коде.
+* Используйте инструменты управления секретами для хранения конфиденциальной информации, например ключей API и паролей.
 
-4- Automate deployment:
+2- Внедрите тестирование безопасности в процесс разработки:
 
-* Use configuration management tools like Ansible or Chef to automate deployment of the artifact.
-* Use infrastructure-as-code tools like Terraform or CloudFormation to automate the creation and management of infrastructure.
+* Используйте инструменты статического тестирования безопасности (SAST) для анализа исходного кода на наличие уязвимостей.
+* Используйте инструменты динамического тестирования безопасности приложений (DAST) для тестирования приложения в реальной среде.
+* Используйте интерактивные средства тестирования безопасности приложений (IAST) для обнаружения уязвимостей в режиме реального времени во время тестирования.
 
-5- Implement continuous integration/continuous delivery (CI/CD) practices:
+3- Автоматизируйте процесс сборки:
 
-* Use a CI/CD pipeline to automate the entire development process.
-* Use tools like Jenkins or CircleCI to manage the pipeline and run tests automatically.
+Используйте инструменты автоматизации сборки, такие как Maven или Gradle, для компиляции исходного кода и сборки артефакта.
+Включите инструменты тестирования безопасности в процесс сборки.
+
+4- Автоматизируйте развертывание:
+
+* Используйте инструменты управления конфигурацией, такие как Ansible или Chef, для автоматизации развертывания артефакта.
+* Используйте инструменты инфраструктуры-как-код, такие как Terraform или CloudFormation, для автоматизации создания и управления инфраструктурой.
+
+5. Внедрите практику непрерывной интеграции/непрерывной доставки (CI/CD):
+
+* Используйте конвейер CI/CD для автоматизации всего процесса разработки.
+* Используйте такие инструменты, как Jenkins или CircleCI, для управления конвейером и автоматического запуска тестов.
 
 
 
 
 ## Nexsus
 
-### Define an Artifact
+### Определите артефакта
 
 ```
 artifact:
@@ -73,7 +73,7 @@ artifact:
   target: target_host
 ```
 
-### Schedule Artifact Execution
+### Расписание выполнения артефактов
 
 ```
 artifact_schedule:
@@ -83,7 +83,7 @@ artifact_schedule:
 ```
 
 
-### Run Artifact
+### Запуск артефакта
 
 ```
 artifact_run:
@@ -91,7 +91,7 @@ artifact_run:
   artifact: MyVulnerabilityScan
 ```
 
-### Retrieve Artifact Results
+### Получение результатов артефактов
 
 ```
 artifact_results:
@@ -100,7 +100,7 @@ artifact_results:
 ```
 
 
-### Remediate Vulnerabilities
+### Устранение уязвимостей
 
 ```
 artifact_remediation:
