@@ -571,53 +571,53 @@ stages:
 
 
 
-## Insecure Configurations
+## Небезопасные конфигурации
 
-Inadequate or insecure configuration settings within CI/CD tools and platforms.
-Example of attacks: Unauthorized access to build pipelines, exposure of sensitive credentials, misconfigured access controls.
+Неадекватные или небезопасные настройки конфигурации в инструментах и платформах CI/CD.
+Примеры атак: Несанкционированный доступ к конвейерам сборки, раскрытие конфиденциальных учетных данных, неправильная настройка контроля доступа.
 
-## Vulnerability Management
+## Управление уязвимостями
 
-Inadequate or ineffective management of vulnerabilities in CI/CD processes and artifacts.
-Example of attacks: Exploitation of known vulnerabilities in application dependencies, outdated software components.
+Неадекватное или неэффективное управление уязвимостями в процессах и артефактах CI/CD.
+Примеры атак: Эксплуатация известных уязвимостей в зависимостях приложений, устаревших программных компонентах.
 
-## Inadequate Secrets Management
+## Неадекватное управление секретами
 
-Poor handling of sensitive information such as API keys, passwords, and certificates.
-Example of attacks: Disclosure of secrets through repository leaks, unauthorized access to production environments.
+Плохое обращение с конфиденциальной информацией, такой как ключи API, пароли и сертификаты.
+Примеры атак: Раскрытие секретов через утечку информации из репозитория, несанкционированный доступ к производственным средам.
 
-## Insecure Third-Party Integrations
+## Небезопасные сторонние интеграции
 
-Integration of untrusted or vulnerable third-party services or libraries in CI/CD workflows.
-Example of attacks: Supply chain attacks, malicious code injection through compromised dependencies.
+Интеграция недоверенных или уязвимых сторонних сервисов или библиотек в рабочие процессы CI/CD.
+Примеры атак: Атаки на цепочки поставок, внедрение вредоносного кода через скомпрометированные зависимости.
 
-## Weak Access Controls
+## Слабый контроль доступа
 
-Insufficient controls and monitoring of access to CI/CD pipelines, repositories, and build systems.
-Example of attacks: Unauthorized modification of build artifacts, privilege escalation, unauthorized access to sensitive data.
+Недостаточный контроль и мониторинг доступа к конвейерам CI/CD, репозиториям и системам сборки.
+Примеры атак: Несанкционированная модификация артефактов сборки, повышение привилегий, несанкционированный доступ к конфиденциальным данным.
 
-## Insider Threats
+## Инсайдерские угрозы
 
-Risks posed by authorized individuals with malicious intent or accidental actions.
-Example of attacks: Unauthorized modification of CI/CD configurations, sabotage of build pipelines, data exfiltration.
+Риски, создаваемые уполномоченными лицами со злым умыслом или случайными действиями.
+Примеры атак: Несанкционированное изменение конфигураций CI/CD, саботаж конвейеров сборки, утечка данных.
 
-## Lack of Build Integrity
+## Отсутствие целостности сборки
 
-Failure to ensure the integrity and authenticity of build artifacts throughout the CI/CD process.
-Example of attacks: Injection of malicious code or backdoors into build artifacts, tampering with deployment packages.
+Невозможность обеспечить целостность и подлинность артефактов сборки на протяжении всего процесса CI/CD.
+Примеры атак: Внедрение вредоносного кода или бэкдоров в артефакты сборки, фальсификация пакетов развертывания.
 
-## Inadequate Testing
+## Неадекватное тестирование
 
-Insufficient or ineffective testing of CI/CD pipelines, leading to undetected vulnerabilities.
-Example of attacks: Exploitation of untested code paths, introduction of vulnerable code during the build process.
+Недостаточное или неэффективное тестирование конвейеров CI/CD, приводящее к необнаруженным уязвимостям.
+Примеры атак: Эксплуатация непроверенных путей кода, внедрение уязвимого кода в процессе сборки.
 
-## Insufficient Monitoring and Logging
+## Недостаточный мониторинг и протоколирование
 
-Lack of real-time monitoring and comprehensive logging for CI/CD activities and events.
-Example of attacks: Difficulty in identifying and responding to security incidents, delayed detection of unauthorized activities.
+Отсутствие мониторинга в реальном времени и всестороннего протоколирования действий и событий CI/CD.
+Примеры атак: Сложность выявления и реагирования на инциденты безопасности, задержка обнаружения несанкционированных действий.
 
-## Lack of Compliance and Governance
+## Отсутствие соответствия и управления
 
-Failure to adhere to security policies, industry regulations, and compliance requirements in CI/CD workflows.
-Example of attacks: Non-compliance with data protection standards, regulatory fines, legal implications.
+Несоблюдение политик безопасности, отраслевых норм и требований соответствия в рабочих процессах CI/CD.
+Примеры атак: Несоблюдение стандартов защиты данных, штрафы регуляторов, юридические последствия.
 
