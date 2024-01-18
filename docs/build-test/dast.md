@@ -4,10 +4,10 @@ title: DAST
 parent: Build & Test
 ---
 
-# DAST
+# DAST- динамическое тестирование безопасности приложений
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,38 +16,38 @@ parent: Build & Test
 ---
 
 
-DAST stands for Dynamic Application Security Testing. It is a type of application security testing that involves testing an application in a running state to identify security vulnerabilities that may be present.
+DAST расшифровывается как Dynamic Application Security Testing. Это один из видов тестирования безопасности приложений, который включает в себя тестирование приложения в работающем состоянии для выявления уязвимостей, которые могут присутствовать в нем.
 
-DAST tools work by interacting with an application in much the same way as a user would, by sending HTTP requests to the application and analyzing the responses that are received. This allows DAST tools to identify vulnerabilities that may be present in the application's logic, configuration, or architecture.
+Инструменты DAST работают, взаимодействуя с приложением практически так же, как это делает пользователь, отправляя HTTP-запросы приложению и анализируя полученные ответы. Это позволяет инструментам DAST выявлять уязвимости, которые могут присутствовать в логике, конфигурации или архитектуре приложения.
 
-Here are some key features of DAST:
+Вот некоторые ключевые особенности DAST:
 
-* Realistic testing: DAST provides a more realistic testing environment than SAST because it tests the application in a running state, simulating how an attacker would interact with it.
+* Реалистичное тестирование: DAST обеспечивает более реалистичную среду тестирования, чем SAST, поскольку тестирует приложение в работающем состоянии, имитируя взаимодействие злоумышленника с приложением.
 
-* Automation: DAST tools can be automated to provide continuous testing, allowing for faster feedback on vulnerabilities.
+* Автоматизация: Инструменты DAST могут быть автоматизированы для обеспечения непрерывного тестирования, что позволяет быстрее получать информацию об уязвимостях.
 
-* Scalability: DAST tools can be scaled to test large and complex applications, making them suitable for enterprise-level testing.
+* Масштабируемость: Инструменты DAST можно масштабировать для тестирования больших и сложных приложений, что делает их пригодными для тестирования на уровне предприятия.
 
-* Coverage: DAST tools can provide coverage for a wide range of security vulnerabilities, including those that may be difficult to detect through other forms of testing.
+* Покрытие: Инструменты DAST могут обеспечить покрытие широкого спектра уязвимостей безопасности, включая те, которые трудно обнаружить с помощью других видов тестирования.
 
-* Ease of use: DAST tools are typically easy to use and require minimal setup, making them accessible to developers and security teams.
+* Простота использования: Инструменты DAST, как правило, просты в использовании и требуют минимальной настройки, что делает их доступными для разработчиков и команд безопасности.
 
 
 
-| DAST Tool    | Description   | 
+| DAST Инструмент    | Описание   | 
 |:---------------|:---------------------|
-| `OWASP ZAP` | an open-source web application security scanner	 | 
-| `Burp Suite` | a web application security testing toolkit	 | 
+| `OWASP ZAP` | сканер безопасности веб-приложений с открытым исходным кодом	 | 
+| `Burp Suite` | инструментарий для тестирования безопасности веб-приложений	 | 
 
 
 
 
 
 
-Assuming we have a web application that we want to test for security vulnerabilities using DAST, we can use OWASP ZAP, an open-source web application security scanner, in our pipeline.
+Предположим, что у нас есть веб-приложение, которое мы хотим проверить на уязвимости с помощью DAST, мы можем использовать OWASP ZAP, сканер безопасности веб-приложений с открытым исходным кодом, в нашем конвейере.
 
 
-1- **First, we need to install OWASP ZAP and configure it with our web application. This can be done by running the following commands in the pipeline:**
+1- **Сначала нам нужно установить OWASP ZAP и сконфигурировать его с нашим веб-приложением. Это можно сделать, выполнив следующие команды в конвейере:**
 
 ```
 - name: Install OWASP ZAP
@@ -63,7 +63,7 @@ Assuming we have a web application that we want to test for security vulnerabili
 
 ```
 
-2- **Next, we need to run the security scan using OWASP ZAP. This can be done by running the following command in the pipeline:**
+2- **Далее нам нужно запустить проверку безопасности с помощью OWASP ZAP. Это можно сделать, выполнив следующую команду в конвейере:**
 
 ```
 - name: Run OWASP ZAP scan
@@ -73,9 +73,9 @@ Assuming we have a web application that we want to test for security vulnerabili
 
 ```
 
-This will start the OWASP ZAP spider to crawl the web application and then run an active scan to identify security vulnerabilities.
+Это запустит паука OWASP ZAP для просмотра веб-приложения и последующего активного сканирования с целью выявления уязвимостей в системе безопасности.
 
-3- **Finally, we need to generate a report of the security scan results. This can be done by running the following command in the pipeline:**
+3- **Наконец, нам нужно сгенерировать отчет о результатах сканирования безопасности. Это можно сделать, выполнив следующую команду в конвейере:**
 
 ```
 - name: Generate OWASP ZAP report
@@ -84,5 +84,5 @@ This will start the OWASP ZAP spider to crawl the web application and then run a
 
 ```
 
-This will generate an HTML report of the security scan results that can be reviewed and acted upon.
+В результате будет создан HTML-отчет о результатах сканирования системы безопасности, который можно просмотреть и принять соответствующие меры.
 
