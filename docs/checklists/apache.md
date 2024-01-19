@@ -4,10 +4,10 @@ title: Apache
 parent: Checklists
 ---
 
-# Apache Hardening for DevSecOps
+# Усиление Apache для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,48 +15,48 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Apache for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Apache для DevSecOps
 
 
-### Disable directory listing	 
+### Отключить листинг каталогов	 
 
 ```
 Options -Indexes
 ```
 
-### Enable server signature 
+### Включить подпись сервера 
 
 ```
 ServerSignature On
 ``` 
 
-### Disable server signature 
+### Отключить подпись сервера 
 
 ```
 ServerSignature Off
 ```
 
-### Change server header 
+### Изменение заголовка сервера 
 
 ```
 ServerTokens Prod
 ```
 
-### Disable server header 
+### Отключить заголовок сервера 
 
-`ServerTokens Prod` and `ServerSignature Off` 
+`ServerTokens Prod` и `ServerSignature Off` 
 
-### Enable HTTPS 
+### Включить HTTPS 
 
-Install SSL certificate and configure Apache to use it 
+Установите SSL-сертификат и настройте Apache на его использование 
 
-### Disable HTTP TRACE method 
+### Отключите метод HTTP TRACE 
 
 ```
 TraceEnable off
 ```
 
-### Set secure HTTP response headers 
+### Установка безопасных заголовков HTTP-ответов 
 
 ```
 Header always set X-XSS-Protection "1; mode=block"
