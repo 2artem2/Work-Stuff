@@ -4,10 +4,10 @@ title: Docker
 parent: Checklists
 ---
 
-# Docker Hardening for DevSecOps
+# Усиление Docker для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,10 +15,10 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Docker for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Docker для DevSecOps
 
 
-### Enable Docker Content Trust
+### Включить доверие к содержимому Docker
 
 
 ```
@@ -26,30 +26,30 @@ export DOCKER_CONTENT_TRUST=1
 ```
 
 
-### Restrict communication with Docker daemon to local socket
+### Ограничьте взаимодействие с демоном Docker локальным сокетом
 
-
+```
 sudo chmod 660 /var/run/docker.sock<br>sudo chgrp docker /var/run/docker.sock
+```
 
 
-
-### Enable Docker Swarm Mode	
-
+### Включите режим Docker Swarm	
+```
 docker swarm init
+```
 
+### Настройка сетевой безопасности для Docker Swarm
 
-### Set up network security for Docker Swarm
-
-
+```
 docker network create --driver overlay my-network
-
-### Implement resource constraints on Docker containers
+```
+### Реализуйте ограничения ресурсов для контейнеров Docker
 
 ```
 docker run --cpu-quota=50000 --memory=512m my-image
 ```
 
-### Use Docker Secrets to protect sensitive data
+### Используйте Docker Secrets для защиты конфиденциальных данных
 
 
 ```
@@ -57,15 +57,15 @@ docker secret create my-secret my-secret-data.txt
 ```
 
 
-### Limit access to Docker APIs
+### Ограничение доступа к API Docker
 
 
 
-Use a reverse proxy like NGINX or Apache to limit access to the Docker API endpoint
+Используйте обратный прокси-сервер, например NGINX или Apache, чтобы ограничить доступ к конечной точке Docker API.
 
 
 
-### Rotate Docker TLS certificates regularly	
+### Регулярно обновляйте TLS-сертификаты Docker	
 
 
 ```
@@ -74,7 +74,7 @@ dockerd --tlsverify --tlscacert=ca.pem --tlscert=server-cert.pem --tlskey=server
 
 
 
-### Use non-root user	
+### Используйте пользователя, не являющегося пользователем root	
 
 
 ```
@@ -82,7 +82,7 @@ user: <non-root-user>
 ```
 
 
-### Limit container capabilities	
+### Ограничение возможностей контейнеров	
 
 
 ```
@@ -90,7 +90,7 @@ cap_drop: [CAP_SYS_ADMIN]
 ```
 
 
-### Restrict container resources	
+### Ограничение ресурсов контейнера	
 
 
 ```
@@ -101,7 +101,7 @@ resources:
 ```
 
 
-### Enable read-only file system	
+### Включить файловую систему, доступную только для чтения	
 
 
 ```
@@ -109,7 +109,7 @@ read_only: true
 ```
 
 
-### Set container restart policy	
+### Установка политики перезапуска контейнера	
 
 
 ```
@@ -117,7 +117,7 @@ restart: unless-stopped
 ```
 
 
-### Use TLS/SSL for secure communication	
+### Используйте TLS/SSL для безопасной связи	
 
 
 ```
@@ -126,7 +126,7 @@ docker run -d -p 443:443 --name registry -v /path/to/certs:/certs -e REGISTRY_HT
 
 
 
-### Enable authentication	
+### Включить аутентификацию	
 
 
 ```
@@ -134,7 +134,7 @@ docker run -d -p 443:443 --name registry -v /path/to/auth:/auth -e REGISTRY_AUTH
 ```
 
 
-### Limit access to trusted clients	
+### Ограничьте доступ для доверенных клиентов	
 
 
 ```
@@ -142,7 +142,7 @@ docker run -d -p 443:443 --name registry -e REGISTRY_HTTP_SECRET=mysecret regist
 ```
 
 
-### Implement access control policies	
+### Внедрение политик контроля доступа	
 
 
 ```
@@ -150,7 +150,7 @@ docker run -d -p 443:443 --name registry -v /path/to/config.yml:/etc/docker/regi
 ```
 
 
-### Enable content trust (image signing)		
+### Включите функцию доверия к содержимому (подпись изображений)		
 
 
 ```
