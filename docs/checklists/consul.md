@@ -4,10 +4,10 @@ title: Consul
 parent: Checklists
 ---
 
-# Consul Hardening for DevSecOps
+# Усиление Consul для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,10 +15,10 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Consul for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик для усиления Consul для DevSecOps
 
 
-### Enable TLS encryption for Consul communication	
+### Включите шифрование TLS для связи с Consul	
 
 
 ```
@@ -26,7 +26,7 @@ consul agent -config-dir=/etc/consul.d -encrypt=<encryption-key> -ca-file=/path/
 ```
 
 
-### Restrict access to Consul API
+### Ограничение доступа к API Consul
 
 
 
@@ -35,13 +35,13 @@ consul acl bootstrap; consul acl policy create -name "secure-policy" -rules @sec
 ```
 
 
-### Limit the resources allocated to Consul service	
+### Ограничить ресурсы, выделяемые на обслуживание Consul	
 
 
-`systemctl edit consul.service` and add `CPUQuota=50%` and `MemoryLimit=512M`
+`systemctl edit consul.service` и добавьте `CPUQuota=50%` и `MemoryLimit=512M`
 
 
-### Disable unnecessary HTTP APIs
+### Отключите ненужные HTTP API
 
 
 ```
@@ -49,7 +49,7 @@ consul agent -disable-http-apis=stats
 ```
 
 
-### Enable and configure audit logging
+### Включение и настройка регистрации аудита
 
 ```
 consul agent -config-dir=/etc/consul.d -audit-log-path=/var/log/consul_audit.log
@@ -57,7 +57,7 @@ consul agent -config-dir=/etc/consul.d -audit-log-path=/var/log/consul_audit.log
 
 
 
-### Enable and configure health checks
+### Включение и настройка проверок состояния
 
 
 ```
@@ -67,7 +67,7 @@ consul agent -config-dir=/etc/consul.d -enable-script-checks=true -script-check-
 
 
 
-### Enable rate limiting to prevent DDoS attacks	
+### Включите ограничение скорости для предотвращения DDoS-атак	
 
 ```
 consul rate-limiting enable; consul rate-limiting config set -max-burst 1000 -rate 100
@@ -76,7 +76,7 @@ consul rate-limiting enable; consul rate-limiting config set -max-burst 1000 -ra
 
 
 
-### Set up backup and recovery procedures for Consul data		
+### Настройка процедур резервного копирования и восстановления данных Consul		
 
 
 ```
