@@ -4,10 +4,10 @@ title: eBPF
 parent: Checklists
 ---
 
-# eBPF Security Checklist for DevSecOps
+# Контрольный список безопасности eBPF для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,50 +15,50 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to eBPF for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик eBPF для DevSecOps
 
 
 
 
-### Enable eBPF hardening 
+### Включить упрочнение eBPF 
 
 ```
 echo 1 > /proc/sys/net/core/bpf_jit_harden
 ```
 
 
-### Limit eBPF program load 
+### Ограничение загрузки программы eBPF 
 
 ```
 setcap cap_bpf=e /path/to/program
 ```
 
-### Restrict eBPF tracepoints access      
+### Ограничить доступ к точкам трассировки eBPF      
 
 ```
 echo 0 > /proc/sys/kernel/perf_event_paranoid
 ```
 
 
-### Use eBPF to monitor system calls 
+### Используйте eBPF для мониторинга системных вызовов 
 
 ```
 bpftrace -e 'tracepoint:raw_syscalls:sys_enter { @[comm] = count(); }'
 ```
 
-### Enable eBPF-based security monitoring    
+### Включите мониторинг безопасности на основе eBPF    
 
 ```
 bpftool prog load secmon.bpf /sys/fs/bpf/
 ```
 
-### Limit eBPF map operations 
+### Ограничение операций с картой eBPF 
 
 ```
 bpftool map create /sys/fs/bpf/my_map type hash key 4 value 4 entries 1024
 ```
 
-### Regularly update eBPF tools and libraries
+### Регулярно обновляйте инструменты и библиотеки eBPF
 
 ```
 apt-get update && apt-get upgrade libbpf-tools
