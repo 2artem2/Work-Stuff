@@ -4,10 +4,10 @@ title: AWS
 parent: Checklists
 ---
 
-# AWS Security Checklist for DevSecOps
+# Контрольный список безопасности AWS для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,56 +15,56 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to AWS for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик AWS для DevSecOps
 
 
 
 
-### Enable multi-factor authentication (MFA)
+### Включите многофакторную аутентификацию (MFA)
 
 ```
 aws cognito-idp set-user-mfa-preference
 ```
 
 
-### Set a strong password policy
+### Установите строгую политику паролей
 
 ```
 aws cognito-idp update-user-pool
 ```
 
-### Enable advanced security features      
+### Включите расширенные функции безопасности      
 
 ```
 aws cognito-idp set-user-pool-policy
 ```
 
 
-### Limit the number of devices a user can remember 
+### Ограничьте количество устройств, которые может запомнить пользователь 
 
 ```
 aws cognito-idp set-device-configuration
 ```
 
-### Set a session timeout for your user pool    
+### Установите тайм-аут сеанса для вашего пула пользователей    
 
 ```
 aws cognito-idp update-user-pool-client
 ```
 
-### Enable account recovery method 
+### Включите метод восстановления учетной записи 
 
 ```
 aws cognito-idp set-account-recovery
 ```
 
-### Monitor and log all sign-in and sign-out events 
+### Отслеживайте и регистрируйте все события, связанные с входом и выходом из системы 
 
 ```
 aws cognito-idp create-user-pool-domain
 ```
 
-### Restrict access to your user pool only from certain IP ranges
+### Ограничьте доступ к своему пулу пользователей только из определенных диапазонов IP-адресов
 
 ```
 aws cognito-idp update-resource-server
