@@ -4,7 +4,7 @@ title: CouchDB
 parent: Checklists
 ---
 
-# CouchDB Hardening for DevSecOps
+# Усиление CouchDB для DevSecOps
 {: .no_toc }
 
 ## Table of contents
@@ -15,30 +15,30 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden CouchDB for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите CouchDB для DevSecOps
 
 
-### Disable admin party	 
+### Отключить партию администраторов	 
 
 
-Edit the CouchDB configuration file `local.ini` located at `/opt/couchdb/etc/couchdb/`. Change the line `; [admins] to [admins]`, and add your admin username and password. Save and exit the file. Restart CouchDB. Example command: `sudo nano /opt/couchdb/etc/couchdb/local.ini`
+Отредактируйте конфигурационный файл CouchDB `local.ini`, расположенный по адресу `/opt/couchdb/etc/couchdb/`. Измените строку `; [admins] на [admins]` и добавьте свое имя пользователя и пароль администратора. Сохраните и выйдите из файла. Перезапустите CouchDB. Пример команды: `sudo nano /opt/couchdb/etc/couchdb/local.ini`.
 
 
-### Restrict access to configuration files	
+### Ограничьте доступ к конфигурационным файлам	
 
-Change the owner and group of the CouchDB configuration directory `/opt/couchdb/etc/couchdb/` to the CouchDB user and group. Example command: `sudo chown -R couchdb:couchdb /opt/couchdb/etc/couchdb/`
-
-
-### Use SSL/TLS encryption	
-
-Create SSL/TLS certificates and configure CouchDB to use HTTPS. Example command for creating self-signed certificates: `sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/couchdb.key -out /etc/ssl/certs/couchdb.crt`
+Измените владельца и группу каталога конфигурации CouchDB `/opt/couchdb/etc/couchdb/` на пользователя и группу CouchDB. Пример команды: `sudo chown -R couchdb:couchdb /opt/couchdb/etc/couchdb/`.
 
 
-### Limit access to ports	
+### Используйте шифрование SSL/TLS	
 
-Use a firewall to limit access to only the necessary ports. Example command using `ufw`: `sudo ufw allow from 192.168.1.0/24 to any port 5984`
+Создайте сертификаты SSL/TLS и настройте CouchDB на использование HTTPS. Пример команды для создания самоподписанных сертификатов: `sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/couchdb.key -out /etc/ssl/certs/couchdb.crt`.
 
 
-### Update CouchDB regularly	
+### Ограничьте доступ к портам	
 
-Install updates and security patches regularly to keep the system secure. Example command for updating packages: `sudo apt-get update && sudo apt-get upgrade`
+Используйте брандмауэр, чтобы ограничить доступ только к необходимым портам. Пример команды с использованием `ufw`: `sudo ufw allow from 192.168.1.0/24 to any port 5984`.
+
+
+### Регулярно обновляйте CouchDB	
+
+Регулярно устанавливайте обновления и патчи безопасности, чтобы обеспечить безопасность системы. Пример команды для обновления пакетов: `sudo apt-get update && sudo apt-get upgrade`.
