@@ -4,10 +4,10 @@ title: auth0
 parent: Checklists
 ---
 
-# auth0 Security Checklist for DevSecOps
+# auth0 Контрольный список безопасности для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,57 +15,57 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to auth0 for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик auth0 для DevSecOps
 
 
 
 
-### Enable Multi-Factor Authentication (MFA) 
+### Включите многофакторную аутентификацию (MFA) 
 
 ```
 auth0 rules create --name enable-mfa
 ```
 
 
-### Set Strong Password Policies    
+### Установите строгую политику паролей    
 
 ```
 auth0 connections update
 ```
 
-### Limit Number of Devices                
+### Ограничение количества устройств                
 
 ```
 Use Auth0 Dashboard to set device limits
 ```
 
 
-### Enable Anomaly Detection
+### Включить обнаружение аномалий
 
 ```
 auth0 anomaly enable
 ```
 
-### Regularly Rotate Client Secrets 
+### Регулярная ротация клиентских секретов 
 
 ```
 auth0 clients rotate-secret
 ```
 
-### Restrict Allowed Callback URLs
+### Ограничение разрешенных URL-адресов обратного вызова
 
 ```
 auth0 clients update --callbacks
 ```
 
-### Enable Automated Log Monitoring and Alerts  
+### Включите автоматический мониторинг журналов и оповещения  
 
 ```
 Use Auth0 Dashboard to configure alerts
 ```
 
 
-### Use Role-Based Access Control (RBAC)  
+### Используйте контроль доступа на основе ролей (RBAC)  
 
 ```
 auth0 roles create
