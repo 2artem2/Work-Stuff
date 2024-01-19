@@ -4,7 +4,7 @@ title: ArgoCD
 parent: Checklists
 ---
 
-# ArgoCD Hardening for DevSecOps
+# Усиление ArgoCD для DevSecOps
 {: .no_toc }
 
 ## Table of contents
@@ -15,10 +15,10 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden ArgoCD for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по укреплению ArgoCD для DevSecOps
 
 
-### Disable anonymous access to the ArgoCD API server
+### Отключите анонимный доступ к серверу API ArgoCD
 
 
 ```
@@ -26,7 +26,7 @@ argocd-server --disable-auth
 ```
 
 
-### Enable HTTPS for ArgoCD server communication
+### Включите HTTPS для связи с сервером ArgoCD
 
 
 
@@ -35,7 +35,7 @@ argocd-server --tls-cert-file /path/to/tls.crt --tls-private-key-file /path/to/t
 ```
 
 
-### Use a strong password for ArgoCD administrative users
+### Используйте надежный пароль для административных пользователей ArgoCD
 
 
 ```
@@ -43,14 +43,14 @@ argocd-server --admin-password <password>
 ```
 
 
-### Restrict access to ArgoCD API server by IP address	
+### Ограничение доступа к серверу API ArgoCD по IP-адресу	
 
 
-Modify `argocd-server` configuration file to specify `--client-ca-file` and `--auth-mode cert` options and create a certificate authority file and client certificate signed by the CA for each client host.
+Измените конфигурационный файл `argocd-server`, указав опции `--client-ca-file` и `--auth-mode cert`, и создайте файл центра сертификации и клиентский сертификат, подписанный ЦС, для каждого клиентского узла.
 
 
 
-### Enable RBAC for fine-grained access control to ArgoCD resources	
+### Включите RBAC для тонкого контроля доступа к ресурсам ArgoCD	
 
 ```
 argocd-server --rbac-policy-file /path/to/rbac.yaml
@@ -58,7 +58,7 @@ argocd-server --rbac-policy-file /path/to/rbac.yaml
 
 
 
-### Set secure cookie options for ArgoCD web UI
+### Настройка параметров безопасных файлов cookie для веб-интерфейса ArgoCD
 
 
 ```
@@ -68,28 +68,28 @@ argocd-server --secure-cookie
 
 
 
-### Use least privilege principle for ArgoCD API access
+### Используйте принцип наименьших привилегий для доступа к API ArgoCD
 
-Create a dedicated ArgoCD service account with minimal necessary permissions.
-
-
-
-### Regularly update ArgoCD to latest stable version		
-
-
-`argocd version --client` to check client version and `argocd version --server` to check server version. Use package manager or manual upgrade as needed.
+Создайте специальную учетную запись службы ArgoCD с минимально необходимыми правами.
 
 
 
-### Regularly audit ArgoCD logs and access control		
+### Регулярно обновляйте ArgoCD до последней стабильной версии		
 
 
-`argocd-server --loglevel debug` to enable debug level logging. Use a log analyzer or SIEM tool to monitor logs for anomalies.
+`argocd version --client` для проверки версии клиента и `argocd version --server` для проверки версии сервера. При необходимости используйте менеджер пакетов или обновляйте вручную.
 
 
 
-### Implement backup and recovery plan for ArgoCD data		
+### Регулярный аудит журналов ArgoCD и контроль доступа		
 
 
-`argocd-util export /path/to/export` to export ArgoCD data and configuration. Store backups securely and test restoration procedure periodically.
+`argocd-server --loglevel debug`, чтобы включить ведение журнала на уровне отладки. Используйте анализатор журналов или инструмент SIEM для мониторинга журналов на предмет аномалий.
+
+
+
+### Реализация плана резервного копирования и восстановления данных ArgoCD		
+
+
+`argocd-util export /path/to/export` для экспорта данных и конфигурации ArgoCD. Храните резервные копии в безопасном месте и периодически проверяйте процедуру восстановления.
 
