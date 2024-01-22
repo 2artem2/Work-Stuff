@@ -4,10 +4,10 @@ title: Gradle
 parent: Checklists
 ---
 
-# Gradle Hardening for DevSecOps
+# Усиление Gradle для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,26 +15,26 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Gradle for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Gradle для DevSecOps
 
 
-### Use the latest stable version of Gradle	
-
-
-
-Check the latest version on the official website: https://gradle.org/releases/, and then install it. For example: wget https://services.gradle.org/distributions/gradle-7.0.2-bin.zip, unzip gradle-7.0.2-bin.zip, and set the PATH environment variable to the Gradle bin directory.
+### Используйте последнюю стабильную версию Gradle	
 
 
 
-### Disable or restrict Gradle daemon	
+Проверьте последнюю версию на официальном сайте: https://gradle.org/releases/, а затем установите ее. Например: wget https://services.gradle.org/distributions/gradle-7.0.2-bin.zip, разархивируйте gradle-7.0.2-bin.zip и установите переменную окружения PATH на каталог Gradle bin.
 
 
-You can disable the daemon by adding the following line to the gradle.properties file: org.gradle.daemon=false. Alternatively, you can restrict the maximum amount of memory that can be used by the daemon by setting the org.gradle.jvmargs property.
+
+### Отключите или ограничьте работу демона Gradle	
 
 
-### Configure Gradle to use HTTPS for all repositories	
+Вы можете отключить демон, добавив в файл gradle.properties следующую строку: org.gradle.daemon=false. Также вы можете ограничить максимальный объем памяти, который может использовать демон, установив свойство org.gradle.jvmargs.
 
-Add the following code to the build.gradle file to enforce using HTTPS for all repositories:
+
+### Настройте Gradle на использование HTTPS для всех репозиториев	
+
+Добавьте следующий код в файл build.gradle, чтобы обеспечить использование HTTPS для всех репозиториев:
 
 ```
 allprojects {
@@ -51,24 +51,24 @@ allprojects {
 ```
 
 
-### Use secure credentials for accessing repositories
+### Используйте безопасные учетные данные для доступа к репозиториям
 
-Use encrypted credentials in the `build.gradle` file or environment variables for accessing repositories.
-
-
-### Use plugins and dependencies from trusted sources only
-
-Use plugins and dependencies from official sources, and avoid using those from unknown or untrusted sources. 
+Используйте зашифрованные учетные данные в файле `build.gradle` или переменных окружения для доступа к репозиториям.
 
 
-### Implement access controls for Gradle builds
+### Используйте плагины и зависимости только из проверенных источников
 
-Implement access controls to ensure that only authorized users can execute or modify Gradle builds.
+Используйте плагины и зависимости из официальных источников и избегайте использования плагинов и зависимостей из неизвестных или недоверенных источников. 
+
+
+### Реализация контроля доступа для сборок Gradle
+
+Реализуйте контроль доступа, чтобы только авторизованные пользователи могли выполнять или изменять сборки Gradle.
 
 
 
 ### Regularly update Gradle and plugins
 
-Regularly update Gradle and its plugins to ensure that security vulnerabilities are fixed and new features are added. Use the `gradle wrapper` command to ensure that all team members use the same version of Gradle.
+Регулярно обновляйте Gradle и его плагины, чтобы обеспечить устранение уязвимостей в системе безопасности и добавление новых функций. Используйте команду `gradle wrapper`, чтобы убедиться, что все члены команды используют одну и ту же версию Gradle.
 
 
