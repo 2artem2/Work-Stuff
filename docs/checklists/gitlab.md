@@ -4,10 +4,10 @@ title: Gitlab
 parent: Checklists
 ---
 
-# Gitlab Hardening for DevSecOps
+# Усиление Gitlab для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,10 +15,10 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Gitlab for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Gitlab для DevSecOps
 
 
-### Update GitLab to the latest version	
+### Обновите GitLab до последней версии	
 
 
 ```
@@ -26,57 +26,57 @@ sudo apt-get update && sudo apt-get upgrade gitlab-ee
 ```
 
 
-### Enable SSL/TLS for GitLab	
+### Включите SSL/TLS для GitLab	
 
 
-Edit /etc/gitlab/gitlab.rb and add the following lines: <br>external_url 'https://gitlab.example.com'<br>nginx['redirect_http_to_https'] = true<br>nginx['ssl_certificate'] = "/etc/gitlab/ssl/gitlab.example.com.crt"<br>nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/gitlab.example.com.key"<br>gitlab_rails['gitlab_https'] = true<br>gitlab_rails['trusted_proxies'] = ['192.168.1.1'] (replace 192.168.1.1 with the IP address of your proxy) <br> Then run sudo gitlab-ctl reconfigure
-
-
-
-### Disable GitLab sign up	
-
-Edit /etc/gitlab/gitlab.rb and add the following line:<br>gitlab_rails['gitlab_signup_enabled'] = false <br> Then run sudo gitlab-ctl reconfigure
+Edit /etc/gitlab/gitlab.rb и добавьте следующие строки: <br>external_url 'https://gitlab.example.com'<br>nginx['redirect_http_to_https'] = true<br>nginx['ssl_certificate'] = "/etc/gitlab/ssl/gitlab.example.com.crt"<br>nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/gitlab.example.com.key"<br>gitlab_rails['gitlab_https'] = true<br>gitlab_rails['trusted_proxies'] = ['192.168.1.1'] (замените 192.168.1.1 на IP-адрес вашего прокси-сервера) <br> Затем выполните команду sudo gitlab-ctl reconfigure
 
 
 
-### Set a strong password policy
+### Отключить регистрацию в GitLab	
 
-
-Edit /etc/gitlab/gitlab.rb and add the following lines: <br>gitlab_rails['password_minimum_length'] = 12<br>gitlab_rails['password_complexity'] = 2<br> Then run sudo gitlab-ctl reconfigure
-
-
-### Limit the maximum file size
-
-Edit /etc/gitlab/gitlab.rb and add the following line:<br>gitlab_rails['max_attachment_size'] = 10.megabytes <br> Then run sudo gitlab-ctl reconfigure
-
-
-### Enable two-factor authentication (2FA)
-
-Go to GitLab's web interface, click on your profile picture in the top-right corner, and select "Settings". Then select "Account" from the left-hand menu and follow the prompts to set up 2FA.
+Редактируйте /etc/gitlab/gitlab.rb и добавьте следующую строку:<br>gitlab_rails['gitlab_signup_enabled'] = false <br> Затем выполните команду sudo gitlab-ctl reconfigure
 
 
 
-### Enable audit logging	
-
-Edit /etc/gitlab/gitlab.rb and add the following line:<br>gitlab_rails['audit_events_enabled'] = true<br> Then run sudo gitlab-ctl reconfigure
+### Установите строгую политику паролей
 
 
-
-### Configure GitLab backups		
-
-
-Edit /etc/gitlab/gitlab.rb and add the following lines:<br>gitlab_rails['backup_keep_time'] = 604800<br>gitlab_rails['backup_archive_permissions'] = 0644<br>gitlab_rails['backup_pg_schema'] = 'public'<br>gitlab_rails['backup_path'] = "/var/opt/gitlab/backups"<br> Then run sudo gitlab-ctl reconfigure
+Редактируйте /etc/gitlab/gitlab.rb и добавьте следующие строки: <br>gitlab_rails['password_minimum_length'] = 12<br>gitlab_rails['password_complexity'] = 2<br> Затем выполните команду sudo gitlab-ctl reconfigure
 
 
+### Ограничение максимального размера файла
 
-### Restrict SSH access
-
-
-Edit /etc/gitlab/gitlab.rb and add the following line:<br>gitlab_rails['gitlab_shell_ssh_port'] = 22<br> Then run sudo gitlab-ctl reconfigure
+Редактируйте /etc/gitlab/gitlab.rb и добавьте следующую строку:<br>gitlab_rails['max_attachment_size'] = 10.megabytes <br> Затем выполните команду sudo gitlab-ctl reconfigure
 
 
-### Enable firewall rules
+### Включите двухфакторную аутентификацию (2FA)
+
+Зайдите в веб-интерфейс GitLab, нажмите на изображение своего профиля в правом верхнем углу и выберите "Настройки". Затем в левом меню выберите "Учетная запись" и следуйте подсказкам, чтобы настроить 2FA.
 
 
-Configure your firewall to only allow incoming traffic on ports that are necessary for GitLab to function, such as 80, 443, and 22. Consult your firewall documentation for instructions on how to configure the firewall rules.
+
+### Включите ведение журнала аудита	
+
+Редактируйте /etc/gitlab/gitlab.rb и добавьте следующую строку:<br>gitlab_rails['audit_events_enabled'] = true<br> Затем выполните команду sudo gitlab-ctl reconfigure
+
+
+
+### Настройка резервного копирования GitLab		
+
+
+Редактируйте /etc/gitlab/gitlab.rb и добавьте следующие строки:<br>gitlab_rails['backup_keep_time'] = 604800<br>gitlab_rails['backup_archive_permissions'] = 0644<br>gitlab_rails['backup_pg_schema'] = 'public'<br>gitlab_rails['backup_path'] = "/var/opt/gitlab/backups"<br> Затем выполните команду sudo gitlab-ctl reconfigure
+
+
+
+### Ограничение доступа к SSH
+
+
+Редактируйте /etc/gitlab/gitlab.rb и добавьте следующую строку:<br>gitlab_rails['gitlab_shell_ssh_port'] = 22<br> Затем выполните команду sudo gitlab-ctl reconfigure
+
+
+### Включите правила брандмауэра
+
+
+Настройте свой брандмауэр так, чтобы он разрешал входящий трафик только на порты, необходимые для работы GitLab, например 80, 443 и 22. Обратитесь к документации по брандмауэру за инструкциями по настройке правил брандмауэра.
 
