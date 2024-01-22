@@ -4,10 +4,10 @@ title: SBOM
 parent: Checklists
 ---
 
-# SBOM Security Checklist for DevSecOps
+# Контрольный список безопасности SBOM для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,59 +15,59 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to SBOM for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик SBOM для DevSecOps
 
 
 
 
-### Generate SBOM for your software
+### Создание SBOM для вашего программного обеспечения
 
 ```
 cyclonedx-bom -o sbom.xml
 ```
 
 
-### Validate the generated SBOM   
+### Проверка сгенерированного SBOM   
 
 ```
 bom-validator sbom.xml
 ```
 
-### Integrate SBOM generation in CI/CD pipeline              
-
-```
-Add SBOM generation step in CI/CD script
-```
+### Интеграция генерации SBOM в пайплайн CI/CD              
 
 
-### Regularly update the SBOM tools 
+Добавьте шаг генерации SBOM в сценарий CI/CD
+
+
+
+### Регулярное обновление инструментов SBOM 
 
 ```
 apt-get update && apt-get upgrade cyclonedx-bom
 ```
 
-### Review and analyze SBOM for vulnerabilities
+### Обзор и анализ SBOM на предмет уязвимостей
 
 ```
 sbom-analyzer sbom.xml
 ```
 
-### Ensure SBOM is comprehensive and includes all components
-
-```
-Review SBOM and add missing components
-```
-
-### Protect SBOM data with proper access controls  
-
-```
-Configure access controls for SBOM data 
-```
+### Убедитесь, что SBOM является всеобъемлющим и включает все компоненты
 
 
-### Monitor and update SBOM for each release      
+Обзор SBOM и добавление недостающих компонентов
 
-```
-Automate SBOM update for each release
-```
+
+### Защита данных SBOM с помощью надлежащих средств контроля доступа  
+
+
+Настройка контроля доступа к данным SBOM
+
+
+
+### Мониторинг и обновление SBOM для каждого выпуска      
+
+
+Автоматическое обновление SBOM для каждого выпуска
+
 
