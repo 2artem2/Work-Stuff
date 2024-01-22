@@ -4,10 +4,10 @@ title: Memcached
 parent: Checklists
 ---
 
-# Memcached Hardening for DevSecOps
+# Усиление Memcached для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,10 +15,10 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Memcached for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Memcached для DevSecOps
 
 
-### Disable UDP listener	
+### Отключить UDP-приемник	
 
 
 ```
@@ -26,7 +26,7 @@ sed -i 's/^-U 0/#-U 0/g' /etc/sysconfig/memcached
 ```
 
 
-### Enable SASL authentication
+### Включить аутентификацию SASL
 
 
 
@@ -34,7 +34,7 @@ sed -i 's/^-U 0/#-U 0/g' /etc/sysconfig/memcached
 
 
 
-### Limit incoming traffic to known IP addresses
+### Ограничьте входящий трафик известными IP-адресами
 
 
 ```
@@ -42,7 +42,7 @@ iptables -A INPUT -p tcp --dport 11211 -s 192.168.1.100 -j ACCEPT
 ```
 
 
-### Limit maximum memory usage
+### Ограничьте максимальное использование памяти
 
 
 ```
@@ -50,7 +50,7 @@ echo 'CACHESIZE="128"' > /etc/sysconfig/memcached
 ```
 
 
-### Run as non-root user	
+### Запуск от имени пользователя, не являющегося пользователем root	
 
 ```
 sed -i 's/^-u root/-u memcached/g' /etc/sysconfig/memcached
@@ -58,7 +58,7 @@ sed -i 's/^-u root/-u memcached/g' /etc/sysconfig/memcached
 
 
 
-### Enable logging	
+### Включить ведение журнала	
 
 `sed -i 's/^logfile/#logfile/g' /etc/sysconfig/memcached`<br>`mkdir /var/log/memcached`<br>`touch /var/log/memcached/memcached.log`<br>`chown memcached:memcached /var/log/memcached/memcached.log`<br>`sed -i 's/^#logfile/LOGFILE="\/var\/log\/memcached\/memcached.log"/g' /etc/sysconfig/memcached`
 
@@ -66,7 +66,7 @@ sed -i 's/^-u root/-u memcached/g' /etc/sysconfig/memcached
 
 
 
-### Upgrade to the latest version	
+### Обновление до последней версии	
 
 ```
 yum update memcached
@@ -75,7 +75,7 @@ yum update memcached
 
 
 
-### Disable unused flags		
+### Отключение неиспользуемых флагов		
 
 
 `sed -i 's/^-I 1m/#-I 1m/g' /etc/sysconfig/memcached`<br>`sed -i 's/^-a 0765/#-a 0765/g' /etc/sysconfig/memcached`
