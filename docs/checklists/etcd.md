@@ -4,10 +4,10 @@ title: etcd
 parent: Checklists
 ---
 
-# etcd Hardening for DevSecOps
+# Усиление etcd для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,29 +15,29 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden etcd for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите etcd для DevSecOps
 
 
-### Enable authentication for etcd	 
+### Включите аутентификацию для etcd	 
 
 ```
 etcd --auth-enable=true
 ```
 
-### Configure TLS encryption for etcd communication	
+### Настройка шифрования TLS для связи с etcd	
 
 ```
 etcd --cert-file=/path/to/cert.pem --key-file=/path/to/key.pem --client-cert-auth=true --trusted-ca-file=/path/to/ca.pem
 ``` 
 
-### Enable etcd access control lists (ACLs)	
+### Включите списки управления доступом (ACL) etcd.	
 
 
 ```
 Enable etcd access control lists (ACLs)
 ```
 
-### Limit network access to etcd ports	
+### Ограничьте сетевой доступ к портам etcd	
 
 ```
 iptables -A INPUT -p tcp --dport 2379 -j DROP
