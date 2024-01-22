@@ -4,10 +4,10 @@ title: Redis
 parent: Checklists
 ---
 
-# Redis Hardening for DevSecOps
+# Усиление Redis для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,10 +15,10 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Redis for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Redis для DevSecOps
 
 
-### Disable the CONFIG command
+### Отключить команду CONFIG
 
 
 ```
@@ -26,7 +26,7 @@ redis-cli config set config-command " "
 ```
 
 
-### Disable the FLUSHDB and FLUSHALL commands
+### Отключите команды FLUSHDB и FLUSHALL
 
 
 ```
@@ -34,42 +34,42 @@ redis-cli config set stop-writes-on-bgsave-error yes
 ```
 
 
-### Enable authentication
+### Включить аутентификацию
 
 
-Set a password in the Redis configuration file (`redis.conf`) using the `requirepass` directive. Restart Redis service to apply changes.
-
-
-
-### Bind Redis to a specific IP address	
-
-
-Edit the `bind` directive in the Redis configuration file to specify a specific IP address.
+Установите пароль в конфигурационном файле Redis (`redis.conf`) с помощью директивы `requirepass`. Перезапустите службу Redis, чтобы применить изменения.
 
 
 
-### Enable SSL/TLS encryption	
+### Привязка Redis к определенному IP-адресу	
 
 
-Edit the `redis.conf` file to specify SSL/TLS options and certificate files. Restart Redis service to apply changes.
+Отредактируйте директиву `bind` в конфигурационном файле Redis, чтобы указать конкретный IP-адрес.
 
 
-### Disable unused Redis modules	
+
+### Включите шифрование SSL/TLS	
 
 
-Edit the `redis.conf` file to disable modules that are not needed. Use the `module-load` and `module-unload` directives to control modules.
+Отредактируйте файл `redis.conf`, чтобы указать параметры SSL/TLS и файлы сертификатов. Перезапустите службу Redis, чтобы применить изменения.
 
 
-### Set limits for memory and connections	
-
-Edit the `maxmemory` and `maxclients` directives in the `redis.conf` file to set limits for Redis memory and connections.
+### Отключите неиспользуемые модули Redis	
 
 
-### Monitor Redis logs
-
-Regularly check Redis logs for suspicious activities and errors. Use a log analyzer tool to help detect anomalies.
+Отредактируйте файл `redis.conf`, чтобы отключить ненужные модули. Для управления модулями используйте директивы `module-load` и `module-unload`.
 
 
-### Regularly update Redis
+### Установите ограничения на память и соединения	
 
-Keep Redis up-to-date with the latest security patches and updates. Monitor vendor security advisories for any vulnerabilities that may affect Redis.
+Отредактируйте директивы `maxmemory` и `maxclients` в файле `redis.conf`, чтобы установить ограничения на память и соединения Redis.
+
+
+### Мониторинг журналов Redis
+
+Регулярно проверяйте журналы Redis на предмет подозрительных действий и ошибок. Для обнаружения аномалий используйте инструмент анализа журналов.
+
+
+### Регулярно обновляйте Redis
+
+Поддерживайте Redis в актуальном состоянии с помощью последних исправлений и обновлений безопасности. Следите за рекомендациями по безопасности производителей на предмет уязвимостей, которые могут повлиять на Redis.
