@@ -4,10 +4,10 @@ title: OpenShift
 parent: Checklists
 ---
 
-# OpenShift Hardening for DevSecOps
+# Усиление OpenShift для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,95 +15,95 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden OpenShift for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите OpenShift для DevSecOps
 
 
-### Disable insecure protocols and ciphers	
+### Отключите небезопасные протоколы и шифры	
 
 ```
 oc adm policy reconcile-cluster-role-binding
 ```
 
-Enable authentication and RBAC
+Включите аутентификацию и RBAC
 
 ```
 oc adm policy add-cluster-role-to-user
 ```
 
-Limit privileged access to the cluster	
+Ограничение привилегированного доступа к кластеру	
 
 ```
 oc adm policy add-scc-to-user
 ```
 
-Enable audit logging	
+Включите ведение журнала аудита	
 
 ```
 oc adm audit
 ```
 
-Enforce resource limits and quotas	
+Обеспечьте соблюдение лимитов и квот на ресурсы	
 
 
 ```
 oc adm pod-network
 ```
 
-Enable network policies for isolation	
+Включите сетевые политики для изоляции	
 
 ```
 oc create networkpolicy
 ```
 
-Configure container runtime security	
+Настройка безопасности времени выполнения контейнера	
 
 ```
 oc adm policy add-scc-to-group
 ```
 
-Secure etcd and master nodes	
+Безопасность etcd и основных узлов	
 
 ```
 oc adm manage-node
 ```
 
-Regularly update and patch OpenShift components	
+Регулярное обновление и исправление компонентов OpenShift	
 
 ```
 oc adm upgrade
 ```
 
-Enable image signing and verification	
+Обеспечение подписи и проверки изображений	
 
 ```
 oc image sign
 ```
 
-Use secure registry for image pull	
+Использование защищенного реестра для извлечения образов	
 
 ```
 oc create secret
 ```
 
-Enable encryption for data in transit	
+Включите шифрование данных в пути	
 
 ```
 oc adm router
 ```
 
-Harden worker node security	
+Повышение безопасности рабочих узлов	
 
 ```
 oc adm manage-node
 ```
 
-Implement multi-factor authentication	
+Внедрите многофакторную аутентификацию	
 
 ```
 oc adm policy
 ```
 
-Enable centralized logging and monitoring	
+Обеспечение централизованной регистрации и мониторинга	
 
 ```
 oc adm logs
