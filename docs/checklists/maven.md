@@ -4,7 +4,7 @@ title: Maven
 parent: Checklists
 ---
 
-# Maven Hardening for DevSecOps
+# Усиление Maven для DevSecOps
 {: .no_toc }
 
 ## Table of contents
@@ -15,54 +15,54 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Maven for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Maven для DevSecOps
 
 
-### Use Maven Central with HTTPS	
+### Используйте Maven Central с HTTPS	
 
-Set Maven to use HTTPS when communicating with the Maven Central repository by adding the following to your `settings.xml` file:<br><br>`<mirrors><mirror><id>central</id><url>https://repo.maven.apache.org/maven2</url><mirrorOf>central</mirrorOf></mirror></mirrors>`
-
-
-
-### Verify PGP signatures	
-
-
-Download the .asc file for each dependency and plugin from Maven Central and verify its PGP signature using the gpg --verify command.
-
-
-### Limit repository access	
-
-Only grant repository access to trusted users and machines. Limit access to write operations where possible.
+Настройте Maven на использование HTTPS при взаимодействии с репозиторием Maven Central, добавив следующее в ваш файл `settings.xml`:<br><br>`<mirrors><mirror><id>central</id><url>https://repo.maven.apache.org/maven2</url><mirrorOf>central</mirrorOf></mirror></mirrors>`
 
 
 
-### Use a private repository
-
-Set up a private Maven repository to store artifacts and dependencies that are not publicly available. This limits the risk of downloading compromised or malicious artifacts.
+### Проверка PGP-подписей	
 
 
-### Use Maven wrapper
-
-Use the `mvnw` script or `mvnw.cmd` script on Windows instead of relying on a system-wide installation of Maven. This ensures that the same version of Maven is used across all environments and reduces the risk of dependency conflicts.
+Загрузите файл .asc для каждой зависимости и плагина из Maven Central и проверьте его PGP-подпись с помощью команды gpg --verify.
 
 
-### Scan for vulnerabilities
+### Ограничение доступа к хранилищу	
 
-Use a dependency scanner such as OWASP Dependency-Check or Snyk to scan for known vulnerabilities in your dependencies.
-
-
-### Use least privilege
-
-Use the principle of least privilege to limit the permissions of your Maven build process.
+Предоставляйте доступ к хранилищу только доверенным пользователям и машинам. По возможности ограничьте доступ операциями записи.
 
 
 
-### Enable verbose logging
+### Использование частного репозитория
 
-Enable verbose logging in Maven to capture more information about the build process. This can help diagnose issues and detect any suspicious behavior.
+Создайте частный репозиторий Maven для хранения артефактов и зависимостей, которые не доступны публично. Это ограничивает риск загрузки скомпрометированных или вредоносных артефактов.
+
+
+### Используйте обертку Maven
+
+Используйте скрипт `mvnw` или скрипт `mvnw.cmd` в Windows вместо того, чтобы полагаться на установку Maven в масштабах всей системы. Это гарантирует, что во всех средах будет использоваться одна и та же версия Maven, и снижает риск конфликтов зависимостей.
+
+
+### Сканирование на наличие уязвимостей
+
+Используйте сканер зависимостей, например OWASP Dependency-Check или Snyk, для проверки известных уязвимостей в ваших зависимостях.
+
+
+### Используйте принцип наименьших привилегий
+
+Используйте принцип наименьших привилегий для ограничения прав доступа к процессу сборки Maven.
 
 
 
-### Keep Maven up-to-date
+### Включение подробного протоколирования
 
-Keep Maven and its plugins up-to-date to ensure that security vulnerabilities are addressed in a timely manner.
+Включите ведение подробного журнала в Maven, чтобы получать больше информации о процессе сборки. Это поможет диагностировать проблемы и обнаружить подозрительное поведение.
+
+
+
+### Поддерживайте Maven в актуальном состоянии
+
+Поддерживайте Maven и его плагины в актуальном состоянии, чтобы своевременно устранять уязвимости в системе безопасности.
