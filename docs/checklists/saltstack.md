@@ -4,10 +4,10 @@ title: SaltStack
 parent: Checklists
 ---
 
-# SaltStack Hardening for DevSecOps
+# Усиление SaltStack для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,16 +15,16 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden SaltStack for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по укреплению SaltStack для DevSecOps
 
 
-### Generate SSL certificates for SaltStack communication
+### Генерация SSL-сертификатов для связи с SaltStack
 
 ```
 salt-call --local tls.create_self_signed_cert
 ```
 
-### Enable SSL encryption for SaltStack communication by updating the Salt master configuration file
+### Включите SSL-шифрование для связи с SaltStack, обновив файл конфигурации мастера Salt
 
 ```
 # /etc/salt/master
@@ -32,37 +32,37 @@ ssl_cert: /etc/pki/tls/certs/salt.crt
 ssl_key: /etc/pki/tls/private/salt.key
 ``` 
 
-### Disable unnecessary services and open ports	
+### Отключение ненужных служб и открытие портов	
 
-Disable unused services and close unnecessary ports on Salt Master and Salt Minions
-
-
-### Restrict network access	
-
-Configure firewalls or network ACLs to allow access only from trusted sources
+Отключите неиспользуемые службы и закройте ненужные порты на Salt Master и Salt Minions
 
 
-### Manage Salt Minion keys securely
+### Ограничьте доступ к сети	
 
-Properly distribute, manage, and secure Salt Minion keys
-
-
-
-### Implement strong authentication	
-
-Utilize strong passwords or key-based authentication for Salt Master and Minion access
+Настройте брандмауэры или сетевые ACL, чтобы разрешить доступ только из доверенных источников.
 
 
-### Secure Salt Minions
+### Безопасное управление ключами Salt Minion
+
+Правильное распределение, управление и защита ключей Salt Minion
 
 
-- [x] Securely distribute and manage Salt Minion keys.
-- [x] Disable unnecessary services and open ports on Salt Minions.
-- [x] Restrict network access to Salt Minions using firewalls or network ACLs.
-- [x] Enable authentication mechanisms, such as TLS/SSL, for secure communication.
-- [x] Implement strong passwords or key-based authentication for Salt Minion access.
-- [x] Regularly update Salt Minions to the latest stable version.
-- [x] Enable logging on Salt Minions and monitor logs for security events.
+
+### Внедрите надежную аутентификацию	
+
+Используйте надежные пароли или аутентификацию на основе ключей для доступа к Salt Master и Minion
+
+
+### Безопасный Salt Minions
+
+
+- [x] Безопасное распространение и управление ключами Salt Minion.
+- [x] Отключите ненужные службы и открытые порты на Salt Minions.
+- [x] Ограничьте сетевой доступ к Salt Minions с помощью брандмауэров или сетевых ACL.
+- [x] Включите механизмы аутентификации, такие как TLS/SSL, для безопасной связи.
+- [x] Используйте надежные пароли или аутентификацию на основе ключей для доступа к Salt Minion.
+- [x] Регулярно обновляйте Salt Minion до последней стабильной версии.
+- [x] Включите протоколирование на Salt Minions и отслеживайте журналы на предмет событий безопасности.
 
 
 
