@@ -7,7 +7,7 @@ parent: Checklists
 # Усиление Elasticsearch для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
