@@ -4,10 +4,10 @@ title: GlusterFS
 parent: Checklists
 ---
 
-# GlusterFS Hardening for DevSecOps
+# Усиление GlusterFS для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,10 +15,10 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden GlusterFS for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите GlusterFS для DevSecOps
 
 
-### Disable insecure management protocols		 
+### Отключите небезопасные протоколы управления		 
 
 
 ```
@@ -26,7 +26,7 @@ gluster volume set <volname> network.remote-dio.disable on
 ```
 
 
-### Enable SSL encryption for management
+### Включите SSL-шифрование для управления
 
 
 ```
@@ -34,47 +34,47 @@ gluster volume set <volname> network.remote.ssl-enabled on
 ```
 
 
-### Limit access to trusted clients		
+### Ограничьте доступ для доверенных клиентов		
 
 
 ```
-gluster volume set <volname> auth.allow <comma-separated list of trusted IPs>
+gluster volume set <том> auth.allow <comma-separated list of trusted IPs>
 ```
 
 
-### Enable client-side SSL encryption
+### Включите шифрование SSL на стороне клиента
 
 
 ```
-gluster volume set <volname> client.ssl on
+gluster volume set <том> client.ssl on
 ```
 
-### Enable authentication for client connections	
+### Включите аутентификацию для клиентских подключений	
 
 ```
-gluster volume set <volname> client.auth on
+gluster volume set <том> client.auth on
 ```
 
-### Set proper permissions for GlusterFS files and directories	
+### Установите правильные разрешения для файлов и каталогов GlusterFS	
 
 ```
 chown -R root:glusterfs /etc/glusterfs /var/lib/glusterd /var/log/glusterfs
 ```
 
-### Disable root access to GlusterFS volumes	
+### Отключить root-доступ к томам GlusterFS	
 
 ```
-gluster volume set <volname> auth.reject-unauthorized on
+gluster volume set <том> auth.reject-unauthorized on
 ```
 
-### Enable TLS encryption for GlusterFS traffic	
+### Включите шифрование TLS для трафика GlusterFS	
 
 ```
-gluster volume set <volname> transport-type 
+gluster volume set <том> transport-type 
 ```
 
 
-### Monitor GlusterFS logs for security events	
+### Мониторинг журналов GlusterFS на предмет событий безопасности	
 
 ```
 tail -f /var/log/glusterfs/glusterd.log
