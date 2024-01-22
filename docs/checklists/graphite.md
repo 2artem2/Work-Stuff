@@ -4,10 +4,10 @@ title: Graphite
 parent: Checklists
 ---
 
-# Graphite Hardening for DevSecOps
+# Усиление Graphite для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,10 +15,10 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Graphite for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Graphite для DevSecOps
 
 
-### Disable debug mode	 
+### Отключить режим отладки	 
 
 
 ```
@@ -26,7 +26,7 @@ sed -i 's/DEBUG = True/DEBUG = False/g' /opt/graphite/webapp/graphite/local_sett
 ```
 
 
-### Set a strong secret key for Django	
+### Установите надежный секретный ключ для Django	
 
 
 ```
@@ -34,53 +34,53 @@ sed -i "s/SECRET_KEY = 'UNSAFE_DEFAULT'/SECRET_KEY = 'your-strong-secret-key-her
 ```
 
 
-### Enable HTTPS
-
-
-```
-Install a SSL certificate and configure NGINX to serve Graphite over HTTPS
-```
-
-
-### Restrict access to Graphite web interface
-
-
-```
-Configure NGINX to require authentication or restrict access to specific IP addresses
-```
-
-### Restrict access to Graphite API	
-
-Configure NGINX to require authentication or restrict access to specific IP addresses
-
-
-### Disable unused Graphite components		
-
-Remove unused Carbon cache backends or Django apps to reduce attack surface
-
-
-### Enable authentication for Graphite data ingestion	
-
-Configure Carbon to require authentication for incoming data
-
-
-### Enable Graphite logging	
-
-Configure Graphite to log access and error messages for easier troubleshooting
+### Включить HTTPS
 
 
 
-### Monitor Graphite metrics
-
-Use a monitoring tool like Prometheus or Nagios to monitor Graphite metrics and detect any anomalies
+Установите SSL-сертификат и настройте NGINX на обслуживание Graphite по HTTPS
 
 
 
+### Ограничение доступа к веб-интерфейсу Graphite
 
 
-### Keep Graphite up-to-date
 
-Regularly update Graphite and its dependencies to address any known security vulnerabilities
+Настройте NGINX на требование аутентификации или ограничение доступа для определенных IP-адресов
+
+
+### Ограничение доступа к API Graphite	
+
+Настройте NGINX на требование аутентификации или ограничение доступа для определенных IP-адресов
+
+
+### Отключите неиспользуемые компоненты Graphite		
+
+Удалите неиспользуемые бэкенды кэша Carbon или приложения Django, чтобы уменьшить площадь атаки.
+
+
+### Включите аутентификацию для приема данных Graphite	
+
+Настройте Carbon на требование аутентификации для входящих данных
+
+
+### Включите ведение журнала Graphite	
+
+Настройте Graphite на ведение журнала доступа и сообщений об ошибках для облегчения поиска и устранения неисправностей
+
+
+
+### Мониторинг метрик Graphite
+
+Используйте инструмент мониторинга, например Prometheus или Nagios, чтобы отслеживать метрики Graphite и выявлять любые аномалии.
+
+
+
+
+
+### Поддерживайте Graphite в актуальном состоянии
+
+Регулярно обновляйте Graphite и его зависимости, чтобы устранить все известные уязвимости в системе безопасности.
 
 
 
