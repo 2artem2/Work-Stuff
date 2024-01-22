@@ -4,10 +4,10 @@ title: Git
 parent: Checklists
 ---
 
-# Git Hardening for DevSecOps
+# Усиление Git для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,20 +15,21 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Git for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Git для DevSecOps
 
 
-### Enable GPG signature verification		
+### Включить проверку подписи GPG		
 
 ```
 git config --global commit.gpgsign true
 ```
 
 
-### Set a strong passphrase for GPG key	
+### Задайте надежную парольную фразу для ключа GPG	
 
-
-gpg --edit-key <KEY_ID> and then use the passwd command to set a strong passphrase
+```
+gpg --edit-key <KEY_ID> а затем используйте команду passwd для установки надежной парольной фразы
+```
 
 
 ### Use HTTPS instead of SSH for remote repositories
@@ -39,29 +40,29 @@ git config --global url."https://".insteadOf git://
 ```
 
 
-### Enable two-factor authentication	
+### Включите двухфакторную аутентификацию	
 
-Enable it through the Git service provider's website
+Включите его на веб-сайте поставщика услуг Git.
 
 
-### Set Git to ignore file mode changes
+### Настройте Git на игнорирование изменений режима файла
 
 
 ```
 git config --global core.fileMode false
 ```
 
-### Configure Git to use a credential helper
+### Настройте Git на использование помощника учетных данных
 
-`git config --global credential.helper <helper>` where `<helper>` is the name of the credential helper (e.g., `manager`, `store`)
+`git config --global credential.helper <helper>` где `<helper>` имя помощника по работе с учетными данными (например, `manager`, `store`)
 
 
-### Use signed commits
+### Используйте подписанные коммиты
 
 ```
 git commit -S
 ```
- or 
+ или 
 
 ```
  git config --global commit.gpgsign true
@@ -69,14 +70,14 @@ git commit -S
 
 
 
-### Set Git to automatically prune stale remote-tracking branches
+### Настройте Git на автоматическую обрезку устаревших веток с удаленным отслеживанием
 
 ```
 git config --global fetch.prune true
 ```
 
 
-### Set Git to always rebase instead of merge when pulling
+### Настройте Git так, чтобы при вытягивании всегда выполнялся rebase, а не merge
 
 
 ```
@@ -84,11 +85,11 @@ git config --global pull.rebase true
 ```
 
 
-### Use Git's `ignore` feature to exclude sensitive files	
+### Используйте функцию Git'а `ignore` для исключения чувствительных файлов	
 
 
 
-Add files or file patterns to the `.gitignore` file
+Добавление файлов или шаблонов файлов в файл `.gitignore`.
 
 
 
