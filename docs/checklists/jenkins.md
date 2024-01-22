@@ -4,10 +4,10 @@ title: Jenkins
 parent: Checklists
 ---
 
-# Jenkins Hardening for DevSecOps
+# Усиление Jenkins для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,84 +15,84 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Jenkins for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Jenkins для DevSecOps
 
 
-### Enable security
+### Включить защиту
 
 
-Go to "Manage Jenkins" -> "Configure Global Security" and select "Enable security"
-
-
-
-### Use secure connection	
-
-
-Go to "Manage Jenkins" -> "Configure Global Security" and select "Require secure connections"
+Перейдите в раздел "Управление Jenkins" -> "Настройка глобальной безопасности" и выберите "Включить безопасность".
 
 
 
-### Restrict project access	
-
-Go to the project configuration -> "Configure" -> "Enable project-based security"
+### Используйте безопасное соединение	
 
 
-
-### Use plugins with caution
-
-
-Install only necessary plugins from trusted sources and regularly update them
-
-
-### Limit user permissions
-
-Assign minimal necessary permissions to each user or group
+Перейдите в раздел "Управление Jenkins" -> "Настроить глобальную безопасность" и выберите "Требовать безопасные соединения".
 
 
 
-### Use credentials securely
+### Ограничить доступ к проекту	
 
-Store credentials in Jenkins credentials store and use them only where necessary
-
-
+Перейдите в конфигурацию проекта -> "Настроить" -> "Включить безопасность на основе проекта".
 
 
 
-### Regularly update Jenkins	
-
-Keep Jenkins updated with the latest security patches and updates
+### Используйте плагины с осторожностью
 
 
-
-### Enable audit logging		
-
-
-Enable audit logging to track and investigate security incidents
+Устанавливайте только необходимые плагины из надежных источников и регулярно обновляйте их
 
 
+### Ограничение прав пользователей
 
-### Secure access to Jenkins server	
-
-
-Limit access to Jenkins server by configuring firewall rules and setting up VPN access
+Назначьте минимально необходимые разрешения для каждого пользователя или группы
 
 
 
-### Use Jenkins agent securely	
+### Безопасное использование учетных данных
 
-
-Use secure connections between Jenkins master and agents and limit access to agents
-
-
-
-### Use build tools securely	
-
-
-Use secure and updated build tools and avoid using system tools or commands directly in build scripts
+Храните учетные данные в хранилище учетных данных Jenkins и используйте их только в случае необходимости.
 
 
 
-### Follow secure coding practices	
 
 
-Follow secure coding practices to avoid introducing vulnerabilities in build scripts or plugins
+### Регулярно обновляйте Jenkins	
+
+Постоянно обновляйте Jenkins последними исправлениями и обновлениями безопасности
+
+
+
+### Включение регистрации аудита		
+
+
+Включите регистрацию аудита, чтобы отслеживать и расследовать инциденты безопасности.
+
+
+
+### Защита доступа к серверу Jenkins	
+
+
+Ограничьте доступ к серверу Jenkins, настроив правила брандмауэра и установив VPN-доступ
+
+
+
+### Безопасное использование агентов Jenkins	
+
+
+Используйте безопасные соединения между мастером Jenkins и агентами и ограничьте доступ к агентам
+
+
+
+### Безопасное использование инструментов сборки	
+
+
+Используйте безопасные и обновленные инструменты сборки и избегайте использования системных инструментов или команд непосредственно в сценариях сборки.
+
+
+
+### Соблюдайте правила безопасного кодирования	
+
+
+Следуйте практикам безопасного кодирования, чтобы избежать появления уязвимостей в скриптах сборки или плагинах
