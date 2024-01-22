@@ -4,10 +4,10 @@ title: MySQL
 parent: Checklists
 ---
 
-# MySQL Hardening for DevSecOps
+# Усиление MySQL для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,10 +15,10 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden MySQL for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите MySQL для DevSecOps
 
 
-### Remove test database and anonymous user	
+### Удалите тестовую базу данных и анонимного пользователя	
 
 
 ```
@@ -26,7 +26,7 @@ mysql -u root -p -e "DROP DATABASE IF EXISTS test; DELETE FROM mysql.user WHERE 
 ```
 
 
-### Limit access to the root user	
+### Ограничьте доступ для пользователя root	
 
 
 ```
@@ -34,7 +34,7 @@ mysql -u root -p -e "CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
 ```
 
 
-### Enable the query cache	
+### Включите кэш запросов	
 
 
 ```
@@ -42,13 +42,13 @@ mysql -u root -p -e "SET GLOBAL query_cache_size = 67108864; SET GLOBAL query_ca
 ```
 
 
-### Disable remote root login	
+### Отключение удаленного входа в систему root	
 
 
-Edit `/etc/mysql/mysql.conf.d/mysqld.cnf` and set `bind-address` to the IP address of the MySQL server, then restart MySQL: `systemctl restart mysql`
+Отредактируйте `/etc/mysql/mysql.conf.d/mysqld.cnf` и установите `bind-address` на IP-адрес сервера MySQL, затем перезапустите MySQL: `systemctl restart mysql`.
 
 
-### Enable SSL for secure connections		
+### Включите SSL для безопасных соединений		
 
-Edit `/etc/mysql/mysql.conf.d/mysqld.cnf` and add the following lines: `ssl-ca=/etc/mysql/certs/ca-cert.pem` `ssl-cert=/etc/mysql/certs/server-cert.pem ssl-key=/etc/mysql/certs/server-key.pem` Then restart MySQL: `systemctl restart mysql`
+Отредактируйте `/etc/mysql/mysql.conf.d/mysqld.cnf` и добавьте следующие строки: `ssl-ca=/etc/mysql/certs/ca-cert.pem` `ssl-cert=/etc/mysql/certs/server-cert.pem ssl-key=/etc/mysql/certs/server-key.pem` Затем перезапустите MySQL: `systemctl restart mysql`
 
