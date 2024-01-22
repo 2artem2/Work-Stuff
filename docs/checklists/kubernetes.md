@@ -4,10 +4,10 @@ title: Kubernetes
 parent: Checklists
 ---
 
-# Kuberneties Hardening for DevSecOps
+# Усиление Kuberneties для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,18 +15,18 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Kuberneties for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Kuberneties для DevSecOps
 
 
-### Restrict Kubernetes API access to specific IP ranges
-
-
-
-`kubectl edit svc/kubernetes` <br> Update `spec.loadBalancerSourceRanges`
+### Ограничьте доступ к API Kubernetes для определенных диапазонов IP-адресов
 
 
 
-### Use Role-Based Access Control (RBAC)
+`kubectl edit svc/kubernetes` <br> Обновите `spec.loadBalancerSourceRanges`
+
+
+
+### Используйте контроль доступа на основе ролей (RBAC)
 
 
 ```
@@ -34,27 +34,27 @@ kubectl create serviceaccount <name> <br> kubectl create clusterrolebinding <nam
 ```
 
 
-### Enable PodSecurityPolicy (PSP)	
+### Включите PodSecurityPolicy (PSP)	
 
 ```
 kubectl create serviceaccount psp-sa <br> kubectl create clusterrolebinding psp-binding --clusterrole=psp:vmxnet3 --serviceaccount=default:psp-sa
 ```
 
 
-### Use Network Policies
+### Использование сетевых политик
 
 
 ```
 kubectl apply -f networkpolicy.yml
 ```
 
-### Enable Audit Logging
+### Включить ведение журнала аудита
 
 ```
 kubectl apply -f audit-policy.yaml <br> kubectl edit cm/kube-apiserver -n kube-system <br> Update --audit-log-path and --audit-policy-file
 ```
 
-### Use Secure Service Endpoints	
+### Используйте безопасные конечные точки обслуживания	
 
 
 ```
@@ -62,7 +62,7 @@ kubectl patch svc <svc-name> -p '{"spec": {"publishNotReadyAddresses": true, "se
 ```
 
 
-### Use Pod Security Context
+### Используйте Pod Security Context
 
 
 
@@ -70,7 +70,7 @@ kubectl patch svc <svc-name> -p '{"spec": {"publishNotReadyAddresses": true, "se
 
 
 
-### Use Kubernetes Secrets	
+### Используйте секреты Kubernetes	
 
 ```
 kubectl create secret generic <name> --from-file=<path-to-file>
@@ -78,7 +78,7 @@ kubectl create secret generic <name> --from-file=<path-to-file>
 
 
 
-### Enable Container Runtime Protection	
+### Включить защиту во время выполнения контейнера	
 
 ```
 kubectl apply -f falco.yaml
@@ -86,10 +86,10 @@ kubectl apply -f falco.yaml
 
 
 
-### Enable Admission Controllers	
+### Включить контроллеры допуска	
 
 
-`kubectl edit cm/kube-apiserver -n kube-system` <br> Update `--enable-admission-plugins`
+`kubectl edit cm/kube-apiserver -n kube-system` <br> Обновите `--enable-admission-plugins`
 
 
 
