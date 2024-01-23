@@ -4,10 +4,10 @@ title: Squid
 parent: Checklists
 ---
 
-# Squid Hardening for DevSecOps
+# Усиление Squid для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,10 +15,10 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Squid for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Squid для DevSecOps
 
 
-### Disable HTTP TRACE method	
+### Отключите метод HTTP TRACE
 
 
 ```
@@ -26,7 +26,7 @@ acl HTTP-methods method TRACE<br>http_access deny HTTP-methods
 ```
 
 
-### Limit maximum object size
+### Ограничение максимального размера объекта
 
 
 ```
@@ -34,7 +34,7 @@ maximum_object_size 1 MB
 ```
 
 
-### Enable access logging
+### Включить регистрацию доступа
 
 
 ```
@@ -42,14 +42,14 @@ access_log /var/log/squid/access.log
 ```
 
 
-### Limit client connections
+### Ограничение клиентских подключений
 
 
 `acl clients src 192.168.1.0/24`<br>`http_access allow clients`<br>`http_max_clients 50`
 
 
 
-### Restrict allowed ports	
+### Ограничение разрешенных портов	
 
 
 `acl Safe_ports port 80 443 8080`<br>`http_access deny !Safe_ports`
