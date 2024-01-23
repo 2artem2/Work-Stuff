@@ -4,10 +4,10 @@ title: Terraform
 parent: Checklists
 ---
 
-# Terraform Security Checklist for DevSecOps
+# Контрольный список безопасности Terraform для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,56 +15,56 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to Terraform for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик использования Terraform для DevSecOps
 
 
 
 
-### Enable detailed audit logging
+### Включите подробное протоколирование аудита
 
 ```
 terraform apply -var 'logging=true'
 ```
 
 
-### Encrypt state files   
+### Шифрование файлов состояния   
 
 ```
 terraform apply -var 'encrypt=true'
 ```
 
-### Use a strong backend access policy      
+### Используйте строгую политику доступа к внутренним ресурсам      
 
 ```
 terraform apply -backend-config="..."
 ```
 
 
-### Limit the permissions of automation accounts 
+### Ограничьте права доступа к учетным записям автоматизации 
 
 ```
 terraform apply -var 'permissions=limited'
 ```
 
-### Rotate secrets and access keys regularly    
+### Регулярно меняйте секреты и ключи доступа    
 
 ```
 terraform apply -var 'rotate_secrets=true'
 ```
 
-### Use version constraints in configuration files 
+### Использование ограничений по версиям в конфигурационных файлах 
 
 ```
 terraform apply -var 'version=..."
 ```
 
-### Validate configuration files before applying 
+### Проверьте файлы конфигурации перед применением 
 
 ```
 terraform validate
 ```
 
-### Regularly update Terraform and providers
+### Регулярно обновляйте Terraform и провайдеров
 
 ```
 terraform init -upgrade
