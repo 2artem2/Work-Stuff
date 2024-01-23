@@ -4,10 +4,10 @@ title: Tomcat
 parent: Checklists
 ---
 
-# Tomcat Hardening for DevSecOps
+# Усиление Tomcat для DevSecOps
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,12 +15,12 @@ parent: Checklists
 
 ---
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>List of some best practices to harden Tomcat for DevSecOps
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Список лучших практик по защите Tomcat для DevSecOps
 
 
-### Disable unused connectors
+### Отключение неиспользуемых разъемов
 
- Modify `server.xml` to remove the connectors not in use, e.g.:
+ Измените `server.xml`, чтобы удалить неиспользуемые коннекторы, например:
 
  ```
  <Connector port="8080" protocol="HTTP/1.1"
@@ -29,9 +29,9 @@ parent: Checklists
  ```
 
 
-### Use secure HTTPS configuration
+### Используйте безопасную конфигурацию HTTPS
 
-Modify `server.xml` to enable HTTPS and configure SSL/TLS, e.g.:
+Измените `server.xml`, чтобы включить HTTPS и настроить SSL/TLS, например:
 
 ```
 <Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true"
@@ -42,18 +42,18 @@ Modify `server.xml` to enable HTTPS and configure SSL/TLS, e.g.:
 ```
 
 
-### Disable version information in error pages
+### Отключение информации о версии на страницах ошибок
 
-Modify `server.xml` to add the following attribute to the `<Host>` element:
+Измените файл `server.xml`, чтобы добавить следующий атрибут к элементу `<Host>`:
 
 ```
 errorReportValveClass="org.apache.catalina.valves.ErrorReportValve" showReport="false" showServerInfo="false"
 ```
 
 
-### Use secure settings for Manager and Host Manager
+### Используйте безопасные настройки для менеджера и менеджера хоста
 
-Modify `tomcat-users.xml` to add roles and users with the appropriate permissions, e.g.:
+Измените `tomcat-users.xml`, чтобы добавить роли и пользователей с соответствующими правами, например:
 
 
 ```
@@ -62,9 +62,9 @@ Modify `tomcat-users.xml` to add roles and users with the appropriate permission
 ```
 
 
-### Use secure settings for access to directories
+### Используйте безопасные настройки для доступа к каталогам
 
-Modify `context.xml` to add the following element to the `<Context>` element:
+Измените `context.xml`, чтобы добавить следующий элемент к элементу `<Context>`:
 
 
 ```
