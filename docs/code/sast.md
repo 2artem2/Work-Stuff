@@ -4,7 +4,7 @@ title:  SAST
 parent: Code
 ---
 
-# SAST
+# SAST- Статическое тестирование безопасности приложений
 {: .no_toc }
 
 ## Table of contents
