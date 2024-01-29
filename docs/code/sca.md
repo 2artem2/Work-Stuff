@@ -7,7 +7,7 @@ parent: Code
 # SCA
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -18,54 +18,54 @@ parent: Code
 
 
 
-SCA stands for Software Composition Analysis. It is a type of application security testing that focuses on identifying and managing third-party components and dependencies used within an application. SCA tools scan an application's codebase and build artifacts to identify any third-party libraries or components, and then assess those components for known security vulnerabilities or other issues.
+SCA расшифровывается как анализ состава программного обеспечения. Это один из видов тестирования безопасности приложений, который направлен на выявление и управление сторонними компонентами и зависимостями, используемыми в приложении. Инструменты SCA сканируют кодовую базу приложения и артефакты сборки на предмет выявления сторонних библиотек и компонентов, а затем оценивают эти компоненты на предмет известных уязвимостей безопасности или других проблем.
 
 
-the SCA process typically involves the following steps:
+Процесс SCA обычно включает следующие этапы:
 
-1. **Discovery**: The SCA tool scans the application's codebase and build artifacts to identify any third-party libraries or components used within the application.
+1. **Обнаружение**: Инструмент SCA сканирует кодовую базу приложения и артефакты сборки, чтобы выявить все сторонние библиотеки и компоненты, используемые в приложении.
 
-2. **Inventory**: The SCA tool creates an inventory of all the third-party components and libraries used within the application, including their versions, license types, and any known security vulnerabilities or issues.
+2. **Инвентаризация**: Инструмент SCA создает список всех сторонних компонентов и библиотек, используемых в приложении, включая их версии, типы лицензий и все известные уязвимости и проблемы безопасности.
 
-3. **Assessment**: The SCA tool assesses each component in the inventory for known security vulnerabilities or other issues, using sources such as the National Vulnerability Database (NVD) and Common Vulnerabilities and Exposures (CVE) databases.
+3. **Оценка**: Инструмент SCA оценивает каждый компонент в инвентаре на предмет известных уязвимостей безопасности или других проблем, используя такие источники, как Национальная база данных уязвимостей (NVD) и базы данных Common Vulnerabilities and Exposures (CVE).
 
-4. **Remediation**: Based on the results of the assessment, the SCA tool may provide recommendations for remediation, such as upgrading to a newer version of a component, or switching to an alternative component that is more secure.
+4. **Устранение**: На основе результатов оценки инструмент SCA может предоставить рекомендации по устранению проблем, например, обновить компонент до новой версии или перейти на другой компонент, более безопасный.
 
-By performing SCA, organizations can gain visibility into the third-party components and libraries used within their applications, and can proactively manage any security vulnerabilities or issues associated with those components. This can help to improve the overall security and resilience of the application.
+Выполняя SCA, организации могут получить информацию о компонентах и библиотеках сторонних разработчиков, используемых в приложениях, и проактивно управлять любыми уязвимостями и проблемами безопасности, связанными с этими компонентами. Это поможет повысить общую безопасность и устойчивость приложения.
 
-SCA tools work by scanning your codebase and identifying the open source components that are used in your application. They then compare this list against known vulnerabilities in their database and alert you if any vulnerabilities are found. This helps you to manage your open source components and ensure that you are not using any vulnerable components in your application.
-
-
-
+Инструменты SCA работают путем сканирования кодовой базы и выявления компонентов с открытым исходным кодом, которые используются в приложении. Затем они сравнивают этот список с известными уязвимостями в своей базе данных и предупреждают вас о найденных уязвимостях. Это поможет вам управлять компонентами с открытым исходным кодом и убедиться, что вы не используете уязвимые компоненты в своем приложении.
 
 
 
-| SCA Tool    | Description   | Languages Supported |
+
+
+
+| SCA инструменты    | Описание   | Поддерживаемые языки |
 |:---------------|:---------------------|:---------------------|
-| `Sonatype Nexus Lifecycle	` | A software supply chain automation and management tool	 | Java, .NET, Ruby, JavaScript, Python, Go, PHP, Swift |
-| `Black Duck` | An open source security and license compliance management tool	 | Over 20 languages including Java, .NET, Python, Ruby, JavaScript, PHP |
-| `WhiteSource` | A cloud-based open source security and license compliance management tool	 | Over 30 languages including Java, .NET, Python, Ruby, JavaScript, PHP |
-| `Snyk` | A developer-first security and dependency management tool	 | Over 40 languages including Java, .NET, Python, Ruby, JavaScript, PHP, Go |
-| `FOSSA` | A software development tool that automates open source license compliance and vulnerability management	 | Over 30 languages including Java, .NET, Python, Ruby, JavaScript, PHP |
+| `Sonatype Nexus Lifecycle	` | Программное средство автоматизации и управления цепочками поставок	 | Java, .NET, Ruby, JavaScript, Python, Go, PHP, Swift |
+| `Black Duck` | Инструмент управления безопасностью и соблюдением лицензионных требований с открытым исходным кодом	 | Более 20 языков, включая Java, .NET, Python, Ruby, JavaScript, PHP |
+| `WhiteSource` | Облачный инструмент для управления безопасностью и соблюдением лицензионных требований с открытым исходным кодом	 | Более 30 языков, включая Java, .NET, Python, Ruby, JavaScript, PHP |
+| `Snyk` | Инструмент управления безопасностью и зависимостями, ориентированный на разработчиков	 | Более 40 языков, включая Java, .NET, Python, Ruby, JavaScript, PHP, Go |
+| `FOSSA` | Инструмент для разработки программного обеспечения, автоматизирующий соблюдение лицензионных требований к открытому исходному коду и управление уязвимостями	 | Более 30 языков, включая Java, .NET, Python, Ruby, JavaScript, PHP |
 
 
 
 
 
-Here is an example of how to use SCA in a CI/CD pipeline:
+Вот пример использования SCA в конвейере CI/CD:
 
-1. Choose an SCA tool: There are several SCA tools available in the market, such as Snyk, Black Duck, and WhiteSource. You need to choose an SCA tool that is compatible with your application stack and provides the features that you need.
+1. Выберите инструмент SCA: На рынке доступно несколько инструментов SCA, таких как Snyk, Black Duck и WhiteSource. Вам нужно выбрать SCA-инструмент, который совместим с вашим стеком приложений и предоставляет необходимые функции.
 
-2. Integrate the tool into your CI/CD pipeline: Once you have chosen an SCA tool, you need to integrate it into your CI/CD pipeline. This can be done by adding a step in your pipeline that runs the SCA tool and reports the results.
+2. Интегрируйте инструмент в конвейер CI/CD: Выбрав SCA-инструмент, необходимо интегрировать его в конвейер CI/CD. Это можно сделать, добавив в конвейер шаг, который запускает SCA-инструмент и сообщает о результатах.
 
-3. Configure the tool: You need to configure the SCA tool to scan your application code and identify the open source components that are used in your application. This can be done by providing the tool with access to your source code repository and specifying the dependencies of your application.
+3. Настройте инструмент: Необходимо настроить инструмент SCA на сканирование кода приложения и выявление компонентов с открытым исходным кодом, которые используются в вашем приложении. Это можно сделать, предоставив инструменту доступ к репозиторию исходного кода и указав зависимости вашего приложения.
 
-4. Analyze the results: Once the SCA tool has finished scanning your codebase, it will generate a report of the open source components that are used in your application and any vulnerabilities that are associated with those components. You need to analyze the report and take action on any vulnerabilities that are identified.
+4. Проанализируйте результаты: После того как SCA-инструмент закончит сканирование вашей кодовой базы, он создаст отчет о компонентах с открытым исходным кодом, которые используются в вашем приложении, и о всех уязвимостях, которые связаны с этими компонентами. Вам необходимо проанализировать отчет и принять меры по устранению выявленных уязвимостей.
 
-5. Remediate the vulnerabilities: If any vulnerabilities are identified, you need to remediate them by either upgrading the vulnerable components or removing them from your application.
+5. Устраните уязвимости: Если уязвимости обнаружены, необходимо устранить их, либо обновив уязвимые компоненты, либо удалив их из приложения.
 
 
-Here is an example of a CI/CD pipeline that includes an SCA step:
+Вот пример конвейера CI/CD, включающего этап SCA:
 
 
 ```
@@ -101,55 +101,55 @@ jobs:
 ```
 
 
-In this example, the SCA tool is integrated into the pipeline using the Snyk GitHub Action. The tool is configured to scan the package.json file and report any vulnerabilities with a severity threshold of "high". If any vulnerabilities are identified, the pipeline will fail and the developer will be notified to take action.
+В этом примере инструмент SCA интегрирован в конвейер с помощью Snyk GitHub Action. Инструмент настроен на сканирование файла package.json и сообщение о любых уязвимостях с порогом серьезности "высокий". Если уязвимости будут обнаружены, конвейер завершится неудачей, а разработчик будет уведомлен о необходимости принять меры.
 
 
 
 
-## OWASP Dependency-Check
+## Проверка зависимостей OWASP
 
 
-1- Perform a scan on a local project
+1- Выполните сканирование локального проекта
 
 ```
 dependency-check.sh --scan <path/to/project>
 ```
 
 
-2- Scan a Maven Project
+2- Сканирование проекта Maven
 
 ```
 dependency-check.sh --scan <path/to/pom.xml>
 ```
 
 
-3- Scan a Gradle Project
+3- Сканирование проекта Gradle
 
 ```
 dependency-check.sh --scan <path/to/build.gradle>
 ```
 
 
-4- Perform a scan on a local project
+4- Выполните сканирование локального проекта
 
 ```
 dependency-check.sh --updateonly
 ```
 
 
-5- Specify Database Connection String
+5- Укажите строку подключения к базе данных
 
 ```
 dependency-check.sh --scan <path/to/project> --connectionString <db-connection-string>
 ```
 
-6- Specify CVSS Severity Threshold
+6- Укажите порог серьезности CVSS
 
 ```
 dependency-check.sh --scan <path/to/project> --suppression <suppression-file>
 ```
 
-7- Specify Output Format
+7- Укажите формат вывода
 
 ```
 dependency-check.sh --scan <path/to/project> --format <output-format>
@@ -160,26 +160,26 @@ dependency-check.sh --scan <path/to/project> --format <output-format>
 ## scancode-toolkit
 
 
-1. Install scancode-toolkit:
+1. Установите scancode-toolkit:
 
 ```
 pip install scancode-toolkit
 ```
 
 
-2. Perform a scan on a specific project or directory
+2. Выполните сканирование определенного проекта или каталога
 
 ```
 scancode <path-to-project>
 ```
 
-3. Generate a scan report in JSON format
+3. Создание отчета о сканировании в формате JSON
 
 ```
 scancode --json-pp <path-to-project> > report.json
 ```
 
-4. Exclude specific licenses from the scan
+4. Исключите определенные лицензии из сканирования
 
 ```
 scancode --license-exclude <license-name> <path-to-project>
@@ -187,9 +187,9 @@ scancode --license-exclude <license-name> <path-to-project>
 
 
 
-## Nexus Dependency Management
+## Управление зависимостями Nexus
 
-1. Install Nexus Repository Manager 
+1. Установите менеджер репозиториев Nexus 
 
 ```
 wget <nexus_download_url> -O nexus.zip
@@ -197,7 +197,7 @@ unzip nexus.zip
 cd nexus-x.x.x ./bin/nexus start
 ```
 
-2. Configure Nexus Repository Manager 
+2. Настройка менеджера репозиториев Nexus 
 
 Open web browser and access `http://localhost:8081`
 
