@@ -199,21 +199,21 @@ cd nexus-x.x.x ./bin/nexus start
 
 2. Настройка менеджера репозиториев Nexus 
 
-Open web browser and access `http://localhost:8081`
+Откройте веб-браузер и зайдите в `http://localhost:8081`
 
 
 
 {: .note }
-Integrate vulnerability scanning tools like OWASP Dependency Check or Sonatype Nexus IQ with Nexus Repository Manager. These tools can analyze your dependencies for known security vulnerabilities and provide actionable insights to mitigate risks. Regularly scan your repositories for vulnerabilities and apply patches or upgrade dependencies as necessary.
+Интегрируйте инструменты сканирования уязвимостей, такие как OWASP Dependency Check или Sonatype Nexus IQ, с Nexus Repository Manager. Эти инструменты могут анализировать ваши зависимости на предмет известных уязвимостей безопасности и предоставлять полезные сведения для снижения рисков. Регулярно сканируйте свои репозитории на предмет уязвимостей и при необходимости применяйте исправления или обновляйте зависимости.
 
 
 {: .note }
-Continuous Integration and Deployment (CI/CD) Integration: Integrate Nexus Repository Manager with your CI/CD pipelines to automate dependency management. Use build tool plugins or APIs provided by Nexus Repository Manager to fetch dependencies and publish artifacts seamlessly within your build and deployment processes.
+Интеграция непрерывной интеграции и развертывания (CI/CD): Интегрируйте Nexus Repository Manager с вашими конвейерами CI/CD для автоматизации управления зависимостями. Используйте плагины для инструментов сборки или API, предоставляемые Nexus Repository Manager, для получения зависимостей и публикации артефактов в рамках процессов сборки и развертывания.
 
 
-### Dependency Vulnerability Management
+### Управление уязвимостями зависимостей
 
-Integrate Nexus Lifecycle or Nexus IQ into your CI/CD pipeline to scan and analyze dependencies for vulnerabilities.
+Интегрируйте Nexus Lifecycle или Nexus IQ в пайплайн CI/CD для сканирования и анализа зависимостей на предмет уязвимостей.
 
 ```
 # .gitlab-ci.yml
@@ -233,9 +233,9 @@ scan_dependencies:
     - master
 ```
 
-### License Compliance
+### Соблюдение лицензионных требований
 
-Code: Integrate Nexus Lifecycle or Nexus IQ to scan and enforce license compliance.
+Код: Интегрируйте Nexus Lifecycle или Nexus IQ для сканирования и обеспечения соответствия лицензиям.
 
 ```
 # Jenkinsfile
@@ -250,7 +250,7 @@ pipeline {
     stage('Scan Licenses') {
       steps {
         sh 'mvn org.sonatype.plugins:nexus-staging-maven-plugin:1.6.8:rc-list'
-        // Perform license compliance checks
+        // Выполнение проверок на соответствие лицензиям
         sh 'mvn org.sonatype.plugins:nexus-staging-maven-plugin:1.6.8:rc-close'
       }
     }
@@ -258,7 +258,7 @@ pipeline {
 }
 ```
 
-Configuration: Configure Nexus Repository Manager to enforce license policies and restrictions.
+Конфигурация: Настройте Nexus Repository Manager для применения лицензионных политик и ограничений.
 
 ```
 <!-- pom.xml -->
@@ -275,9 +275,9 @@ Configuration: Configure Nexus Repository Manager to enforce license policies an
 </project>
 ```
 
-### Continuous Monitoring
+### Непрерывный мониторинг
 
-Code: Implement continuous monitoring and scanning of your CI/CD pipeline for security vulnerabilities and compliance issues.
+Код: Внедрите непрерывный мониторинг и сканирование CI/CD-конвейера на предмет уязвимостей безопасности и проблем с соответствием нормативным требованиям.
 
 ```
 # .travis.yml
@@ -289,7 +289,7 @@ script:
   - mvn org.sonatype.plugins:nexus-staging-maven-plugin:1.6.8:rc-close
 ```
 
-Configuration: Set up automated alerts and notifications for any security or compliance issues detected during the CI/CD process.
+Конфигурация: Настройка автоматических предупреждений и уведомлений о любых проблемах безопасности или соответствия нормативным требованиям, обнаруженных в процессе CI/CD.
 
 ```
 <!-- pom.xml -->
