@@ -251,64 +251,64 @@ trufflehog --json --output=results.json /path/to/repository
 |:---------------|:---------------------|:---------------------|
 | `API Keys` | Сопоставляет потенциальные ключи API, которые обычно представляют собой комбинацию заглавных букв или буквенно-цифровых символов с минимальной длиной 24 знака.  | `(?:\b|_)(?:[A-Z]{2,}|\w{24,})(?:\b|_)` |
 | `AWS Access Keys` | Сопоставляет потенциальные ключи API, которые обычно представляют собой комбинацию заглавных букв или буквенно-цифровых символов с минимальной длиной 24 знака.  | `(?:\b|_)(?:[A-Z]{2,}|\w{24,})(?:\b|_)` |
-| `Cryptocurrency Wallets` | Matches popular cryptocurrency wallet addresses, including Bitcoin (BTC), Ethereum (ETH), Litecoin (LTC), Monero (XMR), and Dogecoin (DOGE).  | `(?i)(?:btc|bitcoin|eth|ethereum|ltc|litecoin|xmr|monero|doge|dogecoin)(?:[1-9A-HJ-NP-Za-km-z]{25,34})` |
-| `Email Addresses` | Matches email addresses with alphanumeric characters, dots, underscores, hyphens, and a domain with at least two letters.  | `[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}` |
-| `Private Keys` | Matches 40-character base64-encoded strings, often used for private keys.  | `(?:[^a-zA-Z0-9/+]|^)([a-zA-Z0-9/+]{40})(?:[^a-zA-Z0-9/+]|$)` |
-| `Passwords` | Matches passwords or passphrases of at least 8 characters, preceded by "password", "passphrase", or "secret" and followed by a whitespace character, colon, or URL-encoded colon (%3A).  | `(?i)(?:pass(?:word|phrase)|secret)(?:[\s:=]|%3A)(["']?[\w!@#$%^&*()]{8,}["']?)` |
-| `Social Security Numbers (SSN)` | Matches U.S. Social Security Numbers with or without dashes.  | `\d{3}[-]?\d{2}[-]?\d{4}` |
-| `URLs with Query Parameters` | Matches URLs with query parameters, ensuring that the query parameter contains at least one character.  | `(http|https):\/\/[^\s/$.?#].[^\s]*\?[^\s]*` |
-| `Credit Card Numbers` | Matches 16-digit credit card numbers, with or without dashes or spaces in the format XXXX-XXXX-XXXX-XXXX or XXXXXXXXXXXXXXXX.  | `(\d{4}[- ]){3}\d{4}|\d{16}` |
+| `Cryptocurrency Wallets` | Совпадает с адресами кошельков популярных криптовалют, включая Bitcoin (BTC), Ethereum (ETH), Litecoin (LTC), Monero (XMR) и Dogecoin (DOGE).  | `(?i)(?:btc|bitcoin|eth|ethereum|ltc|litecoin|xmr|monero|doge|dogecoin)(?:[1-9A-HJ-NP-Za-km-z]{25,34})` |
+| `Email Addresses` | Сопоставляет адреса электронной почты с алфавитно-цифровыми символами, точками, подчеркиваниями, дефисами и доменом, содержащим не менее двух букв.  | `[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}` |
+| `Private Keys` | Сопоставляет 40-символьные строки в base64-кодировке, часто используемые для закрытых ключей.  | `(?:[^a-zA-Z0-9/+]|^)([a-zA-Z0-9/+]{40})(?:[^a-zA-Z0-9/+]|$)` |
+| `Passwords` | Подбирает пароли или парольные фразы, состоящие не менее чем из 8 символов, перед которыми стоит "password", "passphrase" или "secret" и за которыми следует символ пробела, двоеточие или двоеточие в кодировке URL (%3A).  | `(?i)(?:pass(?:word|phrase)|secret)(?:[\s:=]|%3A)(["']?[\w!@#$%^&*()]{8,}["']?)` |
+| `Social Security Numbers (SSN)` | Сопоставляет номера социального страхования США с черточками или без них.  | `\d{3}[-]?\d{2}[-]?\d{4}` |
+| `URLs with Query Parameters` | Сопоставляет URL с параметрами запроса, гарантируя, что параметр запроса содержит хотя бы один символ.  | `(http|https):\/\/[^\s/$.?#].[^\s]*\?[^\s]*` |
+| `Credit Card Numbers` | Сопоставляет 16-значные номера кредитных карт с тире и пробелами или без них в формате XXXX-XXXX-XXXX-XXXX or XXXXXXXXXXXXXXXX.  | `(\d{4}[- ]){3}\d{4}|\d{16}` |
 
 
 
 ## SBOM
 
-1- Generate SBOM from Maven Project:
+1- Сгенерируйте SBOM из проекта Maven:
 
 ```
 mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom
 ```
 
-2- Generate SBOM from Gradle Project
+2- Генерация SBOM из проекта Gradle
 
 ```
 ./gradlew cyclonedx
 ```
 
-3- Specify Output Format
+3- Укажите формат вывода
 
 ```
 mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom --format XML
 ```
 
-4- Include Hashes in SBOM
+4- Включение хэшей в SBOM
 
 ```
 mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom -DincludeHashes=true
 ```
 
 
-5- Exclude Specific Components
+5- Исключить конкретные компоненты
 
 ```
 mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom -Dexclude=com.example:unused-component
 ```
 
 
-6- Include Direct Dependencies Only
+6- Включите только прямые зависимости
 
 ```
 mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom -DincludeDependencies=false
 ```
 
 
-7- Specify Output File
+7- Укажите выходной файл
 
 ```
 mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom -DoutputFile=/path/to/bom.xml
 ```
 
-8- Specify Output Format
+8- Укажите формат вывода
 
 ```
 mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom --format XML
@@ -318,7 +318,7 @@ mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom --format XML
 ## Retire.js
 
 
-You can use the Retire.js CLI to scan a directory or a specific JavaScript file. Here's an example command to scan a directory:
+Вы можете использовать Retire.js CLI для сканирования каталога или определенного файла JavaScript. Вот пример команды для сканирования каталога:
 
 
 ```
