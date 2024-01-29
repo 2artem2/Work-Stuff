@@ -8,7 +8,7 @@ parent: MlSecOps
 # Azure 
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -20,13 +20,13 @@ parent: MlSecOps
 
 
 
-## Responsible AI principles
+## Принципы ответственного искусственного интеллекта
 
 
 
-- [ ] Azure Machine Learning
+- [ ] Машинное обучение в Azure
 
-Azure Machine Learning is a cloud-based service for building, training, and deploying machine learning models. It provides tools and capabilities to promote responsible AI practices.
+Azure Machine Learning - это облачная служба для создания, обучения и развертывания моделей машинного обучения. Она предоставляет инструменты и возможности для поддержки ответственных практик в области искусственного интеллекта.
 
 ```
 az ml workspace create --workspace-name <workspace-name> --resource-group <resource-group> --location <location>
@@ -35,9 +35,9 @@ az ml workspace create --workspace-name <workspace-name> --resource-group <resou
 
 
 
-- [ ] Azure Machine Learning Interpretability
+- [ ] Интерпретируемость машинного обучения Azure
 
-Azure Machine Learning Interpretability provides tools to understand and interpret machine learning models, making them more transparent and explainable.
+Azure Machine Learning Interpretability предоставляет инструменты для понимания и интерпретации моделей машинного обучения, делая их более прозрачными и понятными.
 
 ```
 azureml-interpret
@@ -47,9 +47,9 @@ azureml-interpret
 
 
 
-- [ ] Azure Cognitive Services
+- [ ] Когнитивные службы Azure
 
-Azure Cognitive Services offer pre-built AI models and APIs for tasks such as natural language processing, computer vision, and speech recognition. These services can be used responsibly by adhering to guidelines and incorporating fairness and bias considerations.
+Службы Azure Cognitive Services предлагают готовые модели ИИ и API для таких задач, как обработка естественного языка, компьютерное зрение и распознавание речи. Эти службы можно использовать ответственно, соблюдая рекомендации и учитывая соображения справедливости и предвзятости.
 
 ```
 az cognitiveservices account create --name <service-name> --resource-group <resource-group> --kind TextAnalytics --sku <sku-name> --location <location>
@@ -58,9 +58,9 @@ az cognitiveservices account create --name <service-name> --resource-group <reso
 
 
 
-- [ ] Azure AI Ethics and Governance
+- [ ] Этика и управление ИИ в Azure
 
-Azure provides various governance tools and features to ensure responsible AI practices, including Azure Policy, Azure Blueprints, and Azure Advisor.
+Azure предоставляет различные инструменты и функции управления для обеспечения ответственного подхода к ИИ, включая Azure Policy, Azure Blueprints и Azure Advisor.
 
 
 
