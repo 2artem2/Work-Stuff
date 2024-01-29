@@ -4,10 +4,10 @@ title: Model Robustness and Adversarial Attacks
 parent: MlSecOps
 ---
 
-# Model Robustness and Adversarial Attacks
+# Устойчивость моделей и атаки противника
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -17,57 +17,57 @@ parent: MlSecOps
 
 
 
-Assessing and improving the robustness of machine learning models against adversarial attacks. This involves testing models against various adversarial scenarios, developing defenses to mitigate attacks (e.g., adversarial training), and understanding the limitations of model robustness.
+Оценка и повышение устойчивости моделей машинного обучения к атакам противника. Это включает в себя тестирование моделей в различных сценариях, разработку средств защиты от атак (например, обучение противника) и понимание ограничений устойчивости моделей.
 
 
 
-## OWASP Machine Learning Security Verification Standard (MLSVS)
+## OWASP Стандарт проверки безопасности машинного обучения (MLSVS)
 
 
-- [ ] Familiarize with MLSVS  
+- [ ] Ознакомьтесь с MLSVS  
 
-Read the MLSVS documentation available on the OWASP website.
+Прочитайте документацию по MLSVS, доступную на сайте OWASP.
 
-- [ ] Assess Threat Model
+- [ ] Оценка модели угроз
 
-Conduct a threat modeling exercise to identify potential security risks and threats in your machine learning system.
+Проведите моделирование угроз, чтобы определить потенциальные риски и угрозы безопасности в вашей системе машинного обучения.
 
-- [ ] Verify Model Training Data  Perform data validation and integrity checks on the training dataset to ensure its quality and prevent adversarial tampering.
+- [ ] Проверка данных для обучения модели. Выполните проверку данных и целостности набора данных для обучения, чтобы обеспечить его качество и предотвратить несанкционированное вмешательство.
 
-- [ ] Verify Model Training Process Validate the security measures implemented during the model training process, such as access controls, versioning, and secure storage.
+- [ ] Проверка процесса подготовки модели. Проверьте меры безопасности, реализованные в процессе подготовки модели, такие как контроль доступа, создание версий и безопасное хранение.
 
-- [ ] Evaluate Model Robustness Test the model against various attack techniques, such as evasion attacks, poisoning attacks, and adversarial inputs, to assess its resilience.
+- [ ] Оценка устойчивости модели. Протестируйте модель против различных методов атак, таких как атаки-обманки, атаки отравления и аварские входы, чтобы оценить ее устойчивость.
 
-- [ ] Verify Model Explanations Validate the interpretability and explainability of the model's predictions to ensure transparency and accountability.
+- [ ] Проверка объяснений модели. Проверьте интерпретируемость и объяснимость предсказаний модели, чтобы обеспечить прозрачность и подотчетность.
 
-- [ ] Assess Model Deployment Security  Evaluate the security controls implemented during the deployment of the machine learning model, including access controls, authentication, and encryption.
+- [ ] Оценка безопасности развертывания модели. Оцените средства контроля безопасности, реализованные при развертывании модели машинного обучения, включая средства контроля доступа, аутентификации и шифрования.
 
-- [ ] Monitor Model Performance Establish monitoring mechanisms to detect and mitigate model performance degradation, data drift, and adversarial attacks in real-time.
+- [ ] Мониторинг производительности модели. Создайте механизмы мониторинга для обнаружения и смягчения последствий снижения производительности модели, дрейфа данных и атак противника в режиме реального времени.
 
-- [ ] Implement Privacy Protection  Apply privacy-preserving techniques, such as differential privacy, anonymization, or federated learning, to protect sensitive data used in the machine learning system.
+- [ ] Реализация защиты конфиденциальности. Применяйте методы сохранения конфиденциальности, такие как дифференциальная конфиденциальность, анонимизация или федеративное обучение, для защиты конфиденциальных данных, используемых в системе машинного обучения.
 
-- [ ] Regularly Update MLSVS Practices  Stay updated with the latest MLSVS guidelines and best practices to adapt to evolving machine learning security threats.
+- [ ] Регулярно обновляйте практические рекомендации MLSVS. Следите за последними рекомендациями и лучшими практиками MLSVS, чтобы адаптироваться к изменяющимся угрозам безопасности машинного обучения.
 
 
-## Supply Chain Security for MLSecOps
+## Безопасность цепочки поставок для MLSecOps
 
-* **Install Sigstore**
+* **Установите Sigstore**
 
 ```
-# Clone the Sigstore repository
+# Клонируйте репозиторий Sigstore
 git clone https://github.com/sigstore/sigstore
 
-# Change to the Sigstore directory
+# Перейдите в каталог Sigstore
 cd sigstore
 
-# Install the Sigstore CLI
+# Установите Sigstore CLI
 make install
 ```
 
-* **Generate and manage cryptographic keys**
+* **Генерация и управление криптографическими ключами**
 
 ```
-# Generate a new key pair
+# Создайте новую пару ключей
 sigstore keygen
 
 # List the available keys
