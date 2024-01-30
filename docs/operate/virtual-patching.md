@@ -4,10 +4,10 @@ title: Virtual Patching
 parent: Operate
 ---
 
-# Virtual Patching
+# Виртуальное исправление
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,51 +16,51 @@ parent: Operate
 ---
 
 
-Virtual patching is a security technique used in DevSecOps to provide temporary protection against known vulnerabilities in software applications or systems. Virtual patching involves the use of security policies, rules, or filters that are applied to network traffic, system logs, or application code to prevent known vulnerabilities from being exploited.
+Виртуальное исправление - это техника безопасности, используемая в DevSecOps для обеспечения временной защиты от известных уязвимостей в программных приложениях или системах. Виртуальное исправление подразумевает использование политик безопасности, правил или фильтров, которые применяются к сетевому трафику, системным журналам или коду приложений для предотвращения использования известных уязвимостей.
 
-Virtual patching can be used when a vendor-provided patch is not available or when patching is not feasible due to operational constraints or business needs. It allows organizations to quickly and easily protect their systems against known vulnerabilities without having to take the application or system offline or make changes to the underlying code.
+Виртуальное исправление может использоваться в тех случаях, когда исправление, предоставляемое поставщиком, недоступно или когда исправление нецелесообразно из-за операционных ограничений или потребностей бизнеса. Оно позволяет организациям быстро и легко защитить свои системы от известных уязвимостей без необходимости отключать приложение или систему от сети или вносить изменения в основной код.
 
-Some of the key benefits of virtual patching in DevSecOps include:
+Некоторые из ключевых преимуществ виртуального исправления в DevSecOps включают:
 
-1. Reduced risk of exploitation: By applying virtual patches to known vulnerabilities, organizations can reduce the risk of these vulnerabilities being exploited by attackers.
+1. Снижение риска эксплуатации: Применяя виртуальные патчи к известным уязвимостям, организации могут снизить риск использования этих уязвимостей злоумышленниками.
 
-2. Improved security posture: Virtual patching allows organizations to quickly and easily protect their systems against known vulnerabilities, improving their overall security posture.
+2. Повышение уровня безопасности: Виртуальные исправления позволяют организациям быстро и легко защитить свои системы от известных уязвимостей, повышая общую степень безопасности.
 
-3. Reduced downtime: Virtual patching can be implemented quickly and easily, without requiring system downtime or disrupting business operations.
+3. Сокращение времени простоя: Виртуальное исправление можно внедрить быстро и легко, не требуя простоя системы и не нарушая бизнес-операции.
 
-4. Improved compliance: Virtual patching can help organizations meet regulatory requirements for timely patching of known vulnerabilities.
+4. Повышение соответствия нормативным требованиям: Виртуальное исправление может помочь организациям выполнить нормативные требования по своевременному устранению известных уязвимостей.
 
-Virtual patching can be implemented using a variety of techniques, including intrusion prevention systems (IPS), web application firewalls (WAF), and network-based security devices. It can also be implemented through the use of automated security policies or scripts that are applied to systems and applications.
-
-
+Виртуальное исправление может быть реализовано с помощью различных технологий, включая системы предотвращения вторжений (IPS), брандмауэры веб-приложений (WAF) и сетевые устройства безопасности. Оно также может быть реализовано с помощью автоматизированных политик безопасности или сценариев, применяемых к системам и приложениям.
 
 
 
 
-## Log Collection
+
+
+## Сборник логов
 
 
 
 ### Splunk
 
-1- Configure Data Inputs: Configure data inputs to receive data from various sources, such as network devices, servers, and applications. Configure data inputs for the following:
+1- Настройте входы данных: Настройте входы данных для получения данных из различных источников, таких как сетевые устройства, серверы и приложения. Настройте входы данных для следующего:
 
 * Syslog
-* Windows Event Logs
-* Network Traffic (using the Splunk Stream add-on)
-* Cloud Platform Logs (e.g., AWS CloudTrail, Azure Audit Logs)
+* Журналы событий Windows
+* Сетевой трафик (с помощью дополнения Splunk Stream)
+* Журналы облачных платформ (например, AWS CloudTrail, Azure Audit Logs).
 
-2- Create Indexes: Create indexes to store the data from the configured data inputs. Indexes can be created based on data types, such as security events, network traffic, or application logs.
+2- Создайте индексы: Создайте индексы для хранения данных из настроенных входов данных. Индексы можно создавать на основе типов данных, таких как события безопасности, сетевой трафик или журналы приложений.
 
-3- Create a Dashboard: Create a dashboard to visualize the data collected from the data inputs. A dashboard can display the following:
+3- Создайте панель управления: Создайте приборную панель для визуализации данных, собранных с помощью входов данных. На приборной панели можно отобразить следующее:
 
-* Real-time events and alerts
-* Trending graphs and charts
-* Security reports and metrics
+* События и оповещения в реальном времени
+* графики и диаграммы трендов
+* Отчеты и показатели безопасности.
  
-4- Create a Sample Rule for Detection: Create a sample rule to detect an attack or security incident. For example, create a rule to detect failed login attempts to a web application. The following steps show how to create the rule in Splunk:
+4- Создайте образец правила для обнаружения: Создайте образец правила для обнаружения атаки или инцидента безопасности. Например, создайте правило для обнаружения неудачных попыток входа в веб-приложение. Ниже описано, как создать правило в Splunk:
 
-* Create a search query: Create a search query to identify failed login attempts in the web application logs. For example:
+* Создайте поисковый запрос: Создайте поисковый запрос для выявления неудачных попыток входа в систему в журналах веб-приложений. Например:
 
 
 ```
@@ -69,17 +69,17 @@ sourcetype=apache_access combined=*login* status=401 | stats count by clientip
 
 
 
-## Virtual Patching
+## Виртуальное исправление
 
-Virtual patching is a security mechanism that helps protect applications and systems from known vulnerabilities while developers work on creating and testing a patch to fix the vulnerability. It involves implementing a temporary, software-based solution that can block or mitigate the attack vectors that could be used to exploit the vulnerability. This is done by creating rules or policies within security software, such as web application firewalls or intrusion detection/prevention systems, that block or alert on malicious traffic attempting to exploit the vulnerability.
+Виртуальное исправление - это механизм безопасности, который помогает защитить приложения и системы от известных уязвимостей, пока разработчики работают над созданием и тестированием патча для устранения уязвимости. Он включает в себя реализацию временного программного решения, которое блокирует или смягчает векторы атак, которые могут быть использованы для эксплуатации уязвимости. Это делается путем создания правил или политик в программном обеспечении безопасности, таком как брандмауэры веб-приложений или системы обнаружения/предотвращения вторжений, которые блокируют или предупреждают о вредоносном трафике, пытающемся использовать уязвимость.
 
-Virtual patching can be an effective way to quickly and temporarily secure systems against known vulnerabilities, particularly those that may be actively targeted by attackers. It can also provide time for organizations to test and implement permanent patches without leaving their systems exposed to attacks.
-
-
+Виртуальное исправление может стать эффективным способом быстрой и временной защиты систем от известных уязвимостей, особенно тех, которые могут быть активно атакованы злоумышленниками. Кроме того, это дает организациям время для тестирования и внедрения постоянных исправлений, не оставляя свои системы незащищенными от атак.
 
 
 
-| Name    | Language   | 
+
+
+| Имя    | Язык   | 
 |:---------------|:---------------------|
 | `Java` | Contrast Security, Sqreen, AppSealing, JShielder |
 | `.NET	` | Contrast Security, Sqreen, Nettitude, Antimalware-Research |
@@ -91,7 +91,7 @@ Virtual patching can be an effective way to quickly and temporarily secure syste
 
 
 
-example RASP rule to mitigate SQL Injection vulnerability:
+пример правила RASP для устранения уязвимости SQL Injection:
 
 ```
 import javax.servlet.http.HttpServletRequest;
@@ -102,73 +102,74 @@ public class SQLInjectionRule {
 
   public static void checkSQLInjection(HttpServletRequest request) {
 
-    // Get the input parameters from the request
+    // Получите входные параметры из запроса
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
-    // Check for SQL injection in the username parameter
+    // Проверка на SQL-инъекции в параметре имени пользователя
     if (RASP.isSQLInjection(username)) {
-      // Log the attack attempt
+      // Зарегистрируйте попытку атаки
       RASP.log("SQL injection detected in username parameter");
-      // Block the request
+      // Заблокировать запрос
       RASP.blockRequest("SQL injection detected");
     }
 
-    // Check for SQL injection in the password parameter
+    // Проверка на SQL-инъекцию в параметре пароля
     if (RASP.isSQLInjection(password)) {
-      // Log the attack attempt
+      // Зарегистрируйте попытку атаки
       RASP.log("SQL injection detected in password parameter");
-      // Block the request
+      // Заблокировать запрос
       RASP.blockRequest("SQL injection detected");
     }
   }
 }
 ```
 
-This rule checks for SQL injection attacks in the "username" and "password" parameters of a HTTP request. If an attack is detected, the rule logs the attempt and blocks the request.
+Это правило проверяет наличие атак SQL-инъекций в параметрах "имя пользователя" и "пароль" HTTP-запроса. Если атака обнаружена, правило регистрирует попытку и блокирует запрос.
 
 
 
-Cheatsheet for prevention rules for the OWASP Top 10 vulnerabilities
-
-```
-
-OWASP Type      Vulnerability                    Rule/Policy
-
-Injection       SQL Injection                    /^[^']*$/i
-                Command Injection                /^[^']*$/i
-                LDAP Injection                   /^[^']*$/i
-                XPath Injection                  /^[^']*$/i
-                OS Command Injection             /^[^']*$/i
-                Expression Language Injection    /^[^']*$/i
-
-Broken          Broken Authentication            2FA or MFA implementation
-Authentication  Password Management              Password complexity and expiry policy
-                Brute Force Prevention           Account lockout policy
-
-Sensitive Data  Sensitive Data Exposure           Encryption in transit and at rest
-Exposure        Cross-Site Request Forgery (CSRF)CSRF tokens for all forms
-                Broken Access Control            Role-based access control
-
-Security        Security Misconfiguration        Regular security assessments and compliance checks
-Misconfiguration
-                Insecure Cryptographic Storage   Strong cryptographic algorithms and key management
-                Insufficient Logging & Monitoring Log all security-relevant events
-                Insufficient Attack Protection   Application firewall (WAF) to prevent OWASP Top 10 attacks
-
-Cross-Site      Cross-Site Scripting (XSS)        Encoding user input
-Scripting
-                Insecure Direct Object References Access control checks and input validation
-
-Insecure        Using Components with            Regular patching and updates
-Components      Known Vulnerabilities
+Шпаргалка по правилам предотвращения уязвимостей OWASP Top 10
 
 ```
 
+ Тип OWASP               Уязвимость                                           Правило/политика
 
-### SQL Injection
+Инъекция                Инъекция SQL                                             /^[^']*$/i
+                        Командная инъекция                                       /^[^']*$/i
+                        Инъекция LDAP                                            /^[^']*$/i
+                        Инъекция XPath                                           /^[^']*$/i
+                        Инъекция команд ОС                                       /^[^']*$/i
+                        Expression Language Injection                            /^[^']*$/i
 
-#### RASP
+Поломки                 Нарушенная аутентификация                                Внедрение 2FA или MFA
+Аутентификация          Управление паролями                                      Сложность паролей и политика истечения срока действия
+                        Профилактика Brute Force                                 Политика блокировки учетной записи
+
+Чувствительные данные   Раскрытие чувствительных данных                          Шифрование в пути и в состоянии покоя
+Раскрытие               Подделка межсайтовых запросов (CSRF)                     CSRF-токены для всех форм
+                        Нарушенный контроль доступа                              Управление доступом на основе ролей
+
+Неправильная конфигурация         Неправильная конфигурация                    Регулярные оценки безопасности и проверки на соответствие требованиям
+системы безопасности              системы безопасности
+
+                       Небезопасное криптографическое хранилище                  Сильные криптографические алгоритмы и управление ключами
+                       Недостаточное протоколирование и мониторинг               Регистрируйте все события, имеющие отношение к безопасности
+                       Недостаточная защита от атак                              Брандмауэр приложений (WAF) для предотвращения атак OWASP Top 10
+
+Межсайтовые            Межсайтовый скриптинг (XSS)                               Кодирование пользовательского ввода
+сценарии
+                       Небезопасные прямые ссылки на объекты                     Проверка контроля доступа и валидация ввода
+
+Небезопасные           Использование компонентов                                 Регулярные исправления и обновления
+компоненты             с известными уязвимостями
+
+```
+
+
+### SQL-инъекция
+
+#### RASP (Самозащита приложений во время выполнения)
 
 ```
 when {
@@ -181,7 +182,7 @@ when {
 }
 ```
 
-#### WAF
+#### WAF (Файрвол веб-приложений)
 
 ```
 SecRule ARGS "@rx ^[a-zA-Z0-9\s]+$" \
@@ -192,7 +193,7 @@ SecRule ARGS "@rx ^[a-zA-Z0-9\s]+$" \
     msg:'Possible SQL Injection Attack'"
 ```
 
-### Command Injection
+### Инъекция команд
 
 ```
 when {
@@ -205,7 +206,7 @@ when {
 }
 ```
 
-#### RASP
+#### RASP (Самозащита приложений во время выполнения)
 
 ```
 SecRule ARGS "@rx ^[a-zA-Z0-9\s]+$" \
@@ -216,7 +217,7 @@ SecRule ARGS "@rx ^[a-zA-Z0-9\s]+$" \
     msg:'Possible Command Injection Attack'"
 ```
 
-#### WAF
+#### WAF (Файрвол веб-приложений)
 
 ```
 SecRule ARGS "@rx ^[a-zA-Z0-9\s]+$" \
@@ -228,9 +229,9 @@ SecRule ARGS "@rx ^[a-zA-Z0-9\s]+$" \
 ```
 
 
-### XSS
+### XSS (Межсайтовый скриптинг)
 
-#### RASP
+#### RASP (Самозащита приложений во время выполнения)
 
 ```
 when {
@@ -245,7 +246,7 @@ when {
 
 #### WAF
 
-##### Script Tag Prevention Rule
+##### Правило предотвращения тегов сценариев
 
 
 ```
@@ -257,7 +258,7 @@ SecRule ARGS|XML:/* "@rx <script.*?>" \
     msg:'Possible XSS Attack via Script Tag'"
 ```
 
-##### Attribute Injection Prevention Rule
+##### Правило предотвращения инъекций атрибутов
 
 
 ```
