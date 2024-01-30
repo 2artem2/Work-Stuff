@@ -1294,7 +1294,7 @@ Command/Code: `st2 run incident.update_status`
 
 
 
-- [ ] Create a new StackStorm pack:
+- [ ] Создайте новый пакет StackStorm:
 
 
 
@@ -1304,7 +1304,7 @@ st2 pack create incident-status-update
 
 
 
-- [ ] Create a new action file
+- [ ] Создайте новый файл действия
 
 
 
@@ -1314,7 +1314,7 @@ st2 action create incident_status_update.yaml
 
 
 
-- [ ] Open the incident_status_update.yaml file and add the following content:
+- [ ] Откройте файл incident_status_update.yaml и добавьте в него следующее содержимое:
 
 
 
@@ -1336,7 +1336,7 @@ entry_point: status_update.sh
 
 
 
-- [ ] Open the status_update.sh file and add the following content:
+- [ ] Откройте файл status_update.sh и добавьте в него следующее содержимое:
 
 
 
@@ -1346,14 +1346,14 @@ entry_point: status_update.sh
 incident_id="{{incident_id}}"
 status="{{status}}"
 
-# Execute commands to update the incident status
-# E.g., update a ticketing system, send a notification, etc.
+# Выполнение команд для обновления статуса инцидента.
+# Например, обновить систему тикетов, отправить уведомление и т. д.
 echo "Incident $incident_id status updated to $status"
 ```
 
 
 
-- [ ] Register the action:
+- [ ] Зарегистрируйте действие:
 
 
 
@@ -1363,7 +1363,7 @@ st2 run packs.setup_virtualenv packs=incident-status-update
 
 
 
-- [ ] Test the action by running:
+- [ ] Проверьте действие, выполнив его:
 
 
 ```
@@ -1372,9 +1372,9 @@ st2 run incident-status-update.incident_status_update incident_id=<incident_id> 
 
 
 
-### Incident Resolution:
+### Разрешение инцидента:
 
-Description: Close the incident after successful remediation and notify the team about the resolution.
+Описание: Закройте инцидент после успешного устранения и сообщите команде о решении.
 
 Команда/код: `st2 run incident.resolve`
 
