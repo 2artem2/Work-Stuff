@@ -70,47 +70,47 @@ make install
 # Создайте новую пару ключей
 sigstore keygen
 
-# List the available keys
+# Список доступных ключей
 sigstore key list
 
-# Set the active key
+# Установите активный ключ
 sigstore key set <key-id>
 ```
 
-* **Sign a software artifact**
+* **Подписать артефакт программного обеспечения**
 
 ```
-# Sign a software artifact using the active key
+# Подпишите программный артефакт с помощью активного ключа
 sigstore sign <artifact-file>
 ```
 
-* **Verify the signature of a signed artifact:**
+* **Проверка подписи подписанного артефакта:**
 
 ```
-# Verify the signature of a signed artifact
+# Проверка подписи подписанного артефакта
 sigstore verify <signed-artifact-file>
 ```
 
-* **Integrate Sigstore into the supply chain**
+* **Интеграция Sigstore в цепочку поставок**
 
-Sigstore can be integrated into various stages of the supply chain, such as during software development, build, deployment, and distribution. For example, you can configure your CI/CD pipeline to sign artifacts with Sigstore after successful builds and verify signatures during deployment.
+Sigstore можно интегрировать в различные этапы цепочки поставок, например, во время разработки, сборки, развертывания и распространения программного обеспечения. Например, вы можете настроить конвейер CI/CD так, чтобы он подписывал артефакты с помощью Sigstore после успешной сборки и проверял подписи во время развертывания.
 
 
-* **Real-world example**
+* **Пример из реальной жизни**
 
-Let's say you have a machine learning model file named "model.pkl" that you want to sign and verify using Sigstore:
+Допустим, у вас есть файл модели машинного обучения с именем "model.pkl", который вы хотите подписать и проверить с помощью Sigstore:
 
 ```
-# Sign the model file
+# Подпишите файл модели
 sigstore sign model.pkl
 
-# This will generate a signed artifact file named "model.pkl.sig"
+# В результате будет создан подписанный файл артефакта с именем "model.pkl.sig".
 
-# Verify the signature of the signed model file
+# Проверьте подпись подписанного файла модели
 sigstore verify model.pkl.sig
 ```
 
-By signing and verifying the model file using Sigstore, you can ensure its integrity and authenticity throughout the software supply chain.
+Подписывая и проверяя файл модели с помощью Sigstore, вы можете гарантировать его целостность и подлинность на протяжении всей цепочки поставок программного обеспечения.
 
 
 
@@ -118,15 +118,15 @@ By signing and verifying the model file using Sigstore, you can ensure its integ
 
 ## Kubeflow
 
-* **Environment Setup**
+* **Настройка среды**
 
-Set up a Kubernetes cluster for deploying Kubeflow.
+Настройте кластер Kubernetes для развертывания Kubeflow.
 
 ```
-# Create a Kubernetes cluster using a cloud provider
+# Создание кластера Kubernetes с помощью облачного провайдера
 gcloud container clusters create my-cluster --num-nodes=3 --zone=us-central1-a
 
-# Install Kubeflow using the Kubeflow deployment tool
+# Установите Kubeflow с помощью инструмента развертывания Kubeflow
 kfctl init my-kubeflow-app --platform gcp --project=my-project
 kfctl generate all -V
 kfctl apply all -V
@@ -134,43 +134,43 @@ kfctl apply all -V
 
 
 
-* **Model Development**
+* **Разработка модели**
 
-Develop an ML model using TensorFlow and package it as a Docker container.
+Разработайте ML-модель с помощью TensorFlow и упакуйте ее в контейнер Docker.
 
 ```
-# Create a Dockerfile for building the model container
+# Создайте Dockerfile для создания контейнера модели
 FROM tensorflow/tensorflow:latest
 COPY model.py /app/
 WORKDIR /app/
 CMD ["python", "model.py"]
 
-# Build and tag the Docker image
+# Сборка и маркировка образа Docker
 docker build -t my-model-image .
 ```
 
 
-* **Version Control**
+* **Контроль версий**
 
-Track ML code and artifacts using Git for reproducibility and traceability.
+Отслеживайте ML-код и артефакты с помощью Git для воспроизводимости и прослеживаемости.
 
 ```
-# Initialize a Git repository
+# Инициализация репозитория Git
 git init
 
-# Add ML code and artifacts
+# Добавьте код и артефакты ML
 git add .
 
-# Commit changes
+# Внести изменения
 git commit -m "Initial commit"
 ```
 
-* **Continuous Integration and Continuous Deployment (CI/CD)**
+* **Непрерывная интеграция и непрерывное развертывание (CI/CD)**
 
-Set up a CI/CD pipeline for automated build, test, and deployment of ML models.
+Настройка пайплайна CI/CD для автоматизированной сборки, тестирования и развертывания ML-моделей.
 
 ```
-# Configure Jenkins pipeline for ML model
+# Настройка пайплайна Jenkins для ML-модели
 pipeline {
   agent any
   stages {
@@ -196,69 +196,69 @@ pipeline {
 }
 ```
 
-* **Security Scanning**
+* **Сканирование безопасности**
 
-Integrate security scanning tools to identify vulnerabilities in ML code and dependencies.
+Интегрируйте инструменты сканирования безопасности для выявления уязвимостей в ML-коде и зависимостях.
 
 ```
-# Install Snyk CLI
+# Установите Snyk CLI
 npm install -g snyk
 
-# Scan Docker image for vulnerabilities
+# Сканирование образа Docker на наличие уязвимостей
 snyk test my-model-image
 ```
 
-* **Model Training**
+* **Обучение моделей**
 
-Use Kubeflow Pipelines for defining and executing ML workflows.
+Используйте конвейеры Kubeflow для определения и выполнения рабочих процессов ML.
 
 ```
-# Define a Kubeflow Pipeline for training
+# Определите конвейер Kubeflow для обучения
 @dsl.pipeline(name='Training Pipeline', description='Pipeline for model training')
 def train_pipeline():
     ...
 
-# Compile and run the pipeline
+# Компиляция и запуск пайплайна
 kfp.compiler.Compiler().compile(train_pipeline, 'pipeline.tar.gz')
 kfp.Client().create_run_from_pipeline_package('pipeline.tar.gz')
 ```
 
-* **Model Serving**
+* **Обслуживание моделей**
 
-Deploy trained models as Kubernetes services using Kubeflow Serving.
+Разверните обученные модели как сервисы Kubernetes с помощью Kubeflow Serving.
 
 ```
-# Deploy trained model as a service
+# Развертывание обученной модели в виде сервиса
 kubectl apply -f serving.yaml
 ```
 
-* **Monitoring and Observability**
+* **Мониторинг и наблюдаемость**
 
-Use monitoring and logging tools to track the performance and behavior of your ML models in real-time. This helps in detecting anomalies, monitoring resource utilization, and ensuring the overall health of your ML system.
+Используйте инструменты мониторинга и протоколирования для отслеживания производительности и поведения моделей ML в режиме реального времени. Это помогает обнаруживать аномалии, следить за использованием ресурсов и обеспечивать общее состояние системы ML.
 
 ```
-# Install Prometheus and Grafana using Helm
+# Установите Prometheus и Grafana с помощью Helm
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 helm install prometheus prometheus-community/prometheus
 helm install grafana grafana/grafana
 
-# Access the Grafana dashboard
+# Получите доступ к приборной панели Grafana
 kubectl port-forward service/grafana 3000:80
 
-# Configure Prometheus as a data source in Grafana and create ML model monitoring dashboards
+# Настройка Prometheus в качестве источника данных в Grafana и создание панелей мониторинга ML-моделей
 ```
 
-* **Automated Testing**
+* **Автоматизированное тестирование**
 
-Implement automated testing for your ML models to ensure their correctness and performance. This can include unit tests, integration tests, and load tests to validate the behavior of your models.
+Внедрите автоматизированное тестирование моделей ML для обеспечения их корректности и производительности. Это может включать модульные тесты, интеграционные тесты и нагрузочные тесты для проверки поведения ваших моделей.
 
 ```
-# Install PyTest
+# Установите PyTest
 pip install pytest
 
-# Write tests for ML models
-# Example test:
+# Написание тестов для ML-моделей
+# Пример теста:
 def test_model_prediction():
     model = load_model('my-model.h5')
     input_data = ...
@@ -266,19 +266,19 @@ def test_model_prediction():
     prediction = model.predict(input_data)
     assert np.allclose(prediction, expected_output, atol=1e-5)
 
-# Run tests
+# Выполните тесты
 pytest tests/
 ```
 
 
 
-* **Auditing and Compliance**
+* **Аудит и соответствие**
 
-Implement audit trails and compliance measures to track model changes, data usage, and model performance. This helps with regulatory requirements and ensures the transparency and accountability of your ML operations.
+Внедрите контрольные журналы и меры по обеспечению соответствия для отслеживания изменений в модели, использования данных и производительности модели. Это поможет выполнить нормативные требования и обеспечит прозрачность и подотчетность ваших операций ML.
 
 ```
-# Define and implement auditing mechanisms
-# Example:
+# Определите и внедрите механизмы аудита.
+# Пример:
 - Keep track of model versions and associated metadata (e.g., timestamp, author, changes made).
 - Implement data access logs to monitor data usage and permissions.
 - Establish model performance metrics and logging for compliance monitoring.
@@ -293,30 +293,30 @@ Implement audit trails and compliance measures to track model changes, data usag
 
 
 
-### Run a basic compliance check
+### Выполните базовую проверку соответствия
 
-Execute a compliance check using InSpec against a target system.
+Выполните проверку соответствия с помощью InSpec на целевой системе.
 
 
 ```
 inspec exec <path_to_profile>
 ```
 
-an example of an InSpec profile that you can use to execute a compliance check against a target system:
+пример профиля InSpec, который можно использовать для выполнения проверки соответствия целевой системы:
 
 ```
 # my_compliance_profile.rb
 
-# Define the profile metadata
+# Определите метаданные профиля
 title 'My Compliance Profile'
 maintainer 'Your Name'
 license 'Apache-2.0'
 description 'Compliance checks for the target system'
 
-# Define the target system(s) to be checked
+# Определите целевую систему (системы) для проверки
 target_hostname = attribute('target_hostname', description: 'Hostname of the target system')
 
-# Start writing controls for compliance checks
+# Начните писать элементы управления для проверки соответствия
 control 'check_os_version' do
   impact 0.7
   title 'Operating System Version Check'
@@ -341,18 +341,18 @@ control 'check_secure_password_policy' do
   end
 end
 
-# Add more controls as needed...
+# При необходимости добавьте дополнительные элементы управления...
 ```
 
-In this example, the profile consists of two controls: one for checking the operating system version and another for verifying the secure password policy. You can add more controls to the profile based on your compliance requirements.
+В этом примере профиль состоит из двух элементов управления: одного для проверки версии операционной системы и другого для проверки политики безопасных паролей. Вы можете добавить в профиль больше элементов управления в зависимости от требований соответствия.
 
-To use this profile, create a new file with the .rb extension (e.g., my_compliance_profile.rb) and copy the code into it. Customize the controls according to your specific compliance checks and requirements.
+Чтобы использовать этот профиль, создайте новый файл с расширением .rb (например, my_compliance_profile.rb) и скопируйте в него код. Настройте элементы управления в соответствии с вашими специфическими проверками и требованиями соответствия.
 
 
 
-### Generate a compliance report
+### Создание отчета о соответствии
 
-Run a compliance check and generate a report in a specific format.
+Запустите проверку на соответствие и создайте отчет в определенном формате.
 
 
 ```
@@ -360,26 +360,26 @@ inspec exec <path_to_profile> --reporter <reporter_name>
 ```
 
 
-### Check a specific control within a profile
+### Проверка конкретного элемента управления в профиле
 
-Run a compliance check for a specific control within a profile.
+Выполните проверку соответствия для определенного элемента управления в профиле.
 
 ```
 inspec exec <path_to_profile> --controls <control_name>
 ```
 
-### Specify target hostname/IP for the compliance check
+### Укажите имя целевого узла/IP для проверки соответствия
 
-Run a compliance check against a specific target system.
+Запуск проверки соответствия на конкретной целевой системе.
 
 ```
 inspec exec <path_to_profile> -t <target_hostname_or_ip>
 ```
 
 
-### Profile development mode
+### Режим разработки профиля
 
-Enable profile development mode to interactively write and test controls.
+Включите режим разработки профилей, чтобы в интерактивном режиме писать и тестировать элементы управления.
 
 
 ```
@@ -390,14 +390,14 @@ inspec shell
 ## envd
 
 
-### Create a configuration file:
+### Создайте файл конфигурации:
 
 ```
 cp config.yml.example config.yml
 ```
 
 
-### Start the envd service
+### Запустите службу envd
 
 
 ```
@@ -406,42 +406,42 @@ python envd.py
 
 ### API
 
-API Endpoints:
+Конечные точки API:
 
 * /environments:
-  GET: Retrieve a list of all environments.
-  POST: Create a new environment.
+  GET: Получить список всех сред.
+  POST: Создать новое окружение.
 * /environments/{env_id}:
-  GET: Retrieve details of a specific environment.
-  PUT: Update an existing environment.
-  DELETE: Delete an environment.
+  GET: Получение сведений о конкретном окружении.
+  PUT: Обновить существующее окружение.
+  DELETE: удалить окружение.
 * /environments/{env_id}/variables:
-  GET: Retrieve a list of variables for a specific environment.
-  POST: Add a new variable to the environment.
+  GET: Получение списка переменных для конкретного окружения.
+  POST: Добавить новую переменную в окружение.
 * /environments/{env_id}/variables/{var_id}:
-  GET: Retrieve details of a specific variable.
-  PUT: Update an existing variable.
-  DELETE: Delete a variable.
+  GET: Получение подробной информации о конкретной переменной.
+  PUT: Обновить существующую переменную.
+  DELETE: удалить переменную.
 
-#### Create a new environment
+#### Создайте новую среду
 
 ```
 curl -X POST -H "Content-Type: application/json" -d '{"name": "Production", "description": "Production environment"}' http://localhost:5000/environments
 ```
 
-#### Get the list of environments
+#### Получить список сред
 
 ```
 curl -X GET http://localhost:5000/environments
 ```
 
-#### Update an environment
+#### Обновление среды
 
 ```
 curl -X PUT -H "Content-Type: application/json" -d '{"description": "Updated description"}' http://localhost:5000/environments/{env_id}
 ```
 
-#### Delete a variable
+#### Удалить переменную
 
 ```
 curl -X DELETE http://localhost:5000/environments/{env_id}/variables/{var_id}
@@ -449,10 +449,10 @@ curl -X DELETE http://localhost:5000/environments/{env_id}/variables/{var_id}
 
 
 
-## Continuous Machine Learning (CML)
+## Непрерывное машинное обучение (CML)
 
 
-### Securely Publishing Model Artifacts
+### Безопасная публикация артефактов модели
 
 ```
 name: Publish Model
@@ -468,7 +468,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build Model
         run: |
-          # Run commands to build and train the model
+          # Выполняйте команды для построения и обучения модели
           python train.py
       - name: Publish Model Artifacts
         uses: iterative/cml@v1
@@ -477,10 +477,10 @@ jobs:
           files: model.h5
 ```
 
-This example demonstrates how to securely publish model artifacts after building and training a machine learning model. The cml-publish action is used to publish the model.h5 file as an artifact.
+Этот пример демонстрирует, как безопасно опубликовать артефакты модели после построения и обучения модели машинного обучения. Действие cml-publish используется для публикации файла model.h5 в качестве артефакта.
 
 
-### Running Security Scans
+### Выполнение сканирования системы безопасности
 
 ```
 name: Run Security Scans
@@ -500,10 +500,10 @@ jobs:
           command: cml-run make scan
 ```
 
-This example demonstrates how to run security scans on your codebase. The cml-run action is used to execute the make scan command, which can trigger security scanning tools to analyze the code for vulnerabilities.
+Этот пример демонстрирует, как запустить сканирование безопасности вашей кодовой базы. Действие cml-run используется для выполнения команды make scan, которая может запустить инструменты сканирования безопасности для анализа кода на наличие уязвимостей.
 
 
-### Automated Code Review
+### Автоматизированный обзор кода
 
 ```
 name: Automated Code Review
@@ -522,9 +522,9 @@ jobs:
           args: "--checkstyle"
 ```
 
-This example demonstrates how to perform automated code reviews on pull requests. The cml-pr action is used to trigger a code review using the --checkstyle option, which can enforce coding standards and best practices.
+Этот пример демонстрирует, как выполнять автоматические проверки кода в запросах на исправление. Действие cml-pr используется для запуска проверки кода с помощью опции --checkstyle, что позволяет обеспечить соблюдение стандартов и лучших практик кодирования.
 
-### Secret Management
+### Секретное управление
 
 ```
 name: Secret Management
@@ -545,7 +545,7 @@ jobs:
           args: "--all"
       - name: Build and Deploy
         run: |
-          # Use the retrieved secrets to build and deploy the application
+          # Используйте полученные секреты для создания и развертывания приложения
           echo $API_KEY > api_key.txt
           python deploy.py
       - name: Cleanup Secrets
@@ -555,9 +555,9 @@ jobs:
           args: "--all"
 ```
 
-This example demonstrates how to securely manage secrets during the CI/CD pipeline. The cml-secrets action is used to pull secrets, such as an API key, from a secure storage and use them during the build and deploy process. Afterwards, the secrets are cleared to minimize exposure.
+Этот пример демонстрирует, как безопасно управлять секретами во время конвейера CI/CD. Действие cml-secrets используется для извлечения секретов, таких как ключ API, из безопасного хранилища и их использования в процессе сборки и развертывания. После этого секреты очищаются, чтобы минимизировать воздействие.
 
-### Secure Deployment with Review
+### Безопасное развертывание с помощью обзора
 
 ```
 name: Secure Deployment
@@ -573,7 +573,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build and Test
         run: |
-          # Run commands to build and test the application
+          # Выполняйте команды для сборки и тестирования приложения
           python build.py
           python test.py
       - name: Request Deployment Review
@@ -584,16 +584,16 @@ jobs:
 ```
 
 
-This example demonstrates how to request a deployment review from the security team before deploying the application. The cml-pr action is used to create a pull request with a specific title, body, and assignee. This allows the security team to review and approve the deployment before it is executed.
+В этом примере показано, как запросить проверку развертывания у команды безопасности перед развертыванием приложения. Действие cml-pr используется для создания запроса на извлечение с определенным названием, телом и назначенным лицом. Это позволяет команде безопасности просмотреть и утвердить развертывание до его выполнения.
 
 
-## Automate Machine Learning Lifecycle
+## Автоматизация жизненного цикла машинного обучения
 
 https://github.com/microsoft/nni
 
 
 
-## Resources
+## Ресурсы
 
 * https://github.com/devopscube/how-to-mlops
 * https://github.com/aws/studio-lab-examples
