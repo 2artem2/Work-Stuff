@@ -513,53 +513,53 @@ fides scan --exit-code
 
 ### secureCodeBox
 
-Install secureCodeBox 
+Установите secureCodeBox 
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/secureCodeBox/secureCodeBox/master/deploy/complete.yaml
 ```
 
-2.  Run a vulnerability scan  
+2.  Выполните сканирование уязвимостей  
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/secureCodeBox/secureCodeBox/master/demo/scan-job.yaml
 ```
 
-3.  Monitor scan progress 
+3.  Контролируйте ход сканирования 
 
 ```
 kubectl get scan -w
 ```
 
-4.  View scan results 
+4.  Просмотр результатов сканирования 
 
 ```
 kubectl describe scan <scan-name>
 ```
 
-5. Integrate secureCodeBox with other security tools:
+5. Интегрируйте secureCodeBox с другими инструментами безопасности:
 
 ```
 securecodebox-cli scan start --target <target-url> --scan-type <scan-type> --integration <integration-name>
-or
+или
 Example: securecodebox-cli scan start --target https://example.com --scan-type zap-scan --integration jira
 ```
 
-6. Schedule regular scans using Kubernetes CronJobs
+6. Планируйте регулярные сканирования с помощью Kubernetes CronJobs
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/secureCodeBox/secureCodeBox/master/demo/scheduled-scan.yaml
 ```
 
-7. Integrate secureCodeBox with your CI/CD pipeline:
+7. Интегрируйте secureCodeBox с вашим пайплайном CI/CD:
 
 ```
 securecodebox-cli scan start --target <target-url> --scan-type <scan-type> --pipeline <pipeline-name>
-or
+или
 Example: securecodebox-cli scan start --target https://example.com --scan-type nmap-scan --pipeline my-cicd-pipeline
 ```
 
-8. Schedule regular scans using Kubernetes CronJobs
+8. Планируйте регулярные сканирования с помощью Kubernetes CronJobs
 
 ```
 kubectl edit hook <hook-name>
@@ -568,7 +568,7 @@ kubectl edit hook <hook-name>
 
 ### ThreatMapper
 
-1. Install ThreatMapper
+1. Установите ThreatMapper
 
 ```
 git clone https://github.com/deepfence/ThreatMapper.git
@@ -576,62 +576,62 @@ cd ThreatMapper
 ./install.sh
 ```
 
-2. Perform a security assessment on a specific target:
+2. Выполните оценку безопасности конкретной цели:
 
 ```
 threat-mapper scan <target-ip>
 ```
 
-3. View the scan results:
+3. Просмотрите результаты сканирования:
 
 ```
 threat-mapper report <scan-id>
 ```
 
-4. Integrate ThreatMapper with your CI/CD pipeline:
+4. Интегрируйте ThreatMapper с вашим пайплайном CI/CD:
 
 ```
 threat-mapper scan --target <target-ip> --pipeline <pipeline-name>
 Example: threat-mapper scan --target 192.168.0.1 --pipeline my-cicd-pipeline
 ```
 
-5. Customize scan policies by modifying the configuration files:
+5. Настройте политики сканирования, изменив файлы конфигурации:
 
 ```
 vim ~/.threat-mapper/config.yaml
 ```
 
-6. Enable notifications for scan results:
+6. Включите уведомления о результатах сканирования:
 
 ```
 vim ~/.threat-mapper/config.yaml
 ```
 
-7. Configure the desired notification settings, such as email notifications or Slack alerts.
+7. Настройте нужные параметры уведомлений, например уведомления по электронной почте или оповещения в Slack.
 
 ```
 crontab -e
 ```
 
-Add a cron job entry to execute the threat-mapper scan command at specified intervals.
+Добавьте запись задания cron для выполнения команды сканирования threat-mapper через заданные промежутки времени.
 
-8. Integrate ThreatMapper with other security tools:
+8. Интеграция ThreatMapper с другими инструментами безопасности:
 
 ```
 threat-mapper scan --target <target-ip> --integration <integration-name>
 Example: threat-mapper scan --target 192.168.0.1 --integration jira
 ```
 
-Monitor and address security issues based on the scan results:
-Regularly review the scan reports and take necessary actions to remediate the identified security issues.
+Мониторинг и устранение проблем безопасности по результатам сканирования:
+Регулярно просматривайте отчеты о сканировании и принимайте необходимые меры для устранения выявленных проблем безопасности.
 
-9. Generate visualizations and reports
+9. Создание визуализаций и отчетов
 
 ```
 threat-mapper visualize <scan-id>
 ```
 
-This command generates visualizations of the scan results, such as network diagrams and attack surface maps.
+Эта команда создает визуализации результатов сканирования, такие как сетевые диаграммы и карты поверхности атаки.
 
 
 
@@ -639,13 +639,13 @@ This command generates visualizations of the scan results, such as network diagr
 
 
 
-### Automated Vulnerability Scanning:
+### Автоматизированное сканирование уязвимостей:
 
-Description: Schedule regular vulnerability scans using a scanning tool like Nessus or Qualys.
+Описание: Планируйте регулярное сканирование уязвимостей с помощью таких инструментов сканирования, как Nessus или Qualys.
 
-Command/Code: `st2 run vulnerability_scanner.scan`
+Команда/код: `st2 run vulnerability_scanner.scan`
 
-To schedule regular vulnerability scans using a scanning tool like Nessus or Qualys with StackStorm (st2), you can create a custom StackStorm pack and define a Python action that invokes the vulnerability scanning tool's API. Here's an example code snippet:
+Чтобы запланировать регулярное сканирование уязвимостей с помощью таких инструментов сканирования, как Nessus или Qualys, в StackStorm (st2), вы можете создать пользовательский пакет StackStorm и определить действие Python, вызывающее API инструмента сканирования уязвимостей. Вот пример фрагмента кода:
 
 - [ ] Create a new StackStorm pack:
 
@@ -676,7 +676,7 @@ class VulnerabilityScanAction(Action):
             return False
 ```
 
-- [ ] Register the action in the pack.yaml file:
+- [ ] Зарегистрируйте действие в файле pack.yaml:
 
 ```
 # vulnerability_scanner/pack.yaml
@@ -685,7 +685,7 @@ actions:
   - vulnerability_scanner/actions/scan.py
 ```
 
-This code provides a basic structure for invoking a vulnerability scanning tool's API. You would need to modify it to fit your specific scanning tool's API and authentication method. 
+Этот код представляет собой базовую структуру для вызова API инструмента сканирования уязвимостей. Вам нужно будет изменить его в соответствии с API и методом аутентификации вашего конкретного инструмента сканирования. 
 
 
 
@@ -693,20 +693,20 @@ This code provides a basic structure for invoking a vulnerability scanning tool'
 
 
 
-### Vulnerability Assessment:
+### Оценка уязвимости:
 
-Description: Retrieve vulnerability scan results and analyze them for critical vulnerabilities.
+Описание: Получение результатов сканирования уязвимостей и их анализ на предмет наличия критических уязвимостей.
 
-Command/Code: `st2 run vulnerability_scanner.analyze_scan`
+Команда/код: `st2 run vulnerability_scanner.analyze_scan`
 
-- [ ] Create a new StackStorm pack:
+- [ ] Создайте новый пакет StackStorm:
 
 ```
 st2 pack create vulnerability_assessment
 ```
 
 
-- [ ] Create a new Python action file analyze.py within the pack:
+- [ ] Создайте новый файл действия Python analyze.py внутри пакета:
 
 
 ```
@@ -717,9 +717,9 @@ import requests
 
 class VulnerabilityAssessmentAction(Action):
     def run(self):
-        # Code to fetch vulnerability scan results from the scanning tool's API
-        # Example: Nessus API call to retrieve scan results
-        # Replace <nessus_api_url>, <access_token>, and <scan_id> with your actual values
+        # Код для получения результатов сканирования уязвимостей из API инструмента сканирования
+        # Пример: Вызов API Nessus для получения результатов сканирования
+        # Замените <nessus_api_url>, <access_token> и <scan_id> на ваши фактические значения
         response = requests.get(
             url="<nessus_api_url>/scans/<scan_id>/results",
             headers={"X-ApiKeys": "<access_token>"},
@@ -727,8 +727,8 @@ class VulnerabilityAssessmentAction(Action):
 
         if response.status_code == 200:
             results = response.json()
-            # Perform analysis on the scan results
-            # Example: Check for critical vulnerabilities
+            # Выполните анализ результатов сканирования
+            # Пример: Проверка на наличие критических уязвимостей
             critical_vulnerabilities = []
             for result in results:
                 if result["severity"] == "Critical":
@@ -740,7 +740,7 @@ class VulnerabilityAssessmentAction(Action):
 
 
 
-- [ ] Register the action in the pack.yaml file:
+- [ ] Зарегистрируйте действие в файле pack.yaml:
 
 ```
 # vulnerability_assessment/pack.yaml
@@ -749,19 +749,19 @@ actions:
   - vulnerability_assessment/actions/analyze.py
 ```
 
-This code provides a basic structure for fetching vulnerability scan results from a scanning tool's API and performing analysis on them. You would need to modify it to fit your specific scanning tool's API and authentication method. Additionally, you can customize the analysis logic to suit your specific requirements.
+Этот код представляет собой базовую структуру для получения результатов сканирования уязвимостей из API инструмента сканирования и проведения анализа. Вам нужно будет изменить его в соответствии с API и методом аутентификации вашего конкретного инструмента сканирования. Кроме того, вы можете настроить логику анализа в соответствии с вашими специфическими требованиями.
 
 
 
 
-### Incident Trigger:
+### Триггер инцидента:
 
-Description: Detect a critical vulnerability and trigger an incident response workflow.
+Описание: Обнаружение критической уязвимости и запуск рабочего процесса реагирования на инцидент.
 
-Command/Code: `st2 run incident.trigger`
+Команда/код: `st2 run incident.trigger`
 
 
-- [ ] Create a new StackStorm pack:
+- [ ] Создайте новый пакет StackStorm:
 
 ```
 st2 pack create incident_investigation
@@ -770,7 +770,7 @@ st2 pack create incident_investigation
 
 
 
-- [ ] Create a new Python action file gather_info.py within the pack:
+- [ ] Создайте новый файл действия Python gather_info.py внутри пакета:
 
 
 ```
@@ -781,17 +781,17 @@ import requests
 
 class IncidentInvestigationAction(Action):
     def run(self, vulnerability):
-        # Code to gather additional information about the vulnerability
-        # Example: Query relevant logs or systems
-        # Replace <log_url> and <search_query> with your actual values
+        # Код для сбора дополнительной информации об уязвимости
+        # Пример: Запрос соответствующих журналов или систем
+        # Замените <log_url> и <search_query> на ваши фактические значения
         response = requests.get(
             url=f"<log_url>/search?query={vulnerability}"
         )
 
         if response.status_code == 200:
             logs = response.json()
-            # Perform further analysis or extract relevant information from logs
-            # Example: Return the log entries related to the vulnerability
+            # Проведите дальнейший анализ или извлеките необходимую информацию из журналов.
+            # Пример: Вернуть записи журнала, связанные с уязвимостью
             return logs
         else:
             return None
@@ -800,7 +800,7 @@ class IncidentInvestigationAction(Action):
 
 
 
-- [ ] Register the action in the pack.yaml file:
+- [ ] Зарегистрируйте действие в файле pack.yaml:
 
 
 ```
@@ -812,7 +812,7 @@ actions:
 
 
 
-- [ ] Run the incident investigation action:
+- [ ] Запустите действие по расследованию инцидента:
 
 
 ```
@@ -820,21 +820,21 @@ st2 run incident_investigation.gather_info vulnerability=<vulnerability_name>
 ```
 
 
-This code provides a basic structure for gathering additional information about a vulnerability by querying relevant logs or systems. You would need to modify it to fit your specific log sources or systems and the query syntax for retrieving the relevant information.
+Этот код представляет собой базовую структуру для сбора дополнительной информации об уязвимости путем запроса соответствующих журналов или систем. Вам нужно будет изменить его в соответствии с вашими конкретными источниками журналов или системами и синтаксисом запроса для получения необходимой информации.
 
 
 
 
 
 
-### Incident Investigation:
+### Расследование инцидента:
 
-Description: Gather additional information about the vulnerability by querying relevant logs or systems.
+Описание: Соберите дополнительную информацию об уязвимости, запросив соответствующие журналы или системы.
 
-Command/Code: `st2 run incident.investigate`
+Команда/код: `st2 run incident.investigate`
 
 
-- [ ] Create a new StackStorm pack:
+- [ ] Создайте новый пакет StackStorm:
 
 ```
 st2 pack create incident_investigation
@@ -842,7 +842,7 @@ st2 pack create incident_investigation
 
 
 
-- [ ] Create a new integration file investigate_vulnerability.yaml within the pack:
+- [ ] Создайте новый файл интеграции investigate_vulnerability.yaml внутри пакета:
 
 
 ```
@@ -862,7 +862,7 @@ actions:
 
 
 
-- [ ] Create a new Python script file query_logs.py within the pack:
+- [ ] Создайте новый файл сценария Python query_logs.py внутри пакета:
 
 
 ```
@@ -873,16 +873,16 @@ from st2common.runners.base_action import Action
 
 class QueryLogsAction(Action):
     def run(self, vulnerability):
-        # Code to query relevant logs or systems
-        # Replace <log_url> and <search_query> with your actual values
+        # Код для запроса соответствующих журналов или систем
+        # Замените <log_url> и <search_query> на ваши фактические значения
         response = requests.get(
             url=f"<log_url>/search?query={vulnerability}"
         )
 
         if response.status_code == 200:
             logs = response.json()
-            # Perform further analysis or extract relevant information from logs
-            # Example: Return the log entries related to the vulnerability
+            # Проведите дальнейший анализ или извлеките необходимую информацию из журналов.
+            # Пример: Вернуть записи журнала, связанные с уязвимостью
             return logs
         else:
             return None
@@ -890,7 +890,7 @@ class QueryLogsAction(Action):
 
 
 
-- [ ] Register the integration in the pack.yaml file:
+- [ ] Зарегистрируйте интеграцию в файле pack.yaml:
 
 
 ```
@@ -906,15 +906,15 @@ integrations:
 
 
 
-### Notification and Alerting:
+### Уведомление и оповещение:
 
-Description: Send notifications to the incident response team or stakeholders via Slack, email, or other communication channels.
+Описание: Отправка уведомлений команде реагирования на инцидент или заинтересованным сторонам через Slack, электронную почту или другие каналы связи.
 
-Command/Code: `st2 run notification.send`
+Команда/код: `st2 run notification.send`
 
 
 
-- [ ] Create a new StackStorm pack:
+- [ ] Создайте новый пакет StackStorm:
 
 
 
@@ -925,7 +925,7 @@ st2 pack create notification_alerting
 
 
 
-- [ ] Create a new integration file send_notification.yaml within the pack:
+- [ ] Создайте новый файл интеграции send_notification.yaml внутри пакета:
 
 
 
@@ -952,7 +952,7 @@ actions:
 
 
 
-- [ ] Create a new Python script file send_slack_notification.py within the pack:
+- [ ] Создайте новый файл сценария Python send_slack_notification.py внутри пакета:
 
 
 
@@ -964,8 +964,8 @@ from st2common.runners.base_action import Action
 
 class SendSlackNotificationAction(Action):
     def run(self, message, channel):
-        # Code to send Slack notification
-        # Replace <slack_webhook_url> with your actual webhook URL
+        # Код для отправки уведомления Slack
+        # Замените <slack_webhook_url> на ваш фактический URL webhook
         webhook_url = "<slack_webhook_url>"
         payload = {
             "text": message,
@@ -981,7 +981,7 @@ class SendSlackNotificationAction(Action):
 
 
 
-- [ ] Create a new Python script file send_email_notification.py within the pack:
+- [ ] Создайте новый файл сценария Python send_email_notification.py внутри пакета:
 
 
 
@@ -994,8 +994,8 @@ from st2common.runners.base_action import Action
 
 class SendEmailNotificationAction(Action):
     def run(self, message, recipient, sender, subject):
-        # Code to send email notification
-        # Replace <smtp_server>, <smtp_port>, <smtp_username>, and <smtp_password> with your email server details
+        # Код для отправки уведомления по электронной почте
+        # Замените <smtp_server>, <smtp_port>, <smtp_username> и <smtp_password> на данные вашего почтового сервера
         smtp_server = "<smtp_server>"
         smtp_port = <smtp_port>
         smtp_username = "<smtp_username>"
@@ -1017,7 +1017,7 @@ class SendEmailNotificationAction(Action):
 
 
 
-- [ ] Register the integrations in the pack.yaml file:
+- [ ] Зарегистрируйте интеграции в файле pack.yaml:
 
 
 ```
@@ -1029,14 +1029,14 @@ integrations:
 
 
 
-- [ ] Send a Slack notification:
+- [ ] Отправьте уведомление в Slack:
 
 
 ```
 st2 run send_notification.send_slack_notification message=<notification_message> channel=<slack_channel>
 ```
 
-- [ ] Send an email notification:
+- [ ] Отправьте уведомление по электронной почте:
 
 ```
 st2 run send_notification.send_email_notification message=<notification_message> recipient=<recipient_email> sender=<sender_email> subject=<email_subject> smtp_server=<smtp_server> smtp_port=<smtp_port> smtp_username=<smtp_username> smtp_password=<smtp_password>
@@ -1048,21 +1048,21 @@ st2 run send_notification.send_email_notification message=<notification_message>
 
 
 
-### Patching Vulnerable Systems:
+### Патчи для уязвимых систем:
 
-Description: Automatically patch vulnerable systems by executing scripts or running configuration management tools like Ansible.
+Описание: Автоматическое исправление уязвимых систем путем выполнения скриптов или запуска инструментов управления конфигурацией, таких как Ansible.
 
-Command/Code: `st2 run remediation.patch`
+Команда/код: `st2 run remediation.patch`
 
 
-- [ ] Create a new StackStorm pack:
+- [ ] Создайте новый пакет StackStorm:
 
 ```
 st2 pack create vulnerability_patching
 ```
 
 
-- [ ] Create a new action file patch_vulnerable_systems.yaml within the pack:
+- [ ] Создайте новый файл действий patch_vulnerable_systems.yaml внутри пакета:
 
 
 ```
@@ -1077,19 +1077,19 @@ entry_point: patch_vulnerable_systems.sh
 ```
 
 
-- [ ] Create a new shell script file patch_vulnerable_systems.sh within the pack:
+- [ ] Создайте новый файл сценария оболочки patch_vulnerable_systems.sh внутри пакета:
 
 
 
 ```
 # vulnerability_patching/actions/patch_vulnerable_systems.sh
 
-# Code to patch vulnerable systems using Ansible or other configuration management tools
+# Код для исправления уязвимых систем с помощью Ansible или других инструментов управления конфигурацией
 ansible-playbook -i inventory.ini patch_vulnerable_systems.yml
 ```
 
 
-- [ ] Create an Ansible playbook file patch_vulnerable_systems.yml:
+- [ ] Создайте файл плейбука Ansible patch_vulnerable_systems.yml:
 
 
 
@@ -1109,7 +1109,7 @@ ansible-playbook -i inventory.ini patch_vulnerable_systems.yml
 
 
 
-- [ ] Register the action in the pack.yaml file:
+- [ ] Зарегистрируйте действие в файле pack.yaml:
 
 
 
@@ -1126,15 +1126,15 @@ actions:
 
 
 
-### Network Isolation:
+### Изоляция сети:
 
-Description: Isolate compromised systems from the network to prevent further damage.
+Описание: Изолируйте взломанные системы от сети, чтобы предотвратить дальнейший ущерб.
 
-Command/Code: `st2 run remediation.isolate`
+Команда/код: `st2 run remediation.isolate`
 
 
 
-- [ ] Create a new StackStorm pack:
+- [ ] Создайте новый пакет StackStorm:
 
 ```
 st2 pack create network-isolation
@@ -1142,7 +1142,7 @@ st2 pack create network-isolation
 
 
 
-- [ ] Create a new action file
+- [ ] Создайте новый файл действия
 
 ```
 st2 action create network_isolation.yaml
@@ -1150,7 +1150,7 @@ st2 action create network_isolation.yaml
 
 
 
-- [ ] Open the network_isolation.yaml file and add the following content:
+- [ ] Откройте файл network_isolation.yaml и добавьте в него следующее содержимое:
 
 
 
@@ -1168,7 +1168,7 @@ entry_point: isolation.sh
 
 
 
-- [ ] Open the isolation.sh file and add the following content:
+- [ ] Откройте файл isolation.sh и добавьте в него следующее содержимое:
 
 
 
@@ -1184,7 +1184,7 @@ iptables -A OUTPUT -d $ip_address -j DROP
 
 
 
-- [ ] Register the action:
+- [ ] Зарегистрируйте действие:
 
 ```
 st2 run packs.setup_virtualenv packs=network-isolation
@@ -1193,7 +1193,7 @@ st2 run packs.setup_virtualenv packs=network-isolation
 
 
 
-- [ ] Test the action by running:
+- [ ] Проверьте действие, выполнив его:
 
 
 
@@ -1203,16 +1203,16 @@ st2 run network-isolation.network_isolation ip_address=<ip_address>
 
 
 
-### User Account Lockout:
+### Блокировка учетной записи пользователя:
 
-Description: Lock user accounts associated with the identified vulnerability to limit access.
+Описание: Блокировка учетных записей пользователей, связанных с выявленной уязвимостью, для ограничения доступа.
 
-Command/Code: `st2 run remediation.lock_account`
-
-
+Команда/код: `st2 run remediation.lock_account`
 
 
-- [ ] Create a new StackStorm pack:
+
+
+- [ ] Создайте новый пакет StackStorm:
 
 
 
@@ -1222,7 +1222,7 @@ st2 pack create user-account-lockout
 
 
 
-- [ ] Create a new action file:
+- [ ] Создайте новый файл действия:
 
 
 
@@ -1232,7 +1232,7 @@ st2 action create user_account_lockout.yaml
 
 
 
-- [ ] Open the user_account_lockout.yaml file and add the following content:
+- [ ] Откройте файл user_account_lockout.yaml и добавьте в него следующее содержимое:
 
 
 
@@ -1250,7 +1250,7 @@ entry_point: lockout.sh
 
 
 
-- [ ] Open the lockout.sh file and add the following content:
+- [ ] Откройте файл lockout.sh и добавьте в него следующее содержимое:
 
 
 
@@ -1265,7 +1265,7 @@ usermod -L $username
 
 
 
-- [ ] Register the action:
+- [ ] Зарегистрируйте действие:
 
 
 
@@ -1275,7 +1275,7 @@ st2 run packs.setup_virtualenv packs=user-account-lockout
 
 
 
-- [ ] Test the action by running
+- [ ] Проверьте действие, выполнив
 
 
 
@@ -1285,9 +1285,9 @@ st2 run user-account-lockout.user_account_lockout username=<username>
 
 
 
-### Incident Status Update:
+### Обновление статуса инцидента:
 
-Description: Update the status of an incident, providing real-time information on the remediation progress.
+Описание: Обновление статуса инцидента с предоставлением информации о ходе устранения в режиме реального времени.
 
 Command/Code: `st2 run incident.update_status`
 
@@ -1376,12 +1376,12 @@ st2 run incident-status-update.incident_status_update incident_id=<incident_id> 
 
 Description: Close the incident after successful remediation and notify the team about the resolution.
 
-Command/Code: `st2 run incident.resolve`
+Команда/код: `st2 run incident.resolve`
 
 
 
 
-- [ ] Create a new StackStorm pack:
+- [ ] Создайте новый пакет StackStorm:
 
 
 ```
@@ -1390,7 +1390,7 @@ st2 pack create incident-resolution
 
 
 
-- [ ] Create a new action file:
+- [ ] Создайте новый файл действия:
 
 
 ```
@@ -1399,7 +1399,7 @@ st2 action create incident_resolution.yaml
 
 
 
-- [ ] Open the incident_resolution.yaml file and add the following content:
+- [ ] Откройте файл incident_resolution.yaml и добавьте в него следующее содержимое:
 
 
 ```
@@ -1416,7 +1416,7 @@ entry_point: resolution_script.sh
 
 
 
-- [ ] Open the resolution_script.sh file and add the following content:
+- [ ] Откройте файл resolution_script.sh и добавьте в него следующее содержимое:
 
 
 ```
@@ -1424,14 +1424,14 @@ entry_point: resolution_script.sh
 
 incident_id="{{incident_id}}"
 
-# Execute commands to resolve the incident
-# E.g., close a ticket, notify the team, etc.
+# Выполнение команд для разрешения инцидента
+# Например, закрыть тикет, уведомить команду и т. д.
 echo "Incident $incident_id resolved successfully"
 ```
 
 
 
-- [ ] Register the action:
+- [ ] Зарегистрируйте действие:
 
 
 ```
@@ -1440,7 +1440,7 @@ st2 run packs.setup_virtualenv packs=incident-resolution
 
 
 
-- [ ] Test the action by running:
+- [ ] Проверьте действие, выполнив его:
 
 
 ```
@@ -1448,7 +1448,7 @@ st2 run incident-resolution.incident_resolution incident_id=<incident_id>
 ```
 
 
-## Secure Pipeline Using Jenkins Declarative Pipeline
+## Безопасный пайплайн с использованием декларативного пайплайна Jenkins
 
 ```
 pipeline {
@@ -1517,14 +1517,15 @@ pipeline {
 }
 ```
 
-In this pipeline, the stages include building the project, performing a SonarQube scan, containerizing the application, and deploying it using Kubernetes. The pipeline also handles post-execution actions based on the success or failure of the pipeline.
+В этом пайплайне этапы включают сборку проекта, сканирование SonarQube, контейнеризацию приложения и его развертывание с помощью Kubernetes.Пайплайн также обрабатывает действия после выполнения, основанные на успехе или неудаче пайплайна.
 
-Make sure to replace the placeholders with appropriate values, such as `your_docker_registry`, `your_docker_credentials_id`, `your_sonarqube_url`, and `your_sonarqube_token`, to match your environment.
-
-
+Убедитесь в том, что вы заменили заполнители на соответствующие значения, такие как `your_docker_registry`, `your_docker_credentials_id`, `your_sonarqube_url`, и `your_sonarqube_token`,  чтобы они соответствовали вашему окружению.
 
 
-## References
+
+
+
+## Ссылки
 
 * https://devopscube.com/declarative-pipeline-parameters/
 
