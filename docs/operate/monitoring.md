@@ -4,10 +4,10 @@ title: Monitoring
 parent: Operate
 ---
 
-# Monitoring
+# Мониторинг
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,39 +15,39 @@ parent: Operate
 
 ---
 
-Monitoring in DevSecOps refers to the practice of continuously observing and analyzing an organization's IT systems, applications, and infrastructure to identify potential security issues, detect and respond to security incidents, and ensure compliance with security policies and regulations.
+Мониторинг в DevSecOps - это практика постоянного наблюдения и анализа ИТ-систем, приложений и инфраструктуры организации с целью выявления потенциальных проблем безопасности, обнаружения и реагирования на инциденты безопасности, а также обеспечения соответствия политикам и нормам безопасности.
 
-In DevSecOps, monitoring is a critical component of a comprehensive security strategy, allowing organizations to identify and respond to security threats quickly and effectively. Some of the key benefits of monitoring in DevSecOps include:
+В DevSecOps мониторинг является важнейшим компонентом комплексной стратегии безопасности, позволяющим организациям быстро и эффективно выявлять угрозы безопасности и реагировать на них. К числу ключевых преимуществ мониторинга в DevSecOps относятся:
 
-1. Early detection of security incidents: By continuously monitoring systems and applications, organizations can detect security incidents early on and take immediate action to remediate them.
+1. Раннее обнаружение инцидентов безопасности: Благодаря постоянному мониторингу систем и приложений организации могут обнаруживать инциденты безопасности на ранних стадиях и принимать незамедлительные меры по их устранению.
 
-2. Improved incident response: With real-time monitoring and analysis, organizations can respond to security incidents quickly and effectively, minimizing the impact of a potential breach.
+2. Улучшенное реагирование на инциденты: Благодаря мониторингу и анализу в режиме реального времени организации могут быстро и эффективно реагировать на инциденты безопасности, сводя к минимуму последствия потенциального взлома.
 
-3. Improved compliance: By monitoring systems and applications for compliance with security policies and regulations, organizations can ensure that they are meeting their security obligations.
+3. Повышение соответствия нормативным требованиям: Благодаря мониторингу систем и приложений на предмет соответствия политикам и нормам безопасности организации могут убедиться в том, что они выполняют свои обязательства по обеспечению безопасности.
 
-4. Improved visibility: Monitoring provides organizations with greater visibility into their IT systems and applications, allowing them to identify potential security risks and take proactive steps to address them.
+4. Улучшение видимости: Мониторинг позволяет организациям получить более полную информацию о своих ИТ-системах и приложениях, что дает им возможность выявлять потенциальные риски безопасности и принимать упреждающие меры по их устранению.
 
-There are a variety of monitoring tools and technologies available that can be used in DevSecOps, including log analysis tools, network monitoring tools, and security information and event management (SIEM) solutions. These tools can be integrated with other DevSecOps practices, such as continuous integration and continuous deployment, to ensure that security is built into the application development lifecycle.
+Существует множество инструментов и технологий мониторинга, которые можно использовать в DevSecOps, включая средства анализа журналов, инструменты сетевого мониторинга и решения для управления информацией и событиями безопасности (SIEM). Эти инструменты могут быть интегрированы с другими практиками DevSecOps, такими как непрерывная интеграция и непрерывное развертывание, для обеспечения безопасности в жизненном цикле разработки приложений.
 
 
 
 
 ## Prometheus
 
-Start the Prometheus server:
+Запустите сервер Prometheus:
 
 ```
 $ ./prometheus --config.file=prometheus.yml
 ```
 
-Check Prometheus server status:
+Проверьте состояние сервера Prometheus:
 
 
 ```
 $ curl http://localhost:9090/-/healthy
 ```
 
-Query data using PromQL:
+Запрашивайте данные с помощью PromQL:
 
 
 ```
@@ -56,7 +56,7 @@ http://localhost:9090/graph?g0.range_input=1h&g0.expr=up&g0.tab=0
 
 ## Grafana
 
-Add Prometheus data source:
+Добавьте источник данных Prometheus:
 
 
 ```
@@ -66,14 +66,14 @@ http://localhost:3000/datasources/new?gettingstarted
 
 ## Nagios
 
-Configure Nagios server:
+Настройте сервер Nagios:
 
 
 ```
 /etc/nagios3/conf.d/
 ```
 
-Verify Nagios server configuration:
+Проверьте конфигурацию сервера Nagios:
 
 
 ```
@@ -82,7 +82,7 @@ $ sudo /usr/sbin/nagios3 -v /etc/nagios3/nagios.cfg
 
 ## Zabbix
 
-Configure Zabbix agent on the server: Edit the Zabbix agent configuration file /etc/zabbix/zabbix_agentd.conf to specify the Zabbix server IP address and hostname, and to enable monitoring of system resources such as CPU, memory, disk usage, and network interface. Example configuration:
+Настройте агент Zabbix на сервере: Отредактируйте файл конфигурации агента Zabbix /etc/zabbix/zabbix_agentd.conf, чтобы указать IP-адрес и имя хоста сервера Zabbix, а также включить мониторинг системных ресурсов, таких как процессор, память, использование диска и сетевой интерфейс. Пример конфигурации:
 
 ```
 Server=192.168.1.100
@@ -90,7 +90,7 @@ ServerActive=192.168.1.100
 Hostname=web-server
 EnableRemoteCommands=1
 UnsafeUserParameters=1
-# Monitor system resources
+# Мониторинг системных ресурсов
 UserParameter=cpu.usage[*],/usr/bin/mpstat 1 1 | awk '/Average:/ {print 100-$NF}'
 UserParameter=memory.usage,free | awk '/Mem:/ {print $3/$2 * 100.0}'
 UserParameter=disk.usage[*],df -h | awk '$1 == $1 {print int($5)}'
@@ -98,39 +98,39 @@ UserParameter=network.in[*],cat /proc/net/dev | grep $1 | awk '{print $2}'
 UserParameter=network.out[*],cat /proc/net/dev | grep $1 | awk '{print $10}'
 ```
 
-Configure Zabbix server: Login to the Zabbix web interface and navigate to the "Configuration" tab. Create a new host with the same hostname as the server being monitored, and specify the IP address and Zabbix agent port. Add items to the host to monitor the system resources specified in the Zabbix agent configuration file. Example items:
+Настройте сервер Zabbix: Войдите в веб-интерфейс Zabbix и перейдите на вкладку "Конфигурация". Создайте новый хост с тем же именем, что и у сервера, за которым ведется наблюдение, и укажите IP-адрес и порт агента Zabbix. Добавьте на хост элементы для мониторинга системных ресурсов, указанных в файле конфигурации агента Zabbix. Примеры элементов:
 
-* CPU usage: `system.cpu.util[,idle]`
-* Memory usage: `vm.memory.size[available]`
-* Disk usage: `vfs.fs.size[/,pfree]`
-* Network inbound traffic: `net.if.in[eth0]`
-* Network outbound traffic: `net.if.out[eth0]`
+* Использование процессора: `system.cpu.util[,idle]`.
+* Использование памяти: `vm.memory.size[available]`.
+* Использование диска: `vfs.fs.size[/,pfree]`
+* Входящий сетевой трафик: `net.if.in[eth0]`
+* Исходящий сетевой трафик: `net.if.out[eth0]`
 
-Configure triggers: Set up triggers to alert when any monitored item exceeds a certain threshold. For example, set a trigger on the CPU usage item to alert when the usage exceeds 80%.
+Настройка триггеров: Настройте триггеры для оповещения о превышении определенного порога любым контролируемым элементом. Например, установите триггер на элемент "Использование процессора", который будет оповещать, когда его использование превысит 80 %.
 
-Configure actions: Create actions to notify relevant stakeholders when a trigger is fired. For example, send an email to the web application team and the system administrators.
+Настройте действия: Создайте действия для уведомления соответствующих заинтересованных сторон при срабатывании триггера. Например, отправьте электронное письмо команде веб-приложений и системным администраторам.
 
 
 ## Datadog
 
-Edit the Datadog agent configuration file `/etc/datadog-agent/datadog.yaml` and add the following lines:
+Отредактируйте файл конфигурации агента Datadog `/etc/datadog-agent/datadog.yaml` и добавьте следующие строки:
 
 ```
-# Collect CPU metrics
+# Сбор показателей процессора
 procfs_path: /proc
 cpu_acct: true
 
-# Collect memory metrics
+# Сбор данных о памяти
 meminfo_path: /proc/meminfo
 ```
 
-To view CPU and memory metrics, go to the Datadog Metrics Explorer and search for the metrics `system.cpu.usage` and `system.mem.used`.
+Чтобы просмотреть метрики процессора и памяти, перейдите в Datadog Metrics Explorer и найдите метрики `system.cpu.usage` и `system.mem.used`.
 
 
 
-Here are some sample commands you can use to collect CPU and memory metrics with Datadog:
+Вот несколько примеров команд, которые можно использовать для сбора метрик процессора и памяти с помощью Datadog:
 
-To collect CPU metrics:
+Для сбора метрик процессора:
 
 
 ```
@@ -152,7 +152,7 @@ curl -X POST -H "Content-type: application/json" -d '{
 ```
 
 
-To collect memory metrics:
+Чтобы собрать метрики памяти:
 
 
 ```
@@ -173,14 +173,14 @@ curl -X POST -H "Content-type: application/json" -d '{
 }' "https://api.datadoghq.com/api/v1/series?api_key=<YOUR_API_KEY>"
 ```
 
-Note that these commands assume that you have the necessary tools (`top`, `free`) installed on your system to collect CPU and memory metrics. You can customize the `metric`, `host`, and `tags` fields as needed to match your setup.
+Обратите внимание, что эти команды предполагают, что в вашей системе установлены необходимые инструменты (`top`, `free`) для сбора метрик процессора и памяти. Вы можете настроить поля `metric`, `host` и `tags` в соответствии с вашими настройками.
 
 
 
 
 ## New Relic
 
-To install the New Relic Infrastructure agent on a Ubuntu server:
+Чтобы установить агент New Relic Infrastructure на сервер Ubuntu, выполните следующие действия:
 
 
 ```
@@ -189,7 +189,7 @@ sudo apt-get install newrelic-infra
 sudo systemctl start newrelic-infra
 ```
 
-To install the New Relic Infrastructure agent on a CentOS/RHEL server:
+Чтобы установить агент New Relic Infrastructure на сервер CentOS/RHEL, выполните следующие действия:
 
 
 ```
@@ -198,7 +198,7 @@ sudo yum -y install newrelic-infra
 sudo systemctl start newrelic-infra
 ```
 
-To view CPU and memory metrics for a specific server using the New Relic API:
+Чтобы просмотреть показатели процессора и памяти для конкретного сервера с помощью New Relic API:
 
 ```
 curl -X GET 'https://api.newrelic.com/v2/servers/{SERVER_ID}/metrics/data.json' \
@@ -215,17 +215,17 @@ curl -X GET 'https://api.newrelic.com/v2/servers/{SERVER_ID}/metrics/data.json' 
 ## AWS CloudWatch
 
 
-1- To install the CloudWatch agent on Linux, you can use the following commands:
+1- Чтобы установить агент CloudWatch в Linux, можно воспользоваться следующими командами:
 
 ```
 curl https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm -O
 sudo rpm -i amazon-cloudwatch-agent.rpm
 ```
 
-2- Configure the CloudWatch Agent to Collect Metrics
+2- Настройка агента CloudWatch для сбора метрик
 
 
-On Linux, you can create a configuration file at `/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json` with the following content:
+В Linux вы можете создать файл конфигурации по адресу `/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json` со следующим содержимым:
 
 
 ```
@@ -259,7 +259,7 @@ On Linux, you can create a configuration file at `/opt/aws/amazon-cloudwatch-age
 ```
 
 
-On Windows, you can use the CloudWatch Agent Configuration Wizard to create a configuration file with the following settings:
+В Windows вы можете использовать мастер настройки агента CloudWatch Agent Configuration Wizard для создания файла конфигурации со следующими параметрами:
 
 
 ```
@@ -273,27 +273,27 @@ On Windows, you can use the CloudWatch Agent Configuration Wizard to create a co
 - Choose "InstanceId" as the metric dimension
 ```
 
-3- Start the CloudWatch Agent
-Once you've configured the CloudWatch agent, you can start it on the EC2 instance using the following commands:
+3- Запуск агента CloudWatch
+После настройки агента CloudWatch его можно запустить на экземпляре EC2 с помощью следующих команд:
 
 ```
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
 sudo service amazon-cloudwatch-agent start
 ```
 
-4- View the Metrics in CloudWatch
+4- Просмотр метрик в CloudWatch
 
-After a few minutes, the CloudWatch agent will start collecting CPU and memory metrics from the EC2 instance. You can view these metrics in the CloudWatch console by following these steps:
+Через несколько минут агент CloudWatch начнет собирать метрики процессора и памяти с экземпляра EC2. Вы можете просмотреть эти показатели в консоли CloudWatch, выполнив следующие действия:
 
-* Go to the CloudWatch console and select "Metrics" from the left-hand menu
-* Under "AWS Namespaces", select "CWAgent"
-* You should see a list of metrics for the EC2 instance you are monitoring, including CPU and memory usage. You can select individual metrics to view graphs and set up alarms based on these metrics.
-
-
-## Azure Monitor
+* Перейдите в консоль CloudWatch и выберите "Метрики" в меню слева.
+* В разделе "Пространства имен AWS" выберите "CWAgent".
+* Вы увидите список метрик для экземпляра EC2, который вы отслеживаете, включая использование процессора и памяти. Вы можете выбрать отдельные метрики, чтобы просмотреть графики и настроить оповещения на основе этих метрик.
 
 
-1- Configure the agent to collect CPU and memory metrics by adding the following settings to the agent's configuration file:
+## Монитор Azure
+
+
+1- Настройте агент на сбор метрик процессора и памяти, добавив следующие параметры в файл конфигурации агента:
 
 
 ```
@@ -320,13 +320,13 @@ After a few minutes, the CloudWatch agent will start collecting CPU and memory m
     }
 ```
 
-2- Restart the Azure Monitor agent to apply the new configuration.
+2- Перезапустите агент Azure Monitor, чтобы применить новую конфигурацию.
 
-3- Select the virtual machine or server that you want to view metrics for.
-4- Select the CPU and memory metrics that you want to view.
-5- Configure any alerts or notifications that you want to receive based on these metrics.
+3- Выберите виртуальную машину или сервер, для которых вы хотите просмотреть показатели.
+4- Выберите метрики процессора и памяти, которые вы хотите просмотреть.
+5 - Настройте предупреждения или уведомления, которые вы хотите получать на основе этих показателей.
 
-To collect CPU and memory metrics using Azure Monitor, you can also use the Azure Monitor REST API or the Azure CLI. Here's an example Azure CLI command to collect CPU and memory metrics:
+Для сбора показателей процессора и памяти с помощью Azure Monitor можно также использовать Azure Monitor REST API или Azure CLI. Вот пример команды Azure CLI для сбора показателей процессора и памяти:
 
 
 
@@ -334,141 +334,140 @@ To collect CPU and memory metrics using Azure Monitor, you can also use the Azur
 az monitor metrics list --resource {resource_id} --metric-names "\Processor(_Total)\% Processor Time" "Memory\Available Bytes" --interval PT1M --start-time 2022-05-20T00:00:00Z --end-time 2022-05-21T00:00:00Z
 ```
 
-This command retrieves CPU and memory metrics for a specific resource (identified by `{resource_id}`) over a one-day period (from May 20, 2022 to May 21, 2022), with a one-minute interval. You can modify the parameters to retrieve different metrics or time ranges as needed.
+Эта команда извлекает метрики процессора и памяти для определенного ресурса (идентифицированного по `{resource_id}`) за однодневный период (с 20 мая 2022 года по 21 мая 2022 года) с интервалом в одну минуту. При необходимости вы можете изменить параметры, чтобы получить другие показатели или временные диапазоны.
 
 
 
 
+## Мониторинг облака Google
 
-## Google Cloud Monitoring
-
-1- Install the Stackdriver agent on the GCE instance. You can do this using the following command:
+1- Установите агент Stackdriver на экземпляр GCE. Это можно сделать с помощью следующей команды:
 
 ```
 curl -sSO https://dl.google.com/cloudagents/install-monitoring-agent.sh
 sudo bash install-monitoring-agent.sh
 ```
 
-2- Verify that the Monitoring Agent is running by checking its service status:
+2- Убедитесь, что агент мониторинга запущен, проверив состояние его службы:
 
 
 ```
 sudo service stackdriver-agent status
 ```
 
-3- In the Google Cloud Console, go to Monitoring > Metrics Explorer and select the `CPU usage` metric under the `Compute Engine VM Instance` resource type. Set the aggregation to `mean` and select the GCE instance that you created and `Click Create` chart to view the CPU usage metric for your instance.
+3- В Google Cloud Console перейдите в раздел Monitoring > Metrics Explorer и выберите метрику `CPU usage` в типе ресурса `Compute Engine VM Instance`. Установите агрегацию на `среднее`, выберите созданный вами экземпляр GCE и нажмите кнопку `Создать`, чтобы просмотреть метрику использования процессора для вашего экземпляра.
 
 
-4- To collect memory metrics, repeat step 5 but select the `Memory usage` metric instead of `CPU usage`.
+4- Чтобы собрать показатели памяти, повторите шаг 5, но вместо `CPU usage` выберите метрику `Memory usage`.
 
 
 ## Netdata
 
-* In the Netdata web interface, go to the "Dashboard" section and select the "system.cpu" chart to view CPU usage metrics. You can also select the "system.ram" chart to view memory usage metrics.
+* В веб-интерфейсе Netdata перейдите в раздел "Dashboard" и выберите график "system.cpu", чтобы просмотреть показатели использования процессора. Также можно выбрать график "system.ram" для просмотра показателей использования памяти.
 
-* To reduce failover using machine learning, you can configure Netdata's anomaly detection feature. In the Netdata web interface, go to the "Anomaly Detection" section and select "Add alarm".
+* Чтобы уменьшить количество отказов с помощью машинного обучения, вы можете настроить функцию обнаружения аномалий Netdata. В веб-интерфейсе Netdata перейдите в раздел "Обнаружение аномалий" и выберите "Добавить тревогу".
 
-* For the "Detect" field, select "cpu.system". This will detect anomalies in the system CPU usage.
+* В поле "Обнаружить" выберите "cpu.system". Это позволит обнаружить аномалии в использовании системного процессора.
 
-* For the "Severity" field, select "Warning". This will trigger a warning when an anomaly is detected.
+* Для поля "Серьезность" выберите "Предупреждение". При обнаружении аномалии будет выдаваться предупреждение.
 
-* For the "Action" field, select "Notify". This will send a notification when an anomaly is detected.
+* Для поля "Действие" выберите "Уведомлять". При обнаружении аномалии будет отправлено уведомление.
 
-* You can also configure Netdata's predictive analytics feature to predict when a system will fail. In the Netdata web interface, go to the "Predict" section and select "Add algorithm".
+* Вы также можете настроить функцию предиктивной аналитики Netdata, чтобы предсказать, когда система выйдет из строя. В веб-интерфейсе Netdata перейдите в раздел "Прогнозирование" и выберите "Добавить алгоритм".
 
-* For the "Algorithm" field, select "Autoregression". This will use autoregression to predict system behavior.
+* В поле "Алгоритм" выберите "Авторегрессия". Это позволит использовать авторегрессию для прогнозирования поведения системы.
 
-* For the "Target" field, select "cpu.system". This will predict CPU usage.
+* Для поля "Цель" выберите "cpu.system". Это позволит предсказать использование процессора.
 
-* For the "Window" field, select "30 minutes". This will use a 30-minute window to make predictions.
+* Для поля "Окно" выберите "30 минут". Для прогнозирования будет использоваться 30-минутное окно.
 
-* Finally, click "Create" to create the algorithm.
+* Наконец, нажмите кнопку "Создать", чтобы создать алгоритм.
 
 
 ## Sysdig
 
 
-- [ ] Capture system events and write them to a file.
+- [ ] Перехватывайте системные события и записывайте их в файл.
 
 ```
 sysdig -w <filename.scap>
 ```
 
-- [ ] Customize the output format of captured events
+- [ ] Настройка формата вывода захваченных событий
 
 ```
 sysdig -p "%evt.num %evt.type %evt.args"
 ```
 
-- [ ] Filter events by process name (e.g., nginx)
+- [ ] Фильтруйте события по имени процесса (например, nginx).
 
 ```
 sysdig proc.name=nginx
 ```
 
-- [ ] Read events from a file and filter by process name (e.g., httpd).
+- [ ] Считывание событий из файла и фильтрация по имени процесса (например, httpd).
 
 ```
 sysdig -r <filename.scap> proc.name=httpd
 ```
 
 
-- [ ] Display file open events
+- [ ] Отображение событий открытия файлов
 
 ```
 sysdig -c file_open
 ```
 
-- [ ] Customize the output format of captured events
+- [ ] Настройка формата вывода захваченных событий
 
 ```
 sysdig -c fdbytes_by fd.sport
 ```
 
 
-- [ ] Monitor IP traffic in real-time.
+- [ ] Мониторинг IP-трафика в режиме реального времени.
 
 ```
 sysdig -c spy_ip
 ```
 
-- [ ] Show top containers by CPU usage.
+- [ ] Показывает верхние контейнеры по использованию процессора.
 
 ```
 sysdig -c topcontainers_cpu
 ```
 
-- [ ] Display process execution time.
+- [ ] Отображение времени выполнения процесса.
 
 ```
 sysdig -c proc_exec_time
 ```
 
-- [ ] Monitor system calls made by processes.
+- [ ] Отслеживайте системные вызовы, выполняемые процессами.
 
 ```
 sysdig -c proc_calls
 ```
 
-- [ ] Top Container
+- [ ] Верхний контейнер
 
 ```
 sysdig -c container_top
 ```
 
-- [ ] Customize the output format of captured events
+- [ ] Настройка формата вывода захваченных событий
 
 ```
-Show top containers by resource usage.
+Показывает верхние контейнеры по использованию ресурсов.
 ```
 
-- [ ] Display Kubernetes pod information.
+- [ ] Отображение информации о подах Kubernetes.
 
 ```
 sysdig -c k8s.pods
 ```
 
-- [ ] Monitor Kubernetes deployment events.
+- [ ] Отслеживайте события развертывания Kubernetes.
 
 ```
 sysdig -c k8s.deployments
@@ -479,33 +478,33 @@ sysdig -c k8s.deployments
 
 
 
-- [ ] Retrieve average CPU usage timeseries data for a specific time range.
-Create Custom Alerting Profile:
+- [ ] Получение данных о среднем использовании процессора за определенный промежуток времени.
+Создание пользовательского профиля оповещения:
 
 ```
 timeseriesquery "metric=CPU|avg:system.cpu.usage" --start-time="2023-05-01T00:00:00Z" --end-time="2023-05-02T00:00:00Z": 
 ```
 
-- [ ] Create a new alerting profile for detecting high memory usage, with a threshold of 80%.
-Retrieve Deployment Events
+- [ ] Создайте новый профиль оповещения для обнаружения высокого использования памяти с пороговым значением 80%.
+Получение событий развертывания
 
 ```
 create-alerting-profile --name="High Memory Usage" --metric="memory.resident" --condition="> threshold:80" --enabled=true: 
 ```
 
-- [ ] Retrieve a list of deployment events that occurred within a specific time range.
+- [ ] Получение списка событий развертывания, произошедших в определенном диапазоне времени.
 
 ```
 deployment-events --start-time="2023-05-01T00:00:00Z" --end-time="2023-05-02T00:00:00Z"
 ```
 
-- [ ] Create a new custom dashboard with a 2x2 layout.
+- [ ] Создайте новую пользовательскую приборную панель с макетом 2x2.
 
 ```
 dashboard create --name="My Custom Dashboard" --layout="2x2": 
 ```
 
-- [ ] Analyze the performance and dependencies of a specific application named "My Application".
+- [ ] Проанализируйте производительность и зависимости конкретного приложения под названием "My Application".
 
 ```
 application analyze --name="My Application": 
@@ -516,9 +515,9 @@ application analyze --name="My Application":
 
 ## Alerta
 
-### Send a new alert
+### Отправить новое оповещение
 
-Create and send a new alert to the Alerta system
+Создайте и отправьте новое оповещение в систему Alerta
 
 ```
 curl -X POST -H "Content-Type: application/json" -d '{
@@ -533,9 +532,9 @@ curl -X POST -H "Content-Type: application/json" -d '{
 
 
 
-### Query alerts
+### Запрос оповещений
 
-Retrieve alerts based on specific criteria
+Получение оповещений по определенным критериям
 
 
 ```
@@ -545,9 +544,9 @@ curl -X GET "https://your-alerta-url/api/alert?status=open&severity=major"
 
 
 
-### Update an alert
+### Обновить оповещение
 
-Update the details or status of an existing alert
+Обновление сведений или статуса существующего оповещения
 
 
 ```
@@ -559,9 +558,9 @@ curl -X PUT -H "Content-Type: application/json" -d '{
 
 
 
-### Delete an alert
+### Удаление оповещения
 
-Delete an existing alert from the Alerta system
+Удалите существующее оповещение из системы Alerta
 
 ```
 curl -X DELETE https://your-alerta-url/api/alert/<alert_id>
@@ -569,9 +568,9 @@ curl -X DELETE https://your-alerta-url/api/alert/<alert_id>
 
 
 
-### Get alert history
+### Получить историю оповещений
 
-Retrieve the history of changes for a specific alert.
+Получение истории изменений для конкретного оповещения.
 
 
 ```
@@ -584,7 +583,7 @@ curl -X GET https://your-alerta-url/api/alert/<alert_id>/history
 
 ### Element
 
-#### Creating a New Matrix Account
+#### Создание новой учетной записи Matrix
 
 ```
 # Riot
@@ -594,7 +593,7 @@ riot-web
 element-web
 ```
 
-#### Joining a Matrix Chat Room
+#### Вступление в чат Matrix
 
 ```
 # Riot
@@ -604,7 +603,7 @@ riot-web --url "https://matrix.org" --room "room_id"
 element-web --url "https://matrix.org" --room "room_id"
 ```
 
-#### Sending a Message in a Matrix Chat Room
+#### Отправка сообщения в чате Matrix
 
 ```
 # Riot
@@ -614,7 +613,7 @@ riot-web --url "https://matrix.org" --room "room_id" --message "Hello, World!"
 element-web --url "https://matrix.org" --room "room_id" --message "Hello, World!"
 ```
 
-#### Displaying Room Details in Matrix
+#### Отображение сведений о комнате в Matrix
 
 ```
 # Riot
@@ -624,7 +623,7 @@ riot-web --url "https://matrix.org" --room "room_id" --details
 element-web --url "https://matrix.org" --room "room_id" --details
 ```
 
-#### Creating a New Matrix User
+#### Создание нового пользователя матрицы
 
 ```
 # Riot
@@ -634,7 +633,7 @@ riot-web --url "https://matrix.org" --register --username "new_user" --password 
 element-web --url "https://matrix.org" --register --username "new_user" --password "password"
 ```
 
-#### Send a deployment notification to a chat room
+#### Отправка уведомления о развертывании в чат
 
 ```
 # Riot
@@ -645,7 +644,7 @@ element-web --url "https://matrix.org" --room "room_id" --message "Deployment su
 ```
 
 
-#### Trigger a CI/CD pipeline from a chat room
+#### Запуск пайплайна CI/CD из чата
 
 ```
 # Riot
@@ -655,7 +654,7 @@ riot-web --url "https://matrix.org" --room "room_id" --message "!pipeline deploy
 element-web --url "https://matrix.org" --room "room_id" --message "!pipeline deploy"
 ```
 
-#### Execute a command on a remote server from a chat room
+#### Выполнение команды на удаленном сервере из чата
 
 ```
 # Riot
@@ -668,31 +667,31 @@ element-web --url "https://matrix.org" --room "room_id" --message "!exec ssh use
 
 ### Slack
 
-#### Send a deployment notification to a Slack channel:
+#### Отправьте уведомление о развертывании на канал Slack:
 
 ```
 slackcli --channel "#channel_name" --message "Deployment successful!"
 ```
 
-#### Trigger a CI/CD pipeline from a Slack channel:
+#### Запуск пайплайна CI/CD из канала Slack:
 
 ```
 slackcli --channel "#channel_name" --message "!pipeline deploy"
 ```
 
-#### Execute a command on a remote server from a Slack channel:
+#### Выполните команду на удаленном сервере из канала Slack:
 
 ```
 slackcli --channel "#channel_name" --message "!exec ssh user@server 'ls -l'"
 ```
 
-#### Request a status update from an external service in a Slack channel:
+#### Запросите обновление статуса у внешнего сервиса в канале Slack:
 
 ```
 slackcli --channel "#channel_name" --message "!status check"
 ```
 
-#### Create a new ticket in a ticketing system from a Slack channel:
+#### Создайте новый тикет в системе тикетов из канала Slack:
 
 ```
 slackcli --channel "#channel_name" --message "!ticket create 'New issue: Need assistance'"
@@ -703,7 +702,7 @@ slackcli --channel "#channel_name" --message "!ticket create 'New issue: Need as
 
 ## Robusta
 
-To set custom tolerations or a nodeSelector update your generated_values.yaml file as follows:
+Чтобы задать пользовательские допуски или nodeSelector, обновите файл generated_values.yaml следующим образом:
 
 
 ```
@@ -722,7 +721,7 @@ global_config:
 ## Sensu
 
 
-### Register a new check in Sensu:
+### Зарегистрируйте новый чек в Sensu:
 
 
 ```
@@ -730,7 +729,7 @@ sensuctl check create mycheck --command "check_mycheck.sh" --subscriptions linux
 ```
 
 
-### Register a new check in Sensu:
+### Зарегистрируйте новый чек в Sensu:
 
 
 ```
@@ -738,7 +737,7 @@ sensuctl check create mycheck --command "check_mycheck.sh" --subscriptions linux
 ```
 
 
-### Create a new handler in Sensu:
+### Создайте новый обработчик в Sensu:
 
 
 
@@ -747,7 +746,7 @@ sensuctl handler create myhandler --type pipe --command "myhandler.sh"
 ```
 
 
-### Create a new asset in Sensu:
+### Создайте новый актив в Sensu:
 
 
 
@@ -756,7 +755,7 @@ sensuctl asset create myasset --url https://example.com/myasset.tar.gz --sha512s
 ```
 
 
-### Create a new namespace in Sensu:
+### Создайте новое пространство имен в Sensu:
 
 
 
@@ -767,7 +766,7 @@ sensuctl namespace create mynamespace
 
 
 
-### Create a new filter in Sensu:
+### Создайте новый фильтр в Sensu:
 
 
 
@@ -781,7 +780,7 @@ sensuctl filter create myfilter --action allow --expressions "event.Entity.Envir
 ## Steampipe
 
 
-### Check for open security groups in AWS
+### Проверка наличия открытых групп безопасности в AWS
 
 ```
 select
@@ -799,7 +798,7 @@ where
 ```
 
 
-### Check for public S3 buckets in AWS
+### Проверка наличия публичных ведер S3 в AWS
 
 ```
 select
@@ -814,7 +813,7 @@ where
 ```
 
 
-### Check for unencrypted RDS instances in AWS
+### Проверка наличия незашифрованных экземпляров RDS в AWS
 
 ```
 select
@@ -829,7 +828,7 @@ where
 ```
 
 
-### Check for outdated Docker images in Docker Hub
+### Проверьте наличие устаревших образов Docker в Docker Hub
 
 ```
 select
@@ -846,7 +845,7 @@ where
 
 
 
-### Check for unused IAM access keys in AWS
+### Проверка наличия неиспользуемых ключей доступа IAM в AWS
 
 ```
 select
@@ -876,56 +875,56 @@ where
 
 
 
-### Capture system activity and save it to a file for later analysis  
+### Фиксируйте активность системы и сохраняйте ее в файл для последующего анализа  
 
 ```
 sysdig -w <output_file>
 ```
 
 
-### Display a live system activity summary with top processes 
+### Отображение сводки активности системы в реальном времени с указанием основных процессов 
 
 ```
 sysdig -c top
 ```
 
-### Monitor network activity with a summary of network connections  
+### Отслеживайте сетевую активность с помощью сводки сетевых подключений  
 
 ```
 sysdig -c netstat
 ```
 
-### Filter system activity based on process name  
+### Фильтруйте активность системы по имени процесса  
 
 ```
 sysdig proc.name=<process_name>
 ```
 
-### Filter system activity based on process ID (PID)  
+### Фильтруйте активность системы на основе идентификатора процесса (PID)  
 
 ```
 sysdig proc.pid=<process_id>
 ```
 
-### Monitor disk I/O activity for a specific process  
+### Отслеживайте активность дискового ввода-вывода для определенного процесса  
 
 ```
 sysdig -p"%proc.name %evt.type" fd.type=char fd.name=/dev/sdX
 ```
 
-### Trace system calls made by a specific process
+### Отслеживание системных вызовов, выполняемых определенным процессом
 
 ```
 sysdig -p"%proc.name %evt.type %evt.args" proc.name=<process_name>
 ```
 
-### Monitor file system activity within a directory
+### Мониторинг активности файловой системы в каталоге
 
 ```
 sysdig -p"%evt.type %evt.args" evt.dir=<directory_path>
 ```
 
-### Monitor system calls related to process creation
+### Мониторинг системных вызовов, связанных с созданием процессов
 
 ```
 sysdig -p"%proc.name %evt.type" evt.type=clone or evt.type=fork
@@ -935,124 +934,124 @@ sysdig -p"%proc.name %evt.type" evt.type=clone or evt.type=fork
 ## Sysdig Inspect
 
 
-### Launch Sysdig Inspect on a live running container 
+### Запустите Sysdig Inspect на работающем контейнере 
 
 ```
 sysdig -p"%proc.name %evt.type" evt.type=clone or evt.type=fork
 ```
 
-### Launch Sysdig Inspect on a specific trace file for offline analysis 
+### Запуск Sysdig Inspect на определенном файле трассировки для автономного анализа 
 
 ```
 sysdig-inspect trace <trace_file>
 ```
 
-### Filter the displayed events based on a specific process 
+### Фильтруйте отображаемые события на основе определенного процесса 
 
 ```
 filter proc.name=<process_name>
 ```
 
-### Filter the displayed events based on a specific system call 
+### Фильтруйте отображаемые события на основе определенного системного вызова 
 
 ```
 filter evt.type=<system_call>
 ```
 
-### Inspect the file system events within a specific directory  
+### Проверьте события файловой системы в определенном каталоге  
 
 ```
 fs.directory=<directory_path>
 ```
 
-### Inspect the system calls made by a process  
+### Проверьте системные вызовы, выполняемые процессом  
 
 ```
 syscall <process_name>
 ```
 
-### Inspect the network connections of a process  
+### Проверьте сетевые подключения процесса  
 
 ```
 netconn <process_name>
 ```
 
-### Inspect the open file descriptors of a process  
+### Проверка открытых файловых дескрипторов процесса  
 
 ```
 openfiles <process_name>
 ```
 
-### Display a summary of captured system calls and events 
+### Отображение сводки перехваченных системных вызовов и событий 
 
 ```
 events
 ```
 
 
-## Monitoring cron files  
+## Мониторинг файлов cron  
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/monitor_cron.py
 
 
 
-## Monitoring /etc/hosts file 
+## Мониторинг файла /etc/hosts 
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/monitor_hosts_file.py
 
 
-## Monitoring /etc/ld.so.preload file 
+## Мониторинг файла /etc/ld.so.preload 
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/monitor_ld_preload.py
 
 
-## Monitoring /etc/passwd file  
+## Мониторинг файла /etc/passwd  
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/monitor_passwd.py
 
 
-## Monitoring modules 
+## Модули мониторинга 
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/monitor_modules.py
 
 
-## Monitoring SSH authorized_keys files 
+## Мониторинг файлов authorized_keys SSH 
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/monitor_ssh_authorized_keys.py
 
 
-## Monitoring systemd unit files  
+## Мониторинг файлов модулей systemd  
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/monitor_systemd_units.py
 
 
-## Search executables in /dev/shm 
+## Поиск исполняемых файлов в /dev/shm 
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/search_dev_shm.py
 
 
-## Search fileless programs (memfd_create)    
+## Поиск программ без файлов (memfd_create)    
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/search_memfd_create.py
 
 
-## Search hidden ELF files  
+## Поиск скрытых файлов ELF  
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/search_hidden_exe.py
 
 
 
-## Search immutable files  
+## Поиск в неизменяемых файлах  
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/search_immutable_files.py
@@ -1060,14 +1059,14 @@ https://github.com/sqall01/LSMS/blob/main/scripts/search_immutable_files.py
 
 
 
-## Search kernel thread impersonations  
+## Поиск подражаний потоков ядра  
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/search_non_kthreads.py
 
 
 
-## Search processes that were started by a now disconnected SSH session  
+## Поиск процессов, которые были запущены в отключенном сеансе SSH  
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/search_ssh_leftover_processes.py
@@ -1075,21 +1074,21 @@ https://github.com/sqall01/LSMS/blob/main/scripts/search_ssh_leftover_processes.
 
 
 
-## Search running deleted programs   
+## Поиск запущенных удаленных программ   
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/search_deleted_exe.py
 
 
 
-## Test script to check if alerting works   
+## Тестовый скрипт для проверки работы оповещений   
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/test_alert.py
 
 
 
-## Verify integrity of installed .deb packages   
+## Проверка целостности установленных пакетов .deb   
 
 
 https://github.com/sqall01/LSMS/blob/main/scripts/verify_deb_packages.py
