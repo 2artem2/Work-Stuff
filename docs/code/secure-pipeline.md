@@ -4,10 +4,10 @@ title:  Secure Pipeline
 parent: Code
 ---
 
-# Secure Pipeline
+# Безопасный пайплайн
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -17,83 +17,83 @@ parent: Code
 
 
 
-A secure pipeline is a set of processes and tools used to build, test, and deploy software in a way that prioritizes security at every stage of the development lifecycle. The goal of a secure pipeline is to ensure that applications are thoroughly tested for security vulnerabilities and compliance with security standards before they are released into production.
+Безопасный пайплай - это набор процессов и инструментов, используемых для создания, тестирования и развертывания программного обеспечения таким образом, чтобы безопасность была приоритетной на всех этапах жизненного цикла разработки. Цель безопасного пайплай - обеспечить тщательную проверку приложений на уязвимости и соответствие стандартам безопасности перед выпуском в производство.
 
 
-A secure pipeline typically involves the following stages:
+Безопасный пайплай обычно включает в себя следующие этапы:
 
-1. Source Code Management: Developers use source code management tools, such as Git or SVN, to manage the code for the application.
+1. Управление исходным кодом: Разработчики используют инструменты управления исходным кодом, такие как Git или SVN, для управления кодом приложения.
 
-2. Build: The application code is built into executable code using a build tool, such as Maven or Gradle.
+2. Сборка: Код приложения собирается в исполняемый код с помощью инструмента сборки, такого как Maven или Gradle.
 
-3. Static Analysis: A static analysis tool, such as a SAST tool, is used to scan the code for security vulnerabilities.
+3. Статический анализ: Инструмент статического анализа, например SAST, используется для проверки кода на наличие уязвимостей.
 
-4. Unit Testing: Developers write unit tests to ensure that the application functions as expected and to catch any bugs or errors.
+4. Юнит-тестирование: Разработчики пишут модульные тесты, чтобы убедиться, что приложение функционирует так, как ожидается, и выявить любые ошибки и недочеты.
 
-5. Dynamic Analysis: A dynamic analysis tool, such as a DAST tool, is used to test the application in a running environment and identify any security vulnerabilities.
+5. Динамический анализ: Инструмент динамического анализа, например DAST, используется для тестирования приложения в работающей среде и выявления уязвимостей в системе безопасности.
 
-6. Artifact Repository: The application and all its dependencies are stored in an artifact repository, such as JFrog or Nexus.
+6. Репозиторий артефактов: Приложение и все его зависимости хранятся в репозитории артефактов, например JFrog или Nexus.
 
-7. Staging Environment: The application is deployed to a staging environment for further testing and validation.
+7. Среда постановки: Приложение развертывается в среде постановки для дальнейшего тестирования и проверки.
 
-8. Compliance Check: A compliance tool is used to check that the application meets any regulatory or compliance requirements.
+8. Проверка соответствия: Инструмент проверки соответствия используется для проверки соответствия приложения всем нормативным требованиям или требованиям к соответствию.
 
-9. Approval: The application is reviewed and approved for deployment to production.
+9. Утверждение: Приложение проверяется и утверждается для развертывания в производстве.
 
-10. Deployment: The application is deployed to production using a deployment tool, such as Ansible or Kubernetes.
+10. Развертывание: Приложение развертывается в производство с помощью инструмента развертывания, например Ansible или Kubernetes.
 
-By implementing a secure pipeline, organizations can ensure that their applications are thoroughly tested for security vulnerabilities and compliance with security standards, reducing the risk of security breaches and ensuring that applications are more resilient to attacks.
-
-
-
+Внедряя безопасный пайплай, организации могут гарантировать, что их приложения тщательно проверяются на уязвимости и соответствие стандартам безопасности, что снижает риск нарушения безопасности и обеспечивает повышенную устойчивость приложений к атакам.
 
 
 
-Step 1: Set up version control
-
-* Use a version control system (VCS) such as Git to manage your application code.
-* Store your code in a private repository and limit access to authorized users.
-* Use strong authentication and authorization controls to secure access to your repository.
-
-Step 2: Implement continuous integration
-
-* Use a continuous integration (CI) tool such as Jenkins or Travis CI to automate your build process.
-* Ensure that your CI tool is running in a secure environment.
-* Use containerization to isolate your build environment and prevent dependencies from conflicting with each other.
-
-Step 3: Perform automated security testing
-
-* Use SAST, DAST, and SCA tools to perform automated security testing on your application code.
-* Integrate these tools into your CI pipeline so that security testing is performed automatically with each build.
-* Configure the tools to report any security issues and fail the build if critical vulnerabilities are found.
-
-Step 4: Implement continuous deployment
-
-* Use a continuous deployment (CD) tool such as Kubernetes or AWS CodeDeploy to automate your deployment process.
-* Implement a release process that includes thorough testing and review to ensure that only secure and stable code is deployed.
-
-Step 5: Monitor and respond to security threats
-
-* Implement security monitoring tools to detect and respond to security threats in real-time.
-* Use tools such as intrusion detection systems (IDS) and security information and event management (SIEM) systems to monitor your infrastructure and applications.
-* Implement a security incident response plan to quickly respond to any security incidents that are detected.
 
 
-example of a secure CI/CD pipeline
+
+Шаг 1: Настройте контроль версий
+
+* Используйте систему контроля версий (СКВ), например Git, для управления кодом вашего приложения.
+* Храните код в частном репозитории и ограничьте доступ к нему для авторизованных пользователей.
+* Используйте строгие средства аутентификации и авторизации для защиты доступа к репозиторию.
+
+Шаг 2: Внедрите непрерывную интеграцию
+
+* Используйте инструмент непрерывной интеграции (CI), например Jenkins или Travis CI, чтобы автоматизировать процесс сборки.
+* Убедитесь, что инструмент CI работает в безопасной среде.
+* Используйте контейнеризацию для изоляции среды сборки и предотвращения конфликтов зависимостей друг с другом.
+
+Шаг 3: Выполните автоматизированное тестирование безопасности
+
+* Используйте инструменты SAST, DAST и SCA для автоматизированного тестирования безопасности кода приложений.
+* Интегрируйте эти инструменты в пайплай CI, чтобы тестирование безопасности выполнялось автоматически при каждой сборке.
+* Настройте инструменты так, чтобы они сообщали о любых проблемах безопасности и не выполняли сборку в случае обнаружения критических уязвимостей.
+
+Шаг 4: Внедрите непрерывное развертывание
+
+* Используйте инструмент непрерывного развертывания (CD), например Kubernetes или AWS CodeDeploy, чтобы автоматизировать процесс развертывания.
+* Внедрите процесс выпуска, включающий тщательное тестирование и проверку, чтобы гарантировать, что развертывается только безопасный и стабильный код.
+
+Шаг 5: Мониторинг и реагирование на угрозы безопасности
+
+* Внедрите средства мониторинга безопасности для обнаружения угроз безопасности и реагирования на них в режиме реального времени.
+* Используйте такие инструменты, как системы обнаружения вторжений (IDS) и системы управления информацией и событиями безопасности (SIEM), для мониторинга инфраструктуры и приложений.
+* Внедрите план реагирования на инциденты безопасности для быстрого реагирования на обнаруженные инциденты безопасности.
+
+
+пример безопасного пайплайна CI/CD
 
 
 ```
-# Define the pipeline stages
+# Определите этапы пайплайна
 stages:
   - build
   - test
   - security-test
   - deploy
 
-# Define the jobs for each stage
+# Определите задания для каждого этапа
 jobs:
   build:
-    # Build the Docker image and tag it with the commit SHA
+    # Соберите образ Docker и пометьте его фиксацией SHA
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -104,7 +104,7 @@ jobs:
           docker tag myapp:${{ github.sha }} myapp:latest
 
   test:
-    # Run unit and integration tests
+    # Выполняйте модульные и интеграционные тесты
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -115,7 +115,7 @@ jobs:
         run: npm test
 
   security-test:
-    # Perform automated security testing using SAST, DAST, and SCA tools
+    # Выполнение автоматизированного тестирования безопасности с использованием инструментов SAST, DAST и SCA.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -137,7 +137,7 @@ jobs:
           args: --severity-threshold=high
 
   deploy:
-    # Deploy the application to the production environment
+    # Развертывание приложения в производственной среде
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
@@ -156,52 +156,52 @@ jobs:
 
 
 
-In this example, the YAML file defines a CI/CD pipeline with four stages: build, test, security-test, and deploy. Each stage has a job that performs a specific set of tasks. The `build` job builds a Docker image for the application, the `test` job runs unit and integration tests, the `security-test` job performs automated security testing using SAST, DAST, and SCA tools, and the `deploy` job deploys the application to the production environment.
+В этом примере файл YAML определяет пайплайн CI/CD с четырьмя этапами: сборка, тестирование, проверка безопасности и развертывание. На каждом этапе есть задание, выполняющее определенный набор задач. Задание `build` создает образ Docker для приложения, задание `test` запускает модульные и интеграционные тесты, задание `ecurity-test` выполняет автоматизированное тестирование безопасности с помощью инструментов SAST, DAST и SCA, а задание `deploy` развертывает приложение в производственной среде.
 
-Each job is defined with a `runs-on` parameter that specifies the operating system that the job should run on. The steps for each job are defined with `name` and `run` parameters that specify the name of the step and the command to run. The `uses` parameter is used to specify external actions or packages that should be used in the step.
+Каждое задание определяется параметром `runs-on`, который указывает операционную систему, на которой должно выполняться задание. Шаги для каждого задания определяются с помощью параметров `name` и `run`, которые указывают имя шага и команду для выполнения. Параметр `uses` используется для указания внешних действий или пакетов, которые должны быть использованы в шаге.
 
-The `if` parameter is used to conditionally run a job based on a specific condition, such as the branch or tag that triggered the pipeline. Secrets are stored in the GitHub repository's secrets store and accessed using the `${{ secrets.SECRET_NAME }}` syntax.
+Параметр `if` используется для условного запуска задания на основе определенного условия, например ветки или тега, которые запустили пайплайн. Секреты хранятся в хранилище секретов репозитория GitHub, а доступ к ним осуществляется с помощью синтаксиса `${{ secrets.SECRET_NAME }}`.
 
 
 ## Buildkite
 
-Within your pipeline configuration file (e.g., `.buildkite/pipeline.yml`), add a step for running the vulnerability scanning tool.
+В файле конфигурации пайплайна (например, `.buildkite/pipeline.yml`) добавьте шаг для запуска инструмента сканирования уязвимостей.
 
 ```
 steps:
   - label: "Security Scan"
     command: |
-      # Run the vulnerability scanning tool
-      # Replace the command and options with the appropriate tool you're using
+      # Запустите инструмент для сканирования уязвимостей.
+      # Замените команду и параметры на соответствующие используемому инструменту
       my-vulnerability-scanner scan --output report.txt
 
-      # Print the generated report
+      # Печать созданного отчета
       cat report.txt
 
-    # Define the conditions when this step should run (e.g., on specific branches or pull requests)
+    # Определите условия, при которых этот шаг должен выполняться (например, в определенных ветках или запросах на поставку).
     branches: master
 ```
 
 ## Travis
 
-Open your project's `.travis.yml` file for editing.
+Откройте файл `.travis.yml` вашего проекта для редактирования.
 
 
 ```
 script:
   - |
-    # Run the vulnerability scanning tool
-    # Replace the command and options with the appropriate tool you're using
+    # Запустите инструмент для сканирования уязвимостей.
+    # Замените команду и параметры на соответствующие используемому инструменту
     my-vulnerability-scanner scan --output report.txt
 
-    # Print the generated report
+    # Печать созданного отчета
     cat report.txt
 ```
 
 
 ## Drone
 
-Open your project's `.drone.yml` file for editing.
+Откройте файл `.drone.yml` вашего проекта для редактирования.
 
 ```
 pipeline:
@@ -209,8 +209,8 @@ pipeline:
     image: your-vulnerability-scanner-image
     commands:
       - |
-        # Run the vulnerability scanning tool
-        # Replace the command and options with the appropriate tool you're using
+        # Запустите инструмент для сканирования уязвимостей.
+        # Замените команду и параметры на соответствующие используемому инструменту
         my-vulnerability-scanner scan --output report.txt
 
         # Print the generated report
@@ -223,9 +223,9 @@ pipeline:
 
 ## Tekton
 
-### Sample Flow
+### Пример потока
 
-1- Create a Dockerfile:
+1 - Создайте Dockerfile:
 
 ```
 FROM golang:1.16-alpine
@@ -235,7 +235,7 @@ RUN go build -o myapp
 CMD ["./myapp"]
 ```
 
-2- Create a Tekton Task (build-task.yaml):
+2- Создайте задачу Tekton (build-task.yaml):
 
 ```
 apiVersion: tekton.dev/v1beta1
@@ -284,7 +284,7 @@ spec:
       emptyDir: {}
 ```
 
-3- Create a Tekton Pipeline (pipeline.yaml):
+3- Создайте пайплайн Tekton (pipeline.yaml):
 
 
 ```
@@ -299,14 +299,14 @@ spec:
         name: build-task
 ```
 
-4- Apply the Task and Pipeline:
+4- Примените задачу и пайплайн:
 
 ```
 kubectl apply -f build-task.yaml
 kubectl apply -f pipeline.yaml
 ```
 
-5- Create a Tekton PipelineRun (pipelinerun.yaml):
+5- Создание Tekton PipelineRun (pipelinerun.yaml):
 
 ```
 apiVersion: tekton.dev/v1beta1
@@ -318,7 +318,7 @@ spec:
     name: myapp-pipeline
 ```
 
-6- Apply the PipelineRun:
+6- Применить PipelineRun:
 
 ```
 kubectl apply -f pipelinerun.yaml
@@ -326,123 +326,123 @@ kubectl apply -f pipelinerun.yaml
 
 
 
-### Cheatsheet
+### Шпаргалка
 
-1- Install Tekton Pipelines  
+1- Монтаж пайплайна Tekton  
 
 ```
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 ```
 
-2- Create a Task 
+2- Создать задачу 
 
 ```
 kubectl apply --filename <task-definition.yaml>
 ```
 
-3- Create a Pipeline 
+3- Создать пайплайн 
 
 ```
 kubectl apply --filename <pipeline-definition.yaml>
 ```
 
-4- Create a PipelineRun  
+4- Создать PipelineRun  
 
 ```
 kubectl apply --filename <pipelinerun-definition.yaml>
 ```
 
-5- List Pipelines  
+5- Список пайплайнов  
 
 ```
 tkn pipeline list
 ```
 
-6- Describe a Pipeline 
+6- Описание пайплайна
 
 ```
 tkn pipeline describe <pipeline-name>
 ```
 
-7- List PipelineRuns 
+7- Список PipelineRuns 
 
 ```
 tkn pipelinerun list
 ```
 
-8- Describe a PipelineRun  
+8- Описание PipelineRun  
 
 ```
 tkn pipelinerun describe <pipelinerun-name>
 ```
 
-9- List Tasks  
+9- Список задач  
 
 ```
 tkn task list
 ```
 
-10- Describe a Task 
+10- Описание задачи 
 
 ```
 tkn task describe <task-name>
 ```
 
-11- List TaskRuns 
+11- Список TaskRuns 
 
 ```
 tkn taskrun list
 ```
 
-12- Describe a TaskRun  
+12- Описание a TaskRun  
 
 ```
 tkn taskrun describe <taskrun-name>
 ```
 
-13- Create a TriggerBinding 
+13- Создание TriggerBinding 
 
 ```
 kubectl apply --filename <triggerbinding-definition.yaml>
 ```
 
-14- Create a TriggerTemplate  
+14- Создание TriggerTemplate  
 
 ```
 kubectl apply --filename <triggertemplate-definition.yaml>
 ```
 
-15- Create a Trigger  
+15- Создание a Trigger  
 
 ```
 kubectl apply --filename <trigger-definition.yaml>
 ```
 
-16- List Triggers 
+16- Список триггеров 
 
 ```
 tkn trigger list
 ```
 
-17- Describe a Trigger  
+17- Описание тригера  
 
 ```
 tkn trigger describe <trigger-name>
 ```
 
-18- Delete a Pipeline 
+18- Удаление пайплайна
 
 ```
 kubectl delete pipeline <pipeline-name>
 ```
 
-19- Delete a PipelineRun  
+19- Удаление PipelineRun  
 
 ```
 kubectl delete pipelinerun <pipelinerun-name>
 ```
 
-20- Delete a Task 
+20- Удаление задачи 
 
 ```
 kubectl delete task <task-name>
@@ -453,44 +453,44 @@ kubectl delete task <task-name>
 
 
 
-## Privacy as Code
+## Конфиденциальность как код
 
 
-Installs the Fides tool using pip, the Python package manager
+Установка инструмента Fides с помощью pip, менеджера пакетов Python
 
 ```
 pip install fides
 ```
 
-Scans the specified directory for privacy-related issues and sensitive data
+Проверяет указанную директорию на наличие проблем, связанных с конфиденциальностью, и конфиденциальных данных
 
 ```
 fides scan <directory_path>
 ```
 
 
-Generates a detailed report of the scan results and saves it to the specified output file
+Создает подробный отчет о результатах сканирования и сохраняет его в указанном выходном файле
 
 ```
 fides report -o <output_file>
 ```
 
 
-Specifies a pattern to exclude specific files or directories from the scan
+Указание шаблона для исключения определенных файлов или каталогов из сканирования
 
 ```
 fides scan --exclude <pattern>
 ```
 
 
-Uses a custom ruleset file for the scan, allowing you to define specific privacy rules and checks
+Использует файл пользовательского набора правил для сканирования, позволяя определить конкретные правила конфиденциальности и проверки
 
 ```
 fides scan --ruleset <ruleset_file>
 ```
 
 
-Ignores specific patterns or files from triggering false positive alerts during the scan.
+Игнорирование определенных шаблонов или файлов, вызывающих ложные срабатывания во время сканирования.
 
 ```
 fides scan --ignore <pattern>
@@ -503,13 +503,13 @@ fides report --format <output_format>
 ```
 
 
-Configures the scan to exit with a non-zero code if privacy issues are detected, enabling integration with CI/CD pipelines.
+Настройка завершения сканирования с ненулевым кодом при обнаружении проблем с конфиденциальностью, что обеспечивает интеграцию с пайплайном CI/CD.
 
 ```
 fides scan --exit-code
 ```
 
-## Continuous deployment security
+## Безопасность непрерывного развертывания
 
 ### secureCodeBox
 
