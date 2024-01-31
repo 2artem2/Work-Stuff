@@ -73,58 +73,58 @@ DevSecOps - это методология, направленная на инт�
 {: .highlight }
 FindSecbugs, Fortify, Coverity, klocwork.
 
-* **Dynamic Application Security Testing (DAST)**
+* **Динамическое тестирование безопасности приложений (DAST)**
 
 {: .highlight }
 OWASP ZAP, BurpSuite
 
-* **Interactive Application Security Testing (IAST)** 
+* **Интерактивное тестирование безопасности приложений (IAST)** 
 
 {: .highlight }
 CheckMarks Varacode
 
 
-* **Run-time Application Security Protection(RASP)** 
+* **Защита безопасности приложений во время выполнения (RASP)** 
 
 {: .highlight }
 OpenRASP
 
-* **SEI CERT Coding**
+* **SEI CERT кодинг**
 
 {: .highlight }
 https://wiki.sei.cmu.edu/confluence/display/seccode/SEI+CERT+Coding+Standards
 
-* **Software Assurance Marketplace (SWAMP)**
+* **Рынок программных гарантий (SWAMP)**
 
 {: .highlight }
 https://www.mir-swamp.org/
 
-### Environment Hardening 
+### Упрочнение окружающей среды 
 
-* Secure configuration baseline 
-* Constant monitoring mechanism 
+* Безопасная базовая линия конфигурации 
+* Механизм постоянного мониторинга 
 
-### Constant monitoring mechanism
+### Механизм постоянного мониторинга
 
-* **Common vulnerabilities and exposures (CVEs)** 
+* **Общие уязвимости и уязвимые места (CVE)** 
 
 {: .highlight }
 OpenVAS, NMAP 
 
-* **Integrity monitoring**
+* **Контроль целостности**
 
 {: .highlight }
 OSSEC
 
-* **Secure configuration compliance**
+* **Безопасное соблюдение конфигурации**
 
 {: .highlight }
 OpenSCAP
 
-* **Sensitive information exposure** 
+* **Раскрытие конфиденциальной информации** 
 
 {: .note }
-No specific open source tool in this area. However, we may define specific regular expression patterns
+Специального инструмента с открытым исходным кодом в этой области нет. Однако мы можем определить конкретные шаблоны регулярных выражений
 
 
 ## ENGAGE
@@ -138,95 +138,95 @@ https://engage.mitre.org/matrix/
 
 ### Playbooks
 
-Process Oriented
+Ориентирован на процесс
 
-* Reflects organization's policies and procedures
-* List activities that may require human interaction
-* Organization-to-organization shareable
+* Отражает политику и процедуры организации
+* Перечень видов деятельности, которые могут потребовать взаимодействия с людьми
+* Возможность обмена между организациями
 
 
 
 #### Playbooks
 
-Process Oriented
+Ориентирован на процесс
 
-* Reflects organization's policies and procedures
-* List activities that may require human interaction
-* Organization-to-organization shareable
-
-
-
-#### Workflows
-
-Technical Steps
-
-* Focused on machine interaction
-* Supports tailorable levels of automation
-* Machine-to-machine shareable
+* Отражает политику и процедуры организации
+* Перечень видов деятельности, которые могут потребовать взаимодействия с людьми
+* Возможность обмена между организациями
 
 
-#### Local Instance
 
-Execution at the System Level
+#### Рабочие процессы
 
-* Activity conducted is tailored to target system
-* Describes specific decision logic and thresholds
-* Machine-to-machine shareable in organization
+Технические этапы
+
+* Ориентирован на взаимодействие с машинами
+* Поддерживает настраиваемые уровни автоматизации
+* Возможность обмена между машинами
 
 
-### Example Playbook
+#### Локальный экземпляр
 
-To represent a general security process in a manner that:
-1. Most organizations can associate with a process they are a
-performing
-2. Can be mapped to governance or regulatory
-requirements (e.g., NIST 800-53)
-3. Demonstrates a path to automation of the process over time
-4. Identifies industry best practices for steps in the process
+Выполнение на уровне системы
 
-Playbook Content Types:
+* Проводимые действия адаптированы к целевой системе
+* Описывает конкретную логику принятия решений и пороговые значения
+* Возможность совместного использования в организации от машины к машине
 
-1. Initiating Condition
-2. Process Steps
-3. Best Practices and Local Policies
-4. End State
-5. Relationship to Governance or Regulatory Requirements
+
+### Пример Playbooks
+
+Представить общий процесс обеспечения безопасности таким образом, чтобы:
+1. Большинство организаций могут ассоциировать с процессом, который они
+выполняют
+2. Может быть сопоставлен с руководящими или нормативными
+требованиями (например, NIST 800-53).
+3. Демонстрирует путь к автоматизации процесса с течением времени
+4. Определяет лучшие отраслевые практики для этапов процесса
+
+Типы содержания Playbooks:
+
+1. Инициирующее условие
+2. Шаги процесса
+3. Лучшие практики и местная политика
+4. Конечное состояние
+5. Взаимосвязь с управлением или нормативными требованиями
 
 
 
 ![IACD](../../../assets/images/iacd.png)
 
 
-Steps to Build a Playbook:
+Шаги по созданию Playbooks:
 
 
-1. Identify the initiating condition.
+1. Определите инициирующее условие.
 
- Think About: What event or condition is going to start this playbook? This could be a time-based trigger,
-the detection of an event, or the decision to act.
+ Подумайте: Какое событие или условие запустит эту книгу действий? Это может быть триггер, основанный на времени,
+обнаружение события или решение действовать.
 
-2. List all possible actions that could occur in response to this initiating condition.
- Think About: How could I respond to this condition? What steps would I take to mitigate this threat?
-Don’t worry about order right now!
+2. Перечислите все возможные действия, которые могут произойти в ответ на это инициирующее условие.
+ Подумайте: Как я могу отреагировать на это условие? Какие шаги я предпринял бы, чтобы смягчить эту угрозу?
+Не думайте о порядке прямо сейчас!
 
-3. Iterate through the actions list from Step 2 and categorize the actions based on whether they are required
-steps or whether they are optional.
- Think About: Is this step necessary to mitigate or investigate this event, or is it a best practice? Some
-best practices have become standardized or widely implemented, while others may be considered extraneous.
-It’s OK if it’s unclear whether some actions are required or optional; it’s up to you to categorize accordingly.
+3. Просмотрите список действий из шага 2 и распределите их по категориям: обязательные ли они
+или необязательными.
+ Подумайте: Является ли этот шаг необходимым для смягчения последствий или расследования данного события, или это лучшая практика? Некоторые
+Некоторые передовые практики стали стандартными или широко применяются, в то время как другие могут считаться излишними.
+Нет ничего страшного, если неясно, являются ли некоторые действия необходимыми или необязательными; вы сами должны классифицировать их соответствующим образом.
 
-4. Use the required steps from Step 3 to build the playbook process steps diagram.
- Think About: Ordering. This is the time to think about the order in which you would perform these
-actions.
+4. Используйте необходимые действия из шага 3 для построения диаграммы шагов игрового процесса.
+ Подумайте: Упорядочивание. Сейчас самое время подумать о том, в каком порядке вы будете выполнять эти
+действия.
 
-5. Iterate through the optional actions and decide whether the actions can be grouped by activity or function.
-For example: Monitoring, Enrichment, Response, Verification, or Mitigation.
+5. Переберите все необязательные действия и решите, можно ли сгруппировать их по видам деятельности или функциям.
+Например: Мониторинг, Обогащение, Реагирование, Проверка или Смягчение.
 
-6. Think About: Are there possible actions that can only take place in certain parts of the playbook?
-This is how you would group the actions.
+6. Подумайте: Есть ли возможные действия, которые могут выполняться только в определенных частях игровой книги?
+Именно так можно сгруппировать действия.
 
-7. Modify the playbook process steps diagram from Step 4 to include the points where optional actions
-would be selected.
+7. Измените диаграмму шагов игрового процесса из Шага 4, включив в нее пункты, где будут выбраны необязательные действия
+будут выбраны.
 
 
 
