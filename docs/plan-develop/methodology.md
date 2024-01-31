@@ -4,10 +4,10 @@ title: Methodology
 parent: Plan & Develop
 ---
 
-# Methodology
+# Методология
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -17,21 +17,21 @@ parent: Plan & Develop
 
 
 
-DevSecOps methodology is an approach to software development that integrates security practices into the software development process from the beginning. The goal of DevSecOps is to make security an integral part of the software development process, rather than an afterthought.
+Методология DevSecOps - это подход к разработке программного обеспечения, при котором практика обеспечения безопасности интегрируется в процесс разработки программного обеспечения с самого начала. Цель DevSecOps заключается в том, чтобы сделать безопасность неотъемлемой частью процесса разработки программного обеспечения, а не его последним шагом.
 
-Some common methodologies used in DevSecOps include:
+Некоторые общие методологии, используемые в DevSecOps, включают:
 
-1. Agile: Agile methodology focuses on iterative development and continuous delivery, with an emphasis on collaboration and communication between developers and other stakeholders. In DevSecOps, Agile is often used to facilitate a continuous feedback loop between developers and security teams, allowing security issues to be identified and addressed early in the development process.
+1. Agile: методология Agile ориентирована на итеративную разработку и непрерывную доставку, с акцентом на сотрудничество и коммуникацию между разработчиками и другими заинтересованными сторонами. В DevSecOps Agile часто используется для обеспечения непрерывной обратной связи между разработчиками и службами безопасности, что позволяет выявлять и решать проблемы безопасности на ранних этапах процесса разработки.
 
-2. Waterfall: Waterfall methodology is a traditional software development approach that involves a linear progression of steps, with each step building on the previous one. In DevSecOps, Waterfall can be used to ensure that security requirements are defined and addressed early in the development process, before moving on to later stages of development.
+2. Водопад: Методология водопада - это традиционный подход к разработке программного обеспечения, который предполагает линейную последовательность шагов, причем каждый шаг основывается на предыдущем. В DevSecOps водопад можно использовать для обеспечения определения и решения требований безопасности на ранних этапах разработки, прежде чем переходить к более поздним этапам разработки.
 
-3. DevOps: DevOps methodology focuses on collaboration and automation between developers and IT operations teams. In DevSecOps, DevOps can be used to automate security testing and other security-related tasks, allowing security issues to be identified and addressed more quickly and efficiently.
+3. DevOps: методология DevOps фокусируется на сотрудничестве и автоматизации между разработчиками и операционными командами ИТ. В DevSecOps DevOps может использоваться для автоматизации тестирования безопасности и других задач, связанных с безопасностью, что позволяет быстрее и эффективнее выявлять и решать проблемы безопасности.
 
-4. Shift-Left: Shift-Left methodology involves moving security testing and other security-related tasks earlier in the development process, to catch and address security issues earlier. In DevSecOps, Shift-Left can be used to ensure that security is integrated into the development process from the very beginning.
+4. Shift-Left: методология Shift-Left предполагает перенос тестирования безопасности и других задач, связанных с безопасностью, на более ранние этапы процесса разработки, чтобы раньше выявлять и решать проблемы безопасности. В DevSecOps Shift-Left можно использовать для того, чтобы обеспечить интеграцию безопасности в процесс разработки с самого начала.
 
-5. Threat Modeling: Threat modeling is a methodology that involves identifying and analyzing potential threats to a software application, and then designing security controls to mitigate those threats. In DevSecOps, threat modeling can be used to identify and address potential security issues early in the development process, before they become more difficult and expensive to address.
+5. Моделирование угроз: Моделирование угроз - это методология, которая включает в себя определение и анализ потенциальных угроз для программного приложения, а затем разработку средств контроля безопасности для смягчения этих угроз. В DevSecOps моделирование угроз можно использовать для выявления и устранения потенциальных проблем безопасности на ранних этапах разработки, пока их решение не стало более сложным и дорогостоящим.
 
-These are just a few examples of the methodologies that can be used in DevSecOps. The key is to integrate security practices into the development process from the beginning, and to use a continuous feedback loop to identify and address security issues as early as possible.
+Это лишь несколько примеров методологий, которые могут быть использованы в DevSecOps. Главное - интегрировать методы обеспечения безопасности в процесс разработки с самого начала и использовать непрерывный цикл обратной связи для выявления и устранения проблем безопасности как можно раньше.
 
 
 ## DoD
@@ -39,21 +39,21 @@ These are just a few examples of the methodologies that can be used in DevSecOps
 ![DoD](../../../assets/images/dod-devsecops.png)
 
 
-DoD Methodology in DevSecOps refers to the specific methodology and framework that the US Department of Defense (DoD) follows to implement DevSecOps practices in its software development lifecycle. The DoD has created its own set of guidelines and best practices for DevSecOps that align with its specific security requirements and regulations.
+Методология DoD в DevSecOps относится к конкретной методологии и структуре, которой следует Министерство обороны США (DoD) для внедрения практики DevSecOps в жизненный цикл разработки программного обеспечения. Министерство обороны создало свой собственный набор рекомендаций и лучших практик для DevSecOps, которые соответствуют его специфическим требованиям и нормам безопасности.
 
-The DoD Methodology for DevSecOps is based on the following principles:
+Методология DoD для DevSecOps основана на следующих принципах:
 
-1. Continuous Integration/Continuous Delivery (CI/CD) pipeline: The CI/CD pipeline is an automated process for building, testing, and deploying software changes. The DoD Methodology emphasizes the importance of automating the pipeline to speed up the delivery process and ensure that all changes are tested thoroughly before they are deployed.
+1. Конвейер непрерывной интеграции/непрерывной доставки (CI/CD): Конвейер CI/CD - это автоматизированный процесс создания, тестирования и развертывания изменений в программном обеспечении. Методология DoD подчеркивает важность автоматизации конвейера для ускорения процесса доставки и обеспечения тщательного тестирования всех изменений перед их развертыванием.
 
-2. Security testing: The DoD Methodology requires that security testing is integrated throughout the entire software development lifecycle. This includes static code analysis, dynamic application security testing (DAST), and penetration testing.
+2. Тестирование безопасности: Методология DoD требует, чтобы тестирование безопасности было интегрировано во весь жизненный цикл разработки программного обеспечения. Это включает статический анализ кода, динамическое тестирование безопасности приложений (DAST) и тестирование на проникновение.
 
-3. Infrastructure as Code (IaC): The DoD Methodology promotes the use of IaC to automate the deployment and management of infrastructure. This approach ensures that infrastructure is consistent and repeatable, which helps to reduce the risk of misconfigurations and security vulnerabilities.
+3. Инфраструктура как код (IaC): Методология DoD поощряет использование IaC для автоматизации развертывания и управления инфраструктурой. Такой подход обеспечивает последовательность и повторяемость инфраструктуры, что помогает снизить риск неправильной конфигурации и уязвимостей безопасности.
 
-4. Risk management: The DoD Methodology requires that risk management is an integral part of the DevSecOps process. This involves identifying potential risks and vulnerabilities, prioritizing them based on their severity, and taking appropriate measures to mitigate them.
+4. Управление рисками: Методология DoD требует, чтобы управление рисками было неотъемлемой частью процесса DevSecOps. Это подразумевает выявление потенциальных рисков и уязвимостей, определение их приоритетности в зависимости от степени серьезности и принятие соответствующих мер по их снижению.
 
-5. Collaboration: The DoD Methodology emphasizes the importance of collaboration between development, security, and operations teams. This includes regular communication, joint planning, and cross-functional training to ensure that all team members have a common understanding of the DevSecOps process.
+5. Сотрудничество: Методология DoD подчеркивает важность сотрудничества между командами разработки, безопасности и эксплуатации. Это включает в себя регулярное общение, совместное планирование и межфункциональное обучение, чтобы все члены команды имели общее представление о процессе DevSecOps.
 
-Overall, the DoD Methodology for DevSecOps is designed to help the Department of Defense build secure, reliable, and resilient software systems that meet its unique security requirements and regulations.
+В целом, методология DoD для DevSecOps призвана помочь Министерству обороны создать безопасные, надежные и устойчивые программные системы, отвечающие его уникальным требованиям и нормам безопасности.
 
 
 
@@ -65,109 +65,101 @@ Overall, the DoD Methodology for DevSecOps is designed to help the Department of
 ![Microsoft](../../../assets/images/microsoft-devsecops.png)
 
 
-Microsoft has its own approach to DevSecOps, which is known as the Microsoft Secure Development Lifecycle (SDL). The SDL is a comprehensive methodology that integrates security practices and tools throughout the entire software development process, from planning and design to testing and release.
+У Microsoft есть собственный подход к DevSecOps, который известен как Microsoft Secure Development Lifecycle (SDL). SDL - это комплексная методология, интегрирующая методы и инструменты обеспечения безопасности на протяжении всего процесса разработки программного обеспечения, от планирования и проектирования до тестирования и выпуска.
 
-The key principles of the Microsoft SDL are:
+Ключевыми принципами Microsoft SDL являются:
 
-1. Security by design: Security is considered from the beginning of the development process, and is integrated into the design of the application.
+1. Безопасность при проектировании: Безопасность рассматривается с самого начала процесса разработки и интегрируется в дизайн приложения.
 
-2. Continuous improvement: The SDL is an iterative process, with continuous improvement of security practices and tools based on feedback and lessons learned.
+2. Непрерывное совершенствование: SDL - это итеративный процесс, предусматривающий постоянное совершенствование методов и инструментов обеспечения безопасности на основе обратной связи и извлеченных уроков.
 
-3. Risk management: Risks are identified and evaluated at each stage of the development process, and appropriate measures are taken to mitigate them.
+3. Управление рисками: Риски выявляются и оцениваются на каждом этапе процесса разработки, и принимаются соответствующие меры по их снижению.
 
-4. Collaboration: Security is a shared responsibility, and collaboration between development, operations, and security teams is essential.
+4. Сотрудничество: Безопасность - это общая ответственность, поэтому сотрудничество между командами разработки, эксплуатации и безопасности имеет важное значение.
 
-5. Automation: Automated tools and processes are used to ensure consistency and efficiency in security practices.
+5. Автоматизация: Автоматизированные инструменты и процессы используются для обеспечения последовательности и эффективности практик безопасности.
 
-The Microsoft SDL includes specific practices and tools for each stage of the development process, such as threat modeling, code analysis, security testing, and incident response. Microsoft also provides guidance and training for developers, operations teams, and security professionals on how to implement the SDL in their organizations.
-
-
-
-
-## Security guidelines and processes 
-
-- [ ] **Security training**
-
-Security awareness, Security certification program, Case study knowledge base, Top common issue, Penetration learning environment
-OWASP top 10, CWE top 25, OWASP VWAD
-
-- [ ] **Security maturity assessment**
-
-Microsoft SDL, OWASP SAMM self-assessment for maturity level
-Microsoft SDL, OWASP SAMM
-
-- [ ] **Secure design**
-
-Threat modeling templates (risks/mitigation knowledge base), Security requirements for release gate, Security design case study, Privacy protection 
-OWASP ASVS, NIST, Privacy risk assessment
-
-- [ ] **Secure coding**
-
-Coding guidelines (C++, Java, Python, PHP, Shell, Mobile), Secure coding scanning tools, Common secure coding case study 
-CWE, Secure coding, CERT OWASP
-
-- [ ] **Security testing**
-
-Secure compiling options such as Stack Canary, NX, Fortify Source, PIE, and RELRO, Security testing plans, Security testing cases, Known CVE testing, Known secure coding issues, API-level security testing tools, Automation testing tools, Fuzz testing, Mobile testing, Exploitation and penetration, Security compliance
-Kali Linux tools, CIS
-
-- [ ] **Secure deployment**
-
-Configuration checklist, Hardening guide, Communication ports/protocols, Code signing
-CIS Benchmarks, CVE
-
-- [ ] **Incident and vulnerability handling**
-
-Root cause analysis templates, Incident handling process and organization
-NIST SP800-61
-
-- [ ] **Security training**
-
-Security awareness by email, Case study newsletter, Toolkit usage hands-on training, Security certificate and exam 
-NIST 800- 50, NIST 800- 16, SAFECode security engineering training
+Microsoft SDL включает в себя специальные практики и инструменты для каждого этапа процесса разработки, такие как моделирование угроз, анализ кода, тестирование безопасности и реагирование на инциденты. Microsoft также предоставляет руководство и обучение для разработчиков, операционных групп и специалистов по безопасности по внедрению SDL в своих организациях.
 
 
 
-Stage 1 
+
+## Руководства по безопасности и процессы 
+
+- [ ] **Обучение навыкам безопасности**
+
+Осведомленность в вопросах безопасности, Программа сертификации в области безопасности, База знаний по примерам, Самые распространенные проблемы, Обучающая среда по проникновению OWASP top 10, CWE top 25, OWASP VWAD
+
+- [ ] **Оценка уровня безопасности**
+
+Самооценка уровня зрелости Microsoft SDL, OWASP SAMM Microsoft SDL, OWASP SAMM
+
+- [ ] **Безопасный дизайн**
+
+Шаблоны моделирования угроз (база знаний о рисках и мерах по их снижению), требования к безопасности для выпуска релиза, тематические исследования по проектированию безопасности, защита конфиденциальности OWASP ASVS, NIST, оценка рисков конфиденциальности
+
+- [ ] **Безопасный кодинг**
+
+Руководство по кодингу (C++, Java, Python, PHP, Shell, Mobile), инструменты сканирования безопасного кодинга, общие примеры безопасный кодинг CWE, безопасный кодинг, CERT OWASP
+
+- [ ] **Тестирование безопасности**
+
+Варианты безопасной компиляции, такие как Stack Canary, NX, Fortify Source, PIE и RELRO, планы тестирования безопасности, случаи тестирования безопасности, тестирование известных CVE, известные проблемы безопасного кодирования, инструменты тестирования безопасности на уровне API, инструменты автоматического тестирования, Fuzz-тестирование, мобильное тестирование, эксплуатация и проникновение, соответствие требованиям безопасности инструментов Kali Linux, CIS
+
+- [ ] **Безопасное развертывание**
+
+Контрольный список конфигурации, Руководство по укреплению, Коммуникационные порты/протоколы, Подписание кода CIS Benchmarks, CVE
+
+- [ ] **Обработка инцидентов и уязвимостей**.
+
+Шаблоны анализа первопричин, процесс и организация обработки инцидентов NIST SP800-61
+
+- [ ] **Тренинг по безопасности**
+
+Информирование о безопасности по электронной почте, рассылка примеров из практики, практическое обучение использованию инструментария, сертификат безопасности и экзамен NIST 800- 50, NIST 800- 16, обучение технике безопасности SAFECode
+
+
+
+Этап 1 
 {: .label }
 
-## basic security control 
+## базовый контроль безопасности 
 
-* Leverage third-party cloud service provider security mechanisms (for example, AWS provides IAM, KMS, security groups, WAF, Inspector, CloudWatch, and Config) 
-* Secure configuration replies on external tools such as AWS Config and Inspector 
-* Service or operation monitoring may apply to AWS Config, Inspector, CloudWatch, WAF, and AWS shield
+* Используйте механизмы безопасности сторонних поставщиков облачных услуг (например, AWS предоставляет IAM, KMS, группы безопасности, WAF, Inspector, CloudWatch и Config). 
+* Безопасные ответы на конфигурации с помощью внешних инструментов, таких как AWS Config и Inspector. 
+* Мониторинг сервисов и операций может применяться к AWS Config, Inspector, CloudWatch, WAF и AWS shield.
 
 
-Stage 2 
+Этап 2 
 {: .label }
-## building a security testing team
+## создание команды тестирования безопасности
 
-**Vulnerability assessment**
+**Оценка уязвимости**
 
 {: .highlight }
 NMAP, OpenVAS
 
-**Static security analysis:**
+**Статический анализ безопасности:**
 
 {: .highlight }
 FindBugs for Java, Brakeman for Ruby on Rails, Infer for Java, C++, Objective C and C
 
-**Web security:**
+**Веб-безопасность:**
 
 {: .highlight }
 OWASP dependency check, OWASP ZAP, Archni-Scanner, Burp Suite, SQLMap, w3af
 
-**Communication:**
+**Коммуникации:**
 
 {: .highlight }
 Nmap, NCAT, Wireshark, SSLScan, sslyze
 
-**Infrastructure security:**
+**Инфраструктурная безопасность:**
 
 {: .highlight }
 OpenSCAP, InSpec
 
-**VM Toolset:**
+**Набор инструментов VM:**
 
 {: .highlight }
 Pentest Box for Windows, Kali Linux, Mobile Security Testing Framework
@@ -175,115 +167,115 @@ Pentest Box for Windows, Kali Linux, Mobile Security Testing Framework
 **Security monitoring:**
 
 {: .highlight }
-ELK, MISP—Open source Threat Intelligence Platform, OSSCE—Open source HIDS Security, Facebook/osquery—performant endpoint visibility, AlienValut OSSIM—opensource SIEM
+ELK, MISP-Open source Threat Intelligence Platform, OSSCE-Open source HIDS Security, Facebook/osquery-производительная видимость конечных точек, AlienValut OSSIM-opensource SIEM.
 
-Stage 3 
+Этап 3 
 {: .label }
-## SDL activities 
+## Деятельность SDL 
 
-* Security shifts to the left and involves every stakeholder 
-* Architect and design review is required to do threat modeling 
-* Developers get secure design and secure coding training 
-* Operation and development teams are as a closed-loop collaboration 
-* Adoption of industry best practices such as OWASP SAMM and Microsoft SDL for security maturity assessment 
+* Безопасность смещается влево и вовлекает всех заинтересованных лиц. 
+* Для моделирования угроз требуется пересмотр архитектуры и дизайна 
+* Разработчики проходят обучение безопасному проектированию и безопасному кодированию 
+* Команды эксплуатации и разработки работают по замкнутому циклу. 
+* Принятие лучших отраслевых практик, таких как OWASP SAMM и Microsoft SDL, для оценки зрелости безопасности. 
 
-Stage 4
+Этап 4
 {: .label }
-## self-build security services 
+## самостоятельное создание служб безопасности 
 
-Take Salesforce as an example—the Salesforce Developer Center portal provides security training modules, coding, implementation guidelines, tools such as assessment tools, code scanning, testing or CAPTCHA modules, and also a developer forum. Whether you are building an application on top of salesforce or not, the Salesforce Developer Center is still a good reference not only for security knowledge but also for some open source tools you may consider applying.
+Возьмем, к примеру, Salesforce Developer Center - портал Salesforce Developer Center предоставляет учебные модули по безопасности, кодированию, руководства по внедрению, такие инструменты, как средства оценки, сканирования кода, тестирования или модули CAPTCHA, а также форум разработчиков. Независимо от того, создаете ли вы приложение на базе salesforce или нет, Salesforce Developer Center все равно является хорошим справочником не только для получения знаний о безопасности, но и для некоторых инструментов с открытым исходным кодом, которые вы можете рассмотреть для применения.
 
-Stage 5 
+Этап 5 
 {: .label }
-## big data security analysis and automation
+## анализ и автоматизация безопасности больших данных
 
-Key characteristics at this stage are: 
+Ключевыми характеристиками на этом этапе являются: 
 
-* Fully or mostly automated security testing through the whole development cycle
-* Applying big data analysis and machine learning to identify abnormal behavior or unknown threats
-* wProactive security action is taken automatically for security events, for example, the deployment of WAF rules or the deployment of a virtual patch
+* Полностью или в основном автоматизированное тестирование безопасности на протяжении всего цикла разработки
+* Применение анализа больших данных и машинного обучения для выявления аномального поведения или неизвестных угроз
+* wПроактивные действия по обеспечению безопасности предпринимаются автоматически при возникновении событий безопасности, например, развертывание правил WAF или установка виртуального патча.
 
-Typical open source technical components in big data analysis frameworks include the following:
+Типичные технические компоненты с открытым исходным кодом для фреймворков анализа больших данных включают следующее:
 
-* Flume, Log Logstash, and Rsyslog for log collection 
-* Kafka, Storm, or Spark for log analysis 
-* Redis, MySQL, HBase, and HDFS for data storage 
-* Kibana, ElasticSearch, and Graylog for data indexing, searching, and presentation
+* Flume, Log Logstash и Rsyslog для сбора журналов. 
+* Kafka, Storm или Spark для анализа журналов 
+* Redis, MySQL, HBase и HDFS для хранения данных 
+* Kibana, ElasticSearch и Graylog для индексации, поиска и представления данных.
 
-The key stages in big data security analysis are explained in the table: 
+Основные этапы анализа безопасности больших данных приведены в таблице: 
 
-**Data collection:**
+**Сбор данных:**
 
-Collects logs from various kinds of sources and systems such as firewalls, web services, Linux, networking gateways, endpoints, and so on. 
+Собирает журналы из различных источников и систем, таких как брандмауэры, веб-службы, Linux, сетевые шлюзы, конечные точки и так далее. 
 
-**Data normalization:**
+**Нормализация данных:**.
 
-Sanitizes or transforms data formats into JSON, especially, for critical information such as IP, hostname, email, port, and MAC.
+Санирует или преобразует форматы данных в JSON, особенно для критической информации, такой как IP, имя хоста, электронная почта, порт и MAC.
 
-**Data enrich/label:**
+**Обогащение/маркировка данных:**.
 
-In terms of IP address data, it will further be associated with GeoIP and WhoIS information. Furthermore, it may also be labeled if it's a known black IP address. 
+Что касается данных об IP-адресах, то они будут дополнительно связаны с информацией GeoIP и WhoIS. Кроме того, он может быть помечен, если это известный "черный" IP-адрес. 
 
-**Correlation:**
+**Корреляция:**
 
-The correlation analyzes the relationship between some key characteristics such as IP, hostname, DNS domain, file hash, email address, and threat knowledge bases.
+Корреляция анализирует связь между некоторыми ключевыми характеристиками, такими как IP-адрес, имя хоста, домен DNS, хэш файла, адрес электронной почты, и базами знаний об угрозах.
 
-**Storage:**
+**Хранение:**
 
-There are different kinds of data that will be stored —the raw data from the source, the data with enriched information, the results of correlation, GeoIP mapping, and the threat knowledge base. 
+Хранятся различные типы данных: необработанные данные из источника, данные с обогащенной информацией, результаты корреляции, отображение GeoIP и база знаний об угрозах. 
 
-**Alerts:**
+**Предупреждения:**.
 
-Trigger alerts if threats were identified or based on specified alerting rules. 
+Запуск оповещений при обнаружении угроз или на основе заданных правил оповещения. 
 
-**Presentation/query:**
+**Презентация/запросы:**.
 
-Security dashboards for motoring and queries. ElasticSearch, RESTful API, or third-party SIEM.
-
-
+Приборные панели безопасности для моторизации и запросов. ElasticSearch, RESTful API или SIEM сторонних производителей.
 
 
-## Role of a security team in an organization
 
-- [ ] **Security office under a CTO**
+
+## Роль команды безопасности в организации
+
+- [ ] **Офис безопасности под руководством CTO**
 
 ![Security office under a CTO](../../../assets/images/model1.png)
 
 
-* No dedicated Chief Security Officer (CSO) 
-* The security team may not be big—for example, under 10 members 
-* The security engineering team serves all projects based on their needs 
-* The key responsibility of the security engineering team is to provide security guidelines, policies, checklists, templates, or training for all project teams
-* It's possible the security engineering team members may be allocated to a different project to be subject matter experts based on the project's needs
-* Security engineering provides the guidelines, toolkits, and training, but it's the project team that takes on the main responsibility for daily security activity execution
+* Отсутствие специального директора по безопасности (CSO) 
+* Команда безопасности может быть не очень большой - например, менее 10 человек. 
+* Команда инженеров по безопасности обслуживает все проекты в зависимости от их потребностей 
+* Основной обязанностью команды инженеров по безопасности является предоставление руководств по безопасности, политик, контрольных списков, шаблонов или обучения для всех проектных команд.
+* Возможно, члены команды инженеров по безопасности могут быть направлены в другой проект, чтобы стать экспертами по вопросам безопасности в зависимости от потребностей проекта
+* Инженеры по безопасности предоставляют руководства, наборы инструментов и обучение, но именно проектная команда берет на себя основную ответственность за ежедневное выполнение действий по обеспечению безопасности.
 
 
 
 
-- [ ] **Dedicated security team**  
+- [ ] **Выделенная команда безопасности**  
 
 ![Dedicated security team](../../../assets/images/model2.png)
 
 
-* **Security management:** The team defines the security guidelines, process, policies, templates, checklist, and requirements. The role of the security management team is the same as the one previously discussed in the Security office under a CTO section.
-* **Security testing:** The team is performing in-house security testing before application release.
-* **Security engineering:** The team provides a common security framework, architecture, SDK, and API for a development team to use
-* **Security monitoring:** This is the security operation team, who monitor the security status for all online services.
-* **Security services:** This is the team that develops security services such as WAF and intrusion deference services.
+* **Управление безопасностью:** Команда определяет руководящие принципы, процессы, политики, шаблоны, контрольные списки и требования безопасности. Роль команды управления безопасностью такая же, как и в разделе "Офис безопасности под руководством технического директора".
+* **Тестирование безопасности:** Команда проводит внутреннее тестирование безопасности перед выпуском приложения.
+* **Инжиниринг безопасности:** Команда предоставляет общий фреймворк безопасности, архитектуру, SDK и API для использования командой разработчиков.
+* **Мониторинг безопасности:** Это команда по обеспечению безопасности, которая следит за состоянием безопасности всех онлайн-сервисов.
+* **Службы безопасности:** Это команда, которая разрабатывает службы безопасности, такие как WAF и службы защиты от вторжений.
 
 
 
-- [ ] **Security technical committee (taskforce)**
+- [ ] **Технический комитет по безопасности (целевая группа)**
 
 ![Security technical committee (taskforce)](../../../assets/images/model3.png)
 
 
-The secure design taskforce will have a weekly meeting with all security representatives—from all project teams— and security experts from the security team to discuss the following topics (not an exhaustive list):
+Целевая группа по безопасному проектированию будет проводить еженедельные совещания с участием всех представителей службы безопасности из всех проектных групп и экспертов по безопасности из группы безопасности для обсуждения следующих тем (список не является исчерпывающим):
 
-* Common secure design issues and mitigation (initiated by security team) 
-* Secure design patterns for a project to follow (initiated by security team) 
-* Secure design framework suggestions for projects (initiated by security team) 
-Specific secure design issues raised by one project and looking for advice on other projects (initiated by project team)
-* Secure design review assessment for one project (initiated by project team) 
+* Общие проблемы безопасного проектирования и их решение (по инициативе команды безопасности) 
+* Модели безопасного проектирования, которым должен следовать проект (по инициативе команды безопасности) 
+* Предложения по безопасному проектированию для проектов (по инициативе команды безопасности) 
+Конкретные проблемы безопасного проектирования, поднятые в одном проекте, и поиск советов для других проектов (инициировано командой проекта)
+* Оценка безопасного дизайна для одного проекта (по инициативе команды проекта) 
 
 
