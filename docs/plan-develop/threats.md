@@ -4,11 +4,11 @@ title:  Threats
 parent: Plan & Develop
 ---
 
-# Threats
+# Угрозы
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,658 +19,658 @@ parent: Plan & Develop
 
 
 
-## Threat Modeling
+## Моделирование угроз
 
 
 
 
-Threat modeling is a process that helps identify and prioritize potential security threats to a system or application. The goal of threat modeling is to identify security risks early in the development process and proactively mitigate them, rather than waiting for vulnerabilities to be discovered after deployment.
+Моделирование угроз - это процесс, который помогает определить и расставить приоритеты потенциальных угроз безопасности системы или приложения. Цель моделирования угроз - выявить риски безопасности на ранних этапах разработки и проактивно устранить их, а не ждать, пока уязвимости будут обнаружены после развертывания.
 
 ![stride](../../../assets/images/stride.png)
 
 
-One popular method for conducting threat modeling is called STRIDE, which stands for Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, and Elevation of privilege. These are the six types of security threats that can affect a system, and by considering each of them in turn, a threat model can help identify potential vulnerabilities and attacks.
+Один из популярных методов моделирования угроз называется STRIDE, что расшифровывается как Spoofing, Tampering, Repudiation, Information disclosure, Denial of service и Elevation of privilege. Это шесть типов угроз безопасности, которые могут воздействовать на систему, и, рассматривая каждую из них по очереди, модель угроз может помочь выявить потенциальные уязвимости и атаки.
 
-The STRIDE methodology is often used in combination with a diagram designer tool, such as Microsoft's Threat Modeling Tool or the open-source OWASP Threat Dragon. These tools allow you to create a visual representation of the system or application you are analyzing, and to map out potential threats and attack vectors.
-
-
-
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Explains the six types of security threats in the STRIDE methodology:
+Методология STRIDE часто используется в сочетании с инструментом для создания диаграмм, таким как Microsoft's Threat Modeling Tool или OWASP Threat Dragon с открытым исходным кодом. Эти инструменты позволяют создать визуальное представление анализируемой системы или приложения, а также наметить потенциальные угрозы и векторы атак.
 
 
-| STRIDE Threat    | Description   | 
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Объясняет шесть типов угроз безопасности в методологии STRIDE:
+
+
+| STRIDE Угроза    | Описание   | 
 |:---------------|:---------------------|
-| `Spoofing` | Impersonating a user, device, or system in order to gain unauthorized access or perform malicious actions. Examples include phishing attacks or using a fake SSL certificate to intercept data.	 | 
-| `Tampering` | Modifying data or code in transit or at rest, in order to introduce errors, gain unauthorized access, or perform other malicious actions. Examples include modifying the source code of an application or altering data in a database.	 | 
-| `Repudiation` | Denying or disavowing actions or events, in order to evade accountability or responsibility. Examples include denying that an action was taken, or that data was accessed.	 | 
-| `Information Disclosure` | Revealing confidential or sensitive information to unauthorized parties, whether intentionally or accidentally. Examples include disclosing passwords or user data, or exposing private keys.	 | 
-| `Denial of Service` | Disrupting or degrading the availability or functionality of a system or application, through network attacks, resource exhaustion, or other means. Examples include Distributed Denial of Service (DDoS) attacks or flooding a server with requests.	 | 
-| `Elevation of Privilege` | Gaining additional access or privileges beyond those that were initially granted, in order to perform unauthorized actions or escalate an attack. Examples include exploiting a software vulnerability to gain administrative access or using a social engineering technique to obtain sensitive information.	 | 
+| `Подмена` | Выдача себя за пользователя, устройство или систему с целью получения несанкционированного доступа или выполнения вредоносных действий. В качестве примера можно привести фишинговые атаки или использование поддельного сертификата SSL для перехвата данных.	 | 
+| `Вскрытие` | Модификация данных или кода в пути или в состоянии покоя с целью внесения ошибок, получения несанкционированного доступа или выполнения других вредоносных действий. В качестве примера можно привести модификацию исходного кода приложения или изменение данных в базе данных.	 | 
+| `Отказ` | Отрицание или отказ от действий или событий с целью уйти от ответственности или подотчетности. Например, отрицание факта совершения действия или доступа к данным.	 | 
+| `Раскрытие информации` | Раскрытие конфиденциальной или чувствительной информации неавторизованным лицам, намеренно или случайно. В качестве примера можно привести раскрытие паролей или пользовательских данных, а также обнародование закрытых ключей.	 | 
+| `Отказ в обслуживании` | Нарушение или снижение доступности или функциональности системы или приложения с помощью сетевых атак, исчерпания ресурсов или других средств. В качестве примера можно привести распределенные атаки типа "отказ в обслуживании" (DDoS) или наводнение сервера запросами.	 | 
+| `Повышение привилегий` | Получение дополнительного доступа или привилегий, выходящих за рамки изначально предоставленных, для выполнения несанкционированных действий или эскалации атаки. В качестве примера можно привести использование уязвимости в программном обеспечении для получения административного доступа или применение методов социальной инженерии для получения конфиденциальной информации.	 | 
 
 
-### Implementation
+### Реализация
 
-Step 1: Define the Scope
+Шаг 1: Define the Scope
 
-Identify the application or system within the DevSecOps pipeline that you want to perform threat modeling for. For example, let's consider a microservices-based application deployed using containerization and managed by Kubernetes.
+Определите приложение или систему в рамках конвейера DevSecOps, для которой вы хотите провести моделирование угроз. Например, рассмотрим приложение на базе микросервисов, развернутое с помощью контейнеризации и управляемое Kubernetes.
 
-Step 2: Gather Information
+Шаг 2: Сбор информации
 
-Gather information about the application's architecture, design, and deployment. This includes understanding the components, their interactions, data flows, and external dependencies.
+Соберите информацию об архитектуре, дизайне и развертывании приложения. Это включает в себя понимание компонентов, их взаимодействия, потоков данных и внешних зависимостей.
 
-Step 3: Identify Threats and Assets
+Шаг 3: Определите угрозы и активы
 
-Identify the critical assets and sensitive data involved in the application. Consider both internal and external threats that could compromise the security of these assets. For example:
-Unauthorized access to customer data stored in a database
-Injection attacks on APIs or containers
-Misconfiguration of Kubernetes resources leading to unauthorized access or privilege escalation
+Определите критические активы и конфиденциальные данные, задействованные в приложении. Рассмотрите внутренние и внешние угрозы, которые могут поставить под угрозу безопасность этих активов. Например:
+несанкционированный доступ к данным клиентов, хранящимся в базе данных.
+Инъекционные атаки на API или контейнеры
+Неправильная конфигурация ресурсов Kubernetes, приводящая к несанкционированному доступу или повышению привилегий.
 
-Step 4: Assess Vulnerabilities and Risks
+Шаг 4: Оценка уязвимостей и рисков
 
-Evaluate the architecture and design to identify potential vulnerabilities and risks associated with the identified threats. Consider the security implications at each stage of the DevSecOps pipeline, including development, testing, deployment, and operations. For example:
-Insecure container images containing known vulnerabilities
-Lack of proper access controls on Kubernetes resources
-Weak or outdated authentication mechanisms
+Оцените архитектуру и дизайн, чтобы выявить потенциальные уязвимости и риски, связанные с идентифицированными угрозами. Рассмотрите последствия для безопасности на каждом этапе конвейера DevSecOps, включая разработку, тестирование, развертывание и эксплуатацию. Например:
+Небезопасные образы контейнеров, содержащие известные уязвимости
+Отсутствие надлежащего контроля доступа к ресурсам Kubernetes
+Слабые или устаревшие механизмы аутентификации
 
-Step 5: Prioritize and Mitigate Risks
+Шаг 5: Приоритезация и снижение рисков
 
-Prioritize the risks based on their potential impact and likelihood of occurrence. Develop mitigation strategies and recommendations to address each identified risk. Consider integrating security controls and best practices into the DevSecOps pipeline. For example:
-Implementing automated vulnerability scanning and patch management for container images
-Applying secure configuration practices for Kubernetes resources
-Enforcing strong authentication and access controls at all stages of the pipeline
+Определите приоритеты рисков на основе их потенциального воздействия и вероятности возникновения. Разработайте стратегии и рекомендации по снижению каждого выявленного риска. Рассмотрите возможность интеграции средств контроля безопасности и лучших практик в конвейер DevSecOps. Например:
+Внедрение автоматизированного сканирования уязвимостей и управления исправлениями для образов контейнеров
+Применение методов безопасной конфигурации для ресурсов Kubernetes
+Обеспечение строгой аутентификации и контроля доступа на всех этапах конвейера.
 
-Step 6: Continuously Monitor and Improve
+Шаг 6: Постоянный мониторинг и совершенствование
 
-Incorporate threat modeling as an iterative process within the DevSecOps lifecycle. Regularly review and update the threat model as the application evolves or new risks emerge. Continuously monitor the system for potential threats and vulnerabilities.
+Включите моделирование угроз в жизненный цикл DevSecOps в качестве итеративного процесса. Регулярно пересматривайте и обновляйте модель угроз по мере развития приложения или появления новых рисков. Постоянно отслеживайте систему на предмет потенциальных угроз и уязвимостей.
 
-Real-case Example:
+Пример из реальной практики:
 
-In a DevSecOps context, consider a scenario where a development team is building a cloud-native application using microservices architecture and deploying it on a container platform. The threat modeling process could involve identifying risks such as:
+В контексте DevSecOps рассмотрим сценарий, в котором команда разработчиков создает облачное нативное приложение с использованием архитектуры микросервисов и развертывает его на контейнерной платформе. Процесс моделирования угроз может включать выявление таких рисков, как:
 
-* Insecure container images with vulnerabilities
-* Weak authentication and authorization mechanisms
-* Inadequate logging and monitoring for containerized applications
-* Misconfiguration of cloud resources and access controls
-* Insecure communication between microservices
-* Injection attacks on API endpoints
+* небезопасные образы контейнеров с уязвимостями
+* Слабые механизмы аутентификации и авторизации
+* Неадекватное протоколирование и мониторинг для контейнерных приложений
+* Неправильная конфигурация облачных ресурсов и контроля доступа
+* Небезопасное взаимодействие между микросервисами
+* Инъекционные атаки на конечные точки API
 
-Based on the identified risks, mitigation strategies could include:
+Исходя из выявленных рисков, стратегии их снижения могут включать:
 
-* Implementing automated vulnerability scanning and image hardening for containers
-* Applying strong authentication and authorization mechanisms, such as OAuth or JWT tokens
-* Incorporating centralized logging and monitoring solutions for containerized applications
-* Establishing proper cloud resource management and access control policies
-* Encrypting communication channels between microservices
-* Implementing input validation and security controls to prevent injection attacks
-
-
-
-
-### Threat Matrix
-
-
-This matrix provides a starting point for identifying potential threats and corresponding mitigations based on different categories.
+* Внедрение автоматизированного сканирования уязвимостей и усиление образа для контейнеров
+* Применение надежных механизмов аутентификации и авторизации, таких как токены OAuth или JWT
+* Внедрение решений для централизованного протоколирования и мониторинга контейнерных приложений
+* Создание надлежащих политик управления облачными ресурсами и контроля доступа
+* Шифрование каналов связи между микросервисами
+* Внедрение проверки ввода и средств контроля безопасности для предотвращения инъекционных атак
 
 
 
-| Threat Category    | Threat Description    |  Potential Mitigation |
+
+### Матрица угроз
+
+
+Эта матрица служит отправной точкой для определения потенциальных угроз и соответствующих мер по их снижению на основе различных категорий.
+
+
+
+| Категория угрозы | Описание угрозы | Потенциальное смягчение |
 |:---------------|:---------------------|:---------------------|
-| `Authentication` | Weak or stolen credentials	 | Implement strong password policies, multi-factor authentication, and password hashing algorithms. |
-| `Authentication` | Insecure authentication protocols		 | Use secure authentication protocols (e.g., TLS) and avoid transmitting credentials in plaintext. |
-| `Authorization` | Insufficient access controls	 | Implement RBAC (Role-Based Access Control) and apply the principle of least privilege. |
-| `Authorization` | Improper privilege escalation	 | Limit privilege escalation capabilities and regularly review user permissions. |
-| `Data Protection` | Data leakage or unauthorized access	 | Encrypt sensitive data at rest and in transit, and implement proper access controls. |
-| `Data Protection` | Insecure data storage		 | Follow secure coding practices for data storage, including encryption and secure key management. |
-| `Network Security` | Inadequate network segmentation	 | Implement proper network segmentation using firewalls or network policies. |
-| `Network Security` | Man-in-the-Middle attacks	 | Use encryption and certificate-based authentication for secure communication. |
-| `Denial-of-Service (DoS)` | Resource exhaustion	 | Implement rate limiting, request validation, and monitoring for abnormal behavior. |
-| `Denial-of-Service (DoS)` | Distributed DoS (DDoS) attacks		 | Employ DDoS mitigation techniques, such as traffic filtering and load balancing. |
-| `System Configuration` | Misconfigured security settings	 | Apply secure configuration guidelines for all system components. |
-| `System Configuration` | Insecure default configurations	 | Change default settings and remove or disable unnecessary services. |
-| `Vulnerability Management` | Delayed patching of software	 | Establish a vulnerability management program with regular patching and updates. |
-| `Vulnerability Management` | Lack of vulnerability scanning	 | Conduct regular vulnerability scans and prioritize remediation. |
-| `Insider Threats` | Malicious or negligent insiders	 | Implement proper access controls, monitoring, and employee training programs. |
-| `Insider Threats` | Unauthorized data access or theft	 | Monitor and log user activities and implement data loss prevention mechanisms. |
-| `Physical Security` | Unauthorized physical access	 | Secure physical access to data centers, server rooms, and hardware components. |
-| `Physical Security` | Theft or destruction of hardware	 | Implement physical security controls, such as locks, surveillance systems, and backups. |
-| `Third-Party Dependencies` | Vulnerabilities in third-party components	 | Perform due diligence on third-party components, apply patches, and monitor security advisories. |
-| `Third-Party Dependencies` | Lack of oversight on third-party activities	 | Establish strong vendor management practices, including audits and security assessments. |
+| `Аутентификация` | Слабые или украденные учетные данные | Внедрите политику надежных паролей, многофакторную аутентификацию и алгоритмы хэширования паролей. |
+| `Аутентификация` | Небезопасные протоколы аутентификации | Используйте безопасные протоколы аутентификации (например, TLS) и не передавайте учетные данные в открытом виде. |
+| `Авторизация` | Недостаточный контроль доступа | Внедрите RBAC (Role-Based Access Control) и применяйте принцип наименьших привилегий. |
+| `Авторизация` | Неправильная эскалация привилегий | Ограничьте возможности эскалации привилегий и регулярно проверяйте разрешения пользователей. |
+| `Защита данных` | Утечка данных или несанкционированный доступ | Шифрование конфиденциальных данных в состоянии покоя и при транспортировке, а также внедрение надлежащего контроля доступа. |
+| ``Защита данных`` | Небезопасное хранение данных | Применяйте безопасные методы кодирования для хранения данных, включая шифрование и безопасное управление ключами. |
+| `Сетевая безопасность` | Неадекватная сегментация сети | Внедрите правильную сегментацию сети с помощью брандмауэров или сетевых политик. |
+| ``Сетевая безопасность`` | Атаки типа "человек посередине" | Используйте шифрование и аутентификацию на основе сертификатов для безопасной связи. |
+| ``Отказ в обслуживании (DoS)`` | Истощение ресурсов | Внедрите ограничение скорости, проверку запросов и мониторинг аномального поведения. |
+| ``Отказ в обслуживании (DoS)`` | Распределенные DoS-атаки (DDoS) | Используйте методы борьбы с DDoS, такие как фильтрация трафика и балансировка нагрузки. |
+| `Конфигурация системы` | Неправильно настроенные параметры безопасности | Примените рекомендации по безопасной конфигурации для всех компонентов системы. |
+| `Конфигурация системы` | Небезопасные конфигурации по умолчанию | Измените настройки по умолчанию, удалите или отключите ненужные службы. |
+| `Управление уязвимостями` | Задержка исправления программного обеспечения | Установите программу управления уязвимостями с регулярным исправлением и обновлением. |
+| `Управление уязвимостями` | Отсутствие сканирования уязвимостей | Регулярно проводите сканирование уязвимостей и определяйте приоритеты их устранения. |
+| `Инсайдерские угрозы` | Вредоносные или халатные инсайдеры | Внедрите надлежащий контроль доступа, мониторинг и программы обучения сотрудников. |
+| `Инсайдерские угрозы` | Несанкционированный доступ к данным или их кража | Мониторинг и регистрация действий пользователей и внедрение механизмов предотвращения потери данных. |
+| `Физическая безопасность` | Несанкционированный физический доступ | Защищенный физический доступ к центрам обработки данных, серверным комнатам и аппаратным компонентам. |
+| `Физическая безопасность` | Кража или уничтожение оборудования | Внедрите средства физической безопасности, такие как замки, системы наблюдения и резервного копирования. |
+| `Зависимости от сторонних производителей` | Уязвимости в компонентах сторонних производителей	 | Проводите тщательную проверку компонентов сторонних производителей, применяйте исправления и отслеживайте рекомендации по безопасности. |
+| `Зависимости от сторонних производителей` | Отсутствие надзора за деятельностью третьих лиц	 | Установите эффективные методы управления поставщиками, включая аудит и оценку безопасности. |
 
 
 
 
-### Tools
+### Инструменты
 
 
 
 
-| Threat Category    | Threat Description     |
+| Категория угрозы | Описание угрозы |
 |:---------------|:---------------------|
-| `Microsoft Threat Modeling Tool` | A free tool from Microsoft that helps in creating threat models for software systems. It provides a structured approach to identify, analyze, and mitigate potential threats.	 | 
-| `OWASP Threat Dragon` | An open-source threat modeling tool that enables the creation of threat models using the STRIDE methodology. It provides an intuitive interface and supports collaboration among team members.	 | 
-| `PyTM` |An open-source threat modeling tool specifically designed for web applications. It allows the modeling of various aspects of an application's architecture and helps in identifying potential threats.	 |
-| `ThreatModeler` | A commercial tool that offers a comprehensive platform for threat modeling. It provides a visual modeling interface, automated threat analysis, and integration with other security tools and frameworks.	 | 
-| `IriusRisK` | A commercial tool that combines threat modeling with risk management. It supports multiple threat modeling methodologies, provides risk assessment capabilities, and offers integration with other tools and platforms.	 | 
-| `TMT (Threat Modeling Tool)` | An open-source command-line tool developed by OWASP for threat modeling. It supports the STRIDE methodology and allows for the automation of threat modeling processes.	 | 
-| `Secure Code Warrior` | While not a traditional threat modeling tool, it offers interactive training modules and challenges that can help developers understand and identify potential threats during the development process.	 | 
+| `Microsoft Threat Modeling Tool` | Бесплатный инструмент от Microsoft, который помогает создавать модели угроз для программных систем. Он обеспечивает структурированный подход к выявлению, анализу и смягчению потенциальных угроз.	 | 
+| `OWASP Threat Dragon` | Инструмент моделирования угроз с открытым исходным кодом, позволяющий создавать модели угроз по методологии STRIDE. Он имеет интуитивно понятный интерфейс и поддерживает совместную работу членов команды.	 | 
+| `PyTM` |Инструмент моделирования угроз с открытым исходным кодом, специально разработанный для веб-приложений. Он позволяет моделировать различные аспекты архитектуры приложения и помогает выявлять потенциальные угрозы.	 |
+| `ThreatModeler` | Коммерческий инструмент, предлагающий комплексную платформу для моделирования угроз. Он обеспечивает визуальный интерфейс моделирования, автоматизированный анализ угроз и интеграцию с другими инструментами и фреймворками безопасности.	 | 
+| `IriusRisK` | Коммерческий инструмент, объединяющий моделирование угроз и управление рисками. Он поддерживает несколько методологий моделирования угроз, предоставляет возможности оценки рисков и предлагает интеграцию с другими инструментами и платформами.	 | 
+| `TMT (Threat Modeling Tool)` | Инструмент командной строки с открытым исходным кодом, разработанный OWASP для моделирования угроз. Он поддерживает методологию STRIDE и позволяет автоматизировать процессы моделирования угроз.	 | 
+| `Secure Code Warrior` | Хотя это не традиционный инструмент моделирования угроз, он предлагает интерактивные учебные модули и задачи, которые могут помочь разработчикам понять и выявить потенциальные угрозы в процессе разработки.	 | 
 
 
-## Threats 
+## Угрозы 
 
 
 
 
-### Weak or stolen credentials
+### Слабые или украденные учетные данные
 
 #### **PyTM**
-This code creates a threat model using PyTM and represents the "Weak or Stolen Credentials" threat scenario. It includes actors such as "Attacker" and "Insider," a server representing the application server, and a datastore representing the user's data.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Слабые или украденные учетные данные". Она включает в себя таких участников, как "Злоумышленник" и "Инсайдер", сервер, представляющий сервер приложений, и хранилище данных, представляющее данные пользователя.
 
-The threat model defines the "Weak or Stolen Credentials" threat and includes attack paths such as "Password Guessing/Brute Force Attack," "Credential Theft," and "Insider Threat." It also defines the impact of these threats, such as unauthorized access to user data and data breaches.
+Модель угроз определяет угрозу "Слабые или украденные учетные данные" и включает такие пути атаки, как "Угадывание пароля / грубая атака", "Кража учетных данных" и "Инсайдерская угроза". Также определяются последствия этих угроз, такие как несанкционированный доступ к пользовательским данным и утечка данных.
 
-The code generates a threat model diagram in PNG format, named "weak_or_stolen_credentials_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG под названием "weak_or_stolen_credentials_threat_model.png".
 
 ```
 from pytm import TM, Server, Datastore, Actor
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Weak or Stolen Credentials Threat Model")
 
-# Create actors
+# Создать актеров
 attacker = Actor("Attacker")
 insider = Actor("Insider")
 
-# Create server and datastore
+# Создайте сервер и хранилище данных
 server = Server("Application Server")
 datastore = Datastore("User Datastore")
 
-# Define weak or stolen credentials threat
+# Определите угрозу слабых или украденных учетных данных
 tm.add_threat()
 tm.threat.name("Weak or Stolen Credentials")
 tm.threat.description("Threat of weak or stolen user credentials")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, server, "Password Guessing/Brute Force Attack")
 tm.attack_path(attacker, server, "Credential Theft")
 tm.attack_path(insider, server, "Insider Threat")
 
-# Define impact
+# Определить влияние
 tm.data_flow(server, datastore, "Unauthorized Access to User Data")
 tm.data_flow(server, datastore, "Data Breach and Exposure of Sensitive Information")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("weak_or_stolen_credentials_threat_model.png")
 ```
 
 
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Weak or Stolen Credentials:
+Диаграмма модели угроз для слабых или украденных учетных данных:
 
-Concepts:
-- Credentials: Usernames and passwords or other authentication tokens used for user authentication.
-- Weak Credentials: Easily guessable or commonly used credentials that can be easily exploited.
-- Stolen Credentials: Credentials obtained by unauthorized individuals through various means, such as phishing or data breaches.
-- Authentication Mechanisms: Methods used to verify user identities and grant access.
-- Unauthorized Access: Gaining access to a system or application without proper authorization.
+Концепции:
+- Учетные данные: Имена пользователей и пароли или другие маркеры аутентификации, используемые для аутентификации пользователей.
+- Слабые учетные данные: Легко угадываемые или часто используемые учетные данные, которые можно легко использовать.
+- Украденные учетные данные: Учетные данные, полученные неавторизованными лицами с помощью различных средств, таких как фишинг или утечка данных.
+- Механизмы аутентификации: Методы, используемые для проверки личности пользователя и предоставления доступа.
+- Несанкционированный доступ: Получение доступа к системе или приложению без соответствующей авторизации.
 
-Users:
-1. Attackers:
-   - Threat: Exploitation of Weak or Stolen Credentials
-   - Attempts to gain unauthorized access to the system by using weak or stolen credentials.
+Пользователи:
+1. Злоумышленники:
+   - Угроза: Эксплуатация слабых или украденных учетных данных
+   - Попытки получить несанкционированный доступ к системе с помощью слабых или украденных учетных данных.
 
-2. System Administrator:
-   - Threat: Weak Credential Management
-   - Fails to enforce strong password policies or implements weak authentication mechanisms.
+2. Системный администратор:
+   - Угроза: Слабое управление учетными данными
+   - Не применяет строгие политики паролей или использует слабые механизмы аутентификации.
 
-3. User:
-   - Threat: Credential Theft or Compromise
-   - Falls victim to phishing attacks or unknowingly uses weak or easily guessable credentials.
+3. Пользователь:
+   - Угроза: Кража или компрометация учетных данных
+   - Становится жертвой фишинговых атак или неосознанно использует слабые или легко угадываемые учетные данные.
 
-Components:
-1. Authentication System:
-   - Manages user authentication and access controls.
-   - Data Flow: User authentication requests and verification.
+Компоненты:
+1. Система аутентификации:
+   - Управляет аутентификацией пользователей и контролем доступа.
+   - Поток данных: запросы и проверка подлинности пользователей.
 
-2. Credential Storage:
-   - Stores user credentials securely.
-   - Data Flow: Storing and retrieving user credentials.
+2. Хранение учетных данных:
+   - Безопасное хранение учетных данных пользователей.
+   - Поток данных: хранение и извлечение учетных данных пользователя.
 
-3. User Interface:
-   - Provides a platform for user interaction and login.
-   - Data Flow: User input of credentials and authentication responses.
+3. Пользовательский интерфейс:
+   - Предоставляет платформу для взаимодействия с пользователем и входа в систему.
+   - Поток данных: ввод пользователем учетных данных и ответы на аутентификацию.
 
-Interactions:
-1. Attackers:
-   - Utilizes brute-force techniques or exploits stolen credentials to gain unauthorized access to the system.
-   - Attempts to access restricted resources or perform malicious activities.
+Взаимодействия:
+1. Злоумышленники:
+   - Используют методы грубой силы или используют украденные учетные данные для получения несанкционированного доступа к системе.
+   - Попытки получить доступ к ограниченным ресурсам или выполнить вредоносные действия.
 
-2. System Administrator:
-   - Implements weak password policies or authentication mechanisms that can be easily exploited.
-   - Fails to enforce multi-factor authentication or regular password updates.
+2. Системный администратор:
+   - Внедряет слабые политики паролей или механизмы аутентификации, которые могут быть легко использованы.
+   - Не обеспечивает многофакторную аутентификацию или регулярное обновление паролей.
 
-3. User:
-   - Enters credentials during the login process, which are sent to the authentication system for verification.
-   - May fall victim to phishing attacks, leading to the disclosure of their credentials.
+3. Пользователь:
+   - Вводит учетные данные в процессе входа в систему, которые отправляются в систему аутентификации для проверки.
+   - Может стать жертвой фишинговых атак, что приведет к раскрытию его учетных данных.
 
-4. Authentication System:
-   - Verifies user credentials against stored values and grants access based on authentication policies.
-   - Stores and retrieves user credentials securely.
+4. Система аутентификации:
+   - Проверяет учетные данные пользователя по хранимым значениям и предоставляет доступ на основе политик аутентификации.
+   - Надежно хранит и извлекает учетные данные пользователей.
 
-5. Credential Storage:
-   - Safely stores user credentials using appropriate encryption and hashing techniques.
-   - Protects credentials from unauthorized access or disclosure.
+5. Хранение учетных данных:
+   - Безопасное хранение учетных данных пользователя с использованием соответствующих методов шифрования и хэширования.
+   - Защита учетных данных от несанкционированного доступа или раскрытия.
 
 ```
 
 
-### Insecure authentication protocols
+### Небезопасные протоколы аутентификации
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Insecure Authentication Protocols" threat scenario. It includes actors such as "Attacker" and "User," a server representing the application server, and a datastore representing the user's data.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Ненадежные протоколы аутентификации". Она включает в себя таких участников, как "Злоумышленник" и "Пользователь", сервер, представляющий сервер приложений, и хранилище данных, представляющее данные пользователя.
 
-The threat model defines the "Insecure Authentication Protocols" threat and includes attack paths such as "Eavesdropping" and "Man-in-the-Middle Attack." It also defines the impact of these threats, such as unauthorized access to user data and data breaches.
+Модель угроз определяет угрозу "Ненадежные протоколы аутентификации" и включает такие пути атаки, как "Подслушивание" и "Атака "человек посередине"". Она также определяет последствия этих угроз, такие как несанкционированный доступ к данным пользователей и утечка данных.
 
-The code generates a threat model diagram in PNG format, named "insecure_authentication_protocols_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG под названием "insecure_authentication_protocols_threat_model.png".
 
 ```
 from pytm import TM, Server, Datastore, Actor
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Insecure Authentication Protocols Threat Model")
 
-# Create actors
+# Создать актеров
 attacker = Actor("Attacker")
 user = Actor("User")
 
-# Create server and datastore
+# Создайте сервер и хранилище данных
 server = Server("Application Server")
 datastore = Datastore("User Datastore")
 
-# Define insecure authentication protocols threat
+# Определение угрозы небезопасных протоколов аутентификации
 tm.add_threat()
 tm.threat.name("Insecure Authentication Protocols")
 tm.threat.description("Threat of using insecure authentication protocols")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, server, "Eavesdropping")
 tm.attack_path(attacker, server, "Man-in-the-Middle Attack")
 
-# Define impact
+# Определить влияние
 tm.data_flow(server, datastore, "Unauthorized Access to User Data")
 tm.data_flow(server, datastore, "Data Breach and Exposure of Sensitive Information")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("insecure_authentication_protocols_threat_model.png")
 ```
 
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Insecure Authentication Protocols:
+Диаграмма модели угроз для небезопасных протоколов аутентификации:
 
-Concepts:
-- Authentication Protocols: Standards or mechanisms used for verifying user identities during the authentication process.
-- Insecure Authentication Protocols: Protocols that are susceptible to security vulnerabilities or can be easily exploited.
-- Man-in-the-Middle (MitM) Attacks: Attacks where an attacker intercepts and modifies communication between two parties.
-- Unauthorized Access: Gaining access to a system or application without proper authorization.
+Концепции:
+- Протоколы аутентификации: Стандарты или механизмы, используемые для проверки личности пользователя в процессе аутентификации.
+- Ненадежные протоколы аутентификации: Протоколы, которые подвержены уязвимостям безопасности или могут быть легко использованы.
+- Атаки "человек посередине" (MitM): Атаки, при которых злоумышленник перехватывает и изменяет обмен данными между двумя сторонами.
+- Несанкционированный доступ: Получение доступа к системе или приложению без соответствующей авторизации.
 
-Users:
-1. Attackers:
-   - Threat: Exploitation of Insecure Authentication Protocols
-   - Attempts to intercept or manipulate authentication traffic to gain unauthorized access.
+Пользователи:
+1. Злоумышленники:
+   - Угроза: Эксплуатация небезопасных протоколов аутентификации
+   - Попытки перехвата или манипулирования трафиком аутентификации для получения несанкционированного доступа.
 
-2. System Administrator:
-   - Threat: Configuration of Insecure Authentication Protocols
-   - Misconfigures authentication protocols or fails to implement secure alternatives.
+2. Системный администратор:
+   - Угроза: Конфигурация небезопасных протоколов аутентификации
+   - Неправильно настраивает протоколы аутентификации или не применяет безопасные альтернативы.
 
-3. User:
-   - Threat: Exposure of Credentials
-   - Communicates with the system using insecure authentication protocols, which can lead to the exposure of credentials.
+3. Пользователь:
+   - Угроза: Раскрытие учетных данных
+   - Общается с системой, используя небезопасные протоколы аутентификации, что может привести к раскрытию учетных данных.
 
-Components:
-1. Authentication System:
-   - Manages user authentication and access controls.
-   - Data Flow: User authentication requests and verification.
+Компоненты:
+1. Система аутентификации:
+   - Управляет аутентификацией пользователей и контролем доступа.
+   - Поток данных: запросы и проверка подлинности пользователей.
 
-2. Authentication Protocol:
-   - Specifies the rules and procedures for authenticating users.
-   - Data Flow: Exchange of authentication messages between the user and the authentication system.
+2. Протокол аутентификации:
+   - Определяет правила и процедуры аутентификации пользователей.
+   - Поток данных: обмен сообщениями аутентификации между пользователем и системой аутентификации.
 
-3. Attacker's System:
-   - Represents the system used by attackers to intercept or manipulate authentication traffic.
-   - Data Flow: Interception and modification of authentication messages.
+3. Система злоумышленника:
+   - Представляет собой систему, используемую злоумышленниками для перехвата или манипулирования трафиком аутентификации.
+   - Поток данных: перехват и модификация сообщений аутентификации.
 
-Interactions:
-1. Attackers:
-   - Exploits vulnerabilities in insecure authentication protocols to intercept or modify authentication messages.
-   - Attempts to obtain user credentials or gain unauthorized access to the system.
+Взаимодействия:
+1. Злоумышленники:
+   - Используют уязвимости в небезопасных протоколах аутентификации для перехвата или модификации сообщений аутентификации.
+   - Попытки получить учетные данные пользователя или несанкционированный доступ к системе.
 
-2. System Administrator:
-   - Misconfigures authentication protocols, such as using weak encryption or outdated protocols.
-   - Fails to implement secure alternatives, such as using strong cryptographic algorithms or multi-factor authentication.
+2. Системный администратор:
+   - Неправильно настраивает протоколы аутентификации, например, использует слабое шифрование или устаревшие протоколы.
+   - Не применяет безопасные альтернативы, такие как использование сильных криптографических алгоритмов или многофакторная аутентификация.
 
-3. User:
-   - Initiates the authentication process by sending authentication requests to the system.
-   - Communicates with the system using insecure authentication protocols, which can be intercepted by attackers.
+3. Пользователь:
+   - Инициирует процесс аутентификации, отправляя системе запросы на аутентификацию.
+   - Общается с системой, используя небезопасные протоколы аутентификации, которые могут быть перехвачены злоумышленниками.
 
-4. Authentication System:
-   - Verifies user credentials and grants access based on the authentication protocol in use.
-   - May be vulnerable to attacks if insecure authentication protocols are implemented or misconfigured.
+4. Система аутентификации:
+   - Проверяет учетные данные пользователя и предоставляет доступ на основе используемого протокола аутентификации.
+   - Может быть уязвима для атак, если используются небезопасные протоколы аутентификации или они неправильно сконфигурированы.
 
-5. Authentication Protocol:
-   - Facilitates the exchange of authentication messages between the user and the authentication system.
-   - Can be compromised if it is insecure or susceptible to attacks like Man-in-the-Middle.
+5. Протокол аутентификации:
+   - Обеспечивает обмен сообщениями аутентификации между пользователем и системой аутентификации.
+   - Может быть скомпрометирован, если он небезопасен или подвержен атакам типа Man-in-the-Middle.
 
 ```
 
 
-### Insufficient access controls	
+### Ненадлежащий контроль доступа	
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Insufficient Access Controls" threat scenario. It includes actors such as "Attacker" and "User," a server representing the application server, and a datastore representing the sensitive data.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Недостаточный контроль доступа". Она включает в себя таких участников, как "Злоумышленник" и "Пользователь", сервер, представляющий сервер приложений, и хранилище данных, представляющее конфиденциальные данные.
 
-The threat model defines the "Insufficient Access Controls" threat and includes attack paths such as "Unauthorized Access" by the attacker and "Privilege Escalation" by the user. It also defines the impact of these threats, such as unauthorized access to sensitive data and data leakage.
+Модель угроз определяет угрозу "Недостаточный контроль доступа" и включает такие пути атаки, как "Несанкционированный доступ" со стороны злоумышленника и "Повышение привилегий" со стороны пользователя. Также определяются последствия этих угроз, такие как несанкционированный доступ к конфиденциальным данным и утечка данных.
 
-The code generates a threat model diagram in PNG format, named "insufficient_access_controls_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG под названием "insufficient_access_controls_threat_model.png".
 
 
 ```
 from pytm import TM, Actor, Server, Datastore
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Insufficient Access Controls Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 user = Actor("User")
 
-# Create server and datastore
+# Создайте сервер и хранилище данных
 server = Server("Application Server")
 datastore = Datastore("Sensitive Datastore")
 
-# Define insufficient access controls threat
+# Определите угрозу недостаточного контроля доступа
 tm.add_threat()
 tm.threat.name("Insufficient Access Controls")
 tm.threat.description("Threat of insufficient access controls on sensitive data")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, server, "Unauthorized Access")
 tm.attack_path(user, server, "Privilege Escalation")
 
-# Define impact
+# Определить влияние
 tm.data_flow(server, datastore, "Unauthorized Access to Sensitive Data")
 tm.data_flow(server, datastore, "Data Leakage")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("insufficient_access_controls_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Insufficient Access Controls:
+Диаграмма модели угроз при недостаточном контроле доступа:
 
-Concepts:
-- Access Controls: Mechanisms used to enforce authorized access to resources.
-- Insufficient Access Controls: Inadequate or misconfigured access controls that allow unauthorized access to resources.
-- Unauthorized Access: Gaining access to a resource without proper authorization.
-- Privilege Escalation: Exploiting vulnerabilities to gain higher levels of access privileges.
+Концепции:
+- Контроль доступа: Механизмы, используемые для обеспечения авторизованного доступа к ресурсам.
+- Недостаточный контроль доступа: Неадекватные или неправильно настроенные средства контроля доступа, позволяющие получить несанкционированный доступ к ресурсам.
+- Несанкционированный доступ: Получение доступа к ресурсу без надлежащей авторизации.
+- Повышение привилегий: Использование уязвимостей для получения более высоких уровней привилегий доступа.
 
-Users:
-1. Attackers:
-   - Threat: Unauthorized Access or Privilege Escalation
-   - Attempts to bypass or exploit insufficient access controls to gain unauthorized access to resources or escalate privileges.
+Пользователи:
+1. Злоумышленники:
+   - Угроза: Несанкционированный доступ или повышение привилегий
+   - Попытки обойти или использовать недостаточные средства контроля доступа для получения несанкционированного доступа к ресурсам или повышения привилегий.
 
-2. System Administrator:
-   - Threat: Misconfiguration of Access Controls
-   - Misconfigures access control settings, allowing unauthorized access or granting excessive privileges.
+2. Системный администратор:
+   - Угроза: Неправильная конфигурация средств контроля доступа
+   - Неправильная настройка параметров контроля доступа, позволяющая получить несанкционированный доступ или предоставляющая чрезмерные привилегии.
 
-3. User:
-   - Threat: Unauthorized Access to Restricted Resources
-   - Attempts to access resources they are not authorized to access due to insufficient access controls.
+3. Пользователь:
+   - Угроза: Несанкционированный доступ к ограниченным ресурсам
+   - Попытки получить доступ к ресурсам, к которым они не имеют права доступа из-за недостаточного контроля доступа.
 
-Components:
-1. Resource:
-   - Represents a system or data that needs to be protected.
-   - Data Flow: Access requests and responses.
+Компоненты:
+1. Ресурс:
+   - Представляет собой систему или данные, которые необходимо защитить.
+   - Поток данных: запросы и ответы на доступ.
 
-2. Access Control Mechanisms:
-   - Controls access to resources based on defined policies.
-   - Data Flow: Authorization checks and access grants or denials.
+2. Механизмы контроля доступа:
+   - Контролируют доступ к ресурсам на основе определенных политик.
+   - Поток данных: проверка авторизации и предоставление или отказ в доступе.
 
-Interactions:
-1. Attackers:
-   - Exploits vulnerabilities or misconfigurations in access control mechanisms to gain unauthorized access.
-   - May attempt privilege escalation to gain higher levels of access.
+Взаимодействия:
+1. Злоумышленники:
+   - Используют уязвимости или неправильную конфигурацию в механизмах контроля доступа для получения несанкционированного доступа.
+   - Могут пытаться повысить привилегии, чтобы получить более высокий уровень доступа.
 
-2. System Administrator:
-   - Misconfigures access control settings, such as assigning incorrect permissions or not properly segregating access.
-   - Fails to regularly review and update access control policies and configurations.
+2. Системный администратор:
+   - Неправильно настраивает параметры управления доступом, например назначает неверные разрешения или неправильно разделяет доступ.
+   - Не проводит регулярный обзор и обновление политик и конфигураций контроля доступа.
 
-3. User:
-   - Requests access to resources through the system.
-   - May attempt to access restricted resources by bypassing or circumventing access controls.
+3. Пользователь:
+   - Запрашивает доступ к ресурсам через систему.
+   - Может пытаться получить доступ к ресурсам с ограниченным доступом в обход контроля доступа.
 
-4. Resource:
-   - Contains sensitive data or functionality that needs to be protected.
-   - Enforces access control policies to determine whether a user should be granted access.
+4. Ресурс:
+   - Содержит конфиденциальные данные или функциональные возможности, которые необходимо защитить.
+   - Применяет политики контроля доступа, чтобы определить, следует ли предоставлять пользователю доступ.
 
-5. Access Control Mechanisms:
-   - Enforce access control policies and determine whether a user has sufficient privileges to access a resource.
-   - May be misconfigured or contain vulnerabilities that can be exploited by attackers.
+5. Механизмы контроля доступа:
+   - Обеспечивают соблюдение политик контроля доступа и определяют, обладает ли пользователь достаточными привилегиями для доступа к ресурсу.
+   - Могут быть неправильно сконфигурированы или содержать уязвимости, которые могут быть использованы злоумышленниками.
 
 ```
 
-### Improper privilege escalation	
+### Неправильная эскалация привилегий	
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Improper Privilege Escalation" threat scenario. It includes actors such as "Attacker" and "User" and a server representing the application server.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Неправильное повышение привилегий". Она включает таких участников, как "Злоумышленник" и "Пользователь", а также сервер, представляющий сервер приложений.
 
-The threat model defines the "Improper Privilege Escalation" threat and includes attack paths such as "Exploiting Vulnerability" by the attacker and "Abusing User Privileges" by the user.
+Модель угроз определяет угрозу "Неправильное повышение привилегий" и включает такие пути атаки, как "Эксплуатация уязвимости" злоумышленником и "Злоупотребление привилегиями пользователя" пользователем.
 
-The code generates a threat model diagram in PNG format, named "improper_privilege_escalation_threat_model.png."
+Код генерирует диаграмму модели угрозы в формате PNG под названием "improper_privilege_escalation_threat_model.png".
 
 
 
 ```
 from pytm import TM, Actor, Server
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Improper Privilege Escalation Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 user = Actor("User")
 
-# Create server
+# Создать сервер
 server = Server("Application Server")
 
-# Define improper privilege escalation threat
+# Определение угрозы неправомерной эскалации привилегий
 tm.add_threat()
 tm.threat.name("Improper Privilege Escalation")
 tm.threat.description("Threat of improper privilege escalation in the application")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, server, "Exploiting Vulnerability")
 tm.attack_path(user, server, "Abusing User Privileges")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("improper_privilege_escalation_threat_model.png")
 ```
 
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Improper Privilege Escalation:
+Диаграмма модели угроз при неправильной эскалации привилегий:
 
-Concepts:
-- Privilege Escalation: Unauthorized elevation of access privileges to perform actions beyond the authorized scope.
-- Authorization Levels: Different levels of access privileges granted to users or roles.
-- Insufficient Privilege Checks: Inadequate validation of user permissions when executing privileged actions.
-- Unauthorized Actions: Performing actions that are not authorized or exceeding the granted privileges.
+Концепции:
+- Повышение привилегий: Несанкционированное повышение привилегий доступа для выполнения действий, выходящих за рамки разрешенных.
+- Уровни авторизации: Различные уровни привилегий доступа, предоставляемые пользователям или ролям.
+- Недостаточные проверки привилегий: Недостаточная проверка прав пользователя при выполнении привилегированных действий.
+- Несанкционированные действия: Выполнение несанкционированных действий или превышение предоставленных привилегий.
 
-Users:
-1. Attackers:
-   - Threat: Unauthorized Privilege Escalation
-   - Attempts to exploit vulnerabilities to gain higher levels of access privileges and perform unauthorized actions.
+Пользователи:
+1. Злоумышленники:
+   - Угроза: Несанкционированное повышение привилегий
+   - Попытки использования уязвимостей для получения более высоких уровней привилегий доступа и выполнения несанкционированных действий.
 
-2. System Administrator:
-   - Threat: Misconfiguration of Privilege Levels
-   - Misconfigures access controls or fails to properly assign and manage privilege levels.
+2. Системный администратор:
+   - Угроза: Неправильная конфигурация уровней привилегий
+   - Неправильно настраивает средства контроля доступа или не может должным образом назначить и управлять уровнями привилегий.
 
-3. User:
-   - Threat: Unauthorized Access to Privileged Actions
-   - Attempts to perform actions beyond their authorized scope by exploiting privilege escalation vulnerabilities.
+3. Пользователь:
+   - Угроза: Несанкционированный доступ к привилегированным действиям
+   - Попытки выполнить действия, выходящие за рамки разрешенных, путем использования уязвимостей повышения привилегий.
 
-Components:
-1. User Roles:
-   - Represent different roles or user groups with distinct privilege levels.
-   - Data Flow: Assignment of roles and associated permissions.
+Компоненты:
+1. Роли пользователей:
+   - Представляют собой различные роли или группы пользователей с различными уровнями привилегий.
+   - Поток данных: назначение ролей и связанных с ними разрешений.
 
-2. Privilege Validation:
-   - Validates user permissions before executing privileged actions.
-   - Data Flow: User permissions check and authorization decision.
+2. Проверка привилегий:
+   - Проверяет права пользователя перед выполнением привилегированных действий.
+   - Поток данных: проверка прав пользователя и принятие решения об авторизации.
 
-Interactions:
-1. Attackers:
-   - Exploits vulnerabilities or weaknesses to gain higher levels of access privileges.
-   - Performs unauthorized actions by bypassing or manipulating privilege validation mechanisms.
+Взаимодействия:
+1. Злоумышленники:
+   - Используют уязвимости или слабые места для получения более высоких уровней привилегий доступа.
+   - Выполняют несанкционированные действия, обходя или манипулируя механизмами проверки привилегий.
 
-2. System Administrator:
-   - Misconfigures privilege levels, granting excessive permissions or failing to properly assign roles.
-   - Fails to implement proper privilege validation mechanisms or neglects regular review and updates.
+2. Системный администратор:
+   - Неправильно настраивает уровни привилегий, предоставляя чрезмерные полномочия или неспособный правильно назначить роли.
+   - Не внедряет надлежащие механизмы проверки привилегий или пренебрегает их регулярным пересмотром и обновлением.
 
-3. User:
-   - Requests to perform actions within their authorized privileges.
-   - May attempt to escalate privileges by exploiting vulnerabilities in the system.
+3. Пользователь:
+   - Просит выполнить действия в рамках разрешенных привилегий.
+   - Может пытаться повысить привилегии, используя уязвимости в системе.
 
-4. User Roles:
-   - Define the access privileges associated with different user groups or roles.
-   - Assigns and manages roles based on user responsibilities and organizational policies.
+4. Роли пользователей:
+   - Определяют привилегии доступа, связанные с различными группами пользователей или ролями.
+   - Назначение и управление ролями на основе обязанностей пользователей и организационных политик.
 
-5. Privilege Validation:
-   - Validates user permissions before allowing execution of privileged actions.
-   - May have vulnerabilities or lack proper checks, enabling unauthorized privilege escalation.
+5. Проверка привилегий:
+   - Проверяет разрешения пользователей перед тем, как разрешить выполнение привилегированных действий.
+   - Может иметь уязвимости или не иметь надлежащих проверок, что позволяет несанкционированно повышать привилегии.
 
 ```
 
 
-### Data leakage or unauthorized access
+### Утечка данных или несанкционированный доступ
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Data Leakage or Unauthorized Access" threat scenario. It includes actors such as "Attacker" and "User" and a datastore representing sensitive data.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Утечка данных или несанкционированный доступ". В нее входят такие действующие лица, как "Злоумышленник" и "Пользователь", а также хранилище данных, представляющее конфиденциальные данные.
 
-The threat model defines the "Data Leakage or Unauthorized Access" threat and includes attack paths such as "Exploiting Vulnerability" by the attacker and "Unauthorized Access" by the user.
+Модель угроз определяет угрозу "Утечка данных или несанкционированный доступ" и включает такие пути атаки, как "Эксплуатация уязвимости" злоумышленником и "Несанкционированный доступ" пользователем.
 
-The code generates a threat model diagram in PNG format, named "data_leakage_unauthorized_access_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG под названием "data_leakage_unauthorized_access_threat_model.png".
 
 ```
 from pytm import TM, Actor, Datastore
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Data Leakage or Unauthorized Access Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 user = Actor("User")
 
-# Create datastore
+# Создание хранилища данных
 datastore = Datastore("Sensitive Data")
 
-# Define data leakage or unauthorized access threat
+# Определение угрозы утечки данных или несанкционированного доступа
 tm.add_threat()
 tm.threat.name("Data Leakage or Unauthorized Access")
 tm.threat.description("Threat of unauthorized access or leakage of sensitive data")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, datastore, "Exploiting Vulnerability")
 tm.attack_path(user, datastore, "Unauthorized Access")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("data_leakage_unauthorized_access_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Data Leakage or Unauthorized Access:
+Диаграмма модели угроз для утечки данных или несанкционированного доступа:
 
-Concepts:
-- Data Leakage: Unintentional or unauthorized disclosure of sensitive data to unauthorized parties.
-- Unauthorized Access: Gaining access to data or systems without proper authorization.
-- Data Encryption: Process of converting sensitive data into a format that is unreadable without the appropriate decryption key.
-- Data Loss Prevention (DLP): Techniques and controls implemented to prevent the leakage of sensitive data.
+Концепции:
+- Утечка данных: Непреднамеренное или несанкционированное раскрытие конфиденциальных данных неавторизованным лицам.
+- Несанкционированный доступ: Получение доступа к данным или системам без соответствующей авторизации.
+- Шифрование данных: Процесс преобразования конфиденциальных данных в формат, который невозможно прочитать без соответствующего ключа дешифрования.
+- Предотвращение потери данных (DLP): Методы и средства контроля, применяемые для предотвращения утечки конфиденциальных данных.
 
-Users:
-1. Attackers:
-   - Threat: Unauthorized Access or Data Leakage
-   - Attempts to gain unauthorized access to sensitive data or exploit vulnerabilities to leak data.
+Пользователи:
+1. Злоумышленники:
+   - Угроза: Несанкционированный доступ или утечка данных
+   - Попытки получить несанкционированный доступ к конфиденциальным данным или использовать уязвимости для утечки данных.
 
-2. System Administrator:
-   - Threat: Misconfiguration of Access Controls or Encryption
-   - Misconfigures access controls, leaving data vulnerable to unauthorized access.
-   - Fails to implement or properly configure data encryption mechanisms.
+2. Системный администратор:
+   - Угроза: Неправильная конфигурация средств контроля доступа или шифрования
+   - Неправильно настраивает средства контроля доступа, в результате чего данные становятся уязвимыми для несанкционированного доступа.
+   - Не удается внедрить или правильно настроить механизмы шифрования данных.
 
-3. User:
-   - Threat: Accidental Data Leakage
-   - Unintentionally exposes sensitive data through insecure practices or misconfigurations.
+3. Пользователь:
+   - Угроза: Случайная утечка данных
+   - Непреднамеренное раскрытие конфиденциальных данных с помощью небезопасных методов или неправильной конфигурации.
 
-Components:
-1. Data Storage:
-   - Represents storage systems or databases containing sensitive data.
-   - Data Flow: Storage and retrieval of sensitive data.
+Компоненты:
+1. Хранилище данных:
+   - Представляет собой системы хранения или базы данных, содержащие конфиденциальные данные.
+   - Поток данных: хранение и получение конфиденциальных данных.
 
-2. Access Controls:
-   - Mechanisms to control and enforce authorized access to data.
-   - Data Flow: Authentication and authorization checks.
+2. Контроль доступа:
+   - Механизмы контроля и обеспечения санкционированного доступа к данным.
+   - Поток данных: проверка подлинности и авторизация.
 
-3. Data Encryption:
-   - Techniques and algorithms used to protect sensitive data by encrypting it.
-   - Data Flow: Encryption and decryption processes.
+3. Шифрование данных:
+   - Техники и алгоритмы, используемые для защиты конфиденциальных данных путем их шифрования.
+   - Поток данных: процессы шифрования и дешифрования.
 
-4. Data Loss Prevention (DLP):
-   - Techniques and controls to prevent unauthorized data leakage.
-   - Data Flow: Data leakage prevention measures and monitoring.
+4. Предотвращение потери данных (DLP):
+   - Методы и средства контроля для предотвращения несанкционированной утечки данных.
+   - Поток данных: меры по предотвращению утечки данных и их мониторинг.
 
-Interactions:
-1. Attackers:
-   - Exploits vulnerabilities to gain unauthorized access to sensitive data.
-   - May use various techniques to extract and exfiltrate the data without detection.
+Взаимодействие:
+1. Злоумышленники:
+   - Используют уязвимости для получения несанкционированного доступа к конфиденциальным данным.
+   - Могут использовать различные техники для извлечения и утечки данных без обнаружения.
 
-2. System Administrator:
-   - Misconfigures access controls, granting unauthorized users access to sensitive data.
-   - Fails to implement or properly configure data encryption, leaving data vulnerable to unauthorized access.
+2. Системный администратор:
+   - Неправильно настраивает средства контроля доступа, предоставляя неавторизованным пользователям доступ к конфиденциальным данным.
+   - Не применяет или не настраивает должным образом шифрование данных, что делает их уязвимыми для несанкционированного доступа.
 
-3. User:
-   - May accidentally expose sensitive data through insecure practices, such as sharing or mishandling information.
+3. Пользователь:
+   - Может случайно раскрыть конфиденциальные данные в результате небезопасных действий, таких как обмен информацией или неправильное обращение с ней.
 
-4. Data Storage:
-   - Stores sensitive data and requires robust access controls and encryption to protect it.
-   - May be vulnerable to unauthorized access if misconfigured or lacking proper security measures.
+4. Хранилище данных:
+   - Хранит конфиденциальные данные и требует надежного контроля доступа и шифрования для их защиты.
+   - Может быть уязвимо для несанкционированного доступа при неправильной конфигурации или отсутствии надлежащих мер безопасности.
 
-5. Access Controls:
-   - Enforces authorized access to data based on authentication and authorization checks.
-   - Misconfigurations or vulnerabilities in access controls may result in unauthorized access.
+5. Контроль доступа:
+   - Обеспечивает авторизованный доступ к данным на основе проверок аутентификации и авторизации.
+   - Неправильная конфигурация или уязвимости в средствах контроля доступа могут привести к несанкционированному доступу.
 
-6. Data Encryption:
-   - Protects sensitive data by converting it into an unreadable format without the decryption key.
-   - Proper implementation and configuration of encryption algorithms are necessary to safeguard the data.
+6. Шифрование данных:
+   - Защищает конфиденциальные данные, преобразуя их в нечитаемый формат без ключа дешифрования.
+   - Правильная реализация и настройка алгоритмов шифрования необходимы для защиты данных.
 
-7. Data Loss Prevention (DLP):
-   - Implements techniques and controls to prevent unauthorized data leakage.
-   - Monitors data flows and applies policies to detect and prevent potential data leakage incidents.
+7. Предотвращение потери данных (DLP):
+   - Внедряет методы и средства контроля для предотвращения несанкционированной утечки данных.
+   - Мониторинг потоков данных и применение политик для обнаружения и предотвращения потенциальных инцидентов утечки данных.
 ```
 
 
-### Insecure data storage
+### Небезопасное хранение данных
 
 #### **PyTM**
 
