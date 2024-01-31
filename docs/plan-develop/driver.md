@@ -4,10 +4,10 @@ title:  Driver
 parent: Plan & Develop
 ---
 
-# Driver
+# Драйвер
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -17,58 +17,58 @@ parent: Plan & Develop
 
 
 
-DevSecOps is a methodology that seeks to integrate security into the software development lifecycle, rather than treating it as a separate process that is bolted on at the end. The goal is to build secure, reliable software that meets the needs of the business, while also protecting sensitive data and critical infrastructure. There are several drivers and challenges associated with implementing DevSecOps, which are outlined below.
+DevSecOps - это методология, направленная на интеграцию безопасности в жизненный цикл разработки программного обеспечения, а не на рассмотрение ее как отдельного процесса, который прикручивается в конце. Цель заключается в создании безопасного и надежного программного обеспечения, отвечающего потребностям бизнеса, а также в защите конфиденциальных данных и критически важной инфраструктуры. Внедрение DevSecOps связано с несколькими факторами и проблемами, которые описаны ниже.
 
-**Drivers:**
+**Драйверы:**
 
-1. Security concerns: With the increasing frequency and severity of cyberattacks, security has become a top priority for organizations. DevSecOps provides a way to build security into the software development process, rather than relying on ad hoc security measures.
+1. Проблемы безопасности: С ростом частоты и серьезности кибератак безопасность стала главным приоритетом для организаций. DevSecOps позволяет встроить безопасность в процесс разработки программного обеспечения, а не полагаться на специальные меры безопасности.
 
-2. Compliance requirements: Many organizations are subject to regulatory requirements such as PCI-DSS, HIPAA, and GDPR. DevSecOps can help ensure compliance with these regulations by integrating security into the development process and providing visibility into the security posture of the application.
+2. Требования к соответствию: Многие организации подчиняются нормативным требованиям, таким как PCI-DSS, HIPAA и GDPR. DevSecOps может помочь обеспечить соответствие этим нормам, интегрируя безопасность в процесс разработки и обеспечивая видимость уровня безопасности приложения.
 
-3. Agility and speed: DevSecOps can help organizations develop and deploy software more quickly and with greater agility. By integrating security into the development process, organizations can reduce the time and cost of remediation and avoid delays caused by security issues.
+3. Гибкость и скорость: DevSecOps может помочь организациям разрабатывать и внедрять программное обеспечение быстрее и с большей оперативностью. Интегрируя систему безопасности в процесс разработки, организации могут сократить время и стоимость устранения проблем и избежать задержек, вызванных проблемами безопасности.
 
-4. Collaboration: DevSecOps encourages collaboration between developers, security teams, and operations teams. By working together, these teams can build more secure and reliable software.
+4. Сотрудничество: DevSecOps поощряет сотрудничество между разработчиками, службами безопасности и операционными службами. Благодаря совместной работе эти команды могут создавать более безопасное и надежное программное обеспечение.
 
-**Challenges:**
+**Проблемы:**
 
-1. Cultural barriers: DevSecOps requires a cultural shift in the organization, with developers, security teams, and operations teams working together in a collaborative manner. This can be challenging, particularly in organizations with a siloed culture.
+1. Культурные барьеры: DevSecOps требует изменения культуры в организации, чтобы разработчики, службы безопасности и операционные группы работали совместно. Это может быть непросто, особенно в организациях с изолированной культурой.
 
-2. Lack of skills: DevSecOps requires a range of skills, including development, security, and operations. Finding individuals with these skills can be difficult, particularly in a competitive job market.
+2. Отсутствие навыков: DevSecOps требует целого ряда навыков, включая навыки разработки, безопасности и эксплуатации. Найти людей с такими навыками может быть непросто, особенно на конкурентном рынке труда.
 
-3. Tooling and automation: DevSecOps relies heavily on tooling and automation to integrate security into the development process. Implementing and maintaining these tools can be challenging, particularly for smaller organizations with limited resources.
+3. Инструментарий и автоматизация: DevSecOps в значительной степени опирается на инструментарий и автоматизацию для интеграции безопасности в процесс разработки. Внедрение и поддержка этих инструментов может быть сложной задачей, особенно для небольших организаций с ограниченными ресурсами.
 
-4. Complexity: DevSecOps can be complex, particularly for organizations with large, complex applications. It can be difficult to integrate security into the development process without causing delays or creating additional complexity.
-
-
-## Application Security Verification Standard (ASVS):
-
-Authentication, Session Management, Access Control, Malicious Input handling, Output encoding/escaping, Cryptography, Error handling and logging , Data Protection, Communication Security, Http Security configuration, Security configuration, Malicious, Internal Security, Business logic, Files and resources, Mobile, Web services
-
-### Design review 
-
-* Security compliance checklist 
-* Security requirement checklist (OWASP ASVS) 
-* Top 10 security design issues 
-* Security issues in the previous release 
-* Customer or marketing feedback on security issues 
+4. Сложность: DevSecOps может быть сложным, особенно для организаций с большими и сложными приложениями. Интегрировать систему безопасности в процесс разработки без задержек и дополнительных сложностей может быть непросто.
 
 
-### Implementation review 
+## Стандарт проверки безопасности приложений (ASVS):
 
-* Secure coding 
-* Selection of reliable and secure third-party components 
-* Secure configuration 
+Аутентификация, управление сеансами, контроль доступа, обработка вредоносного ввода, кодирование/расшифровка вывода, криптография, обработка ошибок и ведение журналов, защита данных, безопасность связи, настройка Http-безопасности, настройка безопасности, вредоносная, внутренняя безопасность, бизнес-логика, файлы и ресурсы, мобильные, веб-сервисы
+
+### Обзор дизайна 
+
+* Контрольный список соответствия требованиям безопасности 
+* Контрольный список требований безопасности (OWASP ASVS) 
+* 10 лучших проблем проектирования системы безопасности 
+* Проблемы безопасности в предыдущем выпуске 
+* Отзывы клиентов или маркетологов о проблемах безопасности 
 
 
-### Third-party components 
+### Обзор реализации 
 
-* A third-party software evaluation checklist: 
-* Recommended third-party software and usage by projects: 
-* CVE status of third-party components: 
+* Безопасное кодирование 
+* Выбор надежных и безопасных сторонних компонентов 
+* Безопасная конфигурация 
 
-### Code Review
 
-* **Static Application Security Testing (SAST)** 
+### Компоненты сторонних производителей 
+
+* Контрольный список для оценки стороннего ПО: 
+* Рекомендуемое стороннее ПО и его использование в проектах: 
+* CVE-статус сторонних компонентов: 
+
+### Обзор кода.
+
+* **Статическое тестирование безопасности приложений (SAST)**. 
 
 {: .highlight }
 FindSecbugs, Fortify, Coverity, klocwork.
