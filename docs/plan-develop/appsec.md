@@ -7,7 +7,7 @@ parent: Plan & Develop
 # AppSec
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -18,45 +18,45 @@ parent: Plan & Develop
 
 
 
-Application security (AppSec) threats refer to the security risks and vulnerabilities that can be present in the software applications used by organizations. These threats can arise from various sources, such as software bugs, coding errors, design flaws, and inadequate security controls. AppSec threats can lead to data breaches, information theft, financial losses, reputational damage, and legal liabilities for organizations.
+Угрозы безопасности приложений (AppSec) относятся к рискам и уязвимостям, которые могут присутствовать в программных приложениях, используемых организациями. Эти угрозы могут возникать из различных источников, таких как ошибки в программном обеспечении, ошибки кодирования, недостатки дизайна и неадекватные средства контроля безопасности. Угрозы AppSec могут привести к утечке данных, краже информации, финансовым потерям, ущербу репутации и юридическим обязательствам для организаций.
 
-To address AppSec threats, various standards and frameworks have been developed. Here are some of the most important ones:
+Для борьбы с угрозами AppSec были разработаны различные стандарты и фреймворки. Вот некоторые из наиболее важных:
 
-1. OWASP Top Ten: The Open Web Application Security Project (OWASP) Top Ten is a list of the most critical security risks to web applications. It is widely used by organizations as a guideline for identifying and addressing AppSec threats.
+1. OWASP Top Ten: Десятка лучших стандартов Open Web Application Security Project (OWASP) - это список наиболее критичных рисков безопасности для веб-приложений. Он широко используется организациями в качестве руководства по выявлению и устранению угроз AppSec.
 
-2. PCI DSS: The Payment Card Industry Data Security Standard (PCI DSS) is a set of security standards designed to protect credit card data. It requires merchants and service providers to implement various security controls to prevent unauthorized access to cardholder data.
+2. PCI DSS: Стандарт безопасности данных индустрии платежных карт (PCI DSS) - это набор стандартов безопасности, предназначенных для защиты данных кредитных карт. Он требует от продавцов и поставщиков услуг внедрения различных средств контроля безопасности для предотвращения несанкционированного доступа к данным о держателях карт.
 
-3. ISO 27001: The International Organization for Standardization (ISO) 27001 is a standard for information security management systems. It provides a framework for implementing controls and processes to protect sensitive information, including software applications.
+3. ISO 27001: Международная организация по стандартизации (ISO) 27001 - это стандарт для систем управления информационной безопасностью. Он обеспечивает основу для внедрения механизмов контроля и процессов защиты конфиденциальной информации, включая программные приложения.
 
-4. NIST Cybersecurity Framework: The National Institute of Standards and Technology (NIST) Cybersecurity Framework is a set of guidelines for managing and reducing cybersecurity risks. It provides a framework for organizations to identify, protect, detect, respond to, and recover from security incidents.
+4. NIST Cybersecurity Framework: Концепция кибербезопасности Национального института стандартов и технологий (NIST) представляет собой набор рекомендаций по управлению и снижению рисков кибербезопасности. Она предоставляет организациям основу для выявления, защиты, обнаружения, реагирования и восстановления после инцидентов безопасности.
 
-5. BSIMM: The Building Security In Maturity Model (BSIMM) is a software security framework that provides a measurement of an organization's software security program maturity. It identifies best practices and benchmarks for implementing a successful software security program.
+5. BSIMM: Building Security In Maturity Model (BSIMM) - это система безопасности программного обеспечения, которая позволяет оценить зрелость программы безопасности программного обеспечения организации. Она определяет лучшие практики и контрольные показатели для реализации успешной программы безопасности программного обеспечения.
 
-6. CSA: The Cloud Security Alliance (CSA) provides guidance for secure cloud computing. Its Cloud Controls Matrix provides a framework for organizations to assess the security of cloud service providers.
+6. CSA: Cloud Security Alliance (CSA) предоставляет руководство по безопасным облачным вычислениям. Матрица контроля облачных вычислений предоставляет организациям основу для оценки безопасности поставщиков облачных услуг.
 
-7. CWE/SANS Top 25: A list of the top 25 most dangerous software errors, as identified by the Common Weakness Enumeration (CWE) and the SANS Institute.
-
-
-Cheatsheet with rules/policies for preventing OWASP Top 10 vulnerabilities
+7. CWE/SANS Top 25: Список 25 наиболее опасных ошибок в программном обеспечении, составленный организацией Common Weakness Enumeration (CWE) и Институтом SANS.
 
 
-| Type    | Vulnerability   | Rule/Policy |
+Шпаргалка с правилами/политиками для предотвращения уязвимостей OWASP Top 10
+
+
+| Тип    | Уязвимость   | Правило/политика |
 |:---------------|:---------------------|:---------------------|
-| `A1: Injection` | 	SQL Injection	 | Use prepared statements and parameterized queries. Sanitize input and validate parameters. |
-| `A1: Injection` | 	NoSQL Injection	 | Use parameterized queries with built-in protections. Sanitize input and validate parameters. |
-| `A1: Injection` | 	LDAP Injection	 | Use parameterized queries and escape special characters. |
-| `A1: Injection` | 	Command Injection	 | Use safe APIs or libraries that do not allow arbitrary command execution. Sanitize input and validate parameters. |
-| `A2: Broken Authentication and Session Management` | 	Weak Passwords	 | Enforce strong password policies, including complexity requirements and regular password changes. Use multi-factor authentication. |
-| `A2: Broken Authentication and Session Management` | 	Session Fixation	 | Regenerate session ID upon login and logout. Use secure cookies with HttpOnly and Secure flags. |
-| `A3: Cross-Site Scripting (XSS)` | 	Reflected XSS	 | Sanitize all user input, especially from untrusted sources such as URLs, forms, and cookies. Use output encoding to prevent XSS attacks. |
-| `A3: Cross-Site Scripting (XSS)` | 	Stored XSS	 | Filter user-generated content to prevent malicious scripts from being stored. Use output encoding to prevent XSS attacks. |
-| `A4: Broken Access Control` | 	Insecure Direct Object Reference (IDOR)	 | Implement proper access controls and authorization checks to prevent direct object reference attacks. |
-| `A5: Security Misconfiguration` | 	Improper Error Handling	 | Do not reveal sensitive information in error messages or logs. Use custom error pages. |
-| `A6: Insecure Cryptographic Storage` | 	Weak Cryptography	 | Use strong, up-to-date encryption algorithms and keys. Implement proper key management and storage practices. |
-| `A7: Insufficient Transport Layer Protection` | 	Unencrypted Communications	 | Use HTTPS with secure protocols and strong encryption. Disable insecure protocols such as SSLv2 and SSLv3. |
-| `A8: Insecure Deserialization` | 	Insecure Deserialization	 | Validate and verify the integrity of serialized objects. Avoid accepting serialized objects from untrusted sources. |
-| `A9: Using Components with Known Vulnerabilities` | 	Outdated Software	 | Keep all software and libraries up-to-date with the latest security patches. Monitor for vulnerabilities and apply patches as soon as possible. |
-| `A10: Insufficient Logging and Monitoring` | 	Lack of Monitoring	 | Implement robust logging and monitoring practices to detect and respond to security events. Use SIEM tools and alerting systems. |
+| `A1: Инъекция` | 	SQL Инъекция	 | Используйте подготовленные операторы и параметризованные запросы. Дезинфекция вводимых данных и проверка параметров. |
+| `A1: Инъекция` | 	NoSQL Инъекция	 | Используйте параметризованные запросы со встроенными средствами защиты. Дезинфекция ввода и проверка параметров. |
+| `A1: Инъекция` | 	LDAP Инъекция	 | Используйте параметризованные запросы и экранируйте специальные символы. |
+| `A1: Инъекция` | 	Command Инъекция	 | Используйте безопасные API или библиотеки, не позволяющие выполнять произвольные команды. Дезинфицируйте вводимые данные и проверяйте параметры. |
+| `A2: Нарушение аутентификации и управления сеансами` | 	Слабые пароли	 | Применяйте строгие политики паролей, включая требования к сложности и регулярной смене паролей. Используйте многофакторную аутентификацию. |
+| `A2: Нарушение аутентификации и управления сеансами` | 	Фиксация сеанса	 | Регенерируйте идентификатор сессии при входе и выходе из системы. Используйте безопасные файлы cookie с флагами HttpOnly и Secure. |
+| `A3: Межсайтовый скриптинг (XSS)` | 	Отраженный XSS	 | Дезинфицируйте все вводимые пользователем данные, особенно из ненадежных источников, таких как URL, формы и cookies. Используйте кодировку вывода для предотвращения XSS-атак. |
+| `A3: Межсайтовый скриптинг (XSS)` | 	Хранимый XSS	 | Фильтруйте пользовательский контент, чтобы предотвратить сохранение вредоносных скриптов. Используйте кодировку вывода для предотвращения XSS-атак. |
+| `A4: Нарушение контроля доступа` | 	Небезопасная прямая ссылка на объект (IDOR)	 | Внедрите надлежащие средства контроля доступа и проверки авторизации для предотвращения атак с прямой ссылкой на объект. |
+| `A5: Неправильная конфигурация системы безопасности` | 	Неправильная обработка ошибок	 | Не раскрывайте конфиденциальную информацию в сообщениях об ошибках или журналах. Используйте пользовательские страницы ошибок. |
+| `A6: Небезопасное криптографическое хранилище` | 	Слабая криптография	 | Используйте надежные, современные алгоритмы шифрования и ключи. Применяйте надлежащие методы управления и хранения ключей. |
+| `A7: Недостаточная защита транспортного уровня` | 	Незашифрованные сообщения	 | Используйте HTTPS с безопасными протоколами и надежным шифрованием. Отключите небезопасные протоколы, такие как SSLv2 и SSLv3. |
+| `A8: Небезопасная десериализация` | 	Небезопасная десериализация	 | Проверяйте и удостоверяйте целостность сериализованных объектов. Не принимайте сериализованные объекты из ненадежных источников. |
+| `A9: Использование компонентов с известными уязвимостями` | 	Устаревшее программное обеспечение	 | Поддерживайте все программное обеспечение и библиотеки в актуальном состоянии с помощью последних патчей безопасности. Отслеживайте уязвимости и применяйте исправления как можно скорее. |
+| `A10: Ненадлежащее протоколирование и мониторинг` | 	Отсутствие мониторинга	 | Внедрите надежные методы регистрации и мониторинга для обнаружения событий безопасности и реагирования на них. Используйте инструменты SIEM и системы оповещения. |
 
 
 ## DREAD:
@@ -64,63 +64,63 @@ Cheatsheet with rules/policies for preventing OWASP Top 10 vulnerabilities
 ![dread](../../../assets/images/dread.png)
 
 
-* Damage potential: How much damage could be caused if the vulnerability is exploited?
-* Reproducibility: How easy is it to reproduce the vulnerability?
-* Exploitability: How easy is it to actually exploit the vulnerability?
-* Affected users: How many users or systems are affected by the vulnerability?
-* Discoverability: How easy is it for an attacker to discover the vulnerability?
+* Потенциал ущерба: какой ущерб может быть нанесен, если уязвимость будет использована?
+* Воспроизводимость: насколько легко воспроизвести уязвимость?
+* Эксплуатационная пригодность: насколько легко использовать уязвимость?
+* Затронутые пользователи: Сколько пользователей или систем затронуты уязвимостью?
+* Обнаруживаемость: насколько легко злоумышленнику обнаружить уязвимость?
 
-By evaluating each of these factors, organizations can assign a score to a particular vulnerability and use that score to determine which vulnerabilities pose the greatest risk and should be addressed first.
+Оценивая каждый из этих факторов, организации могут присвоить определенный балл той или иной уязвимости и использовать его для определения того, какие уязвимости представляют наибольший риск и должны быть устранены в первую очередь.
 
 
 
-## SDL (Security Development Lifecycle)
+## SDL (Жизненный цикл разработки систем безопасности)
 
-### Training:
+### Обучение:
 
-* Core security training
-* Requirements:
-* Establish security requirements 
-* Create quality gates/bug bars 
-* Perform security and privacy risk assessments
+* Обучение основам безопасности
+* Требования:
+* Установить требования к безопасности 
+* Создание ворот качества/багов 
+* Проводить оценку рисков безопасности и конфиденциальности
 
-### Design:
+### Дизайн:
 
-* Establish design requirements 
-* Perform attack surface analysis reduction 
-* Use threat modeling 
+* Установите требования к дизайну 
+* Проведите анализ поверхности атаки 
+* Используйте моделирование угроз 
 
-### Implementation:
+### Выполнение:
 
-* Use approved tools 
-* Deprecate unsafe functions 
-* Perform static analysis 
+* Используйте одобренные инструменты 
+* Избавьтесь от небезопасных функций 
+* Выполнять статический анализ 
 
-### Verification:
+### Проверка:
 
-* Perform dynamic analysis 
-* Perform fuzz testing 
-* Conduct attack surface review
+* Проведите динамический анализ 
+* Проведите фазз-тестирование 
+* Проведите анализ поверхности атаки
 
-### Release:
+### Выпуск:
 
-* Create an incident response plan 
-* Conduct final security review 
-* Certify, release, and archive 
+* Создание плана реагирования на инциденты 
+* Проведите окончательную проверку безопасности 
+* Сертификация, выпуск и архивация 
 
-### Response:
+### Ответные действия:
 
-* Execute incident response plan 
+* Выполнение плана реагирования на инциденты 
 
 ## OWASP SAMM 
 
-OWASP SAMM categorizes security practices into four key business 
+OWASP SAMM классифицирует методы обеспечения безопасности по четырем основным направлениям 
 
-### Governance:
+### Управление:
 
-* Strategy and metrics 
-* Policy and compliance 
-* Education and guidance 
+* Стратегия и показатели 
+* Политика и соблюдение требований 
+* Образование и руководство 
 
 ### Construction:
 
