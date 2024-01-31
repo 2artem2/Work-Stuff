@@ -122,20 +122,20 @@ OWASP SAMM классифицирует методы обеспечения бе
 * Политика и соблюдение требований 
 * Образование и руководство 
 
-### Construction:
+### Строительство:
 
-* Threat assessment 
-* Security requirements 
-* Secure architecture 
+* Оценка угроз 
+* Требования безопасности 
+* Безопасная архитектура 
 
-### Verification:
+### Проверка:
 
-* Design review 
-* Implementation review 
-* Security testing
+* Проверка дизайна 
+* Проверка реализации 
+* Тестирование безопасности
 
-### Operations:
+### Операции:
 
-* Issue management 
-* Environment Hardening 
-* Operational enablement
+* Управление проблемами 
+* Укрепление среды 
+* Обеспечение возможности эксплуатации
