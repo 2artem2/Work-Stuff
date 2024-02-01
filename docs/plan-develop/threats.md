@@ -674,400 +674,400 @@ tm.generate_diagram("data_leakage_unauthorized_access_threat_model.png")
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Insecure Data Storage" threat scenario. It includes actors such as "Attacker" and "User" and a datastore representing sensitive data.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Небезопасное хранилище данных". Она включает таких агентов, как "Злоумышленник" и "Пользователь", а также хранилище данных, представляющее конфиденциальные данные.
 
-The threat model defines the "Insecure Data Storage" threat and includes attack paths such as "Exploiting Storage Vulnerability" by the attacker and "Unauthorized Access to Stored Data" by the user.
+Модель угроз определяет угрозу "Небезопасное хранилище данных" и включает такие пути атаки, как "Эксплуатация уязвимости хранилища" злоумышленником и "Несанкционированный доступ к хранимым данным" пользователем.
 
-The code generates a threat model diagram in PNG format, named "insecure_data_storage_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG с именем "insecure_data_storage_threat_model.png".
 
 ```
 from pytm import TM, Actor, Datastore
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Insecure Data Storage Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 user = Actor("User")
 
-# Create datastore
+# Создание хранилища данных
 datastore = Datastore("Sensitive Data")
 
-# Define insecure data storage threat
+# Определение угрозы небезопасного хранения данных
 tm.add_threat()
 tm.threat.name("Insecure Data Storage")
 tm.threat.description("Threat of insecure storage of sensitive data")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, datastore, "Exploiting Storage Vulnerability")
 tm.attack_path(user, datastore, "Unauthorized Access to Stored Data")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("insecure_data_storage_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Insecure Data Storage:
+Диаграмма модели угроз для небезопасного хранения данных:
 
-Concepts:
-- Insecure Data Storage: Storing sensitive data in an unprotected or vulnerable manner.
-- Data Encryption: Process of converting sensitive data into a format that is unreadable without the appropriate decryption key.
-- Data Leakage: Unintentional or unauthorized disclosure of sensitive data.
-- Data Access Controls: Mechanisms used to control and enforce authorized access to data.
+Концепции:
+- Небезопасное хранение данных: Хранение конфиденциальных данных незащищенным или уязвимым способом.
+- Шифрование данных: Процесс преобразования конфиденциальных данных в формат, который невозможно прочитать без соответствующего ключа дешифрования.
+- Утечка данных: Непреднамеренное или несанкционированное раскрытие конфиденциальных данных.
+- Контроль доступа к данным: Механизмы, используемые для контроля и обеспечения авторизованного доступа к данным.
 
-Users:
-1. Attackers:
-   - Threat: Unauthorized Data Access or Data Leakage
-   - Attempts to gain unauthorized access to sensitive data or exploit vulnerabilities to leak data.
+Пользователи:
+1. Злоумышленники:
+   - Угроза: Несанкционированный доступ к данным или утечка данных
+   - Попытки получить несанкционированный доступ к конфиденциальным данным или использовать уязвимости для утечки данных.
 
-2. System Administrator:
-   - Threat: Misconfiguration of Data Storage Security
-   - Misconfigures data storage settings, leaving sensitive data vulnerable to unauthorized access.
-   - Fails to implement or properly configure data encryption mechanisms.
+2. Системный администратор:
+   - Угроза: Неправильная настройка безопасности хранилища данных
+   - Неправильно настраивает параметры хранения данных, в результате чего конфиденциальные данные становятся уязвимыми для несанкционированного доступа.
+   - Не удается внедрить или правильно настроить механизмы шифрования данных.
 
-3. User:
-   - Threat: Accidental Data Leakage
-   - Unintentionally exposes sensitive data through insecure practices or misconfigurations.
+3. Пользователь:
+   - Угроза: Случайная утечка данных
+   - Непреднамеренное раскрытие конфиденциальных данных с помощью небезопасных методов или неправильной конфигурации.
 
-Components:
-1. Data Storage:
-   - Represents storage systems or databases where sensitive data is stored.
-   - Data Flow: Storage and retrieval of sensitive data.
+Компоненты:
+1. Хранилище данных:
+   - Представляет собой системы хранения или базы данных, в которых хранятся конфиденциальные данные.
+   - Поток данных: хранение и получение конфиденциальных данных.
 
-2. Data Encryption:
-   - Techniques and algorithms used to protect sensitive data by encrypting it.
-   - Data Flow: Encryption and decryption processes.
+2. Шифрование данных:
+   - Техники и алгоритмы, используемые для защиты конфиденциальных данных путем их шифрования.
+   - Поток данных: процессы шифрования и дешифрования.
 
-3. Data Access Controls:
-   - Mechanisms used to control and enforce authorized access to data.
-   - Data Flow: Authentication and authorization checks.
+3. Контроль доступа к данным:
+   - Механизмы, используемые для контроля и обеспечения санкционированного доступа к данным.
+   - Поток данных: проверки аутентификации и авторизации.
 
-Interactions:
-1. Attackers:
-   - Exploits vulnerabilities to gain unauthorized access to sensitive data.
-   - May use various techniques to extract and exfiltrate the data without detection.
+Взаимодействия:
+1. Злоумышленники:
+   - Используют уязвимости для получения несанкционированного доступа к конфиденциальным данным.
+   - Могут использовать различные техники для извлечения и утечки данных без обнаружения.
 
-2. System Administrator:
-   - Misconfigures data storage security settings, granting unauthorized users access to sensitive data.
-   - Fails to implement or properly configure data encryption mechanisms, leaving data vulnerable to unauthorized access.
+2. Системный администратор:
+   - Неправильно настраивает параметры безопасности хранения данных, предоставляя неавторизованным пользователям доступ к конфиденциальным данным.
+   - Не внедряет или не настраивает должным образом механизмы шифрования данных, что делает их уязвимыми для несанкционированного доступа.
 
-3. User:
-   - May accidentally expose sensitive data through insecure practices, such as sharing or mishandling information.
+3. Пользователь:
+   - Может случайно раскрыть конфиденциальные данные в результате небезопасных действий, таких как обмен информацией или неправильное обращение с ней.
 
-4. Data Storage:
-   - Stores sensitive data and requires robust security measures to protect it.
-   - May be vulnerable to unauthorized access if misconfigured or lacking proper security controls.
+4. Хранилище данных:
+   - Хранит конфиденциальные данные и требует надежных мер безопасности для их защиты.
+   - Может быть уязвимо для несанкционированного доступа при неправильной конфигурации или отсутствии надлежащих средств контроля безопасности.
 
-5. Data Encryption:
-   - Protects sensitive data by converting it into an unreadable format without the decryption key.
-   - Proper implementation and configuration of encryption algorithms are necessary to safeguard the data.
+5. Шифрование данных:
+   - Защищает конфиденциальные данные, преобразуя их в нечитаемый формат без ключа дешифрования.
+   - Для защиты данных необходима правильная реализация и настройка алгоритмов шифрования.
 
-6. Data Access Controls:
-   - Enforces authorized access to data based on authentication and authorization checks.
-   - Misconfigurations or vulnerabilities in access controls may result in unauthorized access.
+6. Контроль доступа к данным:
+   - Обеспечивает санкционированный доступ к данным на основе проверок аутентификации и авторизации.
+   - Неправильная конфигурация или уязвимости в средствах контроля доступа могут привести к несанкционированному доступу.
 ```
 
 
-### Inadequate network segmentation
+### Неадекватная сегментация сети
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Inadequate Network Segmentation" threat scenario. It includes actors such as "Attacker," "Internal User," and "External User," and defines boundaries for the internal and external networks.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Неадекватное сегментирование сети". Она включает такие действующие лица, как "Злоумышленник", "Внутренний пользователь" и "Внешний пользователь", и определяет границы для внутренней и внешней сетей.
 
-The threat model defines the "Inadequate Network Segmentation" threat and includes dataflows representing the flow of sensitive data, unauthorized access, exfiltration of sensitive data, and command and control.
+Модель угроз определяет угрозу "Неадекватное сегментирование сети" и включает потоки данных, представляющие поток конфиденциальных данных, несанкционированный доступ, утечку конфиденциальных данных, а также командование и контроль.
 
-The code generates a threat model diagram in PNG format, named "inadequate_network_segmentation_threat_model.png."
+Код генерирует диаграмму модели угрозы в формате PNG под названием "inadequate_network_segmentation_threat_model.png".
 
 
 ```
 from pytm import TM, Actor, Dataflow, Boundary
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Inadequate Network Segmentation Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 internalUser = Actor("Internal User")
 externalUser = Actor("External User")
 
-# Create boundaries
+# Создайте границы
 internalNetwork = Boundary("Internal Network")
 externalNetwork = Boundary("External Network")
 
-# Define dataflows
+# Определите потоки данных
 dataflow1 = Dataflow(internalUser, internalNetwork, "Sensitive Data Flow")
 dataflow2 = Dataflow(externalUser, internalNetwork, "Unauthorized Access")
 dataflow3 = Dataflow(internalNetwork, externalNetwork, "Exfiltration of Sensitive Data")
 dataflow4 = Dataflow(internalNetwork, externalNetwork, "Command and Control")
 
-# Define inadequate network segmentation threat
+# Определите угрозу неадекватной сегментации сети
 tm.add_threat()
 tm.threat.name("Inadequate Network Segmentation")
 tm.threat.description("Threat of inadequate segmentation between internal and external networks")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, dataflow2, "Exploiting Insufficient Segmentation")
 tm.attack_path(attacker, dataflow3, "Exfiltration of Sensitive Data")
 tm.attack_path(attacker, dataflow4, "Command and Control")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("inadequate_network_segmentation_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Inadequate Network Segmentation:
+Диаграмма модели угроз при неадекватном сегментировании сети:
 
-Concepts:
-- Network Segmentation: Dividing a network into smaller, isolated segments to enhance security and control access.
-- Inadequate Network Segmentation: Insufficient or improper separation of network segments, allowing unauthorized access or lateral movement.
-- Network Firewall: A security device that monitors and filters network traffic based on predetermined security rules.
-- Data Flow: The movement of data between different network segments.
+Концепции:
+- Сегментация сети: Разделение сети на более мелкие, изолированные сегменты для повышения безопасности и контроля доступа.
+- Неадекватное сегментирование сети: Недостаточное или неправильное разделение сегментов сети, позволяющее несанкционированный доступ или боковое перемещение.
+- Сетевой брандмауэр: Устройство безопасности, которое контролирует и фильтрует сетевой трафик на основе заранее установленных правил безопасности.
+- Поток данных: перемещение данных между различными сегментами сети.
 
-Users:
-1. Attackers:
-   - Threat: Unauthorized Access or Lateral Movement
-   - Attempts to gain unauthorized access to sensitive data or systems within different network segments.
-   - Exploits weaknesses in network segmentation to move laterally and escalate privileges.
+Пользователи:
+1. Злоумышленники:
+   - Угроза: Несанкционированный доступ или латеральное перемещение
+   - Попытка получить несанкционированный доступ к конфиденциальным данным или системам в различных сегментах сети.
+   - Использует слабые места в сегментации сети для перемещения вбок и повышения привилегий.
 
-2. System Administrator:
-   - Threat: Misconfiguration of Network Segmentation
-   - Misconfigures network segmentation rules, allowing unauthorized access between network segments.
-   - Fails to implement proper firewall rules to restrict network traffic.
+2. Системный администратор:
+   - Угроза: Неправильная конфигурация сегментации сети
+   - Неправильно настраивает правила сегментации сети, позволяя несанкционированный доступ между сегментами сети.
+   - Невозможность применения надлежащих правил брандмауэра для ограничения сетевого трафика.
 
-Components:
-1. Network Segments:
-   - Represents isolated network segments within the infrastructure.
-   - Data Flow: Controlled exchange of data between segments.
+Компоненты:
+1. Сегменты сети:
+   - Представляют собой изолированные сегменты сети в инфраструктуре.
+   - Поток данных: контролируемый обмен данными между сегментами.
 
-2. Network Firewall:
-   - Security device placed at the boundaries between network segments.
-   - Controls inbound and outbound network traffic based on predetermined rules.
-   - Data Flow: Filtering and routing of network traffic.
+2. Сетевой брандмауэр:
+   - Устройство безопасности, размещенное на границах между сегментами сети.
+   - Контролирует входящий и исходящий сетевой трафик на основе заранее установленных правил.
+   - Поток данных: фильтрация и маршрутизация сетевого трафика.
 
-Interactions:
-1. Attackers:
-   - Exploit weaknesses in network segmentation to gain unauthorized access to sensitive data or systems.
-   - May attempt lateral movement within the network, exploiting inadequate segmentation.
+Взаимодействие:
+1. Злоумышленники:
+   - Используют слабые места в сегментации сети для получения несанкционированного доступа к конфиденциальным данным или системам.
+   - Могут пытаться латерально перемещаться по сети, используя неадекватную сегментацию.
 
-2. System Administrator:
-   - Misconfigures network segmentation rules, allowing unauthorized access between network segments.
-   - Fails to properly configure firewall rules, resulting in ineffective traffic filtering and segmentation.
+2. Системный администратор:
+   - Неправильно настраивает правила сегментации сети, позволяя несанкционированный доступ между сегментами сети.
+   - Неправильно настраивает правила брандмауэра, что приводит к неэффективной фильтрации трафика и сегментации.
 
-3. Network Segments:
-   - Represent isolated segments within the network infrastructure.
-   - Require proper configuration and segmentation rules to ensure authorized access and prevent unauthorized movement.
+3. Сегменты сети:
+   - Представляют собой изолированные сегменты в сетевой инфраструктуре.
+   - Требуют правильной конфигурации и правил сегментации для обеспечения авторизованного доступа и предотвращения несанкционированного перемещения.
 
-4. Network Firewall:
-   - Controls the flow of network traffic between segments based on predefined security rules.
-   - Misconfiguration or inadequate rule set may lead to unauthorized access or lateral movement.
+4. Сетевой брандмауэр:
+   - Контролирует поток сетевого трафика между сегментами на основе заранее определенных правил безопасности.
+   - Неправильная конфигурация или неадекватный набор правил могут привести к несанкционированному доступу или боковому перемещению.
 
 ```
 
-### Man-in-the-Middle attacks
+### Атаки типа "человек посередине
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Man-in-the-Middle (MitM) Attacks" threat scenario. It includes actors such as "Attacker," "Client," and "Server," and defines boundaries for the client and server components.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Man-in-the-Middle (MitM) Attacks". Она включает такие субъекты, как "Злоумышленник", "Клиент" и "Сервер", и определяет границы для клиентских и серверных компонентов.
 
-The threat model defines the "Man-in-the-Middle Attacks" threat and includes a dataflow representing the flow of sensitive data between the client and server.
+Модель угроз определяет угрозу "Атаки человека посередине" и включает поток данных, представляющий поток конфиденциальных данных между клиентом и сервером.
 
-The code generates a threat model diagram in PNG format, named "man_in_the_middle_attacks_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG с именем "man_in_the_middle_attacks_threat_model.png".
 
 
 
 ```
 from pytm import TM, Actor, Dataflow, Boundary
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Man-in-the-Middle Attacks Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 client = Actor("Client")
 server = Actor("Server")
 
-# Create boundaries
+# Создайте границы
 clientBoundary = Boundary("Client Boundary")
 serverBoundary = Boundary("Server Boundary")
 
-# Define dataflows
+# Определите потоки данных
 dataflow1 = Dataflow(client, server, "Sensitive Data Flow")
 
-# Define Man-in-the-Middle attack threat
+# Определение угрозы атаки "человек посередине
 tm.add_threat()
 tm.threat.name("Man-in-the-Middle (MitM) Attacks")
 tm.threat.description("Threat of an attacker intercepting and tampering with communication between client and server")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, dataflow1, "Intercepting and Tampering with Communication")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("man_in_the_middle_attacks_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Man-in-the-Middle (MitM) Attacks:
+Диаграмма модели угроз для атак типа "человек посередине" (MitM):
 
-Concepts:
-- Man-in-the-Middle (MitM) Attack: A type of attack where an attacker intercepts communication between two parties to eavesdrop, modify, or inject malicious content.
-- Network Traffic Encryption: The process of encrypting network traffic to protect it from unauthorized interception or tampering.
-- Secure Communication Protocols: Protocols that provide secure and authenticated communication channels.
-- Data Flow: The exchange of data between communicating parties.
+Концепции:
+- Атака "человек посередине" (MitM): Тип атаки, при которой злоумышленник перехватывает связь между двумя сторонами, чтобы подслушать, изменить или внедрить вредоносное содержимое.
+- Шифрование сетевого трафика: Процесс шифрования сетевого трафика для защиты его от несанкционированного перехвата или фальсификации.
+- Протоколы безопасной связи: Протоколы, обеспечивающие безопасные и аутентифицированные каналы связи.
+- Поток данных: обмен данными между взаимодействующими сторонами.
 
-Users:
-1. Attackers:
-   - Threat: Intercept and Manipulate Communication
-   - Attempts to intercept network traffic between two parties and manipulate the data being transmitted.
-   - Uses various techniques, such as ARP spoofing or DNS spoofing, to position themselves as a "man in the middle."
+Пользователи:
+1. Злоумышленники:
+   - Угроза: перехват и манипулирование коммуникациями
+   - Попытка перехватить сетевой трафик между двумя сторонами и манипулировать передаваемыми данными.
+   - Использует различные техники, такие как ARP-спуфинг или DNS-спуфинг, чтобы позиционировать себя как "человека посередине".
 
-2. System Administrator:
-   - Threat: Misconfiguration of Security Controls
-   - Fails to properly configure network security controls, allowing attackers to exploit vulnerabilities and perform MitM attacks.
-   - Does not enforce the use of secure communication protocols or encryption mechanisms.
+2. Системный администратор:
+   - Угроза: Неправильная настройка средств контроля безопасности
+   - Не настраивает должным образом средства контроля безопасности сети, что позволяет злоумышленникам использовать уязвимости и осуществлять MitM-атаки.
+   - Не следит за использованием безопасных протоколов связи и механизмов шифрования.
 
-3. Users:
-   - Threat: Unencrypted Communication
-   - Engage in communication without proper encryption or secure communication protocols.
-   - May unknowingly connect to compromised networks or fall victim to MitM attacks.
+3. Пользователи:
+   - Угроза: Незашифрованная связь
+   - Осуществляют связь без надлежащего шифрования или безопасных протоколов связи.
+   - Могут неосознанно подключаться к взломанным сетям или стать жертвой MitM-атак.
 
-Components:
-1. Communication Channel:
-   - Represents the medium through which parties communicate, such as network connections or wireless networks.
-   - Data Flow: Transmission of data between communicating parties.
+Компоненты:
+1. Канал связи:
+   - Представляет собой среду, через которую осуществляется связь между сторонами, например сетевые соединения или беспроводные сети.
+   - Поток данных: передача данных между взаимодействующими сторонами.
 
-2. Secure Communication Protocols:
-   - Protocols that provide secure and authenticated communication channels, such as HTTPS, SSL/TLS, or VPN.
-   - Data Flow: Encrypted transmission of data between parties.
+2. Протоколы безопасной связи:
+   - Протоколы, обеспечивающие безопасные и аутентифицированные каналы связи, такие как HTTPS, SSL/TLS или VPN.
+   - Поток данных: зашифрованная передача данных между сторонами.
 
-Interactions:
-1. Attackers:
-   - Position themselves as a "man in the middle" by intercepting and manipulating network traffic.
-   - Exploit vulnerabilities in the communication channel or lack of encryption to eavesdrop, modify, or inject malicious content.
+Взаимодействие:
+1. Злоумышленники:
+   - Позиционируют себя как "человек посередине", перехватывая и манипулируя сетевым трафиком.
+   - Используют уязвимости в канале связи или отсутствие шифрования для подслушивания, изменения или внедрения вредоносного содержимого.
 
-2. System Administrator:
-   - Misconfigures network security controls, leaving communication channels vulnerable to MitM attacks.
-   - Fails to enforce the use of secure communication protocols or encryption mechanisms.
+2. Системный администратор:
+   - Неправильно настраивает средства контроля сетевой безопасности, делая каналы связи уязвимыми для MitM-атак.
+   - Не следит за использованием безопасных протоколов связи или механизмов шифрования.
 
-3. Users:
-   - Engage in communication without using secure communication protocols or encryption.
-   - May unknowingly connect to compromised networks or fall victim to MitM attacks.
+3. Пользователи:
+   - Вступают в коммуникацию без использования безопасных протоколов связи или шифрования.
+   - Могут неосознанно подключаться к взломанным сетям или становиться жертвами MitM-атак.
 
-4. Communication Channel:
-   - Represents the medium through which parties communicate.
-   - Vulnerable to interception and manipulation by attackers positioned as a "man in the middle."
+4. Канал связи:
+   - Представляет собой средство, с помощью которого стороны осуществляют связь.
+   - Уязвим для перехвата и манипуляций со стороны злоумышленников, позиционирующих себя как "человек посередине".
 
-5. Secure Communication Protocols:
-   - Provide secure and authenticated communication channels.
-   - Encryption and proper configuration of these protocols protect against MitM attacks.
+5. Протоколы безопасной связи:
+   - Обеспечивают безопасные и аутентифицированные каналы связи.
+   - Шифрование и правильная настройка этих протоколов защищают от MitM-атак.
 ```
 
 
-### Resource exhaustion	
+### Истощение ресурсов
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Resource Exhaustion" threat scenario. It includes actors such as "Attacker" and "Service" and defines a dataflow between them.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Исчерпание ресурсов". Она включает в себя такие субъекты, как "Злоумышленник" и "Сервис", и определяет поток данных между ними.
 
-The threat model defines the "Resource Exhaustion" threat and includes an attack path representing the attacker's ability to consume excessive resources, leading to service availability impact.
+Модель угроз определяет угрозу "Исчерпание ресурсов" и включает путь атаки, представляющий способность злоумышленника потреблять чрезмерное количество ресурсов, что приводит к нарушению доступности сервиса.
 
-The code generates a threat model diagram in PNG format, named "resource_exhaustion_threat_model.png."
+Код генерирует диаграмму модели угрозы в формате PNG с именем "resource_exhaustion_threat_model.png".
 
 
 ```
 from pytm import TM, Actor, Dataflow
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Resource Exhaustion Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 service = Actor("Service")
 
-# Define dataflows
+# Определите потоки данных
 dataflow = Dataflow(attacker, service, "Data Flow")
 
-# Define Resource Exhaustion threat
+# Определите угрозу исчерпания ресурсов
 tm.add_threat()
 tm.threat.name("Resource Exhaustion")
 tm.threat.description("Threat of an attacker consuming excessive resources and impacting service availability")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, dataflow, "Excessive Resource Consumption")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("resource_exhaustion_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Resource Exhaustion:
+Диаграмма модели угрозы для исчерпания ресурсов:
 
-Concepts:
-- Resource Exhaustion: A type of attack where an attacker consumes excessive resources, such as CPU, memory, disk space, or network bandwidth, leading to service disruption or denial of service.
-- System Resources: Refers to the various computing resources available within a system, including CPU, memory, disk space, and network bandwidth.
-- Resource Management: The process of efficiently allocating and managing system resources.
-- Data Flow: The movement of data or requests that require system resources.
+Концепции:
+- Исчерпание ресурсов: Тип атаки, при которой злоумышленник потребляет чрезмерное количество ресурсов, таких как процессор, память, дисковое пространство или пропускная способность сети, что приводит к прерыванию обслуживания или отказу в обслуживании.
+- Системные ресурсы: Относится к различным вычислительным ресурсам, доступным в системе, включая процессор, память, дисковое пространство и пропускную способность сети.
+- Управление ресурсами: Процесс эффективного выделения и управления системными ресурсами.
+- Поток данных: перемещение данных или запросов, требующих системных ресурсов.
 
-Users:
-1. Attackers:
-   - Threat: Resource Consumption
-   - Attempt to consume excessive system resources to cause service disruption or denial of service.
-   - Exploit vulnerabilities or design weaknesses to exhaust system resources.
+Пользователи:
+1. Злоумышленники:
+   - Угроза: Потребление ресурсов
+   - Попытка потреблять чрезмерное количество системных ресурсов, чтобы вызвать перебои в работе или отказ в обслуживании.
+   - Использование уязвимостей или недостатков конструкции для исчерпания системных ресурсов.
 
-2. System Administrators:
-   - Threat: Inadequate Resource Management
-   - Fail to implement proper resource management techniques, allowing attackers to consume resources beyond their normal limits.
-   - Lack monitoring and control mechanisms to detect and mitigate resource exhaustion attacks.
+2. Системные администраторы:
+   - Угроза: неадекватное управление ресурсами
+   - Не применяют надлежащие методы управления ресурсами, что позволяет злоумышленникам потреблять ресурсы сверх установленных пределов.
+   - Отсутствие механизмов мониторинга и контроля для обнаружения и смягчения последствий атак на истощение ресурсов.
 
-Components:
-1. System Resources:
-   - Represents the various computing resources within a system, including CPU, memory, disk space, and network bandwidth.
-   - Data Flow: Requests or operations that require system resources.
+Компоненты:
+1. Системные ресурсы:
+   - Представляют собой различные вычислительные ресурсы в системе, включая процессор, память, дисковое пространство и пропускную способность сети.
+   - Поток данных: Запросы или операции, для выполнения которых требуются системные ресурсы.
 
-2. Resource Management:
-   - Techniques and mechanisms employed to efficiently allocate and manage system resources.
-   - Data Flow: Allocation and utilization of system resources.
+2. Управление ресурсами:
+   - Техники и механизмы, используемые для эффективного распределения и управления системными ресурсами.
+   - Поток данных: распределение и использование системных ресурсов.
 
-Interactions:
-1. Attackers:
-   - Conduct resource exhaustion attacks by overwhelming system resources.
-   - Exploit vulnerabilities or design weaknesses to maximize resource consumption.
+Взаимодействие:
+1. Злоумышленники:
+   - Проводят атаки на исчерпание ресурсов, перегружая системные ресурсы.
+   - Используют уязвимости или недостатки конструкции для максимального потребления ресурсов.
 
-2. System Administrators:
-   - Implement resource management techniques to prevent resource exhaustion attacks.
-   - Monitor resource usage and detect abnormal resource consumption patterns.
+2. Системные администраторы:
+   - Внедряют методы управления ресурсами для предотвращения атак на истощение ресурсов.
+   - Отслеживайте использование ресурсов и выявляйте аномальные модели потребления ресурсов.
 
-3. System Resources:
-   - Available computing resources required for normal system operation.
-   - Can be overwhelmed and exhausted by attackers consuming excessive resources.
+3. Системные ресурсы:
+   - Доступные вычислительные ресурсы, необходимые для нормальной работы системы.
+   - Могут быть перегружены и исчерпаны злоумышленниками, потребляющими чрезмерное количество ресурсов.
 
-4. Resource Management:
-   - Controls and manages the allocation of system resources.
-   - Ensures efficient utilization and prevents resource exhaustion.
+4. Управление ресурсами:
+   - Контролирует и управляет распределением системных ресурсов.
+   - Обеспечивает эффективное использование и предотвращает исчерпание ресурсов.
 ```
 
 
-### Distributed DoS (DDoS) attacks
+### Распределенные DoS-атаки (DDoS)
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Distributed Denial of Service (DDoS) Attacks" threat scenario. It includes actors such as "Attacker" and "Target" and defines a dataflow between them.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Распределенные атаки типа "отказ в обслуживании" (DDoS)". Она включает в себя таких участников, как "Атакующий" и "Цель", и определяет поток данных между ними.
 
-The threat model defines the "DDoS Attacks" threat and includes an attack path representing the attacker overwhelming the target system with a high volume of requests, causing denial of service.
+Модель угроз определяет угрозу "DDoS-атаки" и включает путь атаки, представляющий атакующего, который переполняет целевую систему большим количеством запросов, вызывая отказ в обслуживании.
 
-The code generates a threat model diagram in PNG format, named "ddos_attacks_threat_model.png."
+Код генерирует диаграмму модели угрозы в формате PNG с именем "ddos_attacks_threat_model.png".
 
 ```
 from pytm import TM, Actor, Dataflow
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("DDoS Attacks Threat Model")
 
 # Create actors
@@ -1157,1027 +1157,1026 @@ The code generates a threat model diagram in PNG format, named "misconfigured_se
 ```
 from pytm import TM, Actor, Dataflow
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Misconfigured Security Settings Threat Model")
 
-# Create actors
+# Создать действующий субъек
 administrator = Actor("Administrator")
 attacker = Actor("Attacker")
 
-# Define dataflows
+# Определите потоки данных
 dataflow = Dataflow(administrator, attacker, "Data Flow")
 
-# Define Misconfigured Security Settings threat
+# Определение угрозы неверно настроенных параметров безопасности
 tm.add_threat()
 tm.threat.name("Misconfigured Security Settings")
 tm.threat.description("Threat arising from misconfigured security settings, leading to vulnerabilities and potential unauthorized access")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(administrator, dataflow, "Misconfiguration Attack")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("misconfigured_security_settings_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Misconfigured Security Settings:
+Диаграмма модели угроз для неправильно настроенных параметров безопасности:
 
-Concepts:
-- Misconfigured Security Settings: Configuration settings that do not adhere to recommended security practices, leaving systems or components vulnerable to attacks or unauthorized access.
-- Security Configuration: The settings and configurations applied to systems, applications, or network components to enforce security controls and protect against threats.
-- Attack Surface: The collection of entry points or vulnerabilities that can be exploited by attackers to gain unauthorized access or compromise a system.
-- Attack Path: The path or sequence of steps an attacker can take to exploit misconfigured security settings and compromise the system.
+Концепции:
+- Неправильно сконфигурированные параметры безопасности: Параметры конфигурации, которые не соответствуют рекомендуемым практикам безопасности, что делает системы или компоненты уязвимыми для атак или несанкционированного доступа.
+- Конфигурация безопасности: Параметры и конфигурации, применяемые к системам, приложениям или сетевым компонентам для обеспечения контроля безопасности и защиты от угроз.
+- Поверхность атаки: Совокупность точек входа или уязвимостей, которые могут быть использованы злоумышленниками для получения несанкционированного доступа или компрометации системы.
+- Путь атаки: Путь или последовательность шагов, которые может предпринять злоумышленник, чтобы использовать неверно настроенные параметры безопасности и скомпрометировать систему.
 
-Users:
-1. System Administrators:
-   - Threat: Inadequate Configuration
-   - Responsible for configuring and managing security settings of systems, applications, or network components.
-   - May inadvertently misconfigure security settings, leaving vulnerabilities or weak points open to exploitation.
+Пользователи:
+1. Системные администраторы:
+   - Угроза: Неадекватная конфигурация
+   - Отвечают за настройку и управление параметрами безопасности систем, приложений или сетевых компонентов.
+   - Может случайно неправильно настроить параметры безопасности, оставив уязвимости или слабые места открытыми для эксплуатации.
 
-2. Attackers:
-   - Threat: Unauthorized Access or Exploitation
-   - Attempt to exploit misconfigured security settings to gain unauthorized access, escalate privileges, or compromise the system.
-   - Exploit weaknesses in security configurations to bypass controls and launch attacks.
+2. Злоумышленники:
+   - Угроза: Несанкционированный доступ или эксплуатация
+   - Попытка использовать неправильно настроенные параметры безопасности для получения несанкционированного доступа, повышения привилегий или компрометации системы.
+   - Использование слабых мест в конфигурациях безопасности для обхода средств контроля и проведения атак.
 
-Components:
-1. System or Application:
-   - Represents the system or application with security settings that need to be configured correctly.
-   - Contains various security-related configurations that affect the overall security posture.
+Компоненты:
+1. Система или приложение:
+   - Представляет собой систему или приложение с параметрами безопасности, которые должны быть правильно сконфигурированы.
+   - Содержит различные конфигурации, связанные с безопасностью, которые влияют на общий уровень безопасности.
 
-2. Security Configuration Settings:
-   - Specific settings or configurations applied to systems, applications, or network components to enforce security controls.
-   - Include settings related to authentication, access controls, encryption, logging, auditing, and other security measures.
+2. Параметры конфигурации безопасности:
+   - Конкретные параметры или конфигурации, применяемые к системам, приложениям или сетевым компонентам для обеспечения контроля безопасности.
+   - Включают настройки, связанные с аутентификацией, контролем доступа, шифрованием, регистрацией, аудитом и другими мерами безопасности.
 
-Interactions:
-1. System Administrators:
-   - Responsible for configuring and managing security settings.
-   - May misconfigure security settings, leaving vulnerabilities or weak points open to exploitation by attackers.
+Взаимодействие:
+1. Системные администраторы:
+   - Отвечают за настройку и управление параметрами безопасности.
+   - Могут неправильно настроить параметры безопасности, оставляя уязвимости или слабые места открытыми для использования злоумышленниками.
 
-2. Attackers:
-   - Attempt to exploit misconfigured security settings to gain unauthorized access or compromise the system.
-   - Exploit weaknesses in security configurations to bypass controls and launch attacks.
+2. Злоумышленники:
+   - Пытаются использовать неправильно настроенные параметры безопасности для получения несанкционированного доступа или компрометации системы.
+   - Используют слабые места в конфигурациях безопасности для обхода средств контроля и проведения атак.
 
-3. System or Application:
-   - Contains security configurations that need to be correctly applied and managed.
-   - Vulnerable to attacks and unauthorized access if security settings are misconfigured.
+3. Система или приложение:
+   - Содержит конфигурации безопасности, которые необходимо правильно применять и управлять ими.
+   - Уязвима для атак и несанкционированного доступа, если настройки безопасности неверно сконфигурированы.
 
-4. Attack Surface:
-   - Represents the collection of entry points or vulnerabilities that attackers can exploit.
-   - Misconfigured security settings may increase the attack surface and provide opportunities for exploitation.
+4. Поверхность атаки:
+   - Представляет собой совокупность точек входа или уязвимостей, которые могут использовать злоумышленники.
+   - Неправильно настроенные параметры безопасности могут увеличить поверхность атаки и предоставить возможности для эксплуатации.
 
-5. Attack Path:
-   - Represents the sequence of steps an attacker can take to exploit misconfigured security settings.
-   - Follows the path of least resistance to compromise the system or gain unauthorized access.
+5. Путь атаки:
+   - Представляет собой последовательность шагов, которые может предпринять злоумышленник для использования неверно настроенных параметров безопасности.
+   - Идет по пути наименьшего сопротивления, чтобы скомпрометировать систему или получить несанкционированный доступ.
 ```
 
 
-### Insecure default configurations
+### Небезопасные конфигурации по умолчанию
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Insecure Default Configurations" threat scenario. It includes actors such as "Administrator" and "Attacker" and defines a dataflow between them.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Небезопасные конфигурации по умолчанию". Она включает такие действующие лица, как "Администратор" и "Злоумышленник", и определяет поток данных между ними.
 
-The threat model defines the "Insecure Default Configurations" threat and describes the threat arising from insecure default configurations, leading to vulnerabilities and potential unauthorized access.
+Модель угроз определяет угрозу "Небезопасные конфигурации по умолчанию" и описывает угрозу, возникающую из-за небезопасных конфигураций по умолчанию, приводящих к уязвимостям и потенциальному несанкционированному доступу.
 
-The code generates a threat model diagram in PNG format, named "insecure_default_configurations_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG с именем "insecure_default_configurations_threat_model.png".
 
 ```
 from pytm import TM, Actor, Dataflow
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Insecure Default Configurations Threat Model")
 
-# Create actors
+# Создать действующий субъек
 administrator = Actor("Administrator")
 attacker = Actor("Attacker")
 
-# Define dataflows
+# Определите потоки данных
 dataflow = Dataflow(administrator, attacker, "Data Flow")
 
-# Define Insecure Default Configurations threat
+# Определение угрозы небезопасных конфигураций по умолчанию
 tm.add_threat()
 tm.threat.name("Insecure Default Configurations")
 tm.threat.description("Threat arising from insecure default configurations, leading to vulnerabilities and potential unauthorized access")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(administrator, dataflow, "Insecure Default Configurations Attack")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("insecure_default_configurations_threat_model.png")
 ```
 
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Insecure Default Configurations:
+Диаграмма модели угроз для небезопасных конфигураций по умолчанию:
 
-Concepts:
-- Insecure Default Configurations: System or application configurations that are insecure or weak by default, often set during installation or initialization.
-- Attack Surface: The collection of entry points or vulnerabilities that can be exploited by attackers to gain unauthorized access or compromise a system.
-- Attack Path: The path or sequence of steps an attacker can take to exploit insecure default configurations and compromise the system.
+Концепции:
+- Небезопасные конфигурации по умолчанию: Конфигурации системы или приложения, которые небезопасны или слабы по умолчанию, часто устанавливаемые при установке или инициализации.
+- Поверхность атаки: Совокупность точек входа или уязвимостей, которые могут быть использованы злоумышленниками для получения несанкционированного доступа или компрометации системы.
+- Путь атаки: Путь или последовательность шагов, которые может предпринять злоумышленник, чтобы использовать небезопасные конфигурации по умолчанию и скомпрометировать систему.
 
-Users:
-1. System Administrators:
-   - Threat: Inadequate Configuration
-   - Responsible for setting up and configuring systems or applications.
-   - May unintentionally leave insecure default configurations in place, providing potential vulnerabilities to attackers.
+Пользователи:
+1. Системные администраторы:
+   - Угроза: неадекватная конфигурация
+   - Отвечают за установку и настройку систем или приложений.
+   - Могут непреднамеренно оставлять небезопасные конфигурации по умолчанию, что создает потенциальные уязвимости для злоумышленников.
 
-2. Attackers:
-   - Threat: Unauthorized Access or Exploitation
-   - Attempt to exploit insecure default configurations to gain unauthorized access, escalate privileges, or compromise the system.
-   - Exploit weaknesses in default configurations to bypass security controls and launch attacks.
+2. Злоумышленники:
+   - Угроза: Несанкционированный доступ или эксплуатация
+   - Попытка использовать небезопасные конфигурации по умолчанию для получения несанкционированного доступа, повышения привилегий или компрометации системы.
+   - Использование слабых мест в стандартных конфигурациях для обхода средств контроля безопасности и проведения атак.
 
-Components:
-1. System or Application:
-   - Represents the system or application with default configurations that need to be changed.
-   - Contains various settings and configurations that impact security.
+Компоненты:
+1. Система или приложение:
+   - Представляет собой систему или приложение с конфигурациями по умолчанию, которые необходимо изменить.
+   - Содержит различные параметры и конфигурации, влияющие на безопасность.
 
-2. Default Configuration Settings:
-   - The initial settings or configurations that are in place when a system or application is installed or initialized.
-   - These configurations may not provide adequate security and need to be modified to reduce vulnerabilities.
+2. Параметры конфигурации по умолчанию:
+   - Начальные параметры или конфигурации, которые устанавливаются или инициализируются при установке системы или приложения.
+   - Эти конфигурации могут не обеспечивать достаточную безопасность и должны быть изменены для уменьшения уязвимостей.
 
-Interactions:
-1. System Administrators:
-   - Responsible for setting up and configuring systems or applications.
-   - May overlook or neglect changing insecure default configurations, leaving potential vulnerabilities for attackers.
+Взаимодействие:
+1. Системные администраторы:
+   - Отвечают за установку и настройку систем или приложений.
+   - Могут не заметить или пренебречь изменением небезопасных конфигураций по умолчанию, оставляя потенциальные уязвимости для злоумышленников.
 
-2. Attackers:
-   - Attempt to exploit insecure default configurations to gain unauthorized access or compromise the system.
-   - Exploit weaknesses in default configurations to bypass security controls and launch attacks.
+2. Злоумышленники:
+   - Пытаются использовать небезопасные стандартные конфигурации для получения несанкционированного доступа или компрометации системы.
+   - Используют слабые места в стандартных конфигурациях для обхода средств контроля безопасности и проведения атак.
 
-3. System or Application:
-   - Contains default configurations that need to be changed to reduce vulnerabilities.
-   - Vulnerable to attacks and unauthorized access if insecure default configurations are not addressed.
+3. Система или приложение:
+   - Содержит конфигурации по умолчанию, которые необходимо изменить для уменьшения уязвимостей.
+   - Уязвимы для атак и несанкционированного доступа, если не устранить небезопасные конфигурации по умолчанию.
 
-4. Attack Surface:
-   - Represents the collection of entry points or vulnerabilities that attackers can exploit.
-   - Insecure default configurations may increase the attack surface and provide opportunities for exploitation.
+4. Поверхность атаки:
+   - Представляет собой совокупность точек входа или уязвимостей, которые могут использовать злоумышленники.
+   - Небезопасные конфигурации по умолчанию могут увеличить поверхность атаки и предоставить возможности для эксплуатации.
 
-5. Attack Path:
-   - Represents the sequence of steps an attacker can take to exploit insecure default configurations.
-   - Follows the path of least resistance to compromise the system or gain unauthorized access.
+5. Путь атаки:
+   - Представляет собой последовательность шагов, которые может предпринять злоумышленник для использования небезопасных конфигураций по умолчанию.
+   - Идет по пути наименьшего сопротивления, чтобы скомпрометировать систему или получить несанкционированный доступ.
 ```
 
-### Delayed patching of software
+### Несвоевременное обновление программного обеспечения
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Delayed Patching of Software" threat scenario. It includes actors such as "Administrator" and "Attacker" and defines a dataflow between them.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Задержка обновления программного обеспечения". Она включает такие субъекты, как "Администратор" и "Злоумышленник", и определяет поток данных между ними.
 
-The threat model defines the "Delayed Patching of Software" threat and describes the threat arising from delayed or inadequate software patching, leaving systems vulnerable to known exploits.
+Модель угроз определяет угрозу "Задержка исправления программного обеспечения" и описывает угрозу, возникающую из-за задержки или неадекватного исправления программного обеспечения, в результате чего системы становятся уязвимыми для известных эксплойтов.
 
-The code generates a threat model diagram in PNG format, named "delayed_patching_threat_model.png."
+Код генерирует диаграмму модели угрозы в формате PNG с именем "delayed_patching_threat_model.png".
 
 
 ```
 from pytm import TM, Actor, Dataflow
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Delayed Patching of Software Threat Model")
 
-# Create actors
+# Создать действующий субъек
 administrator = Actor("Administrator")
 attacker = Actor("Attacker")
 
-# Define dataflows
+# Определите потоки данных
 dataflow = Dataflow(administrator, attacker, "Data Flow")
 
-# Define Delayed Patching of Software threat
+# Определение угрозы отложенного исправления программного обеспечения
 tm.add_threat()
 tm.threat.name("Delayed Patching of Software")
 tm.threat.description("Threat arising from delayed or inadequate software patching, leaving systems vulnerable to known exploits")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(administrator, dataflow, "Delayed Patching of Software Attack")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("delayed_patching_threat_model.png")
 ```
 
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Delayed Patching of Software:
+Диаграмма модели угроз при задержке исправления программного обеспечения:
 
-Concepts:
-- Delayed Patching of Software: The practice of not applying patches and updates promptly to software or systems, leaving them vulnerable to known security vulnerabilities.
-- Attack Surface: The collection of entry points or vulnerabilities that can be exploited by attackers to gain unauthorized access or compromise a system.
-- Attack Path: The path or sequence of steps an attacker can take to exploit the delayed patching of software and compromise the system.
+Концепции:
+- Задержка исправления программного обеспечения: Практика несвоевременного применения исправлений и обновлений к программному обеспечению или системам, в результате чего они становятся уязвимыми к известным уязвимостям безопасности.
+- Поверхность атаки: Совокупность точек входа или уязвимостей, которые могут быть использованы злоумышленниками для получения несанкционированного доступа или компрометации системы.
+- Путь атаки: Путь или последовательность шагов, которые может предпринять злоумышленник, чтобы воспользоваться задержкой обновления программного обеспечения и скомпрометировать систему.
 
-Users:
-1. System Administrators:
-   - Threat: Inadequate Patch Management
-   - Responsible for managing and applying patches and updates to software or systems.
-   - May delay or neglect applying patches promptly, leaving vulnerabilities open for exploitation.
+Пользователи:
+1. Системные администраторы:
+   - Угроза: неадекватное управление исправлениями
+   - Отвечает за управление и применение патчей и обновлений для программного обеспечения или систем.
+   - Может задерживать или игнорировать своевременное применение патчей, оставляя уязвимости открытыми для эксплуатации.
 
-2. Attackers:
-   - Threat: Exploitation of Known Vulnerabilities
-   - Attempt to exploit known vulnerabilities in software or systems that have not been patched promptly.
-   - Exploit weaknesses in unpatched software to gain unauthorized access, escalate privileges, or compromise the system.
+2. Злоумышленники:
+   - Угроза: Эксплуатация известных уязвимостей
+   - Попытка использовать известные уязвимости в программном обеспечении или системах, которые не были своевременно исправлены.
+   - Использование слабых мест в непропатченном программном обеспечении для получения несанкционированного доступа, повышения привилегий или компрометации системы.
 
-Components:
-1. Software or System:
-   - Represents the software or system that requires regular patching and updates.
-   - Contains known vulnerabilities that can be addressed through patching.
+Компоненты:
+1. Программное обеспечение или система:
+   - Представляет собой программное обеспечение или систему, требующую регулярного исправления и обновления.
+   - Содержит известные уязвимости, которые могут быть устранены с помощью исправлений.
 
-2. Patch Management Process:
-   - The process of managing and applying patches and updates to software or systems.
-   - Includes tasks such as patch assessment, testing, deployment, and monitoring.
+2. Процесс управления исправлениями:
+   - Процесс управления и применения исправлений и обновлений для программного обеспечения или систем.
+   - Включает в себя такие задачи, как оценка, тестирование, развертывание и мониторинг патчей.
 
-Interactions:
-1. System Administrators:
-   - Responsible for managing and applying patches and updates to software or systems.
-   - May delay or neglect applying patches promptly due to operational constraints or other reasons.
+Взаимодействие:
+1. Системные администраторы:
+   - Отвечают за управление и применение исправлений и обновлений к программному обеспечению или системам.
+   - Могут задерживать или игнорировать своевременное применение патчей из-за операционных ограничений или по другим причинам.
 
-2. Attackers:
-   - Attempt to exploit known vulnerabilities in unpatched software or systems.
-   - Exploit weaknesses in software that has not been updated to gain unauthorized access or compromise the system.
+2. Злоумышленники:
+   - Пытаются использовать известные уязвимости в непропатченном программном обеспечении или системах.
+   - Используют слабые места в программном обеспечении, которое не было обновлено, для получения несанкционированного доступа или компрометации системы.
 
-3. Software or System:
-   - Requires regular patching and updates to address known vulnerabilities.
-   - Vulnerable to attacks and unauthorized access if patches are not applied promptly.
+3. Программное обеспечение или система:
+   - Требует регулярного исправления и обновления для устранения известных уязвимостей.
+   - Уязвимы для атак и несанкционированного доступа, если исправления не применяются своевременно.
 
-4. Attack Surface:
-   - Represents the collection of entry points or vulnerabilities that attackers can exploit.
-   - Delayed patching of software may increase the attack surface and provide opportunities for exploitation.
+4. Поверхность атаки:
+   - Представляет собой совокупность точек входа или уязвимостей, которые могут использовать злоумышленники.
+   - Несвоевременное исправление программного обеспечения может увеличить поверхность атаки и предоставить возможности для эксплуатации.
 
-5. Attack Path:
-   - Represents the sequence of steps an attacker can take to exploit delayed patching of software.
-   - Follows the path of least resistance to compromise the system or gain unauthorized access.
+5. Путь атаки:
+   - Представляет собой последовательность шагов, которые может предпринять злоумышленник, чтобы использовать задержку исправления программного обеспечения.
+   - Идет по пути наименьшего сопротивления для компрометации системы или получения несанкционированного доступа.
 
-Note: This simplified textual representation provides a high-level view of the components, data flows, and interactions related to the "Delayed Patching of Software" threat. In a comprehensive threat model, additional specific components and interactions relevant to the system being analyzed would be included.
+Примечание: Это упрощенное текстовое представление дает высокоуровневое представление о компонентах, потоках данных и взаимодействиях, связанных с угрозой "Задержка исправления программного обеспечения". В комплексную модель угрозы будут включены дополнительные специфические компоненты и взаимодействия, относящиеся к анализируемой системе.
 ```
 
-### Lack of vulnerability scanning
+### Отсутствие сканирования уязвимостей
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Lack of Vulnerability Scanning" threat scenario. It includes actors such as "Administrator" and "Attacker" and defines a dataflow between them.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Отсутствие сканирования уязвимостей". Она включает таких участников, как "Администратор" и "Злоумышленник", и определяет поток данных между ними.
 
-The threat model defines the "Lack of Vulnerability Scanning" threat and describes the threat arising from the lack of regular vulnerability scanning, which can result in undetected vulnerabilities and potential exploitation.
+Модель угроз определяет угрозу "Отсутствие сканирования уязвимостей" и описывает угрозу, возникающую из-за отсутствия регулярного сканирования уязвимостей, что может привести к необнаруженным уязвимостям и потенциальной эксплуатации.
 
-The code generates a threat model diagram in PNG format, named "lack_of_vulnerability_scanning_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG под названием "lack_of_vulnerability_scanning_threat_model.png".
 
 
 ```
 from pytm import TM, Actor, Dataflow
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Lack of Vulnerability Scanning Threat Model")
 
-# Create actors
+# Создать действующий субъек
 administrator = Actor("Administrator")
 attacker = Actor("Attacker")
 
-# Define dataflows
+# Определите потоки данных
 dataflow = Dataflow(administrator, attacker, "Data Flow")
 
-# Define Lack of Vulnerability Scanning threat
+# Определите отсутствие угрозы сканирования уязвимостей
 tm.add_threat()
 tm.threat.name("Lack of Vulnerability Scanning")
 tm.threat.description("Threat arising from the lack of regular vulnerability scanning, which can result in undetected vulnerabilities and potential exploitation")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(administrator, dataflow, "Lack of Vulnerability Scanning Attack")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("lack_of_vulnerability_scanning_threat_model.png")
 ```
 
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Lack of Vulnerability Scanning:
+Диаграмма модели угроз при отсутствии сканирования уязвимостей:
 
-Concepts:
-- Lack of Vulnerability Scanning: Failure to regularly scan systems or applications for known vulnerabilities and weaknesses.
-- Vulnerability Assessment: The process of identifying and assessing vulnerabilities within systems or applications.
-- Attack Surface: The collection of entry points or vulnerabilities that can be exploited by attackers to gain unauthorized access or compromise a system.
-- Attack Path: The path or sequence of steps an attacker can take to exploit existing vulnerabilities and compromise the system.
+Концепции:
+- Отсутствие сканирования уязвимостей: Невозможность регулярного сканирования систем или приложений на предмет известных уязвимостей и слабых мест.
+- Оценка уязвимостей: Процесс выявления и оценки уязвимостей в системах или приложениях.
+- Поверхность атаки: Совокупность точек входа или уязвимостей, которые могут быть использованы злоумышленниками для получения несанкционированного доступа или компрометации системы.
+- Путь атаки: Путь или последовательность шагов, которые может предпринять злоумышленник, чтобы использовать существующие уязвимости и скомпрометировать систему.
 
-Users:
-1. System Administrators:
-   - Responsible for managing and maintaining systems or applications.
-   - May neglect or overlook the importance of regular vulnerability scanning.
+Пользователи:
+1. Системные администраторы:
+   - Отвечают за управление и поддержку систем или приложений.
+   - Могут пренебрегать или упускать из виду важность регулярного сканирования уязвимостей.
 
-2. Attackers:
-   - Threat: Exploitation of Unpatched Vulnerabilities
-   - Attempt to identify and exploit unpatched vulnerabilities in systems or applications.
-   - Exploit weaknesses that have not been detected due to the lack of vulnerability scanning.
+2. Злоумышленники:
+   - Угроза: Эксплуатация непропатченных уязвимостей
+   - Попытка выявить и использовать непропатченные уязвимости в системах или приложениях.
+   - Эксплуатация слабых мест, которые не были обнаружены из-за отсутствия сканирования уязвимостей.
 
-Components:
-1. System or Application:
-   - Represents the system or application that requires regular vulnerability scanning.
-   - Contains potential vulnerabilities that need to be identified and mitigated.
+Компоненты:
+1. Система или приложение:
+   - Представляет собой систему или приложение, требующее регулярного сканирования уязвимостей.
+   - Содержит потенциальные уязвимости, которые необходимо выявить и устранить.
 
-2. Vulnerability Scanning Tool:
-   - A tool or software used to scan systems or applications for known vulnerabilities.
-   - Detects and reports on potential weaknesses that could be exploited by attackers.
+2. Инструмент сканирования уязвимостей:
+   - Инструмент или программное обеспечение, используемое для сканирования систем или приложений на предмет известных уязвимостей.
+   - Обнаруживает и сообщает о потенциальных слабых местах, которые могут быть использованы злоумышленниками.
 
-Interactions:
-1. System Administrators:
-   - Responsible for managing and maintaining systems or applications.
-   - May fail to prioritize or schedule regular vulnerability scanning, leaving systems exposed to unpatched vulnerabilities.
+Взаимодействие:
+1. Системные администраторы:
+   - Отвечают за управление и поддержку систем или приложений.
+   - Могут не уделять приоритетного внимания или не планировать регулярное сканирование уязвимостей, в результате чего системы могут быть подвержены непропатченным уязвимостям.
 
-2. Attackers:
-   - Attempt to identify and exploit unpatched vulnerabilities in systems or applications.
-   - Exploit weaknesses that have not been detected due to the lack of vulnerability scanning.
+2. Злоумышленники:
+   - Пытаются найти и использовать непропатченные уязвимости в системах или приложениях.
+   - Используют слабые места, которые не были обнаружены из-за отсутствия сканирования уязвимостей.
 
-3. System or Application:
-   - Requires regular vulnerability scanning to identify and mitigate potential vulnerabilities.
-   - Vulnerable to attacks and unauthorized access if unpatched vulnerabilities are not detected and addressed.
+3. Система или приложение:
+   - Требуется регулярное сканирование уязвимостей для выявления и устранения потенциальных уязвимостей.
+   - Уязвима для атак и несанкционированного доступа, если не обнаружены и не устранены непропатченные уязвимости.
 
-4. Attack Surface:
-   - Represents the collection of entry points or vulnerabilities that attackers can exploit.
-   - Lack of vulnerability scanning may increase the attack surface and provide opportunities for exploitation.
+4. Поверхность атаки:
+   - Представляет собой совокупность точек входа или уязвимостей, которые могут использовать злоумышленники.
+   - Отсутствие сканирования уязвимостей может увеличить поверхность атаки и предоставить возможности для эксплуатации.
 
-5. Attack Path:
-   - Represents the sequence of steps an attacker can take to exploit unpatched vulnerabilities.
-   - Follows the path of least resistance to compromise the system or gain unauthorized access.
+5. Путь атаки:
+   - Представляет собой последовательность шагов, которые может предпринять злоумышленник для использования непропатченных уязвимостей.
+   - Идет по пути наименьшего сопротивления, чтобы скомпрометировать систему или получить несанкционированный доступ.
 ```
 
 
-### Malicious or negligent insiders
+### Злонамеренные или небрежные инсайдеры
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Malicious or Negligent Insiders" threat scenario. It includes actors such as "Insider" and "Attacker" and defines a dataflow between them.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Злонамеренные или халатные инсайдеры". Она включает в себя таких участников, как "Инсайдер" и "Злоумышленник", и определяет поток данных между ними.
 
-The threat model defines the "Malicious or Negligent Insiders" threat and describes the threat arising from insiders with malicious intent or negligent behavior who may abuse their privileges, steal sensitive data, or cause damage to the system.
+Модель угроз определяет угрозу "Злонамеренные или халатные инсайдеры" и описывает угрозу, возникающую от инсайдеров со злым умыслом или халатным поведением, которые могут злоупотреблять своими привилегиями, красть конфиденциальные данные или наносить ущерб системе.
 
-The code generates a threat model diagram in PNG format, named "malicious_or_negligent_insiders_threat_model.png."
+Код генерирует диаграмму модели угрозы в формате PNG под названием "malicious_or_negligent_insiders_threat_model.png".
 
 ```
 from pytm import TM, Actor, Dataflow
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Malicious or Negligent Insiders Threat Model")
 
-# Create actors
+# Создать действующий субъек
 insider = Actor("Insider")
 attacker = Actor("Attacker")
 
-# Define dataflows
+# Определите потоки данных
 dataflow = Dataflow(insider, attacker, "Data Flow")
 
-# Define Malicious or Negligent Insiders threat
+# Определение угрозы злонамеренных или халатных инсайдеров
 tm.add_threat()
 tm.threat.name("Malicious or Negligent Insiders")
 tm.threat.description("Threat arising from insiders with malicious intent or negligent behavior who may abuse their privileges, steal sensitive data, or cause damage to the system")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(insider, dataflow, "Malicious or Negligent Insiders Attack")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("malicious_or_negligent_insiders_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Malicious or Negligent Insiders:
+Диаграмма модели угроз для злонамеренных или небрежных инсайдеров:
 
-Concepts:
-- Insiders: Individuals who have authorized access to a system or application.
-- Malicious Insider: An insider who intentionally abuses their privileges or acts with malicious intent.
-- Negligent Insider: An insider who unintentionally causes harm or breaches security due to carelessness.
-- Access Controls: Mechanisms used to enforce authorized access to resources.
-- Data Loss or Leakage: Unauthorized disclosure or loss of sensitive data.
+Концепции:
+- Инсайдеры: Лица, имеющие авторизованный доступ к системе или приложению.
+- Вредоносный инсайдер: Инсайдер, который намеренно злоупотребляет своими привилегиями или действует со злым умыслом.
+- Небрежный инсайдер: Инсайдер, который непреднамеренно причиняет вред или нарушает безопасность по неосторожности.
+- Контроль доступа: Механизмы, используемые для обеспечения санкционированного доступа к ресурсам.
+- Потеря или утечка данных: Несанкционированное раскрытие или потеря конфиденциальных данных.
 
-Users:
-1. Malicious Insider:
-   - Threat: Unauthorized Access or Data Theft
-   - Exploits their authorized access to gain unauthorized access, steal data, or cause damage to the system.
+Пользователи:
+1. Вредоносный инсайдер:
+   - Угроза: Несанкционированный доступ или кража данных
+   - Использует свой авторизованный доступ для получения несанкционированного доступа, кражи данных или нанесения ущерба системе.
 
-2. Negligent Insider:
-   - Threat: Accidental Data Breach
-   - Unintentionally exposes sensitive data or breaches security due to carelessness or lack of awareness.
+2. Небрежный инсайдер:
+   - Угроза: Случайная утечка данных
+   - Непреднамеренно раскрывает конфиденциальные данные или нарушает безопасность из-за неосторожности или недостаточной осведомленности.
 
-Components:
-1. Authentication System:
-   - Manages user authentication and access controls.
-   - Data Flow: User authentication requests.
+Компоненты:
+1. Система аутентификации:
+   - Управляет аутентификацией пользователей и контролем доступа.
+   - Поток данных: запросы на аутентификацию пользователей.
 
-2. Data Storage:
-   - Stores sensitive data.
-   - Data Flow: Reading or modifying sensitive data.
+2. Хранилище данных:
+   - Хранит конфиденциальные данные.
+   - Поток данных: Чтение или изменение конфиденциальных данных.
 
-3. Logging System:
-   - Captures logs and auditing information.
-   - Data Flow: Storing logs of user activities.
+3. Система протоколирования:
+   - Собирает журналы и аудиторскую информацию.
+   - Поток данных: хранение журналов действий пользователей.
 
-Interactions:
-1. Malicious Insider:
-   - Exploits weak authentication controls or stolen credentials to gain unauthorized access to the system.
-   - Performs unauthorized data access or theft by bypassing access controls or abusing privileges.
+Взаимодействия:
+1. Вредоносный инсайдер:
+   - Использует слабые средства контроля аутентификации или украденные учетные данные для получения несанкционированного доступа к системе.
+   - Осуществляет несанкционированный доступ к данным или их кражу, обходя средства контроля доступа или злоупотребляя привилегиями.
 
-2. Negligent Insider:
-   - Accidentally exposes sensitive data by misconfiguring access controls or mishandling data.
-   - May unknowingly download or transmit sensitive data to external sources.
+2. Небрежный инсайдер:
+   - Случайно раскрывает конфиденциальные данные, неправильно настраивая средства контроля доступа или небрежно обращаясь с данными.
+   - Может неосознанно загружать или передавать конфиденциальные данные во внешние источники.
 
-3. Authentication System:
-   - Authenticates user credentials and enforces access controls.
-   - Logs authentication activities and detects suspicious login patterns.
+3. Система аутентификации:
+   - Проверяет подлинность учетных данных пользователей и обеспечивает контроль доступа.
+   - Регистрирует действия по аутентификации и обнаруживает подозрительные шаблоны входа в систему.
 
-4. Data Storage:
-   - Stores sensitive data and enforces access controls.
-   - Logs data access and modification activities.
+4. Хранилище данных:
+   - Хранит конфиденциальные данные и обеспечивает контроль доступа.
+   - Регистрирует действия по доступу к данным и их изменению.
 
-5. Logging System:
-   - Captures logs of user activities, including authentication attempts and data access events.
-   - Supports monitoring and analysis to identify suspicious or unauthorized activities.
+5. Система протоколирования:
+   - Собирает журналы действий пользователей, включая попытки аутентификации и события доступа к данным.
+   - Поддерживает мониторинг и анализ для выявления подозрительных или несанкционированных действий.
 
 ```
 
 
 
-### Unauthorized data access or theft
+### Несанкционированный доступ к данным или их кража
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Unauthorized Data Access or Theft" threat scenario. It includes actors such as "Attacker" and "User" and defines a dataflow between the user and a sensitive datastore.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Несанкционированный доступ к данным или кража". Она включает такие действующие лица, как "Злоумышленник" и "Пользователь", и определяет поток данных между пользователем и хранилищем конфиденциальных данных.
 
-The threat model defines the "Unauthorized Data Access or Theft" threat and describes the threat of unauthorized access or theft of sensitive data by attackers.
+Модель угроз определяет угрозу "Несанкционированный доступ к данным или кража" и описывает угрозу несанкционированного доступа или кражи конфиденциальных данных злоумышленниками.
 
-The code generates a threat model diagram in PNG format, named "unauthorized_data_access_theft_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG с именем "unauthorized_data_access_theft_threat_model.png".
 
 
 ```
 from pytm import TM, Actor, Datastore, Boundary, Dataflow
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Unauthorized Data Access or Theft Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 user = Actor("User")
 
-# Create a boundary
+# Создайте границу
 boundary = Boundary("Internal Network")
 
-# Create a datastore
+# Создание хранилища данных
 datastore = Datastore("Sensitive Data")
 
-# Define dataflows
+# Определите потоки данных
 dataflow = Dataflow(user, datastore, "Data Access")
 
-# Define Unauthorized Data Access or Theft threat
+# Определение угрозы несанкционированного доступа к данным или их кражи
 tm.add_threat()
 tm.threat.name("Unauthorized Data Access or Theft")
 tm.threat.description("Threat of unauthorized access or theft of sensitive data by attackers")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, dataflow, "Unauthorized Data Access or Theft Attack")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("unauthorized_data_access_theft_threat_model.png")
 ```
 
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Unauthorized Data Access or Theft:
+Диаграмма модели угроз несанкционированного доступа к данным или их кражи:
 
-Concepts:
-- Unauthorized Data Access or Theft: The unauthorized access, theft, or disclosure of sensitive or confidential data.
-- Data Classification: The process of categorizing data based on its sensitivity or criticality.
-- Access Controls: Mechanisms and policies in place to regulate access to data and protect it from unauthorized access.
-- Attack Surface: The collection of entry points or vulnerabilities that can be exploited by attackers to gain unauthorized access or compromise a system.
-- Attack Path: The path or sequence of steps an attacker can take to exploit vulnerabilities and gain unauthorized access to data.
+Концепции:
+- Несанкционированный доступ к данным или их кража: Неавторизованный доступ, кража или раскрытие конфиденциальных или секретных данных.
+- Классификация данных: Процесс категоризации данных на основе их чувствительности или критичности.
+- Контроль доступа: Механизмы и политики, регулирующие доступ к данным и защищающие их от несанкционированного доступа.
+- Поверхность атаки: Совокупность точек входа или уязвимостей, которые могут быть использованы злоумышленниками для получения несанкционированного доступа или компрометации системы.
+- Путь атаки: Путь или последовательность шагов, которые может предпринять злоумышленник для использования уязвимостей и получения несанкционированного доступа к данным.
 
-Users:
-1. System Administrators:
-   - Responsible for managing access controls and permissions to sensitive data.
-   - May misconfigure or overlook security settings, leading to unauthorized access or theft.
+Пользователи:
+1. Системные администраторы:
+   - Отвечают за управление контролем доступа и разрешениями на доступ к конфиденциальным данным.
+   - Могут неправильно настроить или пропустить параметры безопасности, что приведет к несанкционированному доступу или краже.
 
-2. Attackers:
-   - Threat: Unauthorized Data Access or Theft
-   - Attempt to gain unauthorized access to sensitive data or steal it for malicious purposes.
-   - Exploit vulnerabilities in access controls or other weaknesses to bypass security measures.
+2. Злоумышленники:
+   - Угроза: Несанкционированный доступ к данным или их кража
+   - Попытка получить несанкционированный доступ к конфиденциальным данным или украсть их в злонамеренных целях.
+   - Использование уязвимостей в средствах контроля доступа или других слабых мест для обхода мер безопасности.
 
-Components:
-1. Sensitive Data:
-   - Represents the data that needs to be protected from unauthorized access or theft.
-   - Includes personally identifiable information (PII), financial data, intellectual property, or other confidential data.
+Компоненты:
+1. Чувствительные данные:
+   - Представляют собой данные, которые необходимо защитить от несанкционированного доступа или кражи.
+   - Включают персональную информацию (PII), финансовые данные, интеллектуальную собственность и другие конфиденциальные данные.
 
-2. Access Control Mechanisms:
-   - The mechanisms and policies in place to control access to sensitive data.
-   - Examples include user authentication, role-based access control (RBAC), and encryption.
+2. Механизмы контроля доступа:
+   - Механизмы и политики, применяемые для контроля доступа к конфиденциальным данным.
+   - Примеры: аутентификация пользователей, контроль доступа на основе ролей (RBAC) и шифрование.
 
-Interactions:
-1. System Administrators:
-   - Responsible for managing access controls and permissions to sensitive data.
-   - May misconfigure or overlook security settings, leading to unauthorized access or theft.
+Взаимодействие:
+1. Системные администраторы:
+   - Отвечают за управление контролем доступа и разрешениями на доступ к конфиденциальным данным.
+   - Могут неправильно настроить или пропустить параметры безопасности, что приведет к несанкционированному доступу или краже.
 
-2. Attackers:
-   - Attempt to gain unauthorized access to sensitive data or steal it for malicious purposes.
-   - Exploit vulnerabilities in access controls or other weaknesses to bypass security measures.
+2. Злоумышленники:
+   - Пытаются получить несанкционированный доступ к конфиденциальным данным или украсть их в злонамеренных целях.
+   - Используют уязвимости в средствах контроля доступа или другие слабые места, чтобы обойти меры безопасности.
 
-3. Sensitive Data:
-   - Requires appropriate access controls to prevent unauthorized access or theft.
-   - Vulnerable to unauthorized access or theft if access controls are not properly implemented or misconfigured.
+3. Чувствительные данные:
+   - Требуют соответствующего контроля доступа для предотвращения несанкционированного доступа или кражи.
+   - Уязвимы для несанкционированного доступа или кражи, если средства контроля доступа не реализованы должным образом или неправильно сконфигурированы.
 
-4. Attack Surface:
-   - Represents the collection of entry points or vulnerabilities that attackers can exploit.
-   - Weak or misconfigured access controls may increase the attack surface and provide opportunities for unauthorized access.
+4. Поверхность атаки:
+   - Представляет собой совокупность точек входа или уязвимостей, которые могут использовать злоумышленники.
+   - Слабые или неправильно настроенные средства контроля доступа могут увеличить площадь атаки и предоставить возможности для несанкционированного доступа.
 
-5. Attack Path:
-   - Represents the sequence of steps an attacker can take to exploit vulnerabilities and gain unauthorized access to sensitive data.
-   - Follows the path of least resistance to compromise the system and steal data.
+5. Путь атаки:
+   - Представляет собой последовательность шагов, которые может предпринять злоумышленник для использования уязвимостей и получения несанкционированного доступа к конфиденциальным данным.
+   - Идет по пути наименьшего сопротивления, чтобы скомпрометировать систему и украсть данные.
 ```
 
 
 
-### Unauthorized physical access
+### Несанкционированный физический доступ
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Unauthorized Physical Access" threat scenario. It includes actors such as "Attacker," "Physical Attacker," and "User" and defines a dataflow between the user and a sensitive equipment datastore.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Несанкционированный физический доступ". Она включает такие действующие лица, как "Злоумышленник", "Физический злоумышленник" и "Пользователь", и определяет поток данных между пользователем и хранилищем данных чувствительного оборудования.
 
-The threat model defines the "Unauthorized Physical Access" threat and describes the threat of unauthorized physical access to sensitive equipment by attackers.
+Модель угроз определяет угрозу "Несанкционированный физический доступ" и описывает угрозу несанкционированного физического доступа злоумышленников к чувствительному оборудованию.
 
-The code generates a threat model diagram in PNG format, named "unauthorized_physical_access_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG с именем "unauthorized_physical_access_threat_model.png".
 
 
 ```
 from pytm import TM, Actor, Datastore, Boundary, Dataflow
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Unauthorized Physical Access Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 physical_attacker = Actor("Physical Attacker")
 user = Actor("User")
 
-# Create a boundary
+# Создайте границу
 boundary = Boundary("Physical Location")
 
-# Create a datastore
+# Создание хранилища данных
 datastore = Datastore("Sensitive Equipment")
 
-# Define dataflows
+# Определите потоки данных
 dataflow = Dataflow(user, datastore, "Data Access")
 
-# Define Unauthorized Physical Access threat
+# Определение угрозы несанкционированного физического доступа
 tm.add_threat()
 tm.threat.name("Unauthorized Physical Access")
 tm.threat.description("Threat of unauthorized physical access to sensitive equipment by attackers")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(physical_attacker, dataflow, "Unauthorized Physical Access Attack")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("unauthorized_physical_access_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Unauthorized Physical Access:
+Диаграмма модели угроз для несанкционированного физического доступа:
 
-Concepts:
-- Unauthorized Physical Access: The unauthorized entry or presence of individuals in physical areas where they should not be.
-- Physical Security: Measures and controls implemented to protect physical assets, such as buildings, rooms, and equipment.
-- Access Control: Mechanisms and policies in place to regulate entry and restrict access to physical areas.
-- Attack Surface: Vulnerabilities and entry points that can be exploited by unauthorized individuals to gain physical access.
-- Attack Path: The sequence of steps an attacker can take to bypass physical security measures and gain unauthorized access.
+Концепции:
+- Несанкционированный физический доступ: Несанкционированный вход или присутствие людей в физических зонах, где они не должны находиться.
+- Физическая безопасность: Меры и средства контроля, применяемые для защиты физических активов, таких как здания, помещения и оборудование.
+- Контроль доступа: Механизмы и политики, регулирующие вход и ограничивающие доступ в физические зоны.
+- Поверхность атаки: Уязвимости и точки входа, которые могут быть использованы неавторизованными лицами для получения физического доступа.
+- Путь атаки: Последовательность шагов, которые может предпринять злоумышленник, чтобы обойти меры физической безопасности и получить несанкционированный доступ.
 
-Users:
-1. Facility Administrators:
-   - Responsible for managing physical security measures and access control systems.
-   - May misconfigure or overlook security settings, leading to unauthorized physical access.
+Пользователи:
+1. Администраторы объекта:
+   - Отвечают за управление мерами физической безопасности и системами контроля доступа.
+   - Могут неправильно настроить или пропустить параметры безопасности, что приведет к несанкционированному физическому доступу.
 
-2. Unauthorized Individuals:
-   - Threat: Unauthorized Physical Access
-   - Attempt to gain physical access to restricted areas without proper authorization.
-   - Exploit vulnerabilities in physical security measures or find ways to bypass them.
+2. Несанкционированные лица:
+   - Угроза: Несанкционированный физический доступ
+   - Попытка получить физический доступ в зоны ограниченного доступа без соответствующего разрешения.
+   - Использование уязвимостей в мерах физической безопасности или поиск способов их обхода.
 
-Components:
-1. Physical Areas:
-   - Represents the different areas within a facility or premises, such as server rooms, data centers, or restricted zones.
-   - Each area has a designated level of access restriction and contains valuable assets or sensitive information.
+Компоненты:
+1. Физические зоны:
+   - Представляют собой различные области в пределах объекта или помещения, такие как серверные комнаты, центры обработки данных или зоны ограниченного доступа.
+   - Каждая зона имеет определенный уровень ограничения доступа и содержит ценные активы или конфиденциальную информацию.
 
-2. Access Control Mechanisms:
-   - The mechanisms and controls in place to regulate entry and restrict access to physical areas.
-   - Examples include access cards, biometric systems, locks, alarms, and surveillance cameras.
+2. Механизмы контроля доступа:
+   - Механизмы и средства контроля, регулирующие вход и ограничивающие доступ в физические зоны.
+   - Например, карты доступа, биометрические системы, замки, сигнализация и камеры наблюдения.
 
-Interactions:
-1. Facility Administrators:
-   - Responsible for managing physical security measures and access control systems.
-   - May misconfigure or overlook security settings, leading to unauthorized physical access.
+Взаимодействие:
+1. Администраторы объекта:
+   - Отвечают за управление мерами физической безопасности и системами контроля доступа.
+   - Могут неправильно настроить или пропустить параметры безопасности, что приведет к несанкционированному физическому доступу.
 
-2. Unauthorized Individuals:
-   - Attempt to gain physical access to restricted areas without proper authorization.
-   - Exploit vulnerabilities in physical security measures or find ways to bypass them.
+2. Несанкционированные лица:
+   - Пытаются получить физический доступ в зоны ограниченного доступа без соответствующего разрешения.
+   - Используют уязвимые места в мерах физической безопасности или находят способы их обойти.
 
-3. Physical Areas:
-   - Require proper access control mechanisms to prevent unauthorized physical access.
-   - Vulnerable to unauthorized access if physical security measures are not properly implemented or misconfigured.
+3. Физические зоны:
+   - Требуют наличия надлежащих механизмов контроля доступа для предотвращения несанкционированного физического доступа.
+   - Уязвимы для несанкционированного доступа, если меры физической безопасности не реализованы должным образом или неправильно сконфигурированы.
 
-4. Attack Surface:
-   - Represents the vulnerabilities and entry points that unauthorized individuals can exploit.
-   - Weak or misconfigured physical security measures may increase the attack surface and provide opportunities for unauthorized physical access.
+4. Поверхность атаки:
+   - Представляет собой уязвимые места и точки входа, которые могут использовать неавторизованные лица.
+   - Слабые или неправильно сконфигурированные меры физической безопасности могут увеличить поверхность атаки и предоставить возможности для несанкционированного физического доступа.
 
-5. Attack Path:
-   - Represents the sequence of steps an attacker can take to bypass physical security measures and gain unauthorized access.
-   - Follows the path of least resistance to compromise the physical security of the facility or premises.
+5. Путь атаки:
+   - Представляет собой последовательность шагов, которые может предпринять злоумышленник, чтобы обойти меры физической безопасности и получить несанкционированный доступ.
+   - Для того чтобы нарушить физическую безопасность объекта или помещения, следует идти по пути наименьшего сопротивления.
 ```
 
 
 
-### Theft or destruction of hardware
+### Кража или уничтожение оборудования
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Theft or Destruction of Hardware" threat scenario. It includes actors such as "Attacker," "Physical Attacker," and "User" and defines a dataflow between the user and a hardware datastore.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Кража или уничтожение аппаратного обеспечения". Она включает такие действующие лица, как "Злоумышленник", "Физический злоумышленник" и "Пользователь", и определяет поток данных между пользователем и аппаратным хранилищем данных.
 
-The threat model defines the "Theft or Destruction of Hardware" threat and describes the threat of theft or destruction of hardware by attackers.
+Модель угроз определяет угрозу "Кража или уничтожение аппаратного обеспечения" и описывает угрозу кражи или уничтожения аппаратного обеспечения злоумышленниками.
 
-The code generates a threat model diagram in PNG format, named "theft_destruction_hardware_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG с именем "theft_destruction_hardware_threat_model.png".
 
 
 ```
 from pytm import TM, Actor, Datastore, Boundary, Dataflow
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Theft or Destruction of Hardware Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 physical_attacker = Actor("Physical Attacker")
 user = Actor("User")
 
-# Create a boundary
+# Создайте границу
 boundary = Boundary("Physical Location")
 
-# Create a datastore
+# Создание хранилища данных
 datastore = Datastore("Hardware")
 
-# Define dataflows
+# Определите потоки данных
 dataflow = Dataflow(user, datastore, "Data Access")
 
-# Define Theft or Destruction of Hardware threat
+# Определение угрозы кражи или уничтожения оборудования
 tm.add_threat()
 tm.threat.name("Theft or Destruction of Hardware")
 tm.threat.description("Threat of theft or destruction of hardware by attackers")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(physical_attacker, dataflow, "Theft or Destruction of Hardware Attack")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("theft_destruction_hardware_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Theft or Destruction of Hardware:
+Диаграмма модели угроз для кражи или уничтожения аппаратного обеспечения:
 
-Concepts:
-- Theft or Destruction of Hardware: The unauthorized removal or damage of physical hardware devices.
-- Physical Security: Measures and controls implemented to protect physical assets, such as hardware devices.
-- Asset Inventory: A record of all hardware devices, their locations, and ownership.
-- Attack Surface: Vulnerabilities and entry points that can be exploited by unauthorized individuals to steal or damage hardware.
-- Attack Path: The sequence of steps an attacker can take to bypass physical security measures and steal or destroy hardware.
+Концепции:
+- Кража или уничтожение аппаратных средств: Неавторизованное удаление или повреждение физических аппаратных устройств.
+- Физическая безопасность: Меры и средства контроля, применяемые для защиты физических активов, таких как аппаратные устройства.
+- Инвентаризация активов: Запись всех аппаратных устройств, их местоположения и владельца.
+- Поверхность атаки: Уязвимости и точки входа, которые могут быть использованы неавторизованными лицами для кражи или повреждения оборудования.
+- Путь атаки: Последовательность шагов, которые может предпринять злоумышленник, чтобы обойти меры физической безопасности и украсть или уничтожить аппаратное обеспечение.
 
-Users:
-1. Facility Administrators:
-   - Responsible for managing physical security measures and maintaining the asset inventory.
-   - May misconfigure or overlook security settings, leading to vulnerabilities in hardware protection.
+Пользователи:
+1. Администраторы объекта:
+   - Отвечают за управление мерами физической безопасности и ведение инвентаризации активов.
+   - Могут неправильно настроить или пропустить параметры безопасности, что приводит к уязвимостям в защите оборудования.
 
-2. Unauthorized Individuals:
-   - Threat: Theft or Destruction of Hardware
-   - Attempt to steal or damage hardware devices for personal gain, sabotage, or other malicious purposes.
-   - Exploit vulnerabilities in physical security measures or find ways to bypass them.
+2. Несанкционированные лица:
+   - Угроза: Кража или уничтожение аппаратного обеспечения
+   - Попытки украсть или повредить аппаратные устройства в целях личной выгоды, саботажа или других злонамеренных целей.
+   - Использование уязвимостей в мерах физической безопасности или поиск способов их обхода.
 
-Components:
-1. Hardware Devices:
-   - Represents the physical devices, such as servers, workstations, laptops, or other valuable equipment.
-   - Each device has its unique identification, location, and ownership information recorded in the asset inventory.
+Компоненты:
+1. Аппаратные устройства:
+   - Представляют собой физические устройства, такие как серверы, рабочие станции, ноутбуки или другое ценное оборудование.
+   - Каждое устройство имеет уникальный идентификатор, местоположение и информацию о владельце, занесенную в инвентарную опись активов.
 
-2. Physical Security Measures:
-   - The measures and controls in place to protect hardware devices from theft or destruction.
-   - Examples include locks, alarms, surveillance cameras, access control mechanisms, and secure storage areas.
+2. Меры физической безопасности:
+   - Меры и средства контроля, применяемые для защиты аппаратных устройств от кражи или уничтожения.
+   - Например, замки, сигнализация, камеры наблюдения, механизмы контроля доступа и безопасные места хранения.
 
-3. Asset Inventory:
-   - A record or database that tracks all hardware devices, their locations, and ownership information.
-   - Helps identify missing or compromised hardware and aids in recovery or replacement processes.
+3. Инвентаризация активов:
+   - Запись или база данных, в которой отслеживаются все аппаратные устройства, их местоположение и информация о владельцах.
+   - Помогает выявить пропавшее или скомпрометированное оборудование и помогает в процессах восстановления или замены.
 
-Interactions:
-1. Facility Administrators:
-   - Responsible for managing physical security measures and maintaining the asset inventory.
-   - May misconfigure or overlook security settings, leading to vulnerabilities in hardware protection.
+Взаимодействие:
+1. Администраторы объекта:
+   - Отвечают за управление мерами физической безопасности и ведение инвентаризации активов.
+   - Могут неправильно настроить или пропустить параметры безопасности, что приводит к уязвимостям в защите оборудования.
 
-2. Unauthorized Individuals:
-   - Attempt to steal or damage hardware devices for personal gain, sabotage, or other malicious purposes.
-   - Exploit vulnerabilities in physical security measures or find ways to bypass them.
+2. Несанкционированные лица:
+   - Пытаются украсть или повредить аппаратные устройства в целях личной выгоды, саботажа или в других злонамеренных целях.
+   - Используют уязвимые места в мерах физической безопасности или находят способы их обойти.
 
-3. Hardware Devices:
-   - Require proper physical security measures to prevent unauthorized access, theft, or destruction.
-   - Vulnerable to theft or destruction if physical security measures are not properly implemented or misconfigured.
+3. Аппаратные устройства:
+   - Требуют надлежащих мер физической безопасности для предотвращения несанкционированного доступа, кражи или уничтожения.
+   - Уязвимы для кражи или уничтожения, если меры физической безопасности не реализованы должным образом или неправильно сконфигурированы.
 
-4. Asset Inventory:
-   - Maintained by facility administrators to track hardware devices and ownership information.
-   - Helps in identifying missing or compromised hardware and aids in recovery or replacement processes.
+4. Инвентаризация активов:
+   - Ведется администраторами объекта для отслеживания аппаратных устройств и информации о владельцах.
+   - Помогает выявить пропавшее или скомпрометированное оборудование и помогает в процессах восстановления или замены.
 
-5. Attack Surface:
-   - Represents the vulnerabilities and entry points that unauthorized individuals can exploit.
-   - Weak or misconfigured physical security measures may increase the attack surface and provide opportunities for theft or destruction of hardware.
+5. Поверхность атаки:
+   - Представляет собой уязвимые места и точки входа, которые могут использовать неавторизованные лица.
+   - Слабые или неправильно сконфигурированные меры физической безопасности могут увеличить площадь атаки и предоставить возможности для кражи или уничтожения оборудования.
 
-6. Attack Path:
-   - Represents the sequence of steps an attacker can take to bypass physical security measures and steal or destroy hardware.
-   - Follows the path of least resistance to compromise the physical security of the hardware devices.
+6. Путь атаки:
+   - Представляет собой последовательность шагов, которые может предпринять злоумышленник, чтобы обойти меры физической безопасности, украсть или уничтожить оборудование.
+   - Для того чтобы нарушить физическую безопасность аппаратных устройств, следует идти по пути наименьшего сопротивления.
 ```
 
 
-### Vulnerabilities in third-party components
+### Уязвимости в компонентах сторонних производителей
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Vulnerabilities in Third-Party Components" threat scenario. It includes actors such as "Attacker" and "User" and defines a dataflow between the user and a sensitive data datastore.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Уязвимости в компонентах сторонних производителей". Она включает такие действующие лица, как "Злоумышленник" и "Пользователь", и определяет поток данных между пользователем и хранилищем конфиденциальных данных.
 
-The threat model defines the "Vulnerabilities in Third-Party Components" threat and describes the threat of vulnerabilities in third-party components used in the system.
+Модель угроз определяет угрозу "Уязвимости в компонентах сторонних производителей" и описывает угрозу уязвимостей в компонентах сторонних производителей, используемых в системе.
 
-The code generates a threat model diagram in PNG format, named "third_party_component_vulnerabilities_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG с именем "third_party_component_vulnerabilities_threat_model.png".
 
 ```
 from pytm import TM, Actor, Datastore, Dataflow, Boundary
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Vulnerabilities in Third-Party Components Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 user = Actor("User")
 
-# Create a boundary
+# Создайте границу
 boundary = Boundary("System Boundary")
 
-# Create a datastore
+# Создание хранилища данных
 datastore = Datastore("Sensitive Data")
 
-# Define dataflows
+# Определите потоки данных
 dataflow = Dataflow(user, datastore, "Data Access")
 
-# Define Vulnerabilities in Third-Party Components threat
+# Определение угрозы уязвимостей в компонентах сторонних производителей
 tm.add_threat()
 tm.threat.name("Vulnerabilities in Third-Party Components")
 tm.threat.description("Threat of vulnerabilities in third-party components used in the system")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, dataflow, "Exploitation of Third-Party Component Vulnerabilities")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("third_party_component_vulnerabilities_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Vulnerabilities in Third-Party Components:
+Диаграмма модели угроз для уязвимостей в компонентах сторонних производителей:
 
-Concepts:
-- Vulnerabilities in Third-Party Components: Weaknesses or flaws present in software or hardware components developed by external third-party vendors.
-- Third-Party Components: Software or hardware modules, libraries, frameworks, or services developed by external vendors and integrated into the system.
-- Software Development Lifecycle (SDLC): The process of developing, testing, and deploying software.
-- Vulnerability Management: The process of identifying, assessing, mitigating, and monitoring vulnerabilities in software components.
-- Patch Management: The process of applying security patches and updates to third-party components.
+Концепции:
+- Уязвимости в компонентах сторонних производителей: Слабости или недостатки, присутствующие в программных или аппаратных компонентах, разработанных внешними сторонними поставщиками.
+- Компоненты сторонних производителей: Программные или аппаратные модули, библиотеки, фреймворки или сервисы, разработанные внешними поставщиками и интегрированные в систему.
+- Жизненный цикл разработки программного обеспечения (SDLC): Процесс разработки, тестирования и развертывания программного обеспечения.
+- Управление уязвимостями: Процесс выявления, оценки, устранения и мониторинга уязвимостей в компонентах программного обеспечения.
+- Управление исправлениями: Процесс применения исправлений и обновлений безопасности к компонентам сторонних производителей.
 
-Users:
-1. System Developers:
-   - Responsible for integrating and using third-party components in the system.
-   - May unknowingly introduce vulnerabilities by not properly assessing the security of the components or by not implementing them correctly.
+Пользователи:
+1. Разработчики системы:
+   - Отвечают за интеграцию и использование сторонних компонентов в системе.
+   - Могут неосознанно вносить уязвимости, не оценив должным образом безопасность компонентов или неправильно их внедрив.
 
-2. Third-Party Component Vendors:
-   - Develop and maintain the third-party components used in the system.
-   - May have vulnerabilities in their components due to coding errors, design flaws, or outdated dependencies.
+2. Поставщики сторонних компонентов:
+   - Разрабатывают и поддерживают компоненты сторонних производителей, используемые в системе.
+   - Могут иметь уязвимости в своих компонентах из-за ошибок кодирования, недостатков проектирования или устаревших зависимостей.
 
-Components:
-1. Third-Party Components:
-   - Represents the software or hardware modules, libraries, frameworks, or services developed by external vendors and integrated into the system.
-   - Can introduce vulnerabilities if not properly assessed, implemented, or kept up to date with security patches.
+Компоненты:
+1. Компоненты сторонних производителей:
+   - Представляют собой программные или аппаратные модули, библиотеки, фреймворки или сервисы, разработанные внешними поставщиками и интегрированные в систему.
+   - Могут создавать уязвимости, если их не оценивать, не внедрять и не обновлять исправлениями безопасности.
 
-2. System Components:
-   - Represents the internal components of the system, including the custom-developed software and other infrastructure elements.
+2. Компоненты системы:
+   - Представляют собой внутренние компоненты системы, включая программное обеспечение, разработанное на заказ, и другие элементы инфраструктуры.
 
-3. Software Development Lifecycle (SDLC):
-   - The process followed by system developers to develop, test, and deploy the system.
-   - Involves activities such as requirements gathering, design, coding, testing, and deployment.
+3. Жизненный цикл разработки программного обеспечения (SDLC):
+   - Процесс, которому следуют разработчики системы для разработки, тестирования и развертывания системы.
+   - Включает в себя такие действия, как сбор требований, проектирование, кодирование, тестирование и развертывание.
 
-Interactions:
-1. System Developers:
-   - Responsible for integrating and using third-party components in the system.
-   - Should assess the security of the third-party components before integration and ensure they are properly implemented.
+Взаимодействие:
+1. Разработчики системы:
+   - Отвечают за интеграцию и использование в системе компонентов сторонних производителей.
+   - Должны оценить безопасность сторонних компонентов перед интеграцией и обеспечить их правильную реализацию.
 
-2. Third-Party Component Vendors:
-   - Develop and maintain the third-party components used in the system.
-   - Should follow secure coding practices, conduct regular security assessments, and provide security patches and updates for their components.
+2. Поставщики сторонних компонентов:
+   - Разрабатывают и поддерживают компоненты сторонних производителей, используемые в системе.
+   - Должны следовать практикам безопасного кодирования, проводить регулярные оценки безопасности и предоставлять исправления и обновления безопасности для своих компонентов.
 
-3. Third-Party Components:
-   - Integrated into the system by system developers.
-   - Can introduce vulnerabilities if not properly assessed or implemented.
+3. Компоненты сторонних производителей:
+   - Интегрируются в систему разработчиками системы.
+   - Могут создавать уязвимости, если их не оценить или не внедрить должным образом.
 
-4. Software Development Lifecycle (SDLC):
-   - Provides a framework for system developers to follow during the development process.
-   - Should include security measures and assessments to identify and address vulnerabilities in third-party components.
+4. Жизненный цикл разработки программного обеспечения (SDLC):
+   - Предоставляет разработчикам системы рамки, которым они должны следовать в процессе разработки.
+   - Должен включать меры безопасности и оценки для выявления и устранения уязвимостей в компонентах сторонних разработчиков.
 
-5. Vulnerability Management:
-   - Involves identifying, assessing, mitigating, and monitoring vulnerabilities in software components.
-   - Should be part of the overall system development and maintenance processes.
+5. Управление уязвимостями:
+   - Включает в себя выявление, оценку, устранение и мониторинг уязвимостей в программных компонентах.
+   - Должно быть частью общего процесса разработки и обслуживания системы.
 
-6. Patch Management:
-   - Involves applying security patches and updates to third-party components to address known vulnerabilities.
-   - Should be performed regularly to keep the system protected against known vulnerabilities.
+6. Управление исправлениями:
+   - Применение исправлений и обновлений безопасности к компонентам сторонних разработчиков для устранения известных уязвимостей.
+   - Должно выполняться регулярно, чтобы система была защищена от известных уязвимостей.
 ```
 
 
 
-### Lack of oversight on third-party activities
+### Отсутствие надзора за деятельностью третьих лиц
 
 #### **PyTM**
 
-This code creates a threat model using PyTM and represents the "Lack of Oversight on Third-Party Activities" threat scenario. It includes actors such as "Attacker," "User," and "Third-Party" and defines dataflows between the user, third-party process, and a sensitive data datastore.
+Этот код создает модель угрозы с помощью PyTM и представляет сценарий угрозы "Отсутствие надзора за деятельностью третьих сторон". Она включает таких участников, как "Злоумышленник", "Пользователь" и "Третья сторона", и определяет потоки данных между пользователем, сторонним процессом и хранилищем конфиденциальных данных.
 
-The threat model defines the "Lack of Oversight on Third-Party Activities" threat and describes the threat of insufficient oversight on third-party activities in the system.
+Модель угроз определяет угрозу "Отсутствие надзора за деятельностью третьих лиц" и описывает угрозу недостаточного надзора за деятельностью третьих лиц в системе.
 
-The code generates a threat model diagram in PNG format, named "lack_of_oversight_third_party_activities_threat_model.png."
+Код генерирует диаграмму модели угроз в формате PNG под названием "lack_of_oversight_third_party_activities_threat_model.png".
 
 
 
 ```
 from pytm import TM, Actor, Process, Datastore, Dataflow, Boundary
 
-# Create a new threat model
+# Создайте новую модель угрозы
 tm = TM("Lack of Oversight on Third-Party Activities Threat Model")
 
-# Create actors
+# Создать действующий субъек
 attacker = Actor("Attacker")
 user = Actor("User")
 third_party = Actor("Third-Party")
 
-# Create a boundary
+# Создайте границу
 boundary = Boundary("System Boundary")
 
-# Create a process
+# Создайте процесс
 process = Process("Third-Party Process")
 
-# Create a datastore
+# Создание хранилища данных
 datastore = Datastore("Sensitive Data")
 
-# Define dataflows
+# Определите потоки данных
 dataflow1 = Dataflow(user, process, "Data Sharing")
 dataflow2 = Dataflow(process, datastore, "Data Storage")
 
-# Define Lack of Oversight on Third-Party Activities threat
+# Определить угрозу отсутствия надзора за деятельностью третьих лиц
 tm.add_threat()
 tm.threat.name("Lack of Oversight on Third-Party Activities")
 tm.threat.description("Threat of lack of oversight on third-party activities in the system")
 
-# Define attack paths
+# Определите пути атаки
 tm.attack_path(attacker, dataflow1, "Unauthorized Data Sharing")
 tm.attack_path(attacker, dataflow2, "Unauthorized Data Storage")
 
-# Generate the threat model diagram
+# Создайте диаграмму модели угроз
 tm.generate_diagram("lack_of_oversight_third_party_activities_threat_model.png")
 ```
 
-#### **Microsoft Threat Model**
+#### **Модель угроз Microsoft**
 
 ```
-Threat Model Diagram for Lack of Oversight on Third-Party Activities:
+Диаграмма модели угрозы отсутствия надзора за деятельностью третьих лиц:
 
-Concepts:
-- Lack of Oversight: Insufficient monitoring, supervision, or control over the activities performed by third-party vendors.
-- Third-Party Activities: Activities carried out by external vendors, such as software development, data processing, or system maintenance.
-- Trust Boundaries: Points where the system interacts with external entities, including third-party vendors.
-- Data Privacy: Protection of sensitive data from unauthorized access, use, or disclosure.
-- Regulatory Compliance: Adherence to relevant laws, regulations, and industry standards.
+Концепции:
+- Отсутствие надзора: недостаточный мониторинг, надзор или контроль за деятельностью, осуществляемой сторонними поставщиками.
+- Деятельность третьих лиц: Деятельность, осуществляемая внешними поставщиками, например разработка программного обеспечения, обработка данных или обслуживание системы.
+- Границы доверия: Точки, в которых система взаимодействует с внешними субъектами, включая сторонних поставщиков.
+- Конфиденциальность данных: Защита конфиденциальных данных от несанкционированного доступа, использования или раскрытия.
+- Соответствие нормативным требованиям: Соблюдение соответствующих законов, правил и отраслевых стандартов.
 
-Users:
-1. System Owners:
-   - Responsible for overseeing the system's operations, security, and compliance.
-   - May delegate certain tasks or responsibilities to third-party vendors.
+Пользователи:
+1. Владельцы системы:
+   - Отвечают за надзор за работой системы, ее безопасностью и соответствием требованиям.
+   - Могут делегировать определенные задачи или обязанности сторонним поставщикам.
 
-2. Third-Party Vendors:
-   - External entities engaged to perform specific activities or provide services related to the system.
-   - May have access to system components, data, or infrastructure.
+2. Сторонние поставщики:
+   - Внешние организации, привлекаемые для выполнения определенных действий или предоставления услуг, связанных с системой.
+   - Могут иметь доступ к компонентам системы, данным или инфраструктуре.
 
-Components:
-1. System Components:
-   - Represents the internal components of the system, including software, hardware, and network infrastructure.
+Компоненты:
+1. Компоненты системы:
+   - Представляют собой внутренние компоненты системы, включая программное обеспечение, аппаратные средства и сетевую инфраструктуру.
 
-2. Third-Party Activities:
-   - Activities performed by external vendors on behalf of the system owner.
-   - Examples include software development, data processing, system maintenance, or cloud hosting.
+2. Деятельность третьих лиц:
+   - Деятельность, осуществляемая внешними поставщиками от имени владельца системы.
+   - Примеры включают разработку программного обеспечения, обработку данных, обслуживание системы или облачный хостинг.
 
-Data Flows:
-1. System Owner to Third-Party Vendors:
-   - Involves communication, coordination, and delegation of tasks or responsibilities to third-party vendors.
-   - May include sharing system documentation, access privileges, or specific project requirements.
+Потоки данных:
+1. Владелец системы - сторонние поставщики:
+   - Предполагает общение, координацию и делегирование задач или обязанностей сторонним поставщикам.
+   - Может включать обмен системной документацией, привилегиями доступа или конкретными требованиями проекта.
 
-2. Third-Party Vendors to System Components:
-   - Involves the execution of activities by third-party vendors on the system components.
-   - May include development, maintenance, or hosting of system components.
+2. Сторонние поставщики - компоненты системы:
+   - Предполагает выполнение действий сторонними поставщиками в отношении компонентов системы.
+   - Может включать разработку, обслуживание или хостинг компонентов системы.
 
-3. System Components to Third-Party Vendors:
-   - Involves the exchange of data, credentials, or system components between the system and third-party vendors.
-   - May include data processing, data storage, or system integration.
+3. Компоненты системы - сторонним поставщикам:
+   - Предполагает обмен данными, учетными данными или компонентами системы между системой и сторонними поставщиками.
+   - Может включать обработку данных, хранение данных или системную интеграцию.
 
-Interactions:
-1. System Owners:
-   - Responsible for overseeing the system's operations, security, and compliance.
-   - Should establish clear expectations, requirements, and agreements with third-party vendors regarding oversight and monitoring.
+Взаимодействия:
+1. Владельцы системы:
+   - Отвечают за надзор за работой системы, ее безопасностью и соответствием требованиям.
+   - Должны установить четкие ожидания, требования и соглашения со сторонними поставщиками в отношении надзора и мониторинга.
 
-2. Third-Party Vendors:
-   - Engaged to perform specific activities or provide services related to the system.
-   - Should adhere to the agreed-upon oversight and monitoring requirements and provide necessary information or reports as requested.
+2. Сторонние поставщики:
+   - Привлекаются для выполнения определенной деятельности или предоставления услуг, связанных с системой.
+   - Должны придерживаться согласованных требований по надзору и мониторингу и предоставлять необходимую информацию или отчеты по запросу.
 
-3. Trust Boundaries:
-   - Points where the system interacts with external entities, including third-party vendors.
-   - Should be identified and defined to clearly delineate the responsibilities and access privileges of third-party vendors.
+3. Границы доверия:
+   - Точки, в которых система взаимодействует с внешними субъектами, включая сторонних поставщиков.
+   - Должны быть идентифицированы и определены, чтобы четко разграничить обязанности и привилегии доступа сторонних поставщиков.
 
-4. Data Privacy:
-   - Focuses on protecting sensitive data from unauthorized access, use, or disclosure.
-   - System owners should ensure that third-party vendors handle sensitive data in compliance with data privacy regulations and industry standards.
+4. Конфиденциальность данных:
+   - Защита конфиденциальных данных от несанкционированного доступа, использования или раскрытия.
+   - Владельцы систем должны убедиться, что сторонние поставщики работают с конфиденциальными данными в соответствии с нормами конфиденциальности данных и отраслевыми стандартами.
 
-5. Regulatory Compliance:
-   - Involves adhering to relevant laws, regulations, and industry standards.
-   - System owners should ensure that third-party vendors comply with applicable regulations and standards in their activities.
+5. Соответствие нормативным требованиям:
+   - Подразумевает соблюдение соответствующих законов, правил и отраслевых стандартов.
+   - Владельцы систем должны убедиться, что сторонние поставщики соблюдают в своей деятельности применимые правила и стандарты.
 ```
 
 
 
 
 
-## Threat detection 
+## Обнаружение угроз 
 
 
 ![stride](../../../assets/images/threats.png)
 
 
-| Abnormal network traffic    | Potential threats    | 
+| Ненормальный сетевой трафик | Потенциальные угрозы | 
 |:---------------|:---------------------|
-| `Port/host scan` | The port or host scan behaviors mean one of the hosts may have been infected by a malware program, and the malware program is looking for vulnerabilities, other services, or hosts on the network.	 | 
-| `A high number of outbound DNS requests from the same host` | This is a symptom of Command and Control (C&C) malware, establishing communication between the infected host and the C&C server using the DNS protocol. 	 | 
-| `A high number of outbound HTTP requests from the same host` | This is a symptom of C&C, establishing communication between the infected host and the C&C server using the HTTP protocol.	 | 
-| `Periodical outbound traffic with samesized requests or during the same period of time every day ` | This is a symptom of C&C malware, establishing communication between the infected host and the C&C server.	 | 
-| `Outbound traffic to an external web or DNS listed as a known threat by threat intelligence feeds` | The user may be tricked through social engineering to connect to an external known threat web or the C&C connection is successfully established. 	 | 
+| `Сканирование порта/хоста` | Поведение сканирования порта или хоста означает, что один из хостов, возможно, заражен вредоносной программой, и вредоносная программа ищет уязвимости, другие службы или хосты в сети.	 | 
+|` Большое количество исходящих DNS-запросов от одного и того же узла` | Это симптом вредоносного ПО Command and Control (C&C), устанавливающего связь между зараженным узлом и C&C-сервером с помощью протокола DNS. 	 | 
+| `Большое количество исходящих HTTP-запросов с одного и того же хоста` | Это симптом C&C, устанавливающего связь между зараженным хостом и C&C-сервером по протоколу HTTP.	 | 
+| `Периодический исходящий трафик с одинаковыми запросами или в один и тот же период времени каждый день` | Это симптом C&C вредоносного ПО, устанавливающего связь между зараженным хостом и C&C сервером.	 | 
+| `Исходящий трафик на внешний веб-сайт или DNS, включенный в список известных угроз по данным анализа угроз` | Пользователь может быть обманут с помощью социальной инженерии, чтобы подключиться к внешнему веб-сайту с известной угрозой, или C&C-соединение успешно установлено. 	 | 
 
-To visualize the network threat status, there are two recommended open source tools: Malcom and Maltrail (Malicious Traffic detection system). Malcom can present a host communication relationship diagram. It helps us to understand whether there are any internal hosts connected to an external suspicious C&C server or known bad sites
-https://github.com/tomchop/malcom#what-is-malcom
-
+Для визуализации состояния сетевых угроз рекомендуются два инструмента с открытым исходным кодом: Malcom и Maltrail (система обнаружения вредоносного трафика). Malcom может представить диаграмму взаимосвязей между хостами. Она помогает понять, есть ли внутренние узлы, подключенные к внешнему подозрительному C&C-серверу или известным "плохим" сайтам. https://github.com/tomchop/malcom#what-is-malcom
 
 
 
 
-## Indicators of compromises 
 
-An analysis of hosts for suspicious behaviors also poses a significant challenge due to the availability of logs. For example, dynamic runtime information may not be logged in files and the original process used to drop a suspicious file may not be recorded. Therefore, it is always recommended to install a host IDS/IPS such as OSSEC (Open Source HIDS SEcurity) or host antivirus software as the first line of defense against malware. Once the host IDS/IPS or antivirus software is in place, threat intelligence and big data analysis are supplementary, helping us to understand the overall host's security posture and any known Indicators of Compromises (IoCs) in existing host environments.
+## Индикаторы компрометации 
 
-Based on the level of severity, the following are key behaviors that may indicate a compromised host:
+Анализ хостов на предмет подозрительного поведения также представляет собой серьезную проблему, связанную с доступностью журналов. Например, динамическая информация о времени выполнения может не регистрироваться в файлах, а исходный процесс, используемый для сброса подозрительного файла, может быть не записан. Поэтому в качестве первой линии защиты от вредоносного ПО всегда рекомендуется устанавливать IDS/IPS хоста, например OSSEC (Open Source HIDS SEcurity), или антивирусное ПО хоста. После установки IDS/IPS или антивирусного ПО на хост-компьютер анализ угроз и анализ больших данных дополняют друг друга, помогая нам понять общий уровень безопасности хоста и все известные индикаторы компрометации (IoCs) в существующих средах хоста.
+
+В зависимости от степени серьезности, ниже перечислены основные типы поведения, которые могут указывать на наличие взломанного узла:
 
 
  
-### External source client IP
-The source of IP address analysis can help to identify the following: 
-A known bad IP or TOR exit node 
-Abnormal geolocation changes 
-Concurrent connections from different geolocations 
-The MaxMind GeoIP2 database can be used to translate the IP address to a geolocation: 
+### Внешний IP-адрес клиента
+Анализ IP-адреса источника может помочь выявить следующее: 
+Известный плохой IP или узел выхода TOR 
+Аномальные изменения геолокации 
+Одновременные соединения из разных геолокаций. 
+Для перевода IP-адреса в геолокацию можно использовать базу данных MaxMind GeoIP2: 
 https://dev.maxmind.com/geoip/geoip2/geolite2/#Downloads
 
-### Client fingerprint (OS, browser, user agent, devices, and so on)
-The client fingerprint can be used to identify whether there are any unusual client or non-browser connections. The open source ClientJS is a pure JavaScript that can be used to collect client fingerprint information. The JA3 provided by Salesforce uses SSL/TLS connection profiling to identify malicious clients.
+### Отпечаток клиента (ОС, браузер, пользовательский агент, устройства и так далее)
+Отпечаток клиента можно использовать для определения необычных клиентских или небраузерных подключений. ClientJS с открытым исходным кодом - это чистый JavaScript, который можно использовать для сбора информации об отпечатке клиента. JA3, предоставляемый Salesforce, использует профилирование соединений SSL/TLS для выявления вредоносных клиентов.
 ClientJS: https://clientjs.org/
 JA3: https://github.com/salesforce/ja3
 
-### Web site reputation
-When there is an outbound connection to an external website, we may check the threat reputation of that target website. This can be done by means of the web application firewall, or web gateway security solutions
+### Репутация веб-сайта
+При наличии исходящего соединения с внешним веб-сайтом мы можем проверить репутацию целевого веб-сайта на предмет угроз. Это можно сделать с помощью брандмауэра веб-приложений или решений по обеспечению безопасности веб-шлюзов
 https://www.virustotal.com/
 
-### Random Domain Name by Domain Generation Algorithms (DGAs)
-The domain name of the C&C server can be generated by DGAs. The key characteristics of the DGA domain are high entropy, high consonant count, and long length of a domain name. Based on these indicators, we may analyze whether the domain name is generated by DGAs and could be a potential C&C server. 
-DGA Detector: https://github.com/exp0se/dga_detector/
-In addition, in order to reduce false positives, we may also use Alexa's top one million sites as a website whitelist. Refer to https://s3.amazonaws.com/alexa-static/top-1m.csv.zip. 
+### Случайное доменное имя с помощью алгоритмов генерации доменов (DGA)
+Доменное имя C&C-сервера может быть сгенерировано с помощью DGA. Ключевыми характеристиками домена DGA являются высокая энтропия, большое количество согласных и большая длина доменного имени. Основываясь на этих показателях, мы можем проанализировать, генерируется ли доменное имя DGA и может ли оно быть потенциальным C&C-сервером. 
+Детектор DGA: https://github.com/exp0se/dga_detector/
+Кроме того, чтобы уменьшить количество ложных срабатываний, мы можем использовать миллион лучших сайтов Alexa в качестве "белого списка" сайтов. См. https://s3.amazonaws.com/alexa-static/top-1m.csv.zip. 
 
-### Suspicious file downloads
-Cuckoo sandbox suspicious file analysis: 
+### Загрузка подозрительных файлов
+Анализ подозрительных файлов в песочнице Cuckoo: 
 `https://cuckoosandbox.org/`
 
-### DNS query 
-In the case of DNS query analysis, the following are the key indicators of compromises:
-DNS query to unauthorized DNS servers. 
-Unmatched DNS replies can be an indicator of DNS spoofing.
-Clients connect to multiple DNS servers. 
-A long DNS query, such as one in excess of 150 characters, which is an indicator of DNS tunneling. 
-A domain name with high entropy. This is an indicator of DNS tunneling or a C&C server.
+### DNS-запросы 
+В случае анализа DNS-запросов ключевыми индикаторами компрометации являются следующие:
+DNS-запросы к неавторизованным DNS-серверам. 
+Несоответствующие ответы DNS могут быть индикатором подмены DNS.
+Клиенты подключаются к нескольким DNS-серверам. 
+Длинный DNS-запрос, например, более 150 символов, что является признаком DNS-туннелирования. 
+Доменное имя с высокой энтропией. Это индикатор DNS-туннелирования или C&C-сервера.
 
 
 
