@@ -4,10 +4,10 @@ title: Infrastructure
 parent: Production
 ---
 
-# Infrastructure
+# Инфраструктура
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,75 +16,75 @@ parent: Production
 ---
 
 
-## Service Mesh
+## Сервисная ячейка
 
 
 ### linkerd + istioctl
 
-Linkerd Security Cheatsheet:
+Шпаргалка по безопасности Linkerd:
 
 
 
-- [ ] Inject Linkerd's sidecar proxy into deployment YAML files for automatic mTLS.
+- [ ] Вставьте прокси Linkerd's sidecar в YAML-файлы развертывания для автоматического mTLS.
 
 ```
 linkerd --context <context> inject --manual <input.yaml> | kubectl apply -f -
 ```
 
-- [ ] Enable mTLS for a specific deployment.
+- [ ] Включите mTLS для конкретного развертывания.
 
 ```
 linkerd --context <context> -n <namespace> -o yaml tls web deployment/<deployment> | kubectl apply -f -
 ```
  
 
-- [ ] Tap into the traffic of a specific deployment, monitoring for unauthorized access attempts
+- [ ] Просматривайте трафик конкретного развертывания, отслеживая попытки несанкционированного доступа.
 
 ```
 linkerd --context <context> -n <namespace> tap deploy/<deployment> --namespace=<target-namespace> --to <target-deployment> --method=<http-method>
 ```
 
 
-- [ ] Observe traffic and analyze potential security-related issues using Linkerd's tap command.
+- [ ] Наблюдение за трафиком и анализ потенциальных проблем, связанных с безопасностью, с помощью команды Linkerd's tap.
 
 ```
 linkerd --context <context> -n <namespace> -o json tap deploy/<deployment> | jq . | less
 ```
 
 
-- [ ] Install Istio with automatic mTLS enabled.
+- [ ] Установите Istio с включенным автоматическим mTLS.
 
 ```
 istioctl --context <context> install --set profile=demo --set values.global.mtls.auto=true: 
 ```
 
-- [ ] Generate Istio manifest files for the current configuration.
+- [ ] Создайте файлы манифеста Istio для текущей конфигурации.
 
 ```
 istioctl --context <context> manifest generate | kubectl apply -f -: 
 ```
 
-- [ ] Perform a TLS handshake check for a specific host and namespace.
+- [ ] Выполните проверку рукопожатия TLS для определенного хоста и пространства имен.
 
 ```
 istioctl --context <context> authn tls-check <host> -n <namespace>: 
 ```
 
 
-- [ ] Check Istio authorization policies for specific traffic flows.
+- [ ] Проверьте политики авторизации Istio для определенных потоков трафика.
 
 ```
 istioctl --context <context> -n <namespace> authz check deploy/<deployment> --from <source-deployment> --to <target-deployment> --namespace=<target-namespace> --method=<http-method>
 ```
 
 
-- [ ] Generate a packet capture (PCAP) file for a specific pod for in-depth analysis.
+- [ ] Создайте файл захвата пакетов (PCAP) для конкретного стручка для углубленного анализа.
 
 ```
 istioctl --context <context> -n <namespace> pcaps <pod-name> -o <output-file.pcap>
 ```
 
-- [ ] Open Jaeger, the distributed tracing system, to visualize and analyze Istio-traced requests.
+- [ ] Откройте Jaeger, распределенную систему трассировки, для визуализации и анализа запросов, отслеживаемых Istio.
 
 ```
 istioctl --context <context> -n <namespace> dashboard jaeger
@@ -93,9 +93,9 @@ istioctl --context <context> -n <namespace> dashboard jaeger
 ### Chaos
 
 
-- [ ] Configure Chaos Monkey
+- [ ] Настройте Chaos Monkey
 
-Edit the `chaos.properties` file to specify the target service, frequency of chaos events, and other settings.
+Отредактируйте файл `chaos.properties`, чтобы указать целевой сервис, частоту событий хаоса и другие настройки.
 
 - [ ] Start Chaos Monkey	
 
