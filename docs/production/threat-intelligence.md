@@ -6,7 +6,7 @@ parent: Production
 
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -18,39 +18,39 @@ parent: Production
 # Threat Intelligence
 {: .no_toc }
 
-Threat intelligence is the process of gathering and analyzing information about potential and existing cybersecurity threats, such as malware, phishing attacks, and data breaches. The goal of threat intelligence is to provide organizations with actionable insights that can help them identify and mitigate potential security risks before they can cause harm.
+Анализ угроз - это процесс сбора и анализа информации о потенциальных и существующих угрозах кибербезопасности, таких как вредоносное ПО, фишинговые атаки и утечки данных. Цель анализа угроз - предоставить организациям действенные сведения, которые помогут им выявить и смягчить потенциальные риски безопасности до того, как они смогут причинить вред.
 
-In the context of DevSecOps, threat intelligence is an important component of a comprehensive security strategy. By gathering and analyzing information about potential security threats, organizations can better understand the security risks that they face and take steps to mitigate them. This can include implementing security controls and countermeasures, such as firewalls, intrusion detection systems, and security information and event management (SIEM) systems, to protect against known threats.
+В контексте DevSecOps анализ угроз является важным компонентом комплексной стратегии безопасности. Собирая и анализируя информацию о потенциальных угрозах безопасности, организации могут лучше понять риски безопасности, с которыми они сталкиваются, и предпринять шаги по их снижению. Это может включать в себя внедрение средств контроля безопасности и контрмер, таких как брандмауэры, системы обнаружения вторжений и системы управления информацией и событиями безопасности (SIEM), для защиты от известных угроз.
 
-Threat intelligence can also be used to enhance other DevSecOps practices, such as vulnerability management and incident response. By identifying potential vulnerabilities and threats in real-time, security teams can take swift action to remediate issues and prevent security incidents from occurring.
+Информация об угрозах также может быть использована для совершенствования других практик DevSecOps, таких как управление уязвимостями и реагирование на инциденты. Выявляя потенциальные уязвимости и угрозы в режиме реального времени, команды безопасности могут оперативно принимать меры по устранению проблем и предотвращению инцидентов безопасности.
 
-Some of the key benefits of threat intelligence in DevSecOps include:
+К числу ключевых преимуществ анализа угроз в DevSecOps относятся:
 
-1. Improved threat detection: Threat intelligence provides organizations with the information they need to detect potential security threats before they can cause harm.
+1. Улучшенное обнаружение угроз: Анализ угроз предоставляет организациям информацию, необходимую для обнаружения потенциальных угроз безопасности до того, как они смогут причинить вред.
 
-2. Better decision-making: By providing actionable insights, threat intelligence helps organizations make informed decisions about their security posture and response to potential threats.
+2. Более эффективное принятие решений: Предоставляя действенные сведения, анализ угроз помогает организациям принимать обоснованные решения о состоянии безопасности и реагировании на потенциальные угрозы.
 
-3. Proactive threat mitigation: Threat intelligence enables organizations to take a proactive approach to threat mitigation, allowing them to stay ahead of emerging threats and reduce their risk of being compromised.
+3. Проактивное устранение угроз: Анализ угроз позволяет организациям применять упреждающий подход к снижению угроз, что позволяет им опережать возникающие угрозы и снижать риск быть скомпрометированными.
 
-4. Enhanced incident response: Threat intelligence can be used to enhance incident response, allowing organizations to quickly and effectively respond to security incidents and minimize their impact.
+4. Улучшенное реагирование на инциденты: Анализ угроз может быть использован для повышения эффективности реагирования на инциденты, что позволяет организациям быстро и эффективно реагировать на инциденты безопасности и минимизировать их последствия.
 
 
 
 ## PCR
 
 
-* **Priority:** The priority of the Post Collection Request (PCR) should be determined by considering multiple factors and information. It is recommended to establish priority based on a combination of several criteria. One important factor to consider is the customer who is requesting the intelligence. For instance, if the request comes from the Chief Information Security Officer (CISO), it would be considered more significant compared to a request from a senior network engineer. Furthermore, priority can be influenced by the specific industry vertical being focused on. For example, if the request is made by a CTI analyst working for a bank, the collection manager would likely prioritize intelligence collection based on the common threats faced by the banking industry. By taking into account these various factors, the PCR can be assigned the appropriate level of priority.
+* **Приоритет:** Приоритет запроса на сбор информации (PCR) должен определяться с учетом множества факторов и информации. Рекомендуется устанавливать приоритет на основе сочетания нескольких критериев. Одним из важных факторов, который следует учитывать, является клиент, запрашивающий разведданные. Например, если запрос поступил от директора по информационной безопасности (CISO), он будет считаться более значимым по сравнению с запросом от старшего сетевого инженера. Кроме того, на приоритет может влиять конкретная отраслевая вертикаль, на которую ориентирован запрос. Например, если запрос поступает от CTI-аналитика, работающего в банке, менеджер по сбору данных, скорее всего, определит приоритеты сбора информации, исходя из общих угроз, с которыми сталкивается банковская отрасль. Приняв во внимание эти различные факторы, можно присвоить ПКР соответствующий уровень приоритета.
 
 
 
-When determining the priority of intelligence collection, there are several key factors to consider. These include the customer's requirements, the desired output or outcome of the collection, the timing interval for the request, and the feasibility of carrying out the request with the available collection systems. While there is no one-size-fits-all approach to priority, these considerations play a crucial role in determining the order in which requests are addressed. In later chapters, the topic of priority will be explored further, particularly in relation to surveying the specific needs of an organization and its collection operations.
+При определении приоритета сбора разведданных необходимо учитывать несколько ключевых факторов. К ним относятся требования заказчика, желаемый результат или итог сбора, временной интервал запроса и возможность выполнения запроса с помощью имеющихся систем сбора. Хотя универсального подхода к определению приоритетов не существует, эти соображения играют решающую роль в определении порядка выполнения запросов. В последующих главах тема приоритетов будет рассмотрена более подробно, особенно в связи с изучением конкретных потребностей организации и ее операций по сбору.
 
 
 
 
 
 
-* **Key:** The key serves as a distinct identifier that can be utilized in conjunction with other systems for reference and tracking purposes. It can be generated automatically, like a primary key, or combined with unique identifiers to provide additional information about the type or priority of the collection. By examining the expanded key, such as PCR-001-P-BIN-FIN-P1, an organization can easily discern the nature and significance of the collection.
+* ** Ключ:** Ключ служит отдельным идентификатором, который может использоваться в сочетании с другими системами для целей ссылки и отслеживания. Он может генерироваться автоматически, как первичный ключ, или сочетаться с уникальными идентификаторами для получения дополнительной информации о типе или приоритете коллекции. Изучив расширенный ключ, например PCR-001-P-BIN-FIN-P1, организация может легко определить характер и значимость коллекции.
 
 
 
@@ -58,64 +58,64 @@ When determining the priority of intelligence collection, there are several key 
 ![Operationalizing Threat Intelligence A guide to developing and operationalizing cyber threat intelligence programs](../../../assets/images/pcr.png)
 
 
-## The collection operations life cycle
+## Жизненный цикл операций по сбору информации
 
-Effective intelligence-gathering requires careful planning, taking into account established collection priorities, special requests for information (RFIs), and regular administration of collection operations. Proper planning ensures that data is collected in a way that aligns with the organization's intelligence-gathering needs.
+Эффективный сбор разведданных требует тщательного планирования с учетом установленных приоритетов сбора, специальных запросов на информацию (RFI) и регулярного управления операциями по сбору. Правильное планирование обеспечивает сбор данных таким образом, чтобы они соответствовали потребностям организации в сборе разведданных.
 
 
 
 ![Operationalizing Threat Intelligence A guide to developing and operationalizing cyber threat intelligence programs](../../../assets/images/collection.png)
 
 
-### People
+### Pперсонал
 
-To meet the organization's needs, it is important to have a defined Priority Collection Requirement (PCR) and assess whether the organization has the right personnel to execute the collection. Personnel evaluation in this context can be divided into three categories: technical skills, language proficiency, and subject matter expertise (SME) focus area. These categories help the collection manager determine if the personnel have the necessary qualifications for effective collection.
-
-
-
-
-* Technical discipline: In many cases, collection operations can be effectively carried out with the right technical skills, particularly for passive and hybrid collection operations. These types of operations primarily rely on technical expertise to gather information, rather than actively engaging with vetted-access communities or developing sources through direct engagement. The collection manager's main consideration is to ensure that the personnel assigned to the collection possess the necessary technical skills to acquire the desired data.
-
-
-* Language requirement: Language skills can play a vital role in collection operations for several reasons. Firstly, if the information being collected is in a specific language, having someone who can read and interpret that language is essential to extract the relevant details. Additionally, language skills become necessary when conducting collection efforts in vetted-access communities that primarily communicate in a particular language. Moreover, these skills are crucial when engaging actively with sources or attempting to recruit individuals. If the intelligence gathering requires a regional focus, collection personnel may need to be native speakers with cultural and regional understanding to effectively carry out the operations.
+Чтобы удовлетворить потребности организации, важно определить приоритетные требования к сбору (PCR) и оценить, есть ли у организации подходящий персонал для их выполнения. Оценка персонала в данном контексте может быть разделена на три категории: технические навыки, владение языком и предметная область знаний (SME). Эти категории помогают менеджеру по сбору информации определить, обладает ли персонал необходимой квалификацией для эффективного сбора информации.
 
 
 
 
+* Техническая дисциплина: Во многих случаях операции по сбору информации могут быть эффективно проведены при наличии соответствующих технических навыков, особенно в случае пассивных и гибридных операций по сбору информации. В этих типах операций для сбора информации в основном используются технические знания, а не активное взаимодействие с сообществами, имеющими проверенный доступ, или разработка источников путем прямого взаимодействия. Главная задача менеджера по сбору - убедиться, что персонал, назначенный на сбор, обладает необходимыми техническими навыками для получения нужных данных.
 
 
-* SME focus area: In addition to technical and language skills, the collection manager should also assess whether the collector needs to have subject matter expertise (SME) in a specific threat area. It is common for individuals in the CTI industry to specialize in areas such as ransomware, banking trojans, nation-state threats, or advanced persistent threats (APTs). If a collector possesses specialized expertise in a particular threat area, it is advisable to assign them to the collection operation rather than someone with only general knowledge of that threat type. This ensures that the collection efforts benefit from the in-depth understanding and insights provided by an SME.
-
-
-
-
-
-### Process
-
-Once the collection manager has identified the suitable personnel for a collection operation, they should collaborate with the collection team to develop the operational plan. This involves considering several key factors that are crucial for a successful intelligence gathering. These factors will be discussed in the following sections.
-
-
-
-
-* OPSEC: we talked about the
-The OPSEC (Operations Security) process is of utmost importance and should be ingrained in the culture of the group. During operations planning, the collection manager should go through the OPSEC processes and procedures with the collection team. This ensures that the team understands the significance of OPSEC and prevents them from becoming complacent or feeling overly secure during the execution of the operation. By incorporating OPSEC into the planning phase, the team remains vigilant and maintains a strong focus on protecting sensitive information and maintaining operational security.
-
-
-
-* Review any current intelligence: During the development of the operations plan, it is important for the collection manager and team to thoroughly review all intelligence holdings related to the desired data and its source. This review provides valuable information about the collection process, the specific environment where the collection will take place, and details about the source of information. By conducting this review, the collection team gains a deeper understanding of the collection requirements and can effectively tailor their approach to ensure successful data acquisition.
-
-
-
-* Be cognizant of operation branches or sequels: When planning collection operations, it is crucial to consider the history of previous data collection from a specific source location. This history can provide valuable insights into the operations of the collection team and the story it tells. For example, it may reveal patterns such as repeated use of certain IP ranges or VPNs, which could indicate tracking of user information. In more complex scenarios, such as collecting from dark markets or hacking forums, the collection team must carefully assess their history in those locations. They need to consider factors such as existing personas, any incidents that may have compromised their identities, and the potential for setting up multiple collection operations. Understanding the history of collection from a source location is essential for effective operations planning.
+* Требования к языку: Знание языка может играть важную роль в операциях по сбору информации по нескольким причинам. Во-первых, если собираемая информация написана на определенном языке, наличие человека, способного читать и интерпретировать этот язык, необходимо для извлечения нужных деталей. Кроме того, знание языка становится необходимым при проведении сбора информации в сообществах с проверенным доступом, которые в основном общаются на определенном языке. Кроме того, эти навыки крайне важны при активном взаимодействии с источниками или попытках вербовки людей. Если сбор разведданных требует региональной направленности, то для эффективного проведения операций сотрудникам по сбору информации могут потребоваться носители языка с пониманием культурных и региональных особенностей.
 
 
 
 
 
 
-### Tools and technology
+* Область деятельности МСП: В дополнение к техническим и языковым навыкам руководитель сбора информации должен оценить, требуется ли коллекционеру обладать экспертными знаниями (SME) в конкретной области угроз. Обычно люди в индустрии CTI специализируются на таких областях, как программы-вымогатели, банковские трояны, угрозы со стороны национальных государств или современные постоянные угрозы (APT). Если сборщик обладает специальными знаниями в определенной области угроз, рекомендуется назначить его на операцию сбора, а не человека, имеющего лишь общие знания о данном типе угроз. Это гарантирует, что усилия по сбору принесут пользу благодаря глубокому пониманию и знаниям, предоставленным специалистом.
 
-After ensuring the availability of suitable personnel and conducting thorough planning, the collection manager should focus on the technology and infrastructure required for the operations plan. This includes evaluating the necessary collection tools and systems. Collection tools refer to the specific software or hardware used to gather intelligence, while collection systems encompass the broader infrastructure needed to support operational security (OPSEC) and collection requirements. It is essential for the collection manager to assess whether the team has access to the appropriate technologies and infrastructure to effectively carry out the collection activities.
+
+
+
+
+### Процесс
+
+После того как менеджер по сбору информации определил подходящий персонал для операции по сбору, он должен совместно с группой по сбору информации разработать оперативный план. При этом необходимо учитывать несколько ключевых факторов, которые имеют решающее значение для успешного сбора разведданных. Эти факторы будут рассмотрены в следующих разделах.
+
+
+
+
+* OPSEC: мы уже говорили о
+Процесс обеспечения безопасности операций (OPSEC) имеет огромное значение и должен быть укоренен в культуре группы. Во время планирования операций менеджер по сбору должен обсудить процессы и процедуры OPSEC с группой по сбору. Это гарантирует, что команда понимает важность OPSEC и не позволит ей успокоиться или почувствовать себя слишком защищенной во время выполнения операции. Включение OPSEC в фазу планирования позволяет группе сохранять бдительность и уделять пристальное внимание защите конфиденциальной информации и поддержанию оперативной безопасности.
+
+
+
+* Проанализируйте все текущие разведданные: Во время разработки плана операции руководителю и группе по сбору важно тщательно изучить все разведывательные данные, относящиеся к желаемой информации и ее источнику. Этот обзор дает ценную информацию о процессе сбора, конкретной обстановке, в которой будет проводиться сбор, а также подробности об источнике информации. Проведя этот обзор, команда по сбору данных получает более глубокое понимание требований к сбору и может эффективно адаптировать свой подход для обеспечения успешного сбора данных.
+
+
+
+* Учитывайте разветвления или продолжения операций: При планировании операций по сбору очень важно учитывать историю предыдущих сборов данных из конкретного источника. Эта история может дать ценные сведения об операциях группы сбора и истории, которую она рассказывает. Например, она может выявить такие закономерности, как неоднократное использование определенных диапазонов IP-адресов или VPN, что может свидетельствовать об отслеживании пользовательской информации. В более сложных сценариях, таких как сбор информации на темных рынках или хакерских форумах, группа сбора должна тщательно оценить свою историю в этих местах. Они должны учитывать такие факторы, как существующие персоны, любые инциденты, которые могли скомпрометировать их личности, и возможность организации нескольких операций по сбору. Понимание истории сбора информации из источника очень важно для эффективного планирования операций.
+
+
+
+
+
+
+### Инструменты и технологии
+
+Обеспечив наличие подходящего персонала и проведя тщательное планирование, менеджер по сбору должен сосредоточиться на технологиях и инфраструктуре, необходимых для реализации операционного плана. Это включает в себя оценку необходимых инструментов и систем сбора. Под инструментами сбора понимается конкретное программное или аппаратное обеспечение, используемое для сбора разведданных, в то время как системы сбора включают в себя более широкую инфраструктуру, необходимую для обеспечения оперативной безопасности (OPSEC) и требований к сбору. Руководителю сбора необходимо оценить, имеет ли группа доступ к соответствующим технологиям и инфраструктуре для эффективного осуществления деятельности по сбору.
 
 
 
@@ -128,248 +128,247 @@ After ensuring the availability of suitable personnel and conducting thorough pl
 
 ![Lockheed's Martin Cyber Kill Chain](../../../assets/images/lock_kill.png)
 
-### Reconnaissance:
+### Разведка:
 
-* Example: An attacker gathers information about the target organization using publicly available sources, social media, or other reconnaissance techniques.
+* Пример: Атакующий собирает информацию о целевой организации, используя общедоступные источники, социальные сети или другие методы разведки.
 
-* Cheatsheet commands and tools:
+* Шпаргалка по командам и инструментам:
 	* WHOIS lookup: `whois <target>`
 	* DNS enumeration: `nslookup <target>`
 	* Google dorking: `site:<target>`
 
-### Weaponization:
+### Оружие:
 
-* Example: The attacker crafts or obtains a malicious payload, such as a malware or exploit, to deliver to the target.
+* Пример: Атакующий создает или получает вредоносную полезную нагрузку, например вредоносную программу или эксплойт, для доставки цели.
 
-* Cheatsheet commands and tools:
-	* Metasploit Framework: `msfvenom -p <payload> -f <format> -o <output>`
-	* Veil-Evasion: `veil-evasion`
+* Шпаргалка по командам и инструментам:
+	* Metasploit Framework: `msfvenom -p <payload> -f <format> -o <output>`.
+	* Veil-Evasion: `veil-evasion`.
 
-### Delivery:
+### Доставка:
 
-* Example: The attacker delivers the weaponized payload to the target through various methods, such as email attachments, compromised websites, or social engineering.
+* Пример: Злоумышленник доставляет полезную нагрузку с помощью различных методов, таких как вложения в электронную почту, взломанные веб-сайты или социальная инженерия.
 
-* Cheatsheet commands and tools:
-	* Phishing email generation: GoPhish, SET
-	* Malicious website hosting: Apache, Nginx
-	* Exploit kits: Blackhole, Angler
+* Команды и инструменты "Шпаргалки":
+	* Генерация фишинговых писем: GoPhish, SET
+	* Хостинг вредоносных веб-сайтов: Apache, Nginx
+	* Наборы эксплойтов: Blackhole, Angler
 
-### Exploitation:
+### Эксплуатация:
 
-* Example: The attacker takes advantage of vulnerabilities in the target's system or applications to gain unauthorized access.
+* Пример: Злоумышленник использует уязвимости в системе или приложениях объекта для получения несанкционированного доступа.
 
-* Cheatsheet commands and tools:
-	* Exploitation frameworks: Metasploit, ExploitDB
-	* Exploit development: Python, Ruby, C/C++
-	* Web application scanners: Nessus, Nikto
+* Шпаргалки по командам и инструментам:
+	* Фреймворки для эксплойтов: Metasploit, ExploitDB
+	* Разработка эксплойтов: Python, Ruby, C/C++
+	* Сканеры веб-приложений: Nessus, Nikto
 
-### Installation:
+### Установка:
 
-* Example: The attacker installs backdoors, remote access tools, or other malicious software to establish persistence and maintain control over the compromised system.
+* Пример: Злоумышленник устанавливает бэкдоры, средства удаленного доступа или другое вредоносное ПО для обеспечения устойчивости и сохранения контроля над взломанной системой.
 
-* Cheatsheet commands and tools:
-	* Remote administration tools: Netcat, TeamViewer
-	* Remote access trojans (RATs): DarkComet, Poison Ivy
-	* Fileless malware: PowerShell, WMI
+* Команды и инструменты из шпаргалки:
+	* Средства удаленного администрирования: Netcat, TeamViewer
+	* Трояны удаленного доступа (RAT): DarkComet, Poison Ivy
+	* Вредоносные программы без файлов: PowerShell, WMI
 
-### Command and Control (C2):
+### Управление и контроль (C2):
 
-* Example: The attacker establishes communication channels with the compromised system to remotely control and manage the attack.
+* Пример: Злоумышленник устанавливает каналы связи со взломанной системой для удаленного контроля и управления атакой.
 
-* Cheatsheet commands and tools:
-	* C2 frameworks: Cobalt Strike, Metasploit
-	* Encrypted communication: TOR, SSL/TLS
-	* DNS-based communication: Dnsmasq, Dnscat2
+* Шпаргалка по командам и инструментам:
+	* C2-фреймворки: Cobalt Strike, Metasploit.
+	* Зашифрованная связь: TOR, SSL/TLS
+	* Связь на основе DNS: Dnsmasq, Dnscat2
 
-### Actions on Objectives:
+### Действия по целям:
 
-* Example: The attacker achieves their intended goals, which could include data theft, privilege escalation, further network compromise, or disruption of services.
+* Пример: Атакующий достигает намеченных целей, которые могут включать кражу данных, повышение привилегий, дальнейшую компрометацию сети или нарушение работы служб.
 
-* Cheatsheet commands and tools:
-	* Data exfiltration: FTP, SCP, Steganography
-	* Privilege escalation: sudo, PowerSploit
-	* Network propagation: EternalBlue, WannaCry
+* Команды и инструменты из шпаргалки:
+	* Эксфильтрация данных: FTP, SCP, стеганография
+	* Повышение привилегий: sudo, PowerSploit
+	* Сетевое распространение: EternalBlue, WannaCry
 
-### Lateral Movement:
+### Боковое перемещение:
 
-* Example: The attacker moves laterally within the network, searching for additional targets or systems to compromise.
+* Пример: Атакующий перемещается по сети в поисках дополнительных целей или систем для компрометации.
 
-* Cheatsheet commands and tools:
-	* Network scanning: Nmap, Masscan
-	* Credential theft: Mimikatz, Responder
+* Команды и инструменты из шпаргалки:
+	* Сканирование сети: Nmap, Masscan
+	* Кража учетных данных: Mimikatz, Responder
 	* Pass-the-Hash: Psexec, PsExecWrapper
 
 
 
 
-## DevOps Threat Matrix
+## Матрица угроз DevOps
 
 ![Microsoft DevOps Threat](../../../assets/images/microsoft_devops_threat.png)
 
-A DevOps Threat Matrix is a comprehensive framework or resource that identifies and categorizes potential security threats and risks associated with implementing DevOps practices. It aims to provide organizations with insights into the security challenges they may encounter while adopting a DevOps approach and offers guidance on mitigating these risks.
+Матрица угроз DevOps - это комплексная структура или ресурс, который определяет и классифицирует потенциальные угрозы безопасности и риски, связанные с внедрением практики DevOps. Ее цель - дать организациям представление о проблемах безопасности, с которыми они могут столкнуться при внедрении подхода DevOps, и предложить рекомендации по снижению этих рисков.
 
-The Microsoft Security Blog, which you mentioned, likely provides detailed information on their DevOps Threat Matrix. It may cover different threat categories such as:
+Упомянутый вами блог Microsoft Security Blog, вероятно, содержит подробную информацию об их матрице угроз DevOps. Она может охватывать различные категории угроз, такие как:
 
-* Insider Threats: This includes potential risks arising from employees or individuals with authorized access to systems, data, or infrastructure.
+* Инсайдерские угрозы: Сюда входят потенциальные риски, возникающие из-за сотрудников или лиц с авторизованным доступом к системам, данным или инфраструктуре.
 
-* External Attacks: These are threats posed by external entities, such as hackers, who attempt to exploit vulnerabilities in the DevOps environment.
+* Внешние атаки: Это угрозы, исходящие от внешних субъектов, таких как хакеры, которые пытаются использовать уязвимости в среде DevOps.
 
-* Data Loss and Leakage: This category encompasses risks related to the unauthorized disclosure or loss of sensitive information during the DevOps pipeline.
+* Потеря и утечка данных: В эту категорию входят риски, связанные с несанкционированным раскрытием или потерей конфиденциальной информации в процессе работы DevOps.
 
-* Supply Chain Attacks: These threats involve compromising the software supply chain, targeting third-party libraries, dependencies, or build processes.
+* Атаки на цепочки поставок: Эти угрозы связаны с компрометацией цепочки поставок программного обеспечения, направленной на сторонние библиотеки, зависимости или процессы сборки.
 
-* Infrastructure Vulnerabilities: This focuses on weaknesses within the infrastructure components of the DevOps environment, such as misconfigurations or insecure cloud services.
+* Уязвимости инфраструктуры: В данном случае речь идет о слабых местах в инфраструктурных компонентах среды DevOps, таких как неправильная конфигурация или небезопасные облачные сервисы.
 
-* Compliance and Regulatory Risks: DevOps practices need to align with industry standards and regulatory requirements. Failure to comply may lead to legal and financial consequences.
+* Соответствие нормативным требованиям и нормативные риски: Практика DevOps должна соответствовать отраслевым стандартам и нормативным требованиям. Несоблюдение этих требований может привести к юридическим и финансовым последствиям.
 
-The DevOps Threat Matrix is likely to provide organizations with actionable recommendations, best practices, and security controls that can be implemented at various stages of the DevOps lifecycle. This could include secure coding practices, continuous monitoring, vulnerability scanning, access controls, and incident response procedures.
-
-
-### Initial access
-
-In the context of the DevOps Threat Matrix, "Initial Access" refers to a category of threats that focus on unauthorized entry points or mechanisms through which an attacker gains initial access to a system or network. It involves the exploitation of vulnerabilities or weaknesses in the DevOps infrastructure, applications, or processes to establish a foothold for further malicious activities.
+Матрица угроз DevOps, вероятно, предоставит организациям действенные рекомендации, лучшие практики и средства контроля безопасности, которые можно внедрить на различных этапах жизненного цикла DevOps. Сюда могут входить методы безопасного кодирования, непрерывный мониторинг, сканирование уязвимостей, контроль доступа и процедуры реагирования на инциденты.
 
 
-#### SCM authentication
+### Первоначальный доступ
+
+В контексте матрицы угроз DevOps "Первоначальный доступ" относится к категории угроз, которые сосредоточены на несанкционированных точках входа или механизмах, с помощью которых злоумышленник получает первоначальный доступ к системе или сети. Она предполагает использование уязвимостей или слабых мест в инфраструктуре, приложениях или процессах DevOps для создания плацдарма для дальнейшей вредоносной деятельности.
+
+
+#### Аутентификация в SCM
 
 ![](../../../assets/images/scm.png)
 
-SCM authentication refers to the process of authenticating and accessing an organization's source code management (SCM) system. It typically involves using authentication methods such as personal access tokens (PATs), SSH keys, or other allowed credentials. However, attackers may attempt to exploit this authentication process, gaining unauthorized access to the SCM by employing techniques like phishing attacks. This can pose a significant threat to the organization's source code and sensitive information. To mitigate this risk, it's crucial to be aware of potential attacks and implement robust security measures.
+Аутентификация SCM - это процесс проверки подлинности и доступа к системе управления исходным кодом (SCM) организации. Обычно для этого используются такие методы аутентификации, как персональные маркеры доступа (PAT), ключи SSH или другие разрешенные учетные данные. Однако злоумышленники могут попытаться использовать этот процесс аутентификации, получая несанкционированный доступ к SCM с помощью таких методов, как фишинговые атаки. Это может представлять значительную угрозу для исходного кода и конфиденциальной информации организации. Чтобы снизить этот риск, очень важно знать о возможных атаках и применять надежные меры безопасности.
 
 
 
 
-#### CI/CD service authentication
+#### Аутентификация сервисов CI/CD
 
 ![](../../../assets/images/cicd-initial.drawio.png)
 
 
-CI/CD service authentication refers to the process of authenticating and accessing the Continuous Integration/Continuous Deployment (CI/CD) service used by an organization for automating software delivery pipelines. Attackers may attempt to exploit vulnerabilities in the authentication process to gain unauthorized access to the CI/CD service, which can lead to potential compromises in the organization's DevOps environment. To mitigate this risk, it is important to employ strong authentication methods and implement security measures to protect the CI/CD service from unauthorized access.
+Аутентификация сервисов CI/CD - это процесс аутентификации и доступа к сервису непрерывной интеграции/непрерывного развертывания (CI/CD), используемому организацией для автоматизации конвейеров доставки программного обеспечения. Злоумышленники могут попытаться использовать уязвимости в процессе аутентификации для получения несанкционированного доступа к сервису CI/CD, что может привести к потенциальному компромиссу в среде DevOps организации. Чтобы снизить этот риск, важно использовать надежные методы аутентификации и применять меры безопасности для защиты CI/CD-сервиса от несанкционированного доступа.
 
 
 
 
 
-#### Organization’s public repositories
+#### Публичные репозитории организации
 
 ![](../../../assets/images/github.drawio.png)
 
 
-Access to an organization's public repositories with CI/CD capabilities can pose a security risk if not properly secured. Attackers may attempt to gain unauthorized access to these repositories and exploit their CI/CD capabilities to execute malicious code or disrupt the organization's pipelines. To mitigate this risk, organizations should implement strong access controls, monitor repository activity, and ensure secure CI/CD configurations.
+Доступ к публичным репозиториям организации с возможностями CI/CD может представлять угрозу безопасности, если он не защищен должным образом. Злоумышленники могут попытаться получить несанкционированный доступ к этим репозиториям и использовать их возможности CI/CD для выполнения вредоносного кода или нарушения работы конвейеров организации. Чтобы снизить этот риск, организациям следует внедрить строгий контроль доступа, отслеживать активность в репозиториях и обеспечивать безопасные конфигурации CI/CD.
 
 
 
 
-#### Endpoint compromise
+#### Компрометация конечных точек
 
 
 ![](../../../assets/images/endpoint.drawio.png)
 
 
-Endpoint compromise refers to a scenario where an attacker gains access to an organization's resources by compromising a developer's workstation or endpoint device. Once an endpoint is compromised, the attacker can leverage the compromised workstation to gain unauthorized access to the organization's source code management (SCM), registry, or other critical resources. To mitigate this risk, organizations should implement strong endpoint security measures and follow best practices for securing developer workstations.
+Компрометация конечной точки - это сценарий, при котором злоумышленник получает доступ к ресурсам организации, компрометируя рабочую станцию или конечное устройство разработчика. Если конечная точка скомпрометирована, злоумышленник может использовать скомпрометированную рабочую станцию для получения несанкционированного доступа к управлению исходным кодом (SCM), реестру или другим критическим ресурсам организации. Чтобы снизить этот риск, организациям следует внедрить надежные меры безопасности конечных точек и следовать лучшим практикам защиты рабочих станций разработчиков.
 
 
 
 
 
-#### Configured webhooks
+#### Настроенные вебхуки
 
 ![](../../../assets/images/webhook.drawio.png)
 
 
-Configured webhooks can become a potential security risk if not properly secured. Attackers can exploit these webhooks to gain initial access to an organization's network. By triggering requests through the source code management (SCM) system, attackers can potentially gain unauthorized access to services that should not be publicly exposed or might be running outdated and vulnerable software versions within the organization's private network. To mitigate this risk, organizations should implement secure webhook configurations, monitor webhook activity, and apply necessary access controls.
+Настроенные веб-хуки могут стать потенциальным риском безопасности, если их не защитить должным образом. Злоумышленники могут использовать эти веб-хуки для получения первоначального доступа к сети организации. Запуская запросы через систему управления исходным кодом (SCM), злоумышленники могут получить несанкционированный доступ к службам, которые не должны быть открыты для публичного доступа или могут работать с устаревшими и уязвимыми версиями программного обеспечения в частной сети организации. Чтобы снизить этот риск, организациям следует внедрить безопасные конфигурации веб-хуков, отслеживать активность веб-хуков и применять необходимые средства контроля доступа.
 
 
 
 
 
 
-### Execution
+### Исполнение
 
 
-The execution tactic in the DevOps Threat Matrix refers to the methods used by attackers to gain execution access on pipeline resources, including the pipeline itself or the deployment resources. Attackers may exploit vulnerabilities or employ various techniques to gain unauthorized control over these resources. Understanding these techniques and implementing appropriate security measures is crucial for mitigating the risk of unauthorized execution and maintaining the integrity of the DevOps pipeline.
+Тактика исполнения в матрице угроз DevOps относится к методам, используемым злоумышленниками для получения доступа к ресурсам пайплайна, включая сам пайплайн или ресурсы развертывания. Злоумышленники могут использовать уязвимости или применять различные техники для получения несанкционированного контроля над этими ресурсами. Понимание этих методов и применение соответствующих мер безопасности имеет решающее значение для снижения риска несанкционированного выполнения и сохранения целостности пайплайна DevOps.
 
 
 
-#### Poisoned pipeline execution (PPE)
+#### Выполнение зараженного пайплайна (PPE)
 
 ![](../../../assets/images/ppe.png)
 
 
-Poisoned pipeline execution (PPE) is a technique employed by attackers to inject malicious code into an organization's repository, allowing them to execute unauthorized actions within the repository's CI/CD system. This technique poses a significant threat as it can lead to the execution of malicious code during the CI/CD process, compromising the integrity of the pipeline and potentially allowing further unauthorized access. Understanding and mitigating the risks associated with poisoned pipeline execution is crucial to maintain the security of the CI/CD system.
+Заражённый пайплайн (Poisoned pipeline execution, PPE) - это техника, используемая злоумышленниками для внедрения вредоносного кода в репозиторий организации, что позволяет им выполнять несанкционированные действия в системе CI/CD репозитория. Эта техника представляет собой серьезную угрозу, поскольку может привести к выполнению вредоносного кода в процессе CI/CD, нарушая целостность пайплайна и потенциально позволяя получить дальнейший несанкционированный доступ. Понимание и снижение рисков, связанных с выполнением зараженных пайплайнов, очень важно для поддержания безопасности системы CI/CD.
 
 
 
 
 
-##### Direct PPE (d-PPE)
+##### Прямое выполнение загрязненного пайплайна (d-PPE)
 
 
-Direct Poisoned Pipeline Execution (d-PPE) is a technique used by attackers to directly modify the configuration file inside a repository. By injecting malicious commands into the configuration file, the attacker can execute those commands during the pipeline run, potentially compromising the integrity of the pipeline and the associated resources. Mitigating the risk of d-PPE requires implementing secure practices, ensuring strict access controls, and performing thorough validation of configuration files.
-
-
-
-
-
-
-##### Indirect PPE (i-PPE)
-
-
-Indirect Poisoned Pipeline Execution (i-PPE) is a technique employed by attackers when they cannot directly modify configuration files or when these changes are not considered during pipeline execution. In such cases, attackers target scripts used by the pipeline, such as make-files, test scripts, build scripts, or other similar files, to inject malicious code. By infecting these scripts, the attacker can execute unauthorized code during the pipeline run, potentially compromising the pipeline and associated resources. To mitigate the risk of i-PPE, it is important to implement secure practices, conduct thorough code reviews, and ensure the integrity of pipeline scripts.
-
-
-
-
-##### Public PPE
-
-
-Public Poisoned Pipeline Execution (Public PPE) refers to scenarios where the pipeline is triggered by an open-source project. In such cases, attackers can exploit the pipeline by employing techniques like Direct Poisoned Pipeline Execution (d-PPE) or Indirect Poisoned Pipeline Execution (i-PPE) on the public repository. By infecting the pipeline in the open-source project, the attacker can execute unauthorized code during the pipeline run, potentially compromising the integrity of the pipeline and the resources it interacts with. To mitigate the risk of Public PPE, it is essential to implement secure practices, conduct thorough code reviews, and monitor the pipeline execution.
+Прямое выполнение отравленного пайплайна (d-PPE) - это техника, используемая злоумышленниками для прямого изменения конфигурационного файла в хранилище. Внедрив вредоносные команды в файл конфигурации, злоумышленник может выполнить их во время работы пайплайна, что может привести к нарушению целостности пайплайна и связанных с ним ресурсов. Снижение риска d-PPE требует внедрения безопасных методов, обеспечения строгого контроля доступа и тщательной проверки конфигурационных файлов.
 
 
 
 
 
-#### Dependency tampering
+##### Косвенное выполнение конвейера (i-PPE)
+
+
+Косвенное выполнение зараженного пайплайна (i-PPE) - это техника, используемая злоумышленниками, когда они не могут напрямую изменять конфигурационные файлы или когда эти изменения не учитываются при выполнении пайплайна. В таких случаях злоумышленники нацеливаются на скрипты, используемые пайплайном, такие как make-файлы, тестовые скрипты, скрипты сборки или другие подобные файлы, чтобы внедрить в них вредоносный код. Заразив эти скрипты, злоумышленник может выполнить несанкционированный код во время работы пайплайна, что может привести к компрометации пайплайна и связанных с ним ресурсов. Чтобы снизить риск i-PPE, важно внедрять безопасные методы, проводить тщательный анализ кода и обеспечивать целостность сценариев пайплайнов.
+
+
+
+
+##### Публичный PPE
+
+
+Публичное выполнение зараженного пайплайна (Public PPE) относится к сценариям, в которых пайплайн запускается проектом с открытым исходным кодом. В таких случаях злоумышленники могут эксплуатировать пайплайн, применяя такие техники, как прямое выполнение зараженного пайплайна (d-PPE) или косвенное выполнение зараженного пайплайна (i-PPE) в публичном репозитории. Заразив пайплайн в проекте с открытым исходным кодом, злоумышленник может выполнить несанкционированный код во время работы пайплайна, что может нарушить целостность пайплайна и ресурсов, с которыми он взаимодействует. Чтобы снизить риск публичного PPE, необходимо внедрять безопасные методы, проводить тщательный анализ кода и контролировать выполнение пайплайна.
+
+
+
+
+
+#### Вскрытие зависимостей
 
 ![](../../../assets/images/dependency.drawio.png)
 
 
-Dependency tampering is a technique used by attackers to execute malicious code in the DevOps or production environment by injecting harmful code into a repository's dependencies. When these dependencies are downloaded and integrated into the system, the malicious code gets executed, potentially leading to unauthorized access or compromising the integrity of the environment. Preventing and mitigating the risk of dependency tampering requires implementing secure practices, regularly auditing dependencies, and ensuring their integrity.
+Подделка зависимостей - это техника, используемая злоумышленниками для выполнения вредоносного кода в DevOps или производственной среде путем внедрения вредоносного кода в зависимости репозитория. Когда эти зависимости загружаются и интегрируются в систему, вредоносный код начинает выполняться, что может привести к несанкционированному доступу или нарушению целостности среды. Для предотвращения и снижения риска подделки зависимостей необходимо применять безопасные методы, регулярно проводить аудит зависимостей и обеспечивать их целостность.
 
 
 
 
 
 
-##### Public dependency confusion
+##### Публичная путаница зависимостей
 
-Public dependency confusion is a technique employed by attackers where they publish malicious packages with the same name as private packages in public registries. When package-control mechanisms search for packages, they often prioritize public registries, making it possible for the malicious package to be downloaded instead of the intended private package. This technique can lead to the execution of malicious code in the DevOps environment or production environment. Preventing and mitigating the risk of public dependency confusion requires implementing secure practices, verifying package sources, and prioritizing trusted registries.
-
-
+Публичная путаница зависимостей - это техника, используемая злоумышленниками, когда они публикуют в публичных реестрах вредоносные пакеты с теми же именами, что и частные пакеты. Когда механизмы контроля пакетов ищут пакеты, они часто отдают приоритет публичным реестрам, что позволяет загрузить вредоносный пакет вместо предполагаемого частного пакета. Эта техника может привести к выполнению вредоносного кода в среде DevOps или в производственной среде. Для предотвращения и снижения риска путаницы публичных зависимостей необходимо применять безопасные методы, проверять источники пакетов и отдавать предпочтение доверенным реестрам.
 
 
-##### Public package hijack (“repo-jacking”)
 
-Public package hijacking, also known as "repo-jacking," involves attackers gaining control of a public package by compromising the maintainer account. This technique can occur when attackers exploit vulnerabilities or weaknesses in the package maintainers' accounts, such as through the exploitation of GitHub's user rename feature. Once in control, attackers can modify the package's code, inject malicious code, or redirect users to malicious resources. Mitigating the risk of public package hijacking requires implementing security measures, regularly monitoring package repositories, and ensuring the integrity of maintainers' accounts.
+
+##### Перехват публичных пакетов ("repo-jacking").
+
+Перехват публичного пакета, также известный как "repo-jacking", подразумевает получение злоумышленниками контроля над публичным пакетом путем компрометации учетной записи сопровождающего. Эта техника может применяться, когда злоумышленники используют уязвимости или слабые места в учетных записях сопровождающих пакетов, например, при использовании функции переименования пользователей на GitHub. Получив контроль над пакетом, злоумышленники могут изменить его код, внедрить вредоносный код или перенаправить пользователей на вредоносные ресурсы. Для снижения риска захвата публичных пакетов необходимо применять меры безопасности, регулярно контролировать репозитории пакетов и обеспечивать целостность учетных записей сопровождающих.
 
 
 
 
 ##### Typosquatting
 
-Typosquatting is a technique employed by attackers where they publish malicious packages with names similar to well-known public packages. By creating these deceptive package names, attackers aim to confuse users into inadvertently downloading the malicious packages instead of the intended ones. This technique can lead to the execution of unauthorized or malicious code in the DevOps environment or production environment. Preventing and mitigating the risk of typosquatting requires implementing secure practices, verifying package sources, and educating users about potential risks.
+Typosquatting - это техника, используемая злоумышленниками, когда они публикуют вредоносные пакеты с именами, похожими на известные публичные пакеты. Создавая такие обманчивые имена пакетов, злоумышленники стремятся ввести пользователей в заблуждение, чтобы они случайно загрузили вредоносные пакеты вместо тех, которые были предназначены для них. Эта техника может привести к выполнению несанкционированного или вредоносного кода в среде DevOps или производственной среде. Для предотвращения и снижения риска опечаток необходимо применять безопасные методы, проверять источники пакетов и информировать пользователей о потенциальных рисках.
 
 
 
 
 
-#### DevOps resources compromise
+#### Компрометация ресурсов DevOps
 
 ![](../../../assets/images/resources.drawio.png)
 
 
 
-DevOps resources compromise refers to scenarios where attackers target the compute resources used for executing CI/CD agents and other software within the pipeline. By exploiting vulnerabilities in the operating system, agent code, or other software installed on the virtual machines (VMs) or network devices, attackers can gain unauthorized access to the pipeline. This compromise can lead to the execution of unauthorized code, data theft, or disruption of the CI/CD process. To mitigate the risk of DevOps resources compromise, it is crucial to implement security measures, regularly update and patch software, and monitor the infrastructure for suspicious activities.
+Компрометация ресурсов DevOps относится к сценариям, в которых злоумышленники атакуют вычислительные ресурсы, используемые для выполнения CI/CD-агентов и другого программного обеспечения в рамках пайплайна. Используя уязвимости в операционной системе, коде агентов или другом программном обеспечении, установленном на виртуальных машинах (ВМ) или сетевых устройствах, злоумышленники могут получить несанкционированный доступ к пайплайну. Такая компрометация может привести к выполнению несанкционированного кода, краже данных или нарушению процесса CI/CD. Чтобы снизить риск компрометации ресурсов DevOps, крайне важно применять меры безопасности, регулярно обновлять и исправлять программное обеспечение, а также отслеживать инфраструктуру на предмет подозрительной активности.
 
 
 
