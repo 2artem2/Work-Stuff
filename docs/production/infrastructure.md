@@ -95,54 +95,54 @@ istioctl --context <context> -n <namespace> dashboard jaeger
 
 - [ ] Настройте Chaos Monkey
 
-Отредактируйте файл `chaos.properties`, чтобы указать целевой сервис, частоту событий хаоса и другие настройки.
+Отредактируйте файл `chaos.properties`, чтобы указать целевой сервис, частоту событий Chaos и другие настройки.
 
-- [ ] Start Chaos Monkey	
+- [ ] Запустить Chaos Monkey	
 
 ```
 ./gradlew bootRun
 ```
 
-- [ ] Verify Chaos Monkey is running	
+- [ ] Убедитесь, что Chaos Monkey запущен	
 
-Access the Chaos Monkey dashboard at `http://localhost:8080/chaosmonkey`
+Зайдите на приборную панель Chaos Monkey по адресу `http://localhost:8080/chaosmonkey`.
 
-- [ ] Enable Chaos Monkey for a specific service	
+- [ ] Включите Chaos Monkey для определенной службы	
 
-Set the `chaos.monkey.enabled` property to `true` for the desired service in the configuration file.
+Установите свойство `chaos.monkey.enabled` в значение `true` для нужного сервиса в файле конфигурации.
 
-- [ ] Disable Chaos Monkey for a specific service	
+- [ ] Отключите Chaos Monkey для определенной службы	
 
-Set the `chaos.monkey.enabled` property to `false` for the desired service in the configuration file.
+Установите свойство `chaos.monkey.enabled` в значение `false` для нужного сервиса в файле конфигурации.
 
-- [ ] Customize Chaos Monkey behavior	
+- [ ] Настройте поведение Chaos Monkey 	
 
-Modify the `chaos.monkey...` properties in the configuration file to define the chaos events, such as `chaos.monkey.watcher.probablility` for adjusting the likelihood of an event occurring.
-
-
-## Container
+Измените свойства `chaos.monkey...` в файле конфигурации для определения событий Chaos, например `chaos.monkey.watcher.probablility` для настройки вероятности наступления события.
 
 
-- [ ] Run a specific benchmark
+## Контейнер
+
+
+- [ ] Запуск определенного бенчмарка
 
 ```
 kube-bench --benchmark <benchmark-name>
 ```
 
-- [ ] Generate a JSON report for a specific benchmark
+- [ ] Создайте отчет в формате JSON для определенного бенчмарка
 
 ```
 kube-bench --benchmark <benchmark-name> --json
 ```
 
 
-- [ ] Run benchmarks as a non-root user
+- [ ] Запустите контрольные тесты от имени пользователя, не являющегося пользователем root
 
 ```
 kube-bench --benchmark <benchmark-name> --run-as non-root
 ```
 
-- [ ] Export the benchmark results to a log file.
+- [ ] Экспортируйте результаты бенчмарка в файл журнала.
 
 
 ```
@@ -154,7 +154,7 @@ kube-bench --benchmark <benchmark-name> --log <log-file>
 
 ### KubeLinter
 
-Scan Kubernetes YAML Files:
+Сканирование YAML-файлов Kubernetes:
 
 ```
 kube-linter lint <path/to/kubernetes/yaml/files>
@@ -164,17 +164,17 @@ kube-linter lint <path/to/kubernetes/yaml/files>
 ### Helm
 
 
-- [ ] Validate Chart Signatures
+- [ ] Проверка подписей диаграмм
 
-Helm supports chart signing using cryptographic signatures. It is recommended to validate the signatures of the charts you download before deploying them to ensure they haven't been tampered with. You can use the helm verify command to verify the chart signature.
+Helm поддерживает подписание графиков с помощью криптографических подписей. Рекомендуется проверять подписи загружаемых графиков перед их развертыванием, чтобы убедиться, что они не были подделаны. Для проверки подписи графика можно использовать команду helm verify.
 
 ```
 helm verify <chart-name>
 ```
 
-- [ ] Limit Chart Sources
+- [ ] Ограничьте источники графиков
 
-To minimize the risk of downloading malicious or insecure charts, it's best to limit the sources from which you fetch charts. You can configure your Helm repositories to only allow trusted sources by modifying the repositories.yaml file.
+Чтобы свести к минимуму риск загрузки вредоносных или небезопасных графиков, лучше всего ограничить источники, из которых вы получаете графики. Вы можете настроить свои репозитории Helm так, чтобы они допускали только доверенные источники, изменив файл repositories.yaml.
 
 
 ```
@@ -182,18 +182,18 @@ helm repo list
 helm repo remove <repository-name>
 ```
 
-- [ ] Scan Charts for Vulnerabilities
+- [ ] Сканирование диаграмм на наличие уязвимостей
 
-Before deploying a chart, it's crucial to scan it for known vulnerabilities. Tools like Trivy or Anchore Engine can help you perform vulnerability scanning on Helm charts.
+Перед развертыванием графика очень важно проверить его на наличие известных уязвимостей. Такие инструменты, как Trivy или Anchore Engine, помогут вам выполнить сканирование уязвимостей на графиках Helm.
 
 ```
 trivy <chart-path>
 ```
 
-- [ ] Enable RBAC
+- [ ] Включить RBAC
 
 
-Helm allows you to enable Role-Based Access Control (RBAC) to control access to the cluster and restrict who can perform Helm operations. Configure RBAC rules to limit the permissions of Helm users and ensure only authorized users can install or upgrade charts.
+Helm позволяет включить управление доступом на основе ролей (RBAC), чтобы контролировать доступ к кластеру и ограничить круг лиц, которые могут выполнять операции Helm. Настройте правила RBAC, чтобы ограничить права пользователей Helm и гарантировать, что только авторизованные пользователи могут устанавливать или обновлять графики.
 
 ```
 kubectl create role <role-name> --verb=<allowed-verbs> --resource=<allowed-resources>
@@ -201,9 +201,9 @@ kubectl create rolebinding <role-binding-name> --role=<role-name> --user=<user> 
 ```
 
 
-- [ ] Monitor Helm Releases
+- [ ] Мониторинг релизов Helm
 
-Regularly monitor the status and changes of your Helm releases. Tools like Helm Operator or Prometheus can help you monitor the health and performance of your Helm deployments.
+Регулярно следите за состоянием и изменениями в релизах Helm. Такие инструменты, как Helm Operator или Prometheus, помогут вам следить за состоянием и производительностью ваших развертываний Helm.
 
 ```
 helm ls
@@ -211,9 +211,9 @@ helm ls
 
 
 
-- [ ] Scanning Helm Charts with Trivy
+- [ ] Сканирование диаграмм Helm с помощью Trivy
 
-Trivy can also scan Helm charts for vulnerabilities before deploying them. Here's an example of using Trivy to scan a Helm chart:
+Trivy также может сканировать диаграммы Helm на наличие уязвимостей перед их развертыванием. Вот пример использования Trivy для сканирования диаграмм Helm:
 
 ```
 trivy chart <chart-path>
@@ -224,19 +224,19 @@ trivy chart <chart-path>
 ### Checkov
 
 
-- [ ] Scan Terraform Files
+- [ ] Сканирование файлов Terraform
 
 ```
 checkov -d <path/to/terraform/files>: 
 ```
 
-- [ ] Output Scan Results in JSON Format
+- [ ] Вывод результатов сканирования в формате JSON
 
 ```
 checkov -o json: Generate scan results in JSON format.
 ```
 
-- [ ] Ignore Specific Check IDs or File Paths
+- [ ] Игнорирование определенных идентификаторов проверок или путей к файлам
 
 ```
 checkov --skip-check <check1,check2>: 
@@ -247,31 +247,31 @@ checkov --skip-check <check1,check2>:
 ### Twistlock
 
 
-- [ ] Pull Twistlock Scanner Image:
+- [ ] Подтяните образ сканера  Twistlock:
 
 ```
 docker pull twistlock/scanner:latest: Pull the latest Twistlock Scanner image from Docker Hub.
 ```
 
-- [ ] Scan a Docker Image:
+- [ ] Сканирование образа Docker:
 
 ```
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock twistlock/scanner:latest <image-name>:<tag>: Perform a security scan on the specified Docker image.
 ```
 
-- [ ] Authenticate Twistlock Console:
+- [ ] Проверка подлинности консоли Twistlock:
 
 ```
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock twistlock/scanner:latest --auth <console-url> --user <username> --password <password>: Authenticate the Twistlock Scanner with the Twistlock Console.
 ```
 
-- [ ] Generate HTML Report:
+- [ ] Создайте HTML-отчет:
 
 ```
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock twistlock/scanner:latest --output-file <report-file.html> <image-name>:<tag>: Generate an HTML report for the scan results.
 ```
 
-- [ ] Specify Scan Policies:
+- [ ] Укажите политики сканирования:
 
 ```
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock twistlock/scanner:latest --policy-file <policy-file.yaml> <image-name>:<tag>: Use a custom policy file for the scan.
@@ -283,27 +283,27 @@ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock twistlock/scanner:l
 ### Terrascan
 
 
-- [ ] Scan Terraform Files:
+- [ ] Сканирование файлов Terraform:
 
 ```
-terrascan scan -i <path/to/terraform/files>
-```
-
-
-- [ ] Specify Policy Path
-
-```
-terrascan scan -p <path/to/policy>
+terrascan scan -i <путь/к/terraform/файлам>
 ```
 
 
-- [ ] Output Scan Results in JSON Format:
+- [ ] Укажите путь к политике
+
+```
+terrascan scan -p <путь/к/политике>
+```
+
+
+- [ ] Вывод результатов сканирования в формате JSON:
 
 ```
 terrascan scan -f json
 ```
 
-- [ ] Ignore Specific Rules or Resources:
+- [ ] Игнорируйте конкретные правила или ресурсы:
 
 ```
 terrascan scan --skip-rules <rule1,rule2>
@@ -313,21 +313,21 @@ terrascan scan --skip-rules <rule1,rule2>
 ### Tfsec
 
 
-- [ ] Scan Terraform Files
+- [ ] Сканирование файлов Terraform
 
 ```
-tfsec <path/to/terraform/files>
+tfsec <путь/к/terraform/файлам>
 ```
 
 
-- [ ] Output Scan Results in JSON Format
+- [ ] Вывод результатов сканирования в формате JSON
 
 ```
 tfsec --format=json: Generate scan results in JSON format.
 ```
 
 
-- [ ] Ignore Specific Rules or Warnings
+- [ ] Игнорировать конкретные правила или предупреждения
 
 ```
 tfsec --ignore <rule1,rule2>
@@ -336,14 +336,14 @@ tfsec --ignore <rule1,rule2>
 
 
 
-## Security Scanning
+## Сканирование инфраструктуры безопасности
 
-Infrastructure scanning in production DevSecOps refers to the process of continuously scanning the underlying infrastructure of an application deployed on cloud infrastructure for potential security vulnerabilities and threats. This is done to ensure that the infrastructure remains secure and compliant with security policies and standards even after it has been deployed to the cloud.
+Под сканированием инфраструктуры в производственном DevSecOps понимается процесс непрерывного сканирования базовой инфраструктуры приложения, развернутого в облачной инфраструктуре, на предмет потенциальных уязвимостей и угроз безопасности. Это делается для того, чтобы инфраструктура оставалась безопасной и соответствовала политикам и стандартам безопасности даже после ее развертывания в облаке.
 
 
 ### Nessus
 
-A tool that scans your network for vulnerabilities and provides detailed reports.	
+Инструмент, который сканирует вашу сеть на наличие уязвимостей и предоставляет подробные отчеты.	
 
 
 ```
@@ -353,7 +353,7 @@ nessuscli scan new --policy "Basic Network Scan" --target "192.168.1.1"
 
 ### OpenVAS
 
-An open-source vulnerability scanner that provides detailed reports and supports a wide range of platforms.	
+Сканер уязвимостей с открытым исходным кодом, предоставляющий подробные отчеты и поддерживающий широкий спектр платформ.	
 
 ```
 omp -u admin -w password -G "Full and fast" -T 192.168.1.1
@@ -361,7 +361,7 @@ omp -u admin -w password -G "Full and fast" -T 192.168.1.1
 
 ### Qualys
 
-A cloud-based security and compliance tool that provides continuous monitoring and detailed reporting.	
+Облачный инструмент для обеспечения безопасности и соответствия нормативным требованиям, который обеспечивает непрерывный мониторинг и подробную отчетность.	
 
 ```
 curl -H "X-Requested-With: Curl" -u "username:password" "https://qualysapi.qualys.com/api/2.0/fo/scan/?action=launch&scan_title=Example Scan&target=192.168.1.1"
@@ -369,7 +369,7 @@ curl -H "X-Requested-With: Curl" -u "username:password" "https://qualysapi.qualy
 
 ### Security Onion	
 
-A Linux distro for intrusion detection, network security monitoring, and log management.	
+Дистрибутив Linux для обнаружения вторжений, мониторинга сетевой безопасности и ведения журналов.	
 
 ```
 sudo so-import-pcap -r 2022-01-01 -c example.pcap
@@ -377,7 +377,7 @@ sudo so-import-pcap -r 2022-01-01 -c example.pcap
 
 ### Lynis
 
-A tool for auditing security on Unix-based systems that performs a system scan and provides detailed reports.	
+Инструмент для аудита безопасности в системах на базе Unix, который выполняет сканирование системы и предоставляет подробные отчеты.		
 
 ```
 sudo lynis audit system
@@ -385,127 +385,127 @@ sudo lynis audit system
 
 ### Nuclei
 
-A fast and customizable vulnerability scanner that supports a wide range of platforms and technologies.	
+Быстрый и настраиваемый сканер уязвимостей, поддерживающий широкий спектр платформ и технологий.	
 
 ```
 nuclei -u http://example.com -t cves/CVE-2021-1234.yaml
 ```
 
 
-### Nuclei Templates	
+### Шаблоны для Nuclei	
 
-A collection of templates for Nuclei that cover a wide range of vulnerabilities and misconfigurations.	
+Коллекция шаблонов для Nuclei, охватывающая широкий спектр уязвимостей и неправильных конфигураций.	
 
 ```
 nuclei -u http://example.com -t cves/ -max-time 5m
 ```
 
-### Nuclei with Burp Suite	
+### Nuclei с Burp Suite	
 
-A combination of Nuclei and Burp Suite that allows you to quickly scan and identify vulnerabilities in web applications.	
+Комбинация Nuclei и Burp Suite, позволяющая быстро сканировать и выявлять уязвимости в веб-приложениях.	
 
 ```
 nuclei -t web-vulns -target http://example.com -proxy http://localhost:8080
 ```
 
-### Nuclei with Masscan	
+### Nuclei с Masscan	
 
-A combination of Nuclei and Masscan that allows you to quickly scan large IP ranges and identify vulnerabilities.	
+Комбинация Nuclei и Masscan, позволяющая быстро сканировать большие диапазоны IP-адресов и выявлять уязвимости.	
 
 ```
 masscan -p1-65535 192.168.1.1-254 -oL ips.txt && cat ips.txt
 ```
 
 
-### Define Guardrails via HashiCorp
+### Определение защитных барьеров через HashiCorp
 
-Applies HashiCorp Sentinel policies to enforce guardrails defined in the policy file.
+Применяет политики HashiCorp Sentinel для обеспечения соблюдения защитных барьеров, определенных в файле политики.
 
 ```
 sentinel apply -policy=<policy_file>
 ```
 
-### Vulnerability Scanning via nessuscli
+### Сканирование уязвимостей с помощью nessuscli
 
-Initiates a vulnerability scan on the target system using Nessus.
+Запускает проверку уязвимостей целевой системы с помощью Nessus.
 
 ```
 nessuscli scan -t <target>
 ```
 
-### Patch Vulnerabilities via Ansible playbook
+### Заплатка уязвимостей с помощью плейбука Ansible
 
-Executes an Ansible playbook to patch vulnerabilities specified in the playbook.
+Выполняет плейбук Ansible для исправления уязвимостей, указанных в плейбуке.
 
 ```
 ansible-playbook -i inventory.ini patch_vulnerabilities.yml
 ```
 
-### Compliance Checks via aws-nuke
+### Проверка соответствия через aws-nuke
 
-Deletes AWS resources non-compliant with the defined configuration in the AWS Nuke configuration file.
+Удаляет ресурсы AWS, не соответствующие заданной конфигурации в файле конфигурации AWS Nuke.
 
 ```
 aws-nuke --config=config.yml
 ```
 
-### Continuous Compliance Monitoring via opa
+### Непрерывный мониторинг соответствия через OPA
 
-Evaluates Open Policy Agent (OPA) policies against input data to enforce compliance.
+Оценивает политики Open Policy Agent (OPA) по входным данным для обеспечения соответствия требованиям.
 
 ```
 opa eval -i <input_data> -d <policy_file>
 ```
 
 
-## Tunnel & Proxy
+## Туннель и прокси
 
 
 ### Nebula
 
-Generates a certificate authority (CA) for Nebula using the specified name and outputs the CA certificate and key files.
+Создает центр сертификации (ЦС) для Nebula с указанным именем и выводит файлы сертификата и ключа ЦС.
 
 ```
 nebula-cert ca -name "<ca_name>" -out <ca_cert_file> -key <ca_key_file>
 ```
 
-Signs a node certificate with the specified CA certificate and key files, node name, IP address, and outputs the node certificate file.
+Подписывает сертификат узла с указанными файлами сертификата и ключей ЦС, именем узла, IP-адресом и выводит файл сертификата узла.
 
 ```
 nebula-cert sign -ca-crt <ca_cert_file> -ca-key <ca_key_file> -name "<node_name>" -out <node_cert_file> -ip <node_ip>
 ```
 
-Starts a Nebula node using the specified configuration file
+Запускает узел Nebula с использованием указанного файла конфигурации
 
 ```
 nebula -config <config_file>
 ```
 
-Adds a static route to the Nebula node for the specified destination subnet via the specified node
+Добавляет статический маршрут к узлу Nebula для указанной подсети назначения через указанный узел.
 
 ```
 nebula route add -dst-subnet <destination_subnet> -via <via_node>
 ```
 
-Starts a Nebula proxy using the specified configuration file.
+Запускает прокси-сервер Nebula, используя указанный файл конфигурации.
 
 ```
 nebula-proxy -config <config_file>
 ```
 
-Initiates a connection to a remote host using the Nebula overlay network.
+Инициирует соединение с удаленным узлом с помощью оверлейной сети Nebula.
 
 ```
 nebula connect <host_ip>
 ```
 
-Checks the status and connectivity of the Nebula node.
+Проверяет состояние и возможность подключения узла Nebula.
 
 ```
 nebula status
 ```
 
-Displays statistics and metrics about the Nebula node.
+Отображает статистику и метрики узла Nebula.
 
 ```
 nebula stats
@@ -515,62 +515,62 @@ nebula stats
 ### Chisel
 
 
-Starts the Chisel server on the specified port, enabling reverse tunneling.
+Запускает сервер Chisel на указанном порту, обеспечивая обратное туннелирование.
 
 ```
 chisel server -p <listen_port> --reverse
 ```
 
-Starts the Chisel client and establishes a reverse tunnel to the Chisel server. It forwards traffic from the local port to the remote host and port.
+Запускает клиент Chisel и устанавливает обратный туннель к серверу Chisel. Он перенаправляет трафик с локального порта на удаленный хост и порт.
 
 ```
 chisel client <server_host>:<server_port> R:<remote_host>:<remote_port>:<local_port>
 ```
 
 
-Creates a tunnel from the local port to the remote host and port via the Chisel server. The -f flag keeps the connection alive.
+Создает туннель от локального порта к удаленному хосту и порту через сервер Chisel. Флаг -f поддерживает соединение.
 
 ```
 chisel client <server_host>:<server_port> -f -L <local_port>:<remote_host>:<remote_port>
 ```
 
-Sets up a local HTTP proxy that forwards traffic to the Chisel server and then to the internet.
+Устанавливает локальный HTTP-прокси, который перенаправляет трафик на сервер Chisel и затем в интернет.
 
 ```
 chisel client <server_host>:<server_port> -f -P <local_port>
 ```
 
-Configures a local SOCKS proxy that routes traffic through the Chisel server.
+Настройка локального SOCKS-прокси, который направляет трафик через сервер Chisel.
 
 
 ```
 chisel client <server_host>:<server_port> -f -S <local_port>
 ```
 
-Description: 
+Описание: 
 
-Sets up a reverse tunnel and exposes a local web service through the Chisel server using the HTTP proxy protocol.
+Устанавливает обратный туннель и открывает локальный веб-сервис через сервер Chisel, используя протокол HTTP-прокси.
 
 ```
 chisel client <server_host>:<server_port> --reverse --proxy-protocol http
 ```
 
 
-Creates multiple tunnels from different local ports to different remote hosts and ports via the Chisel server.
+Создает несколько туннелей от разных локальных портов к разным удаленным хостам и портам через сервер Chisel.
 
 ```
 chisel client <server_host>:<server_port> -f -L <local_port1>:<remote_host1>:<remote_port1> -L <local_port2>:<remote_host2>:<remote_port2>
 ```
 
 
-Tests the connectivity to the Chisel server and displays the round-trip time (RTT).
+Проверяет подключение к серверу Chisel и отображает время в пути (RTT).
 
 ```
 chisel client <server_host>:<server_port> --ping
 ```
 
 
-## Incident Management
+## Управление инцидентами
 
 
 
@@ -604,7 +604,7 @@ def trigger_pagerduty_incident(service_key, description, details):
     else:
         print("Failed to trigger PagerDuty incident")
 
-# Usage example:
+# Пример использования:
 service_key = "YOUR_PAGERDUTY_SERVICE_KEY"
 description = "Critical vulnerability detected"
 details = {
@@ -618,11 +618,10 @@ trigger_pagerduty_incident(service_key, description, details)
 
 
 
-In this example, the trigger_pagerduty_incident function sends a PagerDuty event to trigger an incident. It includes a summary, severity, source, and custom details such as the scan target, vulnerability description, and suggested remediation steps.
+В этом примере функция trigger_pagerduty_incident отправляет событие PagerDuty для запуска инцидента. Оно включает в себя краткое описание, степень серьезности, источник и пользовательские данные, такие как цель сканирования, описание уязвимости и предлагаемые шаги по устранению.
 
 
-Then we have defined three incident rules based on different vulnerability priorities: Critical, Medium, and Low. Each rule specifies a condition based on the priority field, and if the condition is met, corresponding actions are triggered.
-
+Затем мы определили три правила для инцидентов, основанных на различных приоритетах уязвимостей: Критический, Средний и Низкий. Каждое правило задает условие, основанное на поле приоритета, и если условие выполняется, запускаются соответствующие действия.
 
 ```
 incident_rules:
@@ -690,7 +689,7 @@ def create_opsgenie_alert(api_key, message, priority, details):
     else:
         print("Failed to create Opsgenie alert")
 
-# Usage example:
+# Пример использования:
 api_key = "YOUR_OPSGENIE_API_KEY"
 message = "Critical vulnerability detected"
 priority = "P1"
@@ -704,11 +703,11 @@ create_opsgenie_alert(api_key, message, priority, details)
 ```
 
 
-In this example, the create_opsgenie_alert function sends an alert to Opsgenie, specifying the message, priority, and additional details such as the scan target, vulnerability description, and suggested remediation steps.
+В этом примере функция create_opsgenie_alert отправляет оповещение в Opsgenie, указывая сообщение, приоритет и дополнительные сведения, такие как цель сканирования, описание уязвимости и предлагаемые шаги по устранению.
 
 
 
-Then we have defined three incident rules based on different vulnerability priorities: Critical, Medium, and Low. Each rule specifies a condition based on the priority field, and if the condition is met, corresponding actions are triggered.
+Затем мы определили три правила для инцидентов, основанные на различных приоритетах уязвимостей: Критический, Средний и Низкий. Каждое правило задает условие, основанное на поле приоритета, и если условие выполняется, запускаются соответствующие действия.
 
 
 ```
@@ -747,7 +746,7 @@ rules:
 
 ## Harbor
 
-### Create a new project in Harbor
+### Создайте новый проект в Harbor
 
 ```
 curl -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer <TOKEN>' -d '{"project_name": "myproject"}' https://<HARBOR_HOST>/api/v2.0/projects
@@ -755,7 +754,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer <TOKE
 
 
 
-### Add a new user to Harbor
+### Добавьте нового пользователя в Harbor
 
 
 ```
@@ -763,7 +762,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer <TOKE
 ```
 
 
-### Scan an image for vulnerabilities in Harbor
+### Сканирование изображения на наличие уязвимостей в Harbor
 
 
 ```
@@ -771,14 +770,14 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer <TOKE
 ```
 
 
-### Delete a project in Harbor
+### Удаление проекта в Harbor
 
 ```
 curl -X DELETE -H 'Authorization: Bearer <TOKEN>' https://<HARBOR_HOST>/api/v2.0/projects/myproject
 ```
 
 
-### Retrieve the list of repositories in Harbor
+### Получение списка репозиториев в Harbor
 
 ```
 curl -H 'Authorization: Bearer <TOKEN>' https://<HARBOR_HOST>/api/v2.0/repositories
@@ -789,7 +788,7 @@ curl -H 'Authorization: Bearer <TOKEN>' https://<HARBOR_HOST>/api/v2.0/repositor
 ## Clair
 
 
-### Scan a Docker image with Clair
+### Сканирование образа Docker с помощью Clair
 
 ```
 clairctl analyze -l <image_name>
@@ -797,7 +796,7 @@ clairctl analyze -l <image_name>
 
 
 
-### Retrieve vulnerability report for a Docker image from Clair
+### Получение отчета об уязвимостях для образа Docker из Clair
 
 
 ```
@@ -807,7 +806,7 @@ clairctl report -l <image_name>
 
 
 
-### Update vulnerability database in Clair
+### Обновление базы данных уязвимостей в Clair
 
 
 ```
@@ -816,7 +815,7 @@ clairctl update
 
 
 
-### Delete a Docker image from Clair's database
+### Удаление образа Docker из базы данных Clair
 
 
 ```
@@ -825,7 +824,7 @@ clairctl delete -l <image_name>
 
 
 
-### Get vulnerability details for a specific CVE in Clair
+### Получение сведений об уязвимости для конкретного CVE в Clair
 
 
 ```
@@ -835,49 +834,49 @@ clairctl vulnerability <CVE_ID>
 
 ## Podman
 
-### Run a container in a rootless mode
+### Запустите контейнер в режиме без рута
 
 ```
-podman run --rm -it --userns=keep-always <image_name>
-```
-
-
-### Enable seccomp profile for a container
-
-
-```
-podman run --rm -it --security-opt seccomp=/path/to/seccomp.json <image_name>
+podman run --rm -it --userns=keep-always <имя_образа>
 ```
 
 
-### Apply SELinux context to a container
+### Включите профиль seccomp для контейнера
 
 
 ```
-podman run --rm -it --security-opt label=type:container_runtime_t <image_name>
+podman run --rm -it --security-opt seccomp=/path/to/seccomp.json <имя_образа>
 ```
 
 
-### Configure AppArmor profile for a container
+### Применить контекст SELinux к контейнеру
 
 
 ```
-podman run --rm -it --security-opt apparmor=docker-default <image_name>
+podman run --rm -it --security-opt label=type:container_runtime_t <имя_образа>
 ```
 
 
-### Enable read-only root filesystem for a container
+### Настройте профиль AppArmor для контейнера
 
 
 ```
-podman run --rm -it --read-only <image_name>
+podman run --rm -it --security-opt apparmor=docker-default <имя_образа>
+```
+
+
+### Включите корневую файловую систему контейнера, доступную только для чтения
+
+
+```
+podman run --rm -it --read-only <имя_образа>
 ```
 
 
 ## skopeo
 
 
-### Copy an image from one container registry to another, verifying its authenticity:
+### Копирование образа из одного реестра контейнеров в другой с проверкой его подлинности:
 
 ```
 skopeo copy --src-creds=<source_credentials> --dest-creds=<destination_credentials> --src-tls-verify=true --dest-tls-verify=true docker://<source_registry>/<source_image>:<tag> docker://<destination_registry>/<destination_image>:<tag>
@@ -886,7 +885,7 @@ skopeo copy --src-creds=<source_credentials> --dest-creds=<destination_credentia
 
 
 
-### Inspect an image manifest to view its details and verify its integrity:
+### Осмотрите манифест изображения, чтобы просмотреть его детали и убедиться в его целостности:
 
 
 ```
@@ -896,7 +895,7 @@ skopeo inspect --tls-verify=true docker://<registry>/<image>:<tag>
 
 
 
-### Copy an image from a container registry to the local filesystem, validating its signature:
+### Копирование образа из реестра контейнеров в локальную файловую систему с проверкой его подписи:
 
 
 ```
@@ -906,7 +905,7 @@ skopeo copy --src-creds=<source_credentials> --dest-tls-verify=true docker://<re
 
 
 
-### List the tags available for a specific image in a container registry:
+### Список тегов, доступных для определенного образа в реестре контейнеров:
 
 
 ```
@@ -917,7 +916,7 @@ skopeo list-tags --tls-verify=true docker://<registry>/<image>
 
 
 
-### Delete an image from a container registry:
+### Удалить образ из реестра контейнеров:
 
 
 
@@ -931,7 +930,7 @@ skopeo delete --creds=<registry_credentials> --tls-verify=true docker://<registr
 ## Open Containers Initiative (OCI)
 
 
-### Verify Image Integrity
+### Проверка целостности образа
 
 
 
@@ -946,7 +945,7 @@ func verifyImageIntegrity(manifest v1.Manifest) error {
     for _, layer := range manifest.Layers {
         if layer.MediaType == "application/vnd.oci.image.layer.v1.tar" {
             digest := layer.Digest
-            // Verify the integrity of the layer using the digest
+            // Проверьте целостность слоя с помощью дайджеста
             isValid, err := verifyLayerDigest(digest)
             if err != nil {
                 return err
@@ -960,13 +959,13 @@ func verifyImageIntegrity(manifest v1.Manifest) error {
 }
 
 func verifyLayerDigest(digest digest.Digest) (bool, error) {
-    // Implement logic to verify the digest against the stored layer
-    // Return true if the digest is valid, false otherwise
+    // Реализуйте логику для проверки дайджеста на соответствие хранимому слою
+    // Возвращаем true, если дайджест валиден, false в противном случае
 }
 ```
 
 
-### Enforce Image Vulnerability Scanning:
+### Сканирование уязвимостей с помощью изображений:
 
 
 
@@ -988,7 +987,7 @@ func enforceVulnerabilityScanning(manifest v1.Manifest) error {
 ```
 
 
-### Implement Image Signing:
+### Внедрите функцию подписи изображений:
 
 
 
@@ -1000,13 +999,13 @@ import (
 )
 
 func signImage(manifest v1.Manifest, privateKey string) error {
-    // Use the private key to sign the image manifest
-    // Return an error if signing fails
+    // Используйте закрытый ключ для подписи изображения.
+    // Верните ошибку, если подписание не удалось
 }
 ```
 
 
-### Enforce Image Content Trust:
+### Обеспечьте доверие к содержимому изображений:
 
 
 
@@ -1028,7 +1027,7 @@ func enforceContentTrust(manifest v1.Manifest) error {
 ```
 
 
-### Secure Image Transmission:
+### Безопасная передача изображений:
 
 
 
@@ -1042,8 +1041,8 @@ import (
 func secureImageTransmission(manifest v1.Manifest) error {
     for _, layer := range manifest.Layers {
         if layer.MediaType == "application/vnd.oci.image.layer.v1.tar" {
-            // Implement logic to enforce secure transmission of the layer
-            // Return an error if the transmission is not secure
+            // Реализуйте логику, обеспечивающую безопасную передачу слоя.
+            // Верните ошибку, если передача не является безопасной
         }
     }
     return nil
@@ -1053,10 +1052,10 @@ func secureImageTransmission(manifest v1.Manifest) error {
 
 
 
-## API Umbrella and Kong
+## API Umbrella и Kong
 
 
-### Rate Limiting
+### Ограничение тарифов
 
 
 ```
@@ -1082,7 +1081,7 @@ curl -X PUT \
 
 
 
-### Authentication and Authorization
+### Аутентификация и авторизация
 
 
 ```
@@ -1103,7 +1102,7 @@ curl -X POST \
 
 
 
-### SSL/TLS Termination
+### Завершение работы SSL/TLS
 
 
 ```
@@ -1123,7 +1122,7 @@ curl -X PUT \
 
 
 
-### Logging and Monitoring
+### Ведение журнала и мониторинг
 
 
 ```
@@ -1143,7 +1142,7 @@ curl -X POST \
 
 
 
-### API Key Management
+### Управление ключами API
 
 
 ```
@@ -1167,7 +1166,7 @@ curl -X POST \
 ## Argo CD
 
 
-### Enable authentication for Argo CD using OIDC (OpenID Connect)
+### Включите аутентификацию для Argo CD с помощью OIDC (OpenID Connect)
 
 ```
 # rbac-config.yaml
@@ -1188,27 +1187,27 @@ roleRef:
 
 
 
-### Enable SSL/TLS encryption for Argo CD
+### Включите шифрование SSL/TLS для  Argo CD
 
 ```
 # values.yaml
-server:
+сервер:
   config:
     tls.enabled: true
     tls.insecure: false
     tls.crt: |
       -----BEGIN CERTIFICATE-----
-      <your_certificate_here>
+      <Ваш_сертификат_здесь>.
       -----END CERTIFICATE-----
     tls.key: |
       -----BEGIN PRIVATE KEY-----
-      <your_private_key_here>
+      <ваш_приватный_ключ_здесь>
       -----END PRIVATE KEY-----
 ```
 
 
 
-### Restrict access to Argo CD's API server using network policies
+### Ограничение доступа к API-серверу Argo CD с помощью сетевых политик
 
 ```
 # network-policy.yaml
@@ -1227,7 +1226,7 @@ spec:
 ```
 
 
-### Enable Webhook authentication for Argo CD
+### Включите аутентификацию Webhook для Argo CD
 
 ```
 # values.yaml
@@ -1254,7 +1253,7 @@ server:
 ## flux2
 
 
-### Enable RBAC (Role-Based Access Control) for Flux
+### Включите RBAC (контроль доступа на основе ролей) для Flux
 
 ```
 # flux-system-rbac.yaml
@@ -1275,7 +1274,7 @@ roleRef:
 
 
 
-### Enable image scanning with Trivy for Flux workloads
+### Обеспечение сканирования изображений с помощью Trivy для рабочих нагрузок Flux
 
 ```
 # flux-system-policies.yaml
@@ -1300,7 +1299,7 @@ spec:
 
 
 
-### Use GitOps for managing Kubernetes secrets with Flux
+### Используйте GitOps для управления секретами Kubernetes с помощью Flux
 
 ```
 # secrets.yaml
@@ -1317,7 +1316,7 @@ stringData:
 
 
 
-### Configure multi-tenancy with Flux using Git branches
+### Настройка многопользовательских отношений с Flux с помощью веток Git
 
 ```
 # flux-system-repo.yaml
@@ -1337,7 +1336,7 @@ spec:
 
 
 
-### Enable cluster auto-scaling using Flux and Kubernetes Horizontal Pod Autoscaler (HPA)
+### Обеспечение автоматического масштабирования кластера с помощью Flux и Kubernetes Horizontal Pod Autoscaler (HPA)
 
 ```
 # flux-system-autoscaler.yaml
@@ -1372,7 +1371,7 @@ spec:
 ## GoCD
 
 
-### Enable SSL/TLS for GoCD Server
+### Включите SSL/TLS для сервера GoCD
 
 ```
 <server>
@@ -1388,7 +1387,7 @@ spec:
 
 
 
-### Implement Role-Based Access Control (RBAC)
+### Внедрение управления доступом на основе ролей (RBAC)
 
 ```
 curl -u <admin_username>:<admin_password> -H 'Content-Type: application/json' -X POST \
@@ -1402,7 +1401,7 @@ curl -u <admin_username>:<admin_password> -H 'Content-Type: application/json' -X
   http://localhost:8153/go/api/admin/security/roles
 ```
 
-### Configure LDAP or Active Directory Integration
+### Настройка интеграции с LDAP или Active Directory
 
 ```
 <security>
@@ -1418,7 +1417,7 @@ curl -u <admin_username>:<admin_password> -H 'Content-Type: application/json' -X
 </security>
 ```
 
-### Implement Two-Factor Authentication (2FA)
+### Внедрите двухфакторную аутентификацию (2FA)
 
 ```
 <security>
@@ -1439,13 +1438,13 @@ curl -u <admin_username>:<admin_password> -H 'Content-Type: application/json' -X
 </security>
 ```
 
-### Enable Security Scanning of GoCD Agents
+### Включение сканирования безопасности агентов GoCD
 
 ```
 pipeline:
   stages:
     - name: Build
-      # Build stage configuration
+      # Конфигурация этапа сборки
 
     - name: SonarQube
       jobs:
@@ -1459,28 +1458,28 @@ pipeline:
 
 ## Calico
 
-### Enable Calico network policies  
+### Включите сетевые политики Calico  
 
 ```
 kubectl apply -f calico-policy.yaml
 ```
 
 
-### Check Calico network policies    
+### Проверьте сетевые политики Calico    
 
 ```
 kubectl get networkpolicies
 ```
 
 
-### View Calico logs    
+### Посмотреть журналы Calico    
 
 ```
 kubectl logs -n kube-system <calico-pod-name>
 ```
 
 
-### Network Policy for Denying All Ingress Traffic:
+### Сетевая политика для запрета всего входящего трафика:
 
 
 ```
@@ -1495,7 +1494,7 @@ spec:
 ```
 
 
-### Network Policy for Allowing Ingress Traffic from a Specific Namespace:
+### Сетевая политика для разрешения входящего трафика из определенного пространства имен:
 
 
 ```
@@ -1512,7 +1511,7 @@ spec:
           name: allowed-namespace
 ```
 
-### Network Policy for Allowing Egress Traffic to a Specific IP or IP Range:
+### Сетевая политика для разрешения исходящего трафика на определенный IP или диапазон IP:
 
 
 ```
@@ -1528,7 +1527,7 @@ spec:
         cidr: 10.0.0.0/24
 ```
 
-### Network Policy for Enforcing Pod Labels:
+### Сетевая политика для принудительного использования меток подкачки:
 
 
 ```
@@ -1549,7 +1548,7 @@ spec:
           app: frontend
 ```
 
-### Network Policy for Enforcing eBPF-based Network Security:
+### Сетевая политика для обеспечения безопасности сети на основе eBPF:
 
 
 ```
@@ -1576,34 +1575,34 @@ spec:
 
 ## AWS CloudFormation Guard
 
-### Create a Guard rule file    
+### Создание файла правил охраны    
 
 ```
 cfn-guard init <rule-file-name>.ruleset
 ```
 
 
-### Evaluate a CloudFormation template against Guard rules  
+### Оценка шаблона CloudFormation на соответствие правилам Guard  
 
 ```
 cfn-guard validate -t <template-file> -r <rule-file>
 ```
 
-### Generate a template with Guard conditions   
+### Создайте шаблон с условиями Guard   
 
 
 ```
 cfn-guard generate -t <template-file> -r <rule-file> -o <output-file>
 ```
 
-### Enable verbose output for evaluation results    
+### Включить подробный вывод результатов оценки    
 
 ```
 cfn-guard validate -t <template-file> -r <rule-file> --verbose
 ```
 
 
-### Run Guard with custom configuration 
+### Запуск Guard с пользовательской конфигурацией 
 
 
 ```
@@ -1611,7 +1610,7 @@ cfn-guard validate -t <template-file> -r <rule-file> --config <config-file>
 ```
 
 
-### Check if an EC2 instance type is allowed:
+### Проверьте, разрешен ли тип экземпляра EC2:
 
 
 
@@ -1630,7 +1629,7 @@ rules:
 
 
 
-### Enforce tagging for an S3 bucket:
+### Применять маркировку для ведра S3:
 
 
 
@@ -1648,7 +1647,7 @@ rules:
 
 
 
-### Ensure a specific VPC CIDR range is used:
+### Убедитесь, что используется определенный диапазон VPC CIDR:
 
 
 
@@ -1659,7 +1658,7 @@ cfn-guard validate -t <template-file> -r <rule-file> --config <config-file>
 
 
 
-### Ensure a specific VPC CIDR range is used:
+### Убедитесь, что используется определенный диапазон VPC CIDR:
  
 
 
@@ -1678,7 +1677,7 @@ rules:
 
 
 
-### Restrict the use of insecure security groups:
+### Ограничьте использование небезопасных групп безопасности:
 
 
 
@@ -1699,7 +1698,7 @@ rules:
 
 
 
-### Ensure encryption is enabled for an RDS instance:
+### Убедитесь, что для экземпляра RDS включено шифрование:
 
 
 
@@ -1718,49 +1717,49 @@ rules:
 ## kube-green
 
 
-### Check the health of a specific resource in the cluster    
+### Проверка состояния определенного ресурса в кластере    
 
 ```
 kube-green check RESOURCE_NAME
 ```
 
 
-### Check the health of all resources in a specific namespace      
+### Проверьте состояние всех ресурсов в определенном пространстве имен      
 
 ```
 kube-green check -n NAMESPACE
 ```
 
 
-### Check the health of a specific resource with a custom timeout      
+### Проверка работоспособности определенного ресурса с заданным таймаутом      
 
 ```
 kube-green check --timeout TIMEOUT RESOURCE_NAME
 ```
 
 
-### Get detailed information about the health status of a specific resource   
+### Получите подробную информацию о состоянии здоровья конкретного ресурса   
 
 ```
 kube-green describe RESOURCE_NAME
 ```
 
 
-### Watch the health status of a specific resource type in the cluster in real-time    
+### Следите за состоянием здоровья определенного типа ресурсов в кластере в режиме реального времени    
 
 ```
 kube-green watch --kind RESOURCE_TYPE
 ```
 
 
-### Monitor the health status of resources in a Kubernetes namespace and send notifications to a Slack channel:
+### Мониторинг состояния здоровья ресурсов в пространстве имен Kubernetes и отправка уведомлений на канал Slack:
 
     
 ```
 kube-green monitor --namespace <namespace> --notifications slack --slack-channel #channel-name
 ```
 
-### Monitor the health status of resources in a Kubernetes namespace and send notifications to a Microsoft Teams channel:
+### Мониторинг состояния здоровья ресурсов в пространстве имен Kubernetes и отправка уведомлений на канал Microsoft Teams:
 
 
 ```
@@ -1773,37 +1772,37 @@ kube-green monitor --namespace <namespace> --notifications teams --teams-channel
 ## Regula
 
 
-### Scan a directory for compliance violations    
+### Сканирование каталога на предмет нарушений нормативных требований    
 
 ```
 regula scan -d <directory-path>
 ```
 
-### Scan a specific file for compliance violations      
+### Сканирование определенного файла на предмет нарушения нормативных требований      
 
 ```
 regula scan -f <file-path>
 ```
 
-### Scan a remote repository for compliance violations     
+### Сканирование удаленного хранилища на предмет нарушений нормативных требований     
 
 ```
 regula scan -r <repository-url>
 ```
 
-### Scan a Terraform plan file for compliance violations        
+### Сканирование файла плана Terraform на предмет нарушений требований        
 
 ```
 regula scan -p <plan-file>
 ```
 
-### Scan a directory and output results in JSON format      
+### Сканирование каталога и вывод результатов в формате JSON      
 
 ```
 regula scan -d <directory-path> --output json
 ```
 
-### Check for unrestricted S3 bucket policies:
+### Проверка политик неограниченных ведер S3:
    
 
 ```
@@ -1813,7 +1812,7 @@ violating_actions:
   - "*"
 ```
 
-### Ensure that security groups do not allow unrestricted ingress traffic:
+### Убедитесь, что группы безопасности не разрешают неограниченный входящий трафик:
 
 
 ```
@@ -1840,7 +1839,7 @@ violating_fields:
   - encrypted: false
 ```
 
-### Check for publicly accessible EC2 instances:
+### Проверьте наличие общедоступных экземпляров EC2:
    
 
 ```
@@ -1850,7 +1849,7 @@ violating_fields:
   - public_ip_address: "*"
 ```
 
-### Ensure IAM policies do not have wildcard resource permissions:
+### Убедитесь, что политики IAM не имеют подстановочных разрешений на ресурсы:
     
 
 ```
@@ -1865,10 +1864,10 @@ violating_fields:
 
 
 
-## eBPF (extended Berkeley Packet Filter)
+## eBPF (расширенный пакетный фильтр Беркли)
 
 
-### Check Cilium installation     
+### Проверьте установку Cilium     
 
 ```
 kubectl get pods -n kube-system
@@ -1876,7 +1875,7 @@ kubectl get pods -n kube-system
 
 
 
-### View Cilium agent logs    
+### Просмотр журналов регистрации агентов Cilium    
 
 ```
 kubectl logs -n kube-system -l k8s-app=cilium
@@ -1885,7 +1884,7 @@ kubectl logs -n kube-system -l k8s-app=cilium
 
 
 
-### View Cilium operator logs   
+### Просмотр журнала регистрации операторов Cilium   
 
 ```
 kubectl logs -n kube-system -l name=cilium-operator
@@ -1894,7 +1893,7 @@ kubectl logs -n kube-system -l name=cilium-operator
 
 
 
-### Describe NetworkPolicy  
+### Опишите NetworkPolicy  
 
 ```
 kubectl describe networkpolicy <name>
@@ -1903,7 +1902,7 @@ kubectl describe networkpolicy <name>
 
 
 
-### Apply L7 (Layer 7) Policy   
+### Применить политику L7 (уровень 7)   
 
 ```
 kubectl apply -f <l7policy.yaml>
@@ -1912,7 +1911,7 @@ kubectl apply -f <l7policy.yaml>
 
 
 
-### List L7 Policies     
+### Список политик L7     
 
 ```
 kubectl get l7policy
@@ -1921,7 +1920,7 @@ kubectl get l7policy
 
 
 
-### Update Cilium      
+### Обновите Cilium      
 
 ```
 helm upgrade cilium cilium/cilium --version <version>
@@ -1930,7 +1929,7 @@ helm upgrade cilium cilium/cilium --version <version>
 
 
 
-### Enforce Network Policies:
+### Обеспечение соблюдения сетевых политик:
 
  
 
@@ -1956,7 +1955,7 @@ spec:
 
 
 
-###  Enable Encryption for Cilium Communication:
+###  Включить шифрование для связи с Cilium:
 
 ```
 apiVersion: cilium.io/v2
@@ -1985,7 +1984,7 @@ spec:
 
 
 
-### Implement DNS Policy
+### Внедрение политики DNS
 
 ```
 apiVersion: cilium.io/v2
@@ -2007,7 +2006,7 @@ spec:
 
 
 
-### Enable HTTP Inspection     
+### Включить проверку HTTP     
 
 ```
 apiVersion: cilium.io/v2
@@ -2031,7 +2030,7 @@ spec:
 
 
 
-### Implement Security Profiles     
+### Внедрение профилей безопасности     
 
 ```
 apiVersion: cilium.io/v2
