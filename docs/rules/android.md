@@ -672,18 +672,18 @@ public class AuthorizationUtils {
 }
 ```
 
-In this noncompliant code, the checkAdminAccess method performs an insecure authorization check by comparing the username and password directly with hardcoded values. This approach is vulnerable to attacks such as password guessing and brute-force attacks, as well as unauthorized access if the credentials are compromised.
+В этом несоответствующем коде метод checkAdminAccess выполняет небезопасную проверку авторизации, сравнивая имя пользователя и пароль непосредственно с жестко заданными значениями. Такой подход уязвим для таких атак, как угадывание пароля и брутфорс, а также для несанкционированного доступа, если учетные данные скомпрометированы.
 
-To address this issue, here's an example of compliant code for secure authorization in Android Java:
-
-
+Чтобы решить эту проблему, приведем пример совместимого кода для безопасной авторизации в Android Java:
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -692,10 +692,10 @@ public class AuthorizationUtils {
     private static final String ADMIN_PASSWORD = "password";
 
     public boolean checkAdminAccess(String username, String password) {
-        // Perform secure authentication logic
-        // This could involve retrieving user credentials from a secure source,
-        // such as a database, and comparing them using a secure hashing algorithm.
-        // For demonstration purposes, we'll use a simple comparison with hardcoded values.
+        // Выполните логику безопасной аутентификации
+        // Это может включать получение учетных данных пользователя из безопасного источника,
+        // например, из базы данных, и сравнение их с помощью безопасного алгоритма хеширования.
+        // В демонстрационных целях мы будем использовать простое сравнение с жестко заданными значениями.
 
         if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
             return true;
@@ -707,8 +707,7 @@ public class AuthorizationUtils {
 ```
 
 
-In the compliant code, the username and password comparison is still present, but the actual credentials are stored securely, such as in a secure database or a hashed and salted format. Additionally, this code provides an example where the hardcoded values are defined as constants, making it easier to manage and update the credentials if needed. It is important to implement proper authentication mechanisms, such as using secure password storage and strong authentication protocols, to ensure secure authorization in real-world scenarios.
-
+В соответствующем коде сравнение имени пользователя и пароля по-прежнему присутствует, но фактические учетные данные хранятся в защищенном виде, например, в защищенной базе данных или в формате хэширования и солерования. Кроме того, в этом коде приведен пример, в котором жестко заданные значения определены как константы, что упрощает управление и обновление учетных данных в случае необходимости. Для обеспечения безопасной авторизации в реальных сценариях важно применять надлежащие механизмы аутентификации, такие как использование безопасного хранения паролей и надежных протоколов аутентификации.
 
 
 Semgrep:
@@ -744,9 +743,9 @@ class AuthorizationUtils extends AnyFile
 ```
 
 
-### Client Code Quality
+### Качество клиентского кода
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -760,31 +759,31 @@ public class MainActivity extends AppCompatActivity {
         
         textView = findViewById(R.id.textView);
 
-        // Perform a long and complex operation on the main UI thread
+        // Выполните длинную и сложную операцию в главном потоке пользовательского интерфейса
         for (int i = 0; i < 1000000; i++) {
-            // Perform some heavy computations
+            // Выполните несколько тяжелых вычислений
         }
 
-        // Update the UI
-        textView.setText("Operation completed");
+        // Обновление пользовательского интерфейса
+        textView.setText("Операция завершена");
     }
 }
 ```
 
-In this noncompliant code, a long and complex operation is performed directly on the main UI thread within the onCreate method of the MainActivity class. Performing such heavy computations on the main UI thread can cause the app to become unresponsive and negatively impact the user experience. It is essential to offload time-consuming operations to background threads to keep the UI responsive.
+В этом несоответствующем коде длинная и сложная операция выполняется непосредственно в главном потоке пользовательского интерфейса в методе onCreate класса MainActivity. Выполнение таких тяжелых вычислений в главном потоке пользовательского интерфейса может привести к тому, что приложение перестанет реагировать на запросы и негативно повлияет на работу пользователя. Чтобы пользовательский интерфейс оставался отзывчивым, необходимо перекладывать трудоемкие операции на фоновые потоки.
 
 
-To address this issue, here's an example of compliant code that improves client code quality in Android Java:
-
-
-
+Чтобы решить эту проблему, приведем пример совместимого кода, который улучшает качество клиентского кода в Android Java:
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -798,20 +797,20 @@ public class MainActivity extends AppCompatActivity {
         
         textView = findViewById(R.id.textView);
 
-        // Perform the long and complex operation on a background thread
+        // Выполняем длинную и сложную операцию в фоновом потоке
         new Thread(new Runnable() {
             @Override
             public void run() {
                 for (int i = 0; i < 1000000; i++) {
-                    // Perform some heavy computations
+                    // Выполните несколько тяжелых вычислений
                 }
 
-                // Update the UI on the main thread
+                // Обновление пользовательского интерфейса в главном потоке
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        // Update the UI
-                        textView.setText("Operation completed");
+                        // Обновление пользовательского интерфейса
+                        textView.setText("Операция завершена");
                     }
                 });
             }
@@ -821,7 +820,7 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 
-In the compliant code, the heavy computations are performed on a background thread using Thread or other concurrency mechanisms. Once the computations are completed, the UI update is performed on the main UI thread using runOnUiThread to ensure proper synchronization with the UI. By offloading the heavy computations to a background thread, the UI remains responsive, providing a better user experience.
+В совместимом коде тяжелые вычисления выполняются в фоновом потоке с использованием Thread или других механизмов параллелизма. После завершения вычислений обновление пользовательского интерфейса выполняется в основном потоке UI с помощью runOnUiThread для обеспечения надлежащей синхронизации с пользовательским интерфейсом. Перекладывая тяжелые вычисления на фоновый поток, пользовательский интерфейс остается отзывчивым, обеспечивая лучшее качество работы пользователя.
 
 
 Semgrep:
@@ -856,9 +855,9 @@ class MainActivity extends AnyFile
 ```
 
 
-### Code Tampering
+### Вскрытие кодов
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -872,42 +871,42 @@ public class MainActivity extends AppCompatActivity {
         
         textView = findViewById(R.id.textView);
 
-        // Check if the app is installed from an unauthorized source
+        // Проверяем, установлено ли приложение из неавторизованного источника
         boolean isAuthorizedSource = checkInstallationSource();
 
         if (!isAuthorizedSource) {
-            // Show an error message and exit the app
-            textView.setText("Unauthorized app installation");
+            // Показываем сообщение об ошибке и выходим из приложения
+            textView.setText("Установка неавторизованного приложения");
             finish();
         }
 
-        // Rest of the code...
+        // Остальная часть кода...
     }
 
     private boolean checkInstallationSource() {
-        // Perform checks to determine the app installation source
-        // For simplicity, assume the check always returns false in this example
+        // Выполняем проверку для определения источника установки приложения
+        // Для простоты предположим, что в этом примере проверка всегда возвращает false
         return false;
     }
 }
 ```
 
-In this noncompliant code, there is a check performed in the onCreate method to verify if the app is installed from an unauthorized source. If the check fails (returns false), an error message is displayed, but the app continues its execution.
+В этом несоответствующем коде в методе onCreate выполняется проверка, не установлено ли приложение из неавторизованного источника. Если проверка не проходит (возвращается false), выводится сообщение об ошибке, но приложение продолжает выполняться.
 
 
 
-To address this issue, here's an example of compliant code that mitigates code tampering in Android Java:
-
-
-
-
+Чтобы решить эту проблему, вот пример совместимого кода, который защищает от несанкционированного доступа к коду в Android Java:
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -921,29 +920,29 @@ public class MainActivity extends AppCompatActivity {
         
         textView = findViewById(R.id.textView);
 
-        // Check if the app is installed from an unauthorized source
+        // Проверяем, установлено ли приложение из неавторизованного источника
         boolean isAuthorizedSource = checkInstallationSource();
 
         if (!isAuthorizedSource) {
-            // Show an error message and exit the app
-            textView.setText("Unauthorized app installation");
-            finishAffinity(); // Close all activities and exit the app
-            return; // Prevent further execution of code
+            // Показываем сообщение об ошибке и выходим из приложения
+            textView.setText("Установка неавторизованного приложения");
+            finishAffinity(); // Закрываем все действия и выходим из приложения
+            return; // Предотвращение дальнейшего выполнения кода
         }
 
-        // Rest of the code...
+        // Остальная часть кода...
     }
 
     private boolean checkInstallationSource() {
-        // Perform checks to determine the app installation source
-        // For simplicity, assume the check always returns false in this example
+        // Выполняем проверку для определения источника установки приложения
+        // Для простоты предположим, что в этом примере проверка всегда возвращает false
         return false;
     }
 }
 ```
 
 
-In the compliant code, when the check for an unauthorized app installation fails, the finishAffinity() method is called to close all activities and exit the app. Additionally, the return statement is used to prevent further execution of code in the onCreate method. By terminating the app's execution upon detection of an unauthorized installation source, the potential for code tampering is mitigated.
+В совместимом коде, когда проверка на несанкционированную установку приложения не проходит, вызывается метод finishAffinity(), чтобы закрыть все действия и выйти из приложения. Кроме того, оператор return используется для предотвращения дальнейшего выполнения кода в методе onCreate. Прекращение выполнения приложения при обнаружении источника несанкционированной установки снижает вероятность вмешательства в код.
 
 
 Semgrep:
@@ -979,7 +978,7 @@ class MainActivity extends AnyFile
 
 
 
-### Reverse Engineering
+### Обратное проектирование
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
 
@@ -995,42 +994,42 @@ public class MainActivity extends AppCompatActivity {
         
         textView = findViewById(R.id.textView);
 
-        // Perform sensitive operation
+        // Выполняем чувствительную операцию
         String sensitiveData = performSensitiveOperation();
 
-        // Display sensitive data on the screen
+        // Отображение чувствительных данных на экране
         textView.setText(sensitiveData);
 
-        // Rest of the code...
+        // Остальная часть кода...
     }
 
     private String performSensitiveOperation() {
-        // Perform sensitive operation
-        // For simplicity, assume it involves sensitive data processing
+        // Выполняем конфиденциальную операцию
+        // Для простоты предположим, что она включает обработку конфиденциальных данных
 
         return "Sensitive Data";
     }
 }
 ```
 
-In this noncompliant code, sensitive data is processed in the performSensitiveOperation method. The resulting sensitive data is then directly displayed on the screen in the onCreate method, making it easier for an attacker to reverse engineer and extract the sensitive information from the APK.
+В этом несоответствующем коде конфиденциальные данные обрабатываются в методе performSensitiveOperation. Полученные конфиденциальные данные затем непосредственно отображаются на экране в методе onCreate, что облегчает злоумышленнику обратное проектирование и извлечение конфиденциальной информации из APK.
 
 
 
 
-To address this issue, here's an example of compliant code that mitigates reverse engineering in Android Java:
-
-
-
-
-
+Чтобы решить эту проблему, вот пример совместимого кода, который защищает от обратного инжиниринга в Android Java:
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -1044,26 +1043,25 @@ public class MainActivity extends AppCompatActivity {
         
         textView = findViewById(R.id.textView);
 
-        // Perform sensitive operation
+        // Выполняем чувствительную операцию
         String sensitiveData = performSensitiveOperation();
 
-        // Display a generic message on the screen
-        textView.setText("Sensitive data is protected");
+        // Выводим на экран общее сообщение
+        textView.setText("Чувствительные данные защищены");
 
-        // Rest of the code...
+        // Остальная часть кода...
     }
 
     private String performSensitiveOperation() {
-        // Perform sensitive operation
-        // For simplicity, assume it involves sensitive data processing
+        // Выполняем чувствительную операцию
+        // Для простоты предположим, что она связана с обработкой конфиденциальных данных
 
         return "Sensitive Data";
     }
 }
 ```
 
-
-In the compliant code, instead of directly displaying the sensitive data on the screen, a generic message is shown to avoid exposing sensitive information. By obfuscating the sensitive data and displaying a generic message, the reverse engineering efforts are made more challenging, making it harder for an attacker to extract sensitive information from the APK.
+В совместимом коде вместо прямого отображения конфиденциальных данных на экране показывается общее сообщение, чтобы избежать раскрытия конфиденциальной информации. Обфусцирование конфиденциальных данных и отображение общего сообщения усложняет попытки обратного инжиниринга, что затрудняет злоумышленникам извлечение конфиденциальной информации из APK.
 
 
 
@@ -1101,13 +1099,13 @@ class MainActivity extends AnyFile
 
 ### Extraneous Functionality
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
 public class MainActivity extends AppCompatActivity {
-    private Button loginButton;
-    private Button adminButton;
+    private Кнопка loginButton;
+    private Кнопка adminButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1120,7 +1118,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Perform login functionality
+                // Выполняем функцию входа в систему
                 performLogin();
             }
         });
@@ -1128,38 +1126,38 @@ public class MainActivity extends AppCompatActivity {
         adminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Perform admin functionality
+                // Выполнение функций администратора
                 performAdminAction();
             }
         });
 
-        // Rest of the code...
+        // Остальной код...
     }
 
     private void performLogin() {
-        // Login functionality
+        // Функциональность входа в систему
     }
 
     private void performAdminAction() {
-        // Admin functionality
+        // Функциональность администратора
     }
 }
 ```
 
-In this noncompliant code, there is an adminButton along with its associated functionality for performing administrative actions. However, if the app does not require or intend to provide administrative functionality to regular users, this can introduce unnecessary risk. It increases the attack surface and potential for unauthorized access if an attacker gains control of the app.
+В этом несоответствующем коде есть кнопка adminButton и связанная с ней функциональность для выполнения административных действий. Однако если приложение не требует или не собирается предоставлять административную функциональность обычным пользователям, это может создать ненужный риск. Это увеличивает площадь атаки и потенциал несанкционированного доступа, если злоумышленник получит контроль над приложением.
 
 
-To address this issue, here's an example of compliant code that removes the extraneous functionality:
+Чтобы решить эту проблему, приведем пример совместимого кода, в котором удалена лишняя функциональность:
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
 public class MainActivity extends AppCompatActivity {
-    private Button loginButton;
+    private Кнопка loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1171,22 +1169,22 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Perform login functionality
+                // Выполняем функцию входа в систему
                 performLogin();
             }
         });
 
-        // Rest of the code...
+        // Остальной код...
     }
 
     private void performLogin() {
-        // Login functionality
+        // Функциональность входа в систему
     }
 }
 ```
 
 
-In the compliant code, the adminButton and its associated administrative functionality have been removed. The app now focuses solely on the required login functionality for regular users, reducing the attack surface and eliminating unnecessary functionality that could introduce potential security risks.
+В коде, соответствующем требованиям, кнопка adminButton и связанная с ней административная функциональность были удалены. Теперь приложение сосредоточено исключительно на функциях входа в систему для обычных пользователей, что уменьшает площадь атаки и устраняет ненужную функциональность, которая может представлять потенциальные риски безопасности.
 
 
 
