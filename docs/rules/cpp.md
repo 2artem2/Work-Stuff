@@ -9,7 +9,7 @@ parent: Rules
 
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -21,10 +21,10 @@ parent: Rules
 
 
 
-## Buffer Overflow
+## Переполнение буфера
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -32,13 +32,13 @@ parent: Rules
 
 int main() {
     char buffer[5];
-    strcpy(buffer, "Hello, world!"); // Noncompliant code
+    strcpy(buffer, "Hello, world!"); // Несоответствующий код
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, a character array buffer of size 5 is declared. The strcpy function is then used to copy a string into the buffer. However, the string "Hello, world!" requires more than 5 characters to store, causing a buffer overflow. Writing beyond the bounds of the buffer leads to undefined behavior and potential security vulnerabilities.
+В коде, не соответствующем требованиям, объявляется буфер символьного массива размером 5. Затем используется функция strcpy для копирования строки в буфер. Однако для хранения строки "Hello, world!" требуется более 5 символов, что приводит к переполнению буфера. Запись за пределы буфера приводит к неопределенному поведению и потенциальным уязвимостям в системе безопасности.
 
 
 
