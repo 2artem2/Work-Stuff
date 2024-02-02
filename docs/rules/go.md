@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -20,9 +20,9 @@ parent: Rules
 
 
 
-## Exposure of sensitive information
+## Раскрытие конфиденциальной информации
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -39,25 +39,25 @@ func main() {
 }
 
 func getUsers(w http.ResponseWriter, r *http.Request) {
-	// Access sensitive data from the database
+	// Доступ к конфиденциальным данным из базы данных
 	username := "admin"
 	password := "secret"
 
-	// Return the sensitive information in the HTTP response
+	// Верните конфиденциальную информацию в HTTP-ответе
 	fmt.Fprintf(w, "Username: %s, Password: %s", username, password)
 }
 
 ```
 
-In this noncompliant code, the getUsers function retrieves sensitive information such as the username and password from a database. However, the code directly exposes this sensitive information in the HTTP response by returning it as part of the response body. This can lead to the exposure of credentials and other sensitive data to potential attackers.
+В этом коде, не соответствующем требованиям, функция getUsers извлекает из базы данных конфиденциальную информацию, такую как имя пользователя и пароль. Однако код напрямую раскрывает эту конфиденциальную информацию в HTTP-ответе, возвращая ее как часть тела ответа. Это может привести к раскрытию учетных данных и других конфиденциальных сведений потенциальным злоумышленникам.
 
-To address this issue, here's an example of compliant code that avoids the exposure of sensitive information:
-
-
+Чтобы решить эту проблему, приведем пример совместимого кода, который позволяет избежать раскрытия конфиденциальной информации:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -91,7 +91,7 @@ In the compliant code, the getUsers function still retrieves sensitive informati
 
 ## Insertion of Sensitive Information Into Sent Data
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -141,7 +141,7 @@ To address this issue, here's an example of compliant code that avoids the inser
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -191,7 +191,7 @@ In the compliant code, the sensitive information (the username) is logged withou
 
 ## Cross-Site Request Forgery (CSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -247,7 +247,7 @@ In this noncompliant code, there is no CSRF protection implemented. The indexHan
 To address this issue, here's an example of compliant code that includes CSRF protection:
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -326,7 +326,7 @@ In the compliant code, the Gorilla CSRF package (github.com/gorilla/csrf) is use
 
 ## Use of Hard-coded Password
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -366,7 +366,7 @@ To address this issue, here's an example of compliant code that avoids hard-codi
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -419,7 +419,7 @@ In the compliant code, the password is no longer hard-coded. Instead, the prompt
 
 ## Broken or Risky Crypto Algorithm
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -446,7 +446,7 @@ To address this issue, here's an example of compliant code that uses a stronger 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -473,7 +473,7 @@ In the compliant code, the SHA-256 algorithm from the crypto/sha256 package is u
 
 ## Insufficient Entropy
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -513,7 +513,7 @@ To address this issue, here's an example of compliant code that uses the crypto/
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -553,7 +553,7 @@ In the compliant code, the crypto/rand package is used along with the rand.Read(
 
 ## XSS
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -591,7 +591,7 @@ To address this issue, here's an example of compliant code that properly sanitiz
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -633,7 +633,7 @@ In the compliant code, the html/template package is used to sanitize the user in
 
 ## SQL Injection
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -686,7 +686,7 @@ To address this issue, here's an example of compliant code that uses parameteriz
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -739,7 +739,7 @@ In the compliant code, the SQL query is modified to use parameterized queries. T
 
 ## External Control of File Name or Path
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -792,7 +792,7 @@ To address this issue, here's an example of compliant code that validates and sa
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -852,7 +852,7 @@ In the compliant code, the file name is validated and sanitized using the filepa
 
 ## Generation of Error Message Containing Sensitive Information
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -894,7 +894,7 @@ To address this issue, here's an example of compliant code that avoids exposing 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -935,7 +935,7 @@ In the compliant code, the error message logged using log.Println no longer incl
 
 ## unprotected storage of credentials
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -978,7 +978,7 @@ To address this issue, here's an example of compliant code that protects the sto
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1043,7 +1043,7 @@ By applying these security measures, the compliant code ensures that credentials
 
 ## Trust Boundary Violation
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1093,7 +1093,7 @@ To address this issue, here's an example of compliant code that implements input
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1157,7 +1157,7 @@ By implementing input validation, the compliant code enforces a trust boundary a
 
 ## Insufficiently Protected Credentials
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1218,7 +1218,7 @@ To address this issue, here's an example of compliant code that properly protect
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1289,7 +1289,7 @@ By properly protecting the credentials and ensuring they are obtained from secur
 
 ## Restriction of XML External Entity Reference
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1350,7 +1350,7 @@ To address this issue, here's an example of compliant code that properly restric
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1414,7 +1414,7 @@ By enforcing strict XML parsing and disabling external entity expansion, the com
 ## Vulnerable and Outdated Components
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1441,7 +1441,7 @@ To address this issue, here's an example of compliant code that avoids using vul
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1472,7 +1472,7 @@ By using secure and updated components, the compliant code reduces the risk of p
 
 ## Improper Validation of Certificate with Host Mismatch
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1512,7 +1512,7 @@ To address this issue, here's an example of compliant code that properly validat
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1554,7 +1554,7 @@ In the compliant code, the InsecureSkipVerify field is set to false, which enabl
 
 ## Improper Authentication
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1614,7 +1614,7 @@ To address these issues, here's an example of compliant code that demonstrates p
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1687,7 +1687,7 @@ In the compliant code, the passwords are securely stored as hashed values using 
 
 ## Session Fixation
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1741,7 +1741,7 @@ To address this vulnerability, here's an example of compliant code that mitigate
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1810,7 +1810,7 @@ In the compliant code, the session ID is no longer stored in a global variable b
 
 ## Inclusion of Functionality from Untrusted Control
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1850,7 +1850,7 @@ To address this security risk, here's an example of compliant code that mitigate
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1909,7 +1909,7 @@ In the compliant code, the executeHandler function validates and sanitizes the c
 
 ## Download of Code Without Integrity Check
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1960,7 +1960,7 @@ To address this security risk, here's an example of compliant code that incorpor
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2040,7 +2040,7 @@ In the compliant code, after reading the contents of the response body, an integ
 
 ## Deserialization of Untrusted Data
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2079,7 +2079,7 @@ To address this security risk, here's an example of compliant code that incorpor
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2153,7 +2153,7 @@ By incorporating validation and sanitization steps, the compliant code mitigates
 
 ## Insufficient Logging
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2203,7 +2203,7 @@ To address this issue and ensure sufficient logging, here's an example of compli
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2270,7 +2270,7 @@ By utilizing a more feature-rich logging package like logrus, the compliant code
 
 ## Improper Output Neutralization for Logs
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2307,7 +2307,7 @@ To address this issue and ensure proper output neutralization for logs, here's a
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2362,7 +2362,7 @@ By sanitizing the log output in this manner, the compliant code mitigates the ri
 
 ## Omission of Security-relevant Information
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2399,7 +2399,7 @@ To address this issue and ensure the inclusion of security-relevant information 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2441,7 +2441,7 @@ It's important to note that while logging sensitive information like passwords i
 
 ## Sensitive Information into Log File
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2486,7 +2486,7 @@ To address this issue and prevent the sensitive information from being stored in
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2540,7 +2540,7 @@ It's important to follow best practices for handling sensitive information, such
 
 ## Server-Side Request Forgery (SSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2588,7 +2588,7 @@ To address this issue and prevent SSRF attacks, here's an example of compliant c
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
