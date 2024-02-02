@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -21,7 +21,7 @@ parent: Rules
 
 ### XSS
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -35,14 +35,14 @@ def post_comment(request):
     return render(request, 'comment.html', {'name': name, 'message': message})
 ```
 
-In this noncompliant code, the post_comment view function retrieves user input from the request and directly passes it to the template without any form of sanitization or validation. This leaves the application vulnerable to Cross-Site Scripting (XSS) attacks, as an attacker can submit malicious script tags or code that will be rendered as-is when the template is rendered.
+В этом несоответствующем коде функция представления post_comment получает пользовательский ввод из запроса и напрямую передает его в шаблон без какой-либо санитарной обработки или валидации. Это делает приложение уязвимым к атакам межсайтового скриптинга (XSS), так как злоумышленник может отправить вредоносные теги сценария или код, который будет отображен как есть при отображении шаблона.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -60,15 +60,15 @@ def post_comment(request):
 ```
 
 
-In the compliant code, the escape function from django.utils.html is used to sanitize the user input by escaping special characters that have special meaning in HTML. This ensures that user-supplied input is treated as plain text when rendered in the template, preventing it from being executed as code.
+В соответствующем коде функция escape из django.utils.html используется для санации пользовательского ввода путем экранирования специальных символов, которые имеют особое значение в HTML. Это гарантирует, что пользовательский ввод будет рассматриваться как обычный текст при отображении в шаблоне, предотвращая его выполнение как кода.
 
-It's important to note that while the escape function provides basic protection against XSS attacks, it is context-specific. Depending on the specific output context (e.g., HTML attributes, JavaScript, CSS), additional sanitization or encoding may be required. Django provides other utilities like mark_safe and template filters (safe, escapejs, etc.) that can be used to handle different output contexts.
+Важно отметить, что хотя функция escape обеспечивает базовую защиту от XSS-атак, она зависит от контекста. В зависимости от конкретного контекста вывода (например, HTML-атрибуты, JavaScript, CSS) может потребоваться дополнительная дезинфекция или кодирование. Django предоставляет другие утилиты, такие как mark_safe и шаблонные фильтры (safe, escapejs и т.д.), которые могут быть использованы для работы с различными контекстами вывода.
 
-In addition to input sanitization, other security measures you can implement in Django to mitigate XSS vulnerabilities include:
+Помимо санации ввода, другие меры безопасности, которые вы можете реализовать в Django для уменьшения уязвимостей XSS, включают:
 
-* Using Django's built-in template engine and its automatic HTML escaping features to ensure that user-generated content is properly escaped.
-* Applying proper output encoding when rendering dynamic data within HTML attributes or other contexts that require different escaping rules.
-* Implementing Content Security Policies (CSP) to control the types of content allowed to be loaded and executed on your web pages.
+* Использование встроенного шаблонизатора Django и его функций автоматического экранирования HTML для обеспечения правильного экранирования пользовательского контента.
+* Применение правильной кодировки при выводе динамических данных в HTML-атрибутах или других контекстах, требующих других правил экранирования.
+* Внедрение политик безопасности содержимого (CSP) для контроля типов содержимого, разрешенных для загрузки и выполнения на веб-страницах.
 
-By properly sanitizing user input and implementing security measures throughout your Django application, you can effectively mitigate XSS vulnerabilities and enhance the overall security of your web application.
+Правильно санируя пользовательский ввод и применяя меры безопасности во всем Django-приложении, вы сможете эффективно бороться с XSS-уязвимостями и повысить общую безопасность вашего веб-приложения.
 
