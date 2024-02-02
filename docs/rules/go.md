@@ -74,22 +74,22 @@ func main() {
 }
 
 func getUsers(w http.ResponseWriter, r *http.Request) {
-	// Access sensitive data from the database
+	// Доступ к конфиденциальным данным из базы данных
 	username := "admin"
 	password := "secret"
 
-	// Instead of returning sensitive information, return a generic message
+	// Вместо того чтобы возвращать конфиденциальную информацию, верните общее сообщение
 	fmt.Fprint(w, "Access denied")
 }
 ```
 
 
-In the compliant code, the getUsers function still retrieves sensitive information from the database, but instead of returning it in the HTTP response, a generic message is returned. This ensures that sensitive information is not exposed to potential attackers.
+В соответствующем коде функция getUsers по-прежнему извлекает конфиденциальную информацию из базы данных, но вместо того, чтобы возвращать ее в HTTP-ответе, возвращается общее сообщение. Это гарантирует, что конфиденциальная информация не попадет к потенциальным злоумышленникам.
 
 
 
 
-## Insertion of Sensitive Information Into Sent Data
+## Вставка конфиденциальной информации в отправленные данные
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -112,7 +112,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
-	// Authenticate the user
+	// Аутентификация пользователя
 	if !authenticate(username, password) {
 		errMsg := fmt.Sprintf("Login failed for user: %s", username)
 		log.Println(errMsg)
@@ -120,23 +120,23 @@ func login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Proceed with successful login
+	// При успешном входе в систему
 	// ...
-	// Code for handling successful login
+	// Код для обработки успешного входа в систему
 }
 
 func authenticate(username, password string) bool {
-	// Perform authentication logic
+	// Выполните логику аутентификации
 	// ...
-	// Code for authenticating the user
+	// Код для аутентификации пользователя
 
 	return false
 }
 ```
 
-In this noncompliant code, when the login credentials provided by the user fail to authenticate, the code logs the sensitive information (the username) along with an error message. The error message is then sent as a response to the client. This practice can potentially expose sensitive information to an attacker and aid in further exploitation.
+В этом несоответствующем коде, когда учетные данные, предоставленные пользователем, не проходят аутентификацию, код регистрирует конфиденциальную информацию (имя пользователя) вместе с сообщением об ошибке. Сообщение об ошибке отправляется в качестве ответа клиенту. Такая практика может привести к тому, что конфиденциальная информация может стать доступной злоумышленнику и помочь в дальнейшей эксплуатации.
 
-To address this issue, here's an example of compliant code that avoids the insertion of sensitive information into sent data via error:
+Чтобы решить эту проблему, вот пример совместимого кода, который позволяет избежать вставки конфиденциальной информации в отправленные данные через ошибку:
 
 
 
@@ -161,35 +161,35 @@ func login(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
-	// Authenticate the user
+	// Аутентификация пользователя
 	if !authenticate(username, password) {
 		log.Println("Login failed for user:", username)
 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
 		return
 	}
 
-	// Proceed with successful login
+	// При успешном входе в систему
 	// ...
-	// Code for handling successful login
+	// Код для обработки успешного входа в систему
 }
 
 func authenticate(username, password string) bool {
-	// Perform authentication logic
+	// Выполните логику аутентификации
 	// ...
-	// Code for authenticating the user
+	// Код для аутентификации пользователя
 
 	return false
 }
 ```
 
 
-In the compliant code, the sensitive information (the username) is logged without any specific error message. Instead, a generic error message is sent as a response to the client to avoid exposing sensitive information. This helps protect against information disclosure vulnerabilities.
+В соответствующем коде конфиденциальная информация (имя пользователя) регистрируется без какого-либо конкретного сообщения об ошибке. Вместо этого в качестве ответа клиенту отправляется общее сообщение об ошибке, чтобы избежать раскрытия конфиденциальной информации. Это помогает защититься от уязвимостей, связанных с раскрытием информации.
 
 
 
 
 
-## Cross-Site Request Forgery (CSRF)
+## Подделка межсайтовых запросов (CSRF)
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -221,7 +221,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		amount := r.FormValue("amount")
 		account := r.FormValue("account")
 
-		// Perform the money transfer
+		// Выполните перевод денег
 		if transferMoney(amount, account) {
 			fmt.Fprintln(w, "Transfer successful!")
 		} else {
@@ -231,20 +231,20 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func transferHandler(w http.ResponseWriter, r *http.Request) {
-	// Process transfer request
+	// Обработать запрос на передачу данных
 	// ...
 }
 
 func transferMoney(amount, account string) bool {
-	// Perform money transfer logic
+	// Выполните логику перевода денег
 	// ...
 	return false
 }
 ```
 
-In this noncompliant code, there is no CSRF protection implemented. The indexHandler function handles both GET and POST requests. When a POST request is received, it performs a money transfer based on the form values provided. This code is vulnerable to CSRF attacks because it doesn't include any mechanism to verify the origin of the request, allowing attackers to craft malicious requests and perform unauthorized transfers on behalf of the authenticated user.
+В этом несовместимом коде не реализована защита от CSRF. Функция indexHandler обрабатывает как GET-, так и POST-запросы. При получении POST-запроса она выполняет перевод денег на основе значений, указанных в форме. Этот код уязвим для CSRF-атак, поскольку в нем нет механизма проверки происхождения запроса, что позволяет злоумышленникам создавать вредоносные запросы и выполнять несанкционированные переводы от имени аутентифицированного пользователя.
 
-To address this issue, here's an example of compliant code that includes CSRF protection:
+Чтобы решить эту проблему, вот пример совместимого кода, включающего защиту от CSRF:
 
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
@@ -287,7 +287,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		// Validate CSRF token
+		// Проверяем токен CSRF
 		if err := csrf.Protect([]byte("32-byte-long-auth-key")).VerifyToken(csrf.Token(r)); err != nil {
 			http.Error(w, "Invalid CSRF token", http.StatusForbidden)
 			return
@@ -296,7 +296,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		amount := r.FormValue("amount")
 		account := r.FormValue("account")
 
-		// Perform the money transfer
+		// Выполните перевод денег
 		if transferMoney(amount, account) {
 			fmt.Fprintln(w, "Transfer successful!")
 		} else {
@@ -306,25 +306,25 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func transferHandler(w http.ResponseWriter, r *http.Request) {
-	// Process transfer request
+	// Обработать запрос на передачу данных
 	// ...
 }
 
 func transferMoney(amount, account string) bool {
-	// Perform money transfer logic
+	// Выполните логику перевода денег
 	// ...
 	return false
 }
 ```
 
 
-In the compliant code, the Gorilla CSRF package (github.com/gorilla/csrf) is used to add CSRF protection. The CSRF token is generated in the indexHandler function and included in the template data. On form
+В коде, соответствующем требованиям, для добавления защиты от CSRF используется пакет Gorilla CSRF (github.com/gorilla/csrf). Токен CSRF генерируется в функции indexHandler и включается в данные шаблона. На форме
 
 
 
 
 
-## Use of Hard-coded Password
+## Использование жесткого пароля
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -340,10 +340,10 @@ import (
 func main() {
 	password := "myHardcodedPassword"
 	
-	// Rest of the code
+	// Остальной код
 	// ...
 	
-	// Authenticate user with the hardcoded password
+	// Аутентификация пользователя с жестко заданным паролем
 	if authenticateUser(password) {
 		fmt.Println("Authentication successful!")
 	} else {
@@ -352,15 +352,15 @@ func main() {
 }
 
 func authenticateUser(password string) bool {
-	// Perform authentication logic
+	// Выполните логику аутентификации
 	// ...
 	return password == "myHardcodedPassword"
 }
 ```
 
-In this noncompliant code, the password is directly assigned to the password variable as a hard-coded string. This is a security vulnerability because the password is easily accessible within the source code. If an attacker gains access to the source code, they can easily obtain the password and potentially compromise the system.
+В этом несоответствующем коде пароль напрямую присваивается переменной password в виде жестко закодированной строки. Это уязвимость безопасности, поскольку пароль легко доступен в исходном коде. Если злоумышленник получит доступ к исходному коду, он сможет легко получить пароль и потенциально скомпрометировать систему.
 
-To address this issue, here's an example of compliant code that avoids hard-coding passwords:
+Чтобы решить эту проблему, приведем пример совместимого кода, который позволяет избежать жесткого кодирования паролей:
 
 
 
@@ -382,13 +382,13 @@ import (
 )
 
 func main() {
-	// Prompt user to enter the password
+	// Предложите пользователю ввести пароль
 	password := promptPassword("Enter your password: ")
 
-	// Rest of the code
+	// Остальной код
 	// ...
 
-	// Authenticate user with the entered password
+	// Аутентификация пользователя с введенным паролем
 	if authenticateUser(password) {
 		fmt.Println("Authentication successful!")
 	} else {
@@ -404,20 +404,20 @@ func promptPassword(prompt string) string {
 }
 
 func authenticateUser(password string) bool {
-	// Perform authentication logic
+	// Выполните логику аутентификации
 	// ...
 	return password == "correctPassword"
 }
 ```
 
-In the compliant code, the password is no longer hard-coded. Instead, the promptPassword function is used to securely prompt the user to enter the password. The terminal.ReadPassword function is used to read the password from the terminal without echoing it back. This way, the password remains hidden during input and is not directly visible within the code. The authenticateUser function compares the entered password with the correct password stored elsewhere (e.g., in a secure database) to perform the authentication process.
+В соответствующем коде пароль больше не вводится жестко. Вместо этого используется функция promptPassword, которая безопасно предлагает пользователю ввести пароль. Функция terminal.ReadPassword используется для считывания пароля с терминала, не передавая его обратно эхом. Таким образом, пароль остается скрытым во время ввода и не виден непосредственно в коде. Функция authenticateUser сравнивает введенный пароль с правильным паролем, хранящимся в другом месте (например, в защищенной базе данных), чтобы выполнить процесс аутентификации.
 
 
 
 
 
 
-## Broken or Risky Crypto Algorithm
+## Сломанный или рискованный криптоалгоритм
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -438,9 +438,9 @@ func main() {
 ```
 
 
-In this noncompliant code, the MD5 algorithm from the crypto/md5 package is used to compute the hash of a given string. However, MD5 is considered broken and insecure for cryptographic purposes due to significant vulnerabilities, including collision attacks. Using MD5 for hashing sensitive information can expose the system to various security risks.
+В этом несовместимом коде для вычисления хэша заданной строки используется алгоритм MD5 из пакета crypto/md5. Однако MD5 считается нерабочим и небезопасным для криптографических целей из-за значительных уязвимостей, включая атаки на столкновения. Использование MD5 для хэширования конфиденциальной информации может подвергнуть систему различным рискам безопасности.
 
-To address this issue, here's an example of compliant code that uses a stronger cryptographic algorithm:
+Чтобы решить эту проблему, приведем пример соответствующего кода, в котором используется более сильный криптографический алгоритм:
 
 
 
@@ -464,14 +464,14 @@ func main() {
 }
 ```
 
-In the compliant code, the SHA-256 algorithm from the crypto/sha256 package is used instead of MD5. SHA-256 is considered a stronger cryptographic algorithm and provides better security for hashing sensitive information. By using SHA-256, the code mitigates the risk associated with broken or risky crypto algorithms and ensures the integrity and security of the hashed data.
+В соответствующем коде вместо MD5 используется алгоритм SHA-256 из пакета crypto/sha256. SHA-256 считается более сильным криптографическим алгоритмом и обеспечивает лучшую безопасность при хэшировании конфиденциальной информации. Используя SHA-256, код снижает риск, связанный со сломанными или рискованными криптоалгоритмами, и обеспечивает целостность и безопасность хэшированных данных.
 
 
 
 
 
 
-## Insufficient Entropy
+## Недостаточная энтропия
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -504,10 +504,10 @@ func main() {
 ```
 
 
-In this noncompliant code, a function generateToken() is used to generate a random token with a length of 8 characters. However, the random number generator rand.Intn() from the math/rand package is used without sufficient entropy. The math/rand package relies on a pseudo-random number generator (PRNG) that produces deterministic results based on a seed value. In this case, since no seed is explicitly set, the PRNG uses a default seed value, which can lead to predictable and non-random output.
+В этом несоответствующем коде функция generateToken() используется для генерации случайного маркера длиной 8 символов. Однако генератор случайных чисел rand.Intn() из пакета math/rand используется без достаточной энтропии. Пакет math/rand полагается на генератор псевдослучайных чисел (ГПСЧ), который выдает детерминированные результаты на основе значения затравки. В данном случае, поскольку семя не задано явно, ГПСЧ использует значение семени по умолчанию, что может привести к предсказуемому и неслучайному результату.
 
 
-To address this issue, here's an example of compliant code that uses the crypto/rand package to generate a random token with sufficient entropy:
+Чтобы решить эту проблему, приведем пример совместимого кода, который использует пакет crypto/rand для генерации случайного токена с достаточной энтропией:
 
 
 
@@ -544,7 +544,7 @@ func main() {
 }
 ```
 
-In the compliant code, the crypto/rand package is used along with the rand.Read() function to generate random bytes with sufficient entropy. These random bytes are then encoded using base64 encoding to generate a random token. By using the crypto/rand package, the code ensures the use of a secure random number generator that provides sufficient entropy for generating unpredictable and secure tokens.
+В соответствующем коде пакет crypto/rand используется вместе с функцией rand.Read() для генерации случайных байтов с достаточной энтропией. Затем эти случайные байты кодируются с помощью кодировки base64 для генерации случайного маркера. Использование пакета crypto/rand гарантирует использование безопасного генератора случайных чисел, который обеспечивает достаточную энтропию для генерации непредсказуемых и безопасных токенов.
 
 
 
@@ -583,9 +583,9 @@ func main() {
 }
 ```
 
-In this noncompliant code, the handleHello function handles the "/hello" route and retrieves the value of the "name" query parameter from the URL. It then constructs an HTML response using a string template, directly interpolating the message variable into the template. This can lead to an XSS vulnerability if an attacker injects malicious script tags or other HTML entities into the "name" parameter.
+В этом не соответствующем требованиям коде функция handleHello обрабатывает маршрут "/hello" и извлекает значение параметра запроса "name" из URL. Затем она конструирует HTML-ответ, используя шаблон строки, напрямую интерполируя переменную message в шаблон. Это может привести к XSS-уязвимости, если злоумышленник внедрит в параметр "name" вредоносные теги сценариев или другие HTML-сущности.
 
-To address this issue, here's an example of compliant code that properly sanitizes the user input to prevent XSS attacks:
+Чтобы решить эту проблему, вот пример совместимого кода, который правильно санирует пользовательский ввод для предотвращения XSS-атак:
 
 
 
@@ -623,7 +623,7 @@ func main() {
 ```
 
 
-In the compliant code, the html/template package is used to sanitize the user input by calling the template.HTMLEscapeString() function on the name variable. This ensures that any special characters in the user input are properly escaped, preventing them from being interpreted as HTML tags or entities. By applying proper HTML escaping, the code mitigates the XSS vulnerability and prevents malicious scripts from being executed in the user's browser.
+В коде, соответствующем требованиям, пакет html/template используется для санитарной обработки вводимых пользователем данных путем вызова функции template.HTMLEscapeString() для переменной name. Это гарантирует, что все специальные символы в пользовательском вводе будут правильно экранированы, предотвращая их интерпретацию как HTML-тегов или сущностей. Применяя правильное экранирование HTML, код устраняет XSS-уязвимость и предотвращает выполнение вредоносных скриптов в браузере пользователя.
 
 
 
@@ -631,7 +631,7 @@ In the compliant code, the html/template package is used to sanitize the user in
 
 
 
-## SQL Injection
+## SQL-инъекция
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -665,7 +665,7 @@ func handleLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	defer rows.Close()
 
-	// Check if the login was successful
+	// Проверьте, был ли вход в систему успешным
 	if rows.Next() {
 		fmt.Fprintf(w, "Login successful")
 	} else {
@@ -679,9 +679,9 @@ func main() {
 }
 ```
 
-In this noncompliant code, the handleLogin function handles the "/login" route and retrieves the values of the "username" and "password" form fields from the HTTP request. It then directly interpolates these values into a SQL query string without any input validation or sanitization. This makes the code vulnerable to SQL injection attacks, where an attacker can manipulate the input values to modify the intended query or execute arbitrary SQL statements.
+В этом коде, не соответствующем требованиям, функция handleLogin обрабатывает маршрут "/login" и извлекает значения полей формы "имя пользователя" и "пароль" из HTTP-запроса. Затем она напрямую интерполирует эти значения в строку SQL-запроса без какой-либо проверки или санации ввода. Это делает код уязвимым для атак SQL-инъекций, в результате которых злоумышленник может манипулировать входными значениями, чтобы изменить предполагаемый запрос или выполнить произвольные SQL-запросы.
 
-To address this issue, here's an example of compliant code that uses parameterized queries to prevent SQL injection:
+Чтобы решить эту проблему, приведем пример совместимого кода, в котором используются параметризованные запросы для предотвращения SQL-инъекций:
 
 
 
@@ -718,7 +718,7 @@ func handleLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	defer rows.Close()
 
-	// Check if the login was successful
+	// Проверьте, был ли вход в систему успешным
 	if rows.Next() {
 		fmt.Fprintf(w, "Login successful")
 	} else {
@@ -732,12 +732,12 @@ func main() {
 }
 ```
 
-In the compliant code, the SQL query is modified to use parameterized queries. The placeholders "?" are used in the query string, and the actual values are passed as additional arguments to the db.Query function. This ensures that the user input is properly treated as data and not as part of the SQL query structure, effectively preventing SQL injection attacks. By using parameterized queries, the code separates the SQL logic from the data and provides a safe and secure way to interact with the database.
+В соответствующем коде SQL-запрос модифицирован для использования параметризованных запросов. В строке запроса используются заполнители "?", а фактические значения передаются в качестве дополнительных аргументов в функцию db.Query. Это гарантирует, что введенные пользователем данные будут рассматриваться как данные, а не как часть структуры SQL-запроса, что эффективно предотвращает атаки SQL-инъекций. Благодаря использованию параметризованных запросов код отделяет логику SQL от данных и обеспечивает безопасный и надежный способ взаимодействия с базой данных.
 
 
 
 
-## External Control of File Name or Path
+## Внешнее управление именем или путем файла
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -784,9 +784,9 @@ func main() {
 ```
 
 
-In this noncompliant code, the handleFileDownload function handles the "/download" route and retrieves the file name from the query parameters. It then directly concatenates the file name with a base path to construct the file path. This can lead to a security vulnerability known as "external control of file name or path" where an attacker can manipulate the file name to access files outside the intended directory or perform other malicious actions.
+В этом коде, не соответствующем требованиям, функция handleFileDownload обрабатывает маршрут "/download" и получает имя файла из параметров запроса. Затем она напрямую соединяет имя файла с базовым путем для построения пути к файлу. Это может привести к уязвимости безопасности, известной как "внешний контроль имени файла или пути", когда злоумышленник может манипулировать именем файла, чтобы получить доступ к файлам за пределами предполагаемого каталога или выполнить другие вредоносные действия.
 
-To address this issue, here's an example of compliant code that validates and sanitizes the file name to prevent unauthorized file access:
+Для решения этой проблемы приведен пример совместимого кода, который проверяет и санирует имя файла для предотвращения несанкционированного доступа к нему:
 
 
 
@@ -810,7 +810,7 @@ import (
 func handleFileDownload(w http.ResponseWriter, r *http.Request) {
 	fileName := r.URL.Query().Get("file")
 
-	// Validate and sanitize the file name
+	// Проверяем и дезинфицируем имя файла
 	fileName = filepath.Clean(fileName)
 	if fileName == "." || fileName == ".." {
 		log.Fatal("Invalid file name")
@@ -843,14 +843,14 @@ func main() {
 }
 ```
 
-In the compliant code, the file name is validated and sanitized using the filepath.Clean function, which removes any relative path elements (e.g., ".", "..") and resolves the file name to its canonical form. This ensures that the file name is valid and prevents access to files outside the intended directory. By validating and sanitizing the file name, the code mitigates the risk of unauthorized file access and improves the security of the file download functionality.
+В соответствующем коде имя файла проверяется и обеззараживается с помощью функции filepath.Clean, которая удаляет любые элементы относительного пути (например, ".", ".") и преобразует имя файла к его канонической форме. Это гарантирует, что имя файла корректно, и предотвращает доступ к файлам за пределами предполагаемого каталога. Благодаря валидации и санации имени файла код снижает риск несанкционированного доступа к файлам и повышает безопасность функции загрузки файлов.
 
 
 
 
 
 
-## Generation of Error Message Containing Sensitive Information
+## Формирование сообщения об ошибке, содержащего конфиденциальную информацию
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -868,12 +868,12 @@ func handleLogin(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
-	// Authenticate the user
+	// Аутентификация пользователя
 	if username == "admin" && password == "secretpassword" {
-		// Successful login
+		// Успешный вход
 		fmt.Fprintf(w, "Welcome, admin!")
 	} else {
-		// Failed login
+		// Неудачный вход
 		errMsg := fmt.Sprintf("Login failed for user: %s", username)
 		log.Println(errMsg)
 		http.Error(w, "Invalid username or password", http.StatusUnauthorized)
@@ -887,9 +887,9 @@ func main() {
 ```
 
 
-In this noncompliant code, the handleLogin function handles the "/login" route and performs user authentication. If the login fails, the code generates an error message containing the username and logs it using the log.Println function. This can be a security vulnerability as it exposes sensitive information (the username) in the error message, which can be leveraged by an attacker for reconnaissance or social engineering purposes.
+В этом коде, не соответствующем требованиям, функция handleLogin обрабатывает маршрут "/login" и выполняет аутентификацию пользователя. Если вход не удается, код генерирует сообщение об ошибке, содержащее имя пользователя, и регистрирует его с помощью функции log.Println. Это может быть уязвимостью безопасности, поскольку в сообщении об ошибке раскрывается конфиденциальная информация (имя пользователя), которая может быть использована злоумышленником для разведки или социальной инженерии.
 
-To address this issue, here's an example of compliant code that avoids exposing sensitive information in error messages:
+Чтобы решить эту проблему, вот пример совместимого кода, который позволяет избежать раскрытия конфиденциальной информации в сообщениях об ошибках:
 
 
 
@@ -910,12 +910,12 @@ func handleLogin(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
-	// Authenticate the user
+	// Аутентификация пользователя
 	if username == "admin" && password == "secretpassword" {
-		// Successful login
+		// Успешный вход
 		fmt.Fprintf(w, "Welcome, admin!")
 	} else {
-		// Failed login
+		// Неудачный вход
 		log.Println("Login failed for user:", username)
 		http.Error(w, "Invalid username or password", http.StatusUnauthorized)
 	}
@@ -927,13 +927,13 @@ func main() {
 }
 ```
 
-In the compliant code, the error message logged using log.Println no longer includes the sensitive information (username). Instead, it simply logs a generic message indicating a failed login without exposing any sensitive details. By avoiding the inclusion of sensitive information in error messages, the code reduces the risk of exposing sensitive information to potential attackers.
+В соответствующем коде сообщение об ошибке, регистрируемое с помощью log.Println, больше не содержит конфиденциальную информацию (имя пользователя). Вместо этого в журнал просто заносится общее сообщение о неудачном входе в систему без раскрытия какой-либо конфиденциальной информации. Избегая включения конфиденциальной информации в сообщения об ошибках, код снижает риск раскрытия конфиденциальной информации потенциальным злоумышленникам.
 
 
 
 
 
-## unprotected storage of credentials
+## незащищенное хранение учетных данных
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
