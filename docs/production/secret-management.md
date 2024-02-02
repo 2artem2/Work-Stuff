@@ -1,77 +1,75 @@
 ---
+
 layout: default
 title: Secret Management
 parent: Production
+
 ---
 
-{: .no_toc }
+{: .no_toc}
 
-## Table of contents
-{: .no_toc .text-delta }
+## Оглавление
+
+{: .no_toc .text-delta}
 
 1. TOC
-{:toc}
+
+{: toc}
 
 ---
 
+# Управление секретами
 
-# Secret Management
-{: .no_toc }
+{: .no_toc}
 
+Управление секретами относится к процессу надежного хранения, управления и доступа к конфиденциальной информации, такой как пароли, ключи API и другие учетные данные.
+Секреты являются критически важным компонентом современных приложений, и их безопасное управление имеет важное значение для обеспечения безопасности и целостности приложения.
 
-Secret management refers to the process of securely storing, managing, and accessing sensitive information, such as passwords, API keys, and other credentials. Secrets are a critical component of modern applications, and their secure management is essential to ensure the security and integrity of the application.
+Управление секретами обычно включает в себя использование специализированных инструментов и технологий, которые обеспечивают безопасное и централизованное место для хранения и управления секретами.
+Эти инструменты часто используют прочные механизмы шифрования и контроля доступа для защиты конфиденциальной информации от несанкционированного доступа.
 
-Secret management typically involves the use of specialized tools and technologies that provide a secure and centralized location for storing and managing secrets. These tools often use strong encryption and access control mechanisms to protect sensitive information from unauthorized access.
+Некоторые из ключевых функций секретных инструментов управления включают в себя:
 
-Some of the key features of secret management tools include:
+1. Безопасное хранилище: Секретные инструменты управления предоставляют безопасное место для хранения конфиденциальной информации, обычно используя прочные механизмы шифрования и контроля доступа, чтобы гарантировать, что только авторизованные пользователи могут получить доступ к информации.
+2. Контроль доступа: Секретные инструменты управления позволяют администраторам определять политики контроля доступа и роли, которые управляют, кто может получить доступ к конкретным секретам и какие действия они могут выполнить.
+3. Аудит и мониторинг: инструменты секретного управления предоставляют возможности для аудита и мониторинга, которые позволяют администраторам отслеживать, кто доступ к конкретным секретам и когда, предоставляя аудиторский след для целей соблюдения и безопасности.
+4. Интеграция с другими инструментами: инструменты секретного управления могут быть интегрированы с другими инструментами DevOps, такими как серверы сборки, инструменты развертывания и фреймворки оркестровки, чтобы обеспечить плавный доступ к секретам во время жизненного цикла приложения.
 
-1. Secure storage: Secret management tools provide a secure location for storing sensitive information, typically using strong encryption and access control mechanisms to ensure that only authorized users can access the information.
+## hashicorp Vault
 
-2. Access control: Secret management tools allow administrators to define access control policies and roles that govern who can access specific secrets and what actions they can perform.
-
-3. Auditing and monitoring: Secret management tools provide auditing and monitoring capabilities that allow administrators to track who accessed specific secrets and when, providing an audit trail for compliance and security purposes.
-
-4. Integration with other tools: Secret management tools can be integrated with other DevOps tools, such as build servers, deployment tools, and orchestration frameworks, to provide seamless access to secrets during the application lifecycle.
-
-
-## Hashicorp Vault	
-
-A highly secure and scalable secret management solution that supports a wide range of authentication methods and storage backends.	
+Высоко безопасное и масштабируемое секретное решение управления, которое поддерживает широкий спектр методов аутентификации и бэкэндов хранения.
 
 ```
 vault kv put secret/myapp/config username="admin" password="s3cret" API_key="123456789"
 ```
 
-## AWS Secrets Manager	
+## Менеджер Secrets AWS
 
-A fully managed secrets management service provided by Amazon Web Services.	
+Полностью управляемый сервис управления секретами, предоставленный Amazon Web Services.
 
 ```
 aws secretsmanager create-secret --name myapp/database --secret-string '{"username":"admin","password":"s3cret"}'
 ```
 
+## azure Key Vault
 
-## Azure Key Vault	
-
-A cloud-based secrets management service provided by Microsoft Azure.	
-
+Облачная служба управления секретами, предоставляемая Microsoft Azure.
 
 ```
 az keyvault secret set --name myapp/config --value s3cret
 ```
 
-## Git-crypt	
+## git-crypt
 
-A command-line tool that allows you to encrypt files and directories within a Git repository.	
+Инструмент командной строки, который позволяет зашифровать файлы и каталоги в репозитории GIT.
 
 ```
 git-crypt init && git-crypt add-gpg-user user@example.com
 ```
 
-## Blackbox	
+## Черный ящик
 
-A command-line tool that allows you to store and manage secrets in Git repositories using GPG encryption.	
-
+Инструмент командной строки, который позволяет хранить и управлять секретами в репозиториях GIT, используя шифрование GPG.
 
 ```
 blackbox_initialize && blackbox_register_new_file secrets.txt
