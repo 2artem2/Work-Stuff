@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,9 +19,9 @@ parent: Rules
 
 
 
-## Buffer Overflow
+## Переполнение буфера
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -43,12 +43,12 @@ int main() {
 }
 ```
 
-In this example, the `copy_string` function copies the contents of `src` to `dest`. However, there is no check for the length of dest, and if src is longer than dest, a buffer overflow will occur, potentially overwriting adjacent memory addresses and causing undefined behavior. In this case, str2 is 7 characters long, so the call to copy_string will overflow the buffer of str1, which has a length of only 6.
+В этом примере функция `copy_string` копирует содержимое `src` в `dest`. Однако проверка длины dest отсутствует, и если src длиннее dest, произойдет переполнение буфера, что может привести к перезаписи соседних адресов памяти и неопределенному поведению. В данном случае длина строки str2 составляет 7 символов, поэтому вызов copy_string переполнит буфер строки str1, длина которой составляет всего 6.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -71,7 +71,7 @@ int main() {
 ```
 
 
-In this compliant code, the `copy_string` function takes an additional parameter dest_size, which is the maximum size of the dest buffer. The function checks the length of src against dest_size to avoid overflowing the buffer. The sizeof operator is used to get the size of the dest buffer, so it is always passed correctly to copy_string. By using the dest_size parameter, the code ensures that it doesn't write more data than the destination buffer can hold, preventing buffer overflows.
+В этом соответствующем коде функция `copy_string` принимает дополнительный параметр dest_size, который является максимальным размером буфера dest. Функция проверяет длину src на соответствие dest_size, чтобы избежать переполнения буфера. Для получения размера буфера dest используется оператор sizeof, поэтому он всегда корректно передается в copy_string. Используя параметр dest_size, код гарантирует, что он не запишет больше данных, чем может вместить буфер назначения, предотвращая переполнение буфера.
 
 
 
@@ -106,10 +106,10 @@ select f
 
 
 
-## Null Pointer Dereference
+## Разыменование нулевого указателя
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -117,18 +117,18 @@ select f
 
 int main() {
     int* ptr = NULL;
-    *ptr = 10; // Noncompliant code
+    *ptr = 10; // Несоответствующий код
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, a null pointer ptr is dereferenced by attempting to assign a value to the memory location it points to. This leads to a Null Pointer Dereference, as dereferencing a null pointer results in undefined behavior and potential crashes or security vulnerabilities.
+В коде, не соответствующем требованиям, нулевой указатель ptr разыменовывается при попытке присвоить значение ячейке памяти, на которую он указывает. Это приводит к Null Pointer Dereference, поскольку разыменование нулевого указателя приводит к неопределенному поведению и потенциальным сбоям или уязвимостям безопасности.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -136,16 +136,16 @@ In the noncompliant code, a null pointer ptr is dereferenced by attempting to as
 
 int main() {
     int value = 10;
-    int* ptr = &value; // Assign the address of a valid variable
+    int* ptr = &value; // Присвоение адреса допустимой переменной
 
-    *ptr = 20; // Valid dereference
+    *ptr = 20; // Допустимое присваивание
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code ensures that a valid memory location is accessed. In this case, the variable value is declared and its address is assigned to the pointer ptr. Dereferencing ptr after pointing to a valid variable allows for proper memory access.
+Соответствующий код обеспечивает обращение к корректному участку памяти. В этом случае объявляется значение переменной и ее адрес присваивается указателю ptr. Разыменование ptr после указания на допустимую переменную обеспечивает корректный доступ к памяти.
 
 
 
@@ -177,33 +177,33 @@ select dereference,
 
 
 
-## Integer Overflow/Underflow
+## Целочисленное переполнение/недополнение
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
 #include <stdio.h>
 
 int main() {
-    int a = 2147483647; // Maximum value for a signed int
+    int a = 2147483647; // Максимальное значение для знакового int
     int b = 1;
-    int result = a + b; // Noncompliant code
+    int result = a + b; // Несоответствующий код
 
-    printf("Result: %d\n", result);
+    printf("Результат: %d\n", result);
 
-    // Rest of the code...
+    // Остальная часть кода...
 }
 ```
 
-In the noncompliant code, an integer overflow occurs when adding the maximum value for a signed integer (a) with 1 (b). The result exceeds the maximum value that can be represented by a signed int, causing undefined behavior and potentially incorrect calculations or security vulnerabilities.
+В коде, не соответствующем требованиям, происходит целочисленное переполнение при сложении максимального значения для знакового целого (a) с 1 (b). Результат превышает максимальное значение, которое может быть представлено знаковым целым, что приводит к неопределенному поведению и потенциально некорректным вычислениям или уязвимостям безопасности.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -221,12 +221,12 @@ int main() {
         printf("Overflow occurred.\n");
     }
 
-    // Rest of the code...
+    // Остальная часть кода...
 }
 ```
 
 
-The compliant code checks for the potential overflow condition before performing the addition. It verifies if the result would remain within the range of representable values for a signed int by comparing a with INT_MAX - b. If the condition is true, the addition is performed, and the result is printed. Otherwise, an appropriate handling for the overflow situation can be implemented.
+Соответствующий код проверяет условие потенциального переполнения перед выполнением сложения. Он проверяет, останется ли результат в пределах диапазона представимых значений для знакового int, сравнивая a с INT_MAX - b. Если условие истинно, сложение выполняется, и результат выводится на печать. В противном случае может быть реализована соответствующая обработка ситуации переполнения.
 
 
 
@@ -257,33 +257,33 @@ select addition,
 
 
 
-## Denial-of-Service (DoS)
+## Отказ в обслуживании (DoS)
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
 #include <stdio.h>
 
 void processRequest(int length, char* request) {
-    // Process the request without any validation or rate limiting
-    // This code may consume excessive resources and cause a DoS condition
+    // Обрабатываем запрос без какой-либо проверки или ограничения скорости.
+    // Этот код может потреблять чрезмерное количество ресурсов и вызвать состояние DoS
 }
 
 int main() {
-    int length = 1000000000; // Large value to simulate a potentially malicious request
+    int length = 1000000000; // Большое значение для имитации потенциально вредоносного запроса
     char* request = (char*)malloc(length * sizeof(char));
-    // Populate the request buffer with data
+    // Заполняем буфер запроса данными
 
     processRequest(length, request);
 
-    // Rest of the code...
+    // Остальной код...
     free(request);
 }
 ```
 
-In the noncompliant code, a potentially maliciously large request is created with a very high length value. The request is then passed to the processRequest function without any validation or rate limiting. This can cause the program to consume excessive resources, leading to a Denial-of-Service (DoS) condition where the system becomes unresponsive or crashes.
+В коде, не соответствующем требованиям, создается потенциально вредоносный большой запрос с очень большим значением длины. Затем запрос передается в функцию processRequest без какой-либо проверки или ограничения скорости. Это может вызвать чрезмерное потребление программой ресурсов, что приведет к отказу в обслуживании (DoS), когда система перестанет отвечать на запросы или завершится аварийно.
 
 
 
@@ -291,37 +291,37 @@ In the noncompliant code, a potentially maliciously large request is created wit
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
 #include <stdio.h>
 
 void processRequest(int length, char* request) {
-    // Implement appropriate request validation and rate limiting mechanisms
-    // to prevent DoS attacks
-    // Only process the request if it meets the defined criteria
+    // Внедрите соответствующие механизмы проверки запросов и ограничения скорости.
+    // для предотвращения DoS-атак
+    // Обрабатывайте запрос только в том случае, если он соответствует заданным критериям
 }
 
 int main() {
-    int length = 1000000000; // Large value to simulate a potentially malicious request
+    int length = 1000000000; // Большое значение для имитации потенциально вредоносного запроса
     char* request = (char*)malloc(length * sizeof(char));
-    // Populate the request buffer with data
+    // Заполняем буфер запроса данными
 
-    // Perform request validation and rate limiting checks before processing
+    // Выполняем проверку запроса на валидность и ограничение скорости перед обработкой
     if (length <= MAX_REQUEST_LENGTH) {
         processRequest(length, request);
     } else {
-        printf("Request too large. Ignoring...\n");
+        printf("Запрос слишком большой. Игнорирование...\n");
     }
 
-    // Rest of the code...
+    // Остальная часть кода...
     free(request);
 }
 ```
 
 
-The compliant code implements appropriate request validation and rate limiting mechanisms to prevent DoS attacks. In this example, a maximum request length (MAX_REQUEST_LENGTH) is defined, and the length of the request is checked before processing. If the length exceeds the defined limit, the request is ignored, and an appropriate message is displayed.
+Соответствующий код реализует соответствующие механизмы проверки запросов и ограничения скорости для предотвращения DoS-атак. В этом примере определена максимальная длина запроса (MAX_REQUEST_LENGTH), и длина запроса проверяется перед обработкой. Если длина превышает установленный предел, запрос игнорируется и выводится соответствующее сообщение.
 
 
 
@@ -354,10 +354,10 @@ select mallocCall,
 
 
 
-## Format String
+## Формат String
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -365,23 +365,23 @@ select mallocCall,
 
 int main() {
     char name[100];
-    printf("Enter your name: ");
+    printf("Введите ваше имя: ");
     scanf("%s", name);
 
-    printf(name); // Noncompliant code, format string vulnerability
+    printf(name); // Несоответствующий код, уязвимость форматной строки
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the user's input is directly passed to the printf function without proper format string handling. This can lead to a Format String vulnerability, where an attacker can control the format string argument and potentially exploit the program by accessing or modifying unintended memory addresses.
+В коде, не соответствующем требованиям, пользовательский ввод напрямую передается в функцию printf без надлежащей обработки форматной строки. Это может привести к уязвимости Format String, когда злоумышленник может контролировать аргумент форматной строки и потенциально эксплуатировать программу, получая доступ или изменяя непредусмотренные адреса памяти.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -389,17 +389,17 @@ In the noncompliant code, the user's input is directly passed to the printf func
 
 int main() {
     char name[100];
-    printf("Enter your name: ");
+    printf("Введите ваше имя: ");
     scanf("%99s", name);
 
-    printf("%s", name); // Compliant code, proper format string usage
+    printf("%s", name); // Соответствующий код, правильное использование строки формата
 
-    // Rest of the code...
+    // Остальная часть кода...
 }
 ```
 
 
-The compliant code ensures that the user's input is properly handled by specifying the maximum field width in the scanf function to prevent buffer overflow. The user's input is then printed using the %s format specifier in the printf function, ensuring proper format string usage.
+Соответствующий код обеспечивает правильную обработку пользовательского ввода, указывая максимальную ширину поля в функции scanf для предотвращения переполнения буфера. Затем пользовательский ввод выводится на печать с использованием спецификатора формата %s в функции printf, что обеспечивает правильное использование строки формата.
 
 
 Semgrep:
@@ -428,10 +428,10 @@ select printfCall,
 
 
 
-## Insecure Cryptography
+## Небезопасная криптография
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -441,24 +441,24 @@ select printfCall,
 void insecureHashPassword(const char* password) {
     unsigned char digest[MD5_DIGEST_LENGTH];
     MD5((unsigned char*)password, strlen(password), digest);
-    // Insecure: using MD5 for password hashing
+    // Небезопасно: использование MD5 для хеширования пароля
 
-    // Rest of the code...
+    // Остальной код...
 }
 
 int main() {
     const char* password = "mysecretpassword";
     insecureHashPassword(password);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the MD5 cryptographic hash function is used to hash passwords. MD5 is considered insecure for password hashing due to its vulnerability to various attacks, such as collision attacks and preimage attacks. It is important to use stronger and more secure hash algorithms for password storage.
+В несоответствующем коде для хэширования паролей используется криптографическая хэш-функция MD5. MD5 считается небезопасным алгоритмом хэширования паролей из-за его уязвимости к различным атакам, таким как атаки на столкновение и атаки на предварительный образ. Для хранения паролей необходимо использовать более надежные и безопасные хэш-алгоритмы.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -468,21 +468,21 @@ In the noncompliant code, the MD5 cryptographic hash function is used to hash pa
 void secureHashPassword(const char* password) {
     unsigned char digest[SHA256_DIGEST_LENGTH];
     SHA256((unsigned char*)password, strlen(password), digest);
-    // Secure: using SHA-256 for password hashing
+    // Безопасность: использование SHA-256 для хэширования паролей
 
-    // Rest of the code...
+    // Остальной код...
 }
 
 int main() {
     const char* password = "mysecretpassword";
     secureHashPassword(password);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code replaces the use of the insecure MD5 hash function with the more secure SHA-256 hash function. SHA-256 is a stronger cryptographic algorithm suitable for password hashing and provides better security against various attacks.
+Соответствующий код заменяет использование небезопасной хэш-функции MD5 на более безопасную хэш-функцию SHA-256. SHA-256 - это более сильный криптографический алгоритм, который подходит для хэширования паролей и обеспечивает лучшую защиту от различных атак.
 
 
 Semgrep:
@@ -516,10 +516,9 @@ select md5Call, sha1Call,
 
 
 
-## Memory Corruption
+## Повреждение памяти
 
-
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -529,9 +528,9 @@ select md5Call, sha1Call,
 
 void copyData(char* dest, const char* src, size_t size) {
     memcpy(dest, src, size);
-    // Noncompliant code: potential memory corruption if size is larger than the allocated memory for dest
+    // Несоответствующий код: потенциальное повреждение памяти, если размер больше, чем выделено памяти для dest
 
-    // Rest of the code...
+    // Остальной код...
 }
 
 int main() {
@@ -540,15 +539,15 @@ int main() {
 
     copyData(buffer, data, strlen(data) + 1);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the copyData function uses the memcpy function to copy data from the source to the destination buffer. However, if the size of the data is larger than the allocated memory for the destination buffer, it can lead to memory corruption and unexpected behavior, including crashes or security vulnerabilities.
+В коде, не соответствующем требованиям, функция copyData использует функцию memcpy для копирования данных из исходного буфера в буфер назначения. Однако если размер данных превышает объем памяти, выделенной для буфера назначения, это может привести к повреждению памяти и неожиданному поведению, включая сбои или уязвимости безопасности.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -557,16 +556,16 @@ In the noncompliant code, the copyData function uses the memcpy function to copy
 #include <string.h>
 
 void copyData(char* dest, const char* src, size_t size) {
-    size_t destSize = sizeof(dest);  // Calculate the size of the destination buffer
+    size_t destSize = sizeof(dest); // Вычисляем размер буфера назначения
     if (size > destSize) {
-        // Handle the error condition appropriately (e.g., truncate, return an error code, etc.)
+        // Обработать условие ошибки соответствующим образом (например, усечь, вернуть код ошибки и т. д.)
         return;
     }
 
     memcpy(dest, src, size);
-    // Compliant code: ensures the size of the source data does not exceed the allocated memory for dest
+    // Соответствующий код: гарантирует, что размер исходных данных не превышает размер памяти, выделенной для dest
 
-    // Rest of the code...
+    // Остальной код...
 }
 
 int main() {
@@ -575,12 +574,12 @@ int main() {
 
     copyData(buffer, data, strlen(data) + 1);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code introduces a check to ensure that the size of the source data does not exceed the allocated memory for the destination buffer. If the size is larger than the destination buffer's capacity, the code can handle the error condition appropriately, such as truncating the data, returning an error code, or taking other necessary actions.
+Соответствующий код вводит проверку, чтобы убедиться, что размер исходных данных не превышает объем памяти, выделенной для буфера назначения. Если размер превышает объем буфера назначения, код может соответствующим образом обработать условие ошибки, например, усечь данные, вернуть код ошибки или предпринять другие необходимые действия.
 
 
 Semgrep:
@@ -613,7 +612,7 @@ select memcpyCall,
 ## Code Injection
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -624,25 +623,25 @@ void executeCommand(const char* command) {
     char buffer[100];
     snprintf(buffer, sizeof(buffer), "system(\"%s\")", command);
     system(buffer);
-    // Noncompliant code: potential code injection vulnerability
+    // Несоответствующий код: потенциальная уязвимость инъекции кода
 
-    // Rest of the code...
+    // Остальной код...
 }
 
 int main() {
     const char* userInput = "ls -la";
     executeCommand(userInput);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the executeCommand function constructs a command string by directly concatenating user input with a system command. This can lead to code injection vulnerabilities, where an attacker can manipulate the input to execute arbitrary commands on the system.
+В коде, не соответствующем требованиям, функция executeCommand строит командную строку, напрямую объединяя пользовательский ввод с системной командой. Это может привести к уязвимости инъекции кода, когда злоумышленник может манипулировать вводом для выполнения произвольных команд в системе.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -650,25 +649,25 @@ In the noncompliant code, the executeCommand function constructs a command strin
 #include <stdlib.h>
 
 void executeCommand(const char* command) {
-    // Perform appropriate input validation and sanitization
-    // to ensure command integrity
+    // Выполните соответствующую проверку и санацию ввода.
+    // для обеспечения целостности команды
 
     system(command);
-    // Compliant code: executing the command directly without string manipulation
+    // Соответствующий код: выполнение команды напрямую без манипуляций со строкой
 
-    // Rest of the code...
+    // Остальной код...
 }
 
 int main() {
     const char* userInput = "ls -la";
     executeCommand(userInput);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code performs input validation and sanitization to ensure the integrity of the command being executed. It avoids string manipulation and directly executes the command, reducing the risk of code injection vulnerabilities.
+Соответствующий код выполняет проверку и санацию ввода для обеспечения целостности выполняемой команды. Он избегает манипулирования строками и выполняет команду напрямую, снижая риск возникновения уязвимостей, связанных с инъекцией кода.
 
 
 
@@ -698,10 +697,10 @@ select systemCall,
 
 
 
-## DLL Hijacking
+## Перехват DLL
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -709,24 +708,24 @@ select systemCall,
 
 void loadDLL(const char* dllName) {
     HMODULE hModule = LoadLibraryA(dllName);
-    // Noncompliant code: loading a DLL without specifying the absolute path
+    // Несоответствующий код: загрузка DLL без указания абсолютного пути
 
-    // Rest of the code...
+    // Остальной код...
 }
 
 int main() {
     const char* dllName = "mydll.dll";
     loadDLL(dllName);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the loadDLL function loads a DLL using the LoadLibraryA function without specifying the absolute path of the DLL. This can lead to DLL hijacking vulnerabilities, where an attacker can place a malicious DLL with the same name in a location where the application searches, leading to the execution of unintended code.
+В коде, не соответствующем требованиям, функция loadDLL загружает DLL с помощью функции LoadLibraryA, не указывая абсолютный путь к DLL. Это может привести к уязвимости перехвата DLL, когда злоумышленник может поместить вредоносную DLL с тем же именем в место поиска приложения, что приведет к выполнению непреднамеренного кода.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -734,38 +733,38 @@ In the noncompliant code, the loadDLL function loads a DLL using the LoadLibrary
 #include <stdbool.h>
 
 bool isValidDLLPath(const char* dllPath) {
-    // Perform appropriate validation to ensure the DLL path is trusted
+    // Выполняет соответствующую проверку, чтобы убедиться, что путь к DLL является надежным.
 
-    // Return true if the DLL path is valid, false otherwise
+    // Возвращает true, если путь к DLL является действительным, false - в противном случае
     return true;
 }
 
 void loadDLL(const char* dllName) {
     char dllPath[MAX_PATH];
-    // Construct the absolute path to the DLL using a trusted location
-    snprintf(dllPath, sizeof(dllPath), "C:\\Path\\To\\DLLs\\%s", dllName);
+    // Строим абсолютный путь к DLL, используя доверенное местоположение
+    snprintf(dllPath, sizeof(dllPath), "C:\\Path\\To\\DLLs\\\%s", dllName);
 
     if (!isValidDLLPath(dllPath)) {
-        // Handle the error condition appropriately (e.g., log, return, etc.)
+        // Обработать условие ошибки соответствующим образом (например, записать в журнал, вернуть и т. д.)
         return;
     }
 
     HMODULE hModule = LoadLibraryA(dllPath);
-    // Compliant code: loading the DLL with the absolute path
+    // Соответствующий код: загрузка DLL с абсолютным путем
 
-    // Rest of the code...
+    // Остальной код...
 }
 
 int main() {
     const char* dllName = "mydll.dll";
     loadDLL(dllName);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code ensures the DLL is loaded using the absolute path of the DLL file. It constructs the absolute path using a trusted location and performs appropriate validation (isValidDLLPath) to ensure the DLL path is trusted before loading the DLL.
+Соответствующий код обеспечивает загрузку DLL с использованием абсолютного пути к DLL-файлу. Он строит абсолютный путь, используя доверенное местоположение, и выполняет соответствующую проверку (isValidDLLPath), чтобы убедиться, что путь DLL является доверенным, прежде чем загрузить DLL.
 
 
 Semgrep:
@@ -798,7 +797,7 @@ select loadLibraryCall,
 
 
 
-## Use After Free
+## Использовать после бесплатно
 
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
@@ -810,22 +809,22 @@ select loadLibraryCall,
 void useAfterFree() {
     int* ptr = (int*)malloc(sizeof(int));
     free(ptr);
-    *ptr = 42;  // Noncompliant code: use after free
+    *ptr = 42; // Несоответствующий код: использование после освобождения
 
-    // Rest of the code...
+    // Остальной код...
 }
 
 int main() {
     useAfterFree();
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the useAfterFree function allocates memory using malloc, but then immediately frees it using free. After that, it attempts to dereference the freed pointer, leading to undefined behavior and potential use after free vulnerability.
+В коде, не соответствующем требованиям, функция useAfterFree выделяет память с помощью malloc, но затем сразу же освобождает ее с помощью free. После этого она пытается разыменовать освобожденный указатель, что приводит к неопределенному поведению и потенциальной уязвимости use after free.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -834,27 +833,27 @@ In the noncompliant code, the useAfterFree function allocates memory using mallo
 void useAfterFree() {
     int* ptr = (int*)malloc(sizeof(int));
     if (ptr == NULL) {
-        // Handle allocation failure appropriately (e.g., return, log, etc.)
+        // Обработать сбой выделения соответствующим образом (например, вернуть, записать в журнал и т.д.)
         return;
     }
 
     *ptr = 42;
-    // Compliant code: using the allocated memory before freeing it
+    // Соответствующий код: использование выделенной памяти перед ее освобождением
 
     free(ptr);
 
-    // Rest of the code...
+    // Остальной код...
 }
 
 int main() {
     useAfterFree();
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code ensures that the allocated memory is used before freeing it. It performs appropriate checks for allocation failure and handles it accordingly to avoid use after free vulnerabilities.
+Соответствующий код гарантирует, что выделенная память будет использована до ее освобождения. Он выполняет соответствующие проверки на сбой выделения и обрабатывает его соответствующим образом, чтобы избежать уязвимостей использования после освобождения.
 
 
 Semgrep:
@@ -887,58 +886,58 @@ select freeStmt,
 
 
 
-## Uninitialized Variables
+## Неинициализированные переменные
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
-
-
-```c
-#include <stdio.h>
-
-int getValue() {
-    int value;  // Noncompliant code: uninitialized variable
-
-    // Perform some operations or calculations to initialize the value
-
-    return value;
-}
-
-int main() {
-    int result = getValue();
-    printf("Result: %d\n", result);
-
-    // Rest of the code...
-}
-```
-
-In the noncompliant code, the variable value is declared but not initialized before being used in the getValue function. This can lead to undefined behavior and incorrect results when the uninitialized variable is accessed.
-
-
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
 #include <stdio.h>
 
 int getValue() {
-    int value = 0;  // Compliant code: initializing the variable
+    int value; // Несоответствующий код: неинициализированная переменная
 
-    // Perform some operations or calculations to initialize the value
+    // Выполните некоторые операции или вычисления для инициализации значения
 
-    return value;
+    возвращаем значение;
 }
 
 int main() {
     int result = getValue();
-    printf("Result: %d\n", result);
+    printf("Результат: %d\n", result);
 
-    // Rest of the code...
+    // Остальной код...
+}
+```
+
+В коде, не соответствующем требованиям, значение переменной объявляется, но не инициализируется перед использованием в функции getValue. Это может привести к неопределенному поведению и неправильным результатам при обращении к неинициализированной переменной.
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
+
+
+```c
+#include <stdio.h>
+
+int getValue() {
+    int value = 0; // Соответствующий код: инициализация переменной
+
+    // Выполните некоторые операции или вычисления для инициализации значения
+
+    возвращаем значение;
+}
+
+int main() {
+    int result = getValue();
+    printf("Результат: %d\n", result);
+
+    // Остальной код...
 }
 ```
 
 
-The compliant code initializes the variable value to a known value (in this case, 0) before using it. This ensures that the variable has a defined value and prevents potential issues caused by uninitialized variables.
+Соответствующий код инициализирует значение переменной известным значением (в данном случае 0) перед ее использованием. Это гарантирует, что переменная имеет определенное значение, и предотвращает потенциальные проблемы, вызванные неинициализированными переменными.
 
 
 Semgrep:
@@ -971,7 +970,7 @@ select uninitializedVariable,
 ## Race Conditions
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -982,7 +981,7 @@ int counter = 0;
 
 void* incrementCounter(void* arg) {
     for (int i = 0; i < 1000; ++i) {
-        counter++;  // Noncompliant code: race condition
+        counter++; // Несоответствующий код: состояние гонки
     }
 
     return NULL;
@@ -997,16 +996,16 @@ int main() {
     pthread_join(thread1, NULL);
     pthread_join(thread2, NULL);
 
-    printf("Counter value: %d\n", counter);
+    printf("Значение счетчика: %d\n", counter);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, two threads are created to increment a shared counter variable. However, since the increments are not synchronized, a race condition occurs where the threads can interfere with each other, leading to unpredictable and incorrect results.
+В коде, не соответствующем требованиям, создаются два потока для увеличения общей переменной-счетчика. Однако, поскольку инкремент не синхронизирован, возникает состояние гонки, когда потоки могут мешать друг другу, что приводит к непредсказуемым и неправильным результатам.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -1018,9 +1017,9 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void* incrementCounter(void* arg) {
     for (int i = 0; i < 1000; ++i) {
-        pthread_mutex_lock(&mutex);  // Acquire the lock
-        counter++;  // Compliant code: synchronized access to counter
-        pthread_mutex_unlock(&mutex);  // Release the lock
+        pthread_mutex_lock(&mutex); // Получение блокировки
+        counter++; // Соответствующий код: синхронизированный доступ к счетчику
+        pthread_mutex_unlock(&mutex); // Освобождение блокировки
     }
 
     return NULL;
@@ -1035,14 +1034,14 @@ int main() {
     pthread_join(thread1, NULL);
     pthread_join(thread2, NULL);
 
-    printf("Counter value: %d\n", counter);
+    printf("Значение счетчика: %d\n", counter);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code introduces a mutex (pthread_mutex_t) to synchronize access to the counter variable. The mutex is locked before accessing the counter and unlocked afterward, ensuring that only one thread can modify the counter at a time, eliminating the race condition.
+Соответствующий код вводит мьютекс (pthread_mutex_t) для синхронизации доступа к переменной счетчика. Мьютекс блокируется перед обращением к счетчику и разблокируется после этого, гарантируя, что только один поток может изменять счетчик одновременно, устраняя условие гонки.
 
 
 
@@ -1077,20 +1076,20 @@ select lockExpr,
 
 
 
-## Insecure File Operations
+## Небезопасные операции с файлами
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
 #include <stdio.h>
 
 void readFile(const char* filename) {
-    FILE* file = fopen(filename, "r");  // Noncompliant code: insecure file operation
+    FILE* file = fopen(filename, "r"); // Несоответствующий код: небезопасная работа с файлом
 
     if (file != NULL) {
-        // Read the contents of the file
+        // Считываем содержимое файла
 
         fclose(file);
     }
@@ -1100,14 +1099,14 @@ int main() {
     const char* filename = "sensitive.txt";
     readFile(filename);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the readFile function uses the fopen function to open a file in read mode. However, it does not perform any validation or check for errors, which can lead to security vulnerabilities. An attacker may manipulate the filename argument to access unintended files or directories.
+В коде, не соответствующем требованиям, функция readFile использует функцию fopen для открытия файла в режиме чтения. Однако она не выполняет валидацию и не проверяет ошибки, что может привести к уязвимостям безопасности. Злоумышленник может манипулировать аргументом filename, чтобы получить доступ к нежелательным файлам или каталогам.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -1115,13 +1114,13 @@ In the noncompliant code, the readFile function uses the fopen function to open 
 
 void readFile(const char* filename) {
     if (filename == NULL) {
-        // Handle invalid filename appropriately (e.g., return, log, etc.)
+        // Обработайте неправильное имя файла соответствующим образом (например, return, log и т.д.)
         return;
     }
 
     FILE* file = fopen(filename, "r");
     if (file != NULL) {
-        // Read the contents of the file
+        // Считываем содержимое файла
 
         fclose(file);
     }
@@ -1131,12 +1130,12 @@ int main() {
     const char* filename = "sensitive.txt";
     readFile(filename);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code includes a check to ensure that the filename argument is not NULL before performing the file operation. Additionally, error handling and proper file closure are implemented to mitigate potential security risks.
+Соответствующий код включает проверку того, что аргумент filename не является NULL перед выполнением операции с файлом. Кроме того, для снижения потенциальных рисков безопасности реализованы обработка ошибок и надлежащее закрытие файла.
 
 
 
@@ -1172,10 +1171,9 @@ select fopenCall,
 
 
 
-## API Hooking
+## Подключение к API
 
-
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -1183,51 +1181,51 @@ select fopenCall,
 #include <windows.h>
 
 void hookFunction() {
-    // Hooking code here
+    // Код хука здесь
     // ...
 }
 
 int main() {
-    // Original function code here
+    // Оригинальный код функции здесь
     // ...
 
     hookFunction();
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the hookFunction is used to modify or replace the behavior of an original function. This technique is commonly known as API hooking and is often used for malicious purposes, such as intercepting sensitive data or tampering with the system. The noncompliant code lacks proper authorization and control over the hooking process.
+В несоответствующем коде функция hookFunction используется для изменения или замены поведения исходной функции. Эта техника широко известна как API hooking и часто используется в злонамеренных целях, таких как перехват конфиденциальных данных или вмешательство в работу системы. Несоответствующий код не имеет надлежащей авторизации и контроля над процессом подключения.
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
 #include <stdio.h>
 
 void originalFunction() {
-    // Original function code here
+    // Оригинальный код функции здесь
     // ...
 }
 
 void hookFunction() {
-    // Hooking code here
+    // Код хука здесь
     // ...
 }
 
 int main() {
-    // Original function code here
+    // Оригинальный код функции здесь
     // ...
 
-    // Call the original function
+    // Вызываем исходную функцию
     originalFunction();
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code separates the original function (originalFunction) and the hooking logic (hookFunction) into separate functions. Instead of directly hooking the original function, the compliant code calls the original function itself, ensuring the intended behavior and avoiding unauthorized modification.
+Соответствующий код разделяет исходную функцию (originalFunction) и логику подцепления (hookFunction) на отдельные функции. Вместо того чтобы напрямую подключать оригинальную функцию, соответствующий код вызывает саму оригинальную функцию, обеспечивая требуемое поведение и предотвращая несанкционированную модификацию.
 
 
 
@@ -1266,7 +1264,7 @@ select hookFuncCall,
 ## TOCTOU
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -1276,13 +1274,13 @@ select hookFuncCall,
 
 void processFile(const char* filename) {
     struct stat fileStat;
-    stat(filename, &fileStat);  // Time-of-Check
+    stat(filename, &fileStat); // Время проверки
 
-    // Simulate a delay between Time-of-Check and Time-of-Use
+    // Имитируем задержку между временем проверки и временем использования
     sleep(1);
 
     if (S_ISREG(fileStat.st_mode)) {
-        // Perform operations on regular files
+        // Выполняем операции над обычными файлами
         // ...
     }
 }
@@ -1291,14 +1289,14 @@ int main() {
     const char* filename = "data.txt";
     processFile(filename);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the processFile function checks the file properties using the stat function (Time-of-Check). However, there is a delay introduced using the sleep function, creating a window of opportunity for an attacker to modify or replace the file before the Time-of-Use occurs. This can lead to security vulnerabilities where the wrong file may be processed.
+В несоответствующем коде функция processFile проверяет свойства файла с помощью функции stat (Time-of-Check). Однако с помощью функции sleep вводится задержка, что создает возможность для злоумышленника изменить или заменить файл до наступления времени использования. Это может привести к уязвимостям в системе безопасности, когда может быть обработан не тот файл.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -1309,9 +1307,9 @@ In the noncompliant code, the processFile function checks the file properties us
 void processFile(const char* filename) {
     struct stat fileStat;
 
-    // Perform the Time-of-Check and Time-of-Use atomically
+    // Выполняем проверку и использование времени атомарно
     if (stat(filename, &fileStat) == 0 && S_ISREG(fileStat.st_mode)) {
-        // Perform operations on regular files
+        // Выполняем операции над обычными файлами
         // ...
     }
 }
@@ -1320,12 +1318,12 @@ int main() {
     const char* filename = "data.txt";
     processFile(filename);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code performs the Time-of-Check and Time-of-Use atomically within the processFile function. It checks the return value of the stat function to ensure that it was successful and then checks the file's properties. By eliminating the delay between the Time-of-Check and Time-of-Use, the compliant code mitigates the TOCTOU vulnerability.
+Соответствующий код выполняет проверку и использование времени атомарно в функции processFile. Он проверяет возвращаемое значение функции stat, чтобы убедиться, что она успешно выполнилась, а затем проверяет свойства файла. Устраняя задержку между Time-of-Check и Time-of-Use, соответствующий код устраняет уязвимость TOCTOU.
 
 
 Semgrep:
@@ -1338,7 +1336,7 @@ rules:
     $checkStat:stat($filename, $_);
     sleep($delay);
     if ($checkStat && S_ISREG($_.st_mode)) {
-      // Vulnerable code here
+      // Уязвимый код здесь
       // ...
     }
   message: Potential TOCTOU vulnerability detected
