@@ -6,11 +6,11 @@ has_children: false
 permalink: resources
 ---
 
-# Resources
+# Ресурсы
 
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -18,7 +18,7 @@ permalink: resources
 
 ---
 
-## Books
+## Книги
 
 ### Hands-On Security in DevOps
 
@@ -29,39 +29,39 @@ permalink: resources
 
 
 
-### Practical Threat Intelligence and Data-Driven Threat Hunting: A hands-on guide to threat hunting with the ATT&CK™ Framework and open source tools
+### Практическая разведка угроз и охота за угрозами на основе данных: Практическое руководство по поиску угроз с помощью ATT&CK™ Framework и инструментов с открытым исходным кодом
 
 
 <img src="../../assets/images/pti.jpg" alt="" style="width: 260px;">
 
 
-Get to grips with cyber threat intelligence and data-driven threat hunting while exploring expert tips and techniques
+Ознакомьтесь с информацией о киберугрозах и поиске угроз на основе данных, изучите советы и методики экспертов.
 
 
 [Practical Threat Intelligence and Data-Driven Threat Hunting](https://www.amazon.com/Practical-Threat-Hunting/dp/1838556370){: .btn .btn-purple .mr-2 }
 
 
 
-### Operationalizing Threat Intelligence: A guide to developing and operationalizing cyber threat intelligence programs
+### Operationalizing Threat Intelligence: Руководство по разработке и введению в действие программ разведки киберугроз
 
 
 <img src="../../assets/images/op_ti.jpg" alt="" style="width: 260px;">
 
 
-Learn cyber threat intelligence fundamentals to implement and operationalize an organizational intelligence program
+Изучите основы разведки киберугроз, чтобы внедрить и ввести в действие программу организационной разведки
 
 
 [Operationalizing Threat Intelligence](https://www.amazon.com/Operationalizing-Threat-Intelligence-operationalizing-intelligence/dp/1801814686){: .btn .btn-purple .mr-2 }
 
 
 
-### Web Application Security: Exploitation and Countermeasures for Modern Web Applications
+### Безопасность веб-приложений: Эксплуатация и контрмеры для современных веб-приложений
 
 
 <img src="../../assets/images/was.png" alt="" style="width: 260px;">
 
 
-While many resources for network and IT security are available, detailed knowledge regarding modern web application security has been lacking―until now. This practical guide provides both offensive and defensive security concepts that software engineers can easily learn and apply.
+В то время как существует множество ресурсов по сетевой и ИТ-безопасности, подробных знаний о современной безопасности веб-приложений не хватало - до сих пор. В этом практическом руководстве представлены как наступательные, так и оборонительные концепции безопасности, которые могут легко освоить и применить инженеры-программисты.
 
 
 
@@ -69,13 +69,13 @@ While many resources for network and IT security are available, detailed knowled
 
 
 
-### Practical Application Security
+### Практическое применение Безопасность
 
 
 <img src="../../assets/images/Practical-Application-Security.png" alt="" style="width: 260px;">
 
 
-A Book About more +15 Vulnerability Type Attack & Defence and Tutorial About Software Security Tools and Appliance.
+Книга о более +15 типах уязвимостей, их атаке и защите, а также учебник о программных средствах защиты и устройствах.
 
 
 [Practical Application Security](https://leanpub.com/practicalappsec){: .btn .btn-purple .mr-2 }
@@ -83,13 +83,13 @@ A Book About more +15 Vulnerability Type Attack & Defence and Tutorial About Sof
 
 
 
-## Guidelines
+## Руководящие принципы
 
 ### OWASP DevSecOps Guidelines
 
 ![By David Edwards](../../assets/images/OWASP-DevSecOps-Guidelines.png)
 
-The OWASP DevSecOps Guideline explains how we can implement a secure pipeline and use best practices and introduce tools that we can use in this matter. Also, the project is trying to help us promote the shift-left security culture in our development process. This project helps any companies of each size that have a development pipeline or, in other words, have a DevOps pipeline. We try to draw a perspective of a secure DevOps pipeline during this project and then improve it based on our customized requirements.
+OWASP DevSecOps Guideline объясняет, как реализовать безопасный пайплайн и использовать лучшие практики, а также представляет инструменты, которые можно использовать в этом вопросе. Кроме того, проект пытается помочь нам продвинуть культуру безопасности "сдвиг влево" в процессе разработки. Этот проект поможет компаниям любого размера, у которых есть пайплайн разработки или, другими словами, пайплайн DevOps. В ходе проекта мы попытаемся нарисовать перспективу безопасного пайплайна DevOps, а затем усовершенствовать его в соответствии с нашими индивидуальными требованиями.
 
 
 [OWASP DevSecOps Guideline](https://owasp.org/www-project-devsecops-guideline/latest/){: .btn .btn-purple .mr-2 }
@@ -97,7 +97,7 @@ The OWASP DevSecOps Guideline explains how we can implement a secure pipeline an
 
 ### 6mile DevSecOps Playbook
 
-This playbook will help you introduce effective DevSecOps practices in your company, regardless of size. We provide explicit guidance and actionable steps to introduce security controls, measure their effectiveness, and demonstrate value for money to your business leaders. Following this playbook will help teams build materially more secure applications, and that in the end, is the intent.
+Этот учебник поможет вам внедрить эффективные практики DevSecOps в вашей компании, независимо от ее размера. Мы предоставляем четкое руководство и практические шаги по внедрению средств контроля безопасности, измерению их эффективности и демонстрации соотношения цены и качества руководителям вашего бизнеса. Следование этому руководству поможет командам создавать существенно более безопасные приложения, что, в конечном счете, и является целью.
 
 
 
@@ -106,7 +106,7 @@ This playbook will help you introduce effective DevSecOps practices in your comp
 
 ### Aif4thah Dojo-101
 
-Knowledge base in cybersecurity, administration and secure development
+База знаний в области кибербезопасности, администрирования и безопасной разработки
 
 [Aif4thah Dojo-101](https://github.com/Aif4thah/Dojo-101){: .btn .btn-purple .mr-2 }
 
@@ -146,20 +146,20 @@ https://github.com/zoidbergwill/awesome-ebpf){: .btn .btn-purple .mr-2 }
 
 ## Framework
 
-### Cloud Adoption Framework
+### Концепция внедрения облачных технологий
 
 
-Proven guidance and best practices that help you confidently adopt the cloud and achieve business outcomes.
+Проверенное руководство и лучшие практики, которые помогут вам уверенно внедрить облако и достичь бизнес-результатов.
 
 
 [Microsoft Cloud Adoption Framework](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/){: .btn .btn-purple .mr-2 }
 
 
 
-## Cheatsheet
+## Шпаргалка
 
 
-Hi! I’m Lars Windolf and my expertise is on system architecture and DevSecOps. I strongly care about collecting and sharing knowledge and use this site as a resource for my daily work.
+Привет! Меня зовут Ларс Виндольф, и я специализируюсь на системной архитектуре и DevSecOps. Я очень забочусь о сборе и распространении знаний и использую этот сайт в качестве ресурса для своей повседневной работы.
 
 
 [lzone](https://lzone.de/cheat-sheet/Container){: .btn .btn-purple .mr-2 }
@@ -168,23 +168,23 @@ Hi! I’m Lars Windolf and my expertise is on system architecture and DevSecOps.
 
 
 
-## Lab
+## Лаборатория
 
-### Actionable Adversary Emulation for the Cloud
+### Эмуляция противника в облаке
 
 
-Proven guidance and best practices that help you confidently adopt the cloud and achieve business outcomes.
+Проверенное руководство и лучшие практики, которые помогут вам уверенно внедрить "облако" и достичь бизнес-результатов.
 
 
 [Granular, Actionable Adversary Emulation for the Cloud](https://github.com/Datadog/stratus-red-team/){: .btn .btn-purple .mr-2 }
 
 
-### AWS Threat Simulation and Detection
+### Моделирование и обнаружение угроз AWS
 
 [sbasu7241 AWS Threat Simulation and Detection ](https://github.com/sbasu7241/AWS-Threat-Simulation-and-Detection/tree/main){: .btn .btn-purple .mr-2 }
 
 
-### Hunting queries and detections
+### Охотничьи запросы и обнаружения
 
 [FalconForceTeam FalconFriday](https://github.com/FalconForceTeam/FalconFriday/){: .btn .btn-purple .mr-2 }
 
@@ -193,9 +193,9 @@ Proven guidance and best practices that help you confidently adopt the cloud and
 
 
 
-## Threats
+## Угрозы
 
-### Cloud
+### Облако
 
 [MITRE ATT&CK Cloud](https://attack.mitre.org/matrices/enterprise/cloud/){: .btn .btn-purple .mr-2 }
 
