@@ -1,9 +1,7 @@
 ---
-
 layout: default
 title: Secret Management
 parent: Production
-
 ---
 
 {: .no_toc}
