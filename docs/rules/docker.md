@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,9 +19,9 @@ parent: Rules
 
 
 
-### Container runs as the root user
+### Контейнер запускается от имени пользователя root
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -41,11 +41,11 @@ RUN pip3 install -r requirements.txt
 CMD ["python3", "app.py"]
 ```
 
-In this noncompliant code, a Dockerfile is used to build a container image for a Python application. However, the image is based on the ubuntu:latest image, which includes unnecessary packages and potentially exposes security risks. Additionally, the container runs as the root user, which is considered a security concern.
+В этом несоответствующем коде Dockerfile используется для создания образа контейнера для приложения Python. Однако образ основан на образе ubuntu:latest, который включает ненужные пакеты и потенциально подвергает риску безопасность. Кроме того, контейнер запускается от имени пользователя root, что представляет собой угрозу безопасности.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -62,21 +62,21 @@ CMD ["python", "app.py"]
 ```
 
 
-In the compliant code, the Dockerfile is updated to use the python:3.9-slim base image, which is a lightweight and more secure image specifically designed for Python applications. This eliminates unnecessary packages and reduces the attack surface of the container.
+В соответствующем коде Dockerfile обновлен для использования базового образа python:3.9-slim, который является облегченным и более безопасным образом, специально разработанным для приложений Python. Это позволяет отказаться от ненужных пакетов и уменьшить поверхность атаки контейнера.
 
-Furthermore, the container runs with a non-root user by default, providing an added layer of security. The COPY, WORKDIR, and RUN instructions are updated accordingly to work within the new image.
+Кроме того, контейнер по умолчанию запускается с пользователем, не являющимся root, что обеспечивает дополнительный уровень безопасности. Инструкции COPY, WORKDIR и RUN соответствующим образом обновлены для работы с новым образом.
 
-By using a more secure base image and running the container with a non-root user, the compliant code reduces the risk of vulnerabilities and enhances the overall security of the Docker container.
+Благодаря использованию более безопасного базового образа и запуску контейнера с пользователем, не являющимся пользователем root, соответствующий код снижает риск возникновения уязвимостей и повышает общую безопасность контейнера Docker.
 
-It's important to regularly update the base image and dependencies in your Dockerfile to leverage the latest security patches. Additionally, consider implementing other best practices such as:
+Важно регулярно обновлять базовый образ и зависимости в Dockerfile, чтобы использовать последние исправления безопасности. Кроме того, рассмотрите возможность применения других лучших практик, таких как:
 
-* Using multi-stage builds to minimize the size of the final image and exclude unnecessary build-time dependencies.
-* Implementing container security scanning tools to identify and address vulnerabilities in the image.
-* Restricting container privileges and capabilities to limit potential exploits.
-* Employing secrets management techniques to securely handle sensitive data within the container.
+* Использование многоступенчатых сборок для минимизации размера конечного образа и исключения ненужных зависимостей во время сборки.
+* Внедрение инструментов сканирования безопасности контейнеров для выявления и устранения уязвимостей в образе.
+* Ограничение привилегий и возможностей контейнеров для ограничения потенциальных эксплойтов.
+* Использование методов управления секретами для безопасной работы с конфиденциальными данными в контейнере.
 
-By following secure coding practices and taking proactive measures to reduce the attack surface and address vulnerabilities, you can enhance the security and resilience of your Docker containers.
-To address this issue, here's an example of compliant code:
+Следуя практикам безопасного кодирования и принимая проактивные меры по уменьшению поверхности атаки и устранению уязвимостей, вы можете повысить безопасность и устойчивость своих контейнеров Docker.
+Чтобы решить эту проблему, приведем пример соответствующего кода:
 
 
 
