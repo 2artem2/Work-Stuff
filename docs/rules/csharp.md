@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -22,9 +22,9 @@ parent: Rules
 
 
 
-## Exposure of sensitive information
+## Раскрытие конфиденциальной информации
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -36,7 +36,7 @@ class Program
     {
         try
         {
-            // Simulating an error
+            // Моделирование ошибки
             throw new Exception("An error occurred: Sensitive information");
         }
         catch (Exception ex)
@@ -47,54 +47,53 @@ class Program
 }
 ```
 
-In this noncompliant code, the throw statement intentionally generates an exception with an error message that includes sensitive information, such as a database connection string, a password, or any other confidential data. The error message is then printed to the console, potentially exposing sensitive information to unauthorized users or attackers.
+В этом несоответствующем коде оператор throw намеренно генерирует исключение с сообщением об ошибке, которое содержит конфиденциальную информацию, например строку подключения к базе данных, пароль или любые другие конфиденциальные данные. Сообщение об ошибке выводится на консоль, что может привести к раскрытию конфиденциальной информации для неавторизованных пользователей или злоумышленников.
 
 
-To address this issue and prevent the exposure of sensitive information via error messages, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему и предотвратить передачу конфиденциальной информации через сообщения об ошибках, приведем пример соответствующего кода:
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 using System;
 
-class Program
+класс Program
 {
     static void Main()
     {
         try
         {
-            // Simulating an error
-            throw new Exception("An error occurred");
+            // Имитация ошибки
+            throw new Exception("Произошла ошибка");
         }
         catch (Exception ex)
         {
-            Console.WriteLine("An unexpected error occurred");
-            // Log the exception for debugging or monitoring purposes
+            Console.WriteLine("Произошла непредвиденная ошибка");
+            // Зафиксируйте исключение в журнале для целей отладки или мониторинга
             LogException(ex);
         }
     }
 
     static void LogException(Exception ex)
     {
-        // Log the exception to a secure log file or logging service
-        // Include necessary information for debugging, but avoid sensitive data
-        Console.WriteLine("Error occurred: " + ex.ToString());
+        // Зафиксируйте исключение в безопасном файле журнала или в службе регистрации.
+        // Включите необходимую информацию для отладки, но избегайте конфиденциальных данных
+        Console.WriteLine("Произошла ошибка: " + ex.ToString());
     }
 }
 ```
 
 
-In the compliant code, the error message intentionally omits any sensitive information and provides a generic error message instead. The sensitive information is logged on the server side for debugging or monitoring purposes, but it is not exposed to the user or client.
+В соответствующем коде в сообщении об ошибке намеренно не указывается конфиденциальная информация, а вместо нее выдается общее сообщение об ошибке. Конфиденциальная информация регистрируется на стороне сервера для целей отладки или мониторинга, но не передается пользователю или клиенту.
 
 
-By ensuring that error messages do not contain sensitive information, the compliant code reduces the risk of exposing confidential data to potential attackers or unauthorized users.
+Благодаря тому, что сообщения об ошибках не содержат конфиденциальной информации, соответствующий код снижает риск раскрытия конфиденциальных данных потенциальным злоумышленникам или неавторизованным пользователям.
 
 
 
@@ -130,9 +129,9 @@ select tryCatch
 
 
 
-## Insertion of Sensitive Information Into Sent Data
+## Вставка конфиденциальной информации в отправленные данные
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -162,16 +161,16 @@ class Program
 }
 ```
 
-In this noncompliant code, the sensitive information (stored in the sensitiveData variable) is concatenated with the email body without any encryption or obfuscation. This means that the sensitive data is directly included in the sent data without any protection, which can lead to potential exposure or unauthorized access to the information.
+В этом несоответствующем коде конфиденциальная информация (хранящаяся в переменной sensitiveData) конкатенируется с телом письма без какого-либо шифрования или обфускации. Это означает, что конфиденциальные данные напрямую включаются в отправляемые данные без какой-либо защиты, что может привести к потенциальному раскрытию или несанкционированному доступу к информации.
 
 
-To address this issue and ensure the protection of sensitive information in sent data, here's an example of compliant code:
+Чтобы решить эту проблему и обеспечить защиту конфиденциальной информации в отправляемых данных, вот пример соответствующего кода:
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -195,7 +194,7 @@ class Program
 
             var message = new MailMessage("sender@example.com", recipient, "Subject", "Body");
 
-            // Attach the sensitive data as a secure attachment
+            // Прикрепите конфиденциальные данные в виде защищенного вложения
             var attachment = new Attachment(sensitiveData);
             message.Attachments.Add(attachment);
 
@@ -206,9 +205,9 @@ class Program
 ```
 
 
-In the compliant code, instead of directly inserting the sensitive information into the email body, it is attached as a secure attachment. This helps to protect the sensitive data during transmission, ensuring that it is not exposed in the sent data.
+В соответствующем коде вместо непосредственной вставки конфиденциальной информации в тело письма она прикрепляется в виде защищенного вложения. Это помогает защитить конфиденциальные данные во время передачи, гарантируя, что они не будут раскрыты в отправленных данных.
 
-By properly handling sensitive information and avoiding direct insertion into sent data, the compliant code enhances the security and privacy of the sensitive data, reducing the risk of unauthorized access or exposure.
+Благодаря правильной обработке конфиденциальной информации и отказу от прямой вставки в отправляемые данные, соответствующий код повышает безопасность и конфиденциальность конфиденциальных данных, снижая риск несанкционированного доступа или раскрытия.
 
 
 
@@ -240,9 +239,9 @@ select messageCreation
 
 
 
-## Cross-Site Request Forgery (CSRF)
+## Подделка межсайтовых запросов (CSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -253,25 +252,25 @@ public partial class MyPage : Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        // Noncompliant code: No CSRF protection implemented
+        // Несоответствующий требованиям код: Защита от CSRF не реализована
         if (Request.QueryString["action"] == "delete")
         {
             string id = Request.QueryString["id"];
-            // Delete the record with the given ID
+            // Удаление записи с заданным идентификатором
             // ...
         }
     }
 }
 ```
 
-In this noncompliant code, the page performs a delete action based on a query parameter action and an ID specified in the query parameter id. However, there is no CSRF protection implemented, which means that an attacker can craft a malicious link or form on a different website that performs a delete action on behalf of the user without their consent.
+В этом несоответствующем коде страница выполняет действие удаления на основе параметра запроса action и идентификатора, указанного в параметре запроса id. Однако здесь не реализована защита от CSRF, а это значит, что злоумышленник может создать вредоносную ссылку или форму на другом сайте, которая выполнит действие удаления от имени пользователя без его согласия.
 
 
-To address this issue and implement CSRF protection, here's an example of compliant code:
+Чтобы решить эту проблему и реализовать защиту от CSRF, вот пример соответствующего кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -284,10 +283,10 @@ public partial class MyPage : Page
     {
         if (IsPostBack)
         {
-            // Verify CSRF token
+            // Проверка маркера CSRF
             if (ValidateCsrfToken())
             {
-                // Process the request
+                // Обработать запрос
                 if (Request.QueryString["action"] == "delete")
                 {
                     string id = Request.QueryString["id"];
@@ -297,45 +296,45 @@ public partial class MyPage : Page
             }
             else
             {
-                // CSRF token validation failed, handle the error
+                // Проверка токена CSRF не удалась, обработайте ошибку
                 // ...
             }
         }
         else
         {
-            // Generate and store CSRF token in session or view state
+            // Генерируйте и храните маркер CSRF в состоянии сеанса или представления
             GenerateCsrfToken();
         }
     }
 
     private bool ValidateCsrfToken()
     {
-        // Retrieve CSRF token from session or view state
+        // Получение CSRF-токена из состояния сессии или представления
         string csrfToken = Session["CsrfToken"] as string;
 
-        // Compare the CSRF token from the request with the stored token
+        // Сравните CSRF-токен из запроса с хранимым токеном
         string requestToken = Request.Form["__RequestVerificationToken"];
         return csrfToken == requestToken;
     }
 
     private void GenerateCsrfToken()
     {
-        // Generate a unique CSRF token
+        // Генерируем уникальный CSRF-токен
         string csrfToken = Guid.NewGuid().ToString();
 
-        // Store the CSRF token in session or view state
+        // Сохраните CSRF-токен в состоянии сессии или представления
         Session["CsrfToken"] = csrfToken;
 
-        // Include the CSRF token in the rendered HTML
+        // Включаем CSRF-токен в отрисованный HTML
         Page.ClientScript.RegisterHiddenField("__RequestVerificationToken", csrfToken);
     }
 }
 ```
 
 
-In the compliant code, CSRF protection is implemented using a unique CSRF token. The token is generated and stored in the session or view state when the page is loaded. On subsequent requests, the token is validated to ensure that the request originated from the same site and not from an attacker's site.
+В соответствующем коде защита от CSRF реализована с помощью уникального CSRF-токена. Токен генерируется и хранится в состоянии сессии или представления при загрузке страницы. При последующих запросах маркер проверяется, чтобы убедиться, что запрос пришел с того же сайта, а не с сайта злоумышленника.
 
-By implementing CSRF protection, the compliant code prevents unauthorized actions by verifying the integrity of the requests and ensuring that they are originated from the legitimate user. This helps to protect against CSRF attacks and improves the security of the application.
+Реализуя защиту от CSRF, соответствующий код предотвращает несанкционированные действия, проверяя целостность запросов и гарантируя, что они исходят от легитимного пользователя. Это помогает защититься от CSRF-атак и повышает безопасность приложения.
 
 
 
@@ -370,9 +369,9 @@ select method
 
 
 
-## Use of Hard-coded Password
+## Использование жесткого пароля
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -387,26 +386,26 @@ public class DatabaseConnector
     {
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            // Connect to the database
+            // Подключение к базе данных
             connection.Open();
-            // Perform database operations
+            // Выполняем операции с базой данных
             // ...
         }
     }
 }
 ```
 
-In this noncompliant code, the database connection string contains a hard-coded password. Storing sensitive information like passwords directly in the source code poses a security risk, as the password can be easily discovered if the code is accessed or leaked.
+В этом несоответствующем коде строка подключения к базе данных содержит жестко закодированный пароль. Хранение такой конфиденциальной информации, как пароли, непосредственно в исходном коде представляет собой риск безопасности, поскольку пароль может быть легко обнаружен в случае доступа к коду или его утечки.
 
 
-To address this issue and implement a more secure approach, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему и реализовать более безопасный подход, приведем пример кода, соответствующего требованиям:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -422,18 +421,18 @@ public class DatabaseConnector
     {
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            // Connect to the database
+            // Подключение к базе данных
             connection.Open();
-            // Perform database operations
+            // Выполняем операции с базой данных
             // ...
         }
     }
 }
 ```
 
-In the compliant code, the password is not hard-coded in the source code. Instead, it is stored in a secure configuration file (e.g., web.config or app.config) and accessed using the ConfigurationManager class. The configuration file should be properly protected and access should be restricted to authorized personnel.
+В коде, соответствующем требованиям, пароль не хранится в исходном коде. Вместо этого он хранится в защищенном конфигурационном файле (например, web.config или app.config), а доступ к нему осуществляется с помощью класса ConfigurationManager. Файл конфигурации должен быть надлежащим образом защищен, а доступ к нему должен быть ограничен для авторизованного персонала.
 
-By removing the hard-coded password and storing it in a secure configuration file, the compliant code improves the security of the application by preventing unauthorized access to sensitive information.
+Удалив жестко закодированный пароль и сохранив его в защищенном файле конфигурации, соответствующий код повышает безопасность приложения, предотвращая несанкционированный доступ к конфиденциальной информации.
 
 
 
@@ -468,9 +467,9 @@ select field
 
 
 
-## Broken or Risky Crypto Algorithm
+## Нкенадёжный криптоалгоритм
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -500,17 +499,17 @@ public class CryptoUtils
 ```
 
 
-In this noncompliant code, the TripleDESCryptoServiceProvider class is used with the ECB (Electronic Codebook) mode, which is known to be insecure. ECB mode does not provide proper encryption, as it encrypts each block of data independently, leading to potential vulnerabilities.
+В этом несоответствующем коде класс TripleDESCryptoServiceProvider используется с режимом ECB (Electronic Codebook), который, как известно, является небезопасным. Режим ECB не обеспечивает надлежащего шифрования, поскольку он шифрует каждый блок данных независимо, что приводит к потенциальным уязвимостям.
 
 
-To address this issue and use a more secure cryptographic algorithm, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему и использовать более безопасный криптографический алгоритм, вот пример соответствующего кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -541,9 +540,9 @@ public class CryptoUtils
 }
 ```
 
-In the compliant code, the AesCryptoServiceProvider class is used with the CBC (Cipher Block Chaining) mode, which is more secure than ECB mode. Additionally, proper disposal of cryptographic objects is implemented using the using statement to ensure proper resource management.
+В соответствующем коде класс AesCryptoServiceProvider используется с режимом CBC (Cipher Block Chaining), который является более безопасным, чем режим ECB. Кроме того, для обеспечения надлежащего управления ресурсами с помощью оператора using реализована надлежащая утилизация криптографических объектов.
 
-By using a secure cryptographic algorithm like AES with CBC mode, the compliant code improves the security of the encryption process, making it resistant to known cryptographic vulnerabilities.
+Благодаря использованию такого безопасного криптографического алгоритма, как AES, в режиме CBC, соответствующий код повышает безопасность процесса шифрования, делая его устойчивым к известным криптографическим уязвимостям.
 
 
 
@@ -576,7 +575,7 @@ select assignment
 
 ## Insufficient Entropy
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -593,18 +592,18 @@ public class RandomNumberGenerator
 ```
 
 
-In this noncompliant code, the Random class from the System namespace is used to generate random numbers. However, the Random class uses a time-based seed by default, which can result in predictable and easily guessable random numbers. This is because the seed value is based on the current system time, which can be easily determined or even repeated if the code is executed within a short time span.
+В этом несоответствующем коде для генерации случайных чисел используется класс Random из пространства имен System. Однако класс Random по умолчанию использует семя, основанное на времени, что может привести к предсказуемым и легко угадываемым случайным числам. Это происходит потому, что значение затравки основано на текущем системном времени, которое может быть легко определено или даже повторено, если код выполняется в течение короткого промежутка времени.
 
 
 
-To address this issue and improve the entropy of the random number generation, here's an example of compliant code:
+Чтобы решить эту проблему и повысить энтропию генерации случайных чисел, вот пример соответствующего кода:
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -627,9 +626,9 @@ public class RandomNumberGenerator
 }
 ```
 
-In the compliant code, the RNGCryptoServiceProvider class from the System.Security.Cryptography namespace is used to generate random bytes with sufficient entropy. These random bytes are then converted into an integer using BitConverter.ToInt32 method. By utilizing a cryptographic random number generator, we ensure a higher degree of entropy and reduce the predictability of the generated numbers.
+В соответствующем коде для генерации случайных байтов с достаточной энтропией используется класс RNGCryptoServiceProvider из пространства имен System.Security.Cryptography. Затем эти случайные байты преобразуются в целое число с помощью метода BitConverter.ToInt32. Использование криптографического генератора случайных чисел обеспечивает более высокую степень энтропии и снижает предсказуемость генерируемых чисел.
 
-The compliant code provides a more secure and random number generation mechanism, making it suitable for applications that require unpredictable and non-reproducible random values.
+Соответствующий код обеспечивает более безопасный механизм генерации случайных чисел, что делает его подходящим для приложений, требующих непредсказуемых и невоспроизводимых случайных значений.
 
 
 
@@ -667,7 +666,7 @@ select randomCreation
 
 ## XSS
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -683,17 +682,17 @@ public class UserInputProcessor
 }
 ```
 
-In this noncompliant code, the ProcessUserInput method attempts to sanitize user input by replacing the < and > characters with their corresponding HTML entities (&lt; and &gt;). However, this approach is insufficient to prevent XSS attacks because it only focuses on these specific characters and fails to handle other potentially malicious input.
+В этом несоответствующем коде метод ProcessUserInput пытается обеззаразить вводимые пользователем данные, заменяя символы < и > на соответствующие им HTML-сущности (&lt; и &gt;). Однако такой подход недостаточен для предотвращения XSS-атак, поскольку он фокусируется только на этих конкретных символах и не обрабатывает другие потенциально вредоносные данные.
 
 
-To address this issue and properly protect against XSS attacks, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему и должным образом защитить от XSS-атак, вот пример соответствующего кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -711,11 +710,11 @@ public class UserInputProcessor
 ```
 
 
-In the compliant code, the HtmlEncode method from the System.Web namespace is used to properly encode the user input. This method replaces special characters with their corresponding HTML entities, ensuring that the input is rendered as plain text rather than interpreted as HTML or JavaScript code.
+В коде, соответствующем требованиям, для правильного кодирования вводимых пользователем данных используется метод HtmlEncode из пространства имен System.Web. Этот метод заменяет специальные символы на соответствующие им HTML-сущности, гарантируя, что вводимые данные будут отображаться как обычный текст, а не интерпретироваться как HTML или JavaScript-код.
 
-By using HtmlEncode, the compliant code mitigates the risk of XSS attacks by encoding all potentially dangerous characters in the user input, making it safe to display the input on web pages without the risk of executing unintended scripts.
+Благодаря использованию HtmlEncode совместимый код снижает риск XSS-атак, кодируя все потенциально опасные символы в пользовательском вводе, что позволяет безопасно отображать вводимые данные на веб-страницах без риска выполнения непредусмотренных сценариев.
 
-It's important to note that the best approach to prevent XSS attacks is to use contextual output encoding at the point of rendering, rather than relying solely on input sanitization. This ensures that the output is properly encoded based on the context in which it is being used, such as HTML attributes, JavaScript, or CSS, providing robust protection against XSS vulnerabilities.
+Важно отметить, что наилучшим подходом к предотвращению XSS-атак является использование контекстного кодирования вывода на этапе рендеринга, а не полагаться только на санацию ввода. Это гарантирует, что выходные данные будут правильно закодированы в зависимости от контекста, в котором они используются, например атрибуты HTML, JavaScript или CSS, что обеспечивает надежную защиту от XSS-уязвимостей.
 
 
 
@@ -747,9 +746,9 @@ select replaceMethod
 
 
 
-## SQL Injection
+## SQL-инъекция
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -772,16 +771,16 @@ public class UserLogin
 }
 ```
 
-In this noncompliant code, the AuthenticateUser method constructs a SQL query by directly concatenating the username and password values into the query string. This approach is highly vulnerable to SQL injection attacks, as an attacker can manipulate the input to execute arbitrary SQL commands.
+В этом несоответствующем коде метод AuthenticateUser строит SQL-запрос, непосредственно объединяя значения имени пользователя и пароля в строке запроса. Такой подход очень уязвим для атак SQL-инъекций, поскольку злоумышленник может манипулировать вводом данных для выполнения произвольных SQL-команд.
 
 
-To prevent SQL injection attacks and ensure secure database interactions, here's an example of compliant code:
+Чтобы предотвратить атаки SQL-инъекций и обеспечить безопасное взаимодействие с базой данных, вот пример соответствующего кода:
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -806,9 +805,9 @@ public class UserLogin
 }
 ```
 
-In the compliant code, parameterized queries are used to handle user input securely. The query string includes placeholders (@Username and @Password) for the input values. The actual values are then provided using the AddWithValue method on the SqlCommand object, which adds the values as parameters rather than concatenating them directly into the query.
+В соответствующем коде для безопасной обработки пользовательского ввода используются параметризованные запросы. Строка запроса содержит заполнители (@Username и @Password) для вводимых значений. Фактические значения затем предоставляются с помощью метода AddWithValue объекта SqlCommand, который добавляет значения в качестве параметров, а не конкатенирует их непосредственно в запрос.
 
-By using parameterized queries, the compliant code ensures that the user input is treated as data rather than executable code, effectively preventing SQL injection attacks. The database engine handles the proper escaping and sanitization of the input values, keeping the application secure.
+Благодаря использованию параметризованных запросов соответствующий код гарантирует, что пользовательский ввод будет рассматриваться как данные, а не как исполняемый код, что эффективно предотвращает атаки SQL-инъекций. Движок базы данных обеспечивает надлежащее экранирование и дезинфекцию вводимых значений, обеспечивая безопасность приложения.
 
 
 
@@ -840,9 +839,9 @@ select binaryExpr
 
 
 
-## External Control of File Name or Path
+## Внешнее управление именем или путем файла
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -856,7 +855,7 @@ public class FileProcessor
         string filePath = "C:\\Temp\\" + fileName;
         if (File.Exists(filePath))
         {
-            // Process the file
+            // Обработка файла
         }
         else
         {
@@ -877,7 +876,7 @@ To prevent external control of file name or path attacks and ensure secure file 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -894,7 +893,7 @@ public class FileProcessor
         string filePath = Path.Combine(baseDirectory, sanitizedFileName);
         if (File.Exists(filePath))
         {
-            // Process the file
+            // Обработка файла
         }
         else
         {
@@ -904,9 +903,9 @@ public class FileProcessor
 }
 ```
 
-In the compliant code, the Path.GetFileName method is used to extract the file name from the fileName parameter, discarding any directory information. The Path.Combine method is then used to construct the full file path by combining the base directory (C:\Temp\) with the sanitized file name.
+В соответствующем коде метод Path.GetFileName используется для извлечения имени файла из параметра fileName, отбрасывая любую информацию о каталоге. Затем используется метод Path.Combine для построения полного пути к файлу путем объединения базового каталога (C:\Temp\) и дезинфицированного имени файла.
 
-By using these secure file path handling techniques, the compliant code ensures that the file name or path provided by the user is properly validated and prevents unauthorized access to files outside the intended directory.
+Используя эти методы безопасной обработки пути к файлу, соответствующий код гарантирует, что имя файла или путь к нему, указанные пользователем, будут должным образом проверены, и предотвращает несанкционированный доступ к файлам за пределами предполагаемого каталога.
 
 
 
@@ -940,9 +939,9 @@ select addExpr
 
 
 
-## Generation of Error Message Containing Sensitive Information
+## Формирование сообщения об ошибке, содержащего конфиденциальную информацию
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -957,22 +956,22 @@ public class UserController
             throw new ArgumentException("Invalid username or password.");
         }
 
-        // Authenticate the user
+        // Аутентификация пользователя
     }
 }
 ```
 
 
-In this noncompliant code, when the AuthenticateUser method receives an empty or null username or password, it throws an ArgumentException with an error message that discloses sensitive information ("Invalid username or password"). Revealing such details in error messages can assist attackers in identifying valid usernames and potentially launch further attacks.
+В этом несоответствующем коде, когда метод AuthenticateUser получает пустое или нулевое имя пользователя или пароль, он выбрасывает ArgumentException с сообщением об ошибке, раскрывающим конфиденциальную информацию ("Invalid username or password"). Раскрытие такой информации в сообщениях об ошибках может помочь злоумышленникам определить правильные имена пользователей и, возможно, начать дальнейшие атаки.
 
 
-To address this issue and prevent exposure of sensitive information, here's an example of compliant code:
+Чтобы решить эту проблему и предотвратить раскрытие конфиденциальной информации, приведем пример соответствующего кода:
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -987,14 +986,14 @@ public class UserController
             throw new ArgumentException("Invalid credentials.");
         }
 
-        // Authenticate the user
+        // Аутентификация пользователя
     }
 }
 ```
 
-In the compliant code, the error message has been generalized to "Invalid credentials" instead of explicitly mentioning the username or password. This approach avoids revealing sensitive information in error messages, making it harder for attackers to gather useful details.
+В соответствующем коде сообщение об ошибке было обобщено до "Неверные учетные данные", вместо того чтобы явно указывать имя пользователя или пароль. Такой подход позволяет избежать раскрытия конфиденциальной информации в сообщениях об ошибках, что затрудняет злоумышленникам сбор полезной информации.
 
-By following this approach, the compliant code ensures that error messages do not disclose sensitive information, thus reducing the risk of potential attacks targeting user credentials.
+Следуя этому подходу, соответствующий код гарантирует, что сообщения об ошибках не раскрывают конфиденциальную информацию, тем самым снижая риск потенциальных атак, направленных на учетные данные пользователя.
 
 
 
@@ -1025,9 +1024,9 @@ select invocation
 ```
 
 
-## unprotected storage of credentials
+## незащищенное хранение учетных данных
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1046,22 +1045,22 @@ public class UserController
 
     public void AuthenticateUser()
     {
-        // Authenticate the user using the stored credentials
+        // Аутентификация пользователя с помощью сохраненных учетных данных
     }
 }
 ```
 
-In this noncompliant code, the SetCredentials method stores the username and password provided by the user in class-level variables `_username` and `_password`, respectively. However, these credentials are stored in plain text without any additional protection, such as encryption or secure storage mechanisms. This leaves the sensitive information vulnerable to unauthorized access if an attacker gains access to the application or the system.
+В этом несоответствующем коде метод SetCredentials хранит имя пользователя и пароль, предоставленные пользователем, в переменных уровня класса `_username` и `_password`, соответственно. Однако эти учетные данные хранятся в виде обычного текста без какой-либо дополнительной защиты, например, шифрования или механизмов безопасного хранения. Это делает конфиденциальную информацию уязвимой для несанкционированного доступа, если злоумышленник получит доступ к приложению или системе.
 
 
-To address this security issue and ensure the protected storage of credentials, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему безопасности и обеспечить защищенное хранение учетных данных, приведем пример соответствующего кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1082,51 +1081,51 @@ public class UserController
 
     public void AuthenticateUser()
     {
-        // Decrypt and use the stored credentials for user authentication
+        // Расшифруйте и используйте сохраненные учетные данные для аутентификации пользователя
         string decryptedUsername = DecryptData(GetUsernameFromEncryptedCredentials());
         string decryptedPassword = DecryptData(GetPasswordFromEncryptedCredentials());
 
-        // Authenticate the user using the decrypted credentials
+        // Аутентификация пользователя с использованием расшифрованных учетных данных
     }
 
     private byte[] EncryptData(string data)
     {
-        // Use a secure encryption algorithm (e.g., AES) to encrypt the data
-        // and return the encrypted byte array
+        // Используем безопасный алгоритм шифрования (например, AES) для шифрования данных
+        // и возвращает зашифрованный массив байтов
         // ...
     }
 
     private string DecryptData(byte[] encryptedData)
     {
-        // Use the same encryption algorithm and decryption process
-        // to decrypt the data and return the plaintext
+        // Используйте тот же алгоритм шифрования и процесс дешифрования.
+        // для расшифровки данных и возврата открытого текста
         // ...
     }
 
     private byte[] CombineArrays(byte[] array1, byte[] array2)
     {
-        // Combine two byte arrays into one
+        // Объединить два массива байтов в один
         // ...
     }
 
     private byte[] GetUsernameFromEncryptedCredentials()
     {
-        // Extract and return the encrypted username from the stored credentials
+        // Извлекаем и возвращаем зашифрованное имя пользователя из сохраненных учетных данных
         // ...
     }
 
     private byte[] GetPasswordFromEncryptedCredentials()
     {
-        // Extract and return the encrypted password from the stored credentials
+        // Извлечение и возврат зашифрованного пароля из хранящихся учетных данных
         // ...
     }
 }
 ```
 
-In the compliant code, the sensitive information (username and password) is no longer stored directly as plain text. Instead, the SetCredentials method encrypts the username and password using a secure encryption algorithm (such as AES) before storing them in the _encryptedCredentials variable. The AuthenticateUser method then retrieves and decrypts the credentials for authentication purposes.
+В соответствующем коде конфиденциальная информация (имя пользователя и пароль) больше не хранится в виде обычного текста. Вместо этого метод SetCredentials шифрует имя пользователя и пароль с помощью безопасного алгоритма шифрования (например, AES), а затем сохраняет их в переменной _encryptedCredentials. Затем метод AuthenticateUser извлекает и расшифровывает учетные данные для целей аутентификации.
 
 
-By encrypting the credentials, the compliant code ensures that even if an attacker gains unauthorized access to the stored credentials, they would be in an encrypted form, significantly reducing the risk of exposing sensitive information.
+Шифруя учетные данные, соответствующий код гарантирует, что даже если злоумышленник получит несанкционированный доступ к хранящимся учетным данным, они будут находиться в зашифрованном виде, что значительно снижает риск раскрытия конфиденциальной информации.
 
 
 
@@ -1162,9 +1161,9 @@ select access
 ```
 
 
-## Trust Boundary Violation
+## Нарушение границ доверия
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1177,22 +1176,22 @@ public class PaymentController
     public void ProcessPayment(string creditCardNumber)
     {
         _creditCardNumber = creditCardNumber;
-        // Process the payment using the credit card number
+        // Обработка платежа по номеру кредитной карты
     }
 }
 ```
 
-In this noncompliant code, the ProcessPayment method accepts a credit card number as a parameter and directly stores it in the _creditCardNumber variable within the PaymentController class. The credit card number is treated as trusted data within the class, even though it comes from an external source. This violates the trust boundary by assuming the data is safe and trustworthy, which can lead to potential security vulnerabilities.
+В этом коде, не соответствующем требованиям, метод ProcessPayment принимает номер кредитной карты в качестве параметра и напрямую сохраняет его в переменной _creditCardNumber в классе PaymentController. Номер кредитной карты рассматривается как доверенные данные внутри класса, даже если он получен из внешнего источника. Это нарушает границу доверия, предполагая, что данные безопасны и заслуживают доверия, что может привести к потенциальным уязвимостям безопасности.
 
 
-To address this security issue and enforce a proper trust boundary, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему безопасности и обеспечить надлежащую границу доверия, вот пример соответствующего кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1202,30 +1201,30 @@ public class PaymentController
 {
     public void ProcessPayment(string creditCardNumber)
     {
-        // Perform input validation and sanitization of the credit card number
+        // Выполните проверку ввода и санацию номера кредитной карты
         if (IsValidCreditCardNumber(creditCardNumber))
         {
-            // Process the payment using the credit card number
+            // Обработайте платеж, используя номер кредитной карты
         }
         else
         {
-            // Handle the case when an invalid credit card number is provided
+            // Обработка случая, когда предоставлен недействительный номер кредитной карты
         }
     }
 
     private bool IsValidCreditCardNumber(string creditCardNumber)
     {
-        // Implement proper credit card number validation logic
-        // to ensure the input meets the required format and integrity
+        // Реализуем надлежащую логику проверки номера кредитной карты
+        // чтобы убедиться, что вводимые данные соответствуют требуемому формату и целостности
         // ...
     }
 }
 ```
 
 
-In the compliant code, the ProcessPayment method performs input validation and sanitization of the credit card number before processing the payment. The method checks if the credit card number is valid by calling the IsValidCreditCardNumber function, which implements the necessary validation logic to ensure the input meets the required format and integrity.
+В соответствующем коде метод ProcessPayment выполняет проверку ввода и санацию номера кредитной карты перед обработкой платежа. Метод проверяет, является ли номер кредитной карты действительным, вызывая функцию IsValidCreditCardNumber, которая реализует необходимую логику проверки, чтобы убедиться, что вводимые данные соответствуют требуемому формату и целостности.
 
-By implementing proper input validation and sanitization, the compliant code establishes a trust boundary and ensures that only valid and trusted data is processed, reducing the risk of security vulnerabilities arising from untrusted or malicious input.
+Реализуя надлежащую проверку и санацию ввода, соответствующий код устанавливает границу доверия и гарантирует, что обрабатываются только достоверные и проверенные данные, снижая риск возникновения уязвимостей безопасности из-за недоверенного или вредоносного ввода.
 
 
 
@@ -1261,9 +1260,9 @@ select access
 
 
 
-## Insufficiently Protected Credentials
+## Недостаточно защищенные учетные данные
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1279,7 +1278,7 @@ public class LoginController
         _username = username;
         _password = password;
         
-        // Perform authentication logic
+        // Выполните логику аутентификации
         // ...
         
         return true;
@@ -1287,16 +1286,16 @@ public class LoginController
 }
 ```
 
-In this noncompliant code, the Authenticate method accepts a username and password as parameters and directly stores them in the _username and _password variables within the LoginController class. The credentials are stored in plain text without any additional protection mechanisms such as encryption or hashing. Storing credentials in plain text increases the risk of unauthorized access and potential data breaches if the credentials are compromised.
+В этом коде, не соответствующем требованиям, метод Authenticate принимает имя пользователя и пароль в качестве параметров и напрямую сохраняет их в переменных _username и _password в классе LoginController. Учетные данные хранятся в виде обычного текста без каких-либо дополнительных механизмов защиты, таких как шифрование или хеширование. Хранение учетных данных в открытом тексте повышает риск несанкционированного доступа и потенциальной утечки данных в случае их компрометации.
 
-To address this security issue and ensure the proper protection of credentials, here's an example of compliant code:
-
-
+Чтобы решить эту проблему безопасности и обеспечить надлежащую защиту учетных данных, вот пример соответствующего кода:
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1309,7 +1308,7 @@ public class LoginController
     {
         string hashedPassword = HashPassword(password);
         
-        // Perform authentication logic using the hashed password
+        // Выполните логику аутентификации, используя хэшированный пароль
         // ...
         
         return true;
@@ -1328,12 +1327,12 @@ public class LoginController
 ```
 
 
-In the compliant code, the Authenticate method still accepts a username and password as parameters, but instead of storing them directly, the password is hashed using a secure cryptographic hash function (in this case, SHA-256). The HashPassword function takes the password as input, generates a hash value, and returns the hashed password as a string.
+В соответствующем коде метод Authenticate по-прежнему принимает имя пользователя и пароль в качестве параметров, но вместо того, чтобы хранить их напрямую, пароль хэшируется с помощью безопасной криптографической хэш-функции (в данном случае SHA-256). Функция HashPassword принимает пароль на вход, генерирует хэш-значение и возвращает хэшированный пароль в виде строки.
 
 
-By hashing the password, the compliant code ensures that the credentials are not stored in plain text and adds an additional layer of protection. When performing authentication, the stored hashed password is compared with the hashed version of the user's input, rather than comparing the plain-text passwords directly.
+Хеширование пароля позволяет совместимому коду гарантировать, что учетные данные не хранятся в виде обычного текста, и добавляет дополнительный уровень защиты. При аутентификации хранящийся хэшированный пароль сравнивается с хэшированной версией введенного пользователем пароля, а не сравниваются непосредственно пароли в открытом тексте.
 
-Using proper password hashing techniques helps mitigate the impact of data breaches and unauthorized access, as even if the stored hashes are obtained, they are computationally difficult to reverse back to the original password.
+Использование правильных методов хеширования паролей помогает снизить последствия утечки данных и несанкционированного доступа, поскольку даже если хранящиеся хеши получены, их вычислительно сложно вернуть к исходному паролю.
 
 
 
@@ -1370,7 +1369,7 @@ rules:
 
 ## Restriction of XML External Entity Reference
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1384,23 +1383,23 @@ public class XmlParser
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.LoadXml(xmlContent);
         
-        // Process the XML document
+        // Обработка XML-документа
         // ...
     }
 }
 ```
 
-In this noncompliant code, the ParseXml method takes an XML content as a string and loads it into an XmlDocument object using the LoadXml method. However, this code does not enforce any restriction on external entity references, making it vulnerable to XXE attacks.
+В этом несовместимом коде метод ParseXml принимает XML-содержимое в виде строки и загружает его в объект XmlDocument с помощью метода LoadXml. Однако в этом коде не предусмотрено никаких ограничений на ссылки на внешние сущности, что делает его уязвимым для XXE-атак.
 
 
-To address this security issue and restrict XML external entity references, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему безопасности и ограничить ссылки на внешние сущности XML, вот пример соответствующего кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1419,7 +1418,7 @@ public class XmlParser
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(reader);
 
-            // Process the XML document
+            // Обработка XML-документа
             // ...
         }
     }
@@ -1427,10 +1426,10 @@ public class XmlParser
 ```
 
 
-In the compliant code, the ParseXml method sets up an instance of XmlReaderSettings and explicitly sets the DtdProcessing property to DtdProcessing.Prohibit. This setting prevents the parsing of any external entities defined in the XML content, effectively mitigating XXE attacks.
+В соответствующем коде метод ParseXml создает экземпляр XmlReaderSettings и явно устанавливает свойство DtdProcessing в DtdProcessing.Prohibit. Эта настройка предотвращает разбор любых внешних сущностей, определенных в XML-содержимом, эффективно защищая от XXE-атак.
 
 
-By enforcing this restriction, the compliant code ensures that XML parsing is performed without evaluating external entity references, thus protecting against potential attacks that leverage XXE vulnerabilities.
+Применяя это ограничение, соответствующий код гарантирует, что разбор XML выполняется без оценки ссылок на внешние сущности, тем самым защищаясь от потенциальных атак, использующих уязвимости XXE.
 
 
 
@@ -1468,10 +1467,10 @@ select call
 
 
 
-## Vulnerable and Outdated Components
+## Уязвимые и устаревшие компоненты
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1488,29 +1487,29 @@ public class UserController
 {
     public void GetUserDetails()
     {
-        // Fetch user data from the database
+        // Получение данных о пользователе из базы данных
         UserData user = Database.GetUserDetails();
 
-        // Convert user data to JSON
+        // Конвертируем данные пользователя в JSON
         string json = JsonConvert.SerializeObject(user);
 
-        // Send the JSON response to the client
+        // Отправляем JSON-ответ клиенту
         HttpResponse.Write(json);
     }
 }
 ```
 
-In this noncompliant code, the UserController fetches user data from the database and converts it to JSON using the JsonConvert.SerializeObject method from the Newtonsoft.Json library. However, the code uses an outdated version of the library, which may contain known vulnerabilities.
+В этом коде, не соответствующем требованиям, UserController получает данные пользователя из базы данных и преобразует их в JSON с помощью метода JsonConvert.SerializeObject из библиотеки Newtonsoft.Json. Однако в коде используется устаревшая версия библиотеки, которая может содержать известные уязвимости.
 
 
-To address this security issue and ensure the usage of secure and up-to-date components, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему безопасности и обеспечить использование безопасных и актуальных компонентов, вот пример соответствующего кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1527,23 +1526,23 @@ public class UserController
 {
     public void GetUserDetails()
     {
-        // Fetch user data from the database
+        // Получение данных о пользователе из базы данных
         UserData user = Database.GetUserDetails();
 
-        // Convert user data to JSON
+        // Конвертируем данные пользователя в JSON
         string json = JsonSerializer.Serialize(user);
 
-        // Send the JSON response to the client
+        // Отправляем JSON-ответ клиенту
         HttpResponse.Write(json);
     }
 }
 ```
 
 
-In the compliant code, the UserController uses the built-in System.Text.Json namespace instead of the Newtonsoft.Json library. By leveraging the latest version of the built-in JSON serializer, the code ensures the usage of secure and up-to-date components.
+В соответствующем коде UserController использует встроенное пространство имен System.Text.Json вместо библиотеки Newtonsoft.Json. Используя последнюю версию встроенного JSON-сериализатора, код обеспечивает использование безопасных и актуальных компонентов.
 
 
-It is crucial to regularly update and replace vulnerable or outdated components with their latest versions or more secure alternatives to mitigate potential security risks.
+Очень важно регулярно обновлять и заменять уязвимые или устаревшие компоненты их последними версиями или более безопасными альтернативами, чтобы снизить потенциальные риски безопасности.
 
 
 
@@ -1579,9 +1578,9 @@ select call
 
 
 
-## Improper Validation of Certificate with Host Mismatch
+## Неправильная проверка сертификата с несоответствием хоста
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1592,42 +1591,41 @@ public class HttpClientExample
 {
     public void SendRequest()
     {
-        // Create HttpClient instance
+        // Создание экземпляра HttpClient
         HttpClient client = new HttpClient();
 
-        // Disable SSL certificate validation
+        // Отключаем проверку SSL-сертификата
         ServicePointManager.ServerCertificateValidationCallback +=
             (sender, certificate, chain, sslPolicyErrors) => true;
 
-        // Send a request to a remote server
+        // Отправляем запрос на удаленный сервер
         HttpResponseMessage response = client.GetAsync("https://example.com").Result;
 
-        // Process the response
+        // Обрабатываем ответ
         if (response.IsSuccessStatusCode)
         {
-            // Do something with the successful response
-            Console.WriteLine("Request succeeded!");
+            // Сделайте что-нибудь с успешным ответом
+            Console.WriteLine("Запрос прошел успешно!");
         }
         else
         {
-            // Handle the error response
+            // Обработать ответ об ошибке
             Console.WriteLine("Request failed!");
         }
     }
 }
 ```
 
-In this noncompliant code, the HttpClientExample class sends a request to a remote server using the HttpClient class. However, the code disables SSL certificate validation by modifying the ServicePointManager.ServerCertificateValidationCallback event to always return true. This means that the code will accept any certificate, even if it has a host mismatch, expired, or has other security issues.
+В этом несоответствующем коде класс HttpClientExample отправляет запрос на удаленный сервер с помощью класса HttpClient. Однако код отключает проверку сертификата SSL, изменяя событие ServicePointManager.ServerCertificateValidationCallback так, чтобы оно всегда возвращало true. Это означает, что код примет любой сертификат, даже если он не соответствует хосту, просрочен или имеет другие проблемы с безопасностью.
 
 
-To address this security issue and ensure proper validation of certificates with host matches, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему безопасности и обеспечить правильную проверку сертификатов с совпадением хоста, вот пример соответствующего кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1638,43 +1636,43 @@ public class HttpClientExample
 {
     public void SendRequest()
     {
-        // Create HttpClient instance
+        // Создание экземпляра HttpClient
         HttpClient client = new HttpClient();
 
-        // Enable SSL certificate validation
+        // Включите проверку SSL-сертификата
         ServicePointManager.ServerCertificateValidationCallback +=
             (sender, certificate, chain, sslPolicyErrors) =>
             {
                 if (sslPolicyErrors == SslPolicyErrors.None)
                     return true;
                 
-                // Check if the certificate matches the host
+                // Проверяем, соответствует ли сертификат хосту
                 string requestedHost = new Uri("https://example.com").Host;
                 return certificate.Subject.Equals($"CN={requestedHost}", StringComparison.OrdinalIgnoreCase);
             };
 
-        // Send a request to a remote server
+        // Отправляем запрос на удаленный сервер
         HttpResponseMessage response = client.GetAsync("https://example.com").Result;
 
-        // Process the response
+        // Обрабатываем ответ
         if (response.IsSuccessStatusCode)
         {
-            // Do something with the successful response
-            Console.WriteLine("Request succeeded!");
+            // Сделайте что-нибудь с успешным ответом
+            Console.WriteLine("Запрос прошел успешно!");
         }
         else
         {
-            // Handle the error response
-            Console.WriteLine("Request failed!");
+            // Обрабатываем ответ об ошибке
+            Console.WriteLine("Запрос не удался!");
         }
     }
 }
 ```
 
 
-In the compliant code, the ServicePointManager.ServerCertificateValidationCallback event is modified to perform proper certificate validation. It checks if the certificate subject matches the requested host, ensuring that the certificate is valid and not subject to host mismatch vulnerabilities.
+В соответствующем коде событие ServicePointManager.ServerCertificateValidationCallback модифицировано для выполнения надлежащей проверки сертификата. Оно проверяет, совпадает ли тема сертификата с запрашиваемым хостом, гарантируя, что сертификат действителен и не подвержен уязвимостям несоответствия хоста.
 
-By properly validating certificates with host matches, the compliant code reduces the risk of man-in-the-middle attacks and other security vulnerabilities associated with improper certificate validation.
+Благодаря правильной проверке сертификатов с совпадением хоста соответствующий код снижает риск атак типа "человек посередине" и других уязвимостей безопасности, связанных с неправильной проверкой сертификатов.
 
 
 
@@ -1711,9 +1709,9 @@ select call
 
 
 
-## Improper Authentication
+## Неправильная аутентификация
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1726,23 +1724,23 @@ public class AuthenticationExample
     {
         string connectionString = "Data Source=...;Initial Catalog=...;User ID=...;Password=...";
 
-        // Construct the SQL query with user-provided input
+        // Создайте SQL-запрос, используя данные, предоставленные пользователем
         string query = $"SELECT * FROM Users WHERE Username = '{username}' AND Password = '{password}'";
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             SqlCommand command = new SqlCommand(query, connection);
 
-            // Open the connection
+            // Открываем соединение
             connection.Open();
 
-            // Execute the query
+            // Выполняем запрос
             SqlDataReader reader = command.ExecuteReader();
 
-            // Check if the user exists
+            // Проверяем, существует ли пользователь
             bool userExists = reader.HasRows;
 
-            // Close the connection
+            // Закрываем соединение
             connection.Close();
 
             return userExists;
@@ -1751,17 +1749,17 @@ public class AuthenticationExample
 }
 ```
 
-In this noncompliant code, the AuthenticateUser method performs authentication by constructing a SQL query with user-provided input for the username and password. This code is susceptible to SQL injection attacks, as the user input is directly concatenated into the query string without proper sanitization or parameterization.
+В этом несоответствующем коде метод AuthenticateUser выполняет аутентификацию путем построения SQL-запроса с введенными пользователем именем пользователя и паролем. Этот код подвержен атакам SQL-инъекций, поскольку пользовательский ввод непосредственно конкатенируется в строку запроса без надлежащей санации или параметризации.
 
 
-To address this security issue and ensure proper authentication, here's an example of compliant code that uses parameterized queries:
-
-
-
+Чтобы решить эту проблему безопасности и обеспечить надлежащую аутентификацию, вот пример совместимого кода, в котором используются параметризованные запросы:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1774,27 +1772,27 @@ public class AuthenticationExample
     {
         string connectionString = "Data Source=...;Initial Catalog=...;User ID=...;Password=...";
 
-        // Construct the parameterized SQL query
+        // Создайте параметризованный SQL-запрос
         string query = "SELECT * FROM Users WHERE Username = @username AND Password = @password";
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             SqlCommand command = new SqlCommand(query, connection);
 
-            // Add parameters to the command
+            // Добавляем параметры в команду
             command.Parameters.AddWithValue("@username", username);
             command.Parameters.AddWithValue("@password", password);
 
-            // Open the connection
+            // Открываем соединение
             connection.Open();
 
-            // Execute the query
+            // Выполнение запроса
             SqlDataReader reader = command.ExecuteReader();
 
-            // Check if the user exists
+            // Проверяем, существует ли пользователь
             bool userExists = reader.HasRows;
 
-            // Close the connection
+            // Закрываем соединение
             connection.Close();
 
             return userExists;
@@ -1804,9 +1802,9 @@ public class AuthenticationExample
 ```
 
 
-In the compliant code, the SQL query is parameterized, and the user-provided input is passed as parameters to the SqlCommand object. This ensures that the input is properly handled and prevents SQL injection attacks by treating the input as data rather than executable code.
+В соответствующем коде SQL-запрос параметризован, и пользовательский ввод передается в качестве параметров объекту SqlCommand. Это обеспечивает правильную обработку входных данных и предотвращает атаки SQL-инъекций, поскольку входные данные рассматриваются как данные, а не как исполняемый код.
 
-By using parameterized queries, the compliant code mitigates the risk of SQL injection and ensures proper authentication of users.
+Благодаря использованию параметризованных запросов совместимый код снижает риск SQL-инъекций и обеспечивает надлежащую аутентификацию пользователей.
 
 
 
@@ -1846,9 +1844,9 @@ select query, call
 
 
 
-## Session Fixation
+## Фиксация сеанса
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1859,35 +1857,35 @@ public class SessionFixationExample
 {
     public void Login(string username)
     {
-        // Create a new session
+        // Создайте новую сессию
         HttpSessionState session = HttpContext.Current.Session;
 
-        // Set the username in the session
+        // Устанавливаем имя пользователя в сессии
         session["username"] = username;
     }
 
     public bool IsUserAuthenticated()
     {
-        // Retrieve the session
+        // Получаем сессию
         HttpSessionState session = HttpContext.Current.Session;
 
-        // Check if the username exists in the session
+        // Проверяем, существует ли имя пользователя в сессии
         return session["username"] != null;
     }
 }
 ```
 
-In this noncompliant code, the Login method creates a new session and sets the username provided by the user. However, the session ID remains the same throughout the user's session, making it vulnerable to session fixation attacks. An attacker can force a user to use a specific session ID, potentially compromising the user's session.
+В этом коде, не соответствующем требованиям, метод Login создает новую сессию и устанавливает имя пользователя, указанное пользователем. Однако идентификатор сеанса остается неизменным на протяжении всей сессии пользователя, что делает его уязвимым для атак с фиксацией сеанса. Злоумышленник может заставить пользователя использовать определенный идентификатор сессии, что потенциально может скомпрометировать сессию пользователя.
 
 
-To address this security issue and prevent session fixation attacks, here's an example of compliant code that regenerates the session ID after successful authentication:
-
-
-
+Чтобы решить эту проблему безопасности и предотвратить атаки с фиксацией сеанса, приведем пример соответствующего кода, который регенерирует идентификатор сеанса после успешной аутентификации:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1898,31 +1896,31 @@ public class SessionFixationExample
 {
     public void Login(string username)
     {
-        // Create a new session
+        // Создайте новую сессию
         HttpSessionState session = HttpContext.Current.Session;
 
-        // Set the username in the session
+        // Устанавливаем имя пользователя в сессии
         session["username"] = username;
 
-        // Regenerate the session ID
+        // Регенерируем идентификатор сессии
         session.RegenerateID();
     }
 
     public bool IsUserAuthenticated()
     {
-        // Retrieve the session
+        // Получение сессии
         HttpSessionState session = HttpContext.Current.Session;
 
-        // Check if the username exists in the session
+        // Проверяем, существует ли имя пользователя в сессии
         return session["username"] != null;
     }
 }
 ```
 
 
-In the compliant code, after setting the username in the session, the session ID is regenerated using the RegenerateID method. This ensures that a new session ID is generated after successful authentication, effectively preventing session fixation attacks.
+В соответствующем коде после установки имени пользователя в сессии идентификатор сессии регенерируется с помощью метода RegenerateID. Это гарантирует, что после успешной аутентификации будет сгенерирован новый идентификатор сеанса, что эффективно предотвращает атаки с фиксацией сеанса.
 
-By regenerating the session ID, the compliant code mitigates the risk of session fixation and ensures that each user is assigned a unique session ID upon authentication.
+Благодаря регенерации идентификатора сеанса код, соответствующий требованиям, снижает риск фиксации сеанса и гарантирует, что каждому пользователю при аутентификации будет присвоен уникальный идентификатор сеанса.
 
 
 
@@ -1957,9 +1955,9 @@ select session, call
 ```
 
 
-## Inclusion of Functionality from Untrusted Control
+## Включение функциональности из недоверенного управления
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1971,29 +1969,29 @@ public class FileUploader
 {
     public void UploadFile(string filename, byte[] fileData)
     {
-        // Save the uploaded file to a specified directory
-        string savePath = "C:\\Uploads\\" + filename;
+        // Сохраните загруженный файл в указанную директорию
+        string savePath = "C:\\\Uploads\\\\" + filename;
         File.WriteAllBytes(savePath, fileData);
         
-        // Execute a command on the uploaded file
+        // Выполнение команды над загруженным файлом
         string command = "C:\\Windows\\System32\\cmd.exe /C echo File uploaded successfully!";
         Process.Start(command, savePath);
     }
 }
 ```
 
-In this noncompliant code, the UploadFile method accepts a file name and its corresponding data as input. The file is saved to a specified directory without proper validation or sanitization. After saving the file, a command is executed on the uploaded file using Process.Start. This code is vulnerable to arbitrary code execution, as an attacker can upload a malicious file and execute arbitrary commands on the server.
+В этом коде, не соответствующем требованиям, метод UploadFile принимает на вход имя файла и соответствующие ему данные. Файл сохраняется в указанную директорию без надлежащей проверки или санитарной обработки. После сохранения файла выполняется команда над загруженным файлом с помощью Process.Start. Этот код уязвим для выполнения произвольного кода, так как злоумышленник может загрузить вредоносный файл и выполнить произвольные команды на сервере.
 
 
-To address this security issue and prevent the inclusion of functionality from untrusted control, here's an example of compliant code that restricts the uploaded file's execution:
-
-
-
+Чтобы решить эту проблему безопасности и предотвратить включение функциональности из ненадежного управления, вот пример совместимого кода, который ограничивает выполнение загруженного файла:
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2005,34 +2003,34 @@ public class FileUploader
 {
     public void UploadFile(string filename, byte[] fileData)
     {
-        // Validate and sanitize the filename
+        // Проверяем и обеззараживаем имя файла
         string sanitizedFilename = SanitizeFilename(filename);
         if (sanitizedFilename == null)
         {
-            // Invalid filename, abort the upload
+            // Неверное имя файла, прервать загрузку
             return;
         }
 
-        // Save the uploaded file to a specified directory
-        string savePath = "C:\\Uploads\\" + sanitizedFilename;
+        // Сохраняем загруженный файл в указанную директорию
+        string savePath = "C:\\\Uploads\\\\" + sanitizedFilename;
         File.WriteAllBytes(savePath, fileData);
         
-        // Perform other operations on the uploaded file (e.g., logging, virus scanning)
+        // Выполняем другие операции с загруженным файлом (например, ведение журнала, проверка на вирусы)
 
-        // Notify the user about the successful upload
+        // Уведомить пользователя об успешной загрузке
         Console.WriteLine("File uploaded successfully!");
     }
 
     private string SanitizeFilename(string filename)
     {
-        // Implement proper filename validation and sanitization logic
-        // Ensure that the filename conforms to your desired format and does not contain any malicious characters or path traversal sequences
+        // Реализуйте надлежащую логику проверки и санации имен файлов.
+        // Убедитесь, что имя файла соответствует требуемому формату и не содержит вредоносных символов или последовательностей обхода путей
         
-        // Example implementation: removing any path information and disallowing specific characters
+        // Пример реализации: удаление любой информации о пути и запрет определенных символов
         string sanitizedFilename = Path.GetFileName(filename);
         if (sanitizedFilename.IndexOfAny(Path.GetInvalidFileNameChars()) != -1)
         {
-            // Invalid filename, return null
+            // Неверное имя файла, возвращаем null
             return null;
         }
 
@@ -2042,9 +2040,9 @@ public class FileUploader
 ```
 
 
-In the compliant code, several improvements have been made to ensure the security of the file upload functionality. The filename is validated and sanitized using the SanitizeFilename method, which removes any path information and disallows specific characters. If the filename is deemed invalid or contains malicious content, the upload is aborted.
+В совместимом коде было сделано несколько улучшений для обеспечения безопасности функции загрузки файлов. Имя файла проверяется и обеззараживается с помощью метода SanitizeFilename, который удаляет любую информацию о пути и запрещает определенные символы. Если имя файла считается недействительным или содержит вредоносное содержимое, загрузка прерывается.
 
-Furthermore, the code no longer executes arbitrary commands on the uploaded file. Instead, it performs other necessary operations such as logging or virus scanning. Finally, the user is notified about the successful upload without exposing the server to potential security risks.
+Кроме того, код больше не выполняет произвольные команды над загруженным файлом. Вместо этого он выполняет другие необходимые операции, такие как ведение журнала или проверка на вирусы. Наконец, пользователь получает уведомление об успешной загрузке, не подвергая сервер потенциальным рискам безопасности.
 
 
 
@@ -2072,9 +2070,9 @@ rules:
 
 
 
-## Download of Code Without Integrity Check
+## Загрузка кода без проверки целостности
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2089,31 +2087,31 @@ public class CodeDownloader
         {
             string code = client.DownloadString(url);
             
-            // Execute the downloaded code
+            // Выполнение загруженного кода
             ExecuteCode(code);
         }
     }
 
     private void ExecuteCode(string code)
     {
-        // Execute the downloaded code without performing an integrity check
+        // Выполнение загруженного кода без проверки целостности
         Console.WriteLine("Executing downloaded code: " + code);
         // ...
     }
 }
 ```
 
-In this noncompliant code, the DownloadCode method downloads code from a specified URL using the WebClient class. Once the code is downloaded, it is immediately executed without performing any integrity check or validation. This approach introduces the risk of executing malicious or untrusted code, which can lead to security vulnerabilities and compromise the system.
+В этом коде, не соответствующем требованиям, метод DownloadCode загружает код с указанного URL с помощью класса WebClient. Как только код загружен, он немедленно выполняется без проверки целостности или валидации. Такой подход создает риск выполнения вредоносного или недоверенного кода, что может привести к возникновению уязвимостей в системе безопасности и ее компрометации.
 
 
-To address this security issue and ensure the integrity of the downloaded code, here's an example of compliant code that includes an integrity check:
-
-
-
+Чтобы решить эту проблему безопасности и обеспечить целостность загружаемого кода, приведем пример совместимого кода, включающего проверку целостности:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2130,12 +2128,12 @@ public class CodeDownloader
         {
             byte[] downloadedData = client.DownloadData(url);
             
-            // Verify the integrity of the downloaded code
+            // Проверяем целостность загруженного кода
             if (IsCodeIntegrityValid(downloadedData))
             {
                 string code = Encoding.UTF8.GetString(downloadedData);
                 
-                // Execute the downloaded code
+                // Выполняем загруженный код
                 ExecuteCode(code);
             }
             else
@@ -2147,14 +2145,14 @@ public class CodeDownloader
 
     private bool IsCodeIntegrityValid(byte[] downloadedData)
     {
-        // Implement integrity check logic here
-        // For example, calculate the hash of the downloaded code and compare it with a trusted hash value
+        // Реализуйте здесь логику проверки целостности.
+        // Например, вычислите хэш загруженного кода и сравните его с доверенным хэш-значением
         
         using (SHA256 sha256 = SHA256.Create())
         {
             byte[] hash = sha256.ComputeHash(downloadedData);
 
-            // Compare the calculated hash with the trusted hash value
+            // Сравниваем вычисленный хэш с доверенным хэш-значением
             byte[] trustedHash = GetTrustedHash(); // Retrieve the trusted hash value from a secure source
 
             return ByteArrayEquals(hash, trustedHash);
@@ -2163,7 +2161,7 @@ public class CodeDownloader
 
     private bool ByteArrayEquals(byte[] array1, byte[] array2)
     {
-        // Compare two byte arrays for equality
+        // Сравните два массива байтов на равенство
         if (array1.Length != array2.Length)
             return false;
 
@@ -2178,17 +2176,17 @@ public class CodeDownloader
 
     private void ExecuteCode(string code)
     {
-        // Execute the downloaded code
-        Console.WriteLine("Executing downloaded code: " + code);
+        // Выполнение загруженного кода
+        Console.WriteLine("Выполнение загруженного кода: " + код);
         // ...
     }
 }
 ```
 
 
-In the compliant code, additional measures have been implemented to ensure the integrity of the downloaded code. The DownloadData method is used instead of DownloadString to retrieve the code as a byte array. The IsCodeIntegrityValid method calculates the hash of the downloaded code using a secure hashing algorithm (SHA-256 in this example) and compares it with a trusted hash value obtained from a secure source.
+В соответствующем коде реализованы дополнительные меры для обеспечения целостности загружаемого кода. Метод DownloadData используется вместо DownloadString для получения кода в виде массива байт. Метод IsCodeIntegrityValid вычисляет хэш загруженного кода с помощью безопасного алгоритма хэширования (в данном примере SHA-256) и сравнивает его с доверенным хэш-значением, полученным из безопасного источника.
 
-If the integrity check passes, the code is converted to a string and then executed. Otherwise, if the integrity check fails, the code execution is aborted. This approach ensures that only code with a valid integrity can be executed, mitigating the risk of downloading and executing malicious or tampered code.
+Если проверка целостности пройдена, код преобразуется в строку и затем выполняется. В противном случае, если проверка целостности провалена, выполнение кода прерывается. Такой подход гарантирует, что может быть выполнен только код с достоверной целостностью, что снижает риск загрузки и выполнения вредоносного или поддельного кода.
 
 
 
@@ -2222,9 +2220,9 @@ select CodeDownload
 ```
 
 
-## Deserialization of Untrusted Data
+## Десериализация недоверенных данных
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2239,7 +2237,7 @@ public class DataDeserializer
         BinaryFormatter formatter = new BinaryFormatter();
         MemoryStream memoryStream = new MemoryStream(data);
         
-        // Deserialize the untrusted data
+        // Десериализуйте недоверенные данные
         object deserializedData = formatter.Deserialize(memoryStream);
         
         return deserializedData;
@@ -2247,10 +2245,10 @@ public class DataDeserializer
 }
 ```
 
-In this noncompliant code, the DeserializeData method deserializes the provided byte[] data using the BinaryFormatter class without performing any validation or security checks. Deserializing untrusted data without proper validation can lead to serious security vulnerabilities, including remote code execution and object injection attacks.
+В этом несоответствующем коде метод DeserializeData десериализует предоставленные данные byte[] с помощью класса BinaryFormatter, не выполняя никакой проверки достоверности или безопасности. Десериализация недоверенных данных без надлежащей проверки может привести к серьезным уязвимостям безопасности, включая удаленное выполнение кода и атаки с внедрением объектов.
 
 
-To address this security issue and ensure the safe deserialization of data, here's an example of compliant code:
+Чтобы решить эту проблему безопасности и обеспечить безопасную десериализацию данных, приведем пример соответствующего кода:
 
 
 
@@ -2285,7 +2283,7 @@ select DataDeserialization
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2300,17 +2298,17 @@ public class DataDeserializer
     {
         BinaryFormatter formatter = new BinaryFormatter();
         
-        // Set up a custom SerializationBinder to restrict deserialization to trusted types
+        // Настройте пользовательский SerializationBinder, чтобы ограничить десериализацию доверенными типами
         formatter.Binder = new TrustedSerializationBinder();
         
         using (MemoryStream memoryStream = new MemoryStream(data))
         {
             try
             {
-                // Deserialize the data with proper validation
+                // Десериализуем данные с надлежащей проверкой
                 object deserializedData = formatter.Deserialize(memoryStream);
                 
-                // Perform additional validation on the deserialized object, if required
+                // Выполните дополнительную проверку десериализованного объекта, если требуется
                 
                 return deserializedData;
             }
@@ -2328,49 +2326,49 @@ public class DataDeserializer
     }
 }
 
-// Custom SerializationBinder to restrict deserialization to trusted types
+// Пользовательский SerializationBinder для ограничения десериализации доверенными типами
 public class TrustedSerializationBinder : SerializationBinder
 {
     public override Type BindToType(string assemblyName, string typeName)
     {
-        // Check if the requested type is trusted
+        // Проверяем, является ли запрашиваемый тип доверенным
         if (IsTypeTrusted(typeName))
         {
-            // Return the trusted type for deserialization
+            // Возвращаем доверенный тип для десериализации
             Type trustedType = GetTypeFromTrustedAssembly(typeName);
             return trustedType;
         }
         
-        // For untrusted types, throw an exception or return null to prevent deserialization
+        // Для недоверенных типов выбросьте исключение или верните null, чтобы предотвратить десериализацию
         throw new SerializationException("Attempted deserialization of untrusted type: " + typeName);
     }
     
     private bool IsTypeTrusted(string typeName)
     {
-        // Implement your logic to determine if the type is trusted
-        // For example, maintain a whitelist of trusted types
+        // Реализуйте свою логику для определения того, является ли тип доверенным.
+        // Например, ведение белого списка доверенных типов
         
-        // Return true if the type is trusted, false otherwise
+        // Возвращаем true, если тип является доверенным, false в противном случае
         // ...
     }
     
     private Type GetTypeFromTrustedAssembly(string typeName)
     {
-        // Retrieve the trusted type from a known and trusted assembly
-        // For example, look up the type in a predefined assembly
+        // Получение доверенного типа из известной и доверенной сборки.
+        // Например, ищем тип в предопределенной сборке.
         
-        // Return the Type object for the trusted type
+        // Возвращаем объект Type для доверенного типа
         // ...
     }
 }
 ```
 
 
-In the compliant code, several measures have been taken to ensure the safe deserialization of data. First, a custom SerializationBinder is implemented to restrict deserialization to trusted types. The BindToType method in the TrustedSerializationBinder class is called during deserialization and checks if the requested type is trusted. If the type is trusted, it returns the corresponding Type object for deserialization. Otherwise, it throws a SerializationException to prevent the deserialization of untrusted types.
+В соответствующем коде было предпринято несколько мер для обеспечения безопасной десериализации данных. Во-первых, реализован пользовательский SerializationBinder для ограничения десериализации доверенными типами. Метод BindToType в классе TrustedSerializationBinder вызывается во время десериализации и проверяет, является ли запрашиваемый тип доверенным. Если тип является доверенным, он возвращает соответствующий объект Type для десериализации. В противном случае он выбрасывает SerializationException, чтобы предотвратить десериализацию недоверенных типов.
 
 
 
-Additionally, exception handling is implemented to catch any potential errors during deserialization and provide appropriate error messages.
+Кроме того, реализована обработка исключений, чтобы отлавливать возможные ошибки во время десериализации и выдавать соответствующие сообщения об ошибках.
 
 
 
@@ -2415,9 +2413,9 @@ select d, e
 
 
 
-## Insufficient Logging
+## Недостаточное ведение журнала
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2427,37 +2425,37 @@ public class PaymentProcessor
 {
     public void ProcessPayment(double amount, string creditCardNumber)
     {
-        // Process the payment logic
+        // Обработка логики платежей
         
         try
         {
-            // Perform payment processing
+            // Выполните обработку платежа
             
-            // Log a success message
-            Console.WriteLine("Payment processed successfully.");
+            // Выведите сообщение об успехе
+            Console.WriteLine("Платеж успешно обработан.");
         }
         catch (Exception ex)
         {
-            // Log the exception message only
+            // Выведите в журнал только сообщение об исключении
             Console.WriteLine("Payment processing failed. Exception: " + ex.Message);
         }
     }
 }
 ```
 
-In this noncompliant code, the ProcessPayment method performs payment processing but lacks sufficient logging. The code only logs the exception message when an error occurs during payment processing, providing limited information for troubleshooting and investigation.
+В этом несоответствующем коде метод ProcessPayment выполняет обработку платежей, но не имеет достаточной регистрации. В коде регистрируется только сообщение об исключении при возникновении ошибки во время обработки платежа, что дает ограниченную информацию для поиска и устранения неисправностей.
 
 
-To address this issue and improve logging, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему и улучшить протоколирование, вот пример кода, соответствующего требованиям:
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2477,15 +2475,15 @@ public class PaymentProcessor
     {
         try
         {
-            // Perform payment processing
+            // Выполните обработку платежа
 
-            // Log a success message with detailed information
+            // Выведите сообщение об успехе с подробной информацией
             string logMessage = $"Payment processed successfully. Amount: {amount}, Credit Card: {MaskCreditCardNumber(creditCardNumber)}";
             logger.LogInfo(logMessage);
         }
         catch (Exception ex)
         {
-            // Log the exception with detailed information
+            // Занесите исключение в журнал с подробной информацией
             string errorMessage = $"Payment processing failed. Amount: {amount}, Credit Card: {MaskCreditCardNumber(creditCardNumber)}, Exception: {ex}";
             logger.LogError(errorMessage);
         }
@@ -2493,8 +2491,8 @@ public class PaymentProcessor
 
     private string MaskCreditCardNumber(string creditCardNumber)
     {
-        // Implement logic to mask sensitive information
-        // For example, replace all but the last four digits with asterisks
+        // Реализуйте логику для маскировки конфиденциальной информации
+        // Например, заменить все цифры, кроме последних четырех, на звездочки
         int maskLength = creditCardNumber.Length - 4;
         string maskedNumber = new string('*', maskLength) + creditCardNumber.Substring(maskLength);
         return maskedNumber;
@@ -2509,13 +2507,13 @@ public interface ILogger
 ```
 
 
-In the compliant code, a separate ILogger interface is introduced to handle logging functionality. The PaymentProcessor class now receives an instance of ILogger via dependency injection. The ProcessPayment method logs a success message with detailed information when the payment processing is successful. It includes the payment amount and a masked credit card number to avoid logging sensitive information.
+В соответствующем коде появился отдельный интерфейс ILogger для работы с функциями протоколирования. Класс PaymentProcessor теперь получает экземпляр ILogger через инъекцию зависимостей. Метод ProcessPayment записывает в журнал сообщение об успехе с подробной информацией об успешной обработке платежа. Оно включает сумму платежа и замаскированный номер кредитной карты, чтобы избежать записи конфиденциальной информации.
 
 
-When an exception occurs during payment processing, the code logs an error message that includes the payment amount, masked credit card number, and the exception details. This provides more comprehensive logging for troubleshooting and investigation purposes.
+Если во время обработки платежа возникает исключение, код регистрирует сообщение об ошибке, включающее сумму платежа, замаскированный номер кредитной карты и подробности исключения. Это обеспечивает более полное протоколирование для устранения неполадок и проведения расследований.
 
 
-Note: The implementation of the ILogger interface is not provided in the code snippet as it can vary based on the logging framework or storage mechanism used in your application.
+Примечание: реализация интерфейса ILogger не приведена в данном фрагменте кода, поскольку она может зависеть от используемого в приложении фреймворка протоколирования или механизма хранения данных.
 
 
 
@@ -2557,9 +2555,9 @@ select p
 
 
 
-## Improper Output Neutralization for Logs
+## Неправильная нейтрализация выхода для бревен
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2576,24 +2574,24 @@ public class LoginController
 
     public void LogUserLogin(string username)
     {
-        // Log the user login
+        // Введите логин пользователя
         logger.LogInfo("User login: " + username);
     }
 }
 ```
 
-In this noncompliant code, the LogUserLogin method logs the user login by concatenating the username directly into the log message. This can lead to log injection vulnerabilities if the username contains special characters that can alter the log format or content.
+В этом коде, не соответствующем требованиям, метод LogUserLogin регистрирует вход пользователя в систему путем конкатенации имени пользователя непосредственно в сообщении журнала. Это может привести к уязвимости инъекции в журнал, если имя пользователя содержит специальные символы, которые могут изменить формат или содержимое журнала.
 
 
-To address this issue and ensure proper output neutralization, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему и обеспечить надлежащую нейтрализацию вывода, вот пример совместимого кода:
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2610,15 +2608,15 @@ public class LoginController
 
     public void LogUserLogin(string username)
     {
-        // Log the user login with neutralized output
+        // Зафиксируйте вход пользователя в систему с нейтрализованным выходом
         string logMessage = $"User login: {NeutralizeLogOutput(username)}";
         logger.LogInfo(logMessage);
     }
 
     private string NeutralizeLogOutput(string input)
     {
-        // Implement logic to neutralize special characters or control characters in the log output
-        // For example, replace newlines, carriage returns, or other potentially dangerous characters
+        // Реализуйте логику для нейтрализации специальных или управляющих символов в журнале.
+        // Например, заменять новые строки, возвраты каретки или другие потенциально опасные символы
         string neutralizedOutput = input.Replace("\r", "").Replace("\n", "");
         return neutralizedOutput;
     }
@@ -2631,9 +2629,9 @@ public interface ILogger
 ```
 
 
-In the compliant code, the LogUserLogin method uses string interpolation to construct the log message, ensuring proper output neutralization. The NeutralizeLogOutput method is introduced to neutralize any special characters or control characters that could pose a security risk when included in the log output. In this example, newlines and carriage returns are removed from the username before logging.
+В соответствующем коде метод LogUserLogin использует строковую интерполяцию для построения сообщения журнала, обеспечивая надлежащую нейтрализацию вывода. Метод NeutralizeLogOutput используется для нейтрализации любых специальных символов или управляющих символов, которые могут представлять угрозу безопасности при включении в вывод журнала. В этом примере перед записью в журнал из имени пользователя удаляются новые строки и возвраты каретки.
 
-By neutralizing the log output, the compliant code mitigates the risk of log injection vulnerabilities and ensures that the log messages accurately represent the intended content without any unintended effects on the log system.
+Нейтрализуя вывод журнала, соответствующий код снижает риск уязвимостей, связанных с инъекциями в журнал, и гарантирует, что сообщения журнала точно отражают предполагаемое содержимое без каких-либо непредвиденных последствий для системы регистрации.
 
 
 
@@ -2659,7 +2657,7 @@ rules:
       
           public void LogUserLogin(string username)
           {
-              // Log the user login
+              // Введите логин пользователя
               logger.LogInfo("User login: " + $username);
           }
       }
@@ -2686,9 +2684,9 @@ select ma2, "Improper output neutralization for logs"
 
 
 
-## Omission of Security-relevant Information
+## Упущение информации, имеющей отношение к безопасности
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2705,10 +2703,10 @@ public class PaymentController
 
     public void ProcessPayment(decimal amount)
     {
-        // Process payment logic
+        // Логика обработки платежей
         try
         {
-            // Payment processing code here...
+            // Код обработки платежа здесь...
 
             logger.LogInfo("Payment processed successfully");
         }
@@ -2727,16 +2725,16 @@ public interface ILogger
 ```
 
 
-In this noncompliant code, the logger interface (ILogger) is used to log both informational and error messages during the payment processing. However, the code does not include any security-relevant information in the log messages. It only provides generic messages without any specific details that could help identify or diagnose potential security issues.
+В этом несоответствующем коде интерфейс логгера (ILogger) используется для регистрации информационных сообщений и сообщений об ошибках во время обработки платежа. Однако код не включает в сообщения журнала никакой информации, связанной с безопасностью. Он предоставляет только общие сообщения без каких-либо конкретных деталей, которые могли бы помочь выявить или диагностировать потенциальные проблемы безопасности.
 
 
-To address this issue, here's an example of compliant code that includes security-relevant information in the log messages:
+Чтобы решить эту проблему, приведем пример совместимого кода, который включает в сообщения журнала информацию, относящуюся к безопасности:
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2753,10 +2751,10 @@ public class PaymentController
 
     public void ProcessPayment(decimal amount)
     {
-        // Process payment logic
+        // Логика обработки платежей
         try
         {
-            // Payment processing code here...
+            // Код обработки платежа здесь...
 
             logger.LogInfo($"Payment processed successfully. Amount: {amount}");
         }
@@ -2775,7 +2773,7 @@ public interface ILogger
 ```
 
 
-In the compliant code, the log messages include the sensitive information, such as the payment amount, in addition to the generic message. This provides more context and helps in auditing, troubleshooting, and detecting any potential security incidents.
+В соответствующем коде сообщения журнала содержат конфиденциальную информацию, такую как сумма платежа, в дополнение к общему сообщению. Это обеспечивает больший контекст и помогает в аудите, устранении неполадок и обнаружении любых потенциальных инцидентов безопасности.
 
 
 
@@ -2802,10 +2800,10 @@ rules:
       
           public void ProcessPayment(decimal amount)
           {
-              // Process payment logic
+              // Логика обработки платежей
               try
               {
-                  // Payment processing code here...
+                  // Код обработки платежа здесь...
       
                   logger.LogInfo($"Payment processed successfully: {amount}");
               }
@@ -2842,7 +2840,7 @@ select ma2, "Improper output neutralization for logs"
 
 ## Sensitive Information into Log File
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -2862,7 +2860,7 @@ public class UserController
     {
         try
         {
-            // User creation logic here...
+            // Логика создания пользователя здесь...
 
             logger.LogInfo($"User '{username}' created successfully");
         }
@@ -2880,17 +2878,17 @@ public interface ILogger
 }
 ```
 
-In this noncompliant code, the UserController class includes a method CreateUser that logs sensitive information, namely the username and password, into the log file. Storing such sensitive information in plain text in the log file is a security vulnerability as it could lead to unauthorized access if the log files are compromised.
+В этом несоответствующем коде класс UserController включает метод CreateUser, который записывает конфиденциальную информацию, а именно имя пользователя и пароль, в файл журнала. Хранение такой конфиденциальной информации открытым текстом в файле журнала является уязвимостью безопасности, так как может привести к несанкционированному доступу в случае компрометации файлов журнала.
 
 
-To address this issue, here's an example of compliant code that avoids logging sensitive information into the log file:
-
-
-
+Чтобы решить эту проблему, ниже приведен пример соответствующего кода, который позволяет избежать записи конфиденциальной информации в файл журнала:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -2910,7 +2908,7 @@ public class UserController
     {
         try
         {
-            // User creation logic here...
+            // Логика создания пользователя здесь...
 
             logger.LogInfo($"User '{username}' created successfully");
         }
@@ -2929,7 +2927,7 @@ public interface ILogger
 ```
 
 
-In the compliant code, the CreateUser method no longer accepts the password as a parameter, and therefore it is not logged into the log file. Only the username, which is considered non-sensitive information, is logged for auditing and troubleshooting purposes. It's crucial to avoid logging sensitive information to minimize the risk of data breaches and unauthorized access.
+В соответствующем коде метод CreateUser больше не принимает пароль в качестве параметра, поэтому он не записывается в файл журнала. Только имя пользователя, которое считается нечувствительной информацией, записывается в журнал для целей аудита и устранения неполадок. Очень важно избегать записи в журнал конфиденциальной информации, чтобы свести к минимуму риск утечки данных и несанкционированного доступа.
 
 
 
@@ -2957,7 +2955,7 @@ rules:
           {
               try
               {
-                  // User creation logic here...
+                  // Логика создания пользователя здесь...
 
                   logger.LogInfo($"User '{username}' created successfully");
               }
@@ -2992,9 +2990,9 @@ select ma2, "Improper output neutralization for logs"
 
 
 
-## Server-Side Request Forgery (SSRF)
+## Подделка запросов со стороны сервера (SSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -3008,23 +3006,23 @@ public class ImageController
         WebClient client = new WebClient();
         byte[] imageData = client.DownloadData(url);
 
-        // Display the image on the website
+        // Отображение изображения на сайте
         // ...
     }
 }
 ```
 
-In this noncompliant code, the DisplayImage method takes a URL as input and directly makes a request to that URL using the WebClient class. This code is susceptible to SSRF attacks because it allows an attacker to specify arbitrary URLs, including internal or restricted network resources. An attacker could abuse this functionality to make requests to sensitive internal systems, retrieve confidential information, or perform actions on behalf of the server.
+В этом несоответствующем коде метод DisplayImage принимает на вход URL и напрямую выполняет запрос к этому URL с помощью класса WebClient. Этот код подвержен атакам SSRF, поскольку позволяет злоумышленнику указывать произвольные URL-адреса, включая внутренние или ограниченные сетевые ресурсы. Злоумышленник может злоупотребить этой функциональностью для выполнения запросов к важным внутренним системам, получения конфиденциальной информации или выполнения действий от имени сервера.
 
 
-To mitigate this vulnerability, here's an example of compliant code that includes input validation and implements a whitelist-based approach to restrict the URLs that can be accessed:
-
-
-
+Для устранения этой уязвимости приведен пример совместимого кода, который включает проверку ввода и реализует подход, основанный на белых списках, для ограничения URL-адресов, к которым можно получить доступ:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -3043,22 +3041,22 @@ public class ImageController
         WebClient client = new WebClient();
         byte[] imageData = client.DownloadData(url);
 
-        // Display the image on the website
+        // Отображение изображения на сайте
         // ...
     }
 
     private bool IsAllowedURL(string url)
     {
-        // Implement logic to check if the URL is allowed
-        // Example: Validate against a whitelist of trusted domains or patterns
+        // Реализуйте логику для проверки того, разрешен ли URL-адрес.
+        // Пример: Проверка по белому списку доверенных доменов или шаблонов.
         // ...
     }
 }
 ```
 
-In the compliant code, the DisplayImage method now includes input validation to ensure that only allowed URLs can be accessed. The IsAllowedURL method performs the necessary validation checks, such as comparing the URL against a whitelist of trusted domains or patterns. If the URL is not allowed, an exception is thrown, preventing the SSRF vulnerability.
+В коде, соответствующем требованиям, метод DisplayImage теперь включает проверку ввода, чтобы гарантировать доступ только к разрешенным URL. Метод IsAllowedURL выполняет необходимые проверки, такие как сравнение URL с белым списком доверенных доменов или шаблонов. Если URL не разрешен, возникает исключение, предотвращающее уязвимость SSRF.
 
-By implementing proper input validation and restricting access to only trusted URLs, the compliant code mitigates the risk of SSRF attacks and helps ensure that requests are made to legitimate and authorized resources.
+Реализуя надлежащую проверку ввода и ограничивая доступ только к доверенным URL, соответствующий код снижает риск атак SSRF и помогает обеспечить выполнение запросов к легитимным и авторизованным ресурсам.
 
 
 
