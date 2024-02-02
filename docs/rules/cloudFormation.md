@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,13 +19,13 @@ parent: Rules
 
 
 
-### Hardcoded Name
+### Строго закодированное имя
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
-# Noncompliant code
+# Несоответствующий код
 Resources:
   MyBucket:
     Type: AWS::S3::Bucket
@@ -33,12 +33,12 @@ Resources:
       BucketName: my-bucket
 ```
 
-In this noncompliant code, an AWS CloudFormation template is used to create an S3 bucket. The bucket name is hardcoded as my-bucket without considering potential naming conflicts or security best practices. This approach introduces security risks, as the bucket name might already be taken or it might inadvertently expose sensitive information.
+В этом коде, не соответствующем требованиям, шаблон AWS CloudFormation используется для создания ведра S3. Имя ведра жестко закодировано как my-bucket без учета возможных конфликтов имен или лучших практик безопасности. Такой подход создает риски для безопасности, поскольку имя ведра может быть уже занято или в нем может быть случайно раскрыта конфиденциальная информация.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -53,18 +53,18 @@ Resources:
 ```
 
 
-In the compliant code, the bucket name is dynamically generated using the Fn::Sub intrinsic function. The bucket name is composed of the string "my-bucket-", followed by the current CloudFormation stack name (AWS::StackName), and the AWS region (AWS::Region). This approach ensures uniqueness of the bucket name within the CloudFormation stack and helps mitigate potential naming conflicts.
+В соответствующем коде имя ведра генерируется динамически с помощью внутренней функции Fn::Sub. Имя ведра состоит из строки "my-bucket-", за которой следует имя текущего стека CloudFormation (AWS::StackName) и регион AWS (AWS::Region). Такой подход обеспечивает уникальность имени ведра в пределах стека CloudFormation и помогает смягчить потенциальные конфликты имен.
 
-By using dynamic naming with the Fn::Sub function, you can avoid hardcoded values and provide a more flexible and secure approach to resource creation in CloudFormation.
+Используя динамическое именование с помощью функции Fn::Sub, вы можете избежать жестко заданных значений и обеспечить более гибкий и безопасный подход к созданию ресурсов в CloudFormation.
 
-Additionally, you can implement other security measures such as:
+Кроме того, вы можете реализовать другие меры безопасности, такие как:
 
-* Leveraging IAM policies to control access permissions for the created resources.
-* Implementing resource-level permissions using AWS Identity and Access Management (IAM) roles and policies.
-* Encrypting sensitive data at rest using AWS Key Management Service (KMS) or other encryption mechanisms.
-* Implementing stack-level or resource-level CloudFormation stack policies to control stack updates and prevent unauthorized modifications.
+* Использование политик IAM для контроля разрешений доступа к созданным ресурсам.
+* Реализация разрешений на уровне ресурсов с помощью ролей и политик AWS Identity and Access Management (IAM).
+* Шифрование конфиденциальных данных в состоянии покоя с помощью AWS Key Management Service (KMS) или других механизмов шифрования.
+* Реализация политик стека CloudFormation на уровне стека или ресурсов для контроля обновлений стека и предотвращения несанкционированных изменений.
 
-By following security best practices and utilizing dynamic values in CloudFormation templates, you can enhance the security, flexibility, and reliability of your infrastructure deployments in AWS.
+Следуя лучшим практикам безопасности и используя динамические значения в шаблонах CloudFormation, вы сможете повысить безопасность, гибкость и надежность развертывания инфраструктуры в AWS.
 
 
 
