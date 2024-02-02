@@ -43,7 +43,7 @@ int main() {
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -55,12 +55,12 @@ int main() {
     strncpy(buffer, "Hello, world!", sizeof(buffer) - 1);
     buffer[sizeof(buffer) - 1] = '\0';
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code declares a character array buffer of size 20, providing sufficient space to store the string. The strncpy function is used to copy the string into the buffer while limiting the number of characters copied to the size of the buffer minus 1. Additionally, a null terminator is explicitly added to ensure the string is properly terminated.
+Соответствующий код объявляет буфер символьного массива размером 20, что обеспечивает достаточное пространство для хранения строки. Для копирования строки в буфер используется функция strncpy, при этом количество копируемых символов ограничивается размером буфера минус 1. Кроме того, явно добавляется нулевой терминатор, чтобы обеспечить правильное завершение строки.
 
 
 
@@ -94,10 +94,10 @@ select strcpyCall,
 
 
 
-## Null Pointer Dereference
+## Разыменование нулевого указателя
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -105,7 +105,7 @@ void foo(int* ptr) {
     if (ptr != nullptr) {
         *ptr = 42;
     } else {
-        // handle error
+        // ошибка обработки
     }
 }
 
@@ -116,13 +116,13 @@ int main() {
 }
 ```
 
-In this example, the foo() function takes a pointer to an integer and dereferences it to set its value to 42, but it does not check if the pointer is null. If a null pointer is passed to foo(), a null pointer dereference will occur, which can cause the program to crash or exhibit undefined behavior.
+В этом примере функция foo() принимает указатель на целое число и разыменовывает его, чтобы установить его значение в 42, но не проверяет, является ли указатель нулевым. Если в foo() будет передан нулевой указатель, произойдет разыменование нулевого указателя, что может привести к аварийному завершению программы или ее неопределенному поведению.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -130,7 +130,7 @@ void foo(int* ptr) {
     if (ptr != nullptr) {
         *ptr = 42;
     } else {
-        // handle error
+        // ошибка обработки
     }
 }
 
@@ -143,9 +143,9 @@ int main() {
 ```
 
 
-In the compliant code, the pointer is initialized to a valid address of an integer variable i using the address-of operator &. This ensures that the pointer is not null and prevents a null pointer dereference.
+В соответствующем коде указатель инициализируется на действительный адрес целочисленной переменной i с помощью оператора адреса &. Это гарантирует, что указатель не является нулевым, и предотвращает разыменование нулевого указателя.
 
-Alternatively, the foo() function could be modified to handle null pointers gracefully, such as returning an error code or throwing an exception. In general, it is important to always check pointers for null before dereferencing them to prevent null pointer dereferences, which can lead to crashes and security vulnerabilities.
+В качестве альтернативы функция foo() может быть модифицирована для изящной обработки нулевых указателей, например, возвращать код ошибки или выбрасывать исключение. В целом, важно всегда проверять указатели на null перед их разыменованием, чтобы предотвратить разыменование нулевого указателя, которое может привести к сбоям и уязвимостям безопасности.
 
 
 
@@ -179,10 +179,10 @@ select f
 
 
 
-## Integer Overflow/Underflow
+## Целочисленное переполнение/недополнение
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -195,18 +195,18 @@ int main() {
 
     std::cout << "Result: " << result << std::endl;
 
-    // Rest of the code...
+    // Остальная часть кода...
 }
 ```
 
-In the noncompliant code, the program performs an addition operation between a and b without checking for potential integer overflow. If the value of a is already at its maximum (INT_MAX), the addition will result in undefined behavior due to integer overflow.
+В коде, не соответствующем требованиям, программа выполняет операцию сложения между a и b без проверки на потенциальное переполнение целого числа. Если значение a уже достигло своего максимума (INT_MAX), сложение приведет к неопределенному поведению из-за переполнения целого числа.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -224,12 +224,12 @@ int main() {
         std::cout << "Result: " << result << std::endl;
     }
 
-    // Rest of the code...
+    // Остальная часть кода...
 }
 ```
 
 
-The compliant code includes a check for potential integer overflow before performing the addition. It compares the value of `a` with the maximum value of the integer type (`std::numeric_limits<int>::max()`) minus `b`. If the comparison indicates that an overflow will occur, appropriate actions can be taken to handle the overflow condition. In this example, an informative message is displayed when an overflow is detected.
+Соответствующий код включает проверку на потенциальное целочисленное переполнение перед выполнением сложения. Он сравнивает значение `a` с максимальным значением целочисленного типа (`std::numeric_limits<int>::max()`) минус `b`. Если сравнение показывает, что произойдет переполнение, можно предпринять соответствующие действия для обработки условия переполнения. В данном примере при обнаружении переполнения выводится информационное сообщение.
 
 
 
@@ -273,22 +273,22 @@ from Function main() {
 
 
 
-## Denial-of-Service (DoS)
+## Отказ в обслуживании (DoS)
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
 #include <iostream>
 
 void processRequest() {
-    // Process the request
+    // Обработка запроса
     // ...
 
-    // Intentional infinite loop
+    // Преднамеренный бесконечный цикл
     while (true) {
-        // Perform some expensive operation
+        // Выполните какую-нибудь дорогостоящую операцию
         // ...
     }
 }
@@ -296,11 +296,11 @@ void processRequest() {
 int main() {
     processRequest();
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the processRequest function contains an intentional infinite loop that performs an expensive operation. This can lead to a DoS vulnerability as it consumes excessive resources, such as CPU time, causing the application or system to become unresponsive.
+В коде, не соответствующем требованиям, функция processRequest содержит намеренный бесконечный цикл, выполняющий дорогостоящую операцию. Это может привести к DoS-уязвимости, поскольку потребляет чрезмерное количество ресурсов, например процессорного времени, что приводит к отказу приложения или системы от реагирования.
 
 
 
@@ -309,26 +309,26 @@ In the noncompliant code, the processRequest function contains an intentional in
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
 #include <iostream>
 
 void processRequest() {
-    // Process the request
+    // Обработка запроса
     // ...
 }
 
 int main() {
     processRequest();
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code removes the intentional infinite loop from the processRequest function, ensuring that the application does not consume excessive resources and remains responsive. By eliminating the resource-intensive operation, the compliant code mitigates the DoS vulnerability.
+Соответствующий код устраняет преднамеренный бесконечный цикл из функции processRequest, благодаря чему приложение не потребляет лишних ресурсов и остается отзывчивым. Устранив ресурсоемкую операцию, соответствующий код устраняет DoS-уязвимость.
 
 
 
@@ -357,25 +357,24 @@ CodeQL:
 ## Format String
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
-
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 ```c
 #include <iostream>
 
 int main() {
     char* user_input = nullptr;
-    std::cout << "Enter your name: ";
+    std::cout << "Введите ваше имя: ";
     std::cin >> user_input;
 
-    // Noncompliant code
+    // Несоответствующий код
     printf(user_input);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the user's input is directly passed as a format string argument to the printf function. If the user input contains format specifiers, it can lead to a Format String vulnerability. An attacker can exploit this vulnerability to read or modify memory, execute arbitrary code, or crash the application.
+В коде, не соответствующем требованиям, пользовательский ввод напрямую передается в качестве аргумента строки формата в функцию printf. Если пользовательский ввод содержит спецификаторы формата, это может привести к уязвимости Format String. Злоумышленник может использовать эту уязвимость для чтения или модификации памяти, выполнения произвольного кода или аварийного завершения работы приложения.
 
 
 
@@ -383,7 +382,7 @@ In the noncompliant code, the user's input is directly passed as a format string
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -391,18 +390,18 @@ In the noncompliant code, the user's input is directly passed as a format string
 
 int main() {
     char user_input[256];
-    std::cout << "Enter your name: ";
+    std::cout << "Введите ваше имя: ";
     std::cin >> user_input;
 
-    // Compliant code
+    // Соответствующий код
     std::cout << user_input << std::endl;
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code uses the std::cout stream to print the user's input, avoiding the direct use of the format string vulnerability. By using std::cout, the input is treated as a plain string and not interpreted as a format string.
+Соответствующий код использует поток std::cout для печати пользовательского ввода, что позволяет избежать прямого использования уязвимости форматной строки. Благодаря использованию std::cout вводимые данные обрабатываются как обычная строка и не интерпретируются как строка форматирования.
 
 
 
@@ -433,15 +432,14 @@ select printfCall,
 
 
 
-## Insecure Cryptography
+## Ненадежная криптография
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
-
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 ```c
 #include <iostream>
-#include <openssl/md5.h>
+#include <openssl/md5.h
 
 std::string generateHash(const std::string& data) {
     unsigned char digest[MD5_DIGEST_LENGTH];
@@ -461,21 +459,21 @@ int main() {
 
     std::cout << "Hashed Password: " << hashedPassword << std::endl;
 
-    // Rest of the code...
+    // Остальная часть кода...
 }
 ```
 
-In the noncompliant code, the MD5 hashing algorithm is used to generate a hash for a password. However, MD5 is considered insecure for cryptographic purposes due to its vulnerability to collision attacks and the availability of faster and more secure hashing algorithms. Using MD5 for password hashing can expose the application to security risks.
+В коде, не соответствующем требованиям, для генерации хэша пароля используется алгоритм хэширования MD5. Однако MD5 считается небезопасным для криптографических целей из-за его уязвимости к атакам на столкновения и наличия более быстрых и безопасных алгоритмов хэширования. Использование MD5 для хэширования паролей может подвергнуть приложение рискам безопасности.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
 #include <iostream>
-#include <openssl/sha.h>
+#include <openssl/sha.h
 
 std::string generateHash(const std::string& data) {
     unsigned char digest[SHA256_DIGEST_LENGTH];
@@ -495,12 +493,12 @@ int main() {
 
     std::cout << "Hashed Password: " << hashedPassword << std::endl;
 
-    // Rest of the code...
+    // Остальная часть кода...
 }
 ```
 
 
-The compliant code addresses the insecure cryptography issue by replacing the use of MD5 with the more secure SHA-256 hashing algorithm. SHA-256 is considered stronger and more resistant to collision attacks.
+Соответствующий код решает проблему небезопасной криптографии, заменяя MD5 на более безопасный алгоритм хэширования SHA-256. SHA-256 считается более сильным и устойчивым к атакам на столкновения.
 
 
 
@@ -532,18 +530,18 @@ select md5Call,
 
 
 
-## Memory Corruption
+## Повреждение памяти
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
 #include <iostream>
 
 void writeToMemory(char* buffer, const char* data, size_t length) {
-    strcpy(buffer, data); // Noncompliant code
-    buffer[length] = '\0'; // Noncompliant code
+    strcpy(buffer, data); // Несоответствующий код
+    buffer[length] = '\0'; // Несоответствующий код
 }
 
 int main() {
@@ -552,18 +550,18 @@ int main() {
 
     writeToMemory(buffer, data, strlen(data));
 
-    std::cout << "Buffer: " << buffer << std::endl;
+    std::cout << "Буфер: " << buffer << std::endl;
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the writeToMemory function uses the strcpy function to copy data into a buffer without proper bounds checking. This can result in buffer overflow, leading to memory corruption. Additionally, the code attempts to write a null terminator beyond the buffer's size, causing buffer over-read and potential memory corruption.
+В коде, не соответствующем требованиям, функция writeToMemory использует функцию strcpy для копирования данных в буфер без надлежащей проверки границ. Это может привести к переполнению буфера, что приведет к повреждению памяти. Кроме того, код пытается записать нулевой терминатор за пределами размера буфера, что приводит к перечитыванию буфера и потенциальному повреждению памяти.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -583,12 +581,12 @@ int main() {
 
     std::cout << "Buffer: " << buffer << std::endl;
 
-    // Rest of the code...
+    // Остальная часть кода...
 }
 ```
 
 
-The compliant code addresses the memory corruption issue by using strncpy instead of strcpy to copy data into the buffer, ensuring that the length is respected. The code also correctly sets the null terminator within the buffer's size limit.
+Соответствующий код решает проблему повреждения памяти, используя strncpy вместо strcpy для копирования данных в буфер, что обеспечивает соблюдение длины. Код также корректно устанавливает нулевой терминатор в пределах ограничения размера буфера.
 
 
 Semgrep:
@@ -618,10 +616,10 @@ select strcpyCall,
 
 
 
-## Code Injection
+## Инъекция кода
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -629,49 +627,49 @@ select strcpyCall,
 
 void executeCommand(const std::string& command) {
     std::string fullCommand = "echo " + command;
-    system(fullCommand.c_str()); // Noncompliant code
+    system(fullCommand.c_str()); // Несоответствующий код
 }
 
 int main() {
     std::string userInput;
-    std::cout << "Enter a command: ";
+    std::cout << "Введите команду: ";
     std::cin >> userInput;
 
     executeCommand(userInput);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the executeCommand function constructs a command by concatenating user input with a fixed string and then passes it to the system function. This can lead to a Code Injection vulnerability as an attacker can manipulate the user input to execute arbitrary commands on the system.
+В коде, не соответствующем требованиям, функция executeCommand формирует команду путем конкатенации пользовательского ввода с фиксированной строкой и затем передает ее системной функции. Это может привести к уязвимости Code Injection, поскольку злоумышленник может манипулировать пользовательским вводом для выполнения произвольных команд в системе.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
 #include <iostream>
 
 void executeCommand(const std::string& command) {
-    std::cout << "Executing command: " << command << std::endl;
-    // Execute the command using a secure method
+    std::cout << "Выполнение команды: " << command << std::endl;
+    // Выполнение команды безопасным методом
     // ...
 }
 
 int main() {
     std::string userInput;
-    std::cout << "Enter a command: ";
+    std::cout << "Введите команду: ";
     std::cin >> userInput;
 
     executeCommand(userInput);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code eliminates the Code Injection vulnerability by not constructing the command string using user input and executing it with the system function. Instead, it uses a secure method to execute the command, which could involve implementing strict input validation, using an authorized command execution library, or utilizing system APIs with proper safeguards.
+Соответствующий код устраняет уязвимость Code Injection, не создавая командную строку с помощью пользовательского ввода и не выполняя ее с помощью системной функции. Вместо этого он использует безопасный метод для выполнения команды, который может включать строгую проверку ввода, использование авторизованной библиотеки выполнения команд или использование системных API с надлежащими мерами защиты.
 
 
 Semgrep:
@@ -700,31 +698,30 @@ select systemCall,
 
 
 
-## DLL Hijacking
+## Перехват DLL
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
-
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 ```c
 #include <iostream>
 #include <windows.h>
 
 int main() {
-    HMODULE hModule = LoadLibrary("evil.dll"); // Noncompliant code
+    HMODULE hModule = LoadLibrary("evil.dll"); // Несоответствующий код
     if (hModule != NULL) {
-        // DLL loaded successfully, proceed with its usage
+        // DLL успешно загружена, переходим к ее использованию
         // ...
     }
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the LoadLibrary function is used to load a DLL named "evil.dll" without specifying the full path. This can lead to a DLL Hijacking vulnerability, as an attacker can place a malicious DLL with the same name in a location where the application searches for DLLs, resulting in the execution of unauthorized code.
+В коде, не соответствующем требованиям, функция LoadLibrary используется для загрузки DLL с именем "evil.dll" без указания полного пути. Это может привести к уязвимости DLL Hijacking, так как злоумышленник может поместить вредоносную DLL с таким же именем в место, где приложение ищет DLL, что приведет к выполнению неавторизованного кода.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -735,16 +732,16 @@ int main() {
     std::string dllPath = "C:\\path\\to\\safe.dll";
     HMODULE hModule = LoadLibrary(dllPath.c_str());
     if (hModule != NULL) {
-        // DLL loaded successfully, proceed with its usage
+        // DLL успешно загружена, переходим к ее использованию
         // ...
     }
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code addresses the DLL Hijacking vulnerability by specifying the full path to the DLL being loaded with the LoadLibrary function. By providing the full path, the application ensures that it loads the intended DLL and prevents the possibility of loading a malicious DLL from an unauthorized location.
+Соответствующий код устраняет уязвимость DLL Hijacking, указывая полный путь к загружаемой DLL с помощью функции LoadLibrary. Указывая полный путь, приложение обеспечивает загрузку нужной DLL и предотвращает возможность загрузки вредоносной DLL из неавторизованного места.
 
 
 
@@ -778,30 +775,7 @@ select loadLibraryCall,
 ## Use After Free
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
-
-
-```c
-#include <iostream>
-
-int* createObject() {
-    return new int(5);
-}
-
-int main() {
-    int* ptr = createObject();
-    delete ptr;
-    std::cout << "Value: " << *ptr << std::endl; // Noncompliant code
-
-    // Rest of the code...
-}
-```
-
-In the noncompliant code, an object is dynamically allocated using new and assigned to the pointer ptr. Later, delete is called to deallocate the object, making the pointer ptr a dangling pointer. The noncompliant code attempts to dereference the dangling pointer by accessing the freed memory, leading to Use After Free, as the memory is no longer valid.
-
-
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
-
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 ```c
 #include <iostream>
@@ -812,16 +786,37 @@ int* createObject() {
 
 int main() {
     int* ptr = createObject();
-    std::cout << "Value: " << *ptr << std::endl;
+    удалить ptr;
+    std::cout << "Значение: " << *ptr << std::endl; // Несоответствующий код
 
-    delete ptr; // Deallocate the memory
+    // Остальной код...
+}
+```
 
-    // Rest of the code...
+В коде, не соответствующем требованиям, объект динамически выделяется с помощью new и присваивается указателю ptr. Позже вызывается delete для деаллокации объекта, в результате чего указатель ptr становится висячим указателем. Несоответствующий код пытается разыменовать висящий указатель, обращаясь к освобожденной памяти, что приводит к Use After Free, поскольку память больше не действительна.
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
+
+```c
+#include <iostream>
+
+int* createObject() {
+    return new int(5);
+}
+
+int main() {
+    int* ptr = createObject();
+    std::cout << "Значение: " << *ptr << std::endl;
+
+    delete ptr; // Деаллокация памяти
+
+    // Остальная часть кода...
 }
 ```
 
 
-The compliant code ensures that the pointer ptr is dereferenced before the associated memory is deallocated. After printing the value, the memory is freed using delete, preventing Use After Free vulnerabilities.
+Соответствующий код гарантирует, что указатель ptr будет разыменован до того, как будет деаллоцирована связанная с ним память. После печати значения память освобождается с помощью delete, что предотвращает уязвимости Use After Free.
 
 
 Semgrep:
@@ -852,10 +847,10 @@ select destructor,
 
 
 
-## Uninitialized Variables
+## Неинициализированные переменные
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -863,31 +858,31 @@ select destructor,
 
 int main() {
     int value;
-    std::cout << "Value: " << value << std::endl; // Noncompliant code
+    std::cout << "Значение: " << value << std::endl; // Несоответствующий код
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the variable value is declared but not initialized. It is then used in the std::cout statement without assigning a value to it. This leads to reading uninitialized memory, resulting in undefined behavior and potential security vulnerabilities.
+В коде, не соответствующем требованиям, переменная value объявлена, но не инициализирована. Затем она используется в операторе std::cout без присвоения ей значения. Это приводит к чтению неинициализированной памяти, что приводит к неопределенному поведению и потенциальным уязвимостям безопасности.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
 #include <iostream>
 
 int main() {
-    int value = 0; // Initialize the variable
-    std::cout << "Value: " << value << std::endl;
+    int value = 0; // Инициализация переменной
+    std::cout << "Значение: " << value << std::endl;
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code initializes the variable value to a specific value (in this case, 0) before using it. By providing an initial value, we ensure that the variable is properly initialized and avoids potential issues related to reading uninitialized memory.
+Соответствующий код инициализирует значение переменной определенным значением (в данном случае 0) перед ее использованием. Предоставляя начальное значение, мы обеспечиваем правильную инициализацию переменной и избегаем потенциальных проблем, связанных с чтением неинициализированной памяти.
 
 
 Semgrep:
@@ -920,7 +915,7 @@ select access,
 ## Race Conditions
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -931,7 +926,7 @@ int balance = 100;
 
 void withdrawMoney(int amount) {
     if (balance >= amount) {
-        // Simulate some delay or expensive operation
+        // Имитация некоторой задержки или дорогостоящей операции
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
         balance -= amount;
@@ -948,14 +943,14 @@ int main() {
     t1.join();
     t2.join();
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, two threads t1 and t2 are concurrently accessing and modifying the shared variable balance without proper synchronization. This can result in a Race Condition, where the outcome of the program becomes non-deterministic and dependent on the timing of thread execution. It can lead to inconsistent or incorrect results, such as incorrect balance updates or data corruption.
+В коде, не соответствующем требованиям, два потока t1 и t2 одновременно обращаются к общей переменной balance и изменяют ее без надлежащей синхронизации. Это может привести к возникновению состояния гонки, когда результат работы программы становится недетерминированным и зависит от времени выполнения потоков. Это может привести к непоследовательным или неправильным результатам, таким как некорректное обновление баланса или повреждение данных.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -969,7 +964,7 @@ std::mutex balanceMutex;
 void withdrawMoney(int amount) {
     std::lock_guard<std::mutex> lock(balanceMutex);
     if (balance >= amount) {
-        // Simulate some delay or expensive operation
+        // Имитация некоторой задержки или дорогостоящей операции
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
         balance -= amount;
@@ -986,12 +981,12 @@ int main() {
     t1.join();
     t2.join();
 
-    // Rest of the code...
+    // Остальная часть кода...
 }
 ```
 
 
-The compliant code addresses the Race Condition by introducing a mutex (balanceMutex) and using a lock guard (std::lock_guard) to ensure exclusive access to the critical section where the balance variable is modified. The mutex ensures that only one thread can access the critical section at a time, preventing concurrent modifications and guaranteeing consistent and correct results.
+Соответствующий код решает проблему гонки путем введения мьютекса (balanceMutex) и использования защиты блокировки (std::lock_guard) для обеспечения эксклюзивного доступа к критической секции, в которой изменяется переменная balance. Мьютекс гарантирует, что только один поток может получить доступ к критической секции одновременно, предотвращая одновременные модификации и гарантируя последовательные и корректные результаты.
 
 
 Semgrep:
@@ -1021,10 +1016,10 @@ select assignment,
 
 
 
-## Insecure File Operations
+## Небезопасные операции с файлами
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -1032,7 +1027,7 @@ select assignment,
 #include <fstream>
 
 void writeToFile(const std::string& data) {
-    std::ofstream file("data.txt"); // Noncompliant code
+    std::ofstream file("data.txt"); // Несоответствующий код
     if (file.is_open()) {
         file << data;
         file.close();
@@ -1041,19 +1036,19 @@ void writeToFile(const std::string& data) {
 
 int main() {
     std::string userInput;
-    std::cout << "Enter data: ";
+    std::cout << "Введите данные: ";
     std::cin >> userInput;
 
     writeToFile(userInput);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the writeToFile function writes user-supplied data to a file named "data.txt" without specifying the full path. This can lead to Insecure File Operations, as an attacker can manipulate the file location or overwrite sensitive files by controlling the current working directory or using relative paths.
+В коде, не соответствующем требованиям, функция writeToFile записывает данные, предоставленные пользователем, в файл с именем "data.txt" без указания полного пути. Это может привести к небезопасным файловым операциям, так как злоумышленник может манипулировать расположением файла или перезаписывать конфиденциальные файлы, контролируя текущий рабочий каталог или используя относительные пути.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -1061,7 +1056,7 @@ In the noncompliant code, the writeToFile function writes user-supplied data to 
 #include <fstream>
 
 void writeToFile(const std::string& data) {
-    std::string filePath = "/path/to/data.txt"; // Specify the full path
+    std::string filePath = "/path/to/data.txt"; // Указываем полный путь
     std::ofstream file(filePath);
     if (file.is_open()) {
         file << data;
@@ -1071,17 +1066,17 @@ void writeToFile(const std::string& data) {
 
 int main() {
     std::string userInput;
-    std::cout << "Enter data: ";
+    std::cout << "Введите данные: ";
     std::cin >> userInput;
 
     writeToFile(userInput);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code addresses Insecure File Operations by specifying the full path to the file being accessed or modified. By providing the full path, the application ensures that it performs file operations on the intended file and prevents the possibility of unauthorized access, file overwrites, or unintended data disclosure.
+Соответствующий код решает проблему небезопасных файловых операций, указывая полный путь к файлу, к которому осуществляется доступ или который модифицируется. Указывая полный путь, приложение гарантирует, что оно выполняет файловые операции с нужным файлом, и предотвращает возможность несанкционированного доступа, перезаписи файла или непреднамеренного раскрытия данных.
 
 
 
@@ -1113,10 +1108,10 @@ select ofstreamConstructor,
 
 
 
-## API Hooking
+## Подключение к API
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -1126,26 +1121,26 @@ select ofstreamConstructor,
 typedef BOOL(WINAPI* OriginalMessageBox)(HWND, LPCTSTR, LPCTSTR, UINT);
 
 BOOL WINAPI HookedMessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType) {
-    // Perform malicious actions
+    // Выполняем вредоносные действия
     // ...
 
-    // Call the original MessageBox function
+    // Вызов оригинальной функции MessageBox
     OriginalMessageBox originalFunc = (OriginalMessageBox)GetProcAddress(GetModuleHandle("user32.dll"), "MessageBoxA");
     return originalFunc(hWnd, lpText, lpCaption, uType);
 }
 
 int main() {
     OriginalMessageBox originalFunc = (OriginalMessageBox)GetProcAddress(GetModuleHandle("user32.dll"), "MessageBoxA");
-    MessageBox = HookedMessageBox; // Noncompliant code
+    MessageBox = HookedMessageBox; // Несоответствующий код
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, API Hooking is implemented by replacing the original function pointer with a custom function, HookedMessageBox. The custom function performs malicious actions and then calls the original function. This allows an attacker to intercept and modify the behavior of the MessageBox function, potentially leading to unauthorized access or manipulation of data.
+В несоответствующем коде API Hooking реализован путем замены указателя оригинальной функции на пользовательскую функцию HookedMessageBox. Пользовательская функция выполняет вредоносные действия, а затем вызывает исходную функцию. Это позволяет злоумышленнику перехватить и изменить поведение функции MessageBox, что потенциально может привести к несанкционированному доступу или манипулированию данными.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -1155,25 +1150,25 @@ In the noncompliant code, API Hooking is implemented by replacing the original f
 typedef BOOL(WINAPI* OriginalMessageBox)(HWND, LPCTSTR, LPCTSTR, UINT);
 
 BOOL WINAPI HookedMessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType) {
-    // Perform additional actions before or after calling the original MessageBox function
+    // Выполните дополнительные действия до или после вызова исходной функции MessageBox
     // ...
 
-    // Call the original MessageBox function
+    // Вызов исходной функции MessageBox
     OriginalMessageBox originalFunc = (OriginalMessageBox)GetProcAddress(GetModuleHandle("user32.dll"), "MessageBoxA");
     return originalFunc(hWnd, lpText, lpCaption, uType);
 }
 
 int main() {
-    // Use the original function pointer directly
+    // Используем указатель оригинальной функции напрямую
     OriginalMessageBox originalFunc = (OriginalMessageBox)GetProcAddress(GetModuleHandle("user32.dll"), "MessageBoxA");
     originalFunc(NULL, "Hello", "Message", MB_OK);
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code does not implement API Hooking. Instead, it uses the original function pointer directly to call the MessageBox function. This ensures that the original behavior of the API is maintained and prevents unauthorized interception or modification of the function.
+Соответствующий код не реализует API Hooking. Вместо этого он использует исходный указатель функции непосредственно для вызова функции MessageBox. Это гарантирует сохранение оригинального поведения API и предотвращает несанкционированный перехват или модификацию функции.
 
 
 
@@ -1211,7 +1206,7 @@ select functionPointerAssignment,
 ## TOCTOU
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -1220,28 +1215,28 @@ select functionPointerAssignment,
 
 bool isFileWritable(const std::string& filename) {
     std::ofstream file(filename);
-    return file.good(); // Noncompliant code
+    return file.good(); // Несоответствующий код
 }
 
 int main() {
     std::string filename = "data.txt";
     if (isFileWritable(filename)) {
         std::ofstream file(filename);
-        file << "Data"; // Noncompliant code
+        file << "Data"; // Несоответствующий код
         file.close();
-        std::cout << "File written successfully." << std::endl;
+        std::cout << "Файл записан успешно." << std::endl;
     } else {
-        std::cout << "File is not writable." << std::endl;
+        std::cout << "Файл не доступен для записи". << std::endl;
     }
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In the noncompliant code, the function isFileWritable attempts to check if a file is writable by creating an ofstream object and checking its state. However, between the time of checking and the time of using the file, the file can be modified externally. This leads to a Time-of-Check Time-of-Use (TOCTOU) vulnerability, as the file's state can change after the check is performed but before the file is used.
+В коде, не соответствующем требованиям, функция isFileWritable пытается проверить, доступен ли файл для записи, создавая объект ofstream и проверяя его состояние. Однако между моментом проверки и моментом использования файла он может быть изменен извне. Это приводит к уязвимости Time-of-Check Time-of-Use (TOCTOU), поскольку состояние файла может измениться после выполнения проверки, но до того, как файл будет использован.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```c
@@ -1259,17 +1254,17 @@ int main() {
         std::ofstream file(filename);
         file << "Data";
         file.close();
-        std::cout << "File written successfully." << std::endl;
+        std::cout << "Файл записан успешно." << std::endl;
     } else {
-        std::cout << "File is not writable." << std::endl;
+        std::cout << "Файл не доступен для записи". << std::endl;
     }
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-The compliant code avoids the TOCTOU vulnerability by modifying the code flow. Instead of checking if the file is writable and then performing the write operation, it directly attempts to open the file for writing. If the file is not writable, the appropriate error handling can be performed. This eliminates the window between the check and use where the file's state can change.
+Соответствующий код позволяет избежать уязвимости TOCTOU путем изменения потока кода. Вместо того чтобы проверять, доступен ли файл для записи, а затем выполнять операцию записи, он напрямую пытается открыть файл для записи. Если файл не доступен для записи, выполняется соответствующая обработка ошибки. Это устраняет промежуток между проверкой и использованием, когда состояние файла может измениться.
 
 
 Semgrep:
