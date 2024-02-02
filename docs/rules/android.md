@@ -7,7 +7,7 @@ parent: Rules
 # Android
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -22,13 +22,13 @@ parent: Rules
 
 
 
-### Improper Platform Usage
+### Неправильное использование платформы
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
-// Noncompliant code
+// Несоответствующий код
 public class InsecureStorageActivity extends AppCompatActivity {
     private SharedPreferences preferences;
 
@@ -40,21 +40,21 @@ public class InsecureStorageActivity extends AppCompatActivity {
         preferences = getSharedPreferences("my_prefs", MODE_WORLD_READABLE);
     }
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In this noncompliant code, the SharedPreferences object is created with the mode MODE_WORLD_READABLE, which allows any other application to read the stored preferences. This violates the principle of proper platform usage, as sensitive data should not be stored in a way that allows unauthorized access.
+В этом несоответствующем коде объект SharedPreferences создается с режимом MODE_WORLD_READABLE, что позволяет любому другому приложению прочитать сохраненные настройки. Это нарушает принцип правильного использования платформы, поскольку конфиденциальные данные не должны храниться таким образом, чтобы к ним был возможен несанкционированный доступ.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Код соответствия:
 
 
 ```java
-// Compliant code
+// Соответствующий код
 public class SecureStorageActivity extends AppCompatActivity {
     private SharedPreferences preferences;
 
@@ -66,20 +66,20 @@ public class SecureStorageActivity extends AppCompatActivity {
         preferences = getSharedPreferences("my_prefs", MODE_PRIVATE);
     }
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-In the compliant code, the SharedPreferences object is created with the mode MODE_PRIVATE, which ensures that the preferences are only accessible by the application itself. This follows the principle of proper platform usage by securely storing sensitive data without allowing unauthorized access.
+В совместимом коде объект SharedPreferences создается с режимом MODE_PRIVATE, который гарантирует, что предпочтения доступны только самому приложению. Это соответствует принципу правильного использования платформы, обеспечивая безопасное хранение конфиденциальных данных и не допуская несанкционированного доступа.
 
-By using MODE_PRIVATE instead of MODE_WORLD_READABLE, the compliant code ensures that the stored preferences are only accessible within the application, mitigating the risk of exposing sensitive information to other applications on the device.
+Используя MODE_PRIVATE вместо MODE_WORLD_READABLE, код, соответствующий требованиям, гарантирует, что сохраненные предпочтения доступны только в рамках приложения, что снижает риск раскрытия конфиденциальной информации другим приложениям на устройстве.
 
 
 
 Semgrep:
 
-For Semgrep, you can use the following rule to detect the insecure use of MODE_WORLD_READABLE in SharedPreferences:
+Для Semgrep можно использовать следующее правило, чтобы обнаружить небезопасное использование MODE_WORLD_READABLE в SharedPreferences:
 
 ```
 rules:
@@ -91,7 +91,7 @@ rules:
 
 CodeQL:
 
-For CodeQL, you can use the following query to detect the insecure use of MODE_WORLD_READABLE in SharedPreferences:
+Для CodeQL вы можете использовать следующий запрос, чтобы обнаружить небезопасное использование MODE_WORLD_READABLE в SharedPreferences:
 
 
 ```
@@ -108,11 +108,11 @@ select m
 
 ### Insecure Data Storage
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
-// Noncompliant code
+// Несоответствующий код
 public class InsecureStorageActivity extends AppCompatActivity {
     private static final String FILENAME = "my_sensitive_data.txt";
 
@@ -121,7 +121,7 @@ public class InsecureStorageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insecure_storage);
         
-        String sensitiveData = "This is my sensitive data";
+        String sensitiveData = "Это мои конфиденциальные данные".;
         writeToFile(sensitiveData);
     }
 
@@ -136,22 +136,22 @@ public class InsecureStorageActivity extends AppCompatActivity {
         }
     }
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In this noncompliant code, sensitive data is written to a file using the FileWriter without considering secure storage options. The data is stored in the application's private file directory, but it lacks proper encryption or additional security measures, making it vulnerable to unauthorized access.
+В этом несоответствующем коде конфиденциальные данные записываются в файл с помощью FileWriter без учета вариантов безопасного хранения. Данные хранятся в личном каталоге файлов приложения, но они не имеют надлежащего шифрования или дополнительных мер безопасности, что делает их уязвимыми для несанкционированного доступа.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Код соответствия:
 
 
 ```java
-// Compliant code
+// Соответствующий код
 public class SecureStorageActivity extends AppCompatActivity {
     private static final String FILENAME = "my_sensitive_data.txt";
 
@@ -160,7 +160,7 @@ public class SecureStorageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secure_storage);
         
-        String sensitiveData = "This is my sensitive data";
+        String sensitiveData = "Это мои конфиденциальные данные";
         writeToFile(sensitiveData);
     }
 
@@ -175,14 +175,14 @@ public class SecureStorageActivity extends AppCompatActivity {
         }
     }
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-In the compliant code, the FileOutputStream and OutputStreamWriter are used along with the openFileOutput method to securely write the sensitive data to a file in the application's private storage directory. The MODE_PRIVATE flag ensures that the file is only accessible by the application itself. This follows secure storage practices and helps protect the sensitive data from unauthorized access.
+В коде, соответствующем требованиям, FileOutputStream и OutputStreamWriter используются вместе с методом openFileOutput для безопасной записи конфиденциальных данных в файл в частном каталоге хранения приложения. Флаг MODE_PRIVATE гарантирует, что файл будет доступен только самому приложению. Это соответствует правилам безопасного хранения и помогает защитить конфиденциальные данные от несанкционированного доступа.
 
-By using openFileOutput with MODE_PRIVATE instead of FileWriter, the compliant code ensures secure storage of sensitive data, mitigating the risk of unauthorized access or exposure.
+Используя openFileOutput с MODE_PRIVATE вместо FileWriter, код, соответствующий требованиям, обеспечивает безопасное хранение конфиденциальных данных, снижая риск несанкционированного доступа или раскрытия.
 
 
 
@@ -211,13 +211,13 @@ select m
 ```
 
 
-### Insecure Communication
+### Небезопасная связь
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
-// Noncompliant code
+// Несоответствующий код
 public class InsecureCommunicationActivity extends AppCompatActivity {
     private static final String API_URL = "http://example.com/api/";
 
@@ -228,7 +228,7 @@ public class InsecureCommunicationActivity extends AppCompatActivity {
         
         String requestData = "Some sensitive data";
         String response = sendRequest(requestData);
-        // Process the response...
+        // Обработайте ответ...
     }
 
     private String sendRequest(String data) {
@@ -253,7 +253,7 @@ public class InsecureCommunicationActivity extends AppCompatActivity {
                 reader.close();
                 return response.toString();
             } else {
-                // Handle error response...
+                // Обработка ответа на ошибку...
             }
             
             conn.disconnect();
@@ -264,11 +264,11 @@ public class InsecureCommunicationActivity extends AppCompatActivity {
         return null;
     }
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In this noncompliant code, the app sends sensitive data over an insecure HTTP connection (http://example.com/api/) using HttpURLConnection. This puts the data at risk of interception, tampering, and unauthorized access.
+В этом несоответствующем коде приложение отправляет конфиденциальные данные по незащищенному HTTP-соединению (http://example.com/api/) с помощью HttpURLConnection. Это подвергает данные риску перехвата, фальсификации и несанкционированного доступа.
 
 
 
@@ -276,12 +276,12 @@ In this noncompliant code, the app sends sensitive data over an insecure HTTP co
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
-// Compliant code
-// Compliant code
+// Соответствующий код
+
 public class SecureCommunicationActivity extends AppCompatActivity {
     private static final String API_URL = "https://example.com/api/";
 
@@ -292,7 +292,7 @@ public class SecureCommunicationActivity extends AppCompatActivity {
         
         String requestData = "Some sensitive data";
         String response = sendRequest(requestData);
-        // Process the response...
+        // Обработайте ответ...
     }
 
     private String sendRequest(String data) {
@@ -317,7 +317,7 @@ public class SecureCommunicationActivity extends AppCompatActivity {
                 reader.close();
                 return response.toString();
             } else {
-                // Handle error response...
+                // Обработка ответа на ошибку...
             }
             
             conn.disconnect();
@@ -328,12 +328,12 @@ public class SecureCommunicationActivity extends AppCompatActivity {
         return null;
     }
 
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-In the compliant code, the app uses HttpsURLConnection to establish a secure HTTPS connection (https://example.com/api/) for transmitting sensitive data. HTTPS ensures that the communication is encrypted, providing confidentiality and integrity of the data. By using HTTPS instead of HTTP, the compliant code addresses the vulnerability of insecure communication and reduces the risk of interception or unauthorized access to sensitive data.
+В коде, соответствующем требованиям, приложение использует HttpsURLConnection для создания защищенного HTTPS-соединения (https://example.com/api/) для передачи конфиденциальных данных. HTTPS гарантирует, что связь зашифрована, обеспечивая конфиденциальность и целостность данных. Используя HTTPS вместо HTTP, совместимый код устраняет уязвимость небезопасной связи и снижает риск перехвата или несанкционированного доступа к конфиденциальным данным.
 
 
 
@@ -362,13 +362,13 @@ select m
 ```
 
 
-### Insecure Authentication
+### Небезопасная аутентификация
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
-// Noncompliant code
+// Несоответствующий код
 public class LoginActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
@@ -390,10 +390,10 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
 
                 if (username.equals("admin") && password.equals("admin123")) {
-                    // Login successful
+                    // Вход в систему успешный
                     openMainActivity();
                 } else {
-                    // Login failed
+                    // Вход в систему не удался
                     Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -401,17 +401,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void openMainActivity() {
-        // Start the main activity
+        // Начните основную работу
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
     
-    // Rest of the code...
+    // Остальная часть кода...
 }
 ```
 
-In this noncompliant code, the app performs authentication by comparing the username and password entered by the user (admin and admin123) with hard-coded values. This approach is insecure because the credentials are easily discoverable and can be exploited by attackers.
+В этом несоответствующем коде приложение выполняет аутентификацию, сравнивая введенные пользователем имя пользователя и пароль (admin и admin123) с жестко закодированными значениями. Такой подход небезопасен, поскольку учетные данные легко обнаруживаются и могут быть использованы злоумышленниками.
 
 
 
@@ -420,11 +420,11 @@ In this noncompliant code, the app performs authentication by comparing the user
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Код соответствия:
 
 
 ```java
-// Compliant code
+// Соответствующий код
 public class LoginActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
@@ -445,12 +445,12 @@ public class LoginActivity extends AppCompatActivity {
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                // Perform secure authentication
+                // Выполняем безопасную аутентификацию
                 if (authenticateUser(username, password)) {
-                    // Login successful
+                    // Вход в систему успешный
                     openMainActivity();
                 } else {
-                    // Login failed
+                    // Вход не удался
                     Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -458,26 +458,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean authenticateUser(String username, String password) {
-        // Implement secure authentication logic here
-        // Example: Make a secure API call to validate the user credentials
-        // Return true if the authentication is successful, false otherwise
+        // Реализуйте здесь логику безопасной аутентификации
+        // Пример: Выполнить безопасный вызов API для проверки учетных данных пользователя.
+        // Возвращаем true в случае успешной аутентификации, false - в противном случае
 
         return false;
     }
 
     private void openMainActivity() {
-        // Start the main activity
+        // Запуск основной активности
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
     
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
 
-In the compliant code, the app separates the authentication logic into a dedicated method authenticateUser(), which can be implemented securely. This method can utilize secure authentication mechanisms such as hashing, salting, and server-side validation. By implementing a secure authentication process instead of relying on hard-coded credentials, the compliant code addresses the vulnerability of insecure authentication and reduces the risk of unauthorized access to user accounts.
+В коде, соответствующем требованиям, приложение выделяет логику аутентификации в специальный метод authenticateUser(), который может быть реализован безопасно. Этот метод может использовать такие механизмы безопасной аутентификации, как хеширование, солевая обработка и проверка на стороне сервера. Реализуя безопасный процесс аутентификации вместо того, чтобы полагаться на жестко заданные учетные данные, код, соответствующий требованиям, устраняет уязвимость небезопасной аутентификации и снижает риск несанкционированного доступа к учетным записям пользователей.
 
 
 Semgrep:
@@ -508,13 +508,13 @@ select b
 
 
 
-### Insufficient Cryptography
+### Недостаточная криптография
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
-// Noncompliant code
+// Несоответствующий код
 public class EncryptionUtils {
     private static final String KEY = "mySecretKey";
     
@@ -549,11 +549,11 @@ public class EncryptionUtils {
         return new SecretKeySpec(KEY.getBytes(), "AES");
     }
     
-    // Rest of the code...
+    // Остальной код...
 }
 ```
 
-In this noncompliant code, a custom EncryptionUtils class is implemented to encrypt and decrypt data using the AES algorithm. However, the code uses a hard-coded key (mySecretKey) and does not incorporate other essential security measures like salting, key strengthening, or secure key storage. This approach is insufficient and can be vulnerable to various cryptographic attacks.
+В этом несоответствующем коде реализован пользовательский класс EncryptionUtils для шифрования и расшифровки данных с помощью алгоритма AES. Однако код использует жестко закодированный ключ (mySecretKey) и не включает другие важные меры безопасности, такие как выделение, усиление ключа или безопасное хранение ключей. Такой подход недостаточен и может быть уязвим для различных криптографических атак.
 
 
 
@@ -561,7 +561,7 @@ In this noncompliant code, a custom EncryptionUtils class is implemented to encr
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Код соответствия:
 
 
 ```java
@@ -624,7 +624,7 @@ public class EncryptionUtils {
 ```
 
 
-In the compliant code, the key generation has been improved by using a more secure approach. Instead of a simple byte conversion of the secretKey, a hashing algorithm (SHA-256) is used to derive a stronger key from the secretKey. This enhances the security of the encryption process by introducing a more robust key derivation function.
+В совместимом коде генерация ключа была улучшена за счет использования более безопасного подхода. Вместо простого преобразования байтов секретного ключа используется алгоритм хэширования (SHA-256) для получения более надежного ключа из секретного ключа. Это повышает безопасность процесса шифрования за счет использования более надежной функции получения ключа.
 
 
 
@@ -655,9 +655,9 @@ select m
 ```
 
 
-### Insecure Authorization
+### Небезопасная авторизация
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
