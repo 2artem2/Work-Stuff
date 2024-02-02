@@ -15,7 +15,7 @@ parent: Production
 ---
 
 
-# Threat Intelligence
+# Разведка угроз
 {: .no_toc }
 
 Анализ угроз - это процесс сбора и анализа информации о потенциальных и существующих угрозах кибербезопасности, таких как вредоносное ПО, фишинговые атаки и утечки данных. Цель анализа угроз - предоставить организациям действенные сведения, которые помогут им выявить и смягчить потенциальные риски безопасности до того, как они смогут причинить вред.
@@ -374,13 +374,13 @@ Typosquatting - это техника, используемая злоумышл
 
 
 
-#### Control of common registry
+#### Управление общим реестром
 
 ![](../../../assets/images/registry.drawio.png)
 
 
 
-Control of a common registry refers to a situation where an attacker gains control over a registry used by the organization, allowing them to introduce and execute malicious images or packages within the CI/CD pipeline or production environment. This compromise can lead to the execution of unauthorized or malicious code, data breaches, or disruption of the CI/CD process. Protecting against the control of a common registry requires implementing robust security measures, controlling access to the registry, and monitoring for any suspicious or unauthorized activities.
+Под контролем общего реестра понимается ситуация, когда злоумышленник получает контроль над реестром, используемым организацией, что позволяет ему внедрять и исполнять вредоносные образы или пакеты в CI/CD пайплайне или производственной среде. Такая компрометация может привести к выполнению несанкционированного или вредоносного кода, утечке данных или нарушению процесса CI/CD. Защита от контроля над общим реестром требует применения надежных мер безопасности, контроля доступа к реестру и мониторинга любых подозрительных или несанкционированных действий.
 
 
 
@@ -388,130 +388,130 @@ Control of a common registry refers to a situation where an attacker gains contr
 
 
 
-### Persistence
+### Настойчивость
 
-The persistency tactic in the context of DevOps threat matrix refers to techniques employed by attackers to maintain access to a victim's environment even after initial compromise. These techniques allow attackers to persistently control and access the compromised systems, potentially leading to further unauthorized activities, data breaches, or system disruptions. Mitigating the risk of persistency requires implementing strong security practices, conducting regular system audits, and promptly addressing any identified vulnerabilities or unauthorized access.
-
-
+Тактика стойкости в контексте матрицы угроз DevOps относится к методам, используемым злоумышленниками для сохранения доступа к среде жертвы даже после первоначальной компрометации. Эти методы позволяют злоумышленникам сохранять контроль и доступ к взломанным системам, что потенциально может привести к дальнейшим несанкционированным действиям, утечке данных или нарушению работы системы. Для снижения риска постоянных атак необходимо внедрять надежные методы обеспечения безопасности, проводить регулярный аудит систем и оперативно устранять любые выявленные уязвимости или несанкционированный доступ.
 
 
-#### Changes in repository
+
+
+#### Изменения в хранилище
 
 ![](../../../assets/images/per-reg.drawio.png)
 
 
-Changes in repository refer to techniques where adversaries exploit the automatic tokens within the CI/CD pipeline to access and push code changes to the repository. By leveraging these tokens, which often have sufficient permissions, attackers can achieve persistency within the environment. This persistence can enable unauthorized code modifications, data exfiltration, or further exploitation of the organization's systems. Preventing and mitigating the risk of changes in the repository requires implementing secure practices, controlling access to tokens, and monitoring repository activities for any suspicious or unauthorized changes.
+Изменения в репозитории - это техника, при которой злоумышленники используют автоматические токены в пайплайне CI/CD для доступа и отправки изменений кода в репозиторий. Используя эти токены, которые часто обладают достаточными правами, злоумышленники могут добиться постоянства в среде. Такое постоянство может привести к несанкционированным изменениям кода, утечке данных или дальнейшей эксплуатации систем организации. Предотвращение и снижение риска изменений в хранилище требует внедрения безопасных методов, контроля доступа к токенам и мониторинга деятельности хранилища на предмет любых подозрительных или несанкционированных изменений.
 
-* Change/add scripts in code – we can change some of the initialization scripts/add new scripts, so they download a backdoor/starter for the attacker, so each time the pipeline is executing these scripts, the attacker’s code will be executed too.
+* Изменение/добавление скриптов в код - мы можем изменить некоторые скрипты инициализации/добавить новые скрипты, чтобы они загружали бэкдор/стартер для злоумышленника, и каждый раз, когда пайплайн будет выполнять эти скрипты, будет выполняться и код злоумышленника.
 
-* Change the pipeline configuration – we can add new steps in the pipeline to download an attacker-controlled script to the pipeline before continuing with the build process.
+* Изменение конфигурации пайплайна - мы можем добавить новые шаги в пайплайн, чтобы загрузить контролируемый злоумышленником скрипт в пайплайн перед продолжением процесса сборки.
 
-* Change the configuration for dependencies locations – to use attacker-controlled packages.
+* Изменить конфигурацию расположения зависимостей - использовать контролируемые злоумышленником пакеты.
 
 
-##### Inject in Artifacts
+##### Inject в артефактах
 
 ![](../../../assets/images/per-arti.drawio.png)
 
 
-Injecting code into artifacts involves exploiting the functionality of Continuous Integration (CI) environments that allow the creation and sharing of artifacts between pipeline executions. Attackers can manipulate these artifacts to inject malicious code or files, which can lead to unauthorized code execution or compromise of the CI/CD pipeline. Preventing and mitigating the risk of artifact injection requires implementing security measures, validating artifacts, and monitoring for any suspicious or unauthorized changes.
+Внедрение кода в артефакты предполагает использование функциональности сред непрерывной интеграции (CI), которые позволяют создавать и обмениваться артефактами между выполнениями пайплайнов. Злоумышленники могут манипулировать этими артефактами для внедрения вредоносного кода или файлов, что может привести к несанкционированному выполнению кода или компрометации пайплайна CI/CD. Для предотвращения и снижения риска внедрения артефактов необходимо применять меры безопасности, проверять артефакты и отслеживать любые подозрительные или несанкционированные изменения.
 
 
 
 
 
 
-##### Modify images in registry
+##### Изменение изображений в реестре
 
 ![](../../../assets/images/per-img.drawio.png)
 
 
 
-Modifying images in the registry refers to a technique where an attacker gains access to the image registry used by CI/CD pipelines and manipulates the images stored in the registry. By modifying or planting malicious images, the attacker can ensure that these images are executed by the user's containers, leading to the execution of unauthorized or malicious code within the production environment. Preventing and mitigating the risk of image modification in the registry requires implementing strong security measures, controlling access to the registry, and monitoring for any unauthorized changes.
+Под модификацией изображений в реестре понимается техника, при которой злоумышленник получает доступ к реестру изображений, используемому пайплайнами CI/CD, и манипулирует изображениями, хранящимися в реестре. Изменяя или подбрасывая вредоносные образы, злоумышленник может обеспечить их выполнение пользовательскими контейнерами, что приведет к выполнению несанкционированного или вредоносного кода в производственной среде. Для предотвращения и снижения риска модификации образов в реестре необходимо применять строгие меры безопасности, контролировать доступ к реестру и отслеживать любые несанкционированные изменения.
 
 
 
 
 
-##### Create service credentials
+##### Создание учетных данных службы
 
 ![](../../../assets/images/per-service.drawio.png)
 
 
-Creating service credentials in the context of DevOps refers to the process of generating and managing authentication credentials for services or applications used within the CI/CD pipeline or infrastructure. Service credentials provide secure access to various resources, such as cloud platforms, databases, or external APIs, and help establish trust and authorization between different components of the DevOps environment. Properly managing service credentials is crucial for maintaining the security and integrity of the DevOps pipeline and ensuring authorized access to sensitive resources.
+Создание учетных данных служб в контексте DevOps означает процесс создания и управления учетными данными аутентификации для служб или приложений, используемых в рамках пайплайна или инфраструктуры CI/CD. Учетные данные служб обеспечивают безопасный доступ к различным ресурсам, таким как облачные платформы, базы данных или внешние API, и помогают установить доверие и авторизацию между различными компонентами среды DevOps. Правильное управление учетными данными служб имеет решающее значение для поддержания безопасности и целостности пайплайна DevOps и обеспечения авторизованного доступа к важным ресурсам.
 
 
 
 
 
 
-### Privilege escalation
+### Эскалация привилегий
 
-Privilege escalation techniques in the context of DevOps refer to the methods used by an attacker to elevate their privileges within a victim's environment. By gaining higher privileges, the attacker can access more sensitive resources, manipulate configurations, and potentially compromise the entire DevOps infrastructure. Understanding and mitigating privilege escalation risks is crucial to maintaining the security and integrity of the DevOps environment.
-
-
+Методы повышения привилегий в контексте DevOps относятся к методам, используемым злоумышленником для повышения своих привилегий в среде жертвы. Получив более высокие привилегии, злоумышленник может получить доступ к более важным ресурсам, манипулировать конфигурациями и потенциально скомпрометировать всю инфраструктуру DevOps. Понимание и снижение рисков, связанных с повышением привилегий, очень важно для обеспечения безопасности и целостности среды DevOps.
 
 
-#### Secrets in private repositories
+
+
+#### Секреты в частных репозиториях
 
 ![](../../../assets/images/priv-pro.drawio.png)
 
 
-The presence of secrets in private repositories poses a significant security risk within the DevOps environment. Attackers who have gained initial access can leverage this access to scan private repositories in search of hidden secrets. Private repositories are typically considered more secure as they are inaccessible from outside the organization. However, if sensitive information such as API keys, passwords, or cryptographic keys are mistakenly committed or stored within these repositories, they can be exposed to unauthorized individuals. Detecting and mitigating the presence of secrets in private repositories is essential to maintain the confidentiality and integrity of the organization's assets.
+Наличие секретов в частных репозиториях представляет собой значительный риск безопасности в среде DevOps. Злоумышленники, получившие первоначальный доступ, могут использовать его для сканирования частных репозиториев в поисках скрытых секретов. Частные репозитории обычно считаются более безопасными, так как они недоступны извне организации. Однако если конфиденциальная информация, такая как API-ключи, пароли или криптографические ключи, по ошибке будет зафиксирована или сохранена в этих хранилищах, она может стать доступной для неавторизованных лиц. Обнаружение и устранение последствий наличия секретов в частных хранилищах очень важно для сохранения конфиденциальности и целостности активов организации.
 
 
 
 
 
-##### Commit/push to protected branches
+##### Зафиксировать/переместить в защищенные ветки
 
 ![](../../../assets/images/priv-key.drawio.png)
 
-Committing or pushing code to protected branches in a repository can pose a significant security risk in the DevOps environment. If the pipeline has access to the repository and the repository's access controls are permissive, it may allow an attacker to bypass normal code review and approval processes and inject malicious code directly into important branches without the intervention of the development team. This can lead to unauthorized code execution, compromising the integrity and security of the application or system. Implementing proper access controls and review processes is crucial to mitigate the risk of unauthorized code changes in protected branches.
+Коммит или проталкивание кода в защищенные ветки репозитория может представлять собой значительный риск безопасности в среде DevOps. Если у пайплайна есть доступ к репозиторию, а контроль доступа к нему является разрешительным, это может позволить злоумышленнику обойти обычные процессы проверки и утверждения кода и внедрить вредоносный код непосредственно в важные ветки без вмешательства команды разработчиков. Это может привести к несанкционированному выполнению кода, нарушив целостность и безопасность приложения или системы. Для снижения риска несанкционированного изменения кода в защищенных ветках очень важно внедрить надлежащие средства контроля доступа и процессы проверки.
 
 
 
 
 
 
-##### Certificates and identities from metadata services
+##### Сертификаты и идентификаторы из служб метаданных
 
 ![](../../../assets/images/priv-cert.drawio.png)
 
 
 
-In cloud-hosted pipelines, attackers may exploit the access they already have to the environment to gain unauthorized access to certificates and identities stored in metadata services. These services, often provided by cloud platforms, store sensitive information such as certificates, authentication tokens, and identity-related data. Extracting such information allows the attacker to assume the privileges associated with those certificates or identities, potentially compromising the security and confidentiality of the DevOps environment. Protecting and securing certificates and identities from metadata services is crucial to prevent unauthorized access and maintain the integrity of the system.
+В облачных пайплайнах злоумышленники могут использовать уже имеющийся у них доступ к среде для получения несанкционированного доступа к сертификатам и идентификаторам, хранящимся в службах метаданных. Эти сервисы, часто предоставляемые облачными платформами, хранят конфиденциальную информацию, такую как сертификаты, маркеры аутентификации и данные, связанные с идентификацией. Извлечение такой информации позволяет злоумышленнику воспользоваться привилегиями, связанными с этими сертификатами или идентификаторами, что может поставить под угрозу безопасность и конфиденциальность среды DevOps. Защита и обеспечение безопасности сертификатов и идентификационных данных из служб метаданных имеет решающее значение для предотвращения несанкционированного доступа и поддержания целостности системы.
 
 
 
 
 
 
-### Credential access
+### Доступ к учетным данным
 
 
 
-Credential access techniques refer to the methods used by attackers to steal credentials within the DevOps environment. By obtaining valid credentials, attackers can gain unauthorized access to critical systems, services, or resources. It is crucial to protect credentials and implement measures to prevent their unauthorized access or theft. Understanding and mitigating credential access risks is essential to maintain the security and integrity of the DevOps environment.
+Под методами доступа к учетным данным понимаются способы, используемые злоумышленниками для кражи учетных данных в среде DevOps. Получив действительные учетные данные, злоумышленники могут получить несанкционированный доступ к критическим системам, сервисам или ресурсам. Очень важно защищать учетные данные и применять меры по предотвращению их несанкционированного доступа или кражи. Понимание и снижение рисков доступа к учетным данным необходимо для поддержания безопасности и целостности среды DevOps.
 
 
 
 
-#### User credentials
+#### Учетные данные пользователя
 
 ![](../../../assets/images/cred-key.drawio.png)
 
 
-User credentials are often required in CI pipelines to access external services such as databases, APIs, or other resources. However, if not properly secured, these credentials can become a target for attackers. They may try to gain access to the pipeline and extract the credentials to gain unauthorized access to external services. Protecting user credentials is crucial to prevent unauthorized access and maintain the security of the DevOps environment.
+Учетные данные пользователя часто требуются в пайплайнах CI для доступа к внешним сервисам, таким как базы данных, API или другие ресурсы. Однако, если эти учетные данные не защищены должным образом, они могут стать мишенью для злоумышленников. Они могут попытаться получить доступ к пайплайну и извлечь учетные данные, чтобы получить несанкционированный доступ к внешним службам. Защита учетных данных пользователей имеет решающее значение для предотвращения несанкционированного доступа и поддержания безопасности среды DevOps.
 
 
 
 
 
-##### Service credentials
+##### Учетные данные служб
 
 ![](../../../assets/images/cred-serv.drawio.png)
 
-Service credentials, such as service principal names (SPN) and shared access signature (SAS) tokens, are commonly used in DevOps environments to authenticate and authorize access to various services and resources. However, if these credentials are compromised, an attacker can gain unauthorized access to other services directly from the pipeline. Protecting service credentials is essential to prevent unauthorized access and maintain the security of the DevOps environment.
+Учетные данные служб, такие как имена руководителей служб (SPN) и маркеры подписи общего доступа (SAS), широко используются в средах DevOps для аутентификации и авторизации доступа к различным службам и ресурсам. Однако если эти учетные данные скомпрометированы, злоумышленник может получить несанкционированный доступ к другим службам непосредственно из пайплайна. Защита учетных данных служб необходима для предотвращения несанкционированного доступа и поддержания безопасности среды DevOps.
 
 
 
@@ -520,68 +520,68 @@ Service credentials, such as service principal names (SPN) and shared access sig
 
 
 
-### Lateral movement
+### Боковое перемещение
 
 
-The lateral movement tactic in CI/CD environments refers to the techniques used by attackers to move through different resources within the DevOps pipeline. Attackers aim to gain access to deployment resources, build artifacts, registries, or other targets to expand their reach and carry out malicious activities. Detecting and preventing lateral movement is crucial to maintain the security and integrity of the CI/CD environment.
+Тактика латерального перемещения в средах CI/CD относится к методам, используемым злоумышленниками для перемещения через различные ресурсы в рамках пайплайна DevOps. Злоумышленники стремятся получить доступ к ресурсам развертывания, артефактам сборки, реестрам и другим целям, чтобы расширить сферу своего влияния и осуществить вредоносные действия. Обнаружение и предотвращение боковых перемещений имеет решающее значение для поддержания безопасности и целостности среды CI/CD.
 
 
 
 
-#### Compromise build artifacts
+#### Артефакты компромиссной сборки
 
 ![](../../../assets/images/arti.drawio.png)
 
-Compromising build artifacts is a supply chain attack where an attacker gains control over the CI pipelines and manipulates the build artifacts. By injecting malicious code into the building materials before the build process is completed, the attacker can introduce malicious functionality into the final build artifacts. Protecting build artifacts is essential to prevent the deployment of compromised or malicious software.
+Компрометация артефактов сборки - это атака на цепочку поставок, в ходе которой злоумышленник получает контроль над пайплайнами CI и манипулирует артефактами сборки. Внедрив вредоносный код в строительные материалы до завершения процесса сборки, злоумышленник может внедрить вредоносную функциональность в конечные артефакты сборки. Защита артефактов сборки необходима для предотвращения развертывания скомпрометированного или вредоносного программного обеспечения.
 
 
 
 
 
-##### Registry injection
+##### Инъекция в реестр
 
 ![](../../../assets/images/regi.drawio.png)
 
-Registry injection is a technique where an attacker infects the registry used for storing build artifacts in a CI/CD pipeline. By injecting malicious images into the registry, the attacker aims to have these images downloaded and executed by containers that rely on the infected registry. Preventing registry injection is crucial to ensure the integrity and security of the build artifacts used in the CI/CD process.
+Инъекция в реестр - это техника, при которой злоумышленник заражает реестр, используемый для хранения артефактов сборки в CI/CD пайплайне. Внедряя вредоносные образы в реестр, злоумышленник добивается того, что эти образы загружаются и выполняются контейнерами, которые полагаются на зараженный реестр. Предотвращение инъекций в реестр очень важно для обеспечения целостности и безопасности артефактов сборки, используемых в процессе CI/CD.
 
 
 
 
 
 
-##### Spread to deployment resources
+##### Распространение на ресурсы развертывания
 
 ![](../../../assets/images/depi.drawio.png)
 
-Spreading to deployment resources refers to the scenario where an attacker gains access to the deployment resources within a CI/CD pipeline. By leveraging the access granted to the pipeline, the attacker can propagate their presence to the deployment environment, leading to potential code execution, data exfiltration, and other malicious activities. Preventing the spread to deployment resources is crucial to maintain the security and integrity of the deployment environment.
+Распространение на ресурсы развертывания относится к сценарию, в котором злоумышленник получает доступ к ресурсам развертывания в рамках CI/CD-пайплайна. Используя предоставленный доступ к пайплайну, злоумышленник может распространить свое присутствие на среду развертывания, что может привести к выполнению кода, утечке данных и другим вредоносным действиям. Предотвращение распространения атак на ресурсы развертывания имеет решающее значение для поддержания безопасности и целостности среды развертывания.
 
 
 
 
 
 
-### Defense evasion
+### Уклонение от защиты
 
-Defense evasion techniques are employed by attackers to bypass or evade the security measures and defenses implemented in a DevOps environment. By evading detection and mitigation mechanisms, attackers can continue their attacks undetected and maintain persistence within the environment. Understanding and mitigating these evasion techniques is crucial to ensure the security and resilience of a DevOps environment.
-
-
+Методы уклонения от защиты используются злоумышленниками для обхода или уклонения от мер безопасности и защиты, реализованных в среде DevOps. Обходя механизмы обнаружения и смягчения последствий, злоумышленники могут продолжать свои атаки незамеченными и сохранять устойчивость в среде. Понимание и смягчение последствий этих методов уклонения крайне важно для обеспечения безопасности и устойчивости среды DevOps.
 
 
-#### Service logs manipulation
+
+
+#### Манипуляции с журналами служб
 
 ![](../../../assets/images/monitoring.drawio.png)
 
-Service logs manipulation is a technique where an attacker, who has gained access to the environment, modifies the logs generated by various services. By tampering with the logs, the attacker aims to hide their activities and prevent defenders from detecting their presence or identifying the attacks they have executed. Detecting and preventing service logs manipulation is crucial for maintaining the integrity and reliability of log data for security analysis.
+Манипулирование журналами служб - это техника, при которой злоумышленник, получивший доступ к среде, изменяет журналы, генерируемые различными службами. Внося изменения в журналы, злоумышленник стремится скрыть свою деятельность и помешать защитникам обнаружить его присутствие или идентифицировать выполненные им атаки. Обнаружение и предотвращение манипуляций с журналами служб имеет решающее значение для сохранения целостности и надежности данных журналов для анализа безопасности.
 
 
 
 
 
-##### Compilation manipulation
+##### Манипуляции с компиляцией
 
 ![](../../../assets/images/change.drawio.png)
 
-Compilation manipulation is a technique used by attackers to inject malicious code into the compilation process, which can result in the inclusion of backdoors or vulnerabilities in the final software build. By tampering with the compilation process, the attacker aims to evade detection and introduce malicious functionality into the software without leaving obvious traces in the source code or version control system.
+Манипулирование компиляцией - это техника, используемая злоумышленниками для внедрения вредоносного кода в процесс компиляции, что может привести к включению бэкдоров или уязвимостей в конечную сборку программного обеспечения. Вмешиваясь в процесс компиляции, злоумышленник стремится избежать обнаружения и внедрить вредоносную функциональность в программное обеспечение, не оставляя очевидных следов в исходном коде или системе контроля версий.
 
 
 
@@ -589,21 +589,21 @@ Compilation manipulation is a technique used by attackers to inject malicious co
 
 
 
-##### Reconfigure branch protections
+##### Перенастройка защиты ветвей
 
 ![](../../../assets/images/unprotected.drawio.png)
 
 
-Reconfiguring branch protections is a technique where an attacker with administrative permissions modifies the configuration settings of branch protection tools. By altering these settings, the attacker can bypass the controls and introduce code into a branch without the need for any user intervention or approval. This can enable the attacker to inject malicious code into the codebase and potentially compromise the integrity of the repository.
+Переконфигурирование защиты ветвей - это техника, при которой злоумышленник с административными правами изменяет параметры конфигурации инструментов защиты ветвей. Изменяя эти настройки, злоумышленник может обойти контроль и внедрить код в ветку без вмешательства или одобрения пользователя. Это может позволить злоумышленнику внедрить вредоносный код в кодовую базу и потенциально нарушить целостность репозитория.
 
 
 
 
 
 
-### Impact
+### Воздействие
 
-The impact tactic refers to techniques used by attackers to exploit access to CI/CD resources for malicious purposes. Unlike other tactics, these techniques are not intended to be stealthy or covert, but rather to cause immediate and noticeable damage or disruption to the organization's CI/CD pipelines and resources. These techniques can have a significant impact on the availability, integrity, and confidentiality of the software development and deployment processes.
+Тактика воздействия относится к методам, используемым злоумышленниками для использования доступа к ресурсам CI/CD в злонамеренных целях. В отличие от других тактик, эти методы не предназначены для скрытного использования, а скорее для нанесения немедленного и заметного ущерба или нарушения работы CI/CD пайплайнов и ресурсов организации. Эти методы могут оказать значительное влияние на доступность, целостность и конфиденциальность процессов разработки и развертывания программного обеспечения.
 
 
 
@@ -612,35 +612,35 @@ The impact tactic refers to techniques used by attackers to exploit access to CI
 
 ![](../../../assets/images/dos.drawio.png)
 
-DDoS (Distributed Denial of Service) is a type of attack where an adversary overwhelms a target system or network with a flood of traffic from multiple sources, causing service disruptions or outages. In a CI/CD environment, an attacker with access to compute resources can misuse them to launch DDoS attacks against external targets.
+DDoS (Distributed Denial of Service) - это тип атаки, при которой противник переполняет целевую систему или сеть потоком трафика из нескольких источников, вызывая перебои в работе сервисов или отказы в обслуживании. В среде CI/CD злоумышленник, имеющий доступ к вычислительным ресурсам, может использовать их для проведения DDoS-атак на внешние цели.
 
 
 
 
-##### Cryptocurrency mining
+##### Майнинг криптовалюты
 
 ![](../../../assets/images/crypto.drawio.png)
 
 
-Cryptocurrency mining is the process of using computational resources to solve complex mathematical problems and earn cryptocurrency rewards. In a compromised CI/CD environment, an attacker may utilize the compute resources for unauthorized cryptocurrency mining, consuming system resources and potentially causing performance degradation.
+Майнинг криптовалюты - это процесс использования вычислительных ресурсов для решения сложных математических задач и получения криптовалютных вознаграждений. Во взломанной среде CI/CD злоумышленник может использовать вычислительные ресурсы для несанкционированного майнинга криптовалюты, потребляя системные ресурсы и потенциально вызывая снижение производительности.
 
 
-##### Local DoS
+##### Локальный DoS
 
 ![](../../../assets/images/localdos.drawio.png)
 
 
-Local Denial of Service (DoS) attacks are performed by an attacker who has gained access to the CI pipelines. The attacker uses the pipelines to launch DoS attacks against the organization's own infrastructure or services, causing disruptions or overloading the virtual machines (VMs) used in the CI/CD environment.
+Локальные атаки типа "отказ в обслуживании" (DoS) осуществляются злоумышленником, получившим доступ к пайплайнам CI. Злоумышленник использует пайплайны для проведения DoS-атак на собственную инфраструктуру или сервисы организации, вызывая сбои в работе или перегружая виртуальные машины (ВМ), используемые в среде CI/CD.
 
 
 
 
-##### Resource deletion
+##### Удаление ресурсов
 
 ![](../../../assets/images/res-del.drawio.png)
 
 
-Resource deletion is a technique used by attackers who have gained access to CI/CD resources to cause denial of service by permanently deleting critical resources, such as cloud resources or repositories. By deleting these resources, the attacker disrupts the organization's operations and prevents normal functioning of the CI/CD environment.
+Удаление ресурсов - это техника, используемая злоумышленниками, получившими доступ к CI/CD-ресурсам, чтобы вызвать отказ в обслуживании путем безвозвратного удаления критически важных ресурсов, таких как облачные ресурсы или репозитории. Удаляя эти ресурсы, злоумышленник нарушает работу организации и препятствует нормальному функционированию среды CI/CD.
 
 
 
@@ -651,178 +651,178 @@ Resource deletion is a technique used by attackers who have gained access to CI/
 
 
 
-### Exfiltration
+### Эксфильтрация
 
-The exfiltration tactic involves various techniques used by attackers to extract sensitive data from a victim's environment in a CI/CD context. These techniques aim to bypass security controls and transfer data outside the organization's network or infrastructure.
-
-
+Тактика эксфильтрации включает в себя различные приемы, используемые злоумышленниками для извлечения конфиденциальных данных из среды жертвы в контексте CI/CD. Эти методы направлены на обход средств контроля безопасности и передачу данных за пределы сети или инфраструктуры организации.
 
 
-#### Clone private repositories
+
+
+#### Клонирование частных репозиториев
 
 ![](../../../assets/images/ex-pro.drawio.png)
 
 
-In this scenario, the attacker leverages their access to the CI pipelines to clone private repositories, giving them access to sensitive code and potentially valuable intellectual property. They exploit the permissions and tokens available within the CI environment, such as GITHUB_TOKEN in GitHub, to clone private repositories.
+В этом сценарии злоумышленник использует свой доступ к пайплайнам CI для клонирования частных репозиториев, что дает ему доступ к конфиденциальному коду и потенциально ценной интеллектуальной собственности. Они используют разрешения и токены, доступные в среде CI, например GITHUB_TOKEN в GitHub, для клонирования частных репозиториев.
 
 
 
 
-##### Pipeline logs
+##### Журналы пайплайна
 
 ![](../../../assets/images/ex-pip.drawio.png)
 
 
 
-In this scenario, the attacker exploits their access to the CI/CD pipelines to access and view the pipeline execution logs. These logs often contain valuable information about the build process, deployment details, and potentially sensitive data such as credentials to services and user accounts.
+В этом сценарии злоумышленник использует свой доступ к CI/CD-конвейерам, чтобы получить доступ и просмотреть журналы выполнения пайплайнов. Эти журналы часто содержат ценную информацию о процессе сборки, детали развертывания и потенциально конфиденциальные данные, такие как учетные данные служб и учетных записей пользователей.
 
 
 
 
-##### Exfiltrate data from production resources
+##### Утечка данных с производственных ресурсов.
 
 ![](../../../assets/images/ex-res.drawio.png)
 
 
-In this scenario, the attacker exploits their access to the CI/CD pipelines, which also have access to production resources. This allows the attacker to exfiltrate sensitive data from the production environment using the pipeline as a means of transportation.
+В этом сценарии злоумышленник использует свой доступ к пайплайнам CI/CD, которые также имеют доступ к производственным ресурсам. Это позволяет злоумышленнику вынести конфиденциальные данные из производственной среды, используя пайплайн в качестве средства транспортировки.
 
 
 
-## Kubernetes Threat Matrix
+## Матрица угроз Kubernetes
 
 ![Microsoft Kubernetes Threat Threat](../../../assets/images/k8s-matrix.png)
 
 
-The Threat Matrix highlights various attack techniques, including both known and hypothetical scenarios, that could be exploited by adversaries targeting Kubernetes environments. It categorizes these techniques into different stages of the attack lifecycle, such as initial access, privilege escalation, lateral movement, persistence, and exfiltration.
+Матрица угроз описывает различные методы атак, включая как известные, так и гипотетические сценарии, которые могут быть использованы противниками в средах Kubernetes. Эти методы подразделяются на различные стадии жизненного цикла атаки, такие как первоначальный доступ, повышение привилегий, латеральное перемещение, сохранение и эксфильтрация.
 
 
 
 
 
-### Initial access
+### Первоначальный доступ
 
-As organizations embrace containerized environments like Kubernetes, it becomes essential to understand the potential vulnerabilities and attack vectors that adversaries may exploit. The initial access tactic poses a significant threat, serving as the entry point for unauthorized actors into Kubernetes clusters. In this article, we will explore some common techniques used to gain initial access and discuss proactive measures to secure your Kubernetes environment.
+По мере того как организации внедряют контейнерные среды, такие как Kubernetes, становится важно понимать потенциальные уязвимости и векторы атак, которые могут использовать противники. Тактика первоначального доступа представляет собой значительную угрозу, являясь точкой входа неавторизованных субъектов в кластеры Kubernetes. В этой статье мы рассмотрим некоторые распространенные техники, используемые для получения первоначального доступа, и обсудим проактивные меры по защите среды Kubernetes.
 
 
 
-#### Using cloud credentials
+#### Использование облачных учетных данных
 
 
-In cloud-based Kubernetes deployments, compromised cloud credentials can spell disaster. Attackers who gain access to cloud account credentials can infiltrate the cluster's management layer, potentially leading to complete cluster takeover. It is crucial to implement robust cloud security practices, such as strong access controls and multi-factor authentication, to safeguard against unauthorized access to cloud credentials.
+В облачных развертываниях Kubernetes компрометация облачных учетных данных может привести к катастрофе. Злоумышленники, получившие доступ к учетным данным облака, могут проникнуть на уровень управления кластером, что может привести к полному захвату кластера. Для защиты от несанкционированного доступа к учетным данным облака крайне важно применять надежные методы обеспечения безопасности, такие как строгий контроль доступа и многофакторная аутентификация.
 
 
 
-#### Compromised images in registry
+#### Скомпрометированные образы в реестре
 
 
 
-Running compromised container images within a cluster can introduce significant risks. Attackers with access to a private registry can inject their own compromised images, which can then be inadvertently pulled by users. Additionally, using untrusted images from public registries without proper validation can expose the cluster to malicious content. Employing image scanning and verifying the trustworthiness of container images can help mitigate this risk.
+Запуск скомпрометированных образов контейнеров в кластере может привести к значительным рискам. Злоумышленники, имеющие доступ к частному реестру, могут внедрить свои собственные скомпрометированные образы, которые затем могут быть непреднамеренно извлечены пользователями. Кроме того, использование ненадежных образов из общедоступных реестров без надлежащей проверки может подвергнуть кластер опасности заражения вредоносным содержимым. Использование сканирования образов и проверка достоверности образов контейнеров помогут снизить этот риск.
 
 
 
 
-#### Kubeconfig file
+#### Файл Kubeconfig
 
 
 
-The kubeconfig file, which contains cluster details and credentials, is used by Kubernetes clients like kubectl. If an attacker gains access to this file, they can exploit it to gain unauthorized access to the Kubernetes clusters. Securing the kubeconfig file through secure distribution channels, enforcing access controls, and employing secure client environments are essential steps to mitigate this risk.
+Файл kubeconfig, содержащий сведения о кластере и учетные данные, используется клиентами Kubernetes, такими как kubectl. Если злоумышленник получит доступ к этому файлу, он может использовать его для получения несанкционированного доступа к кластерам Kubernetes. Защита файла kubeconfig через безопасные каналы распространения, обеспечение контроля доступа и использование безопасных клиентских сред - вот основные шаги по снижению этого риска.
 
 
 
 
-#### Vulnerable application
+#### Уязвимое приложение
 
 
 
-Running a vulnerable application within a cluster can open the door to initial access. Exploiting remote code execution vulnerabilities in containers can allow attackers to execute arbitrary code. If a service account is mounted to the compromised container, the attacker can use its credentials to send requests to the Kubernetes API server. Regularly patching and updating container images, along with implementing strong network segmentation, are crucial to mitigating this risk.
+Запуск уязвимого приложения в кластере может открыть дверь для первоначального доступа. Эксплуатация уязвимостей удаленного выполнения кода в контейнерах может позволить злоумышленникам выполнить произвольный код. Если к скомпрометированному контейнеру подключена учетная запись службы, злоумышленник может использовать ее учетные данные для отправки запросов к серверу Kubernetes API. Регулярное исправление и обновление образов контейнеров, а также сильная сегментация сети являются решающими факторами для снижения этого риска.
 
 
 
 
 
-#### Exposed dashboard
+#### Открытая приборная панель
 
 
 
-The Kubernetes dashboard, when exposed externally without proper authentication and access controls, becomes a potential entry point for unauthorized access. Attackers can exploit an exposed dashboard to gain remote management capabilities over the cluster. It is essential to restrict access to the dashboard, enable authentication, and ensure it is accessible only through secure connections.
+Приборная панель Kubernetes, открытая извне без надлежащей аутентификации и контроля доступа, становится потенциальной точкой входа для несанкционированного доступа. Злоумышленники могут использовать открытую приборную панель для получения возможности удаленного управления кластером. Необходимо ограничить доступ к приборной панели, включить аутентификацию и обеспечить доступ к ней только через безопасные соединения.
 
 
 
 
-### Execution
+### Выполнение
 
-Once attackers gain initial access to a Kubernetes cluster, the execution tactic becomes their next focus. By leveraging various techniques, attackers attempt to run their malicious code within the cluster, potentially causing widespread damage. In this article, we will explore common execution techniques in Kubernetes and discuss key strategies to mitigate the associated risks.
+После того как злоумышленники получают первоначальный доступ к кластеру Kubernetes, их следующим приоритетом становится тактика выполнения. Используя различные техники, злоумышленники пытаются запустить свой вредоносный код в кластере, что может привести к масштабным разрушениям. В этой статье мы рассмотрим распространенные техники выполнения в Kubernetes и обсудим ключевые стратегии по снижению связанных с ними рисков.
 
 
 
 
-#### Exec into container:
+#### Exec в контейнере:
 
 
 
-Attackers with sufficient permissions can exploit the "exec" command ("kubectl exec") to run malicious commands inside containers within the cluster. By using legitimate images, such as popular OS images, as a backdoor container, attackers can remotely execute their malicious code through "kubectl exec." Limiting permissions and enforcing strict access controls will help prevent unauthorized execution within containers.
+Злоумышленники с достаточными правами могут использовать команду "exec" ("kubectl exec") для запуска вредоносных команд внутри контейнеров в кластере. Используя легитимные образы, например образы популярных ОС, в качестве контейнера с бэкдором, злоумышленники могут удаленно выполнять свой вредоносный код через "kubectl exec". Ограничение разрешений и строгий контроль доступа помогут предотвратить несанкционированное выполнение внутри контейнеров.
 
 
 
-#### New container:
+#### Новый контейнер:
 
 
 
 
-Attackers with permissions to deploy pods or controllers, like DaemonSets, ReplicaSets, or Deployments, may attempt to create new resources within the cluster for running their code. It is crucial to regularly audit and review access controls, ensuring that only authorized entities can create and deploy containers. Monitoring the creation of new resources and implementing least privilege principles will limit unauthorized code execution.
+Злоумышленники с правами на развертывание стручков или контроллеров, таких как DaemonSets, ReplicaSets или Deployments, могут попытаться создать новые ресурсы в кластере для выполнения своего кода. Очень важно регулярно проводить аудит и проверку контроля доступа, чтобы убедиться, что только уполномоченные лица могут создавать и развертывать контейнеры. Мониторинг создания новых ресурсов и реализация принципов наименьших привилегий ограничат несанкционированное выполнение кода.
 
 
 
 
 
-#### Application exploit:
+#### Эксплойт приложений:
 
 
 
 
-Exploiting vulnerabilities in applications deployed within the cluster presents an opportunity for attackers to execute their code. Vulnerabilities that allow remote code execution or enable unauthorized access to resources can be leveraged. Mounting service accounts to containers, which is the default behavior in Kubernetes, may grant attackers the ability to send requests to the API server using compromised service account credentials. Regular patching and vulnerability management are crucial to mitigating this risk.
+Эксплуатация уязвимостей в приложениях, развернутых в кластере, дает злоумышленникам возможность выполнить свой код. Могут быть использованы уязвимости, позволяющие удаленно выполнять код или предоставляющие несанкционированный доступ к ресурсам. Прикрепление учетных записей служб к контейнерам, которое используется по умолчанию в Kubernetes, может дать злоумышленникам возможность отправлять запросы на сервер API, используя скомпрометированные учетные данные учетных записей служб. Регулярное исправление и управление уязвимостями играют решающую роль в снижении этого риска.
 
 
 
 
 
-#### SSH server running inside container:
+#### SSH-сервер, запущенный внутри контейнера:
 
 
 
 
-In some cases, attackers may discover containers running SSH servers. If attackers acquire valid credentials, either through brute-force attempts or phishing, they can exploit these SSH servers to gain remote access to the container. To mitigate this risk, it is essential to employ strong authentication mechanisms, enforce secure credential management practices, and regularly audit containers for unauthorized SSH servers.
+В некоторых случаях злоумышленники могут обнаружить контейнеры, в которых запущены SSH-серверы. Если злоумышленники получат действительные учетные данные путем перебора или фишинга, они смогут использовать эти SSH-серверы для получения удаленного доступа к контейнеру. Чтобы снизить этот риск, необходимо использовать надежные механизмы аутентификации, применять безопасные методы управления учетными данными и регулярно проверять контейнеры на наличие неавторизованных SSH-серверов.
 
 
 
 
 
-### Persistence
+### Стойкость
 
-In the context of Kubernetes security, persistence refers to the techniques employed by attackers to maintain access to a cluster even after their initial entry point has been compromised. By understanding and addressing the persistence tactics used by adversaries, organizations can strengthen their security posture and protect their Kubernetes environments. In this article, we will explore common persistence techniques in Kubernetes and discuss strategies to mitigate these risks.
+В контексте безопасности Kubernetes под стойкостью понимаются методы, используемые злоумышленниками для сохранения доступа к кластеру даже после того, как их первоначальная точка входа была скомпрометирована. Понимая и устраняя тактику сохранения, используемую противниками, организации могут укрепить свою безопасность и защитить свои среды Kubernetes. В этой статье мы рассмотрим распространенные техники персистентности в Kubernetes и обсудим стратегии по снижению этих рисков.
 
 
 
 
 
-#### Backdoor container:
+#### Контейнер с бэкдором:
 
 
 
 
-One method attackers employ to establish persistence is by running malicious code within a container in the cluster. By leveraging Kubernetes controllers like DaemonSets or Deployments, attackers can ensure that a specific number of containers constantly run on one or more nodes in the cluster. To counter this, regular monitoring of controller configurations and thorough auditing of container images can help detect and remove unauthorized backdoor containers.
+Один из методов, используемых злоумышленниками для обеспечения постоянства, - запуск вредоносного кода внутри контейнера в кластере. Используя такие контроллеры Kubernetes, как DaemonSets или Deployments, злоумышленники могут обеспечить постоянный запуск определенного количества контейнеров на одном или нескольких узлах кластера. Чтобы противостоять этому, регулярный мониторинг конфигураций контроллеров и тщательный аудит образов контейнеров помогут обнаружить и удалить несанкционированные контейнеры-бэкдоры.
 
 
 
 
 
-#### Writable hostPath mount:
+#### Монтирование тома hostPath с возможностью записи:
 
 
 
 
 
-The hostPath volume allows mounting a directory or file from the host to a container. Attackers with permissions to create containers within the cluster can exploit this feature by creating a container with a writable hostPath volume. This provides them with persistence on the underlying host and potential avenues for unauthorized access. Implementing strict access controls and regular auditing of container configurations can help identify and mitigate this risk.
+Том hostPath позволяет монтировать каталог или файл с хоста в контейнер. Злоумышленники с правами на создание контейнеров в кластере могут использовать эту возможность, создавая контейнер с томом hostPath, доступным для записи. Таким образом, они получают постоянную информацию о базовом хосте и потенциальные возможности для несанкционированного доступа. Выявить и снизить этот риск поможет внедрение строгих средств контроля доступа и регулярный аудит конфигураций контейнеров.
 
 
 
@@ -835,36 +835,36 @@ The hostPath volume allows mounting a directory or file from the host to a conta
 
 
 
-Kubernetes CronJob is a scheduling mechanism used to run Jobs at specified intervals. Attackers may leverage Kubernetes CronJob functionality to schedule the execution of malicious code as a container within the cluster. This allows them to maintain persistence by regularly running their code. Monitoring and reviewing CronJob configurations, as well as conducting periodic vulnerability scans, are crucial in identifying and addressing any unauthorized or suspicious CronJobs.
+Kubernetes CronJob - это механизм планирования, используемый для запуска заданий через определенные промежутки времени. Злоумышленники могут использовать функциональность Kubernetes CronJob для планирования выполнения вредоносного кода в качестве контейнера в кластере. Это позволяет им поддерживать постоянство, регулярно запуская свой код. Мониторинг и проверка конфигураций CronJob, а также периодическое сканирование уязвимостей играют важную роль в выявлении и устранении любых неавторизованных или подозрительных CronJob.
 
 
 
 
 
-### Privilege escalation
+### Повышение привилегий
 
 
-Privilege escalation is a critical tactic employed by attackers to gain higher privileges within a Kubernetes environment. By obtaining elevated access, attackers can potentially compromise the entire cluster, breach cloud resources, and disrupt critical operations. Understanding common privilege escalation techniques is crucial for implementing effective security measures. In this article, we will explore common privilege escalation techniques in Kubernetes and discuss strategies to mitigate these risks.
-
-
-
-
-
-
-#### Privileged container
-
-
-A privileged container possesses all the capabilities of the host machine, allowing unrestricted actions within the cluster. Attackers who gain access to a privileged container, or have permissions to create one, can exploit the host's resources. It is essential to enforce strict container security policies, limit the creation of privileged containers, and regularly monitor for unauthorized access or configuration changes.
+Повышение привилегий - это критическая тактика, используемая злоумышленниками для получения более высоких привилегий в среде Kubernetes. Получив повышенный доступ, злоумышленники могут скомпрометировать весь кластер, нарушить работу облачных ресурсов и прервать критически важные операции. Понимание распространенных методов повышения привилегий очень важно для реализации эффективных мер безопасности. В этой статье мы рассмотрим распространенные методы повышения привилегий в Kubernetes и обсудим стратегии по снижению этих рисков.
 
 
 
 
 
 
-#### Cluster-admin binding
+#### Привилегированный контейнер
 
 
-Role-based access control (RBAC) is a fundamental security feature in Kubernetes, controlling the actions of different identities within the cluster. Cluster-admin is a built-in high-privileged role in Kubernetes. Attackers with permissions to create bindings and cluster-bindings can create a binding to the cluster-admin ClusterRole or other high-privileged roles. Implementing least privilege principles, regularly reviewing RBAC configurations, and conducting frequent audits are vital for preventing unauthorized privilege escalation.
+Привилегированный контейнер обладает всеми возможностями хост-машины, позволяя выполнять неограниченные действия в кластере. Злоумышленники, получившие доступ к привилегированному контейнеру или имеющие права на его создание, могут использовать ресурсы хоста. Необходимо применять строгие политики безопасности контейнеров, ограничивать создание привилегированных контейнеров и регулярно отслеживать несанкционированный доступ или изменения конфигурации.
+
+
+
+
+
+
+#### Привязка кластерного администратора
+
+
+Контроль доступа на основе ролей (RBAC) - это фундаментальная функция безопасности в Kubernetes, контролирующая действия различных идентификаторов в кластере. Cluster-admin - это встроенная высокопривилегированная роль в Kubernetes. Злоумышленники с правами на создание привязок и кластерных привязок могут создать привязку к кластерной роли Cluster-admin или другим высокопривилегированным ролям. Реализация принципов наименьших привилегий, регулярный пересмотр конфигураций RBAC и частые аудиты крайне важны для предотвращения несанкционированной эскалации привилегий.
 
 
 
@@ -872,61 +872,17 @@ Role-based access control (RBAC) is a fundamental security feature in Kubernetes
 #### hostPath mount
 
 
-Attackers can leverage the hostPath volume mount to gain access to the underlying host, breaking out of the container's isolated environment. This allows them to escalate privileges from the container to the host. Implementing strict access controls, conducting regular vulnerability scans, and monitoring for suspicious hostPath mount configurations are essential for mitigating this risk.
+Злоумышленники могут использовать монтирование тома hostPath для получения доступа к базовому хосту, выходя из изолированной среды контейнера. Это позволяет им повысить привилегии от контейнера к хосту. Для снижения этого риска необходимо внедрить строгий контроль доступа, регулярно проводить сканирование уязвимостей и отслеживать подозрительные конфигурации монтирования hostPath.
 
 
 
 
 
-#### Accessing cloud resources:
+#### Доступ к облачным ресурсам:
 
 
 
-In cloud-based Kubernetes deployments, attackers may leverage their access to a single container to gain unauthorized access to other cloud resources outside the cluster. For instance, in Azure Kubernetes Service (AKS), each node contains a service principal credential used for managing Azure resources. Attackers who gain access to this credential file can exploit it to access or modify cloud resources. Strictly managing access to service principal credentials, encrypting sensitive files, and regularly rotating credentials are critical mitigation steps.
-
-
-
-
-
-
-
-### Defense evasion
-
-
-Defense evasion techniques are employed by attackers to evade detection and conceal their activities within Kubernetes environments. By actively evading security measures, attackers can prolong their presence, increase the likelihood of successful attacks, and bypass traditional security controls. Understanding common defense evasion techniques is crucial for organizations to enhance threat detection capabilities and bolster overall Kubernetes security. In this article, we will explore common defense evasion tactics and discuss strategies to mitigate these risks effectively.
-
-
-
-
-#### Clear container logs:
-
-
-Attackers may attempt to delete application or operating system logs on compromised containers to conceal their malicious activities. Organizations should implement robust log management practices, including centralizing logs and establishing secure backup mechanisms. Regularly monitoring log files for suspicious activities and implementing access controls to prevent unauthorized log modifications are vital to maintain visibility into container activities.
-
-
-
-
-#### Delete Kubernetes events:
-
-
-Kubernetes events play a critical role in logging state changes and failures within the cluster. Attackers may seek to delete Kubernetes events to avoid detection of their activities. Organizations should ensure proper event logging and implement log integrity checks to detect any tampering or deletion of events. Retaining logs in a secure and immutable manner can aid in the identification of anomalous behavior.
-
-
-
-
-
-#### Pod/container name similarity:
-
-Attackers may attempt to hide their malicious activities by naming their backdoor pods in a way that resembles legitimate pods created by controllers like Deployments or DaemonSets. By blending in with existing pod naming conventions, attackers aim to avoid suspicion. Organizations should implement strict naming conventions and conduct regular audits to identify any discrepancies or suspicious pod/container names.
-
-
-
-
-
-#### Connect from proxy server
-
-
-To obfuscate their origin IP addresses, attackers may employ proxy servers, including anonymous networks like TOR, to communicate with applications or the Kubernetes API server. Organizations should consider implementing network security measures to monitor and restrict access from suspicious IP ranges or anonymous networks. Implementing intrusion detection and prevention systems (IDPS) and conducting regular threat intelligence analysis can aid in identifying proxy server usage by attackers.
+В облачных развертываниях Kubernetes злоумышленники могут использовать свой доступ к одному контейнеру для получения несанкционированного доступа к другим облачным ресурсам вне кластера. Например, в Azure Kubernetes Service (AKS) каждый узел содержит учетную запись service principal, используемую для управления ресурсами Azure. Злоумышленники, получившие доступ к этому файлу учетных данных, могут использовать его для доступа к облачным ресурсам или их изменения. Строгое управление доступом к учетным данным принципала службы, шифрование конфиденциальных файлов и регулярная ротация учетных данных - важнейшие меры по снижению риска.
 
 
 
@@ -934,20 +890,64 @@ To obfuscate their origin IP addresses, attackers may employ proxy servers, incl
 
 
 
+### Уклонение от защиты
 
-### Credential access
 
-
-The security of credentials is of paramount importance in Kubernetes environments. Attackers employ various techniques to steal credentials, including application credentials, service accounts, secrets, and cloud credentials. Safeguarding credential access is crucial to prevent unauthorized access, data breaches, and potential compromise of sensitive information. In this article, we will explore common credential access tactics and discuss strategies to enhance identity protection and mitigate the risks associated with credential theft in Kubernetes.
-
+Методы уклонения от защиты используются злоумышленниками для обхода обнаружения и сокрытия своих действий в среде Kubernetes. Активно обходя меры безопасности, злоумышленники могут продлить свое присутствие, повысить вероятность успешных атак и обойти традиционные средства контроля безопасности. Понимание распространенных методов уклонения от защиты очень важно для организаций, чтобы расширить возможности обнаружения угроз и укрепить общую безопасность Kubernetes. В этой статье мы рассмотрим распространенные тактики уклонения от защиты и обсудим стратегии эффективного снижения этих рисков.
 
 
 
 
-#### List Kubernetes secrets:
+#### Очистка журналов контейнера:
 
 
-Kubernetes secrets are used to store sensitive information, such as passwords and connection strings, within the cluster. Attackers with appropriate permissions can retrieve these secrets from the API server, potentially gaining access to critical credentials. Organizations should adopt a defense-in-depth approach to secure secrets, including strong access controls, encryption, and regular auditing of secret configurations. Implementing fine-grained RBAC policies and limiting access to secrets based on the principle of least privilege can help mitigate the risk of unauthorized access.
+Злоумышленники могут попытаться удалить журналы приложений или операционных систем во взломанных контейнерах, чтобы скрыть свою вредоносную деятельность. Организациям следует внедрить надежные методы управления журналами, включая централизацию журналов и создание безопасных механизмов резервного копирования. Регулярный мониторинг журналов на предмет подозрительной активности и внедрение средств контроля доступа для предотвращения несанкционированного изменения журналов жизненно важны для поддержания видимости деятельности контейнеров.
+
+
+
+
+#### Удаление событий Kubernetes:
+
+
+События Kubernetes играют важную роль в регистрации изменений состояния и сбоев в кластере. Злоумышленники могут попытаться удалить события Kubernetes, чтобы избежать обнаружения своих действий. Организациям следует обеспечить надлежащую регистрацию событий и внедрить проверку целостности журналов, чтобы обнаружить любую фальсификацию или удаление событий. Сохранение журналов в безопасном и неизменяемом виде может помочь в выявлении аномального поведения.
+
+
+
+
+
+#### Сходство имен поддонов/контейнеров:
+
+Злоумышленники могут пытаться скрыть свою вредоносную деятельность, называя свои бэкдор-подсистемы так, чтобы они походили на легитимные подсистемы, созданные контроллерами, такими как Deployments или DaemonSets. Смешиваясь с существующими соглашениями об именовании стручков, злоумышленники пытаются избежать подозрений. Организациям следует внедрять строгие соглашения об именовании и проводить регулярный аудит для выявления любых несоответствий или подозрительных имен стручков/контейнеров.
+
+
+
+
+
+#### Подключение с прокси-сервера
+
+
+Чтобы скрыть свои IP-адреса, злоумышленники могут использовать прокси-серверы, в том числе анонимные сети типа TOR, для связи с приложениями или сервером API Kubernetes. Организациям следует рассмотреть возможность применения мер сетевой безопасности для мониторинга и ограничения доступа из подозрительных диапазонов IP-адресов или анонимных сетей. Внедрение систем обнаружения и предотвращения вторжений (IDPS) и регулярное проведение анализа угроз может помочь выявить использование прокси-серверов злоумышленниками.
+
+
+
+
+
+
+
+
+### Доступ к учетным данным
+
+
+Безопасность учетных данных имеет первостепенное значение в средах Kubernetes. Злоумышленники используют различные методы для кражи учетных данных, включая учетные данные приложений, учетные данные служб, секреты и облачные учетные данные. Защита доступа к учетным данным имеет решающее значение для предотвращения несанкционированного доступа, утечки данных и потенциальной компрометации конфиденциальной информации. В этой статье мы рассмотрим распространенные тактики доступа к учетным данным и обсудим стратегии для усиления защиты личности и снижения рисков, связанных с кражей учетных данных в Kubernetes.
+
+
+
+
+
+#### Список секретов Kubernetes:
+
+
+Секреты Kubernetes используются для хранения конфиденциальной информации, такой как пароли и строки подключения, в кластере. Злоумышленники с соответствующими правами могут получить эти секреты с сервера API, что может привести к получению доступа к важным учетным данным. Для защиты секретов организациям следует применять подход "защита в глубину", включающий строгий контроль доступа, шифрование и регулярный аудит конфигураций секретов. Реализация тонких политик RBAC и ограничение доступа к секретам на основе принципа наименьших привилегий помогут снизить риск несанкционированного доступа.
 
 
 
@@ -956,25 +956,25 @@ Kubernetes secrets are used to store sensitive information, such as passwords an
 #### Mount service principal:
 
 
-In cloud deployments, attackers may exploit their access to a container in the cluster to gain unauthorized access to cloud credentials. For example, in Azure Kubernetes Service (AKS), each node contains a service principal credential. Organizations should implement robust security measures, such as secure cluster configurations, strict access controls, and regular rotation of service principal credentials, to prevent unauthorized access to cloud resources.
+В облачных развертываниях злоумышленники могут использовать свой доступ к контейнеру в кластере для получения несанкционированного доступа к учетным данным облака. Например, в Azure Kubernetes Service (AKS) каждый узел содержит учетную запись service principal. Для предотвращения несанкционированного доступа к облачным ресурсам организациям следует применять надежные меры безопасности, такие как безопасная конфигурация кластера, строгий контроль доступа и регулярная ротация учетных данных принципалов служб.
 
 
 
 
 
 
-#### Access container service account:
+#### Учетная запись службы доступа к контейнеру:
 
 
-Service accounts (SAs) are used to represent application identities within Kubernetes. By default, SAs are mounted to every pod in the cluster, allowing containers to interact with the Kubernetes API server. Attackers who gain access to a pod can extract the SA token and potentially perform actions within the cluster based on the SA's permissions. It is crucial to implement RBAC and enforce strong authentication mechanisms to mitigate the risk of unauthorized SA access. Regular audits and monitoring of SA permissions can help identify and remediate any potential security gaps.
+Учетные записи сервисов (SA) используются для представления идентификационных данных приложений в Kubernetes. По умолчанию SA устанавливаются на каждую капсулу в кластере, что позволяет контейнерам взаимодействовать с сервером Kubernetes API. Злоумышленники, получившие доступ к стручку, могут извлечь токен SA и потенциально выполнять действия в кластере на основе разрешений SA. Для снижения риска несанкционированного доступа к SA очень важно внедрить RBAC и применить надежные механизмы аутентификации. Регулярные аудиты и мониторинг разрешений SA помогут выявить и устранить любые потенциальные пробелы в безопасности.
 
 
 
 
-#### Application credentials in configuration files:
+#### Учетные данные приложений в файлах конфигурации:
 
 
-Developers often store secrets, such as application credentials, in Kubernetes configuration files, including environment variables in the pod configuration. Attackers may attempt to access these configuration files to steal sensitive information. Organizations should promote secure coding practices, such as externalizing secrets to a secure secret management solution, and avoid storing credentials directly in configuration files. Implementing secure coding guidelines, regular security training for developers, and automated vulnerability scanning can help reduce the risk of unauthorized access to application credentials.
+Разработчики часто хранят секреты, такие как учетные данные приложений, в конфигурационных файлах Kubernetes, включая переменные окружения в конфигурации стручков. Злоумышленники могут попытаться получить доступ к этим конфигурационным файлам, чтобы украсть конфиденциальную информацию. Организациям следует поощрять практику безопасного кодирования, например, передавать секреты в безопасное решение для управления секретами, и избегать хранения учетных данных непосредственно в конфигурационных файлах. Внедрение рекомендаций по безопасному кодированию, регулярное обучение разработчиков правилам безопасности и автоматическое сканирование уязвимостей помогут снизить риск несанкционированного доступа к учетным данным приложений.
 
 
 
@@ -984,27 +984,27 @@ Developers often store secrets, such as application credentials, in Kubernetes c
 
 ### Discovery
 
-Discovery attacks pose a significant threat to the security of Kubernetes environments. Attackers employ various techniques to explore the environment, gain insights into the cluster's resources, and perform lateral movement to access additional targets. Understanding and mitigating these discovery tactics is crucial to bolster the overall security posture of Kubernetes deployments. In this article, we will delve into common discovery techniques and discuss strategies to enhance defense and thwart unauthorized exploration in Kubernetes.
+Атаки на обнаружение представляют собой серьезную угрозу для безопасности сред Kubernetes. Злоумышленники используют различные техники для изучения среды, получения информации о ресурсах кластера и бокового перемещения для получения доступа к дополнительным целям. Понимание и смягчение последствий этих тактик обнаружения очень важно для укрепления общей безопасности развертываний Kubernetes. В этой статье мы рассмотрим распространенные методы обнаружения и обсудим стратегии, позволяющие усилить защиту и предотвратить несанкционированное проникновение в Kubernetes.
 
 
 
 
 
 
-#### Access the Kubernetes API server:
+#### Доступ к серверу Kubernetes API:
 
 
-The Kubernetes API server acts as the gateway to the cluster, enabling interactions and resource management. Attackers may attempt to access the API server to gather information about containers, secrets, and other resources. Protecting the API server is paramount, and organizations should implement strong authentication mechanisms, robust access controls, and secure communication channels (TLS) to prevent unauthorized access and unauthorized retrieval of sensitive data.
+Сервер API Kubernetes выступает в качестве шлюза для кластера, обеспечивая взаимодействие и управление ресурсами. Злоумышленники могут попытаться получить доступ к API-серверу, чтобы собрать информацию о контейнерах, секретах и других ресурсах. Защита сервера API имеет первостепенное значение, и организациям следует внедрить надежные механизмы аутентификации, строгие средства контроля доступа и защищенные каналы связи (TLS) для предотвращения несанкционированного доступа и несанкционированного получения конфиденциальных данных.
 
 
 
 
 
 
-#### Access Kubelet API:
+#### Доступ к API Kubelet:
 
 
-Kubelet, running on each node, manages the execution of pods and exposes a read-only API service. Attackers with network access to the host can probe the Kubelet API to gather information about running pods and the node itself. To mitigate this risk, organizations should implement network segmentation and restrict network access to the Kubelet API, employing firewalls or network policies to allow communication only from trusted sources.
+Kubelet, запущенный на каждом узле, управляет выполнением подсистем и предоставляет API-сервис, доступный только для чтения. Злоумышленники, имеющие сетевой доступ к узлу, могут получить доступ к API Kubelet, чтобы собрать информацию о запущенных подсистемах и самом узле. Чтобы снизить этот риск, организациям следует внедрить сегментацию сети и ограничить сетевой доступ к API Kubelet, используя брандмауэры или сетевые политики для разрешения связи только из доверенных источников.
 
 
 
@@ -1012,27 +1012,27 @@ Kubelet, running on each node, manages the execution of pods and exposes a read-
 
 
 
-#### Network mapping:
+#### Картирование сети:
 
 
-Attackers may attempt to map the cluster network to gain insights into running applications and identify potential vulnerabilities. Implementing network segmentation, network policies, and utilizing network security solutions can help limit unauthorized network exploration within the cluster, reducing the attack surface and minimizing the impact of network mapping attempts.
+Злоумышленники могут попытаться составить карту сети кластера, чтобы получить сведения о работающих приложениях и выявить потенциальные уязвимости. Внедрение сегментации сети, сетевых политик и использование решений для обеспечения сетевой безопасности может помочь ограничить несанкционированное исследование сети в кластере, сократить площадь атаки и минимизировать последствия попыток картирования сети.
 
 
 
 
 
-#### Access Kubernetes dashboard:
+#### Доступ к приборной панели Kubernetes:
 
 
-The Kubernetes dashboard provides a web-based interface for managing and monitoring the cluster. Attackers who gain access to a container in the cluster may attempt to exploit the container's network access to access the dashboard pod. Organizations should secure the Kubernetes dashboard by implementing strong authentication, role-based access controls (RBAC), and secure network access policies to prevent unauthorized access and information leakage.
+Приборная панель Kubernetes представляет собой веб-интерфейс для управления и мониторинга кластера. Злоумышленники, получившие доступ к контейнеру в кластере, могут попытаться использовать сетевой доступ контейнера для получения доступа к панели управления. Организациям следует защитить панель управления Kubernetes, внедрив строгую аутентификацию, контроль доступа на основе ролей (RBAC) и политики безопасного сетевого доступа, чтобы предотвратить несанкционированный доступ и утечку информации.
 
 
 
 
-#### Instance Metadata API:
+#### API метаданных экземпляра:
 
 
-Cloud providers offer instance metadata services that provide information about virtual machine configurations and network details. Attackers who compromise a container may attempt to query the instance metadata API to gain insights into the underlying node. Protecting the metadata API is crucial, and organizations should implement network-level security controls, such as restricting access to the metadata service from within the VM only, to prevent unauthorized access and limit the exposure of sensitive information.
+Облачные провайдеры предлагают сервисы метаданных экземпляра, которые предоставляют информацию о конфигурации виртуальных машин и сетевых данных. Злоумышленники, скомпрометировавшие контейнер, могут попытаться запросить API метаданных экземпляра, чтобы получить информацию о базовом узле. Защита API метаданных очень важна, и организациям следует внедрить средства контроля безопасности на сетевом уровне, например ограничить доступ к службе метаданных только изнутри виртуальной машины, чтобы предотвратить несанкционированный доступ и ограничить раскрытие конфиденциальной информации.
 
 
 
@@ -1042,10 +1042,10 @@ Cloud providers offer instance metadata services that provide information about 
 
 
 
-### Lateral movement
+### Боковое перемещение
 
 
-Lateral movement attacks pose a significant threat in containerized environments, allowing attackers to traverse through a victim's environment, gain unauthorized access to various resources, and potentially escalate privileges. Understanding and mitigating lateral movement tactics is crucial for bolstering the security of Kubernetes deployments. In this article, we will explore common techniques used by attackers for lateral movement and discuss strategies to enhance defense and minimize the impact of these attacks in Kubernetes.
+Атаки с боковым перемещением представляют собой значительную угрозу в контейнерных средах, позволяя злоумышленникам перемещаться по среде жертвы, получать несанкционированный доступ к различным ресурсам и потенциально повышать привилегии. Понимание и смягчение последствий тактики бокового перемещения очень важно для повышения безопасности развертываний Kubernetes. В этой статье мы рассмотрим распространенные техники, используемые злоумышленниками для бокового перемещения, и обсудим стратегии, позволяющие усилить защиту и минимизировать последствия этих атак в Kubernetes.
 
 
 
@@ -1053,20 +1053,20 @@ Lateral movement attacks pose a significant threat in containerized environments
 
 
 
-#### Access the Kubernetes API server:
+#### Доступ к серверу Kubernetes API:
 
 
-The Kubernetes API server acts as the gateway to the cluster, enabling interactions and resource management. Attackers may attempt to access the API server to gather information about containers, secrets, and other resources. Protecting the API server is paramount, and organizations should implement strong authentication mechanisms, robust access controls, and secure communication channels (TLS) to prevent unauthorized access and unauthorized retrieval of sensitive data.
+Сервер API Kubernetes выступает в качестве шлюза в кластер, обеспечивая взаимодействие и управление ресурсами. Злоумышленники могут попытаться получить доступ к API-серверу, чтобы собрать информацию о контейнерах, секретах и других ресурсах. Защита сервера API имеет первостепенное значение, поэтому организациям следует внедрить надежные механизмы аутентификации, строгие средства контроля доступа и защищенные каналы связи (TLS) для предотвращения несанкционированного доступа и несанкционированного получения конфиденциальных данных.
 
 
 
 
 
 
-#### Access Cloud Resources:
+#### Доступ к облачным ресурсам:
 
 
-Attackers who compromise a container in the cluster may attempt to move laterally into the cloud environment itself. Organizations must implement strong access controls, employ least privilege principles, and regularly monitor cloud resources to detect and prevent unauthorized access attempts.
+Злоумышленники, скомпрометировавшие контейнер в кластере, могут попытаться проникнуть в саму облачную среду. Организации должны внедрить строгие средства контроля доступа, использовать принципы наименьших привилегий и регулярно контролировать облачные ресурсы для обнаружения и предотвращения попыток несанкционированного доступа.
 
 
 
@@ -1075,49 +1075,49 @@ Attackers who compromise a container in the cluster may attempt to move laterall
 
 
 
-#### Container Service Account:
+#### Учетная запись службы контейнеров:
 
 
-Attackers with access to a compromised container can leverage the mounted service account token to send requests to the Kubernetes API server and gain access to additional resources within the cluster. Securing container service accounts through RBAC and regularly rotating credentials can help mitigate the risk of lateral movement through compromised containers.
+Злоумышленники, получившие доступ к взломанному контейнеру, могут использовать установленный токен учетной записи сервиса для отправки запросов на сервер Kubernetes API и получения доступа к дополнительным ресурсам в кластере. Защита учетных записей служб контейнеров с помощью RBAC и регулярная ротация учетных данных помогут снизить риск бокового перемещения через скомпрометированные контейнеры.
 
 
 
 
 
 
-#### Cluster Internal Networking:
+#### Внутренняя сеть кластера:
 
 
-By default, Kubernetes allows communication between pods within the cluster. Attackers who gain access to a single container can leverage this networking behavior to traverse the cluster and target additional resources. Implementing network segmentation, network policies, and regular network monitoring can restrict unauthorized lateral movement within the cluster.
+По умолчанию Kubernetes обеспечивает связь между стручками внутри кластера. Злоумышленники, получившие доступ к одному контейнеру, могут использовать это сетевое поведение для перемещения по кластеру и захвата дополнительных ресурсов. Внедрение сегментации сети, сетевых политик и регулярного мониторинга сети может ограничить несанкционированное боковое перемещение внутри кластера.
 
 
 
 
 
-#### Application Credentials in Configuration Files:
+#### Учетные данные приложений в файлах конфигурации:
 
 
-Developers often store sensitive credentials in Kubernetes configuration files, such as environment variables in pod configurations. Attackers who gain access to these credentials can use them to move laterally and access additional resources both inside and outside the cluster. Employing secure secrets management practices, such as encrypting configuration files and limiting access to sensitive information, can mitigate the risk of credential-based lateral movement.
+Разработчики часто хранят конфиденциальные учетные данные в конфигурационных файлах Kubernetes, например, переменные окружения в конфигурациях подов. Злоумышленники, получившие доступ к этим учетным данным, могут использовать их для бокового перемещения и получения доступа к дополнительным ресурсам как внутри, так и вне кластера. Использование безопасных методов управления секретами, таких как шифрование конфигурационных файлов и ограничение доступа к конфиденциальной информации, может снизить риск бокового перемещения на основе учетных данных.
 
 
 
 
 
 
-#### Writable Volume Mounts on the Host:
+#### Монтирование записываемых томов на хосте:
 
 
-Attackers may attempt to exploit writable volume mounts within a compromised container to gain access to the underlying host. Securing host-level access controls, implementing strong container isolation, and regularly patching and hardening the underlying host can help mitigate the risk of lateral movement from containers to the host.
+Злоумышленники могут попытаться использовать монтирование томов с возможностью записи во взломанном контейнере, чтобы получить доступ к базовому хосту. Обеспечение контроля доступа на уровне хоста, надежная изоляция контейнеров, регулярное исправление и укрепление базового хоста помогут снизить риск бокового перемещения из контейнеров на хост.
 
 
 
 
 
 
-#### Access Kubernetes Dashboard:
+#### Доступ к панели Kubernetes Dashboard:
 
 
-Attackers with access to the Kubernetes dashboard can manipulate cluster resources and execute code within containers using the built-in "exec" capability. Securing the Kubernetes dashboard through strong authentication, access controls, and monitoring for suspicious activities can minimize the risk of unauthorized lateral movement through the dashboard.
+Злоумышленники, имеющие доступ к приборной панели Kubernetes, могут манипулировать ресурсами кластера и выполнять код в контейнерах с помощью встроенной функции "exec". Защита приборной панели Kubernetes с помощью строгой аутентификации, контроля доступа и мониторинга подозрительных действий может минимизировать риск несанкционированного бокового перемещения через приборную панель.
 
 
 
@@ -1126,10 +1126,10 @@ Attackers with access to the Kubernetes dashboard can manipulate cluster resourc
 
 
 
-#### Access Tiller Endpoint:
+#### Доступ к конечной точке Tiller:
 
 
-Tiller, the server-side component of Helm, may expose internal gRPC endpoints that do not require authentication. Attackers who can access a container connected to the Tiller service may exploit this vulnerability to perform unauthorized actions within the cluster. Organizations should consider migrating to Helm version 3, which removes the Tiller component and eliminates this specific risk.
+Tiller, серверный компонент Helm, может открывать внутренние конечные точки gRPC, не требующие аутентификации. Злоумышленники, получившие доступ к контейнеру, подключенному к службе Tiller, могут использовать эту уязвимость для выполнения несанкционированных действий в кластере. Организациям следует рассмотреть возможность перехода на Helm версии 3, в которой удален компонент Tiller и устранен этот специфический риск.
 
 
 
@@ -1141,7 +1141,7 @@ Tiller, the server-side component of Helm, may expose internal gRPC endpoints th
 ### Impact
 
 
-The Impact tactic in Kubernetes refers to techniques employed by attackers to disrupt, abuse, or destroy the normal behavior of the environment. These attacks can lead to data loss, resource abuse, and denial of service, resulting in severe consequences for organizations. Protecting Kubernetes deployments from such impact attacks is crucial to ensure the availability, integrity, and confidentiality of resources. In this article, we will explore common impact techniques used by attackers and discuss strategies to mitigate their effects in Kubernetes environments.
+Тактика Impact в Kubernetes относится к методам, используемым злоумышленниками для нарушения, злоупотребления или разрушения нормального поведения среды. Эти атаки могут привести к потере данных, злоупотреблению ресурсами и отказу в обслуживании, что влечет за собой серьезные последствия для организаций. Защита развертываний Kubernetes от таких атак крайне важна для обеспечения доступности, целостности и конфиденциальности ресурсов. В этой статье мы рассмотрим распространенные методы воздействия, используемые злоумышленниками, и обсудим стратегии по смягчению их последствий в средах Kubernetes.
 
 
 
@@ -1150,23 +1150,11 @@ The Impact tactic in Kubernetes refers to techniques employed by attackers to di
 
 
 
-#### Data Destruction:
+#### Уничтожение данных:
 
 
 
-Attackers may target Kubernetes deployments to destroy critical data and resources. This can involve deleting deployments, configurations, storage volumes, or compute resources. To mitigate the risk of data destruction, it is essential to implement robust backup and disaster recovery mechanisms. Regularly backing up critical data, verifying backup integrity, and employing proper access controls can help in minimizing the impact of data destruction attacks.
-
-
-
-
-
-
-
-#### Resource Hijacking:
-
-
-
-Compromised resources within a Kubernetes cluster can be abused by attackers for malicious activities such as digital currency mining. Attackers who gain access to containers or have the permissions to create new containers may exploit these resources for unauthorized tasks. Implementing strict pod security policies, monitoring resource utilization, and regularly auditing containers for unauthorized activities can help detect and prevent resource hijacking attempts.
+Злоумышленники могут атаковать развертывания Kubernetes, чтобы уничтожить критически важные данные и ресурсы. Это может включать удаление развертываний, конфигураций, томов хранения или вычислительных ресурсов. Чтобы снизить риск уничтожения данных, необходимо внедрить надежные механизмы резервного копирования и аварийного восстановления. Регулярное резервное копирование критически важных данных, проверка целостности резервных копий и использование надлежащих средств контроля доступа помогут свести к минимуму последствия атак на уничтожение данных.
 
 
 
@@ -1174,139 +1162,151 @@ Compromised resources within a Kubernetes cluster can be abused by attackers for
 
 
 
-
-
-#### Denial of Service (DoS):
+#### Перехват ресурсов:
 
 
 
-Attackers may launch DoS attacks to disrupt the availability of Kubernetes services. This can involve targeting containers, nodes, or the API server. To mitigate the impact of DoS attacks, it is crucial to implement network-level security measures such as ingress and egress filtering, rate limiting, and traffic monitoring. Additionally, implementing resource quotas, configuring horizontal pod autoscaling, and monitoring resource utilization can help in maintaining service availability and mitigating the impact of DoS attacks.
-
+Скомпрометированные ресурсы в кластере Kubernetes могут быть использованы злоумышленниками для вредоносной деятельности, например для добычи цифровой валюты. Злоумышленники, получившие доступ к контейнерам или имеющие права на создание новых контейнеров, могут использовать эти ресурсы для выполнения несанкционированных задач. Применение строгих политик безопасности, мониторинг использования ресурсов и регулярный аудит контейнеров на предмет несанкционированных действий помогут обнаружить и предотвратить попытки захвата ресурсов.
 
 
 
 
-## Cloud Threat Matrix
+
+
+
+
+
+#### Отказ в обслуживании (DoS):
+
+
+
+Злоумышленники могут проводить DoS-атаки, чтобы нарушить доступность сервисов Kubernetes. Это может касаться контейнеров, узлов или сервера API. Чтобы уменьшить последствия DoS-атак, важно применять меры безопасности на уровне сети, такие как фильтрация входящего и исходящего трафика, ограничение скорости и мониторинг трафика. Кроме того, внедрение квот на ресурсы, настройка горизонтального автомасштабирования подсистем и мониторинг использования ресурсов могут помочь в поддержании доступности сервисов и смягчении последствий DoS-атак.
+
+
+
+
+
+## Матрица облачных угроз
 
 ![MITRE ATT&CK Cloud Threat Matrix](../../../assets/images/cloud-matrix.png)
 
-The MITRE ATT&CK framework provides a comprehensive knowledge base of adversary tactics and techniques used in cyber attacks. 
+Система MITRE ATT&CK предоставляет обширную базу знаний о тактике и технике противника, используемых в кибератаках. 
 
-### Initial Access:
+### Первоначальный доступ:
 
-#### Cloud Account Phishing
+#### Фишинг облачного аккаунта
 
-An attacker attempts to gain unauthorized access to a cloud account through phishing techniques.
+Злоумышленник пытается получить несанкционированный доступ к облачному аккаунту с помощью фишинговых методов.
 
-#### Cloud Service Exploitation 
+#### Эксплуатация облачных сервисов 
 
-Attackers exploit vulnerabilities in cloud services to gain initial access.
+Злоумышленники используют уязвимости в облачных сервисах для получения первоначального доступа.
 
 ### Execution
 
-#### Remote Execution
+#### Удаленное выполнение
 
-Attackers execute code or commands on a cloud system remotely.
+Злоумышленники удаленно выполняют код или команды на облачной системе.
 
-#### User Execution
+#### Выполнение пользователем
 
-Attackers trick a user into executing malicious code or commands on a cloud system.
-
-
-### Persistence
-
-#### Persistence through Cloud Resource 
-
-Access: Attackers establish persistence by maintaining access to cloud resources or accounts.
-
-#### Persistence through Cloud Service
-
-Attackers use cloud services or features to establish persistence in the environment.
+Злоумышленники обманом заставляют пользователя выполнить вредоносный код или команды на облачной системе.
 
 
-### Privilege Escalation
+### Стойкость
 
-#### Access Cloud Service Permissions
+#### Постоянство через облачный ресурс 
 
-Attackers escalate their privileges by manipulating cloud service permissions.
+Доступ: Злоумышленники устанавливают постоянство, сохраняя доступ к облачным ресурсам или учетным записям.
 
-#### Container Escape
+#### Устойчивость через облачный сервис.
 
-Attackers escape containerization to gain higher privileges in the cloud environment.
-
-
-### Defense Evasion
-
-#### Clear Cloud Logs
-
-Attackers attempt to delete or manipulate logs in the cloud environment to evade detection.
-
-#### Modify Cloud Trail
-
-Attackers modify or tamper with cloud trail logs to hide their activities.
+Злоумышленники используют облачные сервисы или функции для установления постоянства в среде.
 
 
-### Credential Access
+### Повышение привилегий
 
-#### Steal Cloud Service Credentials 
+#### Доступ к разрешениям облачных сервисов
 
-Attackers steal cloud service credentials to gain unauthorized access.
+Злоумышленники повышают свои привилегии, манипулируя разрешениями облачных сервисов.
 
-#### Capture Cloud Service Credentials
+#### Побег из контейнера
 
-Attackers capture cloud service credentials through various means.
-
-
-### Discovery
-
-#### Cloud Service Discovery
-
-Attackers discover cloud services and resources to gather information about the environment.
-
-#### Container Discovery 
-
-Attackers identify and explore containers within the cloud environment.
+Злоумышленники избегают контейнеризации, чтобы получить более высокие привилегии в облачной среде.
 
 
-### Lateral Movement
+### Уклонение от защиты
 
-#### Cloud Infrastructure Lateral Movement
+#### Очистка облачных журналов
 
-Attackers move laterally between cloud resources and accounts.
+Злоумышленники пытаются удалить или манипулировать журналами в облачной среде, чтобы избежать обнаружения.
 
-#### Container-to-Container Lateral Movement
+#### Модифицировать облачный след
 
-Attackers move laterally between containers within the cloud environment.
-
-### Collection
-
-#### Data from Cloud Storage Object
-
-Attackers collect and exfiltrate data from cloud storage objects.
-
-#### Data from Container
-
-Attackers collect and exfiltrate data from containers in the cloud environment.
-
-### Exfiltration:
-
-#### Exfiltration Over Cloud Channel
-
-Attackers exfiltrate data through cloud-based communication channels.
-
-#### Exfiltration Over Other Network Medium
-
-Attackers exfiltrate data using other network mediums within the cloud environment.
+Злоумышленники изменяют или подделывают журналы облачных следов, чтобы скрыть свою деятельность.
 
 
+### Доступ к учетным данным
+
+#### Кража учетных данных облачного сервиса 
+
+Злоумышленники крадут учетные данные облачных сервисов, чтобы получить несанкционированный доступ.
+
+#### Перехват учетных данных облачных сервисов
+
+Злоумышленники получают учетные данные облачных сервисов различными способами.
 
 
-## Threat Hunting
+### Обнаружение
+
+#### Обнаружение облачных сервисов
+
+Злоумышленники обнаруживают облачные сервисы и ресурсы, чтобы собрать информацию о среде.
+
+#### Обнаружение контейнеров 
+
+Злоумышленники обнаруживают и исследуют контейнеры в облачной среде.
+
+
+### Латеральное перемещение
+
+#### Латеральное перемещение в облачной инфраструктуре
+
+Злоумышленники перемещаются между облачными ресурсами и учетными записями.
+
+#### Латеральное перемещение между контейнерами
+
+Злоумышленники перемещаются между контейнерами в облачной среде.
+
+### Коллекция
+
+#### Данные из облачного хранилища
+
+Злоумышленники собирают и передают данные из облачных хранилищ.
+
+#### Данные из контейнера
+
+Злоумышленники собирают и распространяют данные из контейнеров в облачной среде.
+
+### Эксфильтрация:
+
+#### Эксфильтрация через облачный канал.
+
+Злоумышленники осуществляют эксфильтрацию данных через облачные каналы связи.
+
+#### Эксфильтрация через другие сетевые среды
+
+Злоумышленники осуществляют эксфильтрацию данных с помощью других сетевых сред в облачной среде.
+
+
+
+
+## Охота на угрозу
 
 
 ## Shodan
 
-A search engine for internet-connected devices that allows you to identify potential attack surfaces and vulnerabilities in your network.	
+Поисковая система для подключенных к Интернету устройств, позволяющая выявлять потенциальные поверхности атак и уязвимости в вашей сети.	
 
 
 ```
@@ -1315,26 +1315,26 @@ shodan scan submit --filename scan.json "port:22"
 
 ## VirusTotal
 
-A threat intelligence platform that allows you to analyze files and URLs for potential threats and malware.	
+Платформа для анализа угроз, позволяющая анализировать файлы и URL-адреса на предмет потенциальных угроз и вредоносного ПО.	
 
 ```
-curl --request POST --url 'https://www.virustotal.com/api/v3/urls' --header 'x-apikey: YOUR_API_KEY' --header 'content-type: application/json' --data '{"url": "https://example.com"}'
+curl --request POST --url 'https://www.virustotal.com/api/v3/urls' --header 'x-apikey: YOUR_API_KEY' --header 'content-type: application/json' --data '{"url": "https://example.com"}''
 ```
 
 ## ThreatConnect
 
-A threat intelligence platform that allows you to collect, analyze, and share threat intelligence with your team and community.	
+Платформа для анализа угроз, которая позволяет собирать, анализировать и делиться информацией об угрозах с вашей командой и сообществом.	
 
 ```
-curl -H "Content-Type: application/json" -X POST -d '{"name": "Example Threat Intel", "description": "This is an example threat intelligence report."}' https://api.threatconnect.com/api/v2/intelligence
+curl -H "Content-Type: application/json" -X POST -d '{"name": "Example Threat Intel", "description": "Это пример отчета о разведке угроз".}' https://api.threatconnect.com/api/v2/intelligence
 ```
 
 ## MISP
 
-An open-source threat intelligence platform that allows you to collect, store, and share threat intelligence with your team and community.	
+Платформа для анализа угроз с открытым исходным кодом, позволяющая собирать, хранить и делиться данными об угрозах со своей командой и сообществом.	
 
 ```
-curl -X POST 'http://misp.local/events/restSearch' -H 'Authorization: YOUR_API_KEY' -H 'Content-Type: application/json' -d '{ "returnFormat": "json", "eventid": [1,2,3], "enforceWarninglist":0 }'
+curl -X POST 'http://misp.local/events/restSearch' -H 'Авторизация: YOUR_API_KEY' -H 'Content-Type: application/json' -d '{"returnFormat": "json", "eventid": [1,2,3], "enforceWarninglist":0 }''
 ```
 
 
@@ -1342,141 +1342,141 @@ curl -X POST 'http://misp.local/events/restSearch' -H 'Authorization: YOUR_API_K
 
 ### Generate Yara Rule
 
-- [ ] Specify the objective of the YARA rule. For this example, let's create a rule to detect a specific type of malware based on its behavior.
+- [ ] Укажите цель правила YARA. Для этого примера создадим правило для обнаружения определенного типа вредоносного ПО на основе его поведения.
 
-Prompt: "Please provide a brief description of the malware behavior you want to detect."
+Запрос: "Пожалуйста, дайте краткое описание поведения вредоносного ПО, которое вы хотите обнаружить".
 
 
-- [ ] Identify indicators of the malware, such as file names, strings, or patterns that are characteristic of the malware. This information will be used in the YARA rule.
+- [ ] Определите индикаторы вредоносного ПО, например имена файлов, строки или шаблоны, характерные для него. Эта информация будет использована в правиле YARA.
 
 
 
-Prompt: "What are some specific indicators or patterns associated with the malware?"
+Вопрос: "Какие специфические индикаторы или шаблоны связаны с вредоносным ПО?"
 
 
 
-- [ ] Start the YARA rule by defining metadata such as the rule name, description, and author. Add this information to the rule.yar file.
+- [ ] Запустите правило YARA, определив метаданные, такие как имя правила, описание и автор. Добавьте эту информацию в файл rule.yar.
 
 
 
-Prompt: "Please provide the rule name, description, and author for the YARA rule."
+Спросите: "Укажите имя правила, описание и автора для правила YARA".
 
 
 
-- [ ] Define the condition or logic that will trigger the rule when a match is found. Use the indicators identified in Step 2 and YARA syntax to specify the condition.
+- [ ] Определите условие или логику, которая будет запускать правило при обнаружении совпадения. Используйте индикаторы, определенные на шаге 2, и синтаксис YARA для задания условия.
 
 
 
-Prompt: "Please provide the condition for the YARA rule using the indicators and YARA syntax."
+Подсказка: "Пожалуйста, укажите условие для правила YARA, используя индикаторы и синтаксис YARA".
 
 
 
-- [ ] Optionally, add tags to the YARA rule to provide additional information or categorization. Tags can be used to group related rules together.
+- [ ] По желанию добавьте к правилу YARA теги, чтобы предоставить дополнительную информацию или классификацию. Теги можно использовать для группировки связанных правил.
 
-Prompt: "If applicable, please add any relevant tags to the YARA rule."
+Подсказка: "Если применимо, добавьте к правилу YARA любые соответствующие теги".
 
 
 
 
-- [ ] Test the YARA rule against sample files or known malware to ensure it detects the intended behavior.
+- [ ] Проверьте правило YARA на примере файлов или известных вредоносных программ, чтобы убедиться, что оно обнаруживает нужное поведение.
 
-Prompt: "Please test the YARA rule against sample files or known malware to verify its effectiveness."
+Подсказка: "Пожалуйста, протестируйте правило YARA на образцах файлов или известных вредоносных программах, чтобы убедиться в его эффективности".
 
 
 
-- [ ] Refine the YARA rule based on the test results and iterate on the steps as necessary to improve its accuracy and coverage.
+- [ ] Доработайте правило YARA, основываясь на результатах тестирования, и повторите шаги, необходимые для повышения точности и охвата.
 
 
 
-Prompt: "Based on the test results, do you need to refine or iterate on the YARA rule?"
+Подсказка: "Основываясь на результатах тестирования, нужно ли вам доработать или итерировать правило YARA?"
 
 
 
 
 
-### Code Analysis
+### Анализ кода
 
 
-- [ ] Acquire a malware sample that you want to analyze. This can be a file, script, or any other form of malicious code.
+- [ ] Получите образец вредоносного ПО, который вы хотите проанализировать. Это может быть файл, сценарий или любая другая форма вредоносного кода.
 
-Prompt: "Please provide the malware sample you want to analyze."
+Спросите: "Пожалуйста, укажите образец вредоносного ПО, который вы хотите проанализировать".
 
 
 
-- [ ] Create a secure and isolated environment to analyze the malware sample. This can be a virtual machine, sandbox, or container.
+- [ ] Создайте безопасную и изолированную среду для анализа образца вредоносного ПО. Это может быть виртуальная машина, "песочница" или контейнер.
 
 
 
-Prompt: "How would you like to set up the secure environment? (e.g., virtual machine, sandbox)"
+Спросите: "Как вы хотите настроить безопасную среду? (например, виртуальная машина, песочница)".
 
 
 
 
-- [ ] Install the necessary tools for malware analysis. This typically includes disassemblers, debuggers, and code analysis tools.
+- [ ] Установите необходимые инструменты для анализа вредоносного ПО. Обычно это дизассемблеры, отладчики и средства анализа кода.
 
 
 
-Prompt: "Please list the specific tools you would like to install for malware code analysis."
+Задание: "Пожалуйста, перечислите инструменты, которые вы хотели бы установить для анализа кода вредоносного ПО".
 
 
 
 
-- [ ] Extract the malware from its container or packaging and inspect its components, such as executable files, scripts, or configuration files.
+- [ ] Извлечение вредоносной программы из ее контейнера или упаковки и проверка ее компонентов, таких как исполняемые файлы, сценарии или файлы конфигурации.
 
 
 
-Prompt: "Please extract the malware sample and provide a brief overview of its components."
+Спросите: "Пожалуйста, извлеките образец вредоносной программы и дайте краткий обзор ее компонентов".
 
 
 
 
-- [ ] Use a disassembler or decompiler tool to analyze the malware's code and convert it into a more readable format for analysis.
+- [ ] Используйте дизассемблер или декомпилятор для анализа кода вредоносной программы и преобразования его в более удобный для анализа формат.
 
 
 
-Prompt: "Which disassembler or decompiler tool would you like to use for the analysis?"
+Задание: "Какой дизассемблер или декомпилятор вы хотите использовать для анализа?"
 
 
 
 
-- [ ] Examine the code of the malware to identify its behavior, functions, and potential vulnerabilities. Look for any obfuscation techniques or anti-analysis measures used by the malware.
+- [ ] Изучите код вредоносной программы, чтобы определить ее поведение, функции и потенциальные уязвимости. Найдите любые методы обфускации или меры защиты от анализа, используемые вредоносным ПО.
 
 
 
-Prompt: "What specific aspects of the malware code would you like to analyze? (e.g., behavior, vulnerabilities)"
+Задание: "Какие именно аспекты кода вредоносной программы вы хотели бы проанализировать? (например, поведение, уязвимости)".
 
 
 
 
 
-- [ ] If necessary, set up a debugger to trace the execution of the malware and understand its runtime behavior. This step may require advanced knowledge and specialized tools.
+- [ ] При необходимости настройте отладчик, чтобы отследить выполнение вредоносной программы и понять ее поведение во время выполнения. Этот шаг может потребовать углубленных знаний и специализированных инструментов.
 
 
 
 
 
-Prompt: "Do you want to debug and trace the execution of the malware? If yes, please specify the debugger tool."
+Спросите: "Хотите ли вы отладить и отследить выполнение вредоносной программы? Если да, укажите инструмент отладчика".
 
 
 
 
 
 
-- [ ] Document your findings during the malware code analysis process, including identified behaviors, potential risks, and any other relevant information. Generate a report summarizing the analysis.
+- [ ] Задокументируйте результаты анализа кода вредоносного ПО, включая выявленные модели поведения, потенциальные риски и любую другую важную информацию. Сформируйте отчет с кратким изложением результатов анализа.
 
 
 
 
 
-Prompt: "Please document your findings and generate a report summarizing the malware code analysis."
+Подсказка: "Пожалуйста, задокументируйте свои выводы и создайте отчет с кратким описанием анализа кода вредоносного ПО".
 
 
 
 
 
-- [ ] Based on the analysis, develop and apply security mitigations to protect against the malware's attack vectors. This may involve patching vulnerabilities, updating security measures, or implementing specific controls.
+- [ ] На основе анализа разработайте и примените меры по снижению уровня безопасности для защиты от векторов атак вредоносного ПО. Это может включать исправление уязвимостей, обновление мер безопасности или внедрение специальных элементов управления.
 
-Prompt: "What security mitigations would you recommend based on the analysis?"
+Задание: "Какие меры по снижению уровня безопасности вы бы порекомендовали на основе проведенного анализа?"
 
 
 
@@ -1490,55 +1490,55 @@ Prompt: "What security mitigations would you recommend based on the analysis?"
 
 
 
-- [ ] Acquire a malware sample that you want to analyze. This can be a file, script, or any other form of malicious code.
+- [ ] Получите образец вредоносного кода, который вы хотите проанализировать. Это может быть файл, сценарий или любая другая форма вредоносного кода.
 
-Prompt: "Please provide the malware sample you want to analyze."
-
-
-
-
-
-- [ ] Extract the malware from its container or packaging and inspect its components, such as executable files, scripts, or configuration files.
-
-
-
-Prompt: "Please extract the malware sample and provide a brief overview of its components."
-
-
-
-
-- [ ] Examine the code of the malware to identify its behavior, functions, and potential vulnerabilities. Look for any obfuscation techniques or anti-analysis measures used by the malware.
-
-Prompt: "What specific aspects of the malware code would you like to analyze? (e.g., behavior, vulnerabilities)"
-
-
-
-- [ ] If necessary, set up a debugger to trace the execution of the malware and understand its runtime behavior. This step may require advanced knowledge and specialized tools.
-
-Prompt: "Do you want to debug and trace the execution of the malware? If yes, please specify the debugger tool."
-
-
-
-
-- [ ] Document your findings during the malware code analysis process, including identified behaviors, potential risks, and any other relevant information. Generate a report summarizing the analysis.
-
-Prompt: "Please document your findings and generate a report summarizing the malware code analysis."
-
-
-
-- [ ] Based on the analysis, develop and apply security mitigations to protect against the malware's attack vectors. This may involve patching vulnerabilities, updating security measures, or implementing specific controls.
-
-Prompt: "What security mitigations would you recommend based on the analysis?"
+Спросите: "Пожалуйста, укажите образец вредоносного ПО, который вы хотите проанализировать".
 
 
 
 
 
+- [ ] Извлеките вредоносную программу из контейнера или упаковки и проверьте ее компоненты, такие как исполняемые файлы, сценарии или файлы конфигурации.
 
-### Log Analysis
 
 
-- [ ] Preprocess the log files to extract the necessary information and make them more readable. Use tools like awk, sed, or grep to filter and format the log data. For example:
+Спросите: "Пожалуйста, извлеките образец вредоносного ПО и дайте краткий обзор его компонентов".
+
+
+
+
+- [ ] Изучите код вредоносной программы, чтобы определить ее поведение, функции и потенциальные уязвимости. Найдите любые методы обфускации или меры защиты от анализа, используемые вредоносным ПО.
+
+Задание: "Какие именно аспекты кода вредоносной программы вы хотели бы проанализировать? (например, поведение, уязвимости)".
+
+
+
+- [ ] При необходимости настройте отладчик, чтобы отследить выполнение вредоносной программы и понять ее поведение во время выполнения. Этот шаг может потребовать углубленных знаний и специализированных инструментов.
+
+Спросите: "Хотите ли вы отладить и отследить выполнение вредоносной программы? Если да, укажите инструмент отладчика".
+
+
+
+
+- [ ] Задокументируйте результаты анализа кода вредоносного ПО, включая выявленные модели поведения, потенциальные риски и любую другую важную информацию. Сформируйте отчет с кратким изложением результатов анализа.
+
+Подсказка: "Пожалуйста, задокументируйте свои выводы и создайте отчет с кратким описанием анализа кода вредоносного ПО".
+
+
+
+- [ ] На основе анализа разработайте и примените меры по снижению уровня безопасности для защиты от векторов атак вредоносного ПО. Это может включать исправление уязвимостей, обновление мер безопасности или внедрение специальных элементов управления.
+
+Задание: "Какие меры по снижению безопасности вы бы рекомендовали на основе проведенного анализа?"
+
+
+
+
+
+
+### Анализ журналов
+
+
+- [ ] Предварительно обработайте файлы журналов, чтобы извлечь из них необходимую информацию и сделать их более читабельными. Используйте такие инструменты, как awk, sed или grep, чтобы отфильтровать и отформатировать данные журнала. Например:
 
 
 ```
@@ -1546,72 +1546,72 @@ $ awk '{print $4, $7}' access.log > formatted_logs.txt
 ```
 
 
-- [ ]  Start by exploring the log data to understand its structure and content. Use commands like head, tail, or cat to view the log files. For example:
+- [ ] Начните с изучения данных журнала, чтобы понять его структуру и содержание. Используйте такие команды, как head, tail или cat, чтобы просмотреть файлы журнала. Например:
 
 
 ```
 $ head formatted_logs.txt
 ```
 
-Prompt: "Please provide a brief overview of the log data structure and format."
+Спросите: "Пожалуйста, дайте краткий обзор структуры и формата данных журнала".
 
 
 
 
-- [ ] Perform statistical analysis on the log data to gain insights. Use tools like grep, sort, or uniq to extract useful information. For example:
+- [ ] Проведите статистический анализ данных журнала, чтобы получить информацию. Используйте такие инструменты, как grep, sort или uniq, чтобы извлечь полезную информацию. Например:
 
 
 ```
 $ grep '404' formatted_logs.txt | wc -l
 ```
 
-Prompt: "Can you provide the count of HTTP 404 errors in the log data?"
+Подсказка: "Можете ли вы предоставить количество ошибок HTTP 404 в журнале?"
 
 
 
-- [ ] Apply pattern matching techniques to identify specific events or anomalies. Use commands like grep or regular expressions to search for patterns. For example:
+- [ ] Применяйте методы сопоставления шаблонов для выявления определенных событий или аномалий. Используйте такие команды, как grep или регулярные выражения для поиска шаблонов. Например:
 
 
 ```
 $ grep -E '(\b\d{3}\b){4}' formatted_logs.txt
 ```
 
-Prompt: "Please identify any IP addresses in the log data."
+Подсказка: "Пожалуйста, определите IP-адреса в данных журнала".
 
 
 
-- [ ] Perform time-based analysis to identify trends or suspicious activities. Use commands like awk or date to manipulate timestamps. For example:
+- [ ] Выполните анализ на основе времени, чтобы выявить тенденции или подозрительные действия. Используйте такие команды, как awk или date, для работы с временными метками. Например:
 
 
 ```
 $ awk '{print $4, $7}' access.log > formatted_logs.txt
 ```
 
-Prompt: "Can you provide a distribution of log events based on the hour of the day?"
+Спросите: "Можете ли вы предоставить распределение событий журнала в зависимости от времени суток?"
 
 
 
 
 
-- [ ] Engage in an interactive investigation by asking questions or seeking specific information. Use prompts like:
+- [ ] Участвуйте в интерактивном расследовании, задавая вопросы или запрашивая конкретную информацию. Используйте такие подсказки, как:
 
 
-* "Can you identify any failed login attempts in the log data?"
-* "Please provide the top 10 most accessed URLs in the log data."
-* "Are there any user-agents associated with suspicious activities?"
+* "Можете ли вы выявить в журнале неудачные попытки входа в систему?"
+* "Укажите 10 наиболее часто используемых URL-адресов в журнале".
+* "Есть ли пользователи-агенты, связанные с подозрительными действиями?"
 
 
 
-- [ ] Create visualizations to present the findings. Use tools like matplotlib, gnuplot, or online visualization platforms. For example:
+- [ ] Создайте визуализацию для представления результатов. Используйте такие инструменты, как matplotlib, gnuplot, или онлайн-платформы для визуализации. Например:
 
 
 ```
 import matplotlib.pyplot as plt
 
-# Code to generate a bar chart or line graph based on the log analysis results
+# Код для создания гистограммы или линейного графика на основе результатов лог-анализа
 ```
 
-Prompt: "Can you create a bar chart showing the distribution of log events over time?"
+Подсказка: "Можете ли вы создать гистограмму, показывающую распределение событий журнала по времени?"
 
 
 
