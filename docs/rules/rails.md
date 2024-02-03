@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,13 +19,13 @@ parent: Rules
 
 
 
-### XSS
+### Межсайтовый скриптинг (XSS)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
-# Noncompliant code
+// Несоответствующий код:
 def create
   @comment = Comment.new(comment_params)
   
@@ -37,18 +37,18 @@ def create
 end
 ```
 
-In this noncompliant code, the create action is handling the creation of a comment in Ruby on Rails. However, it does not include any sanitization or validation of the user input. Consequently, if an attacker submits a comment with malicious HTML or JavaScript code, it will be rendered as-is when the comment is displayed, leading to a Cross-Site Scripting (XSS) vulnerability.
+В этом несоответствующем коде действие create обрабатывает создание комментария в Ruby on Rails. Однако в нем не предусмотрено никакой санации или проверки вводимых пользователем данных. Следовательно, если злоумышленник отправит комментарий с вредоносным HTML- или JavaScript-кодом, то при отображении комментария он будет отображен как есть, что приведет к возникновению уязвимости межсайтового скриптинга (XSS).
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
-# Compliant code
+// Соответствующий код
 def create
   @comment = Comment.new(comment_params)
   
@@ -62,24 +62,24 @@ end
 ```
 
 
-In the compliant code, a new comment is created as before, but instead of rendering the 'new' template when there is an error, a flash message is set to notify the user about the failure. By using the flash.now mechanism, the message is displayed within the same request-response cycle, ensuring that the user input is not directly rendered back to the browser and reducing the risk of XSS attacks.
+В совместимом коде новый комментарий создается, как и раньше, но вместо отображения шаблона 'new' при возникновении ошибки устанавливается flash-сообщение, уведомляющее пользователя об ошибке. Благодаря использованию механизма flash.now сообщение отображается в рамках одного и того же цикла запрос-ответ, что гарантирует, что пользовательский ввод не будет напрямую возвращен в браузер, и снижает риск XSS-атак.
 
-To further enhance the protection against XSS vulnerabilities in Ruby on Rails, you can utilize the built-in HTML escaping mechanisms provided by the framework. For example, when rendering user-generated content in a view template, you can use the h or html_escape method to escape any HTML entities:
+Чтобы еще больше усилить защиту от XSS-уязвимостей в Ruby on Rails, вы можете использовать встроенные механизмы экранирования HTML, предоставляемые фреймворком. Например, при выводе пользовательского контента в шаблоне представления вы можете использовать метод h или html_escape для экранирования любых HTML-сущностей:
 
 ```
 <%= h @comment.body %>
 ```
 
 
-This ensures that the content is displayed as plain text and any HTML tags or special characters are properly escaped, preventing them from being executed as code.
+Это гарантирует, что содержимое отображается в виде обычного текста, а любые HTML-теги или специальные символы будут правильно экранированы, что предотвратит их выполнение в качестве кода.
 
-In addition to input sanitization and HTML escaping, other security measures you can implement in Ruby on Rails to mitigate XSS vulnerabilities include:
+Помимо санации ввода и экранирования HTML, другие меры безопасности, которые вы можете применить в Ruby on Rails для защиты от XSS-уязвимостей, включают:
 
-* Using the Rails form helpers, such as form_for or form_tag, which automatically apply the necessary escaping and protection against CSRF attacks.
-* Implementing Content Security Policies (CSP) to control the types of content allowed to be loaded and executed on your web pages.
-* Applying proper output encoding or using specific rendering mechanisms, such as raw or html_safe, when rendering content that should be treated as trusted HTML.
+* Использование помощников форм Rails, таких как form_for или form_tag, которые автоматически применяют необходимое экранирование и защищают от CSRF-атак.
+* Внедрение политик безопасности содержимого (CSP) для контроля типов содержимого, разрешенных для загрузки и выполнения на веб-страницах.
+* Применение надлежащей кодировки вывода или использование специальных механизмов рендеринга, таких как raw или html_safe, при рендеринге содержимого, которое должно рассматриваться как доверенный HTML.
 
-By properly sanitizing user input, applying HTML escaping, and implementing security measures throughout your Rails application, you can effectively mitigate XSS vulnerabilities and enhance the overall security of your web application.
+Правильно санируя пользовательский ввод, применяя экранирование HTML и реализуя меры безопасности во всем вашем Rails-приложении, вы сможете эффективно устранить XSS-уязвимости и повысить общую безопасность вашего веб-приложения.
 
 
 
