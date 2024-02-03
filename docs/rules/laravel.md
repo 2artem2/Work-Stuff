@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,13 +19,13 @@ parent: Rules
 
 
 
-### XSS
+### Межсайтовый скриптинг (XSS)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code
+// Несоответствующий код
 public function store(Request $request)
 {
     $name = $request->input('name');
@@ -40,17 +40,17 @@ public function store(Request $request)
 }
 ```
 
-In this noncompliant code, the store method receives user input through the $request object and directly inserts it into the database without any validation or sanitization. This makes the application vulnerable to Cross-Site Scripting (XSS) attacks, as an attacker can submit malicious JavaScript code as the message input, which will be rendered as-is when displayed back to users.
+В этом несоответствующем коде метод store получает пользовательский ввод через объект $request и напрямую вставляет его в базу данных без какой-либо проверки или санитарной обработки. Это делает приложение уязвимым к атакам межсайтового скриптинга (XSS), поскольку злоумышленник может отправить вредоносный JavaScript-код в качестве входного сообщения, которое будет отображено как есть при возврате пользователю.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code
+// Соответствующий код
 public function store(Request $request)
 {
     $name = $request->input('name');
@@ -68,19 +68,17 @@ public function store(Request $request)
 ```
 
 
-In the compliant code, the htmlspecialchars function is used to sanitize the user input before inserting it into the database. This function escapes special characters that have special meaning in HTML, preventing them from being interpreted as HTML tags or entities when displayed in the browser. This sanitization process helps mitigate XSS vulnerabilities by ensuring that user-supplied input is treated as plain text rather than executable code.
+В соответствующем коде функция htmlspecialchars используется для санитарной обработки пользовательского ввода перед вставкой его в базу данных. Эта функция экранирует специальные символы, которые имеют особое значение в HTML, предотвращая их интерпретацию как HTML-тегов или сущностей при отображении в браузере. Этот процесс дезинфекции помогает уменьшить уязвимости XSS, гарантируя, что вводимые пользователем данные будут рассматриваться как обычный текст, а не как исполняемый код.
 
-It's important to note that while the htmlspecialchars function provides basic protection against XSS attacks, it is context-specific. Depending on the specific output context (e.g., HTML attributes, JavaScript, CSS), additional sanitization or encoding may be required. Consider using specialized libraries or functions that are tailored to the specific output context to provide more comprehensive protection against XSS vulnerabilities.
+Важно отметить, что хотя функция htmlspecialchars обеспечивает базовую защиту от XSS-атак, она зависит от контекста. В зависимости от конкретного контекста вывода (например, атрибуты HTML, JavaScript, CSS) может потребоваться дополнительная санация или кодирование. Для более полной защиты от XSS-уязвимостей следует использовать специализированные библиотеки или функции, адаптированные к конкретному контексту вывода.
 
-In addition to input sanitization, other security measures you can implement in Laravel to mitigate XSS vulnerabilities include:
+В дополнение к санации ввода, другие меры безопасности, которые вы можете реализовать в Laravel для снижения уязвимостей XSS, включают:
 
-* Utilizing Laravel's built-in CSRF protection to prevent cross-site request forgery attacks.
-* Applying output encoding using Laravel's Blade templating engine or helper functions like {{ }} to automatically escape variables.
-* Implementing content security policies (CSP) to control the types of content allowed to be loaded and executed on your web pages.
+* Использование встроенной в Laravel защиты CSRF для предотвращения атак подделки межсайтовых запросов.
+* Применение кодировки вывода с помощью шаблонизатора Laravel Blade или вспомогательных функций, таких как {{ }}, для автоматического экранирования переменных.
+* Реализация политик безопасности контента (CSP) для контроля типов контента, разрешенных для загрузки и выполнения на ваших веб-страницах.
 
-By properly sanitizing user input and implementing security measures throughout your Laravel application, you can effectively mitigate XSS vulnerabilities and enhance the overall security of your web application.
-
-
+Правильная санация пользовательского ввода и применение мер безопасности во всем приложении Laravel позволят вам эффективно устранить XSS-уязвимости и повысить общую безопасность вашего веб-приложения.
 
 
 
@@ -88,9 +86,11 @@ By properly sanitizing user input and implementing security measures throughout 
 
 
 
-### SQL injection
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+### SQL-инъекция
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -99,12 +99,12 @@ $query = "SELECT * FROM users WHERE username = '".$userInput."'";
 $results = DB::select($query);
 ```
 
-In this noncompliant code, the user input is directly concatenated into the SQL query string, creating a vulnerability known as SQL injection. An attacker can manipulate the input to inject malicious SQL statements, potentially gaining unauthorized access to the database or manipulating its contents.
+В этом несовместимом коде пользовательский ввод напрямую конкатенируется в строку SQL-запроса, что создает уязвимость, известную как SQL-инъекция. Злоумышленник может манипулировать вводом, чтобы внедрить вредоносные SQL-запросы, потенциально получив несанкционированный доступ к базе данных или манипулируя ее содержимым.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -113,20 +113,20 @@ $results = DB::select("SELECT * FROM users WHERE username = ?", [$userInput]);
 ```
 
 
-In the compliant code, Laravel's query builder is used with prepared statements to mitigate SQL injection. The user input is bound to a placeholder (?) in the query, and Laravel handles the proper escaping and sanitization of the input.
+В соответствующем коде конструктор запросов Laravel используется вместе с подготовленными операторами для защиты от SQL-инъекций. Пользовательский ввод привязывается к заполнителю (?) в запросе, а Laravel обрабатывает правильное экранирование и дезинфекцию ввода.
 
-By using prepared statements, the compliant code ensures that user input is treated as data rather than executable SQL code, thereby preventing SQL injection attacks.
-
-
+Благодаря использованию подготовленных операторов совместимый код гарантирует, что пользовательский ввод будет рассматриваться как данные, а не как исполняемый SQL-код, тем самым предотвращая атаки SQL-инъекций.
 
 
 
 
 
 
-### Broken Access Control
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+### Нарушенный контроль доступа
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -134,7 +134,7 @@ public function deletePost(Request $request, $postId)
 {
     $post = Post::find($postId);
     
-    // Check if the currently authenticated user is the owner of the post
+    // Проверьте, является ли текущий аутентифицированный пользователь владельцем сообщения
     if ($post->user_id == Auth::user()->id) {
         $post->delete();
         return redirect('/dashboard')->with('success', 'Post deleted successfully.');
@@ -144,14 +144,14 @@ public function deletePost(Request $request, $postId)
 }
 ```
 
-In this noncompliant code, the deletePost method assumes that the currently authenticated user is authorized to delete any post based solely on their user ID. However, it fails to perform proper access control checks to ensure that the user is the actual owner of the post. This can lead to broken access control, allowing unauthorized users to delete posts.
+В этом несоответствующем коде метод deletePost предполагает, что текущий аутентифицированный пользователь имеет право удалять любые сообщения, основываясь только на своем идентификаторе пользователя. Однако он не выполняет надлежащих проверок контроля доступа, чтобы убедиться, что пользователь является фактическим владельцем сообщения. Это может привести к нарушению контроля доступа, позволяя неавторизованным пользователям удалять сообщения.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -159,7 +159,7 @@ public function deletePost(Request $request, $postId)
 {
     $post = Post::find($postId);
     
-    // Check if the currently authenticated user is the owner of the post
+    // Проверьте, является ли текущий аутентифицированный пользователь владельцем сообщения
     if ($post->user_id == Auth::user()->id) {
         $post->delete();
         return redirect('/dashboard')->with('success', 'Post deleted successfully.');
@@ -169,7 +169,7 @@ public function deletePost(Request $request, $postId)
 }
 ```
 
-In the compliant code, the deletePost method performs the same check to verify if the authenticated user is the owner of the post. However, instead of redirecting with an error message, it throws a 403 Forbidden exception using the abort function if the user is not authorized. This ensures that unauthorized users cannot determine the existence of a post they don't have access to.
+В соответствующем коде метод deletePost выполняет ту же проверку, чтобы убедиться, что аутентифицированный пользователь является владельцем сообщения. Однако вместо перенаправления с сообщением об ошибке он выбрасывает исключение 403 Forbidden с помощью функции abort, если пользователь не авторизован. Это гарантирует, что неавторизованные пользователи не смогут узнать о существовании поста, к которому у них нет доступа.
 
 
 
@@ -178,9 +178,9 @@ In the compliant code, the deletePost method performs the same check to verify i
 
 
 
-### Cryptographic Failures
+### Криптографические сбои
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -195,14 +195,14 @@ public function decryptData($encryptedData, $key)
 }
 ```
 
-In this noncompliant code, the encryptData and decryptData functions use the default Laravel encryption functions encrypt and decrypt to perform cryptographic operations. However, this code does not consider important aspects of cryptographic security, such as key management, algorithm selection, and secure handling of sensitive data. This can lead to cryptographic failures and vulnerabilities in the application.
+В этом несоответствующем коде функции encryptData и decryptData используют стандартные функции шифрования Laravel encrypt и decrypt для выполнения криптографических операций. Однако в этом коде не учитываются важные аспекты криптографической безопасности, такие как управление ключами, выбор алгоритмов и безопасная обработка конфиденциальных данных. Это может привести к сбоям в работе криптографии и уязвимостям в приложении.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -218,22 +218,22 @@ public function decryptData($encryptedData, $key)
     try {
         return Crypt::decryptString($encryptedData);
     } catch (DecryptException $e) {
-        // Handle decryption error
+        // Обработка ошибки расшифровки
     }
 }
 ```
 
 
-In the compliant code, we use Laravel's Crypt facade to perform the encryption and decryption operations. The encryptString and decryptString methods provided by the Crypt facade offer a more secure approach for cryptographic operations. Additionally, error handling is implemented using a try-catch block to properly handle decryption errors, such as when an incorrect key is provided.
+В соответствующем коде мы используем фасад Laravel Crypt для выполнения операций шифрования и дешифрования. Методы encryptString и decryptString, предоставляемые фасадом Crypt, обеспечивают более безопасный подход к криптографическим операциям. Кроме того, обработка ошибок реализована с помощью блока try-catch для правильной обработки ошибок расшифровки, например, при предоставлении неверного ключа.
 
 
 
 
 
 
-### Insecure Design
+### Небезопасное конструирование
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -254,14 +254,14 @@ public function getUserProfile($userId)
 }
 ```
 
-In this noncompliant code, the getUserProfile function retrieves a user's profile information based on the provided $userId. However, it lacks proper access control and authorization checks. Any user can potentially access the profile information of any other user, bypassing the necessary security measures.
+В этом коде, не соответствующем требованиям, функция getUserProfile извлекает информацию о профиле пользователя на основе предоставленного $userId. Однако в ней отсутствуют надлежащие проверки контроля доступа и авторизации. Любой пользователь потенциально может получить доступ к информации профиля любого другого пользователя, минуя необходимые меры безопасности.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -286,7 +286,7 @@ public function getUserProfile($userId, $requestingUserId)
 }
 ```
 
-In the compliant code, we have introduced an additional parameter $requestingUserId to identify the user making the request. We first check if the requesting user exists and if they have the necessary privileges, such as being an administrator, to access the profile information. Only if these conditions are met, the profile information is returned. Otherwise, null is returned, indicating the lack of authorization.
+В коде, соответствующем требованиям, мы ввели дополнительный параметр $requestingUserId для идентификации пользователя, делающего запрос. Сначала мы проверяем, существует ли запрашивающий пользователь и обладает ли он необходимыми привилегиями, например правами администратора, для доступа к информации о профиле. Только если эти условия выполнены, информация о профиле возвращается. В противном случае возвращается null, указывающий на отсутствие авторизации.
 
 
 
@@ -294,9 +294,9 @@ In the compliant code, we have introduced an additional parameter $requestingUse
 
 
 
-### Security Misconfiguration
+### Неправильная конфигурация системы безопасности
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -323,14 +323,14 @@ return [
 ];
 ```
 
-In this noncompliant code, the database configuration file config/database.php contains sensitive information, such as the database credentials. The password field is empty, which means the application is using a default or weak password, making it vulnerable to unauthorized access. Additionally, the strict mode is disabled, which can lead to insecure SQL queries.
+В этом несоответствующем коде файл конфигурации базы данных config/database.php содержит конфиденциальную информацию, такую как учетные данные базы данных. Поле пароля пустое, что означает, что приложение использует пароль по умолчанию или слабый пароль, что делает его уязвимым для несанкционированного доступа. Кроме того, отключен строгий режим, что может привести к небезопасным SQL-запросам.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -358,27 +358,27 @@ return [
 ```
 
 
-In the compliant code, sensitive information such as the database credentials are not hard-coded directly in the configuration file. Instead, environment variables are used to retrieve the values. This allows for better security by keeping the sensitive information separate from the codebase and configurable based on the deployment environment.
+В соответствующем коде конфиденциальная информация, такая как учетные данные базы данных, не записывается непосредственно в конфигурационный файл. Вместо этого для получения значений используются переменные окружения. Это позволяет повысить безопасность, поскольку конфиденциальная информация хранится отдельно от кодовой базы и настраивается в зависимости от среды развертывания.
 
 
 
-By using environment variables, you can easily manage different configurations for development, testing, and production environments without exposing sensitive information in the codebase or version control system.
+Используя переменные окружения, вы можете легко управлять различными конфигурациями для сред разработки, тестирования и производства, не раскрывая конфиденциальную информацию в кодовой базе или системе контроля версий.
 
 
 
 
 
 
-### Vulnerable and Outdated Components
+### Уязвимые и устаревшие компоненты
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 composer require laravel/framework:5.7.0
 ```
 
-In this noncompliant code, the Laravel framework version 5.7.0 is explicitly specified. This can lead to using a vulnerable and outdated version of the framework, as newer versions may contain security patches and bug fixes.
+В этом несоответствующем коде явно указана версия фреймворка Laravel 5.7.0. Это может привести к использованию уязвимой и устаревшей версии фреймворка, так как более новые версии могут содержать исправления безопасности и ошибок.
 
 
 
@@ -386,7 +386,7 @@ In this noncompliant code, the Laravel framework version 5.7.0 is explicitly spe
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -394,16 +394,16 @@ composer require laravel/framework:^8.0
 ```
 
 
-In the compliant code, the Laravel framework version is specified using a version constraint ^8.0. This allows Composer, the PHP dependency manager, to install the latest compatible version of the Laravel framework within the major version 8.x. This ensures that you receive the latest security updates and improvements.
+В соответствующем коде версия фреймворка Laravel указывается с помощью ограничения версии ^8.0. Это позволяет Composer, менеджеру зависимостей PHP, установить последнюю совместимую версию фреймворка Laravel в рамках основной версии 8.x. Это гарантирует, что вы получите последние обновления и улучшения безопасности.
 
 
 
 
 
 
-### Identification and Authentication Failures
+### Сбои в идентификации и аутентификации
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -412,16 +412,16 @@ public function login(Request $request)
     $credentials = $request->only('email', 'password');
     
     if (Auth::attempt($credentials)) {
-        // User authenticated successfully
+        // Пользователь успешно прошел аутентификацию
         return redirect()->intended('/dashboard');
     } else {
-        // Authentication failed
+        // Аутентификация не удалась
         return redirect()->back()->withErrors(['Invalid credentials']);
     }
 }
 ```
 
-In this noncompliant code, the authentication process solely relies on the Auth::attempt() method, which attempts to authenticate the user based on the provided email and password. However, this code does not handle certain authentication failures appropriately, such as account lockouts or brute-force protection.
+В этом несоответствующем коде процесс аутентификации опирается исключительно на метод Auth::attempt(), который пытается аутентифицировать пользователя на основе предоставленных им электронной почты и пароля. Однако этот код не обрабатывает должным образом некоторые сбои аутентификации, такие как блокировка учетной записи или защита от перебора.
 
 
 
@@ -429,7 +429,7 @@ In this noncompliant code, the authentication process solely relies on the Auth:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -438,15 +438,15 @@ public function login(Request $request)
     $credentials = $request->only('email', 'password');
     
     if (Auth::attempt($credentials)) {
-        // User authenticated successfully
+        // Пользователь успешно прошел аутентификацию
         return redirect()->intended('/dashboard');
     } else {
-        // Authentication failed
+        // Аутентификация не удалась
         if (Auth::exists(['email' => $request->input('email')])) {
-            // Invalid password provided
+            // Введен неверный пароль
             return redirect()->back()->withErrors(['Invalid password']);
         } else {
-            // Invalid email provided
+            // Указан неверный адрес электронной почты
             return redirect()->back()->withErrors(['Invalid email']);
         }
     }
@@ -454,16 +454,16 @@ public function login(Request $request)
 ```
 
 
-In the compliant code, we have enhanced the authentication process by considering different types of authentication failures. If the provided email exists in the system database but the password is incorrect, we show an appropriate error message indicating an invalid password. If the provided email does not exist, we show an error message indicating an invalid email.
+В соответствующем коде мы усовершенствовали процесс аутентификации, рассмотрев различные типы сбоев аутентификации. Если указанная электронная почта существует в базе данных системы, но пароль неверен, мы выводим соответствующее сообщение об ошибке, указывающее на недействительный пароль. Если указанный e-mail не существует, мы выдаем сообщение об ошибке, указывая на недействительный e-mail.
 
 
 
 
 
 
-### Software and Data Integrity Failures
+### Сбои в работе программного обеспечения и целостности данных
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -479,7 +479,7 @@ public function updateProfile(Request $request)
 }
 ```
 
-In this noncompliant code, the user's profile information is updated directly based on the user input received from the request. While this code successfully updates the user's name and email, it lacks proper validation and sanitization of the input, which can lead to software and data integrity failures.
+В этом коде, не соответствующем требованиям, информация о профиле пользователя обновляется непосредственно на основе пользовательского ввода, полученного из запроса. Хотя этот код успешно обновляет имя и электронную почту пользователя, в нем отсутствует надлежащая проверка и санитарная обработка вводимых данных, что может привести к сбоям в работе программного обеспечения и целостности данных.
 
 
 
@@ -487,7 +487,7 @@ In this noncompliant code, the user's profile information is updated directly ba
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -509,15 +509,15 @@ public function updateProfile(Request $request)
 ```
 
 
-In the compliant code, we have added validation rules to ensure the integrity of the software and data. The validate() method is used to validate the input fields against specific rules. In this example, the name field is required and should be a string with a maximum length of 255 characters. The email field is also required and must be a valid email format. Additionally, the email field is validated for uniqueness, ensuring that no other user in the database has the same email.
+В соответствующем коде мы добавили правила валидации, чтобы обеспечить целостность программного обеспечения и данных. Метод validate() используется для проверки полей ввода на соответствие определенным правилам. В данном примере поле "Имя" является обязательным и должно быть строкой длиной не более 255 символов. Поле электронной почты также является обязательным и должно иметь правильный формат. Кроме того, поле email проверяется на уникальность, чтобы убедиться, что ни один пользователь в базе данных не имеет такого же email.
 
 
 
 
 
-### Security Logging and Monitoring Failures
+### Сбои в работе журналов безопасности и мониторинга
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -535,7 +535,7 @@ public function deleteUser(Request $request)
 }
 ```
 
-In this noncompliant code, when a user is deleted, there is no logging or monitoring mechanism in place to track this activity. The code simply deletes the user if found and redirects back to the list of users. Without proper logging and monitoring, it becomes challenging to identify and investigate any unauthorized or suspicious user deletions.
+В этом несоответствующем коде, когда пользователь удаляется, нет механизма регистрации или мониторинга для отслеживания этой активности. Код просто удаляет пользователя, если он найден, и перенаправляет обратно к списку пользователей. Без надлежащего протоколирования и мониторинга становится сложно выявить и расследовать любые несанкционированные или подозрительные случаи удаления пользователей.
 
 
 
@@ -543,7 +543,7 @@ In this noncompliant code, when a user is deleted, there is no logging or monito
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -556,7 +556,7 @@ public function deleteUser(Request $request)
     if ($user) {
         $user->delete();
 
-        // Log the user deletion activity
+        // Зарегистрируйте действия по удалению пользователя
         Log::info('User deleted', ['user_id' => $userId]);
     }
 
@@ -565,15 +565,15 @@ public function deleteUser(Request $request)
 ```
 
 
-In the compliant code, we have added a logging mechanism to track the user deletion activity. After successfully deleting the user, we use Laravel's Log facade to record an information-level log entry. The log message includes relevant details such as the user ID that was deleted. By incorporating logging into the code, we can keep a record of important security-related events and establish an audit trail for future analysis and monitoring.
+В соответствующем коде мы добавили механизм ведения журнала для отслеживания действий по удалению пользователя. После успешного удаления пользователя мы используем фасад Laravel's Log для записи в журнал на информационном уровне. Сообщение в журнале содержит такие важные детали, как идентификатор пользователя, который был удален. Включив ведение журнала в код, мы можем вести учет важных событий, связанных с безопасностью, и создавать аудиторский след для последующего анализа и мониторинга.
 
 
 
 
 
-### Server-Side Request Forgery
+### Подделка запросов на стороне сервера
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -587,7 +587,7 @@ public function fetchExternalData(Request $request)
 }
 ```
 
-In this noncompliant code, the fetchExternalData method takes a URL input from the user and directly uses the file_get_contents function to fetch data from that URL. This can lead to a Server-Side Request Forgery vulnerability, where an attacker can provide a malicious URL that causes the application to perform unintended actions or access internal resources.
+В этом несовместимом коде метод fetchExternalData принимает от пользователя URL-адрес и напрямую использует функцию file_get_contents для получения данных с этого URL-адреса. Это может привести к уязвимости Server-Side Request Forgery, когда злоумышленник может предоставить вредоносный URL, который заставит приложение выполнить непредусмотренные действия или получить доступ к внутренним ресурсам.
 
 
 
@@ -595,7 +595,7 @@ In this noncompliant code, the fetchExternalData method takes a URL input from t
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -603,14 +603,14 @@ public function fetchExternalData(Request $request)
 {
     $url = $request->input('url');
 
-    // Validate and sanitize the URL to prevent SSRF
+    // Проверяем и санируем URL для предотвращения SSRF
     $validatedUrl = filter_var($url, FILTER_VALIDATE_URL);
     
     if (!$validatedUrl) {
         return response()->json(['error' => 'Invalid URL'], 400);
     }
 
-    // Restrict allowed domains if necessary
+    // При необходимости ограничьте разрешенные домены
     $allowedDomains = ['example.com', 'trusteddomain.com'];
     $parsedUrl = parse_url($validatedUrl);
     
@@ -618,7 +618,7 @@ public function fetchExternalData(Request $request)
         return response()->json(['error' => 'Access to the specified domain is not allowed'], 403);
     }
 
-    // Fetch the data
+    // Получение данных
     $data = file_get_contents($validatedUrl);
 
     return response()->json(['data' => $data]);
@@ -626,13 +626,13 @@ public function fetchExternalData(Request $request)
 ```
 
 
-In the compliant code, several measures are taken to mitigate the Server-Side Request Forgery vulnerability:
+В соответствующем коде предпринято несколько мер по снижению уязвимости Server-Side Request Forgery:
 
-1. URL Validation and Sanitization: The URL input is validated and sanitized using the filter_var function with the FILTER_VALIDATE_URL filter. This ensures that the URL provided by the user is a valid URL.
+1. Валидация и санация URL: Вводимый URL проверяется и санируется с помощью функции filter_var с фильтром FILTER_VALIDATE_URL. Это гарантирует, что URL, предоставленный пользователем, является действительным.
 
-1. Restrict Allowed Domains: If necessary, a whitelist of trusted domains can be maintained. The parsed URL's host is checked against this list to ensure that only trusted domains are accessed. This helps prevent access to potentially malicious or internal resources.
+1. Ограничение разрешенных доменов: При необходимости можно вести белый список доверенных доменов. Разбираемый хост URL проверяется по этому списку, чтобы гарантировать доступ только к доверенным доменам. Это помогает предотвратить доступ к потенциально вредоносным или внутренним ресурсам.
 
-1. Proper Error Handling: In case of an invalid URL or unauthorized domain, appropriate error responses are returned. This ensures that potential SSRF attempts are properly handled and communicated to the user or client.
+1. Правильная обработка ошибок: В случае недействительного URL или неавторизованного домена возвращаются соответствующие ответы об ошибках. Это гарантирует, что потенциальные попытки SSRF будут правильно обработаны и доведены до сведения пользователя или клиента.
 
 
 
