@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,20 +19,20 @@ parent: Rules
 
 
 
-### XML External Entity (XXE)
+### Внешняя сущность XML (XXE)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
-# Noncompliant code
+# Несоответствующий код
 xml_data = params[:xml_data]
 xml_doc = Nokogiri::XML(xml_data)
 
-# Process XML document
+# Обработка XML-документа
 ```
 
-In this noncompliant code, XML data is obtained from the params object and passed directly to the Nokogiri::XML parser for processing. This code is vulnerable to various XML-related attacks, such as XML External Entity (XXE) attacks or Billion Laughs attacks. Attackers can supply malicious XML payloads that may cause denial of service, disclosure of sensitive information, or other security risks.
+В этом несовместимом коде XML-данные получаются из объекта params и передаются непосредственно парсеру Nokogiri::XML для обработки. Этот код уязвим для различных атак, связанных с XML, таких как атаки XML External Entity (XXE) или Billion Laughs. Злоумышленники могут предоставить вредоносную полезную нагрузку XML, которая может привести к отказу в обслуживании, раскрытию конфиденциальной информации или другим угрозам безопасности.
 
 
 
@@ -40,11 +40,11 @@ In this noncompliant code, XML data is obtained from the params object and passe
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
-# Compliant code
+# Соответствующий код
 xml_data = params[:xml_data]
 
 begin
@@ -53,27 +53,27 @@ begin
     config.nonet
   end
 
-  # Process XML document
+  # Обработка XML-документа
   
 rescue Nokogiri::XML::SyntaxError => e
-  # Handle XML parsing errors
+  # Обработка ошибок парсинга XML
   logger.error "Error parsing XML: #{e}"
 end
 ```
 
 
-In the compliant code, the XML data is still obtained from the params object, but it is parsed using the Nokogiri::XML::Document.parse method with additional security configurations. The strict configuration ensures strict parsing of the XML document, and the nonet configuration disables network-related features such as entity expansion, external entity references, and DTD processing. These settings help mitigate XML-related vulnerabilities by reducing the risk of malicious payloads and preventing the parsing of external entities.
+В совместимом коде XML-данные по-прежнему получаются из объекта params, но они разбираются с помощью метода Nokogiri::XML::Document.parse с дополнительными настройками безопасности. Конфигурация strict обеспечивает строгий разбор XML-документа, а конфигурация nonet отключает связанные с сетью функции, такие как расширение сущностей, ссылки на внешние сущности и обработка DTD. Эти настройки помогают устранить уязвимости, связанные с XML, снижая риск появления вредоносных полезных нагрузок и предотвращая разбор внешних сущностей.
 
-It's important to note that XML processing vulnerabilities can have various manifestations and require different mitigations based on the specific context and requirements. The compliant code provided here focuses on general XML parsing security, but additional measures may be necessary depending on the use case.
+Важно отметить, что уязвимости в обработке XML могут иметь различные проявления и требовать различных мер по их устранению в зависимости от конкретного контекста и требований. Приведенный здесь код совместимости ориентирован на общую безопасность разбора XML, однако в зависимости от конкретного случая использования могут потребоваться дополнительные меры.
 
-Other security measures you can implement to mitigate XML-related vulnerabilities include:
+Другие меры безопасности, которые вы можете применить для снижения уязвимостей, связанных с XML, включают:
 
-* Implementing input validation and sanitization to ensure that XML data conforms to the expected structure and format.
-* Applying XML schema validation to validate the structure and data types of the XML document.
-* Utilizing XML security libraries or frameworks that provide features like XML signature verification and encryption.
-* Implementing appropriate access controls and least privilege principles to limit the exposure of sensitive information via XML processing.
+* Выполнение проверки и санации ввода для обеспечения соответствия XML-данных ожидаемой структуре и формату.
+* Применение проверки схемы XML для проверки структуры и типов данных XML-документа.
+* Использование библиотек безопасности XML или фреймворков, обеспечивающих такие функции, как проверка подписи XML и шифрование.
+* Внедрение соответствующих средств контроля доступа и принципов наименьших привилегий для ограничения доступа к конфиденциальной информации при обработке XML.
 
-By implementing these security measures and adhering to best practices, you can mitigate XML-related vulnerabilities and enhance the overall security of your application when processing XML data.
+Применяя эти меры безопасности и придерживаясь лучших практик, вы сможете уменьшить уязвимости, связанные с XML, и повысить общую безопасность вашего приложения при обработке данных XML.
 
 
 
