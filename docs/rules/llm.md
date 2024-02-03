@@ -4,12 +4,12 @@ title: LLM
 parent: Rules
 ---
 
-# LLM
+# Большая языковая модель (LLM)
 {: .no_toc }
 
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -22,10 +22,10 @@ parent: Rules
 
 
 
-## LLM01:2023 - Prompt Injections
+## LLM01:2023 - Оперативные инъекции
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```c
@@ -34,32 +34,32 @@ response = LLM_model.generate_prompt(user_prompt)
 print(response)
 ```
 
-In the above code, the user is prompted to enter their request, which is then directly used as the prompt for the LLM model without any validation or sanitization. This code is susceptible to prompt injections as an attacker can input a malicious prompt to manipulate the LLM's behavior or extract sensitive information.
+В приведенном выше коде пользователю предлагается ввести свой запрос, который затем напрямую используется в качестве запроса для модели LLM без какой-либо проверки или санации. Этот код подвержен инъекциям запроса, поскольку злоумышленник может ввести вредоносный запрос, чтобы манипулировать поведением LLM или извлечь конфиденциальную информацию.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```python
 import re
 
-# Define a regular expression pattern to validate the user's input
+# Определите шаблон регулярного выражения для проверки вводимых пользователем данных
 input_pattern = r'^[a-zA-Z0-9\s\.,!?]+$'
 
 def sanitize_input(user_input):
-    # Remove any special characters or symbols from the input
+    # Удалите из вводимых данных все специальные символы и знаки
     sanitized_input = re.sub(r'[^\w\s\.,!?]', '', user_input)
     return sanitized_input.strip()
 
 def validate_input(user_input):
-    # Validate the user's input against the defined pattern
+    # Проверка соответствия вводимых пользователем данных заданному шаблону
     return re.match(input_pattern, user_input) is not None
 
 user_prompt = input("Enter your request: ")
 
-# Sanitize and validate the user's input
+# Дезинфекция и проверка вводимых пользователем данных
 sanitized_prompt = sanitize_input(user_prompt)
 
 if validate_input(sanitized_prompt):
@@ -70,25 +70,25 @@ else:
 ```
 
 
-In the compliant code, several changes have been made to prevent prompt injections:
+В соответствующем коде было сделано несколько изменений для предотвращения инъекций:
 
-1.  A regular expression pattern (`input_pattern`) is defined to validate the user's input. It allows only alphanumeric characters, spaces, commas, periods, exclamation marks, and question marks.
+1.  Для проверки вводимых пользователем данных определен шаблон регулярного выражения (`input_pattern`). Он допускает только буквенно-цифровые символы, пробелы, запятые, точки, восклицательные и вопросительные знаки.
     
-2.  The `sanitize_input` function removes any special characters or symbols from the user's input, ensuring it contains only the allowed characters.
+2.  Функция `Sanitize_input` удаляет из вводимых пользователем данных любые специальные символы и знаки, гарантируя, что они содержат только разрешенные символы.
     
-3.  The `validate_input` function checks whether the sanitized input matches the defined pattern. If it does, the LLM model is called to generate the prompt and produce the response. Otherwise, an error message is displayed.
+3.  Функция `validate_input` проверяет, соответствует ли санированный ввод заданному шаблону. Если да, то вызывается модель LLM для генерации подсказки и выдачи ответа. В противном случае выводится сообщение об ошибке.
     
 
-By validating and sanitizing the user's input, the compliant code protects against prompt injections by ensuring that only safe and expected prompts are passed to the LLM model.
+Проверяя и санируя пользовательский ввод, соответствующий код защищает от инъекций подсказок, гарантируя, что в модель LLM передаются только безопасные и ожидаемые подсказки.
 
 
 
 
 
-## LLM02:2023 - Data Leakage
+## LLM02:2023 - Утечка данных
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```python
@@ -97,12 +97,12 @@ response = LLM_model.generate_prompt(user_prompt)
 print(response)
 ```
 
-In the above code, the user is prompted to enter their request, which is then directly used as the prompt for the LLM model without any validation or sanitization. This code is susceptible to prompt injections as an attacker can input a malicious prompt to manipulate the LLM's behavior or extract sensitive information.
+В приведенном выше коде пользователю предлагается ввести свой запрос, который затем напрямую используется в качестве запроса для модели LLM без какой-либо проверки или санации. Этот код подвержен инъекциям запроса, поскольку злоумышленник может ввести вредоносный запрос, чтобы манипулировать поведением LLM или извлечь конфиденциальную информацию.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```python
@@ -110,7 +110,7 @@ import re
 
 user_prompt = input("Enter your request: ")
 
-# Check if the user prompt contains sensitive information
+# Проверьте, не содержит ли пользовательская подсказка конфиденциальную информацию
 if re.search(r'\b(?:password|credit card|social security)\b', user_prompt, re.IGNORECASE):
     print("Error: Your request contains sensitive information.")
 else:
@@ -119,15 +119,15 @@ else:
 ```
 
 
-In the compliant vulnerable code, an attempt is made to prevent data leakage by checking if the user prompt contains sensitive information using regular expressions. If the user prompt matches any sensitive information patterns (such as "password," "credit card," or "social security"), an error message is displayed instead of generating a response. However, the code is still vulnerable because the error message itself could potentially disclose the presence of sensitive information in the user's input.
+В соответствующем уязвимом коде предпринята попытка предотвратить утечку данных путем проверки наличия в приглашении пользователя конфиденциальной информации с помощью регулярных выражений. Если запрос пользователя соответствует шаблонам с конфиденциальной информацией (например, "пароль", "кредитная карта" или "социальное страхование"), то вместо ответа выводится сообщение об ошибке. Однако код по-прежнему уязвим, поскольку само сообщение об ошибке может раскрыть наличие конфиденциальной информации во вводимых пользователем данных.
 
 
 
 
-## LLM03:2023 - Inadequate Sandboxing
+## LLM03:2023 - Неправильная песочница
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```python
@@ -137,11 +137,11 @@ user_prompt = input("Enter your command: ")
 os.system(user_prompt)
 ```
 
-In this noncompliant code, the user is prompted to enter a command, and the `os.system()` function is used to execute the user's input directly. There is no proper sandboxing or restriction on the user's command, allowing them to execute any system-level command they desire. This lack of sandboxing exposes the underlying system to potential unauthorized actions and compromises its security.
+В этом несовместимом коде пользователю предлагается ввести команду, а функция `os.system()` используется для непосредственного выполнения введенного пользователем текста. Нет никакой надлежащей "песочницы" или ограничений на команду пользователя, что позволяет ему выполнить любую команду системного уровня, которую он пожелает. Отсутствие "песочницы" подвергает базовую систему потенциальным несанкционированным действиям и ставит под угрозу ее безопасность.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```python
@@ -152,15 +152,15 @@ subprocess.run(user_prompt, shell=False)
 ```
 
 
-In the compliant vulnerable code, the `subprocess.run()` function is used instead of `os.system()`. The `shell` parameter is set to `False` to prevent command injection vulnerabilities. However, this code is still vulnerable because it lacks proper sandboxing or restriction on the user's command. The user can execute any command within the allowed privileges of the running process.
+В соответствующем уязвимости коде вместо функции `os.system()` используется функция `subprocess.run()`. Параметр `shell` имеет значение `False` для предотвращения уязвимостей инъекции команд. Однако этот код все еще уязвим, поскольку в нем отсутствует должная "песочница" или ограничение на команды пользователя. Пользователь может выполнить любую команду в рамках разрешенных привилегий запущенного процесса.
 
 
 
 
-## LLM04:2023 - Unauthorized Code Execution
+## LLM04:2023 - Выполнение несанкционированного кода
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```python
@@ -168,11 +168,11 @@ user_prompt = input("Enter your command: ")
 exec(user_prompt)
 ```
 
-In the noncompliant code, the user's input is directly passed to the `exec()` function, which executes the command as is without any validation or sanitization. This code is vulnerable to unauthorized code execution since an attacker can craft a malicious command to be executed by the LLM.
+В коде, не соответствующем требованиям, пользовательский ввод напрямую передается в функцию `exec()`, которая выполняет команду как есть, без какой-либо проверки или санации. Этот код уязвим для несанкционированного выполнения кода, поскольку злоумышленник может создать вредоносную команду, которая будет выполнена LLM.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```python
@@ -182,7 +182,7 @@ def execute_command(command):
     subprocess.run(command, shell=True)
 
 def process_user_prompt(user_prompt):
-    # Sanitize and validate user input before executing the command
+    # Дезинфекция и проверка пользовательского ввода перед выполнением команды
     if not valid_input(user_prompt):
         print("Invalid input. Please try again.")
         return
@@ -190,10 +190,10 @@ def process_user_prompt(user_prompt):
     execute_command(user_prompt)
 
 def valid_input(user_prompt):
-    # Implement input validation logic here
-    # Ensure that user_prompt does not contain any malicious commands or unauthorized code
+    # Реализуйте здесь логику проверки ввода
+    # Убедитесь, что user_prompt не содержит никаких вредоносных команд или неавторизованного кода
 
-    # Example validation: Restrict specific commands or check for patterns indicative of malicious input
+    # Пример валидации: Ограничение определенных команд или проверка на наличие шаблонов, указывающих на вредоносный ввод
     if "rm -rf" in user_prompt:
         return False
 
@@ -204,14 +204,14 @@ process_user_prompt(user_prompt)
 ```
 
 
-In the compliant vulnerable code, input validation and sanitization have been added. The `valid_input()` function checks if the user's input is safe and does not contain any potentially malicious commands or unauthorized code. If the input is determined to be valid, the command is executed using the `execute_command()` function, which utilizes the `subprocess.run()` method with the `shell=True` argument. The `valid_input()` function can be customized to include additional validation logic based on the specific requirements and potential threats.
+В совместимом уязвимом коде добавлена проверка и санация ввода. Функция `valid_input()` проверяет, безопасен ли пользовательский ввод и не содержит ли он потенциально вредоносных команд или неавторизованного кода. Если ввод признан корректным, команда выполняется с помощью функции `execute_command()`, которая использует метод `subprocess.run()` с аргументом `shell=True`. Функция `valid_input()` может быть настроена на включение дополнительной логики проверки в зависимости от конкретных требований и потенциальных угроз.
 
 
 
-## LLM05:2023 - SSRF Vulnerabilities
+## LLM05:2023 - Уязвимости подделки запросов на стороне сервера (SSRF)
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```python
@@ -226,11 +226,11 @@ data = fetch_data(user_input)
 print(data)
 ```
 
-The noncompliant code directly uses the user-provided URL to make a request without any validation or restriction. This allows an attacker to provide a malicious URL that could target internal systems, APIs, or sensitive resources.
+Несоответствующий код напрямую использует URL-адрес, предоставленный пользователем, для выполнения запроса без какой-либо проверки или ограничения. Это позволяет злоумышленнику предоставить вредоносный URL, который может быть направлен на внутренние системы, API или конфиденциальные ресурсы.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```python
@@ -257,13 +257,13 @@ else:
 ```
 
 
-The compliant vulnerable code introduces a basic URL validation mechanism. It defines a list of allowed domains (`ALLOWED_DOMAINS`) and checks if the user-provided URL belongs to one of these domains. If the URL is allowed, the code proceeds to fetch the data. Otherwise, it displays a message indicating that access to the specified URL is not allowed.
+Соответствующий уязвимости код представляет базовый механизм проверки URL. Он определяет список разрешенных доменов (`ALLOWED_DOMAINS`) и проверяет, принадлежит ли предоставленный пользователем URL к одному из этих доменов. Если URL разрешен, код переходит к получению данных. В противном случае выводится сообщение о том, что доступ к указанному URL не разрешен.
 
 
-## LLM06:2023 - Overreliance on LLM-generated Content
+## LLM06:2023 - Чрезмерное доверие к контенту, создаваемому LLM
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```python
@@ -272,11 +272,11 @@ response = LLM_model.generate_response(user_input)
 print(response)
 ```
 
-In the noncompliant code above, there is an overreliance on the LLM-generated content. The user's input is directly passed to the LLM model without any verification or human oversight. The generated response is then printed without any further validation or review, leading to potential risks associated with overreliance on the LLM-generated content.
+В приведенном выше несоответствующем коде наблюдается чрезмерная зависимость от содержимого, генерируемого LLM. Введенные пользователем данные напрямую передаются в модель LLM без какой-либо проверки или человеческого контроля. Сгенерированный ответ затем печатается без дальнейшей проверки или анализа, что приводит к потенциальным рискам, связанным с чрезмерным доверием к содержимому, сгенерированному LLM.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```python
@@ -286,28 +286,28 @@ reviewed_response = review_content(response)
 print(reviewed_response)
 
 def review_content(content):
-    # Implement human review process to validate and verify the LLM-generated content
-    # Check for accuracy, factuality, and potential biases
-    # Make corrections or additions as necessary
+    # Внедрить процесс проверки человеком для подтверждения и проверки контента, созданного LLM.
+    # Проверка точности, фактичности и потенциальной необъективности
+    # Вносите исправления и дополнения по мере необходимости
     return content
 ```
 
 
-In the compliant vulnerable full code, there is an attempt to address the risks associated with overreliance on LLM-generated content. The user's input is still passed to the LLM model for generating a response. However, the generated response is then passed through a `review_content()` function, which represents a human review process. This function allows for validation, verification, and correction of the LLM-generated content. The reviewed response is then printed or used further in the application.
+В полном коде, соответствующем требованиям уязвимости, сделана попытка устранить риски, связанные с чрезмерной зависимостью от контента, генерируемого LLM. Вводимые пользователем данные по-прежнему передаются в модель LLM для генерации ответа. Однако сгенерированный ответ затем передается через функцию `review_content()`, которая представляет собой процесс человеческой проверки. Эта функция позволяет подтвердить, проверить и исправить сгенерированный LLM контент. Прошедший проверку ответ распечатывается или используется в дальнейшем в приложении.
 
 
 
-## LLM07:2023 - Inadequate AI Alignment
+## LLM07:2023 - Неправильное согласование ИИ
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```python
-# Noncompliant code: Inadequate AI Alignment
+# Несоответствующий код: Неправильное согласование ИИ
 
 def generate_response(user_prompt):
-    # Arbitrary and poorly defined objectives
+    # Произвольные и плохо сформулированные цели
     if user_prompt == "get_personal_info":
         return get_personal_info()
     elif user_prompt == "generate_random_number":
@@ -316,23 +316,23 @@ def generate_response(user_prompt):
         return "Invalid prompt"
 
 def get_personal_info():
-    # Code to retrieve and return personal information
+    # Код для получения и возврата личной информации
     ...
 
 def generate_random_number():
-    # Code to generate a random number
+    # Код для генерации случайного числа
     ...
 ```
 
-The noncompliant code demonstrates inadequate AI alignment as it lacks well-defined objectives for the LLM. It has arbitrary and poorly defined objectives where different user prompts trigger different actions without clear alignment with the desired outcomes. The code does not consider factors like authorization or user validation, leading to potential security and privacy issues.
+Несоответствующий код демонстрирует неправильное согласование ИИ, поскольку в нем отсутствуют четко определенные цели для LLM. В нем произвольно и плохо определены цели, где различные пользовательские подсказки вызывают различные действия без четкого соответствия желаемым результатам. Код не учитывает такие факторы, как авторизация или проверка пользователя, что приводит к потенциальным проблемам безопасности и конфиденциальности.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```python
-# Compliant vulnerable code: Improved AI Alignment
+# Соответствующий уязвимый код:: Улучшенное согласование искусственного интеллекта
 
 def generate_response(user_prompt):
     if user_prompt == "get_personal_info":
@@ -343,37 +343,37 @@ def generate_response(user_prompt):
         return "Invalid prompt"
 
 def handle_personal_info_request():
-    # Perform necessary checks and validations
+    # Выполнение необходимых проверок и валидаций
     if user_is_authorized():
         return retrieve_personal_info()
     else:
         return "Unauthorized access"
 
 def retrieve_personal_info():
-    # Code to retrieve and return personal information
+    # Код для получения и возврата личной информации
     ...
 
 def handle_random_number_request():
-    # Perform necessary checks and validations
+    # Выполнение необходимых проверок и валидаций
     if user_is_authorized():
         return generate_random_number()
     else:
         return "Unauthorized access"
 
 def generate_random_number():
-    # Code to generate a random number
+    # Код для генерации случайного числа
     ...
 ```
 
 
-The compliant vulnerable full code improves the AI alignment by considering more specific and well-defined objectives. It introduces separate functions to handle different user prompts, such as "get_personal_info" and "generate_random_number". Each function performs the necessary checks and validations before executing the corresponding action. For example, before retrieving personal information or generating a random number, the code checks if the user is authorized to perform those actions. This ensures that the LLM's behavior is aligned with the intended objectives and incorporates security measures.
+Соответствующий уязвимый полный код улучшает согласование ИИ, рассматривая более конкретные и четко определенные цели. Он вводит отдельные функции для обработки различных пользовательских запросов, таких как "get_personal_info" и "generate_random_number". Каждая функция выполняет необходимые проверки и валидации перед выполнением соответствующего действия. Например, перед получением персональной информации или генерацией случайного числа код проверяет, имеет ли пользователь право выполнять эти действия. Это гарантирует, что поведение LLM соответствует поставленным целям и включает в себя меры безопасности.
 
 
 
-## LLM08:2023 - Insufficient Access Controls
+## LLM08:2023 - Недостаточный контроль доступа
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```python
@@ -386,11 +386,11 @@ response = generate_response(user_input)
 print(response)
 ```
 
-In the above noncompliant code, there are no access controls implemented. Any user can input a request, and the `generate_response()` function directly passes the user input to the LLM model without any authentication or authorization checks. This lack of access controls allows any user, authorized or unauthorized, to interact with the LLM and obtain responses.
+В приведенном выше несоответствующем коде не реализовано никаких средств контроля доступа. Любой пользователь может ввести запрос, а функция `generate_response()` напрямую передает пользовательский ввод в модель LLM без каких-либо проверок аутентификации или авторизации. Отсутствие контроля доступа позволяет любому пользователю, авторизованному или неавторизованному, взаимодействовать с LLM и получать ответы.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```python
@@ -402,10 +402,10 @@ def generate_response(user_input, user_role):
         return "Unauthorized access"
 
 def authenticate_user(username, password):
-    # Code for authenticating the user
+    # Код для аутентификации пользователя
 
 def get_user_role(username):
-    # Code for retrieving the user's role
+    # Код для получения роли пользователя
 
 def main():
     username = input("Username: ")
@@ -425,71 +425,71 @@ if __name__ == "__main__":
 ```
 
 
-In the compliant vulnerable code, access controls are implemented to ensure that only authenticated and authorized users can interact with the LLM. The `generate_response()` function now takes an additional parameter `user_role`, which represents the role of the user. The function checks if the user has the "admin" role before generating the LLM response. If the user has the "admin" role, the response is generated and returned. Otherwise, an "Unauthorized access" message is returned.
+В уязвимом коде, соответствующем требованиям, реализованы средства управления доступом, гарантирующие, что только аутентифицированные и авторизованные пользователи могут взаимодействовать с LLM. Функция `generate_response()` теперь принимает дополнительный параметр `user_role`, который представляет роль пользователя. Функция проверяет, имеет ли пользователь роль "admin", прежде чем генерировать ответ LLM. Если пользователь имеет роль "admin", ответ генерируется и возвращается. В противном случае возвращается сообщение "Unauthorized access".
 
-The `main()` function handles the user authentication process by prompting for a username and password. It calls the `authenticate_user()` function to validate the credentials and retrieve the user's role using the `get_user_role()` function. If authentication is successful, the user is prompted to enter a request, and the `generate_response()` function is called with the user's input and role.
-
-
-
-## LLM09:2023 - Improper Error Handling
+Функция `main()` обрабатывает процесс аутентификации пользователя, запрашивая имя пользователя и пароль. Она вызывает функцию `authenticate_user()` для проверки учетных данных и получения роли пользователя с помощью функции `get_user_role()`. Если аутентификация прошла успешно, пользователю предлагается ввести запрос, и вызывается функция `generate_response()` с введенными пользователем данными и ролью.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## LLM09:2023 - Неправильная обработка ошибок
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```python
 # Noncompliant code
 try:
-    # Code that may raise an error
+    # Код, который может вызвать ошибку
     result = perform_operation()
     print("Operation completed successfully!")
 except Exception as e:
-    # Displaying the detailed error message to the user
+    # Отображение подробного сообщения об ошибке для пользователя
     print(f"An error occurred: {str(e)}")
 ```
 
-The noncompliant code above demonstrates improper error handling practices. When an error occurs during the `perform_operation()` function call, the code catches the exception and displays the detailed error message to the user using `print(f"An error occurred: {str(e)}")`. This approach exposes sensitive information and potentially reveals implementation details to the user, which could be leveraged by attackers.
+Приведенный выше код, не отвечающий требованиям, демонстрирует неправильные методы обработки ошибок. Когда во время вызова функции `perform_operation()` возникает ошибка, код перехватывает исключение и выводит пользователю подробное сообщение об ошибке с помощью `print(f "Произошла ошибка: {str(e)}")`. Такой подход раскрывает конфиденциальную информацию и потенциально раскрывает пользователю детали реализации, что может быть использовано злоумышленниками.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```python
-# Compliant vulnerable code
+# Соответствующий код
 import logging
 
 try:
-    # Code that may raise an error
+    # Код, который может вызвать ошибку
     result = perform_operation()
     print("Operation completed successfully!")
 except Exception as e:
-    # Logging the error message for internal use
+    # Запись сообщения об ошибке в журнал для внутреннего использования
     logging.exception("An error occurred during the operation")
-    # Displaying a generic error message to the user
+    # Отображение общего сообщения об ошибке для пользователя
     print("An error occurred. Please try again later.")
 ```
 
 
-The compliant vulnerable code addresses the issue of improper error handling. It introduces logging using the `logging` module to capture the detailed error information for internal use. Instead of displaying the specific error message to the user, it provides a generic error message like "An error occurred. Please try again later." This prevents the leakage of sensitive details to the user while still indicating that an error occurred.
+В совместимом уязвимом коде решена проблема неправильной обработки ошибок. В нем реализовано протоколирование с помощью модуля `logging` для сбора подробной информации об ошибке для внутреннего использования. Вместо того чтобы выводить пользователю конкретное сообщение об ошибке, он выдает общее сообщение об ошибке, например "Произошла ошибка. Пожалуйста, повторите попытку позже". Это предотвращает утечку конфиденциальной информации пользователю, но при этом указывает на то, что ошибка произошла.
 
 
 
-## LLM10:2023 - Training Data Poisoning
+## LLM10:2023 - Заражение учебных данных
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```python
-# Noncompliant code - Training Data Poisoning
+# Несоответствующий код - заражение учебных данных
 import random
 
 def get_training_data():
-    # Retrieve training data from an untrusted source
+    # Получение обучающих данных из ненадежного источника
     training_data = untrusted_source.get_data()
     
-    # Introduce malicious examples into the training data
+    # Внедрение вредоносных примеров в обучающие данные
     poisoned_data = training_data + malicious_examples
     
     return poisoned_data
@@ -497,29 +497,29 @@ def get_training_data():
 def train_model():
     data = get_training_data()
     
-    # Train the model using the poisoned data
+    # Обучите модель, используя зараженные данные
     model.train(data)
 ```
 
-In the noncompliant code, the training data is retrieved from an untrusted source, which can be manipulated to introduce malicious examples. The code combines the untrusted data with malicious examples, resulting in a poisoned dataset. This allows the attacker to manipulate the model's behavior and introduce vulnerabilities or biases.
+В несовместимом коде данные для обучения берутся из недоверенного источника, который может быть изменен с целью внедрения вредоносных примеров. Код объединяет недоверенные данные с вредоносными примерами, в результате чего получается отравленный набор данных. Это позволяет злоумышленнику манипулировать поведением модели и вносить в нее уязвимости или погрешности.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```python
-# Compliant Vulnerable code - Training Data Poisoning
+# Соответствующий уязвимости код - обучение заражённым данным
 import random
 
 def get_training_data():
-    # Retrieve training data from a trusted source
+    # Получите данные для обучения из надежного источника
     training_data = trusted_source.get_data()
     
     return training_data
 
 def sanitize_data(data):
-    # Implement data sanitization techniques to remove potential vulnerabilities or biases
+    # Применяйте методы обеззараживания данных для устранения потенциальных уязвимостей или предвзятости
     sanitized_data = perform_sanitization(data)
     
     return sanitized_data
@@ -527,12 +527,12 @@ def sanitize_data(data):
 def train_model():
     data = get_training_data()
     
-    # Sanitize the training data to remove any potential poisoning or biases
+    # Проведите дезинфекцию обучающих данных, чтобы устранить возможные заражения или необъективность
     sanitized_data = sanitize_data(data)
     
-    # Train the model using the sanitized data
+    # Обучите модель, используя обеззараженные данные
     model.train(sanitized_data)
 ```
 
 
-In the compliant vulnerable code, the training data is retrieved from a trusted source, ensuring its integrity and reliability. The data is then passed through a data sanitization process to remove potential vulnerabilities, biases, or malicious content. The sanitized data is used for training the model, reducing the risk of training data poisoning.
+В совместимом уязвимом коде данные для обучения берутся из надежного источника, что гарантирует их целостность и надежность. Затем данные проходят процесс санирования для удаления потенциальных уязвимостей, предвзятости или вредоносного содержимого. Санированные данные используются для обучения модели, что снижает риск отравления обучающих данных.
