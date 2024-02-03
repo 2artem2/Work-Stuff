@@ -9,7 +9,7 @@ parent: Rules
 
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -21,9 +21,9 @@ parent: Rules
 
 
 
-## Exposure of sensitive information
+## Раскрытие конфиденциальной информации
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -33,24 +33,24 @@ public class UserController {
     private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
 
     public void loginUser(String username, String password) {
-        // Perform login logic
+        // Выполните логику входа в систему
 
         LOGGER.info("User logged in - username: " + username);
     }
 }
 ```
 
-In this noncompliant code, the loginUser method logs the username of the user who successfully logged in using the LOGGER.info statement. However, logging sensitive information like usernames can be risky because the log files might be accessible to unauthorized users or stored insecurely, leading to potential exposure of sensitive data.
+В этом коде, не соответствующем требованиям, метод loginUser записывает в журнал имя пользователя, который успешно вошел в систему с помощью оператора LOGGER.info. Однако запись в журнал такой конфиденциальной информации, как имя пользователя, может быть рискованной, поскольку файлы журнала могут быть доступны неавторизованным пользователям или храниться небезопасно, что может привести к раскрытию конфиденциальных данных.
 
 
-To address this issue, here's an example of compliant code that avoids exposing sensitive information via logs:
-
-
-
+Чтобы решить эту проблему, приведем пример кода, соответствующего требованиям, который позволяет избежать раскрытия конфиденциальной информации через журналы:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -60,31 +60,31 @@ public class UserController {
     private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
 
     public void loginUser(String username, String password) {
-        // Perform login logic
+        // Выполните логику входа в систему
 
         LOGGER.info("User logged in - username: " + obfuscateUsername(username));
     }
 
     private String obfuscateUsername(String username) {
-        // Implement a method to obfuscate or mask the username
-        // Example: Replace characters with asterisks or hash the username
+        // Реализуйте метод для обфускации или маскировки имени пользователя
+        // Пример: Замена символов на звездочки или хэширование имени пользователя
         // ...
 
-        return username; // Return the obfuscated username
+        return username; // Возвращаем обфусцированное имя пользователя
     }
 }
 ```
 
 
-In the compliant code, the loginUser method no longer directly logs the username. Instead, it calls the obfuscateUsername method, which obfuscates or masks the sensitive information before it is logged. This can be done by replacing characters with asterisks, hashing the username, or using other appropriate obfuscation techniques.
+В коде, соответствующем требованиям, метод loginUser больше не регистрирует имя пользователя напрямую. Вместо этого он вызывает метод obfuscateUsername, который обфусцирует или маскирует конфиденциальную информацию перед ее записью в журнал. Это может быть сделано путем замены символов на звездочки, хэширования имени пользователя или использования других подходящих методов обфускации.
 
-By obfuscating the sensitive information in the logs, the compliant code helps protect the confidentiality of the data, even if the log files are exposed or accessed by unauthorized individuals.
+Обфусцируя конфиденциальную информацию в журналах, соответствующий код помогает защитить конфиденциальность данных, даже если файлы журналов будут открыты или к ним получат доступ неавторизованные лица.
 
 
 
-## Insertion of Sensitive Information Into Sent Data
+## Вставка конфиденциальной информации в отправленные данные
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -98,25 +98,25 @@ public class PaymentService {
 
     public void makePayment(String cardNumber, double amount) {
         try {
-            // Create a connection to the API endpoint
+            // Создайте соединение с конечной точкой API
             URL url = new URL(API_ENDPOINT);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
 
-            // Set the request headers
+            // Установите заголовки запроса
             connection.setRequestProperty("Content-Type", "application/json");
 
-            // Construct the request body
+            // Создайте тело запроса
             String requestBody = "{\"cardNumber\": \"" + cardNumber + "\", \"amount\": " + amount + "}";
 
-            // Send the request
+            // Отправьте запрос
             connection.setDoOutput(true);
             OutputStream outputStream = connection.getOutputStream();
             outputStream.write(requestBody.getBytes());
             outputStream.flush();
             outputStream.close();
 
-            // Process the response...
+            // Обработайте ответ...
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -124,16 +124,16 @@ public class PaymentService {
 }
 ```
 
-In this noncompliant code, the makePayment method accepts the cardNumber and amount as parameters and constructs the request body directly by concatenating the sensitive information into the JSON string. This approach is insecure because it exposes the sensitive information (in this case, the card number) in clear text, which could be intercepted or logged by attackers.
+В этом несоответствующем коде метод makePayment принимает номер карты и сумму в качестве параметров и строит тело запроса напрямую, конкатенируя конфиденциальную информацию в строку JSON. Такой подход небезопасен, поскольку он раскрывает конфиденциальную информацию (в данном случае номер карты) открытым текстом, который может быть перехвачен или записан злоумышленниками.
 
 
-To address this issue, here's an example of compliant code that properly handles sensitive information in sent data:
+Чтобы решить эту проблему, вот пример совместимого кода, который правильно обрабатывает конфиденциальную информацию в отправленных данных:
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -147,35 +147,35 @@ public class PaymentService {
 
     public void makePayment(String cardNumber, double amount) {
         try {
-            // Create a connection to the API endpoint
+            // Создайте соединение с конечной точкой API
             URL url = new URL(API_ENDPOINT);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
 
-            // Set the request headers
+            // Установите заголовки запроса
             connection.setRequestProperty("Content-Type", "application/json");
 
-            // Construct the request body using a JSON library or object mapping
+            // Создайте тело запроса, используя библиотеку JSON или отображение объектов
             JsonObject requestBody = new JsonObject();
             requestBody.addProperty("cardNumber", obfuscateCardNumber(cardNumber));
             requestBody.addProperty("amount", amount);
 
-            // Send the request
+            // Отправьте запрос
             connection.setDoOutput(true);
             OutputStream outputStream = connection.getOutputStream();
             outputStream.write(requestBody.toString().getBytes());
             outputStream.flush();
             outputStream.close();
 
-            // Process the response...
+            // Обработайте ответ...
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private String obfuscateCardNumber(String cardNumber) {
-        // Implement a method to obfuscate or mask the card number
-        // Example: Replace characters with asterisks, mask certain digits, or encrypt the card number
+        // Реализуйте метод для обфускации или маскировки номера карты
+        // Пример: Замена символов на звездочки, маскировка определенных цифр или шифрование номера карты.
         // ...
 
         return cardNumber; // Return the obfuscated card number
@@ -184,18 +184,18 @@ public class PaymentService {
 ```
 
 
-In the compliant code, the makePayment method no longer directly inserts the sensitive information into the request body string. Instead, it uses a JSON library or object mapping technique to construct the request body. The sensitive information, such as the cardNumber, is passed through the obfuscateCardNumber method, which performs appropriate obfuscation or masking techniques to protect the data before it is included in the request body.
+В коде, соответствующем требованиям, метод makePayment больше не вставляет конфиденциальную информацию непосредственно в строку тела запроса. Вместо этого он использует библиотеку JSON или технику отображения объектов для построения тела запроса. Конфиденциальная информация, например номер карты, передается через метод obfuscateCardNumber, который выполняет соответствующие методы обфускации или маскировки для защиты данных перед их включением в тело запроса.
 
-By properly handling the sensitive information and obfuscating it before sending, the compliant code helps protect the confidentiality of the data during transmission, reducing the risk of unauthorized access or interception.
-
-
+Правильно обрабатывая конфиденциальную информацию и обфусцируя ее перед отправкой, соответствующий код помогает защитить конфиденциальность данных во время передачи, снижая риск несанкционированного доступа или перехвата.
 
 
 
 
-## Cross-Site Request Forgery (CSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Подделка межсайтовых запросов (CSRF)
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -206,20 +206,20 @@ public class AccountService {
     public void updateEmail(HttpServletRequest request, HttpServletResponse response) {
         String newEmail = request.getParameter("email");
 
-        // Code to update the email address in the user's account...
+        // Код для обновления адреса электронной почты в учетной записи пользователя...
         // ...
     }
 }
 ```
 
-In this noncompliant code, the updateEmail method is susceptible to CSRF attacks because it doesn't include any protection against such attacks. An attacker can craft a malicious web page or form that includes a hidden field containing the request to update the email address. When an unsuspecting user visits this malicious page while authenticated in the target application, their browser automatically sends the request to the updateEmail endpoint, resulting in an unauthorized email address update.
+В этом несоответствующем коде метод updateEmail подвержен CSRF-атакам, поскольку в нем нет никакой защиты от таких атак. Злоумышленник может создать вредоносную веб-страницу или форму, содержащую скрытое поле с запросом на обновление адреса электронной почты. Когда ничего не подозревающий пользователь посещает эту вредоносную страницу, будучи аутентифицированным в целевом приложении, его браузер автоматически отправляет запрос на конечную точку updateEmail, что приводит к несанкционированному обновлению адреса электронной почты.
 
 
-To address this issue, here's an example of compliant code that implements CSRF protection measures:
+Чтобы решить эту проблему, вот пример совместимого кода, в котором реализованы меры защиты от CSRF:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -234,7 +234,7 @@ public class AccountService {
     public void updateEmail(HttpServletRequest request, HttpServletResponse response) {
         String newEmail = request.getParameter("email");
 
-        // Validate CSRF token
+        // Проверяем токен CSRF
         HttpSession session = request.getSession();
         String csrfToken = (String) session.getAttribute(CSRF_TOKEN_SESSION_ATTR);
         String requestCsrfToken = request.getParameter("csrfToken");
@@ -244,7 +244,7 @@ public class AccountService {
             return;
         }
 
-        // Code to update the email address in the user's account...
+        // Код для обновления адреса электронной почты в учетной записи пользователя...
         // ...
     }
 
@@ -257,22 +257,22 @@ public class AccountService {
 ```
 
 
-In the compliant code, several measures are implemented to prevent CSRF attacks.
+В соответствующем коде реализовано несколько мер для предотвращения CSRF-атак.
 
-1. The updateEmail method retrieves the CSRF token from both the session and the request parameters. It compares the two tokens to ensure they match. If the tokens don't match or if the CSRF token is missing, the method returns a forbidden status, preventing the unauthorized update.
+1. Метод updateEmail извлекает CSRF-токен из параметров сеанса и запроса. Он сравнивает два токена, чтобы убедиться, что они совпадают. Если токены не совпадают или если токен CSRF отсутствует, метод возвращает статус "запрещено", предотвращая несанкционированное обновление.
 
-2. The generateCsrfToken method generates a unique CSRF token using a UUID and stores it in the user's session. This method is called when rendering the form or page that requires CSRF protection. The generated token should be included as a hidden field in the form.
+2. Метод generateCsrfToken генерирует уникальный CSRF-токен, используя UUID, и сохраняет его в сессии пользователя. Этот метод вызывается при рендеринге формы или страницы, требующей защиты от CSRF. Сгенерированный токен должен быть включен в форму в качестве скрытого поля.
 
-By including and validating the CSRF token in requests, the compliant code protects against CSRF attacks, ensuring that requests to sensitive actions are only accepted from legitimate sources and preventing unauthorized actions from being performed on behalf of authenticated users.
-
-
+Включая и проверяя CSRF-токен в запросы, соответствующий код защищает от CSRF-атак, обеспечивая прием запросов на выполнение важных действий только от легитимных источников и предотвращая выполнение неавторизованных действий от имени аутентифицированных пользователей.
 
 
 
 
-## Use of Hard-coded Password
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Использование жесткого пароля
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -282,23 +282,23 @@ public class DatabaseConnection {
     private static final String DB_PASSWORD = "password123";
 
     public void connect() {
-        // Code to establish a database connection using the hard-coded credentials
+        // Код для установления соединения с базой данных с использованием жестко заданных учетных данных
         // ...
     }
 }
 ```
 
-In this noncompliant code, the database connection information, including the password, is hard-coded directly into the code. This practice is highly insecure because if an attacker gains access to the source code or decompiles the application, they can easily retrieve the password and potentially compromise the database.
+В этом несоответствующем коде информация о подключении к базе данных, включая пароль, жестко закодирована непосредственно в коде. Такая практика крайне небезопасна, поскольку если злоумышленник получит доступ к исходному коду или декомпилирует приложение, он сможет легко получить пароль и потенциально скомпрометировать базу данных.
 
 
-To address this issue, here's an example of compliant code that avoids hard-coding passwords:
-
-
-
+Чтобы решить эту проблему, приведем пример совместимого кода, который позволяет избежать жесткого кодирования паролей:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -312,25 +312,25 @@ public class DatabaseConnection {
     }
 
     public void connect() {
-        // Code to establish a database connection using the provided password
+        // Код для установки соединения с базой данных с использованием предоставленного пароля
         // ...
     }
 }
 ```
 
-In the compliant code, the hard-coded password is replaced with a constructor parameter dbPassword. The password is no longer stored directly in the code but is instead passed as an argument when creating an instance of the DatabaseConnection class. This allows the password to be provided securely at runtime, such as through a configuration file or environment variable.
+В коде, соответствующем требованиям, жестко заданный пароль заменен параметром конструктора dbPassword. Пароль больше не хранится непосредственно в коде, а передается в качестве аргумента при создании экземпляра класса DatabaseConnection. Это позволяет безопасно предоставлять пароль во время выполнения программы, например, через конфигурационный файл или переменную окружения.
 
-By avoiding the use of hard-coded passwords and storing them securely, the compliant code reduces the risk of unauthorized access to sensitive information, such as database credentials, in case of a code compromise or unauthorized access to the source code.
-
-
+Благодаря отказу от использования жестко заданных паролей и их безопасному хранению, соответствующий код снижает риск несанкционированного доступа к конфиденциальной информации, такой как учетные данные базы данных, в случае компрометации кода или несанкционированного доступа к исходному коду.
 
 
 
 
 
-## Broken or Risky Crypto Algorithm
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Сломанный или рискованный криптоалгоритм
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -356,17 +356,17 @@ public class PasswordUtils {
 ```
 
 
-In this noncompliant code, the hashPassword method uses the MD5 algorithm to hash the provided password. MD5 is considered broken and insecure for password hashing because it is susceptible to various attacks, such as collision attacks and preimage attacks. It is no longer recommended for cryptographic purposes.
+В этом несовместимом коде метод hashPassword использует алгоритм MD5 для хэширования предоставленного пароля. Алгоритм MD5 считается нерабочим и небезопасным для хэширования паролей, поскольку он подвержен различным атакам, таким как атаки на столкновение и атаки по предварительному образу. Его больше не рекомендуется использовать в криптографических целях.
 
 
-To address this issue, here's an example of compliant code that uses a more secure cryptographic algorithm, such as bcrypt:
-
-
-
+Чтобы решить эту проблему, приведем пример совместимого кода, в котором используется более безопасный криптографический алгоритм, например bcrypt:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -385,19 +385,19 @@ public class PasswordUtils {
 }
 ```
 
-In the compliant code, the hashPassword method uses the bcrypt algorithm, which is a widely accepted and secure cryptographic algorithm for password hashing. It generates a salt and incorporates a cost factor to slow down the hashing process, making it computationally expensive for attackers to perform brute-force attacks. The verifyPassword method is also provided to verify the password against the stored hashed password.
+В соответствующем коде метод hashPassword использует алгоритм bcrypt, который является широко распространенным и безопасным криптографическим алгоритмом для хэширования паролей. Он генерирует соль и включает фактор стоимости для замедления процесса хеширования, что делает вычислительные затраты злоумышленников на проведение атак методом грубой силы. Метод verifyPassword также предназначен для проверки пароля по сохраненному хэшированному паролю.
 
-By using a secure cryptographic algorithm like bcrypt instead of broken or risky ones, the compliant code improves the overall security of password storage and helps protect user credentials from unauthorized access.
-
-
+Благодаря использованию безопасных криптографических алгоритмов, таких как bcrypt, вместо неработающих или рискованных, соответствующий код повышает общую безопасность хранения паролей и помогает защитить учетные данные пользователя от несанкционированного доступа.
 
 
 
 
 
-## Insufficient Entropy
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Недостаточная энтропия
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -419,18 +419,18 @@ public class TokenGenerator {
 ```
 
 
-In this noncompliant code, the generateToken method generates a token of a specified length using a random selection of characters from the characters string. However, the randomness of the generated token is insufficient. It relies on the java.util.Random class, which uses a predictable algorithm and may produce values with low entropy. This can make the generated tokens more susceptible to brute-force attacks or guessability.
+В этом несоответствующем коде метод generateToken генерирует токен заданной длины, используя случайный выбор символов из строки символов. Однако случайность генерируемого токена недостаточна. Он опирается на класс java.util.Random, который использует предсказуемый алгоритм и может выдавать значения с низкой энтропией. Это может сделать сгенерированные токены более восприимчивыми к атакам методом перебора или угадываемости.
 
 
 
-To address this issue, here's an example of compliant code that uses a more secure approach for generating tokens with sufficient entropy:
+Чтобы решить эту проблему, приведем пример соответствующего кода, в котором используется более безопасный подход к генерации токенов с достаточной энтропией:
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -447,9 +447,9 @@ public class TokenGenerator {
 }
 ```
 
-In the compliant code, the generateToken method uses java.security.SecureRandom to generate a cryptographically secure random byte array of the specified length. The SecureRandom class provides a higher level of entropy compared to java.util.Random, making the generated tokens more unpredictable. The resulting byte array is then encoded using Base64 URL encoding to produce a token string.
+В соответствующем коде метод generateToken использует java.security.SecureRandom для генерации криптографически безопасного случайного массива байтов заданной длины. Класс SecureRandom обеспечивает более высокий уровень энтропии по сравнению с java.util.Random, что делает генерируемые токены более непредсказуемыми. Полученный массив байтов затем кодируется с помощью кодировки Base64 URL для получения строки токенов.
 
-By using a cryptographically secure random number generator and ensuring sufficient entropy in the generated tokens, the compliant code improves the security of the token generation process and reduces the risk of token guessing or brute-force attacks.
+Благодаря использованию криптографически безопасного генератора случайных чисел и обеспечению достаточной энтропии в генерируемых токенах, соответствующий код повышает безопасность процесса генерации токенов и снижает риск атак на угадывание токенов или перебора.
 
 
 
@@ -459,13 +459,13 @@ By using a cryptographically secure random number generator and ensuring suffici
 
 ## XSS
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 public class XssExample {
     public static String getUserInput() {
-        // Assume user input is obtained from an untrusted source
+        // Предполагается, что пользовательские данные получены из недоверенного источника
         String userInput = "<script>alert('XSS');</script>";
         return userInput;
     }
@@ -483,19 +483,19 @@ public class XssExample {
 }
 ```
 
-In this noncompliant code, the getUserInput method simulates user input obtained from an untrusted source. The input contains a malicious script tag that tries to execute an alert box. The displayUserInput method simply wraps the user input in an HTML div element.
+В этом несовместимом коде метод getUserInput имитирует ввод данных пользователем из недоверенного источника. Вводимые данные содержат вредоносный тег сценария, который пытается выполнить окно предупреждения. Метод displayUserInput просто оборачивает пользовательский ввод в элемент HTML div.
 
 
-When the main method is executed, the malicious script tag is rendered as-is in the output, potentially causing a cross-site scripting vulnerability. If this output is displayed in a web page, the script will be executed in the user's browser, leading to unwanted behavior.
+Когда выполняется метод main, вредоносный тег скрипта отображается в выводе как есть, что потенциально может привести к уязвимости межсайтового скриптинга. Если этот вывод отобразить на веб-странице, скрипт будет выполнен в браузере пользователя, что приведет к нежелательному поведению.
 
-To address this XSS vulnerability, here's an example of compliant code that properly sanitizes the user input:
-
-
-
+Чтобы устранить эту XSS-уязвимость, вот пример совместимого кода, который правильно санирует пользовательский ввод:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -503,7 +503,7 @@ import org.apache.commons.text.StringEscapeUtils;
 
 public class XssExample {
     public static String getUserInput() {
-        // Assume user input is obtained from an untrusted source
+        // Предполагается, что пользовательские данные получены из ненадежного источника
         String userInput = "<script>alert('XSS');</script>";
         return userInput;
     }
@@ -523,20 +523,20 @@ public class XssExample {
 ```
 
 
-In the compliant code, the StringEscapeUtils.escapeHtml4 method from Apache Commons Text library is used to properly escape the user input. This method replaces characters with their corresponding HTML entities, preventing the script from being executed as code. The sanitized input is then safely rendered within the HTML div element.
+В соответствующем коде для корректного экранирования пользовательского ввода используется метод StringEscapeUtils.escapeHtml4 из библиотеки Apache Commons Text. Этот метод заменяет символы на соответствующие им HTML-сущности, предотвращая выполнение скрипта как кода. Дезинфицированный ввод затем безопасно отображается в элементе HTML div.
 
-By properly sanitizing user input and escaping special characters, the compliant code prevents the execution of malicious scripts and mitigates the risk of cross-site scripting attacks.
-
-
+Благодаря правильной дезинфекции пользовательского ввода и экранированию специальных символов код, соответствующий требованиям, предотвращает выполнение вредоносных скриптов и снижает риск межсайтовых скриптовых атак.
 
 
 
 
 
 
-## SQL Injection
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## SQL-инъекция
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -556,7 +556,7 @@ public class SqlInjectionExample {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             
-            // Process the result set...
+            // Обработайте набор результатов...
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -564,16 +564,16 @@ public class SqlInjectionExample {
 }
 ```
 
-In this noncompliant code, the SQL query is constructed by directly concatenating user-supplied input (username and password) into the query string. The username value is intentionally crafted to include a malicious SQL statement that attempts to drop the users table. This leaves the application vulnerable to SQL injection attacks.
+В этом несоответствующем коде SQL-запрос строится путем прямого объединения в строке запроса введенных пользователем данных (имени пользователя и пароля). Значение имени пользователя намеренно составлено таким образом, чтобы включить вредоносный SQL-оператор, который пытается сбросить таблицу users. Это делает приложение уязвимым для атак SQL-инъекций.
 
 
-To address this SQL injection vulnerability, here's an example of compliant code that uses prepared statements and parameterized queries to mitigate the risk:
+Для устранения этой уязвимости SQL-инъекций приведен пример соответствующего кода, в котором для снижения риска используются подготовленные операторы и параметризованные запросы:
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -596,7 +596,7 @@ public class SqlInjectionExample {
             
             ResultSet resultSet = statement.executeQuery();
             
-            // Process the result set...
+            // Обработайте набор результатов...
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -604,17 +604,17 @@ public class SqlInjectionExample {
 }
 ```
 
-In the compliant code, the SQL query is parameterized using placeholders (?) for the user-supplied values. The values are then bound to the prepared statement using the setString method. By using prepared statements, the SQL query is precompiled and the user input is treated as data rather than executable SQL code. This effectively prevents SQL injection attacks by ensuring that user input is properly escaped and not interpreted as part of the SQL syntax.
+В соответствующем коде SQL-запрос параметризуется с помощью заполнителей (?) для заданных пользователем значений. Затем эти значения привязываются к подготовленному оператору с помощью метода setString. Благодаря использованию подготовленных операторов SQL-запрос предварительно компилируется, и пользовательский ввод рассматривается как данные, а не как исполняемый SQL-код. Это эффективно предотвращает атаки SQL-инъекций, гарантируя, что пользовательский ввод будет правильно экранирован и не будет интерпретироваться как часть синтаксиса SQL.
 
-By adopting prepared statements and parameterized queries, the compliant code mitigates the risk of SQL injection vulnerabilities and ensures the safe execution of database queries.
-
-
+Благодаря использованию подготовленных операторов и параметризованных запросов соответствующий код снижает риск возникновения уязвимостей SQL-инъекций и обеспечивает безопасное выполнение запросов к базе данных.
 
 
 
-## External Control of File Name or Path
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Внешнее управление именем или путем файла
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -627,29 +627,29 @@ public class FileUploadExample {
 
         File file = new File(directory + fileName);
         
-        // Process the uploaded file...
+        // Обработайте загруженный файл...
     }
     
     private static String getFileNameFromUserInput() {
-        // Code to get file name from user input
-        // This could be from a user input field, request parameter, etc.
+        // Код для получения имени файла из пользовательского ввода
+        // Это может быть поле ввода пользователя, параметр запроса и т.д.
         return userInput;
     }
 }
 ```
 
 
-In this noncompliant code, the fileName variable is obtained from user input without proper validation or sanitization. The user can potentially manipulate the file name to access files outside the intended directory, leading to unauthorized access or information disclosure.
+В этом несоответствующем коде переменная fileName получается из пользовательского ввода без надлежащей проверки или санации. Пользователь потенциально может манипулировать именем файла для доступа к файлам за пределами предполагаемого каталога, что может привести к несанкционированному доступу или раскрытию информации.
 
 
-To address this vulnerability, here's an example of compliant code that validates and sanitizes the file name before constructing the file path:
-
-
-
+Для устранения этой уязвимости приведен пример совместимого кода, который проверяет и санирует имя файла перед построением пути к файлу:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -665,7 +665,7 @@ public class FileUploadExample {
         
         Path filePath = Paths.get(UPLOAD_DIRECTORY, fileName).normalize();
         if (!filePath.startsWith(UPLOAD_DIRECTORY)) {
-            // Invalid file name or path, handle the error
+            // Недопустимое имя файла или путь к нему, обработайте ошибку
             return;
         }
 
@@ -675,16 +675,16 @@ public class FileUploadExample {
     }
     
     private static String getFileNameFromUserInput() {
-        // Code to get file name from user input
-        // This could be from a user input field, request parameter, etc.
+        // Код для получения имени файла из пользовательского ввода
+        // Это может быть поле ввода пользователя, параметр запроса и т.д.
         return userInput;
     }
 }
 ```
 
-In the compliant code, the file name obtained from user input is validated and sanitized before constructing the file path. The Paths.get() method is used to create a Path object, and the normalize() method is applied to ensure a consistent and secure representation of the file path. The startsWith() method is then used to verify that the resulting file path is within the intended upload directory. If the file path is determined to be invalid or outside the designated directory, appropriate error handling can be performed.
+В соответствующем коде имя файла, полученное из пользовательского ввода, проверяется и обеззараживается перед построением пути к файлу. Метод Paths.get() используется для создания объекта Path, а метод normalize() применяется для обеспечения последовательного и безопасного представления пути к файлу. Затем используется метод startsWith(), чтобы проверить, что полученный путь к файлу находится в предполагаемом каталоге загрузки. Если выясняется, что путь к файлу недействителен или находится за пределами указанного каталога, выполняется соответствующая обработка ошибок.
 
-By validating and sanitizing the file name, and properly constructing the file path, the compliant code mitigates the risk of external control of file names or paths and helps ensure that only authorized files are accessed or processed.
+Благодаря проверке и санации имени файла, а также правильному построению пути к файлу, соответствующий код снижает риск внешнего контроля имен или путей к файлам и помогает обеспечить доступ и обработку только разрешенных файлов.
 
 
 
@@ -694,14 +694,14 @@ By validating and sanitizing the file name, and properly constructing the file p
 
 ## Generation of Error Message Containing Sensitive Information
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 public class UserService {
     public User getUserById(String userId) {
         try {
-            // Code to fetch user details from the database using the provided userId
+            // Код для получения данных о пользователе из базы данных, используя предоставленный userId
             // ...
         } catch (Exception e) {
             String errorMessage = "An error occurred while fetching user details for userId: " + userId;
@@ -712,23 +712,23 @@ public class UserService {
 ```
 
 
-In this noncompliant code, an error message is constructed by concatenating the sensitive information (the userId parameter) with a generic error message. This can potentially expose the sensitive information to unauthorized individuals in case of an error or exception.
+В этом несоответствующем коде сообщение об ошибке строится путем конкатенации конфиденциальной информации (параметр userId) с общим сообщением об ошибке. Это может привести к раскрытию конфиденциальной информации для неавторизованных лиц в случае ошибки или исключения.
 
 
-To address this vulnerability, here's an example of compliant code that avoids exposing sensitive information in error messages:
+Для устранения этой уязвимости приводим пример совместимого кода, который позволяет избежать раскрытия конфиденциальной информации в сообщениях об ошибках:
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 public class UserService {
     public User getUserById(String userId) {
         try {
-            // Code to fetch user details from the database using the provided userId
+            // Код для получения данных о пользователе из базы данных, используя предоставленный userId
             // ...
         } catch (Exception e) {
             throw new RuntimeException("An error occurred while fetching user details", e);
@@ -737,16 +737,16 @@ public class UserService {
 }
 ```
 
-In the compliant code, the error message is kept generic and does not include any sensitive information. By removing the sensitive data from the error message, the compliant code helps to protect the confidentiality of the user information and reduces the risk of exposing sensitive information to potential attackers.
+В соответствующем коде сообщение об ошибке носит общий характер и не содержит никакой конфиденциальной информации. Удаляя конфиденциальные данные из сообщения об ошибке, соответствующий код помогает защитить конфиденциальность пользовательской информации и снижает риск раскрытия конфиденциальной информации потенциальным злоумышленникам.
 
 
 
 
 
 
-## unprotected storage of credentials
+## Незащищенное хранение учетных данных
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -757,7 +757,7 @@ public class UserService {
     public void login(String username, String password) {
         this.username = username;
         this.password = password;
-        // Code to authenticate the user
+        // Код для аутентификации пользователя
         // ...
     }
     
@@ -768,17 +768,17 @@ public class UserService {
 }
 ```
 
-In this noncompliant code, the username and password fields are stored as plain strings within the UserService class. The credentials are directly assigned from the login method and can be accessed and printed using the printCredentials method. Storing credentials in this manner poses a security risk as they can easily be accessed and exposed.
+В этом несоответствующем коде поля имени пользователя и пароля хранятся как обычные строки в классе UserService. Учетные данные напрямую присваиваются из метода login и могут быть доступны и распечатаны с помощью метода printCredentials. Хранение учетных данных таким образом представляет собой риск безопасности, так как они могут быть легко доступны и раскрыты.
 
 
-To address this vulnerability, here's an example of compliant code that implements protected storage of credentials:
-
-
-
+Чтобы устранить эту уязвимость, приведем пример совместимого кода, в котором реализовано защищенное хранение учетных данных:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -786,13 +786,13 @@ public class UserService {
     private char[] password;
     
     public void login(String username, char[] password) {
-        // Code to authenticate the user
+        // Код для аутентификации пользователя
         // ...
         
-        // Store the password securely
+        // Храните пароль в безопасном месте
         this.password = Arrays.copyOf(password, password.length);
         
-        // Clear the original password data
+        // Очистите исходные данные пароля
         Arrays.fill(password, ' ');
     }
     
@@ -802,19 +802,19 @@ public class UserService {
     }
     
     private String getUsername() {
-        // Retrieve the username from the authenticated user session
+        // Получите имя пользователя из аутентифицированной пользовательской сессии
         // ...
     }
 }
 ```
 
-In the compliant code, the password is stored as a character array (char[]) instead of a plain string. Storing the password as a character array allows for more secure handling as it can be cleared from memory once it is no longer needed. Additionally, the printCredentials method only displays the username while masking the password with asterisks to prevent inadvertent exposure.
+В коде, соответствующем требованиям, пароль хранится в виде массива символов (char[]), а не в виде обычной строки. Хранение пароля в виде символьного массива обеспечивает более безопасную работу с ним, так как он может быть очищен из памяти, когда в нем больше нет необходимости. Кроме того, метод printCredentials выводит только имя пользователя, а пароль маскирует звездочками, чтобы предотвратить случайное раскрытие.
 
-By implementing protected storage of credentials, the compliant code mitigates the risk of exposing sensitive information and enhances the overall security of the application.
+Реализуя защищенное хранение учетных данных, соответствующий код снижает риск раскрытия конфиденциальной информации и повышает общую безопасность приложения.
 
-## Trust Boundary Violation
+## Нарушение границ доверия
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -822,10 +822,10 @@ public class UserAuthenticator {
     private boolean isAdmin;
     
     public boolean authenticateUser(String username, String password) {
-        // Code to authenticate the user credentials
+        // Код для аутентификации учетных данных пользователя
         // ...
         
-        // Set isAdmin flag based on the authentication result
+        // Устанавливаем флаг isAdmin на основе результата аутентификации
         if (username.equals("admin") && password.equals("admin123")) {
             isAdmin = true;
         }
@@ -835,7 +835,7 @@ public class UserAuthenticator {
     
     public void performAdminAction() {
         if (isAdmin) {
-            // Code to perform administrative action
+            // Код для выполнения административного действия
             // ...
         } else {
             System.out.println("Access denied. You are not authorized to perform this action.");
@@ -844,19 +844,19 @@ public class UserAuthenticator {
 }
 ```
 
-In this noncompliant code, the UserAuthenticator class authenticates a user based on the provided credentials (username and password). If the authentication is successful for an admin user (hard-coded as "admin" and "admin123" in this example), the isAdmin flag is set to true. The performAdminAction method checks the isAdmin flag to determine whether the user is authorized to perform an administrative action.
+В этом несоответствующем коде класс UserAuthenticator проверяет подлинность пользователя на основе предоставленных учетных данных (имя пользователя и пароль). Если аутентификация проходит успешно для пользователя-администратора (в данном примере жестко закодированного как "admin" и "admin123"), флаг isAdmin устанавливается в true. Метод performAdminAction проверяет флаг isAdmin, чтобы определить, имеет ли пользователь право выполнять административные действия.
 
 
-The trust boundary violation occurs because the UserAuthenticator class allows the isAdmin flag to be manipulated from outside the authentication process. An attacker could potentially modify the isAdmin flag directly or through other means, bypassing the proper authentication process and gaining unauthorized access to perform administrative actions.
+Нарушение границы доверия происходит потому, что класс UserAuthenticator позволяет манипулировать флагом isAdmin вне процесса аутентификации. Злоумышленник может изменить флаг isAdmin напрямую или с помощью других средств, обойдя надлежащий процесс аутентификации и получив несанкционированный доступ для выполнения административных действий.
 
-To address this vulnerability, here's an example of compliant code that enforces the trust boundary properly:
-
-
-
+Для устранения этой уязвимости приведен пример совместимого кода, в котором правильно соблюдается граница доверия:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -864,10 +864,10 @@ public class UserAuthenticator {
     private boolean isAdmin;
     
     public boolean authenticateUser(String username, String password) {
-        // Code to authenticate the user credentials
+        // Код для аутентификации учетных данных пользователя
         // ...
         
-        // Set isAdmin flag based on the authentication result
+        // Установите флаг isAdmin, основываясь на результатах аутентификации
         if (username.equals("admin") && password.equals("admin123")) {
             isAdmin = true;
         } else {
@@ -879,7 +879,7 @@ public class UserAuthenticator {
     
     public void performAdminAction() {
         if (checkAdminStatus()) {
-            // Code to perform administrative action
+            // Код для выполнения административного действия
             // ...
         } else {
             System.out.println("Access denied. You are not authorized to perform this action.");
@@ -887,7 +887,7 @@ public class UserAuthenticator {
     }
     
     private boolean checkAdminStatus() {
-        // Code to check the isAdmin flag from the authenticated user session
+        // Код для проверки флага isAdmin у аутентифицированного сеанса пользователя
         // ...
         
         return isAdmin;
@@ -896,29 +896,29 @@ public class UserAuthenticator {
 ```
 
 
-In the compliant code, the isAdmin flag is properly enforced within the UserAuthenticator class. The flag is set during the authentication process based on the result of validating the user's credentials. The performAdminAction method calls the checkAdminStatus method, which internally checks the isAdmin flag from the authenticated user session.
+В коде, соответствующем требованиям, флаг isAdmin правильно установлен в классе UserAuthenticator. Флаг устанавливается в процессе аутентификации на основании результатов проверки учетных данных пользователя. Метод performAdminAction вызывает метод checkAdminStatus, который внутренне проверяет флаг isAdmin из аутентифицированной пользовательской сессии.
 
-By enforcing the trust boundary correctly, the compliant code ensures that only authenticated users with legitimate admin privileges can perform administrative actions. This prevents unauthorized access and strengthens the security of the application.
-
-
+Благодаря правильному соблюдению границы доверия, соответствующий код гарантирует, что только аутентифицированные пользователи с законными привилегиями администратора могут выполнять административные действия. Это предотвращает несанкционированный доступ и повышает безопасность приложения.
 
 
 
-## Insufficiently Protected Credentials
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Недостаточно защищенные учетные данные
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 public class UserAuthenticator {
     public boolean authenticateUser(String username, String password) {
-        // Code to authenticate the user credentials
+        // Код для аутентификации учетных данных пользователя
         // ...
         
-        // Log the username and password
+        // Введите имя пользователя и пароль
         System.out.println("User credentials: " + username + ", " + password);
         
-        // Continue with authentication logic
+        // Продолжаем логику аутентификации
         // ...
         
         return true;
@@ -926,28 +926,28 @@ public class UserAuthenticator {
 }
 ```
 
-In this noncompliant code, the UserAuthenticator class contains a method authenticateUser that takes the username and password as parameters for user authentication. However, the code lacks proper protection for the sensitive credentials. The System.out.println statement logs the credentials directly to the console, exposing them to potential attackers or unauthorized individuals who might have access to the log files.
+В этом несоответствующем коде класс UserAuthenticator содержит метод authenticateUser, который принимает имя пользователя и пароль в качестве параметров для аутентификации пользователя. Однако в коде отсутствует надлежащая защита конфиденциальных учетных данных. Оператор System.out.println записывает учетные данные непосредственно в консоль, открывая их потенциальным злоумышленникам или неавторизованным лицам, которые могут иметь доступ к файлам журнала.
 
 
-To address this vulnerability, here's an example of compliant code that properly protects the credentials:
+Чтобы устранить эту уязвимость, вот пример совместимого кода, который должным образом защищает учетные данные:
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 public class UserAuthenticator {
     public boolean authenticateUser(String username, String password) {
-        // Code to authenticate the user credentials
+        // Код для аутентификации учетных данных пользователя
         // ...
         
-        // Log a generic message instead of the credentials
+        // Занесите в журнал общее сообщение вместо учетных данных
         System.out.println("User authentication attempt");
         
-        // Continue with authentication logic
+        // Продолжаем логику аутентификации
         // ...
         
         return true;
@@ -956,20 +956,20 @@ public class UserAuthenticator {
 ```
 
 
-In the compliant code, the System.out.println statement has been modified to log a generic message instead of the actual credentials. By avoiding the direct logging of sensitive information, such as usernames and passwords, the compliant code reduces the risk of exposing sensitive credentials to unauthorized individuals or potential attackers.
+В коде, соответствующем требованиям, оператор System.out.println был модифицирован для записи в журнал общего сообщения вместо фактических учетных данных. Избегая прямой записи в журнал конфиденциальной информации, такой как имена пользователей и пароли, код, соответствующий требованиям, снижает риск раскрытия конфиденциальных учетных данных неавторизованным лицам или потенциальным злоумышленникам.
 
 
-It's important to note that in a production environment, logging sensitive information like passwords should generally be avoided altogether. Instead, consider using proper logging frameworks that support sensitive data protection mechanisms, such as redaction or encryption, to ensure the confidentiality of sensitive information.
-
-
-
+Важно отметить, что в производственной среде, как правило, следует избегать записи в журнал такой конфиденциальной информации, как пароли. Вместо этого для обеспечения конфиденциальности конфиденциальной информации следует использовать соответствующие механизмы протоколирования, поддерживающие механизмы защиты конфиденциальных данных, такие как редактирование или шифрование.
 
 
 
 
-## Restriction of XML External Entity Reference
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+
+## Ограничение ссылки на внешние сущности XML
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -993,17 +993,17 @@ public class XMLParser {
 }
 ```
 
-In this noncompliant code, the XMLParser class contains a method parseXML that takes an XML string as input and parses it into a Document object using the javax.xml.parsers.DocumentBuilder class. However, the code does not properly restrict XML external entity references, which can lead to security vulnerabilities like XXE attacks.
+В этом несоответствующем коде класс XMLParser содержит метод parseXML, который принимает на вход XML-строку и разбирает ее на объект Document с помощью класса javax.xml.parsers.DocumentBuilder. Однако код не ограничивает должным образом ссылки на внешние сущности XML, что может привести к уязвимостям безопасности, таким как XXE-атаки.
 
 
-To address this vulnerability, here's an example of compliant code that implements proper restriction of XML external entity references:
-
-
-
+Для устранения этой уязвимости приводим пример совместимого кода, в котором реализовано правильное ограничение ссылок на внешние сущности XML:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1034,20 +1034,20 @@ public class XMLParser {
 ```
 
 
-In the compliant code, the DocumentBuilderFactory is configured to disable the support for document type declarations (DTDs) and external entity references by setting the corresponding features. By disabling these features, the code effectively restricts XML external entity references and prevents potential XXE attacks.
+В соответствующем коде DocumentBuilderFactory настроена на отключение поддержки деклараций типов документов (DTD) и ссылок на внешние сущности путем установки соответствующих функций. Отключая эти функции, код эффективно ограничивает ссылки на внешние сущности XML и предотвращает потенциальные XXE-атаки.
 
 
-It's crucial to be cautious when parsing XML data and to properly restrict XML external entity references to mitigate the risk of XXE vulnerabilities.
-
-
-
+Очень важно быть осторожным при разборе XML-данных и правильно ограничивать ссылки на внешние сущности XML, чтобы снизить риск возникновения XXE-уязвимостей.
 
 
 
-## Vulnerable and Outdated Components
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Уязвимые и устаревшие компоненты
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1068,17 +1068,17 @@ public class StringHelper {
 }
 ```
 
-In this noncompliant code, the StringHelper class uses the StringUtils class from the Apache Commons Lang library to perform string manipulation and validation. However, the code uses an outdated version of the library that may have known vulnerabilities.
+В этом несоответствующем коде класс StringHelper использует класс StringUtils из библиотеки Apache Commons Lang для выполнения манипуляций со строками и их проверки. Однако в коде используется устаревшая версия библиотеки, которая может иметь известные уязвимости.
 
 
-To address this issue, it is important to keep all software components, including third-party libraries, up to date. Here's an example of compliant code that uses an updated version of the library:
-
-
-
+Чтобы решить эту проблему, важно поддерживать все компоненты программного обеспечения, включая сторонние библиотеки, в актуальном состоянии. Вот пример совместимого кода, в котором используется обновленная версия библиотеки:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1100,20 +1100,20 @@ public class StringHelper {
 ```
 
 
-In the compliant code, the StringUtils class is imported from the org.apache.commons.lang3 package, indicating the use of the latest version of the Apache Commons Lang library (version 3.x). By using an updated version of the library, the code mitigates the risk of known vulnerabilities present in older versions.
+В соответствующем коде класс StringUtils импортирован из пакета org.apache.commons.lang3, что указывает на использование последней версии библиотеки Apache Commons Lang (версия 3.x). Используя обновленную версию библиотеки, код снижает риск известных уязвимостей, присутствующих в старых версиях.
 
 
-It is crucial to regularly update software components, especially third-party libraries, to ensure the use of the latest security patches and fixes. Keeping components up to date helps protect against known vulnerabilities and ensures a more secure application.
-
-
-
+Очень важно регулярно обновлять компоненты программного обеспечения, особенно сторонние библиотеки, чтобы обеспечить использование последних исправлений и исправлений безопасности. Обновление компонентов помогает защититься от известных уязвимостей и обеспечивает большую безопасность приложения.
 
 
 
 
-## Improper Validation of Certificate with Host Mismatch
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+
+## Неправильная проверка сертификата с несоответствием хоста
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1128,22 +1128,22 @@ public class HttpClient {
         connection.setHostnameVerifier((hostname, session) -> true); // Disabling hostname verification
         connection.setRequestMethod("GET");
         int responseCode = connection.getResponseCode();
-        // Process the response...
+        // Обработайте ответ...
     }
 }
 ```
 
-In this noncompliant code, the sendRequest method sends an HTTP GET request to the specified URL. However, the code disables hostname verification by setting a custom HostnameVerifier that always returns true. This means that the certificate presented by the server is not properly validated against the host name of the URL. This opens up the possibility of man-in-the-middle attacks and exposes the application to security risks.
+В этом коде, не соответствующем требованиям, метод sendRequest отправляет HTTP GET-запрос на указанный URL. Однако в коде отключена проверка имени хоста путем установки пользовательского HostnameVerifier, который всегда возвращает true. Это означает, что сертификат, представленный сервером, не проверяется должным образом на соответствие имени хоста URL. Это открывает возможность для атак типа "человек посередине" и подвергает приложение риску безопасности.
 
 
-To address this issue, it is essential to perform proper validation of the certificate with the host name of the URL. Here's an example of compliant code that implements proper certificate validation:
-
-
-
+Чтобы решить эту проблему, необходимо выполнить правильную проверку сертификата на соответствие имени хоста URL. Вот пример совместимого кода, в котором реализована правильная проверка сертификата:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1166,30 +1166,30 @@ public class HttpClient {
                 throw new SSLPeerUnverifiedException("Certificate does not match the host name");
             }
         } catch (SSLPeerUnverifiedException e) {
-            // Handle certificate validation failure
+            // Обработка ошибки проверки сертификата
         } finally {
             connection.disconnect();
         }
         int responseCode = connection.getResponseCode();
-        // Process the response...
+        // Обработайте ответ...
     }
 }
 ```
 
 
-In the compliant code, the sendRequest method establishes an HTTPS connection and performs proper certificate validation. It compares the host name of the URL with the host name obtained from the SSL session's peer. If there is a mismatch, it throws an SSLPeerUnverifiedException to indicate that the certificate does not match the host name.
+В соответствующем коде метод sendRequest устанавливает HTTPS-соединение и выполняет надлежащую проверку сертификата. Он сравнивает имя хоста в URL с именем хоста, полученным от пира SSL-сессии. Если обнаружено несоответствие, метод выбрасывает исключение SSLPeerUnverifiedException, указывающее на то, что сертификат не соответствует имени хоста.
 
-By implementing proper certificate validation, the code ensures that the certificate presented by the server is validated against the host name of the URL, reducing the risk of man-in-the-middle attacks and enhancing the overall security of the application.
-
-
+Реализуя надлежащую проверку сертификатов, код гарантирует, что сертификат, представленный сервером, будет проверен на соответствие имени хоста URL, что снижает риск атак типа "человек посередине" и повышает общую безопасность приложения.
 
 
 
 
 
-## Improper Authentication
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Неправильная аутентификация
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1207,26 +1207,26 @@ public class AuthenticationExample {
         
         if (username.equals("admin") && password.equals("password")) {
             System.out.println("Authentication successful");
-            // Proceed with privileged operation
+            // Приступайте к выполнению привилегированной операции
         } else {
             System.out.println("Authentication failed");
-            // Handle authentication failure
+            // Обработка отказа аутентификации
         }
     }
 }
 ```
 
-In this noncompliant code, the username and password are collected from user input using a Scanner object. However, there is no proper mechanism in place to securely store and compare the credentials. The username and password are compared using simple string equality, which is vulnerable to various attacks such as brute-force attacks, dictionary attacks, and interception of the credentials.
+В этом коде, не соответствующем требованиям, имя пользователя и пароль собираются из пользовательского ввода с помощью объекта Scanner. Однако здесь нет надлежащего механизма для безопасного хранения и сравнения учетных данных. Имя пользователя и пароль сравниваются с помощью простого равенства строк, что уязвимо для различных атак, таких как брутфорс, атаки по словарю и перехват учетных данных.
 
 
-To address this issue, here's a compliant code example:
-
-
-
+Чтобы решить эту проблему, приведем пример кода, соответствующего требованиям:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1248,21 +1248,21 @@ public class AuthenticationExample {
         
         if (authenticate(username, password)) {
             System.out.println("Authentication successful");
-            // Proceed with privileged operation
+            // Приступайте к выполнению привилегированной операции
         } else {
             System.out.println("Authentication failed");
-            // Handle authentication failure
+            // Обработка отказа аутентификации
         }
     }
     
     private static boolean authenticate(String username, String password) {
-        // Retrieve hashed password from a secure database or storage
+        // Получение хэшированного пароля из защищенной базы данных или хранилища
         String storedPasswordHash = getStoredPasswordHash(username);
         
-        // Hash the input password with a salt
+        // Хеширование вводимого пароля с помощью соли
         String hashedPassword = hashPassword(password);
         
-        // Compare the stored hashed password with the input hashed password
+        // Сравните сохраненный хэш-пароль с введенным хэш-паролем
         return storedPasswordHash.equals(hashedPassword);
     }
     
@@ -1273,7 +1273,7 @@ public class AuthenticationExample {
             byte[] hashedBytes = messageDigest.digest();
             return bytesToHexString(hashedBytes);
         } catch (NoSuchAlgorithmException e) {
-            // Handle the exception
+            // Обработка исключения
             e.printStackTrace();
         }
         return null;
@@ -1288,16 +1288,16 @@ public class AuthenticationExample {
     }
     
     private static String getStoredPasswordHash(String username) {
-        // Retrieve the hashed password from a secure database or storage
-        // based on the given username
-        // Return the stored password hash
+        // Извлеките хэшированный пароль из защищенной базы данных или хранилища.
+        // на основе заданного имени пользователя
+        // Верните сохраненный хэш пароля
         return "stored_password_hash";
     }
 }
 ```
 
 
-In this compliant code, the password is securely hashed using a strong cryptographic hash function (SHA-256) with the addition of a salt value. The hashed password is then compared with the stored hashed password retrieved from a secure database or storage. This approach enhances the security of the authentication process by preventing the exposure of plain-text passwords and protecting against common attack vectors such as brute-force and dictionary attacks.
+В этом соответствующем коде пароль надежно хэшируется с помощью надежной криптографической хэш-функции (SHA-256) с добавлением значения соли. Затем хэшированный пароль сравнивается с сохраненным хэшированным паролем, полученным из защищенной базы данных или хранилища. Такой подход повышает безопасность процесса аутентификации, предотвращая раскрытие паролей в открытом виде и защищая от таких распространенных атак, как брутфорс и атака по словарю.
 
 
 
@@ -1305,9 +1305,9 @@ In this compliant code, the password is securely hashed using a strong cryptogra
 
 
 
-## Session Fixation
+## Фиксация сеанса
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1321,27 +1321,27 @@ public class SessionFixationExample {
     }
     
     public static void main(String[] args) {
-        HttpServletRequest request = // Obtain the request object
+        HttpServletRequest request = // Получение объекта запроса
         
         String username = "admin";
         login(request, username);
         
-        // Proceed with authenticated actions
+        // Приступайте к выполнению аутентифицированных действий
     }
 }
 ```
 
-In this noncompliant code, the login method is called to authenticate a user and create a new session. However, the login method does not perform any session management or regeneration. It simply sets the username attribute in the session. This creates a vulnerability known as session fixation, where an attacker can force a victim's session identifier to a known value and then later hijack the session.
+В этом несоответствующем коде метод login вызывается для аутентификации пользователя и создания новой сессии. Однако метод login не выполняет никакого управления сеансом или его регенерации. Он просто устанавливает атрибут username в сессии. Это создает уязвимость, известную как фиксация сеанса, когда злоумышленник может принудительно установить идентификатор сеанса жертвы в известное значение, а затем перехватить сеанс.
 
 
-To address this issue, here's a compliant code example:
-
-
-
+Чтобы решить эту проблему, приведем пример кода, соответствующего требованиям:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1351,33 +1351,33 @@ import javax.servlet.http.HttpSession;
 public class SessionFixationExample {
     public static void login(HttpServletRequest request, String username) {
         HttpSession session = request.getSession();
-        session.invalidate(); // Invalidate the existing session
-        session = request.getSession(true); // Create a new session
+        session.invalidate(); // Аннулируйте существующую сессию
+        session = request.getSession(true); // Создать новую сессию
         
         session.setAttribute("username", username);
     }
     
     public static void main(String[] args) {
-        HttpServletRequest request = // Obtain the request object
+        HttpServletRequest request = // Получение объекта запроса
         
         String username = "admin";
         login(request, username);
         
-        // Proceed with authenticated actions
+        // Приступайте к аутентифицированным действиям
     }
 }
 ```
 
 
-In this compliant code, the login method now performs proper session management. It first invalidates the existing session using the invalidate method, which ensures that any existing session data is cleared. Then, it creates a new session using request.getSession(true), which generates a new session identifier. This mitigates the session fixation vulnerability by ensuring that each user receives a fresh session identifier upon login, preventing an attacker from fixing the session identifier in advance.
+В этом коде, соответствующем требованиям, метод login теперь выполняет надлежащее управление сеансами. Сначала он аннулирует существующую сессию с помощью метода invalidate, который гарантирует, что все существующие данные сессии будут очищены. Затем он создает новую сессию с помощью request.getSession(true), который генерирует новый идентификатор сессии. Это снижает уязвимость фиксации сеанса, гарантируя, что каждый пользователь получает свежий идентификатор сеанса при входе в систему, что не позволяет злоумышленнику заранее зафиксировать идентификатор сеанса.
 
 
 
 
 
-## Inclusion of Functionality from Untrusted Control
+## Включение функциональности из недоверенного управления
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1388,9 +1388,9 @@ public class UntrustedFunctionalityExample {
     public static void processFile(String filename) {
         try {
             File file = new File(filename);
-            // Process the file contents
+            // Обработайте содержимое файла
         } catch (IOException e) {
-            // Handle file processing error
+            // Обработка ошибки обработки файла
         }
     }
     
@@ -1401,18 +1401,18 @@ public class UntrustedFunctionalityExample {
 }
 ```
 
-In this noncompliant code, the processFile method accepts a user-provided filename as input and attempts to process the contents of the file. However, it directly uses the user-provided filename to create a File object without performing any validation or sanitization. This introduces the risk of including functionality from an untrusted source, as an attacker can manipulate the filename to potentially access sensitive files or perform arbitrary file operations.
+В этом коде, не соответствующем требованиям, метод processFile принимает на вход имя файла, предоставленное пользователем, и пытается обработать его содержимое. Однако он напрямую использует предоставленное пользователем имя файла для создания объекта File без выполнения какой-либо проверки или санитарной обработки. Это создает риск включения функциональности из ненадежного источника, поскольку злоумышленник может манипулировать именем файла для потенциального доступа к конфиденциальным файлам или выполнения произвольных операций с файлами.
 
 
-To address this issue, here's a compliant code example:
-
-
-
+Чтобы решить эту проблему, приведем пример кода, соответствующего требованиям:
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1421,22 +1421,22 @@ import java.io.IOException;
 
 public class UntrustedFunctionalityExample {
     public static void processFile(String filename) {
-        // Validate and sanitize the filename before processing
+        // Проверяем и дезинфицируем имя файла перед обработкой
         if (isValidFilename(filename)) {
             try {
                 File file = new File(filename);
-                // Process the file contents
+                // Обработайте содержимое файла
             } catch (IOException e) {
-                // Handle file processing error
+                // Обработка ошибки обработки файла
             }
         } else {
-            // Handle invalid filename
+            // Обработка недопустимого имени файла
         }
     }
     
     public static boolean isValidFilename(String filename) {
-        // Implement validation logic to ensure the filename is safe
-        // e.g., restrict file path, disallow certain characters, etc.
+        // Реализуйте логику проверки, чтобы убедиться, что имя файла безопасно.
+        // например, ограничить путь к файлу, запретить определенные символы и т.д.
         return true;
     }
     
@@ -1448,14 +1448,14 @@ public class UntrustedFunctionalityExample {
 ```
 
 
-In this compliant code, a separate isValidFilename method is introduced to validate and sanitize the user-provided filename before processing it. The isValidFilename method should implement proper validation logic to ensure that the filename meets the desired criteria (e.g., restrict file path, disallow certain characters, etc.). Only if the filename passes the validation, it proceeds with processing the file contents. Otherwise, it handles the case of an invalid filename appropriately. By validating and sanitizing the input, the code mitigates the risk of including functionality from untrusted control and helps ensure that only safe and expected filenames are processed.
+В этом соответствующем коде введен отдельный метод isValidFilename для проверки и обеззараживания имени файла, предоставленного пользователем, перед его обработкой. Метод isValidFilename должен реализовать соответствующую логику проверки, чтобы убедиться, что имя файла соответствует требуемым критериям (например, ограничить путь к файлу, запретить определенные символы и т. д.). Только если имя файла проходит проверку, он переходит к обработке содержимого файла. В противном случае, если имя файла недействительно, оно обрабатывается соответствующим образом. Проверяя и санируя входные данные, код снижает риск включения функциональности из ненадежных систем управления и помогает гарантировать, что обрабатываются только безопасные и ожидаемые имена файлов.
 
 
 
 
-## Download of Code Without Integrity Check
+## Загрузка кода без проверки целостности
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1472,7 +1472,7 @@ public class CodeDownloadExample {
             Path destinationPath = Path.of(destination);
             Files.copy(codeUrl.openStream(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            // Handle download error
+            // Обработка ошибки загрузки
         }
     }
     
@@ -1484,17 +1484,17 @@ public class CodeDownloadExample {
 }
 ```
 
-In this noncompliant code, the downloadCode method accepts a URL and a destination path where the code will be downloaded. It directly opens a connection to the specified URL and downloads the code without performing any integrity check or verification. This approach leaves the code vulnerable to the download of malicious or tampered code, which can lead to security risks and potential exploitation.
+В этом несоответствующем коде метод downloadCode принимает URL и путь назначения, по которому будет загружен код. Он напрямую открывает соединение с указанным URL и загружает код, не выполняя никакой проверки целостности или верификации. Такой подход делает код уязвимым для загрузки вредоносного или поддельного кода, что может привести к рискам безопасности и потенциальной эксплуатации.
 
 
-To address this issue, here's a compliant code example:
-
-
-
+Чтобы решить эту проблему, приведем пример совместимого кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1512,23 +1512,23 @@ public class CodeDownloadExample {
             URL codeUrl = new URL(url);
             Path destinationPath = Path.of(destination);
             
-            // Download the code to a temporary file
+            // Загрузите код во временный файл
             Path tempPath = Files.createTempFile("downloaded_code", ".tmp");
             Files.copy(codeUrl.openStream(), tempPath, StandardCopyOption.REPLACE_EXISTING);
             
-            // Calculate the checksum of the downloaded code
+            // Вычислите контрольную сумму загруженного кода
             String checksum = calculateChecksum(tempPath);
             
-            // Verify the integrity of the downloaded code
+            // Проверьте целостность загруженного кода
             if (isValidChecksum(checksum)) {
-                // Move the downloaded code to the destination path
+                // Переместите загруженный код по пути назначения
                 Files.move(tempPath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
             } else {
-                // Handle integrity check failure
+                // Обработка сбоя проверки целостности
                 Files.deleteIfExists(tempPath);
             }
         } catch (IOException e) {
-            // Handle download error
+            // Обработка ошибки загрузки
         }
     }
     
@@ -1548,7 +1548,7 @@ public class CodeDownloadExample {
     }
     
     public static boolean isValidChecksum(String checksum) {
-        // Compare the calculated checksum with a trusted value
+        // Сравните вычисленную контрольную сумму с доверенным значением
         String trustedChecksum = "e1a7a76c51a1024193a54f95e3dbaeaeaa01a7544c24404db4c24bdf8a34937e";
         return trustedChecksum.equals(checksum);
     }
@@ -1567,9 +1567,9 @@ public class CodeDownloadExample {
 
 
 
-## Deserialization of Untrusted Data
+## Десериализация недоверенных данных
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1585,26 +1585,26 @@ public class DeserializationExample {
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
             
             Object obj = in.readObject();
-            // Process the deserialized object
+            // Обработка десериализованного объекта
             
         } catch (IOException | ClassNotFoundException e) {
-            // Handle deserialization error
+            // Обработка ошибки десериализации
         }
     }
 }
 ```
 
-In this noncompliant code, the DeserializationExample class attempts to deserialize an object from a serialized file using ObjectInputStream. However, it does not perform any validation or checks on the deserialized data, making it vulnerable to attacks such as remote code execution, object injection, or deserialization of malicious data.
+В этом несоответствующем коде класс DeserializationExample пытается десериализовать объект из сериализованного файла с помощью ObjectInputStream. Однако он не выполняет никакой валидации или проверки десериализованных данных, что делает его уязвимым для таких атак, как удаленное выполнение кода, внедрение объектов или десериализация вредоносных данных.
 
 
-To address this issue, here's a compliant code example:
-
-
-
+Чтобы решить эту проблему, приведем пример кода, соответствующего требованиям:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1619,40 +1619,40 @@ public class DeserializationExample {
         try (FileInputStream fileIn = new FileInputStream(serializedData);
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
             
-            // Perform validation on the deserialized object
+            // Выполните проверку на десериализованном объекте
             Object obj = in.readObject();
             if (isValidObject(obj)) {
-                // Process the deserialized object
+                // Обрабатываем десериализованный объект
             } else {
-                // Handle invalid or malicious object
+                // Обработка недействительного или вредоносного объекта
             }
             
         } catch (IOException | ClassNotFoundException e) {
-            // Handle deserialization error
+            // Обработка ошибки десериализации
         }
     }
     
     public static boolean isValidObject(Object obj) {
-        // Implement validation logic based on the expected object type
-        // and any additional validation criteria
+        // Реализуйте логику проверки на основе ожидаемого типа объекта
+        // и любых дополнительных критериев проверки
         
-        // Example: Ensure the deserialized object is of the expected type
+        // Пример: Убедиться, что десериализованный объект имеет ожидаемый тип
         return obj instanceof MySerializableClass;
     }
 }
 ```
 
 
-In this compliant code, the deserialization process includes a validation step before processing the deserialized object. The isValidObject method is used to perform validation based on the expected object type and any additional validation criteria. This helps prevent the deserialization of untrusted or malicious data by ensuring that the deserialized object meets the expected criteria.
+В этом соответствующем коде процесс десериализации включает этап проверки перед обработкой десериализованного объекта. Метод isValidObject используется для выполнения проверки на основе ожидаемого типа объекта и любых дополнительных критериев проверки. Это помогает предотвратить десериализацию недоверенных или вредоносных данных, гарантируя, что десериализованный объект соответствует ожидаемым критериям.
 
 
 
 
 
 
-## Insufficient Logging
+## Недостаточное ведение журнала
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1660,27 +1660,27 @@ public class PaymentService {
     private static final Logger logger = Logger.getLogger(PaymentService.class.getName());
 
     public void processPayment(String paymentData) {
-        // Process the payment
+        // Обработка платежа
         // ...
 
-        // Log the payment result
+        // Зафиксируйте результат оплаты
         logger.info("Payment processed successfully");
     }
 }
 ```
 
-In this noncompliant code, the PaymentService class processes a payment but only logs a generic message indicating a successful payment. The logging is insufficient because it lacks essential information such as the user's identity, the payment amount, and any relevant contextual details. This makes it challenging to investigate and trace payment-related issues or potential security incidents.
+В этом коде, не соответствующем требованиям, класс PaymentService обрабатывает платеж, но регистрирует только общее сообщение об успешном платеже. Запись в журнал недостаточна, поскольку в ней отсутствует такая важная информация, как личность пользователя, сумма платежа и любые соответствующие контекстные данные. Это затрудняет расследование и отслеживание проблем, связанных с платежами, или потенциальных инцидентов безопасности.
 
 
-To address this issue, here's a compliant code example:
-
-
-
+Чтобы решить эту проблему, приведем пример кода, соответствующего требованиям:
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1688,25 +1688,25 @@ public class PaymentService {
     private static final Logger logger = Logger.getLogger(PaymentService.class.getName());
 
     public void processPayment(String paymentData, User user) {
-        // Process the payment
+        // Обработка платежа
         // ...
 
-        // Log the payment result with relevant information
+        // Зафиксируйте результат платежа с соответствующей информацией
         logger.info("Payment processed successfully. User: " + user.getUsername() + ", Amount: " + paymentData.getAmount());
     }
 }
 ```
 
 
-In this compliant code, the processPayment method now accepts an additional parameter User to capture the user's information. The relevant information, such as the user's username and payment amount, is included in the log message. By providing more detailed and contextual information in the log, it becomes easier to track and investigate payment-related events or security incidents.
+В этом соответствующем коде метод processPayment теперь принимает дополнительный параметр User для сбора информации о пользователе. Соответствующая информация, такая как имя пользователя и сумма платежа, включается в сообщение журнала. Предоставление более подробной и контекстной информации в журнале облегчает отслеживание и расследование событий, связанных с платежами, или инцидентов безопасности.
 
 
 
 
 
-## Improper Output Neutralization for Logs
+## Неправильная нейтрализация выхода для бревен
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1714,22 +1714,22 @@ public class LoginService {
     private static final Logger logger = Logger.getLogger(LoginService.class.getName());
 
     public void logInvalidLogin(String username) {
-        // Log the invalid login attempt
+        // Зафиксируйте неудачную попытку входа в систему
         logger.info("Invalid login attempt: " + username);
     }
 }
 ```
 
-In this noncompliant code, the logInvalidLogin method logs an invalid login attempt by directly concatenating the username into the log message. This approach can lead to log injection or log forging attacks if the username contains special characters or control characters.
+В этом коде, не соответствующем требованиям, метод logInvalidLogin регистрирует недействительную попытку входа в систему, непосредственно конкатенируя имя пользователя в сообщении журнала. Такой подход может привести к инъекции журнала или атакам подделки журнала, если имя пользователя содержит специальные символы или управляющие символы.
 
-To address this issue, here's a compliant code example that applies proper output neutralization:
-
-
+Чтобы решить эту проблему, вот пример кода, соответствующий требованиям, в котором применяется надлежащая нейтрализация вывода:
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1737,22 +1737,22 @@ public class LoginService {
     private static final Logger logger = Logger.getLogger(LoginService.class.getName());
 
     public void logInvalidLogin(String username) {
-        // Sanitize the username to prevent log injection
+        // Дезинфекция имени пользователя для предотвращения инъекций в журнал
         String sanitizedUsername = sanitize(username);
 
-        // Log the invalid login attempt with the sanitized username
+        // Зафиксируйте неудачную попытку входа в систему с дезинфицированным именем пользователя
         logger.info("Invalid login attempt: " + sanitizedUsername);
     }
 
     private String sanitize(String input) {
-        // Implement appropriate sanitization logic
+        // Реализуйте соответствующую логику санации
         // ...
         return input.replaceAll("[^a-zA-Z0-9]", "");
     }
 }
 ```
 
-In this compliant code, the sanitize method is introduced to properly neutralize the output by removing any potentially malicious or unwanted characters from the username. The sanitize method can be customized based on the specific requirements and context of the application. By applying proper output neutralization techniques, the risk of log injection or log forging attacks is mitigated, ensuring the integrity and reliability of the log data.
+В этом соответствующем коде представлен метод sanitize для правильной нейтрализации вывода путем удаления любых потенциально вредоносных или нежелательных символов из имени пользователя. Метод sanitize может быть настроен в соответствии с конкретными требованиями и контекстом приложения. Применение надлежащих методов нейтрализации выходных данных снижает риск инъекций в журнал или атак на подделку журнала, обеспечивая целостность и надежность данных журнала.
 
 
 
@@ -1760,46 +1760,46 @@ In this compliant code, the sanitize method is introduced to properly neutralize
 
 
 
-## Omission of Security-relevant Information
+## Упущение информации, имеющей отношение к безопасности
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 public class PaymentService {
     public void processPayment(String creditCardNumber, double amount) {
-        // Process the payment
+        // Обработать платеж
 
-        // Log the payment without including security-relevant information
+        // Зарегистрировать платеж, не включая информацию, относящуюся к безопасности
         Logger.getLogger(PaymentService.class.getName()).info("Payment processed");
     }
 }
 ```
 
 
-In this noncompliant code, the processPayment method processes a payment but fails to include security-relevant information in the log message. This omission can make it difficult to track and investigate any security-related issues or anomalies related to the payment processing.
+В этом коде, не соответствующем требованиям, метод processPayment обрабатывает платеж, но не включает в сообщение журнала информацию, относящуюся к безопасности. Такое упущение может затруднить отслеживание и расследование любых проблем или аномалий, связанных с обработкой платежей.
 
 
-To address this issue, here's a compliant code example that includes security-relevant information in the log message:
+Чтобы решить эту проблему, ниже приведен пример кода, отвечающего требованиям безопасности, который включает информацию, относящуюся к безопасности, в сообщение журнала:
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 public class PaymentService {
     public void processPayment(String creditCardNumber, double amount) {
-        // Process the payment
+        // Обработка платежа
 
-        // Log the payment with security-relevant information
+        // Зафиксируйте платеж с помощью информации, относящейся к безопасности
         Logger logger = Logger.getLogger(PaymentService.class.getName());
         logger.info("Payment processed - Credit Card: " + maskCreditCardNumber(creditCardNumber) + ", Amount: " + amount);
     }
 
     private String maskCreditCardNumber(String creditCardNumber) {
-        // Mask the credit card number for security purposes
+        // Замаскируйте номер кредитной карты в целях безопасности
         // ...
         return "************" + creditCardNumber.substring(creditCardNumber.length() - 4);
     }
@@ -1807,7 +1807,7 @@ public class PaymentService {
 ```
 
 
-In this compliant code, the log message is enhanced to include the masked credit card number and the payment amount. The maskCreditCardNumber method is introduced to obfuscate the sensitive credit card number and ensure its security during logging. By including security-relevant information in the log message, administrators and security analysts can better monitor and investigate payment-related activities, facilitating incident response and security analysis.
+В этом соответствующем коде сообщение журнала содержит замаскированный номер кредитной карты и сумму платежа. Метод maskCreditCardNumber используется для маскировки конфиденциального номера кредитной карты и обеспечения его безопасности во время записи в журнал. Благодаря включению в сообщение журнала информации, имеющей отношение к безопасности, администраторы и аналитики безопасности могут лучше отслеживать и расследовать действия, связанные с платежами, что облегчает реагирование на инциденты и анализ безопасности.
 
 
 
@@ -1815,9 +1815,9 @@ In this compliant code, the log message is enhanced to include the masked credit
 
 
 
-## Sensitive Information into Log File
+## Помещение конфиденциальной информации в файл журнала
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1825,25 +1825,25 @@ public class UserService {
     private static final Logger logger = Logger.getLogger(UserService.class.getName());
 
     public void createUser(String username, String password) {
-        // Create the user
+        // Создайте пользователя
 
-        // Log the sensitive information
+        // Регистрация конфиденциальной информации
         logger.info("User created - Username: " + username + ", Password: " + password);
     }
 }
 ```
 
-In this noncompliant code, the createUser method logs sensitive information, such as the username and password, directly into the log file. Storing sensitive data in log files can pose a significant security risk, as log files may be accessible to unauthorized individuals or stored indefinitely, potentially exposing sensitive information.
+В этом коде, не соответствующем требованиям, метод createUser записывает конфиденциальную информацию, такую как имя пользователя и пароль, непосредственно в файл журнала. Хранение конфиденциальных данных в файлах журнала может представлять значительный риск для безопасности, так как файлы журнала могут быть доступны неавторизованным лицам или храниться неопределенное время, что может привести к раскрытию конфиденциальной информации.
 
 
-To address this issue, here's a compliant code example that avoids logging sensitive information:
-
-
-
+Чтобы решить эту проблему, ниже приведен пример кода, отвечающего требованиям безопасности, который позволяет избежать записи конфиденциальной информации в журнал:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1851,16 +1851,16 @@ public class UserService {
     private static final Logger logger = Logger.getLogger(UserService.class.getName());
 
     public void createUser(String username, String password) {
-        // Create the user
+        // Создайте пользователя
 
-        // Log a message without sensitive information
+        // Зарегистрируйте сообщение, не содержащее конфиденциальной информации
         logger.info("User created - Username: " + username);
     }
 }
 ```
 
 
-In this compliant code, the logging statement is modified to exclude the password. Only the username is logged, while the password is omitted from the log message. By avoiding the logging of sensitive information, the risk of exposing sensitive data in log files is mitigated, enhancing the overall security posture of the application.
+В этом соответствующем коде сообщение о регистрации изменено, чтобы исключить пароль. В журнал записывается только имя пользователя, а пароль не указывается. Благодаря отказу от записи в журнал конфиденциальной информации снижается риск раскрытия конфиденциальных данных в файлах журнала, что повышает общий уровень безопасности приложения.
 
 
 
@@ -1868,9 +1868,9 @@ In this compliant code, the logging statement is modified to exclude the passwor
 
 
 
-## Server-Side Request Forgery (SSRF)
+## Подделка запросов со стороны сервера (SSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1881,26 +1881,26 @@ import java.net.URL;
 
 public class ImageProcessor {
     public void processImage(String imageUrl) throws IOException {
-        // Retrieve image from the provided URL
+        // Получите изображение по указанному URL
         URL url = new URL(imageUrl);
         BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-        // Process the image
+        // Обработка изображения
         // ...
     }
 }
 ```
 
-In this noncompliant code, the processImage method accepts an imageUrl as input and directly makes a request to that URL to retrieve an image. This code is vulnerable to SSRF because it allows an attacker to specify any URL, including internal network resources or malicious URLs, leading to potential attacks against internal systems or services.
+В этом несовместимом коде метод processImage принимает на вход imageUrl и напрямую делает запрос к этому URL для получения изображения. Этот код уязвим для SSRF, поскольку позволяет злоумышленнику указать любой URL, включая внутренние сетевые ресурсы или вредоносные URL, что приводит к потенциальным атакам на внутренние системы или сервисы.
 
 
-To address this SSRF vulnerability, here's a compliant code example that implements proper URL validation and restricts the allowed domains:
-
-
-
+Чтобы устранить эту уязвимость SSRF, вот пример кода, отвечающего требованиям, в котором реализована надлежащая проверка URL и ограничены допустимые домены:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1913,7 +1913,7 @@ public class ImageProcessor {
     private static final String ALLOWED_DOMAIN = "example.com";
 
     public void processImage(String imageUrl) throws IOException {
-        // Validate the URL
+        // Проверьте URL-адрес
         URL url = new URL(imageUrl);
         String host = url.getHost();
         
@@ -1921,14 +1921,14 @@ public class ImageProcessor {
             throw new IllegalArgumentException("Invalid image URL");
         }
 
-        // Retrieve image from the provided URL
-        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-        // Process the image
+        // Получение изображения из указанного URL
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream())));
+        // Обрабатываем изображение
         // ...
     }
 }
 ```
 
-In this compliant code, the URL is validated by checking the host against an allowed domain (e.g., "example.com"). If the URL does not belong to the allowed domain, an exception is thrown. This ensures that only trusted URLs are processed and mitigates the risk of SSRF attacks by restricting requests to specific domains.
+В этом соответствующем коде URL проверяется путем проверки хоста на соответствие разрешенному домену (например, "example.com"). Если URL не принадлежит к разрешенному домену, выбрасывается исключение. Это гарантирует, что обрабатываются только доверенные URL-адреса, и снижает риск атак SSRF, ограничивая запросы определенными доменами.
 
-It's important to note that URL validation can be more complex depending on the specific requirements of your application. This example demonstrates a basic approach, but it's recommended to use a well-tested library or framework for URL parsing and validation to handle various edge cases and potential vulnerabilities effectively.
+Важно отметить, что проверка URL может быть более сложной, в зависимости от конкретных требований вашего приложения. Данный пример демонстрирует базовый подход, но рекомендуется использовать хорошо протестированную библиотеку или фреймворк для разбора и проверки URL-адресов, чтобы эффективно справляться с различными побочными ситуациями и потенциальными уязвимостями.
