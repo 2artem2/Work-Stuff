@@ -9,7 +9,7 @@ parent: Rules
 
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -21,9 +21,9 @@ parent: Rules
 
 
 
-## Exposure of sensitive information
+## Раскрытие конфиденциальной информации
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -38,17 +38,17 @@ def get_user(id):
 
 ```
 
-The noncompliant code example exposes sensitive information by returning the complete user object as a JSON response. This can potentially expose sensitive data, such as passwords, email addresses, or other private user details. If an unauthorized user makes a request to this endpoint with a valid user ID, they will receive the complete user object, including sensitive information.
+Пример кода, не соответствующий требованиям, раскрывает конфиденциальную информацию, возвращая полный объект пользователя в виде ответа в формате JSON. Это может привести к раскрытию конфиденциальных данных, таких как пароли, адреса электронной почты или другие частные данные пользователя. Если неавторизованный пользователь сделает запрос к этой конечной точке с действительным идентификатором пользователя, он получит полный объект пользователя, включая конфиденциальную информацию.
 
 
-To address this issue, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему, приведем пример совместимого кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -60,7 +60,7 @@ def get_user(id):
         sanitized_user = {
             'id': user['id'],
             'name': user['name']
-            # Include only necessary non-sensitive information
+            # Включайте только необходимую неконфиденциальную информацию
         }
         return jsonify(sanitized_user)
     else:
@@ -68,15 +68,15 @@ def get_user(id):
 ```
 
 
-The compliant code addresses the issue by sanitizing the user object before sending the response. Instead of returning the complete user object, it creates a new dictionary (sanitized_user) that only includes necessary non-sensitive information, such as the user ID and name. This way, sensitive data is not exposed to unauthorized users. By applying data sanitization techniques, the code ensures that only the required information is shared and sensitive information is properly protected.
+Соответствующий код решает эту проблему путем санации объекта пользователя перед отправкой ответа. Вместо того чтобы возвращать полный объект пользователя, он создает новый словарь (sanitized_user), который содержит только необходимую нечувствительную информацию, такую как идентификатор и имя пользователя. Таким образом, конфиденциальные данные не попадают к неавторизованным пользователям. Применяя методы санации данных, код обеспечивает передачу только необходимой информации и надлежащую защиту конфиденциальных данных.
 
 
 
 
 
-## Insertion of Sensitive Information Into Sent Data
+## Вставка конфиденциальной информации в отправленные данные
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -84,20 +84,20 @@ def send_email(user_email, message):
     subject = "Important Message"
     body = f"Hello {user_email},\n\n{message}\n\nRegards,\nAdmin"
     
-    # Code to send email using SMTP
+    # Код для отправки электронной почты с помощью SMTP
     # ...
 ```
 
-The noncompliant code example inserts sensitive information, such as the user's email address, directly into the email body without proper sanitization or protection. This can expose sensitive information to unintended recipients if the email is intercepted or if the email client does not handle the data securely.
+Пример кода, не соответствующий требованиям, вставляет конфиденциальную информацию, например адрес электронной почты пользователя, непосредственно в тело письма без надлежащей проверки или защиты. В результате конфиденциальная информация может попасть к нежелательным получателям, если письмо будет перехвачено или если почтовый клиент не обеспечивает безопасную обработку данных.
 
 
-To address this issue, here's an example of compliant code:
+Чтобы решить эту проблему, вот пример совместимого кода:
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -105,21 +105,21 @@ def send_email(user_email, message):
     subject = "Important Message"
     body = f"Hello,\n\n{message}\n\nRegards,\nAdmin"
     
-    # Code to send email using SMTP
+    # Код для отправки электронной почты с помощью SMTP
     # ...
 ```
 
 
-The compliant code removes the insertion of the user's email address into the email body. Instead, it uses a generic salutation in the email body without directly referencing the user's email address. By avoiding the inclusion of sensitive information in the sent data, the compliant code ensures that sensitive information is not exposed or leaked during communication. It's important to handle sensitive data with care and follow best practices for data protection and privacy.
+Код, соответствующий требованиям, исключает вставку адреса электронной почты пользователя в тело письма. Вместо этого в теле письма используется общее приветствие без прямой ссылки на адрес электронной почты пользователя. Избегая включения конфиденциальной информации в отправляемые данные, совместимый код гарантирует, что конфиденциальная информация не будет раскрыта или утечка во время коммуникации. Важно бережно относиться к конфиденциальным данным и следовать лучшим практикам защиты данных и конфиденциальности.
 
 
 
 
 
 
-## Cross-Site Request Forgery (CSRF)
+## Подделка межсайтовых запросов (CSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -129,10 +129,10 @@ app = Flask(__name__)
 
 @app.route('/transfer', methods=['POST'])
 def transfer():
-    # Transfer funds
+    # Перевод средств
     amount = request.form['amount']
     destination_account = request.form['destination_account']
-    # ... logic to transfer funds ...
+    # ... логика перевода средств ...
 
 @app.route('/dashboard')
 def dashboard():
@@ -142,14 +142,14 @@ if __name__ == '__main__':
     app.run()
 ```
 
-The noncompliant code lacks appropriate CSRF protection. The transfer() function performs a fund transfer based on the form data submitted via a POST request. However, it does not implement any mechanism to prevent Cross-Site Request Forgery attacks. An attacker can craft a malicious website that automatically submits a form to the /transfer endpoint, tricking the victim into unknowingly initiating a fund transfer.
+Несоответствующий код не имеет соответствующей защиты от CSRF. Функция transfer() выполняет перевод средств на основе данных формы, переданных через POST-запрос. Однако в ней не реализован механизм защиты от атак Cross-Site Request Forgery. Злоумышленник может создать вредоносный веб-сайт, который автоматически отправляет форму в конечную точку /transfer, обманывая жертву, чтобы она неосознанно инициировала перевод средств.
 
 
-To address this issue, here's an example of compliant code:
+Чтобы решить эту проблему, вот пример совместимого кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -163,10 +163,10 @@ csrf = CSRFProtect(app)
 @app.route('/transfer', methods=['POST'])
 @csrf.exempt
 def transfer():
-    # Transfer funds
+    # Перевод средств
     amount = request.form['amount']
     destination_account = request.form['destination_account']
-    # ... logic to transfer funds ...
+    # ... логика перевода средств ...
 
 @app.route('/dashboard')
 def dashboard():
@@ -177,39 +177,39 @@ if __name__ == '__main__':
 ```
 
 
-The compliant code introduces the CSRFProtect extension from Flask-WTF to provide CSRF protection. The @csrf.exempt decorator is used on the transfer() function to exempt it from CSRF protection since it is an intentional API endpoint. By incorporating CSRF protection, the compliant code mitigates the risk of CSRF attacks by validating the authenticity of requests, ensuring that they originate from the same site as the form submission.
+Для обеспечения защиты от CSRF в совместимом коде используется расширение CSRFProtect из Flask-WTF. Декоратор @csrf.exempt используется для функции transfer(), чтобы освободить ее от защиты от CSRF, поскольку она является намеренной конечной точкой API. Благодаря включению защиты от CSRF, совместимый код снижает риск атак CSRF, проверяя подлинность запросов и убеждаясь, что они поступают с того же сайта, что и отправка формы.
 
 
 
 
 
 
-## Use of Hard-coded Password
+## Использование жестко закодированного пароля
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 def login(username, password):
     if username == 'admin' and password == 'password123':
-        # Login successful
+        # Вход в систему успешный
         return True
     else:
-        # Login failed
+        # Вход в систему не удался
         return False
 ```
 
-The noncompliant code directly compares the provided username and password with hard-coded values ('admin' and 'password123'). This approach poses a security risk as sensitive credentials are exposed directly in the source code. Anyone with access to the source code can easily retrieve the credentials, compromising the security of the system.
+Несоответствующий код напрямую сравнивает предоставленные имя пользователя и пароль с жестко закодированными значениями ('admin' и 'password123'). Такой подход представляет собой угрозу безопасности, поскольку конфиденциальные учетные данные раскрываются непосредственно в исходном коде. Любой человек, имеющий доступ к исходному коду, может легко получить учетные данные, поставив под угрозу безопасность системы.
 
 
-To address this issue, here's an example of compliant code:
-
-
-
+Чтобы решить эту проблему, приведем пример совместимого кода:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -218,18 +218,18 @@ import getpass
 def login(username, password):
     stored_password = retrieve_password_from_database(username)
     if password_matches(stored_password, password):
-        # Login successful
+        # Вход в систему успешный
         return True
     else:
-        # Login failed
+        # Вход в систему не удался
         return False
 
 def retrieve_password_from_database(username):
-    # Code to retrieve the hashed password from the database
+    # Код для получения хэшированного пароля из базы данных
     # ...
 
 def password_matches(stored_password, entered_password):
-    # Code to compare the stored password with the entered password
+    # Код для сравнения сохраненного пароля с введенным паролем
     # ...
 
 if __name__ == '__main__':
@@ -238,19 +238,19 @@ if __name__ == '__main__':
     login(username, password)
 ```
 
-The compliant code avoids using hard-coded passwords directly in the source code. Instead, it separates the authentication logic from the password storage and comparison. The retrieve_password_from_database() function retrieves the stored password for a given username from a secure database. The password_matches() function compares the entered password with the stored password using appropriate secure hashing and comparison techniques.
+Соответствующий код позволяет избежать использования жестко закодированных паролей непосредственно в исходном коде. Вместо этого он отделяет логику аутентификации от хранения и сравнения паролей. Функция retrieve_password_from_database() извлекает сохраненный пароль для заданного имени пользователя из защищенной базы данных. Функция password_matches() сравнивает введенный пароль с сохраненным паролем, используя соответствующие безопасные методы хэширования и сравнения.
 
-By following this approach, the password remains securely stored in the database, and the code does not expose sensitive information.
-
-
+Благодаря такому подходу пароль надежно хранится в базе данных, а код не раскрывает конфиденциальную информацию.
 
 
 
 
 
-## Broken or Risky Crypto Algorithm
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Сломанный или рискованный криптоалгоритм
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -269,14 +269,14 @@ def decrypt_data(encrypted_data, key):
 ```
 
 
-The noncompliant code uses the DES (Data Encryption Standard) algorithm, which is considered broken and insecure for most cryptographic purposes. Additionally, the code uses the ECB (Electronic Codebook) mode, which does not provide sufficient security against certain attacks. The base64 module is used for encoding and decoding the encrypted data.
+Несоответствующий код использует алгоритм DES (Data Encryption Standard), который считается нерабочим и небезопасным для большинства криптографических целей. Кроме того, в коде используется режим ECB (Electronic Codebook), который не обеспечивает достаточной защиты от некоторых атак. Для кодирования и декодирования зашифрованных данных используется модуль base64.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -299,7 +299,7 @@ def decrypt_data(encrypted_data, key):
     return decrypted_data.decode('utf-8')
 ```
 
-The compliant code uses the cryptography library, which provides a more secure and modern cryptographic API. It employs the AES (Advanced Encryption Standard) algorithm with GCM (Galois/Counter Mode) mode, which is considered more secure than DES. The urlsafe_b64encode and urlsafe_b64decode functions from base64 module are used for encoding and decoding the encrypted data, respectively.
+В совместимом коде используется библиотека cryptography, которая предоставляет более безопасный и современный криптографический API. В ней используется алгоритм AES (Advanced Encryption Standard) с режимом GCM (Galois/Counter Mode), который считается более безопасным, чем DES. Функции urlsafe_b64encode и urlsafe_b64decode из модуля base64 используются для кодирования и декодирования зашифрованных данных, соответственно.
 
 
 
@@ -308,9 +308,9 @@ The compliant code uses the cryptography library, which provides a more secure a
 
 
 
-## Insufficient Entropy
+## Недостаточная энтропия
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -324,14 +324,14 @@ def generate_random_password(length):
 ```
 
 
-The noncompliant code attempts to generate a random password by repeatedly selecting a character from a limited set of characters. However, this approach does not provide sufficient entropy, as the character selection is limited to alphanumeric characters. The resulting passwords may not have a strong enough random distribution, making them more susceptible to brute-force attacks.
+Несоответствующий код пытается сгенерировать случайный пароль путем многократного выбора символа из ограниченного набора символов. Однако такой подход не обеспечивает достаточной энтропии, поскольку выбор символов ограничен алфавитно-цифровыми символами. Полученные пароли могут не обладать достаточно сильным случайным распределением, что делает их более восприимчивыми к атакам методом "грубой силы".
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -344,16 +344,16 @@ def generate_random_password(length):
     return password
 ```
 
-The compliant code improves the entropy of the generated password by utilizing the secrets module and a wider range of characters. It combines lowercase and uppercase letters, digits, and punctuation symbols to form a more diverse character set. The secrets.choice function is used to securely select a character from the extended set for each position in the password. This approach ensures a higher level of randomness and increases the strength of the generated passwords.
+Соответствующий код повышает энтропию генерируемого пароля за счет использования модуля секретов и более широкого набора символов. Он сочетает строчные и прописные буквы, цифры и знаки препинания для формирования более разнообразного набора символов. Функция secrets.choice используется для безопасного выбора символа из расширенного набора для каждой позиции в пароле. Такой подход обеспечивает более высокий уровень случайности и повышает стойкость генерируемых паролей.
 
 
 
 
 
 
-## XSS
+## Межсайтовый скриптинг (XSS)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -362,7 +362,7 @@ def generate_html_output(input_data):
     return html
 ```
 
-The noncompliant code takes an input_data parameter and directly concatenates it into an HTML string without proper sanitization or escaping. This approach can lead to an XSS vulnerability as it allows an attacker to inject malicious scripts or HTML code into the output. If the input_data contains user-controlled input, an attacker can craft input that includes JavaScript code or HTML tags, which will be executed when the generated HTML is rendered by a browser.
+Несоответствующий код принимает параметр input_data и напрямую конкатенирует его в HTML-строку без надлежащей санации или экранирования. Такой подход может привести к XSS-уязвимости, поскольку позволяет злоумышленнику внедрить вредоносные скрипты или HTML-код в выводимые данные. Если input_data содержит управляемый пользователем ввод, злоумышленник может создать ввод, включающий JavaScript-код или HTML-теги, которые будут выполнены, когда сгенерированный HTML будет отображен браузером.
 
 
 
@@ -370,7 +370,7 @@ The noncompliant code takes an input_data parameter and directly concatenates it
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -383,7 +383,7 @@ def generate_html_output(input_data):
 ```
 
 
-The compliant code uses the html.escape function to properly sanitize the input_data by replacing special characters with their corresponding HTML entities. This step ensures that any user-controlled input is treated as plain text and not interpreted as HTML or JavaScript code when rendered in the browser. By escaping the input data, the compliant code mitigates the risk of XSS attacks by preventing the execution of malicious scripts or the unintended interpretation of HTML tags.
+Соответствующий код использует функцию html.escape для правильной санации входных данных, заменяя специальные символы на соответствующие им HTML-сущности. Этот шаг гарантирует, что любой управляемый пользователем ввод будет рассматриваться как обычный текст и не будет интерпретироваться как код HTML или JavaScript при отображении в браузере. Благодаря экранированию входных данных совместимый код снижает риск XSS-атак, предотвращая выполнение вредоносных скриптов или непреднамеренную интерпретацию HTML-тегов.
 
 
 
@@ -391,9 +391,9 @@ The compliant code uses the html.escape function to properly sanitize the input_
 
 
 
-## SQL Injection
+## SQL-инъекция
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -409,12 +409,12 @@ def get_user_data(username):
     return result
 ```
 
-The noncompliant code takes a username parameter and directly concatenates it into a SQL query without using parameterized queries or proper input validation. This approach can lead to a SQL injection vulnerability as it allows an attacker to manipulate the query by providing malicious input. An attacker can modify the username parameter to include additional SQL statements, altering the intended behavior of the query or even gaining unauthorized access to the database.
+Несоответствующий код принимает параметр username и напрямую конкатенирует его в SQL-запрос без использования параметризованных запросов или надлежащей проверки ввода. Такой подход может привести к уязвимости SQL-инъекции, поскольку позволяет злоумышленнику манипулировать запросом, предоставляя вредоносный ввод. Злоумышленник может изменить параметр имени пользователя и включить в него дополнительные SQL-запросы, изменив предполагаемое поведение запроса или даже получив несанкционированный доступ к базе данных.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -430,15 +430,15 @@ def get_user_data(username):
     return result
 ```
 
-The compliant code uses parameterized queries with placeholders to securely pass the username parameter to the SQL query. Instead of directly concatenating the input into the query string, the placeholder ? is used, and the actual value is passed separately as a parameter to the execute method. This ensures that the input is properly sanitized and treated as data, eliminating the risk of SQL injection attacks. The compliant code protects against unauthorized manipulation of the query structure and ensures the safe execution of the intended SQL statement.
+Соответствующий код использует параметризованные запросы с заполнителями для безопасной передачи параметра username в SQL-запрос. Вместо того чтобы непосредственно конкатенировать вводимые данные в строку запроса, используется заполнитель ?, а фактическое значение передается отдельно в качестве параметра методу execute. Это гарантирует, что вводимые данные должным образом обеззараживаются и рассматриваются как данные, что исключает риск атак SQL-инъекций. Соответствующий код защищает от несанкционированных манипуляций со структурой запроса и обеспечивает безопасное выполнение предполагаемого SQL-запроса.
 
 
 
 
 
-## External Control of File Name or Path
+## Внешнее управление именем или путем файла
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -454,14 +454,14 @@ def delete_file(file_name):
 ```
 
 
-The noncompliant code takes a file_name parameter and directly concatenates it into the path variable without proper validation or sanitization. This approach can lead to an external control of file name or path vulnerability, as an attacker can manipulate the file_name parameter to access or delete arbitrary files on the system. By providing a specially crafted file_name input, an attacker can potentially traverse directories or delete sensitive files unintentionally.
+Несоответствующий код принимает параметр file_name и напрямую конкатенирует его в переменную path без надлежащей проверки или санации. Такой подход может привести к уязвимости внешнего управления именем файла или путем, поскольку злоумышленник может манипулировать параметром file_name для доступа или удаления произвольных файлов в системе. Предоставив на вход специально созданный параметр file_name, злоумышленник потенциально может перемещаться по каталогам или непреднамеренно удалять конфиденциальные файлы.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -479,16 +479,16 @@ def delete_file(file_name):
         print("File not found.")
 ```
 
-The compliant code addresses the vulnerability by using the os.path.join function to safely concatenate the file_name parameter with the base path. This ensures that the resulting file path is properly formed regardless of the input. Additionally, the compliant code includes checks to verify that the file exists and is a regular file (os.path.isfile) before performing any operations on it. This mitigates the risk of unintended file access or deletion and provides a more secure approach to file handling in Python.
+Соответствующий код устраняет уязвимость с помощью функции os.path.join для безопасного конкатенации параметра file_name с базовым путем. Это гарантирует, что результирующий путь к файлу будет правильно сформирован независимо от входных данных. Кроме того, в совместимый код включены проверки на существование файла и на то, что он является обычным файлом (os.path.isfile), прежде чем выполнять с ним какие-либо операции. Это снижает риск непреднамеренного доступа к файлу или его удаления и обеспечивает более безопасный подход к работе с файлами в Python.
 
 
 
 
 
 
-## Generation of Error Message Containing Sensitive Information
+## Формирование сообщения об ошибке, содержащего конфиденциальную информацию
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -502,13 +502,13 @@ def divide_numbers(a, b):
 ```
 
 
-The noncompliant code captures the exception message in the error_msg variable and prints it directly to the console. This can lead to the generation of error messages that contain sensitive information, such as database connection details, stack traces, or other internal system information. If an attacker can trigger an exception, they may be able to obtain valuable information that can be used to exploit the system further.
+Код, не соответствующий требованиям, записывает сообщение об исключении в переменную error_msg и выводит его непосредственно на консоль. Это может привести к генерации сообщений об ошибках, содержащих конфиденциальную информацию, например данные о подключении к базе данных, трассировку стека или другую внутреннюю информацию системы. Если злоумышленнику удастся вызвать исключение, он сможет получить ценную информацию, которая может быть использована для дальнейшей эксплуатации системы.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -522,16 +522,16 @@ def divide_numbers(a, b):
         logging.error("An error occurred during division", exc_info=True)
 ```
 
-The compliant code addresses the issue by using a logging framework, such as the built-in logging module, to handle error messages. Instead of directly printing the error message to the console, the code uses the logging.error method to log the error message, along with the stack trace (exc_info=True). By using a logging framework, the error messages can be properly handled and logged according to the configured logging settings. This helps prevent sensitive information from being exposed in error messages displayed to end-users or attackers.
+Код, соответствующий требованиям, решает эту проблему, используя для обработки сообщений об ошибках фреймворк протоколирования, например встроенный модуль протоколирования. Вместо того чтобы напрямую выводить сообщение об ошибке на консоль, код использует метод logging.error для записи сообщения об ошибке вместе с трассировкой стека (exc_info=True). Использование фреймворка протоколирования позволяет правильно обрабатывать и записывать сообщения об ошибках в соответствии с заданными настройками протоколирования. Это позволяет предотвратить раскрытие конфиденциальной информации в сообщениях об ошибках, выводимых конечным пользователям или злоумышленникам.
 
 
 
 
 
 
-## unprotected storage of credentials
+## Незащищенное хранение учетных данных
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -542,13 +542,13 @@ def save_credentials(username, password):
     credentials_file.close()
 ```
 
-The noncompliant code saves the provided username and password directly to a file called "credentials.txt" without any form of encryption or protection. Storing sensitive information like credentials in plain text is highly insecure because anyone with access to the file can easily read and misuse the information. This can lead to unauthorized access and compromise of user accounts.
+Несоответствующий требованиям код сохраняет предоставленные имя пользователя и пароль непосредственно в файл "credentials.txt" без какой-либо формы шифрования или защиты. Хранение такой конфиденциальной информации, как учетные данные, в виде обычного текста крайне небезопасно, поскольку любой человек, имеющий доступ к файлу, может легко прочитать и использовать информацию не по назначению. Это может привести к несанкционированному доступу и компрометации учетных записей пользователей.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -562,31 +562,31 @@ def save_credentials(username, password):
         credentials_file.write(credentials)
 ```
 
-The compliant code addresses the issue by using a one-way hashing algorithm (SHA-256 in this example) to securely hash the password before storing it. The password is not stored directly, but rather its hash value is calculated and stored. Hashing is a one-way process, making it difficult to retrieve the original password from the hash. By using a secure hash function, even if an attacker gains access to the stored credentials, they won't be able to easily reverse-engineer the original password. This significantly enhances the security of the stored credentials.
+Соответствующий код решает эту проблему, используя алгоритм одностороннего хэширования (в данном примере SHA-256) для безопасного хэширования пароля перед его хранением. Пароль хранится не напрямую, а вычисляется и сохраняется его хэш-значение. Хеширование является односторонним процессом, что затрудняет получение исходного пароля из хэша. Благодаря использованию безопасной хэш-функции, даже если злоумышленник получит доступ к хранящимся учетным данным, он не сможет легко пересчитать исходный пароль. Это значительно повышает безопасность хранимых учетных данных.
 
 
 
 ## Trust Boundary Violation
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import subprocess
 
 def process_user_input(user_input):
-    # Assume user_input comes from an untrusted source
+    # Предположим, что user_input поступает из недоверенного источника
     cmd = f"echo '{user_input}'"
     output = subprocess.check_output(cmd, shell=True)
     print(output)
 ```
 
-The noncompliant code takes user input directly and uses it to construct a command to be executed by the subprocess module. This approach can lead to a trust boundary violation, as it allows untrusted input to be executed as a command on the system. An attacker could potentially inject malicious commands, leading to unauthorized access or execution of arbitrary code on the system.
+Несоответствующий код напрямую принимает пользовательский ввод и использует его для создания команды, которую должен выполнить модуль подпроцесса. Такой подход может привести к нарушению границ доверия, поскольку позволяет недоверенному вводу выполняться в качестве команды в системе. Злоумышленник может внедрить вредоносные команды, что приведет к несанкционированному доступу или выполнению произвольного кода в системе.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -594,30 +594,30 @@ import subprocess
 import shlex
 
 def process_user_input(user_input):
-    # Assume user_input comes from an untrusted source
+    # Предположим, что user_input поступает из недоверенного источника
     cmd_args = shlex.split(f"echo {user_input}")
     output = subprocess.check_output(cmd_args)
     print(output)
 ```
 
 
-The compliant code addresses the trust boundary violation by using the shlex.split() function to properly tokenize the user input, ensuring that it is interpreted as separate arguments instead of a single command. This helps prevent command injection attacks by ensuring that the input is treated as data rather than executable code. By properly handling and sanitizing user input, the code establishes a clear trust boundary and mitigates the risk of unauthorized command execution.
+Соответствующий код устраняет нарушение границ доверия с помощью функции shlex.split() для правильной токенизации пользовательского ввода, обеспечивая его интерпретацию как отдельных аргументов, а не как одной команды. Это помогает предотвратить атаки внедрения команд, гарантируя, что вводимые данные рассматриваются как данные, а не как исполняемый код. Правильно обрабатывая и обеззараживая пользовательский ввод, код устанавливает четкую границу доверия и снижает риск несанкционированного выполнения команд.
 
 
 
 
 
 
-## Insufficiently Protected Credentials
+## Недостаточно защищенные учетные данные
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import requests
 
 def login(username, password):
-    # Assume username and password come from user input
+    # Предполагается, что имя пользователя и пароль поступают от пользователя
     url = "https://example.com/login"
     data = {"username": username, "password": password}
     response = requests.post(url, data=data)
@@ -628,12 +628,12 @@ def login(username, password):
         print("Login failed")
 ```
 
-The noncompliant code takes user-provided username and password values and sends them as plaintext in a POST request to a login endpoint. This approach exposes the credentials to potential interception or eavesdropping, as they are transmitted without any form of protection. Attackers could potentially intercept the network traffic or access logs to obtain the credentials, compromising the security of the user's account.
+Код, не отвечающий требованиям, принимает предоставленные пользователем значения имени пользователя и пароля и отправляет их в виде открытого текста в POST-запросе к конечной точке входа. Такой подход подвергает учетные данные потенциальному перехвату или подслушиванию, поскольку они передаются без какой-либо защиты. Злоумышленники могут перехватить сетевой трафик или журналы доступа, чтобы получить учетные данные, что поставит под угрозу безопасность учетной записи пользователя.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -641,7 +641,7 @@ import requests
 from requests.auth import HTTPDigestAuth
 
 def login(username, password):
-    # Assume username and password come from user input
+    # Предполагается, что имя пользователя и пароль поступают от пользователя
     url = "https://example.com/login"
     auth = HTTPDigestAuth(username, password)
     response = requests.post(url, auth=auth)
@@ -653,7 +653,7 @@ def login(username, password):
 ```
 
 
-The compliant code addresses the issue of insufficiently protected credentials by using HTTP Digest Authentication (HTTPDigestAuth) to securely transmit the username and password. Digest authentication uses a challenge-response mechanism that involves hashing the password and sending a hashed value along with the request. This approach ensures that the password is not transmitted in plaintext, providing a higher level of security against eavesdropping or interception attacks.
+Соответствующий код решает проблему недостаточно защищенных учетных данных, используя HTTP Digest Authentication (HTTPDigestAuth) для безопасной передачи имени пользователя и пароля. Дайджест-аутентификация использует механизм "вызов-ответ", который включает хэширование пароля и отправку хэшированного значения вместе с запросом. Такой подход гарантирует, что пароль не будет передан в открытом виде, что обеспечивает более высокий уровень защиты от атак подслушивания или перехвата.
 
 
 
@@ -661,9 +661,9 @@ The compliant code addresses the issue of insufficiently protected credentials b
 
 
 
-## Restriction of XML External Entity Reference
+## Ограничение ссылки на внешние сущности XML
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -671,17 +671,17 @@ import xml.etree.ElementTree as ET
 
 def parse_xml(xml_string):
     tree = ET.fromstring(xml_string)
-    # Process the XML data
+    # Обработка данных XML
     ...
 ```
 
-The noncompliant code uses the xml.etree.ElementTree module to parse an XML string. However, it doesn't explicitly disable the resolution of external entities, which can introduce security risks. An attacker could potentially craft a malicious XML file that includes external entity references and exploit this to perform XXE attacks, such as reading sensitive files or conducting denial-of-service attacks.
+Несоответствующий код использует модуль xml.etree.ElementTree для разбора XML-строки. Однако он явно не отключает разрешение внешних сущностей, что может привести к риску безопасности. Злоумышленник может создать вредоносный XML-файл, содержащий ссылки на внешние сущности, и использовать это для осуществления XXE-атак, таких как чтение конфиденциальных файлов или атаки типа "отказ в обслуживании".
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -689,23 +689,23 @@ import xml.etree.ElementTree as ET
 
 def parse_xml(xml_string):
     parser = ET.XMLParser()
-    parser.entity_declaration = False  # Disable external entity resolution
+    parser.entity_declaration = False  # Отключить разрешение внешних сущностей
     tree = ET.fromstring(xml_string, parser=parser)
-    # Process the XML data
+    # Обработка XML-данных
     ...
 ```
 
 
-The compliant code explicitly creates an XML parser (ET.XMLParser()) and disables the resolution of external entities by setting parser.entity_declaration to False. This ensures that any external entity references in the XML string are not resolved, mitigating the risk of XXE attacks. By disabling external entity resolution, the code restricts the parser from accessing or including external entities, enhancing the security of the XML processing.
+Соответствующий код явно создает парсер XML (ET.XMLParser()) и отключает разрешение внешних сущностей, устанавливая параметр parser.entity_declaration в значение False. Это гарантирует, что любые ссылки на внешние сущности в XML-строке не будут разрешены, что снижает риск XXE-атак. Отключая разрешение внешних сущностей, код ограничивает парсер от доступа к внешним сущностям или их включения, повышая безопасность обработки XML.
 
 
 
 
 
-## Vulnerable and Outdated Components
+## Уязвимые и устаревшие компоненты
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -716,7 +716,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Use a vulnerable function to fetch data
+    # Используйте уязвимую функцию для получения данных
     response = requests.get('http://example.com/api/v1/users')
     data = response.json()
     return render_template('index.html', data=data)
@@ -725,14 +725,14 @@ if __name__ == '__main__':
     app.run()
 ```
 
-The noncompliant code uses the requests library to make an HTTP request to an API endpoint and fetch user data. However, the code does not consider the security implications of using outdated or vulnerable components. The use of outdated libraries may expose the application to known security vulnerabilities, which can be exploited by attackers.
+Несоответствующий код использует библиотеку requests для выполнения HTTP-запроса к конечной точке API и получения пользовательских данных. Однако в коде не учитываются последствия использования устаревших или уязвимых компонентов для безопасности. Использование устаревших библиотек может подвергнуть приложение известным уязвимостям безопасности, которые могут быть использованы злоумышленниками.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -740,14 +740,14 @@ from flask import Flask, render_template
 import requests
 from requests.packages.urllib3.util import ssl_
 
-# Disable SSL verification warnings
+# Отключение предупреждений о проверке SSL
 ssl_.DEFAULT_CIPHERS += ':HIGH:!DH:!aNULL'
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Use a secure function to fetch data
+    # Используйте безопасную функцию для получения данных
     response = requests.get('https://example.com/api/v1/users', verify=False)
     data = response.json()
     return render_template('index.html', data=data)
@@ -757,75 +757,75 @@ if __name__ == '__main__':
 ```
 
 
-The compliant code takes additional steps to address the use of vulnerable and outdated components:
+Соответствующий кодекс предпринимает дополнительные шаги для решения проблемы использования уязвимых и устаревших компонентов:
 
-1. It disables SSL verification warnings using the ssl_.DEFAULT_CIPHERS variable from requests.packages.urllib3.util. This prevents warnings related to SSL verification when making HTTPS requests.
-2. It explicitly sets verify=False when making the request to disable SSL certificate verification. This is done with caution and should only be used when the risks associated with insecure connections are adequately mitigated in the application's specific context.
-3. It uses the latest version of the requests library to benefit from the latest security patches and improvements.
+1. Он отключает предупреждения о проверке SSL с помощью переменной ssl_.DEFAULT_CIPHERS из requests.packages.urllib3.util. Это предотвращает предупреждения, связанные с проверкой SSL при выполнении HTTPS-запросов.
+2. Для отключения проверки SSL-сертификата при выполнении запроса явно устанавливается значение verify=False. Это делается с осторожностью и должно использоваться только в том случае, если риски, связанные с небезопасными соединениями, адекватно снижены в конкретном контексте приложения.
+3. Используется последняя версия библиотеки requests, чтобы воспользоваться последними исправлениями и улучшениями безопасности.
 
-By addressing these issues, the compliant code takes steps to reduce the risk associated with using vulnerable and outdated components and improves the overall security of the application. It is important to regularly update dependencies and libraries to ensure the usage of the latest secure versions.
-
-
+Решая эти проблемы, совместимый код предпринимает шаги по снижению риска, связанного с использованием уязвимых и устаревших компонентов, и повышает общую безопасность приложения. Важно регулярно обновлять зависимости и библиотеки, чтобы обеспечить использование последних безопасных версий.
 
 
 
 
-## Improper Validation of Certificate with Host Mismatch
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Неправильная проверка сертификата с несоответствием хоста
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import requests
 
 def get_secure_data(url):
-    # Perform a request without proper certificate validation
+    # Выполнение запроса без надлежащей проверки сертификата
     response = requests.get(url, verify=False)
     return response.text
 
-# Example usage
+# Пример использования
 data = get_secure_data('https://example.com')
 print(data)
 ```
 
-The noncompliant code uses the requests library to make an HTTPS request to a specified URL. However, it disables certificate verification by setting verify=False when making the request. This means that the code does not properly validate the certificate presented by the server, including checking for a host mismatch.
+Несоответствующий код использует библиотеку requests для выполнения HTTPS-запроса к указанному URL. Однако он отключает проверку сертификата, устанавливая значение verify=False при выполнении запроса. Это означает, что код не проверяет должным образом сертификат, предоставленный сервером, включая проверку на несоответствие хоста.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import requests
 
 def get_secure_data(url):
-    # Perform a request with proper certificate validation
+    # Выполните запрос с надлежащей проверкой сертификата
     response = requests.get(url)
-    response.raise_for_status()  # Raise an exception if the request fails
+    response.raise_for_status()  # Вызовите исключение, если запрос не прошел
     return response.text
 
-# Example usage
+# Пример использования
 data = get_secure_data('https://example.com')
 print(data)
 ```
 
 
-The compliant code addresses the issue of improper validation of a certificate with a host mismatch by removing verify=False and allowing the requests library to perform proper certificate validation. The requests.get() function performs certificate verification by default, ensuring that the certificate presented by the server is valid and matches the requested host. The response.raise_for_status() function is also used to raise an exception if the request fails, allowing for proper error handling.
+Соответствующий код решает проблему неправильной проверки сертификата с несоответствием хоста, удаляя значение verify=False и позволяя библиотеке requests выполнять правильную проверку сертификата. Функция requests.get() по умолчанию выполняет проверку сертификата, гарантируя, что сертификат, представленный сервером, действителен и соответствует запрашиваемому хосту. Функция response.raise_for_status() также используется для создания исключения в случае неудачи запроса, что позволяет правильно обрабатывать ошибки.
 
-By using proper certificate validation and checking for host mismatches, the compliant code improves the security of the HTTPS communication. It ensures that the certificate presented by the server is valid and matches the requested host, reducing the risk of man-in-the-middle attacks and unauthorized access to sensitive information.
-
-
+Благодаря использованию правильной проверки сертификатов и проверки на несоответствие хостов, совместимый код повышает безопасность HTTPS-коммуникаций. Он гарантирует, что сертификат, представленный сервером, действителен и соответствует запрашиваемому хосту, что снижает риск атак типа "человек посередине" и несанкционированного доступа к конфиденциальной информации.
 
 
 
 
 
-## Improper Authentication
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Неправильная аутентификация
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -839,12 +839,12 @@ def login(username, password):
     else:
         return 'Login failed'
 
-# Example usage
+# Пример использования
 result = login('admin', 'password')
 print(result)
 ```
 
-The noncompliant code uses a basic authentication mechanism where the username and password are sent as plain text in the request body. This approach is insecure because it does not provide proper protection for sensitive credentials during transmission.
+Несоответствующий код использует механизм базовой аутентификации, при котором имя пользователя и пароль отправляются в виде обычного текста в теле запроса. Такой подход небезопасен, поскольку не обеспечивает должной защиты конфиденциальных данных во время передачи.
 
 
 
@@ -852,7 +852,7 @@ The noncompliant code uses a basic authentication mechanism where the username a
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -867,25 +867,25 @@ def login(username, password):
     else:
         return 'Login failed'
 
-# Example usage
+# Пример использования
 result = login('admin', 'password')
 print(result)
 ```
 
 
-The compliant code addresses the issue of improper authentication by using HTTP Basic Authentication. It leverages the HTTPBasicAuth class from the requests.auth module to provide proper encoding of the credentials in the Authorization header. This ensures that the username and password are transmitted in a secure manner, as they are encoded in Base64 format.
+Соответствующий код решает проблему неправильной аутентификации с помощью HTTP Basic Authentication. Он использует класс HTTPBasicAuth из модуля requests.auth для обеспечения правильного кодирования учетных данных в заголовке авторизации. Это гарантирует, что имя пользователя и пароль будут переданы безопасным способом, поскольку они кодируются в формате Base64.
 
-By using proper authentication mechanisms like HTTP Basic Authentication, the compliant code improves the security of the login process. It ensures that sensitive credentials are protected during transmission, reducing the risk of unauthorized access or interception by malicious actors.
-
-
+Благодаря использованию надлежащих механизмов аутентификации, таких как HTTP Basic Authentication, совместимый код повышает безопасность процесса входа в систему. Он обеспечивает защиту конфиденциальных учетных данных во время передачи, снижая риск несанкционированного доступа или перехвата злоумышленниками.
 
 
 
 
 
-## Session Fixation
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Фиксация сеанса
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -899,7 +899,7 @@ def login():
     username = request.form['username']
     password = request.form['password']
     
-    # Authenticate user
+    # Аутентификация пользователя
     if username == 'admin' and password == 'password':
         session['username'] = username
         return 'Login successful'
@@ -913,18 +913,18 @@ def profile():
     else:
         return 'Please login'
 
-# Example usage
+# Пример использования
 app.run()
 ```
 
-The noncompliant code uses the Flask web framework and stores the authenticated user's username in the session after successful login. However, it does not regenerate the session ID upon login, leaving it vulnerable to session fixation attacks. An attacker can obtain a valid session ID and force it onto a victim, allowing them to hijack the victim's session.
+Несоответствующий код использует веб-фреймворк Flask и сохраняет имя пользователя в сессии после успешного входа. Однако он не регенерирует идентификатор сессии при входе, что делает его уязвимым для атак с фиксацией сессии. Злоумышленник может получить действительный идентификатор сессии и навязать его жертве, что позволит ему перехватить ее сессию.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -939,9 +939,9 @@ def login():
     username = request.form['username']
     password = request.form['password']
     
-    # Authenticate user
+    # Аутентификация пользователя
     if username == 'admin' and password == 'password':
-        session.regenerate()  # Regenerate session ID
+        session.regenerate()  # Регенерация идентификатора сеанса
         session['username'] = username
         return 'Login successful'
     else:
@@ -954,96 +954,96 @@ def profile():
     else:
         return 'Please login'
 
-# Example usage
+# Пример использования
 app.run()
 ```
 
 
-The compliant code addresses the session fixation vulnerability by regenerating the session ID upon successful login using the regenerate() method provided by the session object. This ensures that the session ID is changed after authentication, preventing an attacker from fixing a session ID and hijacking the user's session.
+Соответствующий код устраняет уязвимость фиксации сеанса путем регенерации идентификатора сеанса при успешном входе в систему с помощью метода regenerate(), предоставляемого объектом session. Это гарантирует, что идентификатор сеанса будет изменен после аутентификации, что не позволит злоумышленнику зафиксировать идентификатор сеанса и перехватить сеанс пользователя.
 
-By regenerating the session ID upon login, the compliant code mitigates the risk of session fixation attacks. It ensures that each user gets a unique and unpredictable session ID, enhancing the security of the session management mechanism.
-
-
+Регенерируя идентификатор сеанса при входе в систему, совместимый код снижает риск атак с фиксацией сеанса. Он гарантирует, что каждый пользователь получит уникальный и непредсказуемый идентификатор сеанса, что повышает безопасность механизма управления сеансами.
 
 
 
-## Inclusion of Functionality from Untrusted Control
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Включение функциональности из недоверенного управления
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import requests
 
-# Fetch and execute code from an untrusted source
+# Получение и выполнение кода из ненадежного источника
 untrusted_code = requests.get('http://example.com/untrusted_code.py').text
 exec(untrusted_code)
 ```
 
-The noncompliant code retrieves code from an untrusted source using the requests library and executes it using the exec() function. This approach poses significant security risks as the untrusted code can potentially contain malicious instructions or perform unauthorized actions on the system.
+Несоответствующий код получает код из недоверенного источника с помощью библиотеки запросов и выполняет его с помощью функции exec(). Такой подход создает значительные риски для безопасности, поскольку недоверенный код может содержать вредоносные инструкции или выполнять несанкционированные действия в системе.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import requests
 import ast
 
-# Fetch and evaluate code from an untrusted source
+# Получение и оценка кода из недоверенного источника
 untrusted_code = requests.get('http://example.com/untrusted_code.py').text
 ast.parse(untrusted_code)
 ```
 
 
-The compliant code takes a more cautious approach when including functionality from an untrusted control. Instead of directly executing the code, it uses the ast.parse() function from the ast module to parse and evaluate the code as an abstract syntax tree (AST). This allows for a safer analysis of the code without executing it directly.
+Совместимый код использует более осторожный подход при включении функциональности из недоверенного элемента управления. Вместо непосредственного выполнения кода он использует функцию ast.parse() из модуля ast для разбора и оценки кода в виде абстрактного синтаксического дерева (AST). Это позволяет более безопасно анализировать код, не выполняя его напрямую.
 
-By parsing the untrusted code as an AST, the compliant code gains the ability to inspect and validate the code's structure and contents before deciding whether to execute it. This mitigates the risk of running arbitrary or malicious code, providing an additional layer of security.
-
-
+Разбирая недоверенный код в виде AST, совместимый код получает возможность проверить и подтвердить структуру и содержимое кода, прежде чем принять решение о его выполнении. Это снижает риск выполнения произвольного или вредоносного кода, обеспечивая дополнительный уровень безопасности.
 
 
 
-## Download of Code Without Integrity Check
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Загрузка кода без проверки целостности
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import requests
 
-# Download code without integrity check
+# Загрузите код без проверки целостности
 code_url = 'http://example.com/malicious_code.py'
 response = requests.get(code_url)
 code = response.text
 
-# Execute the downloaded code
+# Выполните загруженный код
 exec(code)
 ```
 
-The noncompliant code directly downloads code from a remote source using the requests library without performing any integrity check. It then proceeds to execute the downloaded code using the exec() function. This approach can be dangerous as it allows the execution of potentially malicious or unauthorized code without verifying its integrity.
+Несоответствующий код напрямую загружает код из удаленного источника с помощью библиотеки запросов, не выполняя никакой проверки целостности. Затем он переходит к выполнению загруженного кода с помощью функции exec(). Такой подход может быть опасен, поскольку позволяет выполнить потенциально вредоносный или неавторизованный код без проверки его целостности.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import requests
 import hashlib
 
-# Download code with integrity check
+# Загрузите код с проверкой целостности
 code_url = 'http://example.com/malicious_code.py'
 response = requests.get(code_url)
 code = response.text
 
-# Verify code integrity
+# Проверьте целостность кода
 expected_hash = '4a2d8f37ac...'
 calculated_hash = hashlib.sha256(code.encode()).hexdigest()
 if calculated_hash == expected_hash:
@@ -1053,30 +1053,30 @@ else:
 ```
 
 
-The compliant code includes an integrity check to ensure the downloaded code's authenticity before execution. It computes the hash of the downloaded code using a cryptographic algorithm (in this case, SHA-256) and compares it to an expected hash value. If the calculated hash matches the expected hash, the code is considered valid and can be executed using exec(). If the hashes do not match, the code execution is aborted, and an appropriate message is displayed.
+Совместимый код включает проверку целостности, чтобы убедиться в подлинности загруженного кода перед выполнением. Он вычисляет хэш загруженного кода с помощью криптографического алгоритма (в данном случае SHA-256) и сравнивает его с ожидаемым значением хэша. Если вычисленный хэш совпадает с ожидаемым хэшем, код считается валидным и может быть выполнен с помощью exec(). Если хэши не совпадают, выполнение кода прерывается, и на экран выводится соответствующее сообщение.
 
-By verifying the integrity of the downloaded code, the compliant code mitigates the risk of executing tampered or malicious code, providing an additional layer of security.
-
-
+Проверяя целостность загруженного кода, совместимый код снижает риск выполнения поддельного или вредоносного кода, обеспечивая дополнительный уровень безопасности.
 
 
 
 
-## Deserialization of Untrusted Data
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Десериализация недоверенных данных
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import pickle
 
 def deserialize_data(data):
-    # WARNING: This code is noncompliant and insecure
+    # ПРЕДУПРЕЖДЕНИЕ: Этот код не соответствует требованиям и небезопасен
     obj = pickle.loads(data)
     return obj
 ```
 
-The noncompliant code uses the pickle.loads() function to deserialize untrusted data without any security measures. This approach is highly vulnerable to deserialization attacks, such as arbitrary code execution or malicious object injection. Attackers can craft malicious payloads to exploit vulnerabilities in the deserialization process and compromise the system.
+Несоответствующий код использует функцию pickle.loads() для десериализации недоверенных данных без каких-либо мер безопасности. Такой подход очень уязвим для атак на десериализацию, таких как выполнение произвольного кода или внедрение вредоносных объектов. Злоумышленники могут создать вредоносную полезную нагрузку, чтобы использовать уязвимости в процессе десериализации и скомпрометировать систему.
 
 
 
@@ -1084,7 +1084,7 @@ The noncompliant code uses the pickle.loads() function to deserialize untrusted 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1093,129 +1093,129 @@ import pickle
 def deserialize_data(data):
     try:
         obj = pickle.loads(data)
-        # Validate the deserialized object or perform additional security checks
+        # Удостоверьте десериализованный объект или выполните дополнительные проверки безопасности
         # ...
         return obj
     except (pickle.UnpicklingError, AttributeError, ImportError, TypeError) as e:
-        # Handle deserialization errors
-        # Log or raise an exception, or return a default value
+        # Обработка ошибок десериализации
+        # Занесите в журнал или вызовите исключение, или верните значение по умолчанию
         # ...
         return None
 ```
 
 
-The compliant code implements security measures to mitigate the risks associated with deserialization of untrusted data. It uses a try-except block to handle potential exceptions during deserialization. This helps to prevent code execution vulnerabilities and ensures that the application gracefully handles any errors.
+В совместимом коде реализованы меры безопасности для снижения рисков, связанных с десериализацией недоверенных данных. Он использует блок try-except для обработки потенциальных исключений во время десериализации. Это помогает предотвратить уязвимости выполнения кода и гарантирует, что приложение изящно справится с любыми ошибками.
 
 
 
-Additionally, in the compliant code, you can perform validation and security checks on the deserialized object to ensure it meets the expected criteria. This can include verifying the object's type, structure, or specific attributes, depending on the context and requirements of your application.
+Кроме того, в совместимом коде можно выполнить проверку достоверности и безопасности десериализованного объекта, чтобы убедиться, что он соответствует ожидаемым критериям. Это может включать проверку типа, структуры или специфических атрибутов объекта, в зависимости от контекста и требований вашего приложения.
 
-It's crucial to be cautious when deserializing untrusted data and consider additional security measures such as input validation, data integrity checks, and limiting deserialization to trusted classes or modules. These precautions help protect against deserialization vulnerabilities and enhance the overall security of your application.
-
-
+Очень важно быть осторожным при десериализации недоверенных данных и рассмотреть дополнительные меры безопасности, такие как проверка ввода, проверка целостности данных и ограничение десериализации доверенными классами или модулями. Эти меры помогут защититься от уязвимостей десериализации и повысить общую безопасность вашего приложения.
 
 
 
 
-## Insufficient Logging
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Недостаточное протоколирование
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import logging
 
 def process_data(data):
-    # Process the data
+    # Обработка данных
     # ...
     
-    # Log the result
+    # Записать результат в журнал
     logging.info("Data processed successfully")
 ```
 
-The noncompliant code uses a basic logging statement without providing sufficient information. It simply logs a generic message indicating that the data was processed successfully. This approach lacks important details, making it challenging to diagnose issues, monitor the application's behavior, and investigate security incidents. Insufficient logging makes it difficult to detect and respond to security breaches and other events effectively.
+В коде, не соответствующем требованиям, используется базовый оператор протоколирования без предоставления достаточной информации. Он просто записывает в журнал общее сообщение, указывающее на то, что данные были успешно обработаны. Такой подход не содержит важных деталей, что затрудняет диагностику проблем, мониторинг поведения приложения и расследование инцидентов безопасности. Недостаточное протоколирование затрудняет эффективное обнаружение и реагирование на нарушения безопасности и другие события.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import logging
 
 def process_data(data):
-    # Process the data
+    # Обработка данных
     # ...
     
-    # Log the result with additional information
+    # Зафиксируйте результат с дополнительной информацией
     logging.info("Data processed successfully: %s", data)
 ```
 
 
-The compliant code improves the logging by including additional information in the log message. In this example, the processed data is included as part of the log statement using string formatting. By adding relevant details, such as the processed data or any contextual information, the log becomes more informative and aids in troubleshooting, auditing, and monitoring activities.
+Соответствующий код улучшает протоколирование, включая дополнительную информацию в сообщение журнала. В этом примере обработанные данные включены в сообщение журнала с помощью форматирования строк. Благодаря добавлению соответствующих деталей, таких как обработанные данные или любая контекстная информация, журнал становится более информативным и помогает в поиске неисправностей, аудите и мониторинге.
 
 
-It's important to log meaningful events, errors, and security-relevant information throughout the application. Additionally, logging levels (e.g., info, warning, error) should be appropriately used based on the severity and significance of the logged event.
+Важно регистрировать значимые события, ошибки и информацию, связанную с безопасностью, во всех приложениях. Кроме того, уровни регистрации (например, info, warning, error) должны использоваться в зависимости от серьезности и значимости регистрируемого события.
 
 
-Proper logging practices facilitate the detection and analysis of security incidents, allow for effective incident response, and provide valuable insights into the application's behavior. It is crucial to log sufficient information while being mindful of data sensitivity and compliance requirements.
+Правильное ведение журнала облегчает обнаружение и анализ инцидентов безопасности, позволяет эффективно реагировать на них и дает ценные сведения о поведении приложения. Очень важно регистрировать достаточное количество информации, не забывая при этом о чувствительности данных и требованиях соответствия.
 
 
 
 
 
-## Improper Output Neutralization for Logs
+## Неправильная нейтрализация выхода для бревен
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import logging
 
 def log_user_input(username):
-    # Log user input
+    # Зафиксируйте ввод данных пользователем
     logging.info("Received username: " + username)
 ```
 
-The noncompliant code directly concatenates the user input username with a log message string using the + operator. This approach is vulnerable to log injection, where an attacker can manipulate the input to inject malicious characters or log formatting sequences. This can lead to log forging, log injection attacks, or even the exposure of sensitive information in the log entries.
+Несоответствующий код напрямую объединяет вводимое пользователем имя пользователя со строкой сообщения журнала с помощью оператора +. Такой подход уязвим для инъекций в журнал, когда злоумышленник может манипулировать вводом, чтобы внедрить вредоносные символы или последовательности форматирования журнала. Это может привести к подделке журнала, атакам с инъекцией в журнал или даже к раскрытию конфиденциальной информации в записях журнала.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import logging
 
 def log_user_input(username):
-    # Log user input with proper output neutralization
+    # Регистрация пользовательского ввода с надлежащей нейтрализацией вывода
     logging.info("Received username: %s", username)
 ```
 
 
-The compliant code uses proper output neutralization by using string formatting with placeholders %s and passing the username variable as an argument. This ensures that the user input is treated as data and not as formatting instructions. By neutralizing the output, special characters or formatting sequences entered by an attacker are rendered harmless and logged as intended.
+Код, соответствующий требованиям, использует нейтрализацию вывода, применяя форматирование строк с заполнителями %s и передавая переменную username в качестве аргумента. Это гарантирует, что введенные пользователем данные будут рассматриваться как данные, а не как инструкции по форматированию. Благодаря нейтрализации вывода специальные символы или последовательности форматирования, введенные злоумышленником, становятся безвредными и записываются в журнал, как и предполагалось.
 
 
-Proper output neutralization helps prevent log injection attacks and ensures that the logged information accurately represents the intended data without compromising the integrity of the log entries.
+Правильная нейтрализация вывода помогает предотвратить атаки внедрения в журнал и гарантирует, что регистрируемая информация точно отражает предполагаемые данные, не нарушая целостности записей журнала.
 
 
-It's crucial to neutralize user-controlled input and other dynamic data when incorporating them into log messages to prevent security vulnerabilities and maintain the integrity and confidentiality of the logged information.
-
-
-
+Очень важно нейтрализовать управляемый пользователем ввод и другие динамические данные при включении их в сообщения журнала, чтобы предотвратить уязвимости в системе безопасности и сохранить целостность и конфиденциальность регистрируемой информации.
 
 
 
 
-## Omission of Security-relevant Information
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+
+## Упущение информации, имеющей отношение к безопасности
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1227,12 +1227,12 @@ def login(username, password):
 ```
 
 
-The noncompliant code simply prints a generic message indicating whether the login was successful or failed without providing any specific details. This omission of security-relevant information can make it difficult to diagnose and respond to potential security issues or attacks. It lacks the necessary context to understand the reason for the login failure, potentially leaving sensitive information exposed or allowing an attacker to probe for valid usernames or passwords.
+Несоответствующий код просто выводит общее сообщение об успешном или неудачном входе в систему, не предоставляя никаких конкретных сведений. Отсутствие важной для безопасности информации может затруднить диагностику и реагирование на потенциальные проблемы безопасности или атаки. В сообщении отсутствует необходимый контекст для понимания причины неудачи входа в систему, что может привести к раскрытию конфиденциальной информации или позволить злоумышленнику узнать действительные имена пользователей или пароли.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1246,21 +1246,21 @@ def login(username, password):
 ```
 
 
-The compliant code improves the logging approach by providing security-relevant information in the log messages. It utilizes the logging module to log the details of the login attempts. In the case of a successful login, it logs an informative message indicating the successful login along with the username. In the case of a failed login attempt, it logs a warning message indicating the failed attempt and includes the username.
+Код, соответствующий требованиям, улучшает подход к ведению журнала, предоставляя в сообщениях журнала информацию, имеющую отношение к безопасности. Он использует модуль протоколирования для записи подробностей попыток входа в систему. В случае успешного входа в систему в журнал записывается информационное сообщение об успешном входе в систему с указанием имени пользователя. В случае неудачной попытки входа в систему записывается предупреждающее сообщение о неудачной попытке и имя пользователя.
 
 
-By including security-relevant information in the log messages, it becomes easier to monitor and analyze login activities, detect suspicious login attempts, and investigate potential security breaches. This helps improve the security posture of the application and facilitates incident response and forensic analysis in case of any security incidents.
-
-
-
+Благодаря включению в сообщения журнала информации, имеющей отношение к безопасности, становится проще отслеживать и анализировать действия по входу в систему, выявлять подозрительные попытки входа и расследовать потенциальные нарушения безопасности. Это помогает повысить уровень безопасности приложения и облегчает реагирование на инциденты и криминалистический анализ в случае возникновения каких-либо инцидентов безопасности.
 
 
 
 
 
-## Sensitive Information into Log File
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+
+## Помещение конфиденциальной информации в файл журнала
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1270,14 +1270,14 @@ def process_payment(payment_data):
     logging.info("Payment processed for user: %s", payment_data['user'])
 ```
 
-The noncompliant code logs sensitive information, such as the user's name, directly into the log file using the logging.info() function. This practice can expose sensitive data to unauthorized individuals who might have access to the log files. Storing sensitive information in plain text logs is a security risk and can lead to data breaches or unauthorized access.
+Код, не соответствующий требованиям, записывает конфиденциальную информацию, например имя пользователя, непосредственно в файл журнала с помощью функции logging.info(). Такая практика может привести к раскрытию конфиденциальных данных неавторизованным лицам, которые могут иметь доступ к файлам журнала. Хранение конфиденциальной информации в журналах в виде обычного текста представляет собой риск для безопасности и может привести к утечке данных или несанкционированному доступу.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1287,26 +1287,26 @@ def process_payment(payment_data):
     logging.info("Payment processed for user: %s", obfuscate_user(payment_data['user']))
 
 def obfuscate_user(user):
-    # Code to obfuscate or mask sensitive information
+    # Код для обфускации или маскировки конфиденциальной информации
     return "****" + user[-4:]
 ```
 
 
-The compliant code addresses the issue by obfuscating or masking the sensitive information before logging it. In this example, the obfuscate_user() function is used to replace sensitive user information with masked data. The obfuscation process can involve techniques like truncation, substitution, or encryption, depending on the specific requirements.
+Соответствующий код решает эту проблему путем обфускации или маскировки конфиденциальной информации перед ее записью в журнал. В этом примере функция obfuscate_user() используется для замены конфиденциальной информации о пользователе на замаскированные данные. Процесс обфускации может включать такие методы, как усечение, замена или шифрование, в зависимости от конкретных требований.
 
 
-By obfuscating the sensitive information before logging, the compliant code prevents the exposure of actual user data in the log files. It enhances the security and privacy of user information, ensuring that even if the log files are accessed by unauthorized individuals, the sensitive details remain protected.
+Обфусцируя конфиденциальную информацию перед записью в журнал, совместимый код предотвращает раскрытие реальных данных пользователя в файлах журнала. Это повышает безопасность и конфиденциальность пользовательской информации, гарантируя, что даже если к файлам журнала получат доступ неавторизованные лица, конфиденциальные данные останутся под защитой.
 
-It's important to note that obfuscation is not a foolproof security measure and should not be considered a substitute for proper access controls and data protection measures. It is just one step in a multi-layered security approach to safeguard sensitive information.
-
-
-
+Важно отметить, что обфускация не является надежной мерой безопасности и не должна заменять собой надлежащие средства контроля доступа и защиты данных. Это лишь один из шагов в многоуровневом подходе к защите конфиденциальной информации.
 
 
 
-## Server-Side Request Forgery (SSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+
+## Подделка запросов со стороны сервера (SSRF)
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1317,14 +1317,14 @@ def fetch_url(url):
     return response.text
 ```
 
-The noncompliant code directly fetches the content of a given URL using the requests.get() function. This code is vulnerable to SSRF attacks because it allows the execution of arbitrary requests to any URL, including internal or restricted network resources. Attackers can exploit this vulnerability to make requests to internal services, retrieve sensitive information, or perform further attacks on the server.
+Несоответствующий код напрямую получает содержимое заданного URL с помощью функции requests.get(). Этот код уязвим для атак SSRF, поскольку позволяет выполнять произвольные запросы к любому URL, включая внутренние или ограниченные сетевые ресурсы. Злоумышленники могут использовать эту уязвимость для выполнения запросов к внутренним службам, получения конфиденциальной информации или проведения дальнейших атак на сервер.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1338,18 +1338,18 @@ def fetch_url(url):
         raise ValueError("Invalid URL")
 
 def is_valid_url(url):
-    # Perform URL validation to ensure it's safe to access
-    # Implement whitelist-based validation or restrict access to specific domains
+    # Выполните проверку URL-адресов, чтобы убедиться в безопасности доступа.
+    # Внедрите проверку на основе белых списков или ограничьте доступ к определенным доменам.
 
-    # Example: Allow access to certain domains
+    # Пример: Разрешить доступ к определенным доменам
     allowed_domains = ['example.com', 'api.example.com']
     parsed_url = urlparse(url)
     return parsed_url.netloc in allowed_domains
 ```
 
-The compliant code includes a URL validation step before making the request. It uses the is_valid_url() function to perform validation based on a whitelist approach or specific domain restrictions. The validation step ensures that only trusted and allowed URLs can be accessed, mitigating the risk of SSRF attacks.
+Соответствующий код включает этап проверки URL перед выполнением запроса. Он использует функцию is_valid_url() для проверки на основе белого списка или ограничений конкретного домена. Этап проверки гарантирует, что доступ будет осуществляться только к доверенным и разрешенным URL, что снижает риск атак SSRF.
 
-The is_valid_url() function is just an example implementation. You should customize the validation logic based on your specific requirements and security policies. The implementation can include checks such as whitelisting allowed domains, enforcing strict URL structures, or validating against a predefined list of safe URLs.
+Функция is_valid_url() является лишь примером реализации. Вы должны настроить логику проверки в соответствии с вашими требованиями и политиками безопасности. Реализация может включать такие проверки, как составление белых списков разрешенных доменов, применение строгой структуры URL или проверку по заранее определенному списку безопасных URL.
 
-By validating the URL before making the request, the compliant code helps prevent SSRF attacks by restricting access to known, trusted, and safe URLs. It helps ensure that the application only interacts with the intended resources and mitigates the risk of unauthorized access to internal or restricted network resources.
+Проверяя URL перед отправкой запроса, совместимый код помогает предотвратить атаки SSRF, ограничивая доступ к известным, надежным и безопасным URL. Это помогает гарантировать, что приложение взаимодействует только с предназначенными ресурсами, и снижает риск несанкционированного доступа к внутренним или ограниченным сетевым ресурсам.
 
