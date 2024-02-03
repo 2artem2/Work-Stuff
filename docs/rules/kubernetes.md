@@ -9,7 +9,7 @@ parent: Rules
 
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -20,9 +20,9 @@ parent: Rules
 
 
 
-## Hardcoded Credential
+## Учетная запись с жестким кодом
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -48,14 +48,14 @@ spec:
           value: "mysql://root:password@localhost:3306/my_database"
 ```
 
-In this noncompliant code, the Kubernetes Deployment configuration file contains a hardcoded database connection string in the env section. The database URL, including the username (root), password (password), and other sensitive details, is directly embedded in the configuration file. This approach introduces security risks, as sensitive information is exposed and can be easily compromised if the configuration file is accessed by unauthorized users.
+В этом несоответствующем коде файл конфигурации развертывания Kubernetes Deployment содержит жестко закодированную строку подключения к базе данных в разделе env. URL-адрес базы данных, включая имя пользователя (root), пароль (password) и другие конфиденциальные данные, непосредственно встроен в конфигурационный файл. Такой подход создает риски для безопасности, поскольку конфиденциальная информация раскрыта и может быть легко скомпрометирована, если к конфигурационному файлу получат доступ неавторизованные пользователи.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -85,24 +85,24 @@ spec:
 ```
 
 
-In the compliant code, the hardcoded database connection string is replaced with a reference to a Kubernetes Secret. The Secret, named my-app-secrets, contains the sensitive information such as the database URL, username, and password. The valueFrom field in the env section instructs Kubernetes to retrieve the value of the database-url key from the specified Secret.
+В соответствующем коде строка подключения к базе данных заменена ссылкой на секрет Kubernetes. Секрет, названный my-app-secrets, содержит конфиденциальную информацию, такую как URL базы данных, имя пользователя и пароль. Поле valueFrom в секции env предписывает Kubernetes получить значение ключа database-url из указанного Secret.
 
-By leveraging Secrets, you can centralize and securely manage sensitive information in Kubernetes, preventing hardcoded vulnerabilities. Secrets can be encrypted, access-controlled, and rotated more easily compared to hardcoded values.
+Используя секреты, вы можете централизовать и безопасно управлять конфиденциальной информацией в Kubernetes, предотвращая уязвимости в жестком коде. Секреты можно шифровать, контролировать доступ и поворачивать, что гораздо проще, чем жестко закодированные значения.
 
-Ensure that you follow secure practices for managing Secrets, such as granting appropriate permissions, encrypting Secrets at rest and in transit, regularly rotating Secrets, and utilizing Kubernetes RBAC (Role-Based Access Control) to control access to Secrets.
+Убедитесь, что вы следуете безопасным методам управления секретами, таким как предоставление соответствующих разрешений, шифрование секретов в состоянии покоя и при передаче, регулярная ротация секретов и использование Kubernetes RBAC (Role-Based Access Control) для контроля доступа к секретам.
 
-By using Secrets to store and retrieve sensitive information, you enhance the security, maintainability, and portability of your Kubernetes deployments.
-
-
+Используя секреты для хранения и получения конфиденциальной информации, вы повышаете безопасность, удобство обслуживания и переносимость развертываний Kubernetes.
 
 
 
 
 
 
-## Container Escape Attack
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Нападение с целью побега из контейнера
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -118,13 +118,13 @@ spec:
       privileged: true
 ```
 
-The noncompliant code sets the privileged flag to true, which allows the container to run with extended privileges, making it easier for an attacker to escape the container and gain access to the host.
+Несоответствующий код устанавливает флаг privileged в true, что позволяет контейнеру работать с расширенными привилегиями, облегчая злоумышленнику выход из контейнера и получение доступа к хосту.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -140,14 +140,14 @@ spec:
       privileged: false
 ```
 
-The compliant code sets the privileged flag to false, which restricts the container from running with extended privileges, reducing the risk of container escape attacks.
+Соответствующий код устанавливает флаг privileged в false, что ограничивает запуск контейнера с расширенными привилегиями, снижая риск атак на выход из контейнера.
 
 
 
 
-## Kubernetes API Server Attack
+## Атака на сервер API Kubernetes
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -158,12 +158,12 @@ metadata:
   namespace: default
 ```
 
-The noncompliant code creates a privileged service account without specifying any RBAC (Role-Based Access Control) restrictions, allowing the account to have wide-ranging access to the Kubernetes API server.
+Несоответствующий требованиям код создает привилегированную учетную запись службы без указания каких-либо ограничений RBAC (Role-Based Access Control), что позволяет этой учетной записи иметь широкий доступ к серверу Kubernetes API.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -198,13 +198,13 @@ subjects:
   namespace: default
 ```
 
-The compliant code creates a restricted service account and applies RBAC rules to limit its access. In this example, the service account is only granted permissions to get, list, and watch pods, providing a more secure configuration.
+Соответствующий код создает ограниченную учетную запись службы и применяет правила RBAC для ограничения ее доступа. В этом примере учетной записи службы предоставляются разрешения только на получение, список и просмотр стручков, что обеспечивает более безопасную конфигурацию.
 
 
 
-## Pod-to-Pod Network Attack
+## Сетевая атака Pod-to-Pod
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -220,12 +220,12 @@ spec:
     image: image-b
 ```
 
-The noncompliant code deploys two containers within the same pod without any network policies or restrictions, allowing unrestricted communication between the containers.
+Код, не соответствующий требованиям, развертывает два контейнера в одном поде, без каких-либо сетевых политик или ограничений, позволяя неограниченно взаимодействовать между контейнерами.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -250,13 +250,13 @@ spec:
             app: secured-pod
 ```
 
-The compliant code introduces network policies to restrict communication between the containers within the pod. In this example, both container-a and container-b are part of the secured-pod, and the network policy ensures that only pods labeled as secured-pod can initiate ingress traffic to this pod. This setup limits the attack surface and prevents unauthorized access or interception of network traffic from other pods.
+Соответствующий код вводит сетевые политики для ограничения связи между контейнерами внутри пода. В этом примере контейнер-a и контейнер-b являются частью защищенного блока, и сетевая политика гарантирует, что только поды, помеченные как secured-pod, могут инициировать входящий трафик в этот блок. Такая настройка ограничивает площадь атаки и предотвращает несанкционированный доступ или перехват сетевого трафика из других подов.
 
 
 
-## Privilege Escalation Attack
+## Атака на повышение привилегий
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -272,12 +272,12 @@ spec:
       runAsUser: 0
 ```
 
-The noncompliant code sets the runAsUser field to 0, which runs the container as the root user, providing extensive privileges and increasing the risk of privilege escalation attacks.
+Несоответствующий код устанавливает поле runAsUser в 0, что запускает контейнер от имени пользователя root, предоставляя ему широкие привилегии и увеличивая риск атак с повышением привилегий.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -293,12 +293,12 @@ spec:
       runAsUser: 1000
 ```
 
-The compliant code sets the runAsUser field to a non-root user (e.g., UID 1000), reducing the container's privileges and mitigating the risk of privilege escalation attacks.
+Соответствующий код устанавливает в поле runAsUser значение не корневого пользователя (например, UID 1000), что снижает привилегии контейнера и уменьшает риск атак с повышением привилегий.
 
 
-## Denial-of-Service (DoS) Attack
+## Атака на отказ в обслуживании (DoS)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -319,12 +319,12 @@ spec:
             memory: "2Gi"
 ```
 
-The noncompliant code specifies resource requests that are significantly higher than necessary, which can lead to resource exhaustion and potential DoS attacks.
+Несоответствующий код задает запросы на ресурсы, значительно превышающие необходимые, что может привести к исчерпанию ресурсов и потенциальным DoS-атакам.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -345,4 +345,4 @@ spec:
             memory: "256Mi"
 ```
 
-The compliant code sets resource requests to more appropriate values, ensuring that each container consumes only the necessary amount of CPU and memory resources, mitigating the risk of DoS attacks.
+Соответствующий код устанавливает более подходящие значения для запросов ресурсов, гарантируя, что каждый контейнер потребляет только необходимое количество ресурсов процессора и памяти, снижая риск DoS-атак.
