@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -20,245 +20,245 @@ parent: Rules
 
 
 
-## Exposure of sensitive information
+## Раскрытие конфиденциальной информации
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - exposing sensitive information in error log
+// Несоответствующий код - раскрытие конфиденциальной информации в журнале ошибок
 def processUserInput(input: String): Unit = {
-  // Process user input
+  // Обработка пользовательского ввода
   // ...
   
-  // Log error with sensitive information
+  // Ошибка в журнале с конфиденциальной информацией
   val errorMessage = s"Error processing user input: $input"
   Logger.error(errorMessage)
 }
 ```
 
-In this noncompliant code example, the processUserInput() function logs an error message that includes the user input directly into the error log using a logger. This can potentially expose sensitive information to anyone who has access to the error log file, including unauthorized users.
+В этом примере кода, не соответствующем требованиям, функция processUserInput() регистрирует сообщение об ошибке, включающее пользовательский ввод, непосредственно в журнале ошибок с помощью регистратора. Это может привести к раскрытию конфиденциальной информации для всех, кто имеет доступ к файлу журнала ошибок, включая неавторизованных пользователей.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - avoiding exposure of sensitive information in error log
+// Соответствующий код - предотвращение попадания конфиденциальной информации в журнал ошибок
 def processUserInput(input: String): Unit = {
-  // Process user input
+  // Обработка пользовательского ввода
   // ...
   
-  // Log error without sensitive information
+  // Регистрация ошибок без конфиденциальной информации
   Logger.error("Error processing user input")
 }
 ```
 
 
-In the compliant code example, the processUserInput() function logs a generic error message without including the user input. By avoiding the inclusion of sensitive information in the error log, the code mitigates the risk of exposing sensitive data to unauthorized individuals.
+В примере кода, соответствующего требованиям, функция processUserInput() регистрирует общее сообщение об ошибке, не включая в него пользовательский ввод. Избегая включения конфиденциальной информации в журнал ошибок, код снижает риск раскрытия конфиденциальных данных неавторизованным лицам.
 
-It's important to note that error logs should only contain information necessary for debugging and should not include any sensitive data. Additionally, it's recommended to configure error log settings appropriately and restrict access to the error log files to authorized personnel only.
+Важно отметить, что журнал ошибок должен содержать только информацию, необходимую для отладки, и не должен содержать конфиденциальных данных. Кроме того, рекомендуется соответствующим образом настроить параметры журнала ошибок и ограничить доступ к файлам журнала ошибок только для авторизованного персонала.
 
 
-## Insertion of Sensitive Information Into Sent Data
+## Вставка конфиденциальной информации в отправленные данные
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - inserting sensitive information into sent data
+// Несоответствующий код - вставка конфиденциальной информации в отправленные данные
 def sendUserData(userId: String): Unit = {
-  // Retrieve user data
+  // Получение пользовательских данных
   val userData = retrieveUserData(userId)
   
-  // Insert sensitive information into sent data
+  // Вставка конфиденциальной информации в отправленные данные
   val sentData = s"User data: $userData"
   sendRequest(sentData)
 }
 
 def retrieveUserData(userId: String): String = {
-  // Retrieve user data from the database
+  // Получение данных о пользователе из базы данных
   // ...
-  // Return the user data as a string
+  // Возвращаем данные пользователя в виде строки
 }
 
 def sendRequest(data: String): Unit = {
-  // Send the data to a remote server
+  // Отправьте данные на удаленный сервер
   // ...
 }
 ```
 
-In this noncompliant code example, the sendUserData() function retrieves user data and inserts the sensitive information directly into the sentData string. The sentData string is then sent to a remote server using the sendRequest() function. This practice can lead to the inadvertent exposure of sensitive information during the transmission process.
+В этом примере кода, не соответствующем требованиям, функция sendUserData() получает данные пользователя и вставляет конфиденциальную информацию непосредственно в строку sentData. Затем строка sentData отправляется на удаленный сервер с помощью функции sendRequest(). Такая практика может привести к непреднамеренному раскрытию конфиденциальной информации в процессе передачи.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - avoiding insertion of sensitive information into sent data
+// Соответствующий код - предотвращение вставки конфиденциальной информации в отправляемые данные
 def sendUserData(userId: String): Unit = {
-  // Retrieve user data
+  // Получение данных о пользователе
   val userData = retrieveUserData(userId)
   
-  // Send the user data without inserting sensitive information
+  // Отправка пользовательских данных без вставки конфиденциальной информации
   sendRequest(userData)
 }
 
 def retrieveUserData(userId: String): String = {
-  // Retrieve user data from the database
+  // Получение данных о пользователе из базы данных
   // ...
-  // Return the user data as a string
+  // Возвращаем данные пользователя в виде строки
 }
 
 def sendRequest(data: String): Unit = {
-  // Send the data to a remote server
+  // Отправьте данные на удаленный сервер
   // ...
 }
 ```
 
 
-In the compliant code example, the sendUserData() function retrieves user data and sends it to the remote server without inserting sensitive information into the data. By directly sending the user data instead of concatenating it with other strings, the code avoids the risk of inadvertently including sensitive information in the sent data.
+В примере совместимого кода функция sendUserData() получает пользовательские данные и отправляет их на удаленный сервер, не вставляя в них конфиденциальную информацию. Благодаря прямой отправке пользовательских данных, а не конкатенации их с другими строками, код избегает риска случайного включения конфиденциальной информации в отправляемые данные.
 
-It's important to handle sensitive information carefully and avoid unnecessary inclusion in transmitted data. Proper data handling practices include using encryption, secure protocols (such as HTTPS), and following relevant security standards and guidelines to protect sensitive data during transmission.
+Важно аккуратно обращаться с конфиденциальной информацией и избегать ненужных включений в передаваемые данные. Правильная работа с данными включает использование шифрования, безопасных протоколов (например, HTTPS) и следование соответствующим стандартам и рекомендациям по безопасности для защиты конфиденциальных данных во время передачи.
 
 
 
-## Cross-Site Request Forgery (CSRF)
+## Подделка межсайтовых запросов (CSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - lack of CSRF protection
+// Несоответствующий код - отсутствие защиты CSRF
 def transferFunds(request: Request): Response = {
   val sourceAccount = request.getParameter("sourceAccount")
   val destinationAccount = request.getParameter("destinationAccount")
   val amount = request.getParameter("amount")
   
-  // Perform fund transfer logic
+  // Выполните логику перевода средств
   // ...
   
-  // Return response
+  // Возврат ответа
   // ...
 }
 ```
 
-In the noncompliant code, the transferFunds function is vulnerable to CSRF attacks because it lacks CSRF protection. An attacker can trick a user into unknowingly performing a malicious fund transfer by crafting a forged request and tricking the user into clicking on a malicious link or submitting a form.
+В коде, не соответствующем требованиям, функция transferFunds уязвима для атак CSRF, поскольку в ней отсутствует защита CSRF. Злоумышленник может обманом заставить пользователя неосознанно выполнить вредоносный перевод средств, создав поддельный запрос и обманом заставив пользователя перейти по вредоносной ссылке или отправить форму.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - CSRF protection using tokens
+// Соответствующий код - защита от CSRF с помощью токенов
 def transferFunds(request: Request): Response = {
   val sourceAccount = request.getParameter("sourceAccount")
   val destinationAccount = request.getParameter("destinationAccount")
   val amount = request.getParameter("amount")
   
-  // Verify CSRF token
+  // Проверьте токен CSRF
   val csrfToken = request.getParameter("csrfToken")
   if (!validateCsrfToken(csrfToken)) {
-    // CSRF token validation failed, handle the error or return an appropriate response
+    // Проверка токена CSRF не удалась, обработайте ошибку или верните соответствующий ответ
     // ...
   }
   
-  // Perform fund transfer logic
+  // Выполните логику перевода средств
   // ...
   
-  // Return response
+  // Возврат ответа
   // ...
 }
 
 def validateCsrfToken(csrfToken: String): Boolean = {
-  // Validate the CSRF token against a stored value or session token
-  // Return true if the token is valid, false otherwise
+  // Проверяем CSRF-токен на соответствие хранимому значению или сеансовому токену
+  // Возвращаем true, если токен действителен, false в противном случае
   // ...
 }
 ```
 
 
-In the compliant code, a CSRF protection mechanism is added using tokens. The transferFunds function now expects a CSRF token as part of the request parameters. It verifies the token using the validateCsrfToken function before executing the fund transfer logic. If the token validation fails, appropriate error handling or response generation can be performed. By implementing CSRF protection, the code mitigates the risk of unauthorized fund transfers through CSRF attacks.
+В совместимом коде добавлен механизм защиты от CSRF с помощью токенов. Функция transferFunds теперь ожидает токен CSRF как часть параметров запроса. Перед выполнением логики перевода средств она проверяет токен с помощью функции validateCsrfToken. Если проверка токена не удается, можно выполнить соответствующую обработку ошибок или генерацию ответа. Реализуя защиту от CSRF, код снижает риск несанкционированного перевода средств с помощью CSRF-атак.
 
 
 
 
-## Use of Hard-coded Password
+## Использование жесткого пароля
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - hard-coded password
+// Несоответствующий код - жестко заданный пароль
 def authenticate(username: String, password: String): Boolean = {
-  // Hard-coded password for authentication
+  // Жестко закодированный пароль для аутентификации
   if (password == "myPassword123") {
-    // Authentication successful
+    // Аутентификация прошла успешно
     true
   } else {
-    // Authentication failed
+    // Аутентификация не удалась
     false
   }
 }
 ```
 
-In the noncompliant code, the authenticate function uses a hard-coded password for authentication. Storing passwords directly in the source code is a security risk because it makes the password easily accessible to anyone with access to the code. If the code is compromised or leaked, an attacker can easily retrieve the password and gain unauthorized access.
+В коде, не соответствующем требованиям, функция authenticate использует для аутентификации жестко заданный пароль. Хранение паролей непосредственно в исходном коде представляет собой риск для безопасности, поскольку в этом случае пароль легко доступен любому, кто имеет доступ к коду. В случае компрометации или утечки кода злоумышленник может легко получить пароль и несанкционированный доступ.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - use of secure password storage
+// Соответствующий код - использование безопасного хранения паролей
 def authenticate(username: String, password: String): Boolean = {
-  // Retrieve the stored password hash for the user from a secure database or password storage mechanism
+  // Получите хэш сохраненного пароля пользователя из защищенной базы данных или механизма хранения паролей
   val storedPasswordHash = getStoredPasswordHash(username)
   
-  // Compare the entered password with the stored password hash using a secure password hashing algorithm
+  // Сравните введенный пароль с хэшем сохраненного пароля, используя безопасный алгоритм хэширования паролей
   val isPasswordValid = verifyPassword(password, storedPasswordHash)
   
   isPasswordValid
 }
 
 def getStoredPasswordHash(username: String): String = {
-  // Retrieve the stored password hash for the user from a secure database or password storage mechanism
+  // Получите хэш сохраненного пароля пользователя из защищенной базы данных или механизма хранения паролей
   // ...
 }
 
 def verifyPassword(password: String, storedPasswordHash: String): Boolean = {
-  // Use a secure password hashing algorithm (e.g., bcrypt, Argon2, scrypt) to verify the password
-  // Compare the password hash derived from the entered password with the stored password hash
-  // Return true if the password is valid, false otherwise
+  // Используйте безопасный алгоритм хэширования пароля (например, bcrypt, Argon2, scrypt) для проверки пароля
+  // Сравните хэш пароля, полученный из введенного пароля, с хэшем хранящегося пароля
+  // Возвращаем true, если пароль верен, false - в противном случае
   // ...
 }
 ```
 
-In the compliant code, the password is not hard-coded in the source code. Instead, it is securely stored in a database or a secure password storage mechanism. The authenticate function retrieves the stored password hash for the user and compares it with the entered password using a secure password hashing algorithm (e.g., bcrypt, Argon2, scrypt). This ensures that the actual password value is never exposed or stored directly, and only the hash representation is used for comparison. By using secure password storage and hashing techniques, the code mitigates the risk associated with hard-coded passwords and enhances the overall security of the application.
+В совместимом коде пароль не записывается в исходный код. Вместо этого он надежно хранится в базе данных или в защищенном механизме хранения паролей. Функция аутентификации получает хэш сохраненного пароля пользователя и сравнивает его с введенным паролем с помощью безопасного алгоритма хэширования пароля (например, bcrypt, Argon2, scrypt). Это гарантирует, что фактическое значение пароля никогда не будет открыто или сохранено напрямую, а для сравнения будет использоваться только хэш-представление. Благодаря использованию методов безопасного хранения и хэширования паролей код снижает риск, связанный с жестким кодированием паролей, и повышает общую безопасность приложения.
 
 
 
 
 
 
-## Broken or Risky Crypto Algorithm
+## Сломанный или рискованный криптоалгоритм
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import java.security.MessageDigest
 
-// Noncompliant code - uses weak MD5 hashing algorithm
+// Несоответствующий код - использует слабый алгоритм хэширования MD5
 def hashPassword(password: String): String = {
   val md = MessageDigest.getInstance("MD5")
   val bytes = password.getBytes("UTF-8")
@@ -269,19 +269,19 @@ def hashPassword(password: String): String = {
 ```
 
 
-In the noncompliant code, the hashPassword function uses the weak MD5 hashing algorithm to hash the password. MD5 is considered broken and insecure for cryptographic purposes due to its vulnerability to collision attacks and the availability of more secure alternatives.
+В коде, не соответствующем требованиям, функция hashPassword использует слабый алгоритм хэширования MD5 для хэширования пароля. MD5 считается неработающим и небезопасным для криптографических целей из-за его уязвимости к атакам на столкновения и наличия более безопасных альтернатив.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import java.security.MessageDigest
 
-// Compliant code - uses secure SHA-256 hashing algorithm
+// Соответствующий код - использует безопасный алгоритм хэширования SHA-256
 def hashPassword(password: String): String = {
   val md = MessageDigest.getInstance("SHA-256")
   val bytes = password.getBytes("UTF-8")
@@ -292,22 +292,22 @@ def hashPassword(password: String): String = {
 ```
 
 
-In the compliant code, the hashPassword function uses the secure SHA-256 hashing algorithm instead of MD5. SHA-256 is a widely accepted and stronger cryptographic hash function. It provides better resistance against collision attacks and is considered more secure for hashing sensitive information such as passwords.
+В совместимом коде функция hashPassword использует безопасный алгоритм хэширования SHA-256 вместо MD5. SHA-256 - это широко распространенная и более сильная криптографическая хэш-функция. Она лучше противостоит атакам на столкновения и считается более безопасной для хэширования конфиденциальной информации, такой как пароли.
 
-By using a secure cryptographic algorithm like SHA-256, the compliant code mitigates the risk associated with broken or risky crypto algorithms and enhances the overall security of the application.
-
-
+Благодаря использованию безопасного криптографического алгоритма, такого как SHA-256, совместимый код снижает риск, связанный с неработающими или рискованными криптоалгоритмами, и повышает общую безопасность приложения.
 
 
-## Insufficient Entropy
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Недостаточная энтропия
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import scala.util.Random
 
-// Noncompliant code - uses Random.nextInt without sufficient entropy
+// Несоответствующий код - использует Random.nextInt без достаточной энтропии
 def generateOTP(): String = {
   val otp = Random.nextInt(9999).toString
   otp
@@ -315,20 +315,20 @@ def generateOTP(): String = {
 ```
 
 
-In the noncompliant code, the generateOTP function attempts to generate a one-time password (OTP) by using Random.nextInt to generate a random number between 0 and 9999. However, the Random class in Scala uses a linear congruential generator (LCG) algorithm, which may not provide sufficient entropy for generating secure random numbers.
+В коде, не соответствующем требованиям, функция generateOTP пытается сгенерировать одноразовый пароль (OTP), используя Random.nextInt для генерации случайного числа от 0 до 9999. Однако класс Random в Scala использует алгоритм линейного конгруэнтного генератора (LCG), который может не обеспечивать достаточную энтропию для генерации безопасных случайных чисел.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import java.security.SecureRandom
 import scala.util.Random
 
-// Compliant code - uses SecureRandom for generating OTP with sufficient entropy
+// Соответствующий код - использует SecureRandom для генерации OTP с достаточной энтропией
 def generateOTP(): String = {
   val secureRandom = new SecureRandom()
   val otp = secureRandom.nextInt(10000).toString
@@ -336,62 +336,62 @@ def generateOTP(): String = {
 }
 ```
 
-In the compliant code, the generateOTP function uses SecureRandom instead of Random to generate the OTP. SecureRandom is a cryptographic-strength random number generator that provides sufficient entropy for generating secure random numbers.
+В совместимом коде функция generateOTP использует SecureRandom вместо Random для генерации OTP. SecureRandom - это криптографически сильный генератор случайных чисел, который обеспечивает достаточную энтропию для генерации безопасных случайных чисел.
 
-By using SecureRandom, the compliant code ensures that the generated OTPs have higher entropy and are more resistant to guessing or brute-force attacks. This enhances the security of the application that relies on OTPs for authentication or other security-sensitive operations.
+Благодаря использованию SecureRandom совместимый код гарантирует, что генерируемые OTP обладают более высокой энтропией и более устойчивы к атакам типа "угадай или перебери". Это повышает безопасность приложения, которое использует ПОО для аутентификации или других чувствительных к безопасности операций.
 
 
 
-## XSS
+## Межсайтовый скриптинг (XSS)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import scala.xml.NodeSeq
 
-// Noncompliant code - vulnerable to XSS
+// Несоответствующий код - уязвимы для XSS
 def displayMessage(message: String): NodeSeq = {
   <div>{message}</div>
 }
 ```
 
-In the noncompliant code, the displayMessage function accepts a message parameter, which is directly interpolated into an XML element using the {} syntax. This code is vulnerable to cross-site scripting (XSS) attacks because it does not properly escape or sanitize the message parameter. An attacker can inject malicious scripts or HTML tags into the message, leading to potential security risks.
+В коде, не соответствующем требованиям, функция displayMessage принимает параметр message, который непосредственно интерполируется в XML-элемент с помощью синтаксиса {}. Этот код уязвим для атак межсайтового скриптинга (XSS), так как не обеспечивает надлежащего экранирования или санации параметра message. Злоумышленник может внедрить в сообщение вредоносные скрипты или HTML-теги, что приведет к потенциальным рискам безопасности.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import scala.xml.{NodeSeq, Text}
 
-// Compliant code - properly escapes the message to prevent XSS
+// Соответствующий код - правильно экранирует сообщение для предотвращения XSS
 def displayMessage(message: String): NodeSeq = {
   <div>{Text(message)}</div>
 }
 ```
 
 
-In the compliant code, the displayMessage function uses the Text class from the scala.xml package to properly escape the message parameter. The Text class ensures that any special characters in the message are encoded correctly, preventing the injection of malicious scripts or HTML tags.
+В совместимом коде функция displayMessage использует класс Text из пакета scala.xml, чтобы правильно экранировать параметр message. Класс Text гарантирует, что все специальные символы в сообщении будут закодированы правильно, что предотвращает внедрение вредоносных скриптов или HTML-тегов.
 
-By using the Text class to escape the message parameter, the compliant code mitigates the risk of XSS attacks and ensures that the displayed message is rendered as plain text rather than interpreted as HTML or script code. This enhances the security of the application and protects users from potential XSS vulnerabilities.
-
-
+Используя класс Text для экранирования параметра message, совместимый код снижает риск XSS-атак и гарантирует, что отображаемое сообщение будет отображаться как обычный текст, а не интерпретироваться как HTML или код скрипта. Это повышает безопасность приложения и защищает пользователей от потенциальных XSS-уязвимостей.
 
 
 
-## SQL Injection
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## SQL-инъекция
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import java.sql.{Connection, DriverManager, ResultSet}
 
-// Noncompliant code - vulnerable to SQL injection
+// Несоответствующий код - уязвимость к SQL-инъекциям
 def getUser(userId: String): Option[String] = {
   val query = s"SELECT name FROM users WHERE id = $userId"
   
@@ -417,18 +417,18 @@ def getUser(userId: String): Option[String] = {
 }
 ```
 
-In the noncompliant code, the getUser function accepts a userId parameter and directly interpolates it into the SQL query string. This code is vulnerable to SQL injection attacks because the user input is not properly sanitized or parameterized. An attacker can manipulate the userId parameter to execute arbitrary SQL statements, potentially gaining unauthorized access to the database or compromising data integrity.
+В коде, не соответствующем требованиям, функция getUser принимает параметр userId и напрямую интерполирует его в строку SQL-запроса. Этот код уязвим для атак SQL-инъекций, поскольку пользовательский ввод не санирован и не параметризован должным образом. Злоумышленник может манипулировать параметром userId для выполнения произвольных SQL-запросов, что может привести к получению несанкционированного доступа к базе данных или нарушению целостности данных.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import java.sql.{Connection, DriverManager, PreparedStatement, ResultSet}
 
-// Compliant code - uses parameterized queries to prevent SQL injection
+// Соответствующий код - использование параметризованных запросов для предотвращения SQL-инъекций
 def getUser(userId: String): Option[String] = {
   val query = "SELECT name FROM users WHERE id = ?"
   
@@ -455,21 +455,21 @@ def getUser(userId: String): Option[String] = {
 }
 ```
 
-In the compliant code, the getUser function uses parameterized queries to prevent SQL injection attacks. Instead of directly interpolating the userId parameter into the SQL query, the code uses a prepared statement and binds the parameter using the setString method. This approach ensures that the user input is properly handled and prevents any malicious SQL statements from being executed.
+В совместимом коде функция getUser использует параметризованные запросы для предотвращения атак SQL-инъекций. Вместо того чтобы напрямую интерполировать параметр userId в SQL-запрос, код использует подготовленный запрос и связывает параметр с помощью метода setString. Такой подход обеспечивает правильную обработку пользовательского ввода и предотвращает выполнение вредоносных SQL-запросов.
 
-By using parameterized queries, the compliant code mitigates the risk of SQL injection and ensures the safety of database operations. It protects against unauthorized access and helps maintain data integrity within the application.
+Используя параметризованные запросы, совместимый код снижает риск SQL-инъекций и обеспечивает безопасность операций с базой данных. Это защищает от несанкционированного доступа и помогает поддерживать целостность данных в приложении.
 
 
 
-## External Control of File Name or Path
+## Внешнее управление именем или путем файла
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 import java.io.File
 
-// Noncompliant code - vulnerable to external control of file name or path
+// Несоответствующий код - уязвимость к внешнему контролю имени файла или пути к нему
 def readFile(fileName: String): String = {
   val file = new File(fileName)
   val content = scala.io.Source.fromFile(file).mkString
@@ -478,19 +478,19 @@ def readFile(fileName: String): String = {
 ```
 
 
-In the noncompliant code, the readFile function accepts a fileName parameter, which is used to create a File object to read the content of the file. However, this code is vulnerable to external control of the file name or path, as it directly uses the fileName parameter without any validation or sanitization. An attacker can manipulate the fileName parameter to read arbitrary files from the system, potentially exposing sensitive information or compromising the application's security.
+В коде, не соответствующем требованиям, функция readFile принимает параметр fileName, который используется для создания объекта File для чтения содержимого файла. Однако этот код уязвим для внешнего контроля имени файла или пути к нему, поскольку он напрямую использует параметр fileName без какой-либо проверки или санации. Злоумышленник может манипулировать параметром fileName для чтения произвольных файлов из системы, что может привести к раскрытию конфиденциальной информации или нарушению безопасности приложения.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import java.io.File
 
-// Compliant code - validates and sanitizes the file name
+// Соответствующий код - проверяет и обеззараживает имя файла
 def readFile(fileName: String): Option[String] = {
   if (!fileName.contains("..") && fileName.matches("[a-zA-Z0-9]+\\.txt")) {
     val file = new File(fileName)
@@ -502,20 +502,20 @@ def readFile(fileName: String): Option[String] = {
 }
 ```
 
-In the compliant code, the readFile function validates and sanitizes the fileName parameter before accessing the file. The code checks if the file name contains .., which is commonly used in path traversal attacks to navigate to parent directories. Additionally, the code uses a regular expression pattern to ensure that the file name consists only of alphanumeric characters and ends with the .txt extension (you can modify the pattern as per your specific requirements).
+В совместимом коде функция readFile проверяет и санирует параметр fileName перед обращением к файлу. Код проверяет, не содержит ли имя файла ..., которое обычно используется в атаках обхода пути для перехода к родительским каталогам. Кроме того, код использует шаблон регулярного выражения, чтобы убедиться, что имя файла состоит только из буквенно-цифровых символов и заканчивается расширением .txt (вы можете модифицировать шаблон в соответствии с вашими требованиями).
 
-By validating and sanitizing the file name, the compliant code mitigates the risk of external control of the file name or path. It ensures that only files meeting the specified criteria can be accessed, reducing the potential for unauthorized access or disclosure of sensitive information.
-
-
+Проверяя и санируя имя файла, совместимый код снижает риск внешнего контроля имени файла или пути к нему. Он обеспечивает доступ только к файлам, соответствующим заданным критериям, что снижает вероятность несанкционированного доступа или раскрытия конфиденциальной информации.
 
 
-## Generation of Error Message Containing Sensitive Information
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Генерация сообщения об ошибке, содержащего конфиденциальную информацию
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - error message containing sensitive information
+// Несоответствующий код - сообщение об ошибке, содержащее конфиденциальную информацию
 def divide(a: Int, b: Int): Int = {
   if (b != 0) {
     a / b
@@ -526,16 +526,16 @@ def divide(a: Int, b: Int): Int = {
 ```
 
 
-In the noncompliant code, when a division by zero occurs, an ArithmeticException is thrown with an error message that includes the values of the numerator and denominator. This error message may contain sensitive information, such as actual values from the computation, which could be exploited by an attacker for malicious purposes.
+В коде, не соответствующем требованиям, при делении на ноль выбрасывается ArithmeticException с сообщением об ошибке, включающим значения числителя и знаменателя. Это сообщение об ошибке может содержать конфиденциальную информацию, например, фактические значения вычислений, которые могут быть использованы злоумышленником в злонамеренных целях.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - generic error message without sensitive information
+// Соответствующий код - общее сообщение об ошибке без важной информации
 def divide(a: Int, b: Int): Int = {
   if (b != 0) {
     a / b
@@ -545,190 +545,190 @@ def divide(a: Int, b: Int): Int = {
 }
 ```
 
-In the compliant code, the error message is modified to provide a generic message without disclosing any sensitive information. Instead of including the specific values of the numerator and denominator, the error message simply states that a division by zero error has occurred.
+В коде, соответствующем требованиям, сообщение об ошибке модифицировано, чтобы предоставить общее сообщение, не раскрывая никакой конфиденциальной информации. Вместо того чтобы указывать конкретные значения числителя и знаменателя, в сообщении об ошибке просто говорится, что произошла ошибка деления на ноль.
 
-By avoiding the inclusion of sensitive information in error messages, the compliant code helps to prevent the potential exposure of sensitive data. It follows the principle of providing a generic error message that does not divulge specific details of the computation, reducing the risk of information leakage and protecting the confidentiality of sensitive data.
+Избегая включения конфиденциальной информации в сообщения об ошибках, совместимый код помогает предотвратить потенциальное раскрытие конфиденциальных данных. Он следует принципу предоставления общего сообщения об ошибке, которое не раскрывает конкретных деталей вычислений, снижая риск утечки информации и защищая конфиденциальность конфиденциальных данных.
 
 
-## unprotected storage of credentials
+## Незащищенное хранение учетных данных
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - unprotected storage of credentials
+// Несоответствующий код - незащищенное хранение учетных данных
 val username = "admin"
 val password = "secretpassword"
 ```
 
-In the noncompliant code, the credentials (username and password) are stored directly in variables without any protection. Storing credentials in plain text exposes them to potential unauthorized access, especially if an attacker gains access to the source code or the environment where the code is deployed.
+В коде, не соответствующем требованиям, учетные данные (имя пользователя и пароль) хранятся непосредственно в переменных без какой-либо защиты. Хранение учетных данных в открытом виде подвергает их потенциальному несанкционированному доступу, особенно если злоумышленник получит доступ к исходному коду или среде, в которой развернут код.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - secure storage of credentials
+// Соответствующий код - безопасное хранение учетных данных
 val username = readSecureValue("username")
 val password = readSecureValue("password")
 
 def readSecureValue(key: String): String = {
-  // Implement a secure mechanism to retrieve the value of the given key
-  // Examples: reading from an encrypted configuration file, retrieving from a secure key vault, etc.
-  // This implementation depends on the specific security requirements and infrastructure of the application.
-  // The focus is on securely retrieving the credentials, ensuring they are not stored directly in the code.
-  // The exact implementation details are beyond the scope of this example.
-  // Ideally, secrets management tools or libraries should be used for secure credential storage.
-  // This ensures that credentials are not hardcoded in the code and are accessed securely at runtime.
-  // Additionally, access controls and encryption should be implemented to protect the stored credentials.
-  // For simplicity, this example assumes a custom readSecureValue() function that securely retrieves the value.
-  // The actual implementation should use established and tested secure practices.
-  // This example is meant to illustrate the concept of securely storing and retrieving credentials.
-  // It is recommended to use a robust secrets management solution in real-world scenarios.
-  // This code snippet should be adapted to meet the specific security requirements of the application.
+  // Реализуйте безопасный механизм для получения значения заданного ключа.
+  // Примеры: чтение из зашифрованного файла конфигурации, получение из защищенного хранилища ключей и т. д.
+  // Данная реализация зависит от конкретных требований безопасности и инфраструктуры приложения.
+  // Основное внимание уделяется безопасному получению учетных данных, гарантируя, что они не хранятся непосредственно в коде.
+  // Точные детали реализации выходят за рамки данного примера.
+  // В идеале для безопасного хранения учетных данных следует использовать инструменты управления секретами или библиотеки.
+  // Это гарантирует, что учетные данные не будут жестко закодированы в коде и к ним будет обеспечен безопасный доступ во время выполнения.
+  // Кроме того, для защиты хранимых учетных данных должны быть реализованы контроль доступа и шифрование.
+  // Для простоты в этом примере предполагается пользовательская функция readSecureValue(), которая безопасно извлекает значение value.
+  // Фактическая реализация должна использовать установленные и проверенные методы обеспечения безопасности.
+  // Данный пример призван проиллюстрировать концепцию безопасного хранения и получения учетных данных.
+  // В реальных сценариях рекомендуется использовать надежное решение для управления секретами.
+  // Данный фрагмент кода должен быть адаптирован в соответствии с конкретными требованиями безопасности приложения.
 
-  // Placeholder implementation
+  // Реализация Placeholder
   if (key == "username") {
-    // Retrieve the username value securely
+    // Получение значения имени пользователя безопасно
     "admin"
   } else if (key == "password") {
-    // Retrieve the password value securely
+    // Получите безопасное значение пароля
     "secretpassword"
   } else {
-    // Handle other keys as needed
+    // Обрабатывайте другие ключи по мере необходимости
     ""
   }
 }
 ```
 
-In the compliant code, the credentials are not stored directly in the code. Instead, a secure mechanism is used to retrieve the values of the credentials at runtime. The readSecureValue function is a placeholder for a secure implementation that retrieves the credentials from a secure storage or secrets management solution. The exact implementation details will depend on the specific security requirements and infrastructure of the application.
+В совместимом коде учетные данные не хранятся непосредственно в коде. Вместо этого используется безопасный механизм для получения значений учетных данных во время выполнения. Функция readSecureValue - это место для безопасной реализации, которая извлекает учетные данные из безопасного хранилища или решения для управления секретами. Точные детали реализации будут зависеть от конкретных требований безопасности и инфраструктуры приложения.
 
-By securely storing the credentials and retrieving them at runtime, the compliant code helps to protect sensitive information from unauthorized access. It avoids the risk of exposing credentials in plain text and follows best practices for credential management and secure storage.
+Благодаря безопасному хранению учетных данных и их получению во время выполнения, совместимый код помогает защитить конфиденциальную информацию от несанкционированного доступа. Он позволяет избежать риска раскрытия учетных данных в виде открытого текста и следует лучшим практикам управления учетными данными и безопасного хранения.
 
 
 
-## Trust Boundary Violation
+## Нарушение границ доверия
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - trust boundary violation
+// Несоответствующий код - нарушение границ доверия
 val userRole = getUserRoleFromRequest(request)
 val isAdmin = checkUserRole(userRole)
 
 def getUserRoleFromRequest(request: Request): String = {
-  // Extract the user role from the request parameter without proper validation
-  // This code assumes the user role is directly provided in the request
-  // without any sanitization or validation checks
+  // Извлечение роли пользователя из параметра запроса без надлежащей валидации
+  // Данный код предполагает, что роль пользователя указывается непосредственно в запросе
+  // без какой-либо санации или проверки валидности
   request.getParameter("role")
 }
 
 def checkUserRole(userRole: String): Boolean = {
-  // Perform a check to determine if the user has administrative privileges
-  // In this noncompliant code, the check is solely based on the value of the user role
-  // without any additional validation or verification
+  // Выполните проверку, чтобы определить, имеет ли пользователь административные привилегии.
+  // В этом несоответствующем коде проверка основывается только на значении роли пользователя
+  // без какой-либо дополнительной валидации или проверки
   userRole.toLowerCase() == "admin"
 }
 ```
 
-In the noncompliant code, there is a trust boundary violation where the user role is directly extracted from the request parameter without proper validation or sanitization. The code assumes that the user role provided in the request is trustworthy and uses it to determine if the user has administrative privileges. However, this approach is insecure as it relies solely on the user-provided value without any additional validation or verification.
+В коде, не соответствующем требованиям, происходит нарушение границ доверия, когда роль пользователя извлекается непосредственно из параметра запроса без надлежащей проверки или санации. Код предполагает, что роль пользователя, указанная в запросе, заслуживает доверия, и использует ее для определения наличия у пользователя административных привилегий. Однако такой подход небезопасен, поскольку он опирается исключительно на предоставленное пользователем значение без дополнительной проверки или подтверждения.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - proper validation of user role
+// Соответствующий код - надлежащее подтверждение роли пользователя
 val userRole = getUserRoleFromRequest(request)
 val isAdmin = checkUserRole(userRole)
 
 def getUserRoleFromRequest(request: Request): String = {
-  // Extract the user role from the request parameter and perform proper validation
-  // Validate and sanitize the user-provided input to prevent trust boundary violations
+  // Извлеките роль пользователя из параметра запроса и выполните соответствующую проверку
+  // Проверяем и обеззараживаем вводимые пользователем данные, чтобы предотвратить нарушение границ доверия
   val rawUserRole = request.getParameter("role")
   validateUserRole(rawUserRole)
 }
 
 def validateUserRole(userRole: String): String = {
-  // Perform proper validation and sanitization of the user role
-  // This could include checks such as ensuring the user role is within an allowed set of values,
-  // validating against a predefined list of roles, or using a dedicated role validation library.
-  // The exact validation logic depends on the specific requirements and design of the application.
-  // This example assumes a simple validation for demonstration purposes.
+  // Выполните надлежащую проверку и санацию роли пользователя.
+  // Это может включать такие проверки, как проверка того, что роль пользователя находится в допустимом наборе значений,
+  // проверка по предопределенному списку ролей или использование специальной библиотеки проверки ролей.
+  // Точная логика проверки зависит от конкретных требований и дизайна приложения.
+  // В данном примере предполагается простая валидация в демонстрационных целях.
   if (userRole.toLowerCase() == "admin" || userRole.toLowerCase() == "user") {
     userRole.toLowerCase()
   } else {
-    // Handle invalid user roles as needed, such as assigning a default role or throwing an exception
+    // При необходимости обработайте недействительные роли пользователей, например, назначьте роль по умолчанию или выбросьте исключение
     "guest"
   }
 }
 
 def checkUserRole(userRole: String): Boolean = {
-  // Perform a check to determine if the user has administrative privileges
-  // The user role has been properly validated before reaching this point
+  // Выполните проверку, чтобы определить, есть ли у пользователя административные привилегии
+  // Роль пользователя была должным образом подтверждена до достижения этого пункта
   userRole == "admin"
 }
 ```
 
 
-In the compliant code, proper validation and sanitization of the user role are performed. The getUserRoleFromRequest function extracts the user role from the request parameter and passes it to the validateUserRole function for validation. The validateUserRole function performs appropriate checks to ensure the user role is valid and within the expected set of values. In this example, the validation is a simple check against allowed roles, but in real-world scenarios, more complex validation logic and libraries should be used.
+В совместимом коде выполняется надлежащая валидация и санация роли пользователя. Функция getUserRoleFromRequest извлекает роль пользователя из параметра запроса и передает ее функции validateUserRole для проверки. Функция validateUserRole выполняет соответствующие проверки, чтобы убедиться, что роль пользователя действительна и находится в пределах ожидаемого набора значений. В этом примере валидация представляет собой простую проверку разрешенных ролей, но в реальных сценариях следует использовать более сложную логику валидации и библиотеки.
 
-By validating and sanitizing the user role, the compliant code prevents trust boundary violations and ensures that only valid and trusted values are used to determine if the user has administrative privileges. This helps to protect against unauthorized access and maintains the integrity of the trust boundary.
-
-
+Проверяя и санируя роль пользователя, совместимый код предотвращает нарушение границ доверия и гарантирует, что для определения наличия у пользователя административных привилегий используются только допустимые и доверенные значения. Это помогает защитить от несанкционированного доступа и поддерживает целостность границы доверия.
 
 
 
 
-## Insufficiently Protected Credentials
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Недостаточно защищенные учетные данные
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - insufficiently protected credentials
+// Несоответствующий код - недостаточно защищенные учетные данные
 val username = "admin"
 val password = "password"
 
 val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", username, password)
 ```
 
-In the noncompliant code, the username and password for a database connection are hardcoded directly into the source code. This practice is insecure because it exposes sensitive credentials to anyone who has access to the code. Hardcoding credentials makes it easier for attackers to identify and exploit them, especially if the source code is accessible or accidentally leaked.
+В коде, не соответствующем требованиям, имя пользователя и пароль для подключения к базе данных жестко закодированы непосредственно в исходном коде. Такая практика небезопасна, поскольку открывает доступ к конфиденциальным учетным данным всем, кто имеет доступ к коду. Жесткое кодирование учетных данных облегчает злоумышленникам их определение и использование, особенно если исходный код доступен или случайно просочился.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - protected credentials
+// Соответствующий код - защищённые учетные данные
 val username = readUsernameFromConfig()
 val password = readPasswordFromConfig()
 
 val connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", username, password)
 
 def readUsernameFromConfig(): String = {
-  // Read the username from a secure configuration file or environment variable
-  // This ensures that the credentials are not directly hardcoded in the source code
-  // and are kept separate from the code repository
-  // The specific method for retrieving the username will depend on the application's configuration mechanism
-  // such as reading from a properties file, using a secure vault, or fetching from environment variables
-  // This example assumes reading from a properties file for demonstration purposes
+  // Считываем имя пользователя из защищенного конфигурационного файла или переменной окружения
+  // Это гарантирует, что учетные данные не будут непосредственно жестко закодированы в исходном коде
+  // и хранятся отдельно от репозитория кода
+  // Конкретный метод получения имени пользователя зависит от механизма конфигурации приложения.
+  // например, чтение из файла свойств, использование безопасного хранилища или получение из переменных окружения.
+  // В данном примере в демонстрационных целях предполагается чтение из файла свойств
   val properties = new Properties()
   properties.load(new FileInputStream("config.properties"))
   properties.getProperty("db.username")
 }
 
 def readPasswordFromConfig(): String = {
-  // Read the password from a secure configuration file or environment variable
-  // Similar to the username, the password should be stored separately from the source code
+  // Считывание пароля из защищенного конфигурационного файла или переменной окружения
+  // Как и имя пользователя, пароль должен храниться отдельно от исходного кода
   val properties = new Properties()
   properties.load(new FileInputStream("config.properties"))
   properties.getProperty("db.password")
@@ -736,20 +736,20 @@ def readPasswordFromConfig(): String = {
 ```
 
 
-In the compliant code, the username and password are retrieved from a secure configuration file (config.properties) rather than being hardcoded directly into the source code. This separation of credentials from the code ensures that sensitive information is not exposed in the codebase itself. The specific method for retrieving the credentials may vary depending on the application's configuration mechanism, such as reading from a properties file, using a secure vault, or fetching from environment variables.
+В совместимом коде имя пользователя и пароль извлекаются из защищенного конфигурационного файла (config.properties), а не вводятся непосредственно в исходный код. Такое отделение учетных данных от кода гарантирует, что конфиденциальная информация не будет раскрыта в самой кодовой базе. Конкретный метод получения учетных данных может зависеть от механизма конфигурации приложения, например чтение из файла свойств, использование защищенного хранилища или получение из переменных окружения.
 
-By protecting the credentials in a separate configuration file or environment variable, the compliant code mitigates the risk of accidental exposure of sensitive information and helps maintain the confidentiality of the credentials. It also allows for easier management of credentials in different environments without modifying the source code.
-
-
+Защищая учетные данные в отдельном файле конфигурации или переменной среды, совместимый код снижает риск случайного раскрытия конфиденциальной информации и помогает сохранить конфиденциальность учетных данных. Это также позволяет упростить управление учетными данными в различных средах без внесения изменений в исходный код.
 
 
-## Restriction of XML External Entity Reference
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Ограничение ссылки на внешние сущности XML
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - unrestricted XML entity reference
+// Несоответствующий код - неограниченная ссылка на сущность XML
 import scala.xml.XML
 
 val xml = XML.loadString("""
@@ -760,25 +760,25 @@ val xml = XML.loadString("""
   <root>&xxe;</root>
 """)
 
-// Process the XML data
+// Обработка данных XML
 ```
 
-In the noncompliant code, an XML document is loaded using the XML.loadString method without any explicit restrictions on XML external entity references. This can lead to XML External Entity (XXE) attacks where an attacker can include external entities, such as local files, and potentially read sensitive data or perform other malicious actions.
+В коде, не соответствующем требованиям, XML-документ загружается с помощью метода XML.loadString без каких-либо явных ограничений на ссылки на внешние сущности XML. Это может привести к атакам XML External Entity (XXE), когда злоумышленник может включить внешние сущности, такие как локальные файлы, и потенциально прочитать конфиденциальные данные или выполнить другие вредоносные действия.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - restricted XML entity reference
+// Соответствующий код - ограниченная ссылка на сущность XML
 import scala.xml.{Elem, XML}
 import javax.xml.XMLConstants
 import javax.xml.parsers.DocumentBuilderFactory
 
-// Set up secure XML parsing
+// Настройка безопасного разбора XML
 val factory = DocumentBuilderFactory.newInstance()
 factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true)
 factory.setExpandEntityReferences(false)
@@ -792,43 +792,43 @@ val xml = XML.withSAXParser(builder).loadString("""
   <root>&xxe;</root>
 """)
 
-// Process the XML data
+// Обработка данных XML
 ```
 
 
-In the compliant code, additional measures are taken to restrict the XML entity references and prevent XXE attacks. The javax.xml.parsers.DocumentBuilderFactory is used to create a secure XML parser. By enabling the FEATURE_SECURE_PROCESSING feature and disabling the ExpandEntityReferences option, the parser ensures that XML external entity references are not resolved or expanded.
+В совместимом коде приняты дополнительные меры для ограничения ссылок на XML-сущности и предотвращения XXE-атак. Для создания безопасного парсера XML используется фабрика javax.xml.parsers.DocumentBuilderFactory. Включив функцию FEATURE_SECURE_PROCESSING и отключив опцию ExpandEntityReferences, парсер гарантирует, что ссылки на внешние сущности XML не будут разрешены или расширены.
 
-The XML.withSAXParser method is used to apply the secure parser to the XML document. This ensures that the XML processing is performed with the restricted entity reference behavior.
+Метод XML.withSAXParser используется для применения безопасного парсера к XML-документу. Это гарантирует, что обработка XML будет выполняться с ограниченным поведением ссылок на сущности.
 
-By implementing these restrictions on XML entity references, the compliant code mitigates the risk of XXE attacks and protects against the unauthorized disclosure of sensitive information from external entities.
-
-
+Реализуя эти ограничения на ссылки на XML-сущности, совместимый код снижает риск XXE-атак и защищает от несанкционированного раскрытия конфиденциальной информации из внешних сущностей.
 
 
-## PHPMailer library
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Библиотека PHPMailer
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - using outdated library version
+// Несоответствующий код - использование устаревшей версии библиотеки
 import org.apache.commons.codec.digest.DigestUtils
 
 val password = "password123"
 val hashedPassword = DigestUtils.sha1Hex(password)
 ```
 
-In the noncompliant code, the Apache Commons Codec library is used to hash a password using the SHA-1 algorithm. However, using the SHA-1 algorithm for password hashing is considered insecure and outdated. It is susceptible to various attacks, such as collision attacks and pre-image attacks, making it unsuitable for secure password storage.
+В несоответствующем коде для хэширования пароля по алгоритму SHA-1 используется библиотека Apache Commons Codec. Однако использование алгоритма SHA-1 для хеширования паролей считается небезопасным и устаревшим. Он подвержен различным атакам, таким как атаки на столкновение и атаки на предварительный образ, что делает его непригодным для безопасного хранения паролей.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - using secure and up-to-date library version
+// Соответствующий код - использование безопасной и актуальной версии библиотеки
 import java.security.MessageDigest
 
 val password = "password123"
@@ -837,22 +837,22 @@ val hashedPassword = sha256.digest(password.getBytes).map("%02x".format(_)).mkSt
 ```
 
 
-In the compliant code, the java.security.MessageDigest class is used to hash the password using the SHA-256 algorithm, which is more secure than SHA-1. The getInstance method is called with the algorithm name "SHA-256" to obtain an instance of the MessageDigest class.
+В совместимом коде класс java.security.MessageDigest используется для хэширования пароля с помощью алгоритма SHA-256, который является более безопасным, чем SHA-1. Для получения экземпляра класса MessageDigest вызывается метод getInstance с именем алгоритма "SHA-256".
 
-The digest method is used to compute the hash value of the password by converting it to bytes and applying the SHA-256 algorithm. The resulting hash is then converted to a hexadecimal string representation using the map and mkString methods.
+Метод digest используется для вычисления хэш-значения пароля путем преобразования его в байты и применения алгоритма SHA-256. Затем полученный хэш преобразуется в шестнадцатеричное строковое представление с помощью методов map и mkString.
 
-By using a secure and up-to-date algorithm like SHA-256, the compliant code ensures that the password hashing is performed in a more robust and secure manner, mitigating the risk of password compromise due to the use of vulnerable and outdated components. It is important to regularly update dependencies and libraries to ensure the use of the latest versions with security patches and fixes.
-
-
+Благодаря использованию такого безопасного и современного алгоритма, как SHA-256, совместимый код обеспечивает более надежное и безопасное хеширование паролей, снижая риск их компрометации из-за использования уязвимых и устаревших компонентов. Важно регулярно обновлять зависимости и библиотеки, чтобы гарантировать использование последних версий с исправлениями и исправлениями безопасности.
 
 
-## Improper Validation of Certificate with Host Mismatch
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Неправильная проверка сертификата с несоответствием хоста
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - improper certificate validation
+// Несоответствующий код - неправильная проверка сертификата
 import java.net.URL
 import java.net.HttpURLConnection
 
@@ -860,23 +860,23 @@ val url = new URL("https://example.com")
 val connection = url.openConnection().asInstanceOf[HttpURLConnection]
 connection.setRequestMethod("GET")
 
-// Disable hostname verification
+// Отключить проверку имени хоста
 connection.setHostnameVerifier((_, _) => true)
 
 val responseCode = connection.getResponseCode()
 ```
 
-In the noncompliant code, a URL is created for the "https://example.com" endpoint, and a connection is opened using openConnection() method. The setHostnameVerifier method is used to disable hostname verification, which means that the certificate presented by the server will not be validated against the host.
+В коде, не соответствующем требованиям, создается URL для конечной точки "https://example.com" и открывается соединение с помощью метода openConnection(). Метод setHostnameVerifier используется для отключения проверки имени хоста, что означает, что сертификат, представленный сервером, не будет проверяться на соответствие хосту.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - proper certificate validation
+// Соответствующий код - надлежащее подтверждение сертификата
 import java.net.URL
 import java.net.HttpURLConnection
 import javax.net.ssl.HttpsURLConnection
@@ -886,7 +886,7 @@ val url = new URL("https://example.com")
 val connection = url.openConnection().asInstanceOf[HttpsURLConnection]
 connection.setRequestMethod("GET")
 
-// Enable proper hostname verification
+// Включите правильную проверку имени хоста
 val sslContext = SSLContext.getInstance("TLS")
 sslContext.init(null, null, null)
 connection.setSSLSocketFactory(sslContext.getSocketFactory())
@@ -895,22 +895,22 @@ val responseCode = connection.getResponseCode()
 ```
 
 
-In the compliant code, the HttpsURLConnection class is used instead of HttpURLConnection to establish an HTTPS connection, which is required for secure communication. The SSLContext class is used to initialize an SSL context with default parameters.
+В совместимом коде класс HttpsURLConnection используется вместо HttpURLConnection для установления HTTPS-соединения, которое необходимо для безопасной связи. Класс SSLContext используется для инициализации SSL-контекста с параметрами по умолчанию.
 
-The setSSLSocketFactory method is then called on the connection object to set the SSL socket factory from the initialized SSL context. This ensures that proper certificate validation and hostname verification are performed by the underlying SSL implementation.
+Затем на объекте соединения вызывается метод setSSLSocketFactory, чтобы установить фабрику сокетов SSL из инициализированного SSL-контекста. Это гарантирует, что базовая реализация SSL выполнит надлежащую проверку сертификата и имени хоста.
 
-By using the HttpsURLConnection class and enabling proper hostname verification, the compliant code ensures that the certificate presented by the server is validated against the host, mitigating the risk of connecting to a server with a mismatched or invalid certificate. It is important to perform proper certificate validation to establish secure and trusted connections.
-
-
+Благодаря использованию класса HttpsURLConnection и включению надлежащей проверки имени хоста совместимый код гарантирует, что сертификат, представленный сервером, будет проверен на соответствие хосту, что снижает риск подключения к серверу с несоответствующим или недействительным сертификатом. Для создания безопасных и надежных соединений важно выполнять надлежащую проверку сертификатов.
 
 
-## Improper Authentication
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Неправильная аутентификация
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - improper authentication
+// Несоответствующий код - неправильная аутентификация
 import java.util.Scanner
 
 val scanner = new Scanner(System.in)
@@ -919,7 +919,7 @@ val username = scanner.nextLine()
 println("Enter password:")
 val password = scanner.nextLine()
 
-// Perform authentication logic
+// Выполните логику аутентификации
 val isAuthenticated = authenticate(username, password)
 
 if (isAuthenticated) {
@@ -929,30 +929,30 @@ if (isAuthenticated) {
 }
 
 def authenticate(username: String, password: String): Boolean = {
-  // Authentication logic goes here
+  // Логика аутентификации находится здесь
   // ...
-  true // Dummy authentication logic for demonstration purposes
+  true // Фиктивная логика аутентификации для демонстрационных целей
 }
 ```
 
-In the noncompliant code, the authentication process relies on reading the username and password from the standard input using the Scanner class. The credentials are then passed to the authenticate function, which performs the authentication logic. However, this approach is insecure as it exposes the sensitive credentials to potential eavesdropping.
+В коде, не соответствующем требованиям, процесс аутентификации основан на чтении имени пользователя и пароля из стандартного ввода с помощью класса Scanner. Затем учетные данные передаются в функцию authenticate, которая выполняет логику аутентификации. Однако такой подход небезопасен, поскольку подвергает конфиденциальные учетные данные потенциальному подслушиванию.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - proper authentication
+// Соответствующий код - надлежащая аутентификация
 import java.io.Console
 
 val console: Console = System.console()
 val username = console.readLine("Enter username: ")
 val password = console.readPassword("Enter password: ")
 
-// Perform authentication logic
+// Выполните логику аутентификации
 val isAuthenticated = authenticate(username, password)
 
 if (isAuthenticated) {
@@ -962,32 +962,32 @@ if (isAuthenticated) {
 }
 
 def authenticate(username: String, password: Array[Char]): Boolean = {
-  // Authentication logic goes here
+  // Логика аутентификации находится здесь
   // ...
-  true // Dummy authentication logic for demonstration purposes
+  true // Фиктивная логика аутентификации для демонстрации
 }
 ```
 
 
-In the compliant code, the authentication process uses the Console class to read the username and password from the console. The readLine method is used to read the username, while the readPassword method is used to securely read the password as a character array instead of a plain text string.
+В совместимом коде процесс аутентификации использует класс Console для чтения имени пользователя и пароля из консоли. Метод readLine используется для считывания имени пользователя, а метод readPassword - для безопасного считывания пароля в виде массива символов, а не строки обычного текста.
 
-By using the Console class, the compliant code avoids exposing the sensitive credentials in plain text and provides a more secure approach to handle user input for authentication.
-
-
+Благодаря использованию класса Console совместимый код избегает раскрытия конфиденциальных учетных данных в виде обычного текста и обеспечивает более безопасный подход к обработке пользовательского ввода для аутентификации.
 
 
-## Session Fixation
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Фиксация сеанса
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - session fixation vulnerability
+// Несоответствующий код - уязвимость фиксации сеанса
 import javax.servlet.http.{HttpServletRequest, HttpServletResponse}
 
 def login(request: HttpServletRequest, response: HttpServletResponse): Unit = {
   val sessionId = request.getParameter("sessionid")
-  // Perform login logic
+  // Выполните логику входа в систему
   // ...
   val newSessionId = generateNewSessionId()
   request.getSession(true).setAttribute("sessionid", newSessionId)
@@ -995,76 +995,76 @@ def login(request: HttpServletRequest, response: HttpServletResponse): Unit = {
 }
 
 def generateNewSessionId(): String = {
-  // Generate new session ID logic goes here
+  // Логика генерирования нового идентификатора сессии находится здесь
   // ...
-  "newSessionId" // Dummy session ID for demonstration purposes
+  "newSessionId" // Фиктивный идентификатор сессии для демонстрационных целей
 }
 ```
 
-In the noncompliant code, the login function receives an HTTP request and response objects. It retrieves the sessionid parameter from the request, performs the login logic, generates a new session ID using the generateNewSessionId function, and sets the new session ID as an attribute in the session. However, this code is vulnerable to session fixation attacks because it accepts the sessionid parameter from an untrusted source without invalidating any existing session.
+В коде, не соответствующем требованиям, функция login получает HTTP-запрос и объекты ответа. Она извлекает параметр sessionid из запроса, выполняет логику входа, генерирует новый идентификатор сессии с помощью функции generateNewSessionId и устанавливает новый идентификатор сессии в качестве атрибута в сессии. Однако этот код уязвим для атак с фиксацией сеанса, поскольку принимает параметр sessionid из ненадежного источника, не аннулируя существующую сессию.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - protected against session fixation
+// Соответствующий код - защищены от фиксации сеанса
 import javax.servlet.http.{HttpServletRequest, HttpServletResponse}
 import java.util.UUID
 
 def login(request: HttpServletRequest, response: HttpServletResponse): Unit = {
   val newSessionId = generateNewSessionId()
-  request.changeSessionId() // Invalidate existing session ID
+  request.changeSessionId() // Признать недействительным идентификатор существующей сессии
   request.getSession(true).setAttribute("sessionid", newSessionId)
   response.sendRedirect("/dashboard")
 }
 
 def generateNewSessionId(): String = {
-  UUID.randomUUID().toString // Generate a new session ID using a secure method
+  UUID.randomUUID().toString // Сгенерируйте новый идентификатор сеанса с помощью безопасного метода
 }
 ```
 
 
-In the compliant code, the login function generates a new session ID using a secure method such as UUID.randomUUID(). Before setting the new session ID, the code invalidates any existing session by calling request.changeSessionId(). This ensures that any previously fixed session IDs are invalidated and a new session is established.
+В коде, соответствующем требованиям, функция входа в систему генерирует новый идентификатор сессии с помощью безопасного метода, например UUID.randomUUID(). Перед установкой нового идентификатора сессии код аннулирует все существующие сессии, вызывая request.changeSessionId(). Это гарантирует, что все ранее установленные идентификаторы сессий будут аннулированы и будет установлена новая сессия.
 
-By generating a new session ID and invalidating any existing session, the compliant code protects against session fixation attacks by ensuring that each user receives a unique and secure session ID upon login.
-
-
+Генерируя новый идентификатор сессии и аннулируя все существующие сессии, совместимый код защищает от атак фиксации сессий, гарантируя, что каждый пользователь получает уникальный и безопасный идентификатор сессии при входе в систему.
 
 
-## Inclusion of Functionality from Untrusted Control
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Включение функциональности из недоверенного управления
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - inclusion of functionality from untrusted control
+// Несоответствующий код - включение функциональности из недоверенного управления
 def processTemplate(templateName: String): String = {
   val template = loadTemplate(templateName)
   template.render()
 }
 
 def loadTemplate(templateName: String): Template = {
-  // Load template file from untrusted source
+  // Загрузка файла шаблона из недоверенного источника
   // ...
-  Template.fromFile(templateName) // Unsafe inclusion of template
+  Template.fromFile(templateName) // Небезопасное включение шаблона
 }
 ```
 
-In the noncompliant code, the processTemplate function takes a templateName parameter and attempts to load a template using the loadTemplate function. However, the code is vulnerable to the inclusion of functionality from an untrusted control because it directly includes the template specified by templateName without proper validation or sanitization.
+В коде, не соответствующем требованиям, функция processTemplate принимает параметр templateName и пытается загрузить шаблон с помощью функции loadTemplate. Однако код уязвим для включения функциональности из недоверенного элемента управления, поскольку он напрямую включает шаблон, указанный параметром templateName, без надлежащей проверки или санации.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
-// Compliant code - protected against inclusion of functionality from untrusted control
+// Соответствующий код - защита от включения функциональности из недоверенного управления
 def processTemplate(templateName: String): String = {
   val template = loadTemplate(templateName)
   template.render()
@@ -1072,30 +1072,30 @@ def processTemplate(templateName: String): String = {
 
 def loadTemplate(templateName: String): Template = {
   if (isValidTemplateName(templateName)) {
-    // Load template from trusted source
+    // Загрузите шаблон из надежного источника
     // ...
-    Template.fromFile(templateName) // Safe inclusion of template
+    Template.fromFile(templateName) // Безопасное включение шаблона
   } else {
     throw new IllegalArgumentException("Invalid template name")
   }
 }
 
 def isValidTemplateName(templateName: String): Boolean = {
-  // Implement validation logic for template name
+  // Реализуйте логику проверки имени шаблона
   // ...
-  // Return true if the template name is valid, false otherwise
+  // Возвращает true, если имя шаблона валидно, false - в противном случае
 }
 ```
 
 
-In the compliant code, the loadTemplate function includes additional validation logic by introducing the isValidTemplateName function. Before loading the template, the code checks if the templateName is valid by calling isValidTemplateName. If the template name is valid, the code proceeds to load the template from a trusted source using Template.fromFile. However, if the template name is determined to be invalid, an exception is thrown to handle the error.
+В совместимом коде функция loadTemplate включает дополнительную логику проверки, вводя функцию isValidTemplateName. Перед загрузкой шаблона код проверяет, является ли имя шаблона действительным, вызывая функцию isValidTemplateName. Если имя шаблона достоверно, код переходит к загрузке шаблона из доверенного источника с помощью функции Template.fromFile. Однако если имя шаблона окажется недействительным, то для обработки ошибки будет выброшено исключение.
 
-By implementing proper validation of the template name, the compliant code protects against the inclusion of functionality from untrusted control by ensuring that only trusted templates are loaded and rendered.
+Реализуя правильную проверку имени шаблона, совместимый код защищает от включения функциональности из недоверенного управления, гарантируя, что загружаются и отображаются только доверенные шаблоны.
 
 
-## Download of Code Without Integrity Check
+## Загрузка кода без проверки целостности
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1107,12 +1107,12 @@ def downloadAndExecute(url: String): Unit = {
 }
 ```
 
-In the noncompliant code, the downloadAndExecute function takes a URL as input and downloads the code using curl, then pipes the output to bash for execution. However, the code is vulnerable to the download of code without integrity check. It directly executes the downloaded code without verifying its integrity or authenticity.
+В коде, не соответствующем требованиям, функция downloadAndExecute принимает на вход URL, загружает код с помощью curl, а затем передает вывод в bash для выполнения. Однако код уязвим для загрузки кода без проверки целостности. Он напрямую выполняет загруженный код, не проверяя его целостность или подлинность.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1123,7 +1123,7 @@ def downloadAndExecute(url: String, checksum: String): Unit = {
   val downloadedCode = command.!!
 
   if (verifyIntegrity(downloadedCode, checksum)) {
-    // Execute the downloaded code
+    // Выполните загруженный код
     // ...
   } else {
     throw new SecurityException("Code integrity check failed")
@@ -1131,22 +1131,22 @@ def downloadAndExecute(url: String, checksum: String): Unit = {
 }
 
 def verifyIntegrity(code: String, checksum: String): Boolean = {
-  // Perform integrity check by comparing the code's checksum with the expected checksum
+  // Выполните проверку целостности, сравнив контрольную сумму кода с ожидаемой контрольной суммой
   // ...
-  // Return true if the code's integrity is valid, false otherwise
+  // Возвращает true, если целостность кода достоверна, false - в противном случае
 }
 ```
 
 
-In the compliant code, the downloadAndExecute function takes an additional checksum parameter, which represents the expected checksum of the downloaded code. After downloading the code using curl, the code performs an integrity check by calling the verifyIntegrity function. The verifyIntegrity function compares the downloaded code's checksum with the expected checksum. If the integrity check passes, the code proceeds to execute the downloaded code. However, if the integrity check fails, a SecurityException is thrown to handle the potential security risk.
+В совместимом коде функция downloadAndExecute принимает дополнительный параметр checksum, который представляет собой ожидаемую контрольную сумму загруженного кода. После загрузки кода с помощью curl код выполняет проверку целостности, вызывая функцию verifyIntegrity. Функция verifyIntegrity сравнивает контрольную сумму загруженного кода с ожидаемой контрольной суммой. Если проверка целостности пройдена, код переходит к выполнению загруженного кода. Однако если проверка целостности не проходит, то выбрасывается SecurityException для обработки потенциального риска безопасности.
 
-By introducing the integrity check, the compliant code mitigates the risk of executing downloaded code that may have been tampered with or compromised during transit. It ensures that the downloaded code is verified against an expected checksum before execution.
+Введя проверку целостности, совместимый код снижает риск выполнения загруженного кода, который мог быть подделан или скомпрометирован во время транспортировки. Он гарантирует, что загруженный код будет проверен на соответствие ожидаемой контрольной сумме перед выполнением.
 
 
 
-## Deserialization of Untrusted Data
+## Десериализация недоверенных данных
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1161,12 +1161,12 @@ def deserializeObject(data: Array[Byte]): Any = {
 }
 ```
 
-In the noncompliant code, the deserializeObject function takes an array of bytes (data) and attempts to deserialize it using an ObjectInputStream. However, this code is vulnerable to deserialization attacks because it directly deserializes untrusted data without any validation or sanitization. An attacker could potentially provide maliciously crafted serialized data, leading to security issues such as remote code execution or denial of service.
+В коде, не соответствующем требованиям, функция deserializeObject принимает массив байтов (данные) и пытается десериализовать его с помощью ObjectInputStream. Однако этот код уязвим для атак десериализации, поскольку он напрямую десериализует недоверенные данные без какой-либо проверки или санации. Злоумышленник может предоставить злонамеренно созданные сериализованные данные, что приведет к таким проблемам безопасности, как удаленное выполнение кода или отказ в обслуживании.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1177,8 +1177,8 @@ def deserializeObject(data: Array[Byte]): Any = {
   val stream = new ByteArrayInputStream(data)
   val objectInputStream = new ObjectInputStream(stream)
 
-  // Perform input validation and sanitize the data
-  // Example: Validate that the data is from a trusted source or has a specific format
+  // Выполните проверку ввода и обеззараживание данных
+  // Пример: Убедитесь, что данные получены из надежного источника или имеют определенный формат
 
   val obj = objectInputStream.readObject()
   objectInputStream.close()
@@ -1187,20 +1187,20 @@ def deserializeObject(data: Array[Byte]): Any = {
 ```
 
 
-In the compliant code, additional input validation and data sanitization steps are performed before deserialization. These steps can vary depending on the specific requirements of your application, but some common practices include:
+В совместимом коде перед десериализацией выполняются дополнительные шаги по проверке ввода и обеззараживанию данных. Эти шаги могут варьироваться в зависимости от конкретных требований вашего приложения, но некоторые общие практики включают:
 
-* Validating that the data comes from a trusted source.
-* Ensuring the data has a specific expected format or structure.
-* Applying data integrity checks, such as verifying digital signatures or checksums.
-* Filtering or rejecting data that doesn't meet the necessary criteria.
+* Проверка того, что данные поступают из надежного источника.
+* Убедиться, что данные имеют определенный ожидаемый формат или структуру.
+* Применение проверок целостности данных, например, проверка цифровых подписей или контрольных сумм.
+* Фильтрация или отбраковка данных, которые не соответствуют необходимым критериям.
 
-By implementing proper input validation and data sanitization, the compliant code reduces the risk of deserialization attacks by ensuring that only trusted and expected data is deserialized. It helps prevent the execution of malicious code or the exploitation of vulnerabilities through deserialization.
+Реализуя надлежащую проверку ввода и санацию данных, совместимый код снижает риск атак десериализации, гарантируя, что десериализуются только доверенные и ожидаемые данные. Это помогает предотвратить выполнение вредоносного кода или использование уязвимостей через десериализацию.
 
 
 
-## Insufficient Logging
+## Недостаточное ведение журнала
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1208,16 +1208,16 @@ import java.io.{FileWriter, IOException}
 
 def performSensitiveOperation(input: String): Unit = {
   try {
-    // Perform sensitive operation here
+    // Выполните чувствительную операцию здесь
 
-    // Log success message
+    // Занесите в журнал сообщение об успехе
     val logMessage = s"Sensitive operation successful for input: $input"
     val fileWriter = new FileWriter("application.log", true)
     fileWriter.write(logMessage)
     fileWriter.close()
   } catch {
     case e: Exception =>
-      // Log error message
+      // Сообщение об ошибке в журнале
       val logMessage = s"Error performing sensitive operation for input: $input - ${e.getMessage}"
       val fileWriter = new FileWriter("application.log", true)
       fileWriter.write(logMessage)
@@ -1226,54 +1226,54 @@ def performSensitiveOperation(input: String): Unit = {
 }
 ```
 
-In the noncompliant code, the performSensitiveOperation function performs a sensitive operation and logs both success and error messages to a log file. However, the logging implementation is inadequate and prone to several issues:
+В коде, не соответствующем требованиям, функция performSensitiveOperation выполняет конфиденциальную операцию и записывает сообщения об успехе и ошибках в файл журнала. Однако реализация протоколирования неадекватна и подвержена ряду проблем:
 
-* Lack of log severity levels: The code does not differentiate between different severity levels (e.g., INFO, WARN, ERROR), making it challenging to prioritize and respond to different types of log events appropriately.
-* Insufficient log details: The log messages lack sufficient details to understand the context and cause of the logged events, making troubleshooting and analysis difficult.
-* Manual file handling: The code manually handles file writing and closing, which can lead to resource leaks and potential file access conflicts.
-
-
+* Отсутствие уровней серьезности журнала: Код не различает уровни серьезности (например, INFO, WARN, ERROR), что затрудняет определение приоритетов и надлежащую реакцию на различные типы событий журнала.
+* Недостаточная детализация журналов: В сообщениях журнала не хватает подробностей для понимания контекста и причины событий в журнале, что затрудняет поиск и анализ неисправностей.
+* Ручная обработка файлов: Код вручную обрабатывает запись и закрытие файлов, что может привести к утечке ресурсов и потенциальным конфликтам доступа к файлам.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import org.slf4j.{Logger, LoggerFactory}
 
-// Define logger instance
+// Определите экземпляр регистратора
 val logger: Logger = LoggerFactory.getLogger(getClass)
 
 def performSensitiveOperation(input: String): Unit = {
   try {
-    // Perform sensitive operation here
+    // Выполните чувствительную операцию здесь
 
-    // Log success message with appropriate severity level
+    // Занесите в журнал сообщение об успехе с соответствующим уровнем серьезности
     logger.info(s"Sensitive operation successful for input: $input")
   } catch {
     case e: Exception =>
-      // Log error message with appropriate severity level and exception stack trace
+      // Зафиксируйте сообщение об ошибке с соответствующим уровнем серьезности и трассировкой стека исключений
       logger.error(s"Error performing sensitive operation for input: $input", e)
   }
 }
 ```
 
 
-In the compliant code, a logging framework (e.g., SLF4J) is utilized to address the issues with insufficient logging. The code leverages the framework's capabilities to handle log severity levels, provide meaningful log details, and handle file writing and resource management.
+В совместимом коде для решения проблемы недостаточного протоколирования используется фреймворк протоколирования (например, SLF4J). Код использует возможности фреймворка для обработки уровней серьезности журнала, предоставления содержательной информации о журнале, а также для записи файлов и управления ресурсами.
 
-Key improvements in the compliant code:
+Основные улучшения в совместимом коде:
 
-* Logging framework: The code uses an established logging framework (SLF4J) to handle logging operations, which provides more robust and flexible logging features.
-* Log severity levels: The code includes appropriate log severity levels (e.g., INFO for success, ERROR for errors) to differentiate between different types of log events.
-* Enhanced log details: The code includes relevant contextual information in the log messages, such as the input value and exception stack trace for error scenarios, to aid in troubleshooting and analysis.
-* Framework-managed file handling: The logging framework takes care of file writing and resource management, eliminating the need for manual file handling and reducing the risk of resource leaks or file access conflicts.
+* Фреймворк ведения логов: Для обработки операций протоколирования в коде используется установленный фреймворк протоколирования (SLF4J), который обеспечивает более надежные и гибкие функции протоколирования.
+* Уровни серьезности журналов: Код включает соответствующие уровни серьезности журнала (например, INFO для успешного выполнения, ERROR для ошибок), чтобы различать различные типы событий журнала.
+* Расширенные подробности журнала: Код включает в сообщения журнала соответствующую контекстную информацию, такую как входное значение и трассировку стека исключений для сценариев ошибок, чтобы помочь в устранении неполадок и анализе.
+* Управляемая фреймворком обработка файлов: Фреймворк протоколирования берет на себя запись файлов и управление ресурсами, устраняя необходимость в ручной работе с файлами и снижая риск утечки ресурсов или конфликтов доступа к файлам.
 
-By adopting a proper logging framework and following best practices for logging, the compliant code improves the effectiveness and usefulness of the logs, facilitating better monitoring, troubleshooting, and incident response in the application.
+Применяя надлежащий фреймворк протоколирования и следуя лучшим практикам протоколирования, совместимый код повышает эффективность и полезность журналов, способствуя лучшему мониторингу, устранению неполадок и реагированию на инциденты в приложении.
 
 
-## Improper Output Neutralization for Logs
+## Неправильная нейтрализация выходных данных в журналах
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1281,7 +1281,7 @@ import java.io.{FileWriter, IOException}
 
 def logSensitiveInformation(input: String): Unit = {
   try {
-    // Log sensitive information without proper output neutralization
+    // Регистрация конфиденциальной информации без надлежащей нейтрализации выходных данных
     val logMessage = s"Sensitive input received: $input"
     val fileWriter = new FileWriter("application.log", true)
     fileWriter.write(logMessage)
@@ -1293,26 +1293,26 @@ def logSensitiveInformation(input: String): Unit = {
 }
 ```
 
-In the noncompliant code, the logSensitiveInformation function logs sensitive information without proper output neutralization. It directly concatenates the sensitive input value with a log message and writes it to a log file. This approach can lead to log injection attacks where an attacker can manipulate the input value to modify the log message or inject malicious content.
+В коде, не соответствующем требованиям, функция logSensitiveInformation регистрирует конфиденциальную информацию без надлежащей нейтрализации вывода. Она напрямую конкатенирует конфиденциальное входное значение с сообщением журнала и записывает его в файл журнала. Такой подход может привести к атакам с внедрением в журнал, когда злоумышленник может манипулировать входным значением, чтобы изменить сообщение журнала или внедрить вредоносное содержимое.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
 import org.slf4j.{Logger, LoggerFactory}
 import org.apache.commons.text.StringEscapeUtils
 
-// Define logger instance
+// Определите экземпляр регистратора
 val logger: Logger = LoggerFactory.getLogger(getClass)
 
 def logSensitiveInformation(input: String): Unit = {
   try {
-    // Log sensitive information with proper output neutralization
+    // Регистрация конфиденциальной информации с надлежащей нейтрализацией вывода
     val sanitizedInput = StringEscapeUtils.escapeJava(input)
     val logMessage = s"Sensitive input received: $sanitizedInput"
     logger.info(logMessage)
@@ -1324,22 +1324,22 @@ def logSensitiveInformation(input: String): Unit = {
 ```
 
 
-In the compliant code, proper output neutralization is applied to ensure that the logged information is safe and does not introduce vulnerabilities. The code uses the StringEscapeUtils.escapeJava method from Apache Commons Text library to escape special characters in the input value. This ensures that any special characters are properly encoded and do not affect the log format or introduce injection vulnerabilities.
+В совместимом коде применяется надлежащая нейтрализация вывода, чтобы гарантировать, что регистрируемая информация безопасна и не несет в себе уязвимостей. В коде используется метод StringEscapeUtils.escapeJava из библиотеки Apache Commons Text для экранирования специальных символов во входном значении. Это гарантирует, что все специальные символы будут правильно закодированы и не повлияют на формат журнала и не создадут уязвимости для инъекций.
 
-Key improvements in the compliant code:
+Основные улучшения в совместимом коде:
 
-* Output neutralization: The code applies proper output neutralization using the StringEscapeUtils.escapeJava method to escape special characters in the input value before logging.
-* Logging framework: The code utilizes a logging framework (SLF4J) to handle log operations, providing better log management and configurability.
-* Enhanced error handling: The code catches exceptions and logs appropriate error messages using the logging framework, improving the handling of potential errors during logging.
+* Нейтрализация вывода: В коде применяется надлежащая нейтрализация вывода с помощью метода StringEscapeUtils.escapeJava для экранирования специальных символов во входном значении перед записью в журнал.
+* Фреймворк протоколирования: Код использует фреймворк протоколирования (SLF4J) для обработки операций протоколирования, обеспечивая лучшее управление и конфигурируемость журнала.
+* Улучшенная обработка ошибок: Код перехватывает исключения и записывает соответствующие сообщения об ошибках, используя фреймворк протоколирования, что улучшает обработку потенциальных ошибок во время протоколирования.
 
-By applying proper output neutralization and using a logging framework, the compliant code mitigates the risk of log injection attacks and ensures that logged information is safe and accurately represents the intended content.
-
-
+Применяя надлежащую нейтрализацию выходных данных и используя структуру протоколирования, совместимый код снижает риск атак с внедрением журнала и гарантирует, что занесенная в журнал информация безопасна и точно представляет предполагаемое содержимое.
 
 
-## Omission of Security-relevant Information
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Упущение информации, имеющей отношение к безопасности
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1353,14 +1353,14 @@ def hashPassword(password: String): String = {
 }
 ```
 
-In the noncompliant code, the hashPassword function hashes a password using the SHA-256 algorithm. However, it suffers from the omission of security-relevant information. The code only converts the digest to a string using the default toString method, which does not provide a secure representation of the hashed password. It may expose sensitive information and make it easier for an attacker to reverse-engineer or guess the original password.
+В коде, не соответствующем требованиям, функция hashPassword хэширует пароль с помощью алгоритма SHA-256. Однако в ней отсутствует важная для безопасности информация. Код только преобразует дайджест в строку с помощью стандартного метода toString, что не обеспечивает безопасного представления хэшированного пароля. Это может привести к раскрытию конфиденциальной информации и облегчить злоумышленнику обратную разработку или угадывание оригинального пароля.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1376,22 +1376,22 @@ def hashPassword(password: String): String = {
 ```
 
 
-In the compliant code, security-relevant information is properly included to ensure the secure representation of the hashed password. The code uses the Base64.getEncoder class from the java.util package to encode the digest into a Base64 string representation. This provides a more secure and standardized format for storing and transmitting the hashed password.
+В совместимый код включена информация, имеющая отношение к безопасности, чтобы обеспечить безопасное представление хэшированного пароля. В коде используется класс Base64.getEncoder из пакета java.util для кодирования дайджеста в строковое представление Base64. Это обеспечивает более безопасный и стандартизированный формат для хранения и передачи хэшированного пароля.
 
-Key improvements in the compliant code:
+Основные улучшения в совместимом коде:
 
-1. Use of Base64 encoding: The code uses the Base64.getEncoder.encodeToString method to convert the digest into a Base64 string representation, ensuring a secure and portable format for the hashed password.
-2. Enhanced security: By including the secure representation of the hashed password, the compliant code reduces the risk of exposing sensitive information and makes it more challenging for attackers to reverse-engineer or guess the original password.
+1. Использование кодировки Base64: В коде используется метод Base64.getEncoder.encodeToString для преобразования дайджеста в строковое представление Base64, что обеспечивает безопасный и переносимый формат для хэшированного пароля.
+2. Повышенная безопасность: Включая безопасное представление хэшированного пароля, совместимый код снижает риск раскрытия конфиденциальной информации и делает более сложной задачу злоумышленников по обратной разработке или угадыванию оригинального пароля.
 
-By including the security-relevant information and using proper encoding, the compliant code enhances the security of the hashed password and mitigates the risk of exposing sensitive information during storage or transmission.
-
-
+Благодаря включению важной для безопасности информации и использованию надлежащего кодирования код, соответствующий требованиям, повышает безопасность хэшированного пароля и снижает риск раскрытия конфиденциальной информации при хранении или передаче.
 
 
 
-## Sensitive Information into Log File
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Чувствительная информация в файле журнала
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1404,13 +1404,13 @@ def logSensitiveInformation(data: String): Unit = {
 }
 ```
 
-In the noncompliant code, the logSensitiveInformation function logs sensitive information by directly appending it to a log file. This approach is insecure because it may expose the sensitive data if the log file is accessed by unauthorized individuals. Storing sensitive information in plain text format increases the risk of data leakage and compromises the confidentiality of the information.
+В коде, не соответствующем требованиям, функция logSensitiveInformation регистрирует конфиденциальную информацию, напрямую добавляя ее в файл журнала. Такой подход небезопасен, поскольку может привести к раскрытию конфиденциальных данных, если к файлу журнала получат доступ неавторизованные лица. Хранение конфиденциальной информации в текстовом формате повышает риск утечки данных и нарушает конфиденциальность информации.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1423,21 +1423,21 @@ def logSensitiveInformation(data: String): Unit = {
 ```
 
 
-In the compliant code, the logSensitiveInformation function uses a logging framework (in this case, SLF4J) to handle log statements. By leveraging a logging framework, sensitive information can be logged securely and with more control. The compliant code uses the info log level to indicate that the log statement contains sensitive information.
+В совместимом коде функция logSensitiveInformation использует фреймворк протоколирования (в данном случае SLF4J) для обработки сообщений журнала. Благодаря использованию фреймворка протоколирования конфиденциальная информация может регистрироваться безопасно и с большим контролем. Соответствующий код использует уровень журнала info, чтобы указать, что сообщение журнала содержит конфиденциальную информацию.
 
-Key improvements in the compliant code:
+Основные улучшения в совместимом коде:
 
-1. Logging framework: The compliant code utilizes a logging framework, which provides more features, configurability, and security for handling log statements.
-2. Log level selection: The code uses an appropriate log level (such as info) to indicate the presence of sensitive information in the log statement.
-3. Avoidance of direct file manipulation: By utilizing a logging framework, the compliant code avoids directly appending sensitive information to a log file, reducing the risk of unauthorized access or exposure.
+1. Структура ведения журнала: В коде, соответствующем требованиям, используется фреймворк для ведения журнала, который предоставляет больше возможностей, возможностей настройки и безопасности для обработки сообщений журнала.
+2. Выбор уровня журнала: Код использует соответствующий уровень журнала (например, info), чтобы указать на наличие конфиденциальной информации в журнале.
+3. Избегание прямого манипулирования файлами: Используя систему протоколирования, код, соответствующий требованиям, избегает прямого добавления конфиденциальной информации в файл журнала, что снижает риск несанкционированного доступа или воздействия.
 
-By using a logging framework and selecting appropriate log levels, the compliant code enhances the security of sensitive information by logging it in a more controlled and secure manner. This helps protect the confidentiality of sensitive data and reduces the risk of unauthorized access or exposure through log files.
+Используя систему протоколирования и выбирая соответствующие уровни протоколирования, код, соответствующий требованиям, повышает безопасность конфиденциальной информации, протоколируя ее более контролируемым и безопасным образом. Это помогает защитить конфиденциальность конфиденциальных данных и снижает риск несанкционированного доступа или раскрытия информации через файлы журналов.
 
 
 
-## Server-Side Request Forgery (SSRF)
+## Подделка запросов со стороны сервера (SSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1450,14 +1450,14 @@ def fetchURLContent(url: String): String = {
 }
 ```
 
-In the noncompliant code, the fetchURLContent function takes a URL as input and fetches the content from that URL using the Source.fromURL method. This code is vulnerable to SSRF attacks because it does not properly validate or restrict the URLs that can be accessed. An attacker could potentially abuse this functionality to make requests to internal resources or even external resources that should be inaccessible.
+В коде, не соответствующем требованиям, функция fetchURLContent принимает URL в качестве входных данных и извлекает содержимое из этого URL с помощью метода Source.fromURL. Этот код уязвим для атак SSRF, поскольку он не проверяет должным образом или не ограничивает URL, к которым можно получить доступ. Злоумышленник может потенциально злоупотребить этой функциональностью для выполнения запросов к внутренним или даже внешним ресурсам, которые должны быть недоступны.
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```php
@@ -1471,12 +1471,12 @@ def fetchURLContent(url: String): String = {
 }
 
 def validateURL(url: String): String = {
-  // Implement URL validation logic according to your requirements
-  // Verify that the URL is from a trusted domain or whitelist
-  // Restrict access to internal resources if needed
-  // Apply appropriate URL filtering or validation rules
-  // Return the validated URL or throw an exception if invalid
-  // Example: Check if the URL starts with a trusted domain
+  // Реализуйте логику проверки URL в соответствии с вашими требованиями
+  // Убедитесь, что URL-адрес принадлежит доверенному домену или белому списку
+  // При необходимости ограничьте доступ к внутренним ресурсам
+  // Применить соответствующие правила фильтрации или проверки URL
+  // Верните проверенный URL или выбросьте исключение, если он недействителен
+  // Пример: Проверка, начинается ли URL с доверенного домена
   val trustedDomain = "https://example.com"
   if (!url.startsWith(trustedDomain)) {
     throw new IllegalArgumentException("Invalid or unauthorized URL")
@@ -1486,12 +1486,12 @@ def validateURL(url: String): String = {
 ```
 
 
-In the compliant code, the fetchURLContent function includes an additional step to validate the input URL before accessing its content. The validateURL function is introduced to perform the URL validation and enforce any necessary restrictions or filtering. It ensures that only trusted and authorized URLs are processed, reducing the risk of SSRF attacks.
+В совместимом коде функция fetchURLContent включает дополнительный шаг для проверки входного URL перед доступом к его содержимому. Функция validateURL введена для выполнения проверки URL и применения любых необходимых ограничений или фильтрации. Она гарантирует, что обрабатываются только доверенные и авторизованные URL, снижая риск атак SSRF.
 
-Key improvements in the compliant code:
+Ключевые улучшения в совместимом коде:
 
-1. URL validation: The compliant code implements a validateURL function to validate the input URL based on the specific requirements of the application. It can include checks such as verifying the URL's domain against a trusted list, applying whitelisting or blacklisting rules, or restricting access to internal resources.
-2. Restrictive access: The validateURL function enforces restrictions on the URLs that can be accessed, ensuring that only authorized URLs are processed. This helps prevent SSRF attacks by limiting the scope of allowed requests.
-3. Exception handling: If an invalid or unauthorized URL is detected during the validation process, an exception is thrown, indicating that the URL is invalid or not permitted. Proper exception handling can help in identifying and handling potential SSRF attempts.
+1. Проверка URL: В совместимом коде реализована функция validateURL для проверки входного URL на основе конкретных требований приложения. Она может включать такие проверки, как проверка домена URL по доверенному списку, применение правил "белого" или "черного" списка или ограничение доступа к внутренним ресурсам.
+2. Ограничение доступа: Функция validateURL накладывает ограничения на URL, к которым можно получить доступ, гарантируя, что обрабатываются только авторизованные URL. Это помогает предотвратить атаки SSRF, ограничивая область разрешенных запросов.
+3. Обработка исключений: Если в процессе проверки обнаруживается недействительный или неавторизованный URL, возникает исключение, указывающее на то, что URL недействителен или не разрешен. Правильная обработка исключений может помочь в выявлении и обработке потенциальных попыток SSRF.
 
-By implementing URL validation and enforcing restrictions on the URLs that can be accessed, the compliant code mitigates the risk of SSRF attacks. It provides a layer of protection by ensuring that only trusted and authorized URLs are processed, reducing the possibility of accessing sensitive or unintended resources.
+Реализуя проверку URL и накладывая ограничения на URL, к которым можно обращаться, совместимый код снижает риск атак SSRF. Он обеспечивает дополнительный уровень защиты, гарантируя, что обрабатываются только доверенные и авторизованные URL-адреса, снижая вероятность доступа к конфиденциальным или непредусмотренным ресурсам.
