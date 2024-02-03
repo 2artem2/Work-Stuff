@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -21,9 +21,9 @@ parent: Rules
 
 
 
-### Improper Platform Usage
+### Неправильное использование платформы
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -55,14 +55,14 @@ class ViewController: UIViewController {
 }
 ```
 
-The noncompliant code makes an HTTP request to a remote URL using URLSession.shared.dataTask(with:completionHandler:) without properly validating or handling potential security issues. It doesn't check whether the remote URL is secure (HTTPS) or whether it belongs to a trusted domain. This could lead to security vulnerabilities such as man-in-the-middle attacks or connecting to malicious servers.
+Несоответствующий требованиям код выполняет HTTP-запрос к удаленному URL с помощью URLSession.shared.dataTask(with:completionHandler:) без надлежащей проверки или обработки потенциальных проблем безопасности. Он не проверяет, является ли удаленный URL безопасным (HTTPS) или принадлежит ли он к доверенному домену. Это может привести к уязвимостям безопасности, таким как атаки типа "человек посередине" или подключение к вредоносным серверам.
 
-To address this issue, here's an example of compliant code:
-
-
+Чтобы решить эту проблему, приведем пример совместимого кода:
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
             return
         }
         
-        // Perform additional validation checks if required, such as verifying the domain or certificate
+        // При необходимости выполните дополнительные проверки, например, проверьте домен или сертификат.
         
         guard let url = urlComponents.url else {
             print("Failed to create URL")
@@ -110,15 +110,15 @@ class ViewController: UIViewController {
 ```
 
 
-The compliant code addresses the improper platform usage issue by performing additional checks on the URL. It uses URLComponents to parse and extract the host and scheme from the URL. It then validates that the scheme is HTTPS before proceeding with the request. Additional validation checks can be added if required, such as verifying the domain or certificate before making the request. By ensuring the URL is secure and trusted, the code mitigates potential security risks associated with improper platform usage.
+Соответствующий код решает проблему неправильного использования платформы, выполняя дополнительные проверки URL. Он использует URLComponents для разбора и извлечения хоста и схемы из URL. Затем он проверяет, что схема является HTTPS, прежде чем продолжить выполнение запроса. При необходимости можно добавить дополнительные проверки, например, проверку домена или сертификата перед выполнением запроса. Убедившись, что URL-адрес безопасен и надежен, код снижает потенциальные риски безопасности, связанные с неправильным использованием платформы.
 
 
 
 
 
-### Insecure Data Storage
+### Небезопасное хранение данных
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -131,27 +131,27 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Saving password to UserDefaults
+        // Сохранение пароля в UserDefaults
         UserDefaults.standard.set(password, forKey: "password")
         
-        // Reading password from UserDefaults
+        // Чтение пароля из UserDefaults
         let storedPassword = UserDefaults.standard.string(forKey: "password")
         print("Stored Password: \(storedPassword ?? "")")
     }
 }
 ```
 
-The noncompliant code stores a sensitive password string directly into the UserDefaults, which is insecure. UserDefaults is not designed for secure data storage and should not be used to store sensitive information such as passwords or authentication tokens. Storing sensitive data in UserDefaults can expose it to potential security risks, including unauthorized access or extraction by malicious actors.
+Код, не соответствующий требованиям, хранит конфиденциальную строку пароля непосредственно в UserDefaults, что небезопасно. UserDefaults не предназначен для безопасного хранения данных и не должен использоваться для хранения конфиденциальной информации, такой как пароли или маркеры аутентификации. Хранение конфиденциальных данных в UserDefaults может подвергнуть их потенциальным рискам безопасности, включая несанкционированный доступ или извлечение злоумышленниками.
 
-To address this issue, here's an example of compliant code:
-
-
+Чтобы решить эту проблему, вот пример совместимого кода:
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -166,11 +166,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         do {
-            // Saving password to Keychain
+            // Сохранение пароля в связке ключей
             let keychain = Keychain(service: "com.example.app")
             try keychain.set(password, key: "password")
             
-            // Reading password from Keychain
+            // Чтение пароля из связки ключей
             let storedPassword = try keychain.get("password")
             print("Stored Password: \(storedPassword ?? "")")
         } catch {
@@ -181,14 +181,14 @@ class ViewController: UIViewController {
 ```
 
 
-The compliant code addresses the insecure data storage issue by using a secure storage mechanism, in this case, the KeychainAccess library. The sensitive password is stored in the Keychain, which provides a more secure storage solution compared to UserDefaults. The Keychain is designed to securely store sensitive information, such as passwords or cryptographic keys, and offers additional protection measures, such as encryption and access controls, to ensure the confidentiality and integrity of the stored data. By using the Keychain for sensitive data storage, the code mitigates potential security risks associated with insecure data storage usage.
+Соответствующий код решает проблему небезопасного хранения данных, используя безопасный механизм хранения, в данном случае библиотеку KeychainAccess. Секретный пароль хранится в связке ключей, которая обеспечивает более безопасное хранение по сравнению с UserDefaults. Keychain предназначен для безопасного хранения конфиденциальной информации, такой как пароли или криптографические ключи, и предлагает дополнительные меры защиты, такие как шифрование и контроль доступа, чтобы обеспечить конфиденциальность и целостность хранимых данных. Используя связку ключей для хранения конфиденциальных данных, код снижает потенциальные риски безопасности, связанные с использованием небезопасных хранилищ данных.
 
 
 
 
-### Insecure Communication
+### Небезопасная связь
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -201,7 +201,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Insecurely sending a request to the API
+        // Небезопасная отправка запроса к API
         if let url = URL(string: apiUrl) {
             let request = URLRequest(url: url)
             let session = URLSession.shared
@@ -221,18 +221,18 @@ class ViewController: UIViewController {
 }
 ```
 
-The noncompliant code sends a request to an API using an insecure communication method. In this example, the API URL is using the HTTP protocol, which does not provide encryption and data integrity. This leaves the communication susceptible to eavesdropping, man-in-the-middle attacks, and data tampering.
+Несоответствующий код отправляет запрос к API, используя небезопасный метод связи. В данном примере URL-адрес API использует протокол HTTP, который не обеспечивает шифрование и целостность данных. Это делает обмен данными уязвимым для подслушивания, атак типа "человек посередине" и фальсификации данных.
 
-To address this issue, here's an example of compliant code:
-
-
+Чтобы решить эту проблему, приведем пример совместимого кода:
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -245,7 +245,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Securely sending a request to the API
+        // Безопасная отправка запроса к API
         if let url = URL(string: apiUrl) {
             let request = URLRequest(url: url)
             let session = URLSession(configuration: .default)
@@ -266,14 +266,14 @@ class ViewController: UIViewController {
 ```
 
 
-The compliant code addresses the insecure communication issue by using the HTTPS protocol to establish a secure connection with the API. By changing the API URL to use the HTTPS protocol, the communication between the client and the server is encrypted, ensuring the confidentiality and integrity of the data transmitted over the network. Using HTTPS mitigates the risk of eavesdropping, tampering, and unauthorized access to sensitive information during the communication process.
+Совместимый код решает проблему небезопасной связи, используя протокол HTTPS для установления безопасного соединения с API. При изменении URL-адреса API для использования протокола HTTPS связь между клиентом и сервером шифруется, обеспечивая конфиденциальность и целостность данных, передаваемых по сети. Использование HTTPS снижает риск подслушивания, взлома и несанкционированного доступа к конфиденциальной информации в процессе обмена данными.
 
 
 
 
-### Insecure Authentication
+### Небезопасная аутентификация
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -288,7 +288,7 @@ class LoginViewController: UIViewController {
         let username = usernameTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         
-        // Noncompliant code: Insecurely sending username and password over HTTP
+        // Несоответствующий код: Небезопасная отправка имени пользователя и пароля по HTTP
         let apiUrl = "http://example.com/login"
         let requestUrl = URL(string: apiUrl)!
         
@@ -300,7 +300,7 @@ class LoginViewController: UIViewController {
         
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
-            // Handle response
+            // Реакция на обращение
         }
         
         task.resume()
@@ -308,11 +308,9 @@ class LoginViewController: UIViewController {
 }
 ```
 
-The noncompliant code demonstrates insecure authentication by sending the username and password over an insecure HTTP connection. The code constructs a URL with the login endpoint and creates a POST request with the username and password as part of the request body. However, using an insecure HTTP connection exposes the sensitive credentials to eavesdropping, interception, and potential credential theft.
+Код, не соответствующий требованиям, демонстрирует небезопасную аутентификацию, отправляя имя пользователя и пароль по небезопасному HTTP-соединению. Код строит URL с конечной точкой входа и создает POST-запрос с именем пользователя и паролем в качестве части тела запроса. Однако использование незащищенного HTTP-соединения подвергает конфиденциальные учетные данные опасности подслушивания, перехвата и потенциальной кражи.
 
-To address this issue, here's an example of compliant code:
-
-
+Чтобы решить эту проблему, приведем пример совместимого кода:
 
 
 
@@ -320,7 +318,9 @@ To address this issue, here's an example of compliant code:
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -335,7 +335,7 @@ class LoginViewController: UIViewController {
         let username = usernameTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         
-        // Compliant code: Securely sending username and password over HTTPS
+        // Соответствующий код: Безопасная передача имени пользователя и пароля по протоколу HTTPS
         let apiUrl = "https://example.com/login"
         let requestUrl = URL(string: apiUrl)!
         
@@ -347,7 +347,7 @@ class LoginViewController: UIViewController {
         
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request) { (data, response, error) in
-            // Handle response
+            // Реакция на обращение
         }
         
         task.resume()
@@ -356,7 +356,7 @@ class LoginViewController: UIViewController {
 ```
 
 
-The compliant code addresses the insecure authentication issue by using an HTTPS connection to securely send the username and password. The code constructs a URL with the login endpoint using the HTTPS protocol, ensuring that the communication between the client and server is encrypted and secure. By sending the sensitive credentials over a secure channel, the risk of eavesdropping, interception, and credential theft is mitigated.
+Соответствующий код решает проблему небезопасной аутентификации, используя HTTPS-соединение для безопасной передачи имени пользователя и пароля. Код строит URL-адрес с конечной точкой входа в систему с использованием протокола HTTPS, обеспечивая шифрование и безопасность связи между клиентом и сервером. Благодаря отправке конфиденциальных данных по защищенному каналу снижается риск подслушивания, перехвата и кражи учетных данных.
 
 
 
@@ -364,9 +364,9 @@ The compliant code addresses the insecure authentication issue by using an HTTPS
 
 
 
-### Insufficient Cryptography
+### Недостаточная криптография
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -402,18 +402,18 @@ func encryptData(data: Data, key: String) -> Data? {
 }
 ```
 
-The noncompliant code uses the CommonCrypto library to encrypt data using the Advanced Encryption Standard (AES) algorithm with the Electronic Codebook (ECB) mode. However, the code has several issues. First, it uses a hard-coded key, which is insecure as it can be easily compromised. Second, it uses a weak encryption mode (ECB) that lacks security features such as initialization vectors (IVs), making it vulnerable to certain attacks like pattern recognition.
+Несоответствующий код использует библиотеку CommonCrypto для шифрования данных с помощью алгоритма Advanced Encryption Standard (AES) в режиме Electronic Codebook (ECB). Однако этот код имеет несколько проблем. Во-первых, он использует жестко закодированный ключ, что небезопасно, так как его можно легко скомпрометировать. Во-вторых, в нем используется слабый режим шифрования (ECB), в котором отсутствуют такие элементы безопасности, как векторы инициализации (IVs), что делает его уязвимым для некоторых атак, например распознавания образов.
 
-To address these issues, here's an example of compliant code:
-
-
+Чтобы решить эти проблемы, приведем пример совместимого кода:
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -451,15 +451,15 @@ func encryptData(data: Data, key: Data) -> Data? {
 ```
 
 
-The compliant code addresses the issues with the noncompliant code. It takes the encryption key as a Data parameter instead of a String, allowing for more secure key generation and management. The code also uses the secure PKCS7 padding instead of ECB mode, which adds randomness and strengthens the encryption. Additionally, it generates a random Initialization Vector (IV) for each encryption operation, providing further security against certain attacks. The code also returns only the encrypted data without the unused buffer bytes, improving efficiency and reducing the risk of exposing sensitive information.
+Соответствующий код решает проблемы несоответствующего кода. Он принимает ключ шифрования в качестве параметра Data, а не String, что позволяет более безопасно генерировать и управлять ключами. Код также использует безопасную прокладку PKCS7 вместо режима ECB, что добавляет случайности и усиливает шифрование. Кроме того, он генерирует случайный вектор инициализации (IV) для каждой операции шифрования, обеспечивая дополнительную защиту от некоторых атак. Код также возвращает только зашифрованные данные без неиспользованных байтов буфера, что повышает эффективность и снижает риск раскрытия конфиденциальной информации.
 
 
 
 
 
-### Insecure Authorization
+### Небезопасная авторизация
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -469,20 +469,20 @@ func checkPermission(user: User, permission: String) -> Bool {
 }
 ```
 
-The noncompliant code simply checks if a user has a specific permission by comparing the user's permissions array with the specified permission. However, this code lacks proper authorization validation and does not implement any access control mechanism. It assumes that the user's permissions are stored and managed securely, which may not be the case.
+Несоответствующий код просто проверяет, есть ли у пользователя определенное разрешение, сравнивая массив разрешений пользователя с указанным разрешением. Однако в этом коде отсутствует надлежащая проверка авторизации и не реализован какой-либо механизм управления доступом. Он предполагает, что разрешения пользователя хранятся и управляются безопасно, а это может быть не так.
 
 
-To address these issues, here's an example of compliant code:
-
-
-
+Чтобы решить эти проблемы, приведем пример совместимого кода:
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -495,25 +495,25 @@ func checkPermission(user: User, permission: String) -> Bool {
 }
 
 func retrieveUserPermissions(user: User) -> [String]? {
-    // Fetch user permissions from a secure and trusted data source
-    // Implement proper authentication and authorization mechanisms
-    // Apply appropriate access control policies
-    // Validate and sanitize user input
-    // Perform necessary checks to ensure the user is authorized to access the permissions data
+    // Получение разрешений пользователей из безопасного и надежного источника данных
+    // Внедрять надлежащие механизмы аутентификации и авторизации
+    // Применять соответствующие политики управления доступом
+    // Валидация и санация пользовательского ввода
+    // Выполнение необходимых проверок, чтобы убедиться, что пользователь авторизован для доступа к данным разрешений
     
     return user.permissions
 }
 ```
 
 
-The compliant code addresses the issues with the noncompliant code by implementing a more secure authorization mechanism. It introduces a separate function retrieveUserPermissions that retrieves the user's permissions from a secure and trusted data source. This function is responsible for performing proper authentication and authorization checks, applying access control policies, and validating user input. By separating the permission retrieval logic, the code allows for more flexibility in implementing robust authorization mechanisms and ensuring the security of the process.
+Соответствующий код решает проблемы несоответствующего кода, реализуя более безопасный механизм авторизации. В нем появилась отдельная функция retrieveUserPermissions, которая извлекает разрешения пользователя из безопасного и надежного источника данных. Эта функция отвечает за выполнение надлежащих проверок аутентификации и авторизации, применение политик управления доступом и проверку вводимых пользователем данных. Благодаря разделению логики получения разрешений код позволяет более гибко реализовать надежные механизмы авторизации и обеспечить безопасность процесса.
 
 
 
 
-### Client Code Quality
+### Качество клиентского кода
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -533,23 +533,23 @@ class ViewController: UIViewController {
 }
 ```
 
-The noncompliant code sample shows a ViewController class that handles updating a label and presenting an alert. However, it violates client code quality principles in several ways.
+Пример кода, не соответствующий требованиям, демонстрирует класс ViewController, который обрабатывает обновление метки и отображение предупреждения. Однако он нарушает принципы качества клиентского кода несколькими способами.
 
-1. Lack of separation of concerns: The ViewController class is responsible for both updating the UI (updateLabel) and presenting an alert (showAlert). It's recommended to separate these responsibilities into different classes or methods for better code organization.
+1. Отсутствие разделения задач: Класс ViewController отвечает как за обновление пользовательского интерфейса (updateLabel), так и за отображение оповещения (showAlert). Рекомендуется разделить эти обязанности по разным классам или методам для лучшей организации кода.
 
-2. Violation of Single Responsibility Principle (SRP): The ViewController class should have a single responsibility, such as managing the view lifecycle or handling user interactions. Mixing UI updates and business logic in the same class can make the code harder to understand and maintain.
+2. Нарушение принципа единой ответственности (SRP): класс ViewController должен нести единую ответственность, например, управлять жизненным циклом представления или обрабатывать взаимодействия с пользователем. Смешивание обновлений пользовательского интерфейса и бизнес-логики в одном классе может сделать код более сложным для понимания и поддержки.
 
-3. Lack of error handling: The code does not handle any errors that may occur during the UI update or alert presentation. Proper error handling should be implemented to provide better user experience and prevent unexpected issues.
-
-
-
-To address these issues, here's an example of compliant code:
+3. Отсутствие обработки ошибок: Код не обрабатывает ошибки, которые могут возникнуть во время обновления пользовательского интерфейса или представления предупреждений. Правильная обработка ошибок должна быть реализована, чтобы обеспечить лучший пользовательский опыт и предотвратить неожиданные проблемы.
 
 
 
+Чтобы решить эти проблемы, вот пример совместимого кода:
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -574,20 +574,20 @@ class AlertHelper {
 ```
 
 
-The compliant code addresses the issues with the noncompliant code by improving the client code quality. It separates the responsibilities by moving the UI update logic to the ViewController class and the alert presentation logic to a separate AlertHelper class.
+Соответствующий код решает проблемы несоответствующего кода, улучшая качество клиентского кода. Он разделяет обязанности, перемещая логику обновления пользовательского интерфейса в класс ViewController, а логику представления предупреждений - в отдельный класс AlertHelper.
 
-The updateLabel method now runs the UI update on the main queue to ensure thread safety. By using a separate helper class AlertHelper, the presentation of alerts is decoupled from the view controller, promoting better code organization and separation of concerns.
+Метод updateLabel теперь запускает обновление пользовательского интерфейса в основной очереди, чтобы обеспечить безопасность потоков. Благодаря использованию отдельного класса-помощника AlertHelper представление оповещений отделено от контроллера представления, что способствует лучшей организации кода и разделению проблем.
 
-It's important to note that the compliant code may still require additional enhancements depending on the specific requirements of the application. However, it demonstrates better client code quality by adhering to principles such as separation of concerns and the Single Responsibility Principle.
-
-
+Важно отметить, что совместимый код может потребовать дополнительных улучшений в зависимости от специфических требований приложения. Однако он демонстрирует лучшее качество клиентского кода благодаря соблюдению таких принципов, как разделение забот и принцип единой ответственности.
 
 
 
 
-### Code Tampering
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+### Фальсификация кода
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -601,7 +601,7 @@ class ViewController: UIViewController {
 
 class DataProcessor {
     func processData(data: String) -> String {
-        // Some data processing logic
+        // Некоторая логика обработки данных
         return data.uppercased()
     }
 }
@@ -618,24 +618,24 @@ class MainViewController: UIViewController {
 }
 ```
 
-The noncompliant code sample illustrates a code tampering vulnerability. In this scenario, an attacker can modify the processData method in the DataProcessor class to manipulate the processed data returned. Since the MainViewController relies on the DataProcessor to process the data before updating the label, any modification to the processData method can lead to unintended or malicious changes in the displayed text.
+Пример несоответствующего кода иллюстрирует уязвимость подделки кода. В этом сценарии злоумышленник может изменить метод processData в классе DataProcessor, чтобы манипулировать возвращаемыми обработанными данными. Поскольку MainViewController полагается на DataProcessor для обработки данных перед обновлением метки, любая модификация метода processData может привести к непреднамеренным или вредоносным изменениям в отображаемом тексте.
 
 
 
 
-To address this code tampering vulnerability, here's an example of compliant code:
-
-
-
-
-
+Чтобы устранить эту уязвимость, связанную с несанкционированным доступом к коду, приведем пример совместимого кода:
 
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -649,7 +649,7 @@ class ViewController: UIViewController {
 
 class DataProcessor {
     func processData(data: String) -> String {
-        // Some data processing logic
+        // Некоторая логика обработки данных
         return data.uppercased()
     }
 }
@@ -668,17 +668,17 @@ class MainViewController: UIViewController {
 ```
 
 
-In the compliant code, measures have been taken to mitigate the code tampering vulnerability. The DataProcessor class and its processData method remain unchanged, ensuring the integrity of the data processing logic. The MainViewController obtains the processed data from the DataProcessor and passes it directly to the updateLabel method of the ViewController, without allowing any intermediary tampering.
+В совместимом коде были приняты меры по снижению уязвимости взлома кода. Класс DataProcessor и его метод processData остаются неизменными, что обеспечивает целостность логики обработки данных. Контроллер MainViewController получает обработанные данные из DataProcessor и передает их непосредственно в метод updateLabel контроллера ViewController, не допуская никаких промежуточных вмешательств.
 
-By ensuring that critical code and data are not directly modifiable by external entities, the compliant code reduces the risk of code tampering vulnerabilities. It promotes the principle of code integrity and helps maintain the trustworthiness of the application's functionality.
-
-
+Гарантируя, что критически важные код и данные не могут быть напрямую изменены внешними сущностями, совместимый код снижает риск возникновения уязвимостей, связанных со взломом кода. Это способствует соблюдению принципа целостности кода и помогает поддерживать надежность функциональности приложения.
 
 
 
-### Reverse Engineering
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+### Обратный инжиниринг
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
@@ -702,17 +702,12 @@ class ViewController: UIViewController {
 }
 ```
 
-The noncompliant code sample demonstrates a reverse engineering vulnerability. In this example, the SecretManager class contains a secret key that is crucial for sensitive operations. However, the secret key is directly embedded within the source code. An attacker who gains access to the compiled binary can reverse engineer the application to extract the secret key.
+Пример кода, не соответствующий требованиям, демонстрирует уязвимость обратного инжиниринга. В этом примере класс SecretManager содержит секретный ключ, который очень важен для выполнения конфиденциальных операций. Однако секретный ключ непосредственно встроен в исходный код. Злоумышленник, получивший доступ к скомпилированному двоичному файлу, может провести обратное проектирование приложения, чтобы извлечь секретный ключ.
 
 
 
 
-To address this reverse engineering vulnerability, here's an example of compliant code:
-
-
-
-
-
+Чтобы устранить эту уязвимость для обратного проектирования, приведем пример совместимого кода:
 
 
 
@@ -720,7 +715,12 @@ To address this reverse engineering vulnerability, here's an example of complian
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
@@ -749,35 +749,35 @@ class ViewController: UIViewController {
 ```
 
 
-In the compliant code, the sensitive secret key is still stored within the SecretManager class. However, the key is not directly accessed from the ViewController. Instead, a separate function printSecretKey() is created within the ViewController to handle the sensitive operation. By isolating the access to the secret key within a specific function, it becomes more difficult for an attacker to extract the secret key through reverse engineering.
+В совместимом коде секретный ключ по-прежнему хранится в классе SecretManager. Однако прямой доступ к ключу из ViewController не осуществляется. Вместо этого в ViewController создается отдельная функция printSecretKey() для обработки секретной операции. Изолировав доступ к секретному ключу в рамках отдельной функции, злоумышленнику будет сложнее извлечь секретный ключ путем обратной разработки.
 
-Additionally, it is recommended to use advanced security measures such as encryption, obfuscation, and secure storage techniques to further protect sensitive information from reverse engineering attacks. These techniques help increase the complexity and effort required for an attacker to reverse engineer the code and extract sensitive data.
-
-
+Кроме того, для дополнительной защиты конфиденциальной информации от атак обратного проектирования рекомендуется использовать такие меры безопасности, как шифрование, обфускация и методы безопасного хранения. Эти методы позволяют увеличить сложность и усилия, необходимые злоумышленнику для обратного проектирования кода и извлечения конфиденциальных данных.
 
 
 
-### Extraneous Functionality
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+### Посторонние функции
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
 class DataManager {
     func saveData(data: String) {
-        // Code to save data
+        // Код для сохранения данных
     }
     
     func deleteData(data: String) {
-        // Code to delete data
+        // Код для удаления данных
     }
     
     func processData(data: String) {
-        // Code to process data
+        // Код для обработки данных
     }
     
     func sendDataToServer(data: String) {
-        // Code to send data to the server
+        // Код для отправки данных на сервер
     }
 }
 
@@ -797,27 +797,26 @@ class ViewController: UIViewController {
 }
 ```
 
-The noncompliant code sample includes extraneous functionality in the DataManager class. In addition to the necessary data management operations, such as saving and deleting data, it also contains functions to process data and send it to a server. This violates the principle of separation of concerns and can introduce unnecessary complexity and potential security risks.
+Пример кода, не соответствующий требованиям, содержит постороннюю функциональность в классе DataManager. Помимо необходимых операций управления данными, таких как сохранение и удаление данных, он также содержит функции для обработки данных и отправки их на сервер. Это нарушает принцип разделения задач и может привести к излишней сложности и потенциальным рискам безопасности.
 
 
 
-To address this issue, here's an example of compliant code:
+Чтобы решить эту проблему, приведем пример совместимого кода:
 
 
 
 
-
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
 class DataManager {
     func saveData(data: String) {
-        // Code to save data
+        // Код для сохранения данных
     }
     
     func deleteData(data: String) {
-        // Code to delete data
+        // Код для удаления данных
     }
 }
 
@@ -836,6 +835,6 @@ class ViewController: UIViewController {
 ```
 
 
-The compliant code removes the extraneous functionality from the DataManager class, keeping only the necessary data management operations: saveData and deleteData. By eliminating unnecessary functions, the code becomes simpler and more focused on its core responsibilities. This improves code maintainability, reduces the attack surface, and minimizes the risk of unintended behavior or vulnerabilities introduced by unused functionality.
+Соответствующий код удаляет лишнюю функциональность из класса DataManager, оставляя только необходимые операции управления данными: saveData и deleteData. Благодаря удалению ненужных функций код становится проще и больше сосредоточен на своих основных обязанностях. Это улучшает сопровождаемость кода, уменьшает поверхность атаки и минимизирует риск непреднамеренного поведения или уязвимостей, возникающих из-за неиспользуемой функциональности.
 
 
