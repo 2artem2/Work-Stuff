@@ -8,7 +8,7 @@ parent: Rules
 {: .no_toc }
 
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,19 +19,19 @@ parent: Rules
 
 
 
-## XML External Entity (XXE)
+## Внешняя сущность XML (XXE)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```java
-// Noncompliant code
+// Несоответствующий код
 NSString *input = [request parameterForKey:@"input"];
 NSLog(@"Processing input: %@", input);
-// Process the input without any validation or sanitization
+// Обработка вводимых данных без какой-либо проверки или санации
 ```
 
-In this noncompliant code, the input variable is obtained from a request object without any validation or sanitization. This code is vulnerable to various security risks, such as injection attacks (e.g., SQL injection, command injection) or Cross-Site Scripting (XSS) attacks. Attackers can manipulate the input to execute malicious code or access sensitive information.
+В этом несоответствующем коде входная переменная получается из объекта запроса без какой-либо проверки или санации. Такой код уязвим для различных рисков безопасности, таких как инъекционные атаки (например, SQL-инъекции, инъекции команд) или межсайтовый скриптинг (XSS). Злоумышленники могут манипулировать вводимыми данными, чтобы выполнить вредоносный код или получить доступ к конфиденциальной информации.
 
 
 
@@ -41,29 +41,29 @@ In this noncompliant code, the input variable is obtained from a request object 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код:
 
 
 ```java
-// Compliant code
+// Соответствующий код
 NSString *input = [request parameterForKey:@"input"];
 NSCharacterSet *allowedCharacterSet = [NSCharacterSet alphanumericCharacterSet];
 NSString *sanitizedInput = [[input componentsSeparatedByCharactersInSet:[allowedCharacterSet invertedSet]] componentsJoinedByString:@""];
 NSLog(@"Processing input: %@", sanitizedInput);
-// Process the sanitized input
+// Обработайте обработанные входные данные
 ```
 
 
-In the compliant code, the input variable is sanitized by removing any characters that are not alphanumeric. This is achieved by using NSCharacterSet to define the allowed character set and filtering out the characters that are not part of the set. By sanitizing the input before processing it, you reduce the risk of security vulnerabilities.
+В совместимом коде входная переменная санируется путем удаления любых символов, не являющихся алфавитно-цифровыми. Это достигается за счет использования NSCharacterSet для определения допустимого набора символов и фильтрации символов, не входящих в этот набор. Санирование входных данных перед их обработкой снижает риск возникновения уязвимостей безопасности.
 
 
-It's important to note that input sanitization requirements can vary depending on the specific use case and context. The example above provides a basic approach to sanitizing input, but it might not be sufficient for all scenarios. Depending on the desired input restrictions, you might need to employ more sophisticated techniques or use specialized libraries for input validation and sanitization.
+Важно отметить, что требования к санитарной обработке ввода могут меняться в зависимости от конкретного случая использования и контекста. В приведенном выше примере показан базовый подход к обеззараживанию ввода, но он может быть недостаточен для всех сценариев. В зависимости от желаемых ограничений на ввод, вам может потребоваться применение более сложных методов или использование специализированных библиотек для проверки и санации ввода.
 
-Additional security measures you can implement to address vulnerabilities in Objective-C include:
+Дополнительные меры безопасности, которые вы можете применить для устранения уязвимостей в Objective-C, включают:
 
-* Using parameterized queries or prepared statements when interacting with databases to prevent SQL injection attacks.
-* Applying proper input validation based on expected data types, formats, or ranges.
-* Utilizing encryption libraries or frameworks to protect sensitive data at rest or in transit.
-* Implementing access controls and authentication mechanisms to ensure that only authorized users can access sensitive operations or resources.
+* Использование параметризованных запросов или подготовленных операторов при взаимодействии с базами данных для предотвращения атак SQL-инъекций.
+* Применение надлежащей проверки ввода на основе ожидаемых типов, форматов или диапазонов данных.
+* Использование библиотек или фреймворков шифрования для защиты конфиденциальных данных в состоянии покоя или при передаче.
+* Внедрение механизмов контроля доступа и аутентификации для обеспечения доступа к конфиденциальным операциям или ресурсам только авторизованных пользователей.
 
-By applying these security measures and following best practices, you can mitigate vulnerabilities in Objective-C and enhance the overall security of your application.
+Применяя эти меры безопасности и следуя лучшим практикам, вы сможете уменьшить уязвимости в Objective-C и повысить общую безопасность вашего приложения.
