@@ -7,7 +7,7 @@ parent: Rules
 # PHP
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,56 +19,56 @@ parent: Rules
 
 
 
-## Exposure of sensitive information
+## Раскрытие конфиденциальной информации
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code - exposing sensitive information in error log
+// Несоответствующий код - раскрытие конфиденциальной информации в журнале ошибок
 function processUserInput($input) {
-  // Process user input
+  // Обработка пользовательского ввода
   // ...
   
-  // Log error with sensitive information
+  // Зафиксировать ошибку с конфиденциальной информацией
   error_log("Error processing user input: $input");
 }
 ```
 
-In this noncompliant code example, the function processUserInput() logs an error message that includes the user input directly into the error log. This can potentially expose sensitive information to anyone who has access to the error log file, including unauthorized users.
+В этом примере кода, не соответствующем требованиям, функция processUserInput() регистрирует сообщение об ошибке, включающее пользовательский ввод, непосредственно в журнал ошибок. Это может привести к раскрытию конфиденциальной информации для всех, кто имеет доступ к файлу журнала ошибок, включая неавторизованных пользователей.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
-// Compliant code - avoiding exposure of sensitive information in error log
+// Соответствующий требованиям код - исключение попадания конфиденциальной информации в журнал ошибок
 function processUserInput($input) {
-  // Process user input
+  // Обработка пользовательского ввода
   // ...
   
-  // Log error without sensitive information
-  error_log("Error processing user input"); // Log generic error message
+  // Зафиксировать ошибку без конфиденциальной информации
+  error_log("Error processing user input"); // Занесите в журнал общее сообщение об ошибке
 }
 ```
 
 
-In the compliant code example, the function processUserInput() logs a generic error message without including the user input. By avoiding the inclusion of sensitive information in the error log, the code mitigates the risk of exposing sensitive data to unauthorized individuals.
+В примере кода, соответствующего требованиям, функция processUserInput() регистрирует общее сообщение об ошибке, не включая в него пользовательский ввод. Избегая включения конфиденциальной информации в журнал ошибок, код снижает риск раскрытия конфиденциальных данных неавторизованным лицам.
 
-It's important to note that error logs should only contain information necessary for debugging and should not include any sensitive data. Additionally, it's recommended to configure error log settings appropriately and restrict access to the error log files to authorized personnel only.
+Важно отметить, что журнал ошибок должен содержать только информацию, необходимую для отладки, и не должен включать конфиденциальные данные. Кроме того, рекомендуется соответствующим образом настроить параметры журнала ошибок и ограничить доступ к файлам журнала ошибок только для авторизованного персонала.
 
 
 
-## Insertion of Sensitive Information Into Sent Data
+## Вставка конфиденциальной информации в отправляемые данные
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 <?php
-// This code sends a user's password to a remote API as part of a JSON payload
+// Этот код отправляет пароль пользователя на удаленный API в качестве части полезной нагрузки в формате JSON
 $payload = json_encode(array('username' => 'alice', 'password' => 's3cret'));
 $response = file_get_contents('https://example.com/api', null, stream_context_create(array(
     'http' => array(
@@ -80,16 +80,16 @@ $response = file_get_contents('https://example.com/api', null, stream_context_cr
 ?>
 ```
 
-In the noncompliant code above, a user's password is included in a JSON payload that is sent to a remote API over HTTPS. However, since HTTPS only encrypts the payload in transit and not at rest, the password may be vulnerable to exposure if the remote API is compromised.
+В приведенном выше коде, не соответствующем требованиям, пароль пользователя включен в полезную нагрузку JSON, которая отправляется удаленному API по HTTPS. Однако, поскольку HTTPS шифрует полезную нагрузку только в пути, но не в состоянии покоя, пароль может быть уязвим для раскрытия, если удаленный API скомпрометирован.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
 <?php
-// This code sends a user's password to a remote API as a URL parameter using HTTPS
+// Этот код отправляет пароль пользователя на удаленный API в качестве параметра URL, используя HTTPS
 $username = 'alice';
 $password = 's3cret';
 $api_url = 'https://example.com/api?username=' . urlencode($username) . '&password=' . urlencode($password);
@@ -102,14 +102,14 @@ $response = file_get_contents($api_url, null, stream_context_create(array(
 ```
 
 
-In the compliant code above, the user's password is not included in the payload but is instead sent as a URL parameter using HTTPS. This ensures that the password is encrypted in transit and not vulnerable to exposure if the remote API is compromised. Note that using GET requests to send sensitive information is not recommended, but this example is just for illustration purposes. A POST request would be more appropriate in most cases.
+В приведенном выше коде пароль пользователя не включается в полезную нагрузку, а отправляется в качестве параметра URL с использованием HTTPS. Это гарантирует, что пароль будет зашифрован при передаче и не подвержен раскрытию в случае компрометации удаленного API. Обратите внимание, что использование GET-запросов для отправки конфиденциальной информации не рекомендуется, но этот пример приведен лишь для наглядности. В большинстве случаев более уместным будет POST-запрос.
 
 
 
 
-## Cross-Site Request Forgery (CSRF)
+## Подделка межсайтовых запросов (CSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -119,11 +119,11 @@ In the compliant code above, the user's password is not included in the payload 
 </form>
 ```
 
-In this noncompliant example, a form is submitted to a PHP script called "transfer.php" that transfers funds. The amount to be transferred is sent as a hidden form field called "amount". However, this code does not include any CSRF protection, meaning that an attacker could create a form on a different website that submits the same data to "transfer.php", tricking the user into transferring funds without their knowledge.
+В этом примере, не соответствующем требованиям, форма отправляется PHP-скрипту под названием "transfer.php", который переводит средства. Сумма перевода отправляется в виде скрытого поля формы под названием "amount". Однако этот код не содержит никакой защиты от CSRF, что означает, что злоумышленник может создать форму на другом сайте, которая отправит те же данные в "transfer.php", обманом заставив пользователя перевести средства без его ведома.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -140,19 +140,19 @@ $_SESSION['token'] = bin2hex(random_bytes(32));
 ```
 
 
-In this compliant example, a unique token is generated and stored in a session variable before the form is displayed. The token is then included as a hidden field in the form. When the form is submitted, the token is checked in the PHP script to ensure that the request came from a legitimate source. If the token is missing or invalid, the transfer is not allowed.
+В данном примере уникальный токен генерируется и сохраняется в переменной сессии до отображения формы. Затем токен включается в форму в качестве скрытого поля. Когда форма отправляется, токен проверяется в PHP-скрипте, чтобы убедиться, что запрос поступил из легитимного источника. Если токен отсутствует или недействителен, передача не будет разрешена.
 
-This provides a basic protection against CSRF attacks, as the attacker would not be able to generate a valid token without having access to the user's session data.
+Это обеспечивает базовую защиту от CSRF-атак, поскольку злоумышленник не сможет сгенерировать правильный токен, не имея доступа к данным сессии пользователя.
 
 
 
-## Use of Hard-coded Password
+## Использование жестко закодированного пароля
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// This code includes a hard-coded password directly in the script
+// Этот код включает жестко заданный пароль непосредственно в скрипте
 $password = "MyHardCodedPassword123";
 $connection = mysqli_connect("localhost", "myuser", $password, "mydatabase");
 ```
@@ -160,25 +160,25 @@ $connection = mysqli_connect("localhost", "myuser", $password, "mydatabase");
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
-// This code stores the password in a separate configuration file with restricted access
+// Этот код хранит пароль в отдельном конфигурационном файле с ограниченным доступом
 $config = parse_ini_file("/etc/myapp/config.ini");
 $connection = mysqli_connect("localhost", "myuser", $config['db_password'], "mydatabase");
 ```
 
-Hard-coded passwords in code are a security risk as they can be easily discovered by attackers and used to gain unauthorized access. In the noncompliant code example, the password is directly included in the script, making it vulnerable to exposure.
+Жестко закодированные пароли в коде представляют собой угрозу безопасности, так как могут быть легко обнаружены злоумышленниками и использованы для получения несанкционированного доступа. В примере кода, не соответствующем требованиям, пароль непосредственно включен в сценарий, что делает его уязвимым для раскрытия.
 
-The compliant code example addresses this issue by storing the password in a separate configuration file with restricted access. This helps to protect the password from being easily discovered by attackers and limits its exposure to authorized personnel who have access to the configuration file.
-
-
+В примере кода, соответствующем требованиям, эта проблема решается путем хранения пароля в отдельном конфигурационном файле с ограниченным доступом. Это помогает защитить пароль от легкого обнаружения злоумышленниками и ограничивает его раскрытие авторизованным персоналом, имеющим доступ к файлу конфигурации.
 
 
-## Broken or Risky Crypto Algorithm
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Нарушенный или небезопасный криптоалгоритм
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -190,12 +190,12 @@ function encryptData($data, $key) {
 ```
 
 
-In this example, the function encryptData() uses the mcrypt_encrypt() function with the MCRYPT_RIJNDAEL_128 algorithm for encryption. This algorithm is considered insecure and vulnerable to attacks.
+В этом примере функция encryptData() использует функцию mcrypt_encrypt() с алгоритмом MCRYPT_RIJNDAEL_128 для шифрования. Этот алгоритм считается небезопасным и уязвимым для атак.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -206,17 +206,17 @@ function encryptData($data, $key) {
 }
 
 ```
-In this example, the encryptData() function uses the openssl_encrypt() function with the aes-256-cbc algorithm for encryption, which is currently considered secure. Additionally, it uses openssl_random_pseudo_bytes() to generate a random initialization vector (IV) for each encryption, which improves the security of the encryption.
+В этом примере функция encryptData() использует функцию openssl_encrypt() с алгоритмом aes-256-cbc для шифрования, который в настоящее время считается безопасным. Кроме того, она использует openssl_random_pseudo_bytes() для генерации случайного вектора инициализации (IV) для каждого шифра, что повышает безопасность шифрования.
 
-Broken or risky cryptographic algorithms are often used in applications and systems to protect sensitive data. However, the use of such algorithms can lead to vulnerabilities that can be exploited by attackers. In the noncompliant code example, the mcrypt_encrypt() function with the MCRYPT_RIJNDAEL_128 algorithm is used for encryption, which is considered insecure and vulnerable to attacks. In the compliant code example, the openssl_encrypt() function with the aes-256-cbc algorithm is used instead, which is currently considered secure. Additionally, the openssl_random_pseudo_bytes() function is used to generate a random initialization vector for each encryption, which further enhances the security of the encryption.
-
-
+Сломанные или рискованные криптографические алгоритмы часто используются в приложениях и системах для защиты конфиденциальных данных. Однако использование таких алгоритмов может привести к появлению уязвимостей, которыми могут воспользоваться злоумышленники. В примере кода, не соответствующем требованиям, для шифрования используется функция mcrypt_encrypt() с алгоритмом MCRYPT_RIJNDAEL_128, который считается небезопасным и уязвимым для атак. В примере совместимого кода вместо этого используется функция openssl_encrypt() с алгоритмом aes-256-cbc, который в настоящее время считается безопасным. Кроме того, функция openssl_random_pseudo_bytes() используется для генерации случайного вектора инициализации для каждого шифра, что еще больше повышает безопасность шифрования.
 
 
 
-## Insufficient Entropy
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Недостаточная энтропия
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -224,30 +224,30 @@ $token = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 ```
 
 
-Insufficient entropy can lead to weak or easily guessable keys, tokens, or passwords, making them susceptible to brute-force attacks.
+Недостаточная энтропия может привести к созданию слабых или легко угадываемых ключей, токенов или паролей, что делает их восприимчивыми к атакам методом перебора.
 
-The above code generates a random token of 8 characters by shuffling a fixed set of characters. However, the set of characters is too small, and the token is easily guessable and susceptible to brute-force attacks.
-
-
+Приведенный выше код генерирует случайный токен из 8 символов путем перетасовки фиксированного набора символов. Однако набор символов слишком мал, и токен легко угадывается и подвержен атакам перебора.
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
 $token = bin2hex(random_bytes(16));
 ```
 
-The above code generates a random token of 16 bytes using the random_bytes() function, which generates cryptographically secure pseudo-random bytes. The bin2hex() function converts the binary data into a hexadecimal string. The resulting token is much stronger and less susceptible to brute-force attacks.
+Приведенный выше код генерирует случайный маркер из 16 байт с помощью функции random_bytes(), которая генерирует криптографически защищенные псевдослучайные байты. Функция bin2hex() преобразует двоичные данные в шестнадцатеричную строку. Полученный токен гораздо прочнее и менее восприимчив к атакам методом перебора.
 
-In general, to avoid insufficient entropy vulnerability, it is recommended to use a cryptographically secure random number generator, such as random_bytes() or openssl_random_pseudo_bytes(), and ensure that the output has sufficient entropy, such as by using a sufficiently large key size or password length.
-
-
+В целом, чтобы избежать уязвимости недостаточной энтропии, рекомендуется использовать криптографически безопасный генератор случайных чисел, например random_bytes() или openssl_random_pseudo_bytes(), и обеспечить достаточную энтропию выходных данных, например, используя достаточно большой размер ключа или длину пароля.
 
 
-## XSS
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Межсайтовый скриптинг (XSS)
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -257,12 +257,12 @@ echo "Welcome " . $username . "!";
 ?>
 ```
 
-This code is noncompliant because it takes input directly from the user through the URL parameter "username" and displays it on the page without any validation or sanitization. An attacker could exploit this by injecting malicious JavaScript code into the "username" parameter, which would then execute in the user's browser, allowing the attacker to perform actions on the user's behalf or steal sensitive information.
+Этот код не соответствует требованиям, поскольку принимает ввод непосредственно от пользователя через URL-параметр "username" и отображает его на странице без какой-либо проверки или санации. Злоумышленник может воспользоваться этим, внедрив вредоносный JavaScript-код в параметр "username", который затем выполнится в браузере пользователя, что позволит злоумышленнику выполнить действия от имени пользователя или украсть конфиденциальную информацию.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -273,16 +273,16 @@ echo "Welcome " . $username . "!";
 ```
 
 
-This code is compliant because it uses the PHP `htmlspecialchars` function to sanitize the user input in the "username" parameter. This function converts special characters such as `<`, `>`, and `&` to their HTML entity equivalents, preventing them from being interpreted as code by the browser. The `ENT_QUOTES` flag ensures that both single and double quotes are converted to their corresponding entities, and the `'UTF-8'` parameter specifies the character encoding used. By using this function, the code effectively mitigates the risk of XSS attacks.
+Этот код соответствует требованиям, поскольку использует функцию PHP `htmlspecialchars` для санации пользовательского ввода в параметре "username". Эта функция преобразует специальные символы, такие как `<`, `>` и `&`, в их эквиваленты в HTML, предотвращая их интерпретацию браузером как кода. Флаг `ENT_QUOTES` обеспечивает преобразование одинарных и двойных кавычек в соответствующие сущности, а параметр `'UTF-8`` задает используемую кодировку символов. Благодаря использованию этой функции код эффективно снижает риск XSS-атак.
 
 
 
 
 
 
-## SQL Injection
+## SQL-инъекция
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -293,11 +293,11 @@ $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'"
 $result = mysqli_query($conn, $sql);
 ```
 
-This code is vulnerable to SQL injection attacks because it uses user input directly in the SQL query without any validation or sanitization. An attacker can easily manipulate the input and inject malicious SQL code.
+Этот код уязвим для атак SQL-инъекций, поскольку использует пользовательский ввод непосредственно в SQL-запросе без какой-либо проверки или санации. Злоумышленник может легко манипулировать вводом и внедрить вредоносный SQL-код.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -308,9 +308,9 @@ $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'"
 $result = mysqli_query($conn, $sql);
 ```
 
-This code uses mysqli_real_escape_string function to escape special characters in the user input, making it safe to use in the SQL query. However, it's worth noting that parameterized queries or prepared statements are generally a better approach for preventing SQL injection in PHP. Here's an example of how to use parameterized queries:
+Этот код использует функцию mysqli_real_escape_string для экранирования специальных символов в пользовательском вводе, что делает его безопасным для использования в SQL-запросе. Тем не менее, стоит отметить, что параметризованные запросы или подготовленные операторы в целом являются лучшим подходом для предотвращения SQL-инъекций в PHP. Вот пример использования параметризованных запросов:
 
-Compliant code with parameterized query:
+Соответствующий код с параметризованным запросом:
 
 
 ```
@@ -323,54 +323,54 @@ $stmt->execute();
 $result = $stmt->get_result();
 ```
 
-This code uses a parameterized query with placeholders (?) for the user input and binds the values using bind_param function, which is a safer way to prevent SQL injection attacks.
+Этот код использует параметризованный запрос с заполнителями (?) для пользовательского ввода и связывает значения с помощью функции bind_param, что является более безопасным способом предотвращения атак SQL-инъекций.
 
 
 
 
-## External Control of File Name or Path
+## Внешнее управление именем или путем файла
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 $filename = $_GET['filename'];
 $file = '/path/to/directory/' . $filename;
 if (file_exists($file)) {
-  // do something with the file
+  // сделайте что-нибудь с файлом
 } else {
-  // handle error
+  // обработать ошибку
 }
 ```
 
 
-In the example above, the `$filename` variable is taken directly from user input via the `$_GET` superglobal. This means an attacker can manipulate the value of `$filename` to try to access files outside of the intended directory.
+В приведенном выше примере переменная `$filename` берется непосредственно из пользовательского ввода через суперглобальную переменную `$_GET`. Это означает, что злоумышленник может манипулировать значением `$filename`, пытаясь получить доступ к файлам за пределами предполагаемого каталога.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
 $filename = basename($_GET['filename']);
 $file = '/path/to/directory/' . $filename;
 if (file_exists($file) && is_file($file)) {
-  // do something with the file
+  // сделайте что-нибудь с файлом
 } else {
-  // handle error
+  // обработать ошибку
 }
 ```
 
-In the compliant code, the `basename()` function is used to extract only the file name portion of the user input. This helps to prevent directory traversal attacks. Additionally, the `is_file()` function is used to ensure that the path corresponds to an actual file rather than a directory or symlink.
+В совместимом коде функция `basename()` используется для извлечения только части имени файла, вводимой пользователем. Это помогает предотвратить атаки с обходом каталога. Кроме того, функция `is_file()` используется для проверки того, что путь соответствует реальному файлу, а не каталогу или симлинку.
 
 
 
 
 
-## Generation of Error Message Containing Sensitive Information
+## Формирование сообщения об ошибке, содержащего конфиденциальную информацию
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -384,11 +384,11 @@ if ($username != 'admin' || $password != 'secretpass') {
 ```
 
 
-In this noncompliant code, the application displays an error message that reveals the fact that the username or password entered was incorrect, which could help an attacker in a brute-force attack.
+В таком несоответствующем коде приложение выводит сообщение об ошибке, в котором говорится о том, что имя пользователя или пароль были введены неверно, что может помочь злоумышленнику в атаке методом перебора.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -398,20 +398,20 @@ $password = $_POST['password'];
 if ($username != 'admin' || $password != 'secretpass') {
   die('Invalid username or password!');
 } else {
-  // Valid login
+  // Действительный логин
 }
 ?>
 ```
 
-In the compliant code, the application returns the same error message for an incorrect username or password, making it more difficult for an attacker to determine which field was incorrect.
+В совместимом коде приложение возвращает одно и то же сообщение об ошибке при неправильном имени пользователя или пароле, что усложняет задачу злоумышленника по определению неверного поля.
 
-Additionally, the application could be configured to log error messages that contain sensitive information, while providing a more generic error message to the user. This would allow the system administrator to identify and fix any errors while keeping sensitive information from being exposed to potential attackers.
+Кроме того, приложение может быть настроено на регистрацию сообщений об ошибках, содержащих конфиденциальную информацию, и выдачу пользователю более общего сообщения об ошибке. Это позволит системному администратору выявлять и исправлять ошибки, не допуская попадания конфиденциальной информации к потенциальным злоумышленникам.
 
 
 
-## unprotected storage of credentials
+## незащищенное хранение учетных данных
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -424,7 +424,7 @@ fclose($file);
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -436,16 +436,16 @@ $query = "INSERT INTO users (username, password) VALUES ('$username', '$hashedPa
 mysqli_query($dbConnection, $query);
 ```
 
-The noncompliant code above writes the entered username and password to a text file without any encryption or protection. This could lead to a potential data breach if the text file falls into the wrong hands.
+Приведенный выше код, не отвечающий требованиям, записывает введенные имя пользователя и пароль в текстовый файл без какого-либо шифрования или защиты. Это может привести к потенциальной утечке данных, если текстовый файл попадет в чужие руки.
 
-In the compliant code, the password is first hashed using the PHP password_hash() function, which uses a strong one-way hashing algorithm to securely store the password. The hashed password is then stored in a database using a prepared statement to prevent SQL injection attacks.
-
-
+В коде, соответствующем требованиям, пароль сначала хэшируется с помощью функции PHP password_hash(), которая использует надежный алгоритм одностороннего хэширования для безопасного хранения пароля. Затем хэшированный пароль сохраняется в базе данных с помощью подготовленного оператора для предотвращения атак SQL-инъекций.
 
 
-## Trust Boundary Violation
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Нарушение границ доверия
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -454,18 +454,18 @@ $query = "SELECT * FROM users WHERE id = ".$user_id;
 $results = mysqli_query($conn, $query);
 ```
 
-In the noncompliant code, the value of `$user_id` is taken directly from `$_GET`, which is an untrusted source, and then used in a SQL query without any validation or sanitization. This can allow an attacker to modify the SQL query and potentially extract or modify sensitive data from the database.
+В коде, не соответствующем требованиям, значение `$user_id` берется напрямую из `$_GET`, который является недоверенным источником, а затем используется в SQL-запросе без какой-либо проверки или санации. Это может позволить злоумышленнику изменить SQL-запрос и потенциально извлечь или изменить конфиденциальные данные из базы данных.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
 $user_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 if ($user_id === false) {
-    // handle invalid input
+    // обработка недопустимого ввода
 } else {
     $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
     $stmt->bind_param("i", $user_id);
@@ -475,15 +475,15 @@ if ($user_id === false) {
 ```
 
 
-In the compliant code, the value of `$user_id` is filtered using `filter_input()` with the `FILTER_VALIDATE_INT` filter, which ensures that the value is an integer. Then, a prepared statement is used to safely pass the value to the SQL query. This prevents SQL injection attacks by properly separating the query logic from the data values.
+В совместимом коде значение `$user_id` фильтруется с помощью `filter_input()` с фильтром `FILTER_VALIDATE_INT`, который гарантирует, что значение является целым числом. Затем используется подготовленный оператор для безопасной передачи значения в SQL-запрос. Это предотвращает атаки SQL-инъекций, правильно отделяя логику запроса от значений данных.
 
 
 
 
 
-## Insufficiently Protected Credentials
+## Недостаточно защищенные учетные данные
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -493,17 +493,17 @@ $query = "INSERT INTO users (username, password) VALUES ('{$_POST['username']}',
 mysqli_query($conn, $query);
 ```
 
-In this code, the user's password is retrieved from the `$_POST` request without any validation or sanitation, and then hashed using the SHA-1 algorithm, which is no longer considered secure for password storage. Additionally, the hashed password is then inserted directly into a SQL query, which could be vulnerable to SQL injection attacks.
+В этом коде пароль пользователя извлекается из запроса `$_POST` без какой-либо проверки или санации, а затем хэшируется с помощью алгоритма SHA-1, который больше не считается безопасным для хранения паролей. Кроме того, хэшированный пароль вставляется непосредственно в SQL-запрос, что может быть уязвимо для атак SQL-инъекций.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
 $password = $_POST['password'];
 if (strlen($password) < 8) {
-    // Handle error: password must be at least 8 characters long
+    // Ошибка обработки: пароль должен состоять не менее чем из 8 символов
 }
 $salt = bin2hex(random_bytes(16));
 $hashed_password = password_hash($password . $salt, PASSWORD_ARGON2ID);
@@ -513,29 +513,29 @@ $stmt->execute();
 ```
 
 
-In this code, the user's password is first validated to ensure it is at least 8 characters long. Then, a random 16-byte salt is generated using a cryptographically secure random number generator. The password and salt are then hashed using the Argon2id algorithm, which is currently considered one of the most secure password hashing algorithms. Finally, the prepared statement is used to insert the username, hashed password, and salt into the database, protecting against SQL injection attacks.
+В этом коде пароль пользователя сначала проверяется, чтобы убедиться, что его длина составляет не менее 8 символов. Затем генерируется случайная 16-байтовая соль с помощью криптографически безопасного генератора случайных чисел. Затем пароль и соль хэшируются с помощью алгоритма Argon2id, который в настоящее время считается одним из самых безопасных алгоритмов хэширования паролей. Наконец, подготовленный оператор вставляет имя пользователя, хэшированный пароль и соль в базу данных, защищая ее от атак SQL-инъекций.
 
 
 
 
 
-## Restriction of XML External Entity Reference
+## Ограничение ссылки на внешние сущности XML
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 $xml = simplexml_load_string($xmlstring, 'SimpleXMLElement', LIBXML_NOENT);
 
-// use $xml here
+// используйте здесь $xml
 ```
 
-In the noncompliant code, LIBXML_NOENT is used as an option to the simplexml_load_string function. This allows the XML parser to process entity references, which can be used by an attacker to inject malicious code and execute it on the server.
+В коде, не соответствующем требованиям, LIBXML_NOENT используется в качестве опции функции simplexml_load_string. Это позволяет парсеру XML обрабатывать ссылки на сущности, что может быть использовано злоумышленником для внедрения вредоносного кода и его выполнения на сервере.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -543,56 +543,56 @@ $disableEntities = libxml_disable_entity_loader(true);
 $xml = simplexml_load_string($xmlstring, 'SimpleXMLElement', LIBXML_NOENT);
 libxml_disable_entity_loader($disableEntities);
 
-// use $xml here
+// используйте здесь $xml
 ```
 
 
-In the compliant code, libxml_disable_entity_loader is used to disable the loading of external entities in the XML parser. This prevents the parser from resolving external entity references, effectively mitigating the XXE vulnerability.
+В совместимом коде libxml_disable_entity_loader используется для отключения загрузки внешних сущностей в парсер XML. Это не позволяет парсеру разрешать ссылки на внешние сущности, эффективно устраняя уязвимость XXE.
 
 
 
 
 
-## display_errors 1
+## отображение_ошибок 1
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Example of security misconfiguration
+// Пример неправильной конфигурации системы безопасности
 ini_set('display_errors', 1);
 ```
 
-In the noncompliant code example, the ini_set() function is used to enable the display of errors to the user. This can potentially expose sensitive information and error messages to attackers.
+В примере несоответствующего кода функция ini_set() используется для включения отображения ошибок пользователю. Это может привести к раскрытию конфиденциальной информации и сообщений об ошибках для злоумышленников.
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
-// Example of secure configuration
-// Disable the display of errors to the user
+// Пример безопасной конфигурации
+// Отключите отображение ошибок для пользователя
 ini_set('display_errors', 0);
-// Log errors to a secure log file instead
+// Вместо этого записывайте ошибки в защищенный лог-файл
 ini_set('error_log', '/var/log/php_errors.log');
 ```
 
 
-In the compliant code example, the ini_set() function is used to disable the display of errors to the user, and instead log them to a secure log file. This helps to ensure that sensitive information is not exposed to attackers and that any errors are properly logged for debugging purposes.
+В примере с совместимым кодом функция ini_set() используется для отключения отображения ошибок пользователю, вместо этого они записываются в защищенный файл журнала. Это позволяет гарантировать, что конфиденциальная информация не попадет к злоумышленникам и что любые ошибки будут должным образом регистрироваться для целей отладки.
 
 
-## Vulnerable and Outdated Components
+## Уязвимые и устаревшие компоненты.
 
-### PHPMailer library
+### Библиотека PHPMailer
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 <?php
-// Example of vulnerable and outdated components
-// using an old version of PHPMailer library
+// Пример уязвимых и устаревших компонентов
+// Использование старой версии библиотеки PHPMailer
 
 require_once 'PHPMailer/class.phpmailer.php';
 
@@ -626,18 +626,18 @@ if (!$mail->Send()) {
 ?>
 ```
 
-The noncompliant code example shows the use of an outdated version of the PHPMailer library, which is vulnerable to security exploits. Specifically, it uses a vulnerable authentication method that can be exploited to gain unauthorized access to the email account, and it sends emails over an insecure connection.
+Пример несоответствующего кода демонстрирует использование устаревшей версии библиотеки PHPMailer, которая уязвима для эксплойтов безопасности. В частности, она использует уязвимый метод аутентификации, который может быть использован для получения несанкционированного доступа к учетной записи электронной почты, и отправляет письма через незащищенное соединение.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
 <?php
-// Example of secure and up-to-date code
-// using the latest version of PHPMailer library
+// Пример безопасного и актуального кода
+// Использование последней версии библиотеки PHPMailer
 
 require_once 'PHPMailer/src/PHPMailer.php';
 require_once 'PHPMailer/src/SMTP.php';
@@ -666,15 +666,15 @@ if (!$mail->send()) {
 ```
 
 
-The compliant code example uses the latest version of the PHPMailer library, which has improved security and is up-to-date with the latest security best practices. Specifically, it uses a secure authentication method, sends emails over an encrypted connection, and is set up to display server-side debug information in case of errors.
+Пример совместимого кода использует последнюю версию библиотеки PHPMailer, которая имеет улучшенную защиту и соответствует последним передовым практикам безопасности. В частности, она использует безопасный метод аутентификации, отправляет электронные письма через зашифрованное соединение и настроена на отображение отладочной информации на стороне сервера в случае возникновения ошибок.
 
 
 
 
 
-## Improper Validation of Certificate with Host Mismatch
+## Неправильная проверка сертификата с несоответствием хоста
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -684,12 +684,12 @@ $context = stream_context_create($opts);
 $data = file_get_contents('https://example.com', false, $context);
 ```
 
-In the noncompliant code above, the `$host` variable is set to the HTTP host provided by the client. This means that an attacker can easily manipulate the HTTP host header and bypass certificate validation by setting a different host. This can lead to man-in-the-middle attacks.
+В приведенном выше коде, не соответствующем требованиям, переменная `$host` устанавливается на HTTP-хост, предоставленный клиентом. Это означает, что злоумышленник может легко манипулировать заголовком HTTP host и обойти проверку сертификата, установив другой хост. Это может привести к атакам типа "человек посередине".
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -700,75 +700,75 @@ $data = file_get_contents('https://'.$host, false, $context);
 ```
 
 
-In the compliant code above, the `$host` variable is set to a trusted value, `example.com`. This ensures that the certificate is validated against the correct host and reduces the risk of man-in-the-middle attacks.
+В приведенном выше коде переменная `$host` установлена в доверенное значение, `example.com`. Это гарантирует, что сертификат будет проверен на правильном хосте, и снижает риск атак типа "человек посередине".
 
 
 
 
 
-## Improper Authentication
+## Неправильная аутентификация
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Example 1: Weak Password
+// Пример 1: слабый пароль
 $password = $_POST['password'];
 if ($password === 'password123') {
-    // Allow access
+    // Разрешаем доступ
 } else {
-    // Deny access
+    // Запретить доступ
 }
 
-// Example 2: Hardcoded Credentials
+// Пример 2: Учетные данные с жестким кодом
 $username = 'admin';
 $password = 'password';
 if ($_POST['username'] === $username && $_POST['password'] === $password) {
-    // Allow access
+    // Разрешаем доступ
 } else {
-    // Deny access
+    // Запретить доступ
 }
 ```
 
-The noncompliant code examples illustrate two common improper authentication issues. The first example shows the use of a weak password that can easily be guessed by attackers. The second example shows the use of hardcoded credentials that can be easily discovered by attackers.
+Примеры несоответствующего кода иллюстрируют две распространенные проблемы неправильной аутентификации. Первый пример демонстрирует использование слабого пароля, который может быть легко угадан злоумышленниками. Второй пример показывает использование жестко закодированных учетных данных, которые могут быть легко обнаружены злоумышленниками.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
-// Example 1: Strong Password
+// Пример 1: Сильный пароль
 $password = $_POST['password'];
 if (password_verify($password, $hashedPassword)) {
-    // Allow access
+    // Разрешаем доступ
 } else {
-    // Deny access
+    // Запретить доступ
 }
 
-// Example 2: Stored Credentials
+// Пример 2: Хранимые учетные данные
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-// Validate the user's credentials against a secure database
+// Проверяем учетные данные пользователя по защищенной базе данных
 if (validateCredentials($username, $password)) {
-    // Allow access
+    // Разрешаем доступ
 } else {
-    // Deny access
+    // Запретить доступ
 }
 ```
 
 
-The compliant code examples address these issues by using strong password hashing algorithms and storing user credentials securely in a database. The first example uses the `password_verify` function to compare the user's input password with a hashed password stored in the database. The second example validates the user's credentials against a secure database, rather than using hardcoded credentials in the application code.
+Примеры совместимого кода решают эти проблемы за счет использования надежных алгоритмов хеширования паролей и безопасного хранения учетных данных пользователя в базе данных. В первом примере используется функция `password_verify` для сравнения введенного пользователем пароля с хэшированным паролем, хранящимся в базе данных. Во втором примере учетные данные пользователя проверяются по защищенной базе данных, а не по жестко закодированным учетным данным в коде приложения.
 
 
 
 
 
-## Session Fixation
+## Фиксация сеанса
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -785,12 +785,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 ?>
 ```
 
-In the noncompliant code above, the session ID is generated when `session_start()` is called. However, the authenticated session is not regenerated after a successful login. This leaves the user's session vulnerable to session fixation attacks.
+В приведенном выше коде, не соответствующем требованиям, идентификатор сессии генерируется при вызове `session_start()`. Однако аутентифицированная сессия не восстанавливается после успешного входа в систему. Это делает сессию пользователя уязвимой для атак с фиксацией сессии.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -800,7 +800,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
   if (authenticate($username, $password)) {
-    // Regenerate session ID after successful login
+    // Регенерация идентификатора сеанса после успешного входа в систему
     session_regenerate_id();
     $_SESSION['authenticated'] = true;
     $_SESSION['username'] = $username;
@@ -810,15 +810,15 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 ```
 
 
-In the compliant code above, the `session_regenerate_id()` function is called after a successful login to regenerate the session ID. This ensures that the user's session is protected against session fixation attacks.
+В приведенном выше коде функция `session_regenerate_id()` вызывается после успешного входа в систему для регенерации идентификатора сессии. Это гарантирует, что сессия пользователя защищена от атак с фиксацией сессии.
 
 
 
 
 
-## Inclusion of Functionality from Untrusted Control
+## Включение функциональности из недоверенного управления
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -828,13 +828,13 @@ include($remoteUrl);
 ?>
 ```
 
-In this code, an attacker can control the `url` parameter and specify a malicious URL that contains code to be executed within the application's context. This can lead to arbitrary code execution, information disclosure, and other security issues.
+В этом коде злоумышленник может управлять параметром `url` и указать вредоносный URL, содержащий код, который будет выполнен в контексте приложения. Это может привести к выполнению произвольного кода, раскрытию информации и другим проблемам безопасности.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -843,19 +843,19 @@ $remoteUrl = $_GET['url'];
 if (filter_var($remoteUrl, FILTER_VALIDATE_URL)) {
   include($remoteUrl);
 } else {
-  // handle error
+  // ошибка обработки
 }
 ?>
 ```
 
 
-In the compliant code, input validation is added to ensure that the `url` parameter is a valid URL before including the remote file. This reduces the risk of including a malicious file and protects against potential code execution and other security issues.
+В совместимом коде добавлена проверка ввода, чтобы убедиться, что параметр `url` является действительным URL-адресом, прежде чем включить удаленный файл. Это снижает риск включения вредоносного файла и защищает от возможного выполнения кода и других проблем безопасности.
 
 
 
-## Download of Code Without Integrity Check
+## Загрузка кода без проверки целостности
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -865,12 +865,12 @@ file_put_contents('/tmp/package.tar.gz', $pkg);
 system('tar -xvf /tmp/package.tar.gz');
 ```
 
-In this example, the code downloads a tarball package from a remote location and extracts its contents. However, the code does not verify the integrity of the downloaded package before use, making it susceptible to tampering by attackers.
+В этом примере код загружает пакет tarball из удаленного места и извлекает его содержимое. Однако код не проверяет целостность загруженного пакета перед использованием, что делает его восприимчивым к взлому злоумышленниками.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -887,42 +887,42 @@ if (hash('sha256', $pkg) === trim($hash)) {
 ```
 
 
-In the compliant code, the integrity of the downloaded package is verified using a SHA-256 hash. The hash is downloaded from a trusted source (e.g., the package repository), and the downloaded package is compared with the expected hash. If the hashes match, the package is stored and extracted; otherwise, an exception is raised.
+В совместимом коде целостность загруженного пакета проверяется с помощью хэша SHA-256. Хэш загружается из доверенного источника (например, из хранилища пакетов), и загруженный пакет сравнивается с ожидаемым хэшем. Если хэши совпадают, пакет сохраняется и извлекается; в противном случае возникает исключение.
 
 
 
 
-## Deserialization of Untrusted Data
+## Десериализация недоверенных данных
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// Noncompliant code for Deserialization of Untrusted Data
+// Несоответствующий код для десериализации недоверенных данных
 
-// unserialize() function is used to deserialize the input data from a string
+// Функция unserialize() используется для десериализации входных данных из строки
 $userData = unserialize($_COOKIE['user']);
 
-// Use the data from $userData
+// Используем данные из $userData
 $name = $userData['name'];
 $id = $userData['id'];
 ```
 
-In this noncompliant code, the `unserialize()` function is used to deserialize the user input data from the `$_COOKIE` array directly, without any validation or sanitization. This can be dangerous because an attacker can manipulate the input data to execute malicious code during the deserialization process.
+В этом несовместимом коде функция `unserialize()` используется для десериализации введенных пользователем данных из массива `$_COOKIE` напрямую, без какой-либо проверки или санации. Это может быть опасно, поскольку злоумышленник может манипулировать входными данными для выполнения вредоносного кода во время процесса десериализации.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
-// Compliant code for Deserialization of Untrusted Data
+// Соответствующий код для десериализации недоверенных данных
 
-// Deserialize the input data after validating and sanitizing it
+// Десериализуйте входные данные после их валидации и санации
 $userData = json_decode(filter_input(INPUT_COOKIE, 'user', FILTER_SANITIZE_STRING));
 
-// Use the data from $userData
+// Используем данные из $userData
 if (isset($userData->name)) {
     $name = $userData->name;
 }
@@ -932,43 +932,43 @@ if (isset($userData->id)) {
 ```
 
 
-In this compliant code, the input data from the `$_COOKIE` array is first validated and sanitized using the `filter_input()` function with the `FILTER_SANITIZE_STRING` filter. Then, the input data is deserialized using the `json_decode()` function, which is safer than `unserialize()` because it only deserializes JSON-formatted data.
+В этом совместимом коде входные данные из массива `$_COOKIE` сначала проверяются и обеззараживаются с помощью функции `filter_input()` с фильтром `FILTER_SANITIZE_STRING`. Затем входные данные десериализуются с помощью функции `json_decode()`, которая является более безопасной, чем `unserialize()`, поскольку десериализует только данные в формате JSON.
 
-Finally, the data from `$userData` is used only after checking that the expected properties exist using `isset()`, which reduces the risk of accessing unexpected properties or executing malicious code.
-
-
+Наконец, данные из `$userData` используются только после проверки наличия ожидаемых свойств с помощью функции `isset()`, что снижает риск получения доступа к неожиданным свойствам или выполнения вредоносного кода.
 
 
-## Insufficient Logging
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+
+## Недостаточное протоколирование
+
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 function transferMoney($amount, $recipient) {
-  // some code to transfer money
+  // немного кода для перевода денег
   // ...
   
-  // log the transaction
+  // регистрируем транзакцию
   file_put_contents('transaction.log', "Transfered $amount to $recipient", FILE_APPEND);
 }
 ```
 
-In the above code, the transferMoney function logs transaction information to a file, but the logging is insufficient. There are no timestamps, severity levels, or any other useful information that could help detect or investigate security incidents.
+В приведенном выше коде функция transferMoney записывает информацию о транзакциях в файл, но этого недостаточно. В нем нет временных меток, уровней серьезности или любой другой полезной информации, которая могла бы помочь обнаружить или расследовать инциденты безопасности.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
 function transferMoney($amount, $recipient) {
-  // some code to transfer money
+  // немного кода для перевода денег
   // ...
   
-  // log the transaction with useful information
+  // регистрируем транзакцию с полезной информацией
   $log = fopen('transaction.log', 'a');
   if ($log) {
     $datetime = date('Y-m-d H:i:s');
@@ -984,54 +984,54 @@ function transferMoney($amount, $recipient) {
 ```
 
 
-In the compliant code, the `transferMoney` function logs transaction information to a file with useful information, such as a timestamp, severity level, and a formatted message. Additionally, the function handles errors that might occur while logging, such as the inability to open the log file, by logging an error message to the system log. This helps ensure that security incidents can be detected and investigated quickly and effectively.
+В совместимом коде функция `transferMoney` регистрирует информацию о транзакциях в файл с полезной информацией, такой как временная метка, уровень серьезности и форматированное сообщение. Кроме того, функция обрабатывает ошибки, которые могут возникнуть при регистрации, например невозможность открыть файл журнала, путем записи сообщения об ошибке в системный журнал. Это позволяет быстро и эффективно обнаруживать и расследовать инциденты безопасности.
 
 
 
-## Improper Output Neutralization for Logs
+## Неправильная нейтрализация выхода для бревен
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-// log the username and password to a file
+// записать имя пользователя и пароль в файл
 file_put_contents('logs.txt', 'Username: '.$username.' Password: '.$password);
 ```
 
-In the noncompliant code example, the `$_POST` variables are not sanitized before being logged to the file. This could allow an attacker to inject malicious input and log it to the file, potentially compromising the system.
+В примере кода, не отвечающего требованиям, переменные `$_POST` не подвергаются санитарной обработке перед записью в файл. Это может позволить злоумышленнику внедрить вредоносный ввод и записать его в файл, что может привести к компрометации системы.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-// sanitize the input using filter_var
+// Дезинфекция входных данных с помощью filter_var
 $sanitized_username = filter_var($username, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
 $sanitized_password = filter_var($password, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
 
-// log the sanitized username and password to a file
+// записываем продезинфицированные имя пользователя и пароль в файл
 file_put_contents('logs.txt', 'Username: '.$sanitized_username.' Password: '.$sanitized_password);
 ```
 
 
-In the compliant code example, the `filter_var` function is used to sanitize the input before being logged to the file. The `FILTER_SANITIZE_STRING` flag removes any character that is not a letter, digit, or whitespace. The `FILTER_FLAG_STRIP_LOW` and `FILTER_FLAG_STRIP_HIGH` flags remove any character with an ASCII value below 32 or above 126, respectively. This ensures that only safe and valid characters are logged to the file.
+В примере с совместимым кодом функция `filter_var` используется для дезинфекции входных данных перед записью в файл. Флаг `FILTER_SANITIZE_STRING` удаляет любой символ, который не является буквой, цифрой или пробелом. Флаги `FILTER_FLAG_STRIP_LOW` и `FILTER_FLAG_STRIP_HIGH` удаляют любой символ со значением ASCII ниже 32 или выше 126, соответственно. Это гарантирует, что в файл будут записываться только безопасные и допустимые символы.
 
 
 
 
 
-## Omission of Security-relevant Information
+## Упущение информации, имеющей отношение к безопасности
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1042,10 +1042,10 @@ $sql = "SELECT * FROM users WHERE username = '" . $username . "' AND password = 
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
-    // user is authenticated
-    // do some sensitive operation
+    // пользователь аутентифицирован
+    // выполните какую-то конфиденциальную операцию
 } else {
-    // user is not authenticated
+    // пользователь не аутентифицирован
     echo "Invalid credentials";
 }
 ```
@@ -1053,7 +1053,7 @@ if (mysqli_num_rows($result) > 0) {
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -1067,65 +1067,65 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
 if (mysqli_num_rows($result) > 0) {
-    // user is authenticated
-    // do some sensitive operation
+    // пользователь аутентифицирован
+    // выполните какую-то конфиденциальную операцию
 } else {
-    // user is not authenticated
+    // пользователь не аутентифицирован
     echo "Invalid credentials";
 }
 ```
 
 
-Omission of security-relevant information is a vulnerability that occurs when important security-related information, such as error messages, is not provided to the user or logged for later analysis. In the noncompliant code example, an attacker can use the error message "Invalid credentials" to determine if a given username exists in the system. This information can be used in further attacks to try and guess the correct password. The compliant code example uses prepared statements to prevent SQL injection, and does not provide any information in the error message that could be used by an attacker to determine if a username exists in the system or not.
+Упущение информации, имеющей отношение к безопасности, - это уязвимость, которая возникает, когда важная информация, связанная с безопасностью, например сообщения об ошибках, не предоставляется пользователю или не регистрируется для последующего анализа. В примере с несоответствующим кодом злоумышленник может использовать сообщение об ошибке "Invalid credentials", чтобы определить, существует ли данное имя пользователя в системе. Эта информация может быть использована в дальнейших атаках для попытки угадать правильный пароль. Соответствующий пример кода использует подготовленные операторы для предотвращения SQL-инъекций и не предоставляет никакой информации в сообщении об ошибке, которая может быть использована злоумышленником для определения того, существует ли имя пользователя в системе или нет.
 
 
 
 
 
 
-## Sensitive Information into Log File
+## Помещение конфиденциальной информации в файл журнала
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
-// sensitive data is logged without proper redaction
+// конфиденциальные данные регистрируются без надлежащего редактирования
 $username = $_POST['username'];
 $password = $_POST['password'];
 
 error_log("Login attempt with username: ".$username." and password: ".$password);
 ```
 
-The noncompliant code shows an example where sensitive data (i.e. username and password) is directly logged to an error log file. This can be dangerous as it may expose this sensitive information to unauthorized parties who have access to the log file.
+Несоответствующий требованиям код показывает пример, в котором конфиденциальные данные (например, имя пользователя и пароль) напрямую записываются в файл журнала ошибок. Это может быть опасно, так как может привести к раскрытию этой конфиденциальной информации неавторизованным лицам, имеющим доступ к файлу журнала.
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
-// sensitive data is redacted before being logged
+// конфиденциальные данные редактируются перед записью в журнал
 $username = $_POST['username'];
 $password = $_POST['password'];
 
 error_log("Login attempt with username: ".redact($username)." and password: ".redact($password));
 
 function redact($string) {
-  // replace sensitive data with asterisks
+  // замените конфиденциальные данные на звездочки
   return preg_replace('/./', '*', $string);
 }
 ```
 
 
-The compliant code shows an example of how to properly redact the sensitive data before logging it. In this example, the redact function replaces every character in the sensitive string with an asterisk, effectively hiding the sensitive data. The redacted strings are then used in the error log message, which will not reveal the sensitive data.
+В совместимом коде показан пример того, как правильно отредактировать конфиденциальные данные перед их записью в журнал. В этом примере функция redact заменяет каждый символ в конфиденциальной строке на звездочку, эффективно скрывая конфиденциальные данные. Затем отредактированные строки используются в сообщении журнала ошибок, которое не раскрывает конфиденциальные данные.
 
 
 
 
-## Server-Side Request Forgery (SSRF)
+## Подделка запросов со стороны сервера (SSRF)
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Noncompliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
 
 ```php
@@ -1134,13 +1134,13 @@ $file = file_get_contents($url);
 echo $file;
 ```
 
-In this noncompliant code, an attacker can pass a malicious URL through the "url" parameter in the GET request and the server will make a request to that URL using the file_get_contents() function. This allows the attacker to perform unauthorized actions on behalf of the server.
+В этом несовместимом коде злоумышленник может передать вредоносный URL через параметр "url" в GET-запросе, и сервер выполнит запрос к этому URL с помощью функции file_get_contents(). Это позволяет злоумышленнику выполнить несанкционированные действия от имени сервера.
 
 
 
 
 
-<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Compliant code:
+<span class="d-inline-block p-2 mr-1 v-align-middle bg-green-000"></span>Соответствующий код
 
 
 ```php
@@ -1154,8 +1154,8 @@ if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
 ```
 
 
-In this compliant code, the input from the "url" parameter is validated using the FILTER_VALIDATE_URL filter, which checks if the URL is valid. If the URL is invalid, the script will return an error message. If the URL is valid, the server will retrieve the contents of the URL using the file_get_contents() function. This prevents the server from making requests to malicious URLs.
+В этом совместимом коде входные данные из параметра "url" проверяются с помощью фильтра FILTER_VALIDATE_URL, который проверяет, является ли URL действительным. Если URL недействителен, сценарий вернет сообщение об ошибке. Если URL действителен, сервер получит содержимое URL с помощью функции file_get_contents(). Это предотвращает выполнение сервером запросов к вредоносным URL.
 
 
-It is important to note that in addition to input validation, other measures such as using a whitelist of allowed URLs and limiting network access can also help prevent SSRF attacks.
+Важно отметить, что помимо проверки ввода, другие меры, такие как использование белого списка разрешенных URL и ограничение доступа к сети, также могут помочь предотвратить атаки SSRF.
 
