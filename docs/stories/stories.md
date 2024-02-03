@@ -6,11 +6,11 @@ has_children: false
 permalink: stories
 ---
 
-# Stories
+# Истории
 
 {: .no_toc }
 
-## Table of contents
+## Оглавление
 {: .no_toc .text-delta }
 
 1. TOC
@@ -19,342 +19,342 @@ permalink: stories
 ---
 
 
-## DevSecOps War Stories: The Challenges of Implementing SAST 
+## Военные истории DevSecOps: Трудности внедрения SAST 
 
 [Devsecops War Stories](https://wehackpurple.com/devsecops-war-stories/)
 {: .label .label-yellow }
 
 
-DevSecOps has emerged as a culture shift in software development, aiming to improve software security by breaking down silos and fostering collaboration among security professionals and IT teams. However, the transition to DevSecOps is not without its challenges. In this article, we will explore one such challenge through a war story of a SAST (Static Application Security Testing) rollout.
+DevSecOps - это культурный сдвиг в разработке программного обеспечения, направленный на повышение безопасности программного обеспечения за счет разрушения изолированности и развития сотрудничества между специалистами по безопасности и ИТ-командами. Однако переход к DevSecOps не обходится без проблем. В этой статье мы рассмотрим одну из таких проблем на примере развертывания системы SAST (Static Application Security Testing).
 
-The Context of DevOps
+Контекст DevOps
 
-Before diving into the war story, let's briefly understand DevOps. DevOps is a modern software development approach that emphasizes close collaboration between developers and operations teams, leveraging automation to create reliable and high-quality products. DevOps encourages a focus on system efficiency, rapid feedback loops, and continuous learning and improvement.
+Прежде чем погрузиться в историю войны, давайте вкратце разберемся, что такое DevOps. DevOps - это современный подход к разработке программного обеспечения, в котором особое внимание уделяется тесному сотрудничеству между разработчиками и операционными командами, использованию автоматизации для создания надежных и высококачественных продуктов. DevOps поощряет фокус на эффективности системы, быстрые циклы обратной связи, а также непрерывное обучение и совершенствование.
 
-DevOps and Security
+DevOps и безопасность
 
-The goals of DevOps align well with security objectives. Reliable and performant systems enhance availability, while automation reduces human error and increases opportunities for security testing. Additionally, the use of infrastructure-as-code allows security scanning of infrastructure configurations, similar to application code.
+Цели DevOps хорошо согласуются с задачами безопасности. Надежные и производительные системы повышают доступность, а автоматизация снижает количество человеческих ошибок и расширяет возможности для тестирования безопасности. Кроме того, использование инфраструктуры как кода позволяет сканировать конфигурации инфраструктуры на предмет безопасности, подобно коду приложений.
 
-The Promise of DevSecOps
+Перспективы DevSecOps
 
-DevSecOps extends the DevOps philosophy by incorporating security into the development process from the start. It aims to integrate security practices, tools, and expertise seamlessly into the DevOps pipeline. However, realizing the full potential of DevSecOps requires addressing various challenges along the way.
+DevSecOps расширяет философию DevOps, включая безопасность в процесс разработки с самого начала. Она направлена на интеграцию практик, инструментов и опыта в области безопасности в конвейер DevOps. Однако реализация всего потенциала DevSecOps требует решения различных проблем на этом пути.
 
-The SAST Rollout Story
+История развертывания SAST
 
-In this war story, we follow the journey of an AppSec professional tasked with introducing SAST into a client's DevOps pipeline. The client was already progressing on their DevOps journey, regularly pushing code to version control and running CI/CD pipelines every two weeks.
+В этой истории мы проследим путь специалиста AppSec, которому было поручено внедрить SAST в конвейер DevOps клиента. Клиент уже продвигался по пути DevOps, регулярно отправляя код на контроль версий и запуская конвейеры CI/CD каждые две недели.
 
-The Challenge of Integration
+Проблема интеграции
 
-The client's development process involved a change management board (CAB) meeting, where teams presented their cases to move their code to production. Prior to the CAB meeting, developers conducted their own tests to ensure smooth approval. The AppSec professional introduced SAST, SCA (Software Composition Analysis), and IaC (Infrastructure-as-Code) scanning into the CI/CD pipeline, adding three additional tests.
+Процесс разработки клиента включал в себя совещание совета по управлению изменениями (CAB), на котором команды представляли свои аргументы в пользу перевода кода в продакшн. Перед заседанием CAB разработчики проводили собственные тесты, чтобы обеспечить беспрепятственное утверждение. Специалист AppSec внедрил сканирование SAST, SCA (анализ состава программного обеспечения) и IaC (инфраструктура как код) в конвейер CI/CD, добавив три дополнительных теста.
 
-Ancient Applications and Red Flags
+Древние приложения и "красные флажки
 
-While the newer applications successfully passed the security scans, the older ones presented a different story. The SAST scan results resembled a Christmas tree, with bright red flags indicating numerous security issues. This revealed a significant challenge in securing legacy applications within the DevSecOps framework.
+Если новые приложения успешно прошли проверку на безопасность, то со старыми все обстояло иначе. Результаты сканирования SAST напоминали рождественскую елку с яркими красными флажками, указывающими на многочисленные проблемы безопасности. Это выявило серьезную проблему в защите старых приложений в рамках DevSecOps.
 
-The Emailing Mishap
+Ошибка при отправке электронной почты
 
-In an effort to encourage developers to fix security issues early in the SDLC, the AppSec professional configured the SAST tool to email reports whenever code changes were detected. However, a crucial oversight occurred—every software developer in the company received an email for each code check-in, causing an overwhelming amount of emails and embarrassment for the developers.
+Стремясь побудить разработчиков к устранению проблем безопасности на ранних этапах SDLC, специалист AppSec настроил инструмент SAST на отправку отчетов по электронной почте при обнаружении изменений в коде. Однако произошла важная оплошность - каждый разработчик программного обеспечения в компании получал электронное письмо на каждую проверку кода, что привело к чрезмерному количеству писем и смущению разработчиков.
 
-The Road to Resolution
+Путь к решению проблемы
 
-Upon learning about the unintended consequences of their approach, the AppSec professional recognized the mistake and took swift action. They restructured the tool's setup, creating two separate configurations: one providing a holistic view of the organization's security posture and another delivering reports specific to each DevOps team. This adjustment alleviated the spamming issue and allowed for accurate reporting while respecting the developers' workflow.
+Узнав о непредвиденных последствиях своего подхода, специалисты AppSec осознали ошибку и приняли оперативные меры. Они изменили настройку инструмента, создав две отдельные конфигурации: одна давала целостное представление о состоянии безопасности организации, а другая предоставляла отчеты для каждой команды DevOps. Эта корректировка позволила решить проблему спама и получить точные отчеты, не нарушая при этом рабочий процесс разработчиков.
 
-The Importance of Learning and Adapting
+Важность обучения и адаптации
 
-The SAST rollout experience serves as a valuable lesson in the DevSecOps journey. When confronted with the negative impact of their initial approach, the AppSec professional demonstrated the third way of DevOps—taking time to improve daily work. By acknowledging the mistake, making the necessary changes, and prioritizing the developers' experience, they exemplified the resilience and adaptability required for successful DevSecOps implementation.
+Опыт внедрения SAST послужил ценным уроком на пути DevSecOps. Столкнувшись с негативными последствиями своего первоначального подхода, специалист AppSec продемонстрировал третий путь DevOps - выделение времени для улучшения повседневной работы. Признав ошибку, внеся необходимые изменения и поставив во главу угла опыт разработчиков, они продемонстрировали стойкость и адаптивность, необходимые для успешного внедрения DevSecOps.
 
 
-## Integrating DevSecOps into the Software Development Lifecycle: A Case Study by Broadcom Software
+## Интеграция DevSecOps в жизненный цикл разработки программного обеспечения: Пример из практики Broadcom Software
 
 [Securing the DX NetOps Development Lifecycle with DevSecOps](https://academy.broadcom.com/blog/netops/dx-netops/securing-the-dx-netops-development-lifecycle-with-devsecops)
 {: .label .label-yellow }
 
 
-In today's digital landscape, the rise of cybersecurity exploits and software vulnerabilities has become a pressing concern for enterprises. Recent incidents, such as Sun Burst and Log4j, have highlighted the importance of securing software supply chains and adopting robust security practices. To address these challenges, forward-thinking organizations like Broadcom Software have turned to DevSecOps, a strategic approach that integrates security into the early stages of the software development lifecycle (SDLC).
+В современном цифровом ландшафте рост числа эксплойтов и уязвимостей программного обеспечения в сфере кибербезопасности стал насущной проблемой для предприятий. Недавние инциденты, такие как Sun Burst и Log4j, подчеркнули важность защиты цепочек поставок программного обеспечения и внедрения надежных методов обеспечения безопасности. Для решения этих проблем дальновидные организации, такие как Broadcom Software, обратились к DevSecOps - стратегическому подходу, который интегрирует безопасность на ранних этапах жизненного цикла разработки программного обеспечения (SDLC).
 
-Software Supply Chain Attacks:
-Software supply chain attacks have emerged as a significant threat, targeting developers and suppliers. Attackers exploit unsecured networks and unsafe SDLC practices to inject malware into legitimate applications. For organizations relying on third-party software, it becomes nearly impossible to assess the security of every update from every supplier they use.
+Атаки на цепочки поставок программного обеспечения:
+Атаки на цепочки поставок программного обеспечения превратились в серьезную угрозу, направленную на разработчиков и поставщиков. Злоумышленники используют незащищенные сети и небезопасные методы SDLC для внедрения вредоносных программ в легитимные приложения. Для организаций, полагающихся на программное обеспечение сторонних производителей, становится практически невозможным оценить безопасность каждого обновления от каждого поставщика, которого они используют.
 
-Embracing DevSecOps:
-DevSecOps represents a paradigm shift in security tactics and strategies, moving away from traditional reactive approaches. By adopting DevSecOps, organizations can embed security practices throughout the SDLC, reducing issues, improving code reliability, and enabling faster product launches. Broadcom Software's DX NetOps development organization has embraced DevSecOps to ensure enterprise-grade software reliability and security.
+Внедрение DevSecOps:
+DevSecOps представляет собой смену парадигмы в тактике и стратегии безопасности, отход от традиционных реактивных подходов. Приняв DevSecOps, организации могут внедрять методы обеспечения безопасности на протяжении всего SDLC, сокращая количество проблем, повышая надежность кода и ускоряя запуск продуктов. Организация Broadcom Software, занимающаяся разработкой DX NetOps, внедрила DevSecOps, чтобы обеспечить надежность и безопасность программного обеспечения корпоративного уровня.
 
-Key Practices for Secure SDLC at Broadcom Software:
+Ключевые практики безопасного SDLC в Broadcom Software:
 
-Automation: Broadcom Software has standardized on proven systems for secure continuous integration (CI) and continuous delivery (CD), minimizing manual interventions and ensuring build control.
-Shift-Left Approach: Security checks are conducted early and often through static scans after every code change, uncovering vulnerabilities and identifying potential risks associated with third-party components.
-Continuous Audit: Broadcom Software enforces security throughout the software lifecycle with a focus on team education, architectural risk assessment, code analysis, penetration testing, and continuous vulnerability tracking.
-Bill of Materials: Unique fingerprints are created to track the source code, bill of materials, and build systems used for every software release, providing transparency and accountability.
-Benefits and Culture of Innovation:
-Broadcom Software's implementation of DevSecOps enables agility and speed without compromising security and compliance. By incorporating security from the start, the organization fosters a culture of innovation, leveraging the continuous flow of new features and capabilities.
+Автоматизация: Broadcom Software стандартизировала проверенные системы для безопасной непрерывной интеграции (CI) и непрерывной доставки (CD), минимизируя ручное вмешательство и обеспечивая контроль сборки.
+Левосторонний подход: Проверки безопасности проводятся на ранних стадиях и часто с помощью статического сканирования после каждого изменения кода, что позволяет обнаружить уязвимости и выявить потенциальные риски, связанные с компонентами сторонних разработчиков.
+Непрерывный аудит: Broadcom Software обеспечивает безопасность на протяжении всего жизненного цикла программного обеспечения, уделяя особое внимание обучению команды, оценке архитектурных рисков, анализу кода, тестированию на проникновение и постоянному отслеживанию уязвимостей.
+Сводная ведомость материалов: Уникальные отпечатки пальцев создаются для отслеживания исходного кода, спецификации материалов и систем сборки, используемых для каждого выпуска программного обеспечения, обеспечивая прозрачность и подотчетность.
+Преимущества и культура инноваций:
+Внедрение DevSecOps в компании Broadcom Software обеспечивает гибкость и скорость без ущерба для безопасности и соответствия нормативным требованиям. Обеспечивая безопасность с самого начала, организация способствует развитию культуры инноваций, используя непрерывный поток новых функций и возможностей.
 
-Upgrades and Maintenance:
-To combat cyber threats effectively, staying up-to-date with the latest software versions is crucial. Broadcom Software offers regular service packs to DX NetOps customers, ensuring their products align with the latest security guidelines. The company provides support during upgrade weekends, reducing the risk of extended downtime and upgrade failure.
+Обновление и обслуживание:
+Для эффективной борьбы с киберугрозами очень важно постоянно обновлять последние версии программного обеспечения. Broadcom Software регулярно предлагает клиентам DX NetOps пакеты обновлений, обеспечивая соответствие их продуктов последним рекомендациям по безопасности. Компания обеспечивает поддержку во время выходных дней, связанных с обновлением, что снижает риск длительного простоя и неудачного обновления.
 
 
 
-## The Evolution of DevSecOps: A Year in Review
+## Эволюция DevSecOps: обзор за год
 
 [Top Stories Of 2022 From The World Of DevOps](https://www.linkedin.com/company/razorops/)
 {: .label .label-yellow }
 
-The year 2022 has been marked by numerous challenges, from the global impact of COVID-19 and ongoing conflicts to economic uncertainties. Amidst these adversities, however, innovation has thrived. Today, as we bid farewell to 2022, let us reflect on the significant milestones in the world of DevOps. What stands out when we think of DevOps in 2022?
+2022 год был отмечен множеством проблем - от глобального воздействия COVID-19 и продолжающихся конфликтов до экономической неопределенности. Однако на фоне этих трудностей инновации процветали. Сегодня, когда мы прощаемся с 2022 годом, давайте поразмышляем о значительных вехах в мире DevOps. Что выделяется, когда мы думаем о DevOps в 2022 году?
 
-Incorporation of DevSecOps Lifecycle:
-One of the prominent trends that gained attention in 2022 was the integration of the DevSecOps lifecycle. This approach embraces the shift-left philosophy, prioritizing security from the beginning rather than treating it as an afterthought. Current DevSecOps trends reveal that approximately 40% of businesses perform DAST tests, 50% perform SAST tests, and 20% scan dependencies and containers. Enterprises have recognized the importance of DevSecOps in enhancing security, streamlining governance, and improving observability.
+Включение жизненного цикла DevSecOps:
+Одной из самых заметных тенденций, которая привлекла внимание в 2022 году, стала интеграция жизненного цикла DevSecOps. Этот подход воплощает в себе философию "сдвига влево", делая безопасность приоритетной с самого начала, а не рассматривая ее как нечто второстепенное. Современные тенденции DevSecOps показывают, что около 40 % предприятий выполняют DAST-тесты, 50 % - SAST-тесты и 20 % - сканирование зависимостей и контейнеров. Предприятия признают важность DevSecOps для повышения безопасности, оптимизации управления и улучшения наблюдаемости.
 
-Serverless Computing and the Bridge between Development and Operations:
-The adoption of serverless computing has significantly contributed to the DevOps process. By closing the gap between development and operations, it has enhanced operability. Moreover, serverless computing empowers hosts to develop, test, and deploy DevOps pipeline code efficiently. As a result, more than 50% of enterprises with cloud-based services have integrated serverless computing into their systems. The serverless market is projected to reach a value of $30 billion by 2030.
+Бессерверные вычисления и мост между разработкой и операциями:
+Внедрение бессерверных вычислений внесло значительный вклад в процесс DevOps. Устранив разрыв между разработкой и операциями, они повысили оперативность. Более того, бессерверные вычисления позволяют хостам эффективно разрабатывать, тестировать и развертывать код конвейера DevOps. В результате более 50 % предприятий с облачными сервисами интегрировали бессерверные вычисления в свои системы. По прогнозам, к 2030 году объем рынка бессерверных вычислений достигнет 30 миллиардов долларов.
 
-Microservice Architecture for Holistic Product Quality:
-The IT sector extensively embraced microservice architecture in 2022. Breaking down large-scale applications into smaller, manageable pieces has simplified development, testing, and deployment processes. This approach has also facilitated consistent and frequent delivery of software and applications, thereby improving the holistic quality of products.
+Микросервисная архитектура для целостного качества продукта:
+В 2022 году ИТ-сектор широко внедрил микросервисную архитектуру. Разбиение масштабных приложений на более мелкие, управляемые части упростило процессы разработки, тестирования и развертывания. Такой подход также способствовал последовательной и частой доставке программного обеспечения и приложений, повышая тем самым целостное качество продуктов.
 
-AIOps and MLOps: Optimizing DevOps Operations:
-The significant roles played by AIOps and MLOps in DevOps operations were notable in 2022. These technologies have optimized processes for high-quality and rapid releases. MLOps supports the development of machine learning systems, while AIOps automates IT operations and processes. AIOps allows organizations to easily identify and resolve issues that hinder operational productivity, while MLOps boosts productivity through optimization. It is predicted that by 2026, these technologies will grow into a $40.91 billion industry.
+AIOps и MLOps: оптимизация операций DevOps:
+Значительная роль AIOps и MLOps в операциях DevOps была заметна в 2022 году. Эти технологии оптимизировали процессы для качественных и быстрых релизов. MLOps поддерживает разработку систем машинного обучения, а AIOps автоматизирует ИТ-операции и процессы. AIOps позволяет организациям легко выявлять и решать проблемы, мешающие операционной производительности, а MLOps повышает производительность за счет оптимизации. По прогнозам, к 2026 году эти технологии превратятся в отрасль стоимостью 40,91 миллиарда долларов.
 
-Low-Code DevOps Approach for Enhanced Development and Deployment:
-In 2022, many robust enterprises adopted a low-code DevOps approach, reaping benefits for their teams. Businesses and organizations can now build applications using low-code platforms without the need to learn how to code. This trend has accelerated the development and deployment processes, enabling teams to work more efficiently.
+Подход Low-Code DevOps для улучшения разработки и развертывания:
+В 2022 году многие надежные предприятия перешли на низкокодовый подход DevOps, что принесло выгоду их командам. Предприятия и организации теперь могут создавать приложения с помощью низкокодовых платформ без необходимости изучать код. Эта тенденция ускорила процессы разработки и развертывания, позволив командам работать более эффективно.
 
-GitOps: Automating Infrastructure:
-Another popular trend that emerged in DevOps workflows in 2022 was GitOps. It revolutionized the control, monitoring, and automation of infrastructure. By emphasizing increased releases and consistent delivery, GitOps enabled organizations to develop, test, and deploy software rapidly and efficiently.
+GitOps: автоматизация инфраструктуры:
+Еще одним популярным трендом, появившимся в рабочих процессах DevOps в 2022 году, стал GitOps. Он произвел революцию в управлении, мониторинге и автоматизации инфраструктуры. Делая упор на увеличение количества релизов и последовательную доставку, GitOps позволил организациям быстро и эффективно разрабатывать, тестировать и развертывать программное обеспечение.
 
-Kubernetes: A Continuous and Autonomous Container-Based Ecosystem:
-Kubernetes, a continuous and autonomous container-based integration ecosystem, has empowered developers to scale resources dynamically. It facilitates cross-functional collaboration and minimizes deployment downtime. Notably, 48% of developers have turned to Kubernetes for container integration, highlighting its significance in the DevOps landscape.
+Kubernetes: Непрерывная и автономная экосистема на основе контейнеров:
+Kubernetes, экосистема непрерывной и автономной интеграции на основе контейнеров, позволила разработчикам динамически масштабировать ресурсы. Она облегчает межфункциональное сотрудничество и минимизирует время простоя развертывания. Примечательно, что 48 % разработчиков обратились к Kubernetes для интеграции контейнеров, что подчеркивает ее значимость в ландшафте DevOps.
 
-The Future of DevOps:
-As DevOps continues to evolve and mature, it has become an indispensable part of the modern software industry. The associated frameworks and technologies will continue to drive faster and better development, maintenance, and management of software and applications. 
+Будущее DevOps:
+По мере развития и становления DevOps становится неотъемлемой частью современной индустрии программного обеспечения. Связанные с ним фреймворки и технологии будут и дальше способствовать более быстрой и качественной разработке, сопровождению и управлению программным обеспечением и приложениями. 
 
 
 
-## The Evolution of DevSecOps: Advancing Security in the Digital Age
+## Эволюция DevSecOps: повышение безопасности в цифровую эпоху
 
 [Epic Failures in DevSecOps by DevSecOps Days Press](https://www.linkedin.com/posts/rajkgrover_epic-failures-in-devsecops-vol-1-activity-7025826736101548032-VoBE/?utm_source=share&utm_medium=member_desktop)
 {: .label .label-yellow }
 
-In today's rapidly evolving digital landscape, security has become a critical concern for organizations. The integration of security practices into the DevOps process has given rise to a new approach known as DevSecOps. This article delves into the history of DevSecOps and provides ten actionable ways to advance in this field.
+В современном быстро развивающемся цифровом ландшафте безопасность стала важнейшей задачей для организаций. Интеграция практик безопасности в процесс DevOps привела к появлению нового подхода, известного как DevSecOps. В этой статье мы рассмотрим историю DevSecOps и приведем десять действенных способов продвижения в этой области.
 
-The History of DevSecOps:
-DevSecOps emerged as a response to the growing need for incorporating security early in the software development lifecycle. It builds upon the principles of DevOps, emphasizing collaboration, automation, and continuous integration and delivery. By integrating security practices from the beginning, DevSecOps aims to ensure that applications and systems are resilient against potential threats.
+История DevSecOps:
+DevSecOps возник как ответ на растущую потребность в обеспечении безопасности на ранних этапах жизненного цикла разработки программного обеспечения. Он опирается на принципы DevOps, делая упор на сотрудничество, автоматизацию, непрерывную интеграцию и доставку. Интегрируя практики безопасности с самого начала, DevSecOps стремится обеспечить устойчивость приложений и систем к потенциальным угрозам.
 
-10 Ways to Advance in DevSecOps:
+10 способов продвинуться в DevSecOps:
 
-See the new world:
-Recognize that the digital landscape is constantly changing, with new technologies and threats emerging. Stay updated with the latest trends and challenges to adapt and enhance your security practices.
+Увидеть новый мир:
+Осознайте, что цифровой ландшафт постоянно меняется, появляются новые технологии и угрозы. Будьте в курсе последних тенденций и проблем, чтобы адаптировать и совершенствовать свои методы обеспечения безопасности.
 
-Recognize your place in the value chain:
-Understand your role in the overall value chain of software development and delivery. Recognize that security is not just an isolated function but an integral part of the entire process.
+Осознайте свое место в цепочке создания стоимости:
+Поймите свою роль в общей цепочке создания стоимости при разработке и поставке программного обеспечения. Осознайте, что безопасность - это не просто изолированная функция, а неотъемлемая часть всего процесса.
 
-Know Agile and DevOps:
-Familiarize yourself with Agile methodologies and DevOps practices. Understanding how these frameworks operate will help you align security practices seamlessly within the development process.
+Знайте Agile и DevOps:
+Ознакомьтесь с методологиями Agile и практиками DevOps. Понимание принципов работы этих структур поможет вам органично вписать методы обеспечения безопасности в процесс разработки.
 
-Live out bi-directional empathy:
-Develop empathy and foster strong collaboration between security teams and developers. Encourage open communication and mutual understanding to bridge the gap between security and development.
+Проявляйте двунаправленную эмпатию:
+Развивайте эмпатию и способствуйте тесному сотрудничеству между командами безопасности и разработчиками. Поощряйте открытое общение и взаимопонимание, чтобы преодолеть разрыв между безопасностью и разработкой.
 
-Do security for the developer's benefit:
-Shift the focus of security from being a hindrance to becoming an enabler for developers. Provide them with the tools, training, and resources they need to build secure applications without compromising on productivity.
+Занимайтесь безопасностью в интересах разработчиков:
+Сместите акцент безопасности с того, чтобы она мешала разработчикам, на то, чтобы она помогала им. Предоставьте им инструменты, обучение и ресурсы, необходимые для создания безопасных приложений без ущерба для производительности.
 
-Operationalize DevSecOps:
-Integrate security practices into the entire software development lifecycle. Implement automated security testing, code analysis, and vulnerability management tools to ensure continuous security throughout the process.
+Внедрение DevSecOps:
+Интегрируйте методы обеспечения безопасности во весь жизненный цикл разработки программного обеспечения. Внедрите автоматизированные средства тестирования безопасности, анализа кода и управления уязвимостями, чтобы обеспечить непрерывную защиту на протяжении всего процесса.
 
-Make security normal:
-Embed security as a core component of the development culture. Promote security awareness, conduct regular training, and establish security checkpoints at each stage of development to make security practices a norm.
+Сделайте безопасность нормой:
+Внедрите безопасность в качестве основного компонента культуры разработки. Повышайте осведомленность о безопасности, проводите регулярное обучение и устанавливайте контрольные точки безопасности на каждом этапе разработки, чтобы сделать методы обеспечения безопасности нормой.
 
-Track adversary interest:
-Stay vigilant and monitor evolving threats and adversary interests. Understand the tactics and techniques used by potential attackers to proactively address vulnerabilities and protect against emerging threats.
+Отслеживайте интересы противника:
+Не теряйте бдительности и следите за развитием угроз и интересов противника. Поймите тактику и методы, используемые потенциальными злоумышленниками, чтобы проактивно устранять уязвимости и защищаться от возникающих угроз.
 
-Create security observability:
-Implement robust monitoring and logging systems to gain visibility into security events and incidents. Leverage security observability tools and practices to detect and respond to security breaches effectively.
+Создайте возможность наблюдения за безопасностью:
+Внедрите надежные системы мониторинга и протоколирования, чтобы получать информацию о событиях и инцидентах безопасности. Используйте инструменты и методы наблюдения за безопасностью для эффективного обнаружения и реагирования на нарушения безопасности.
 
-Build the future:
-Stay innovative and forward-thinking. Continuously explore emerging technologies, frameworks, and best practices in DevSecOps. Actively contribute to the DevSecOps community and share your knowledge and experiences to drive the field forward.
+Стройте будущее:
+Оставайтесь инновационными и дальновидными. Постоянно изучайте новые технологии, фреймворки и лучшие практики в DevSecOps. Активно участвуйте в жизни сообщества DevSecOps и делитесь своими знаниями и опытом, чтобы продвигать эту область вперед.
 
 
-## True Story of Implementing SecDevOps in FinTech
+## Правдивая история внедрения SecDevOps в FinTech
 
 [Snyk](https://www.youtube.com/watch?v=_d6JJfl9S5g)
 {: .label .label-yellow }
 
-In the fast-paced world of FinTech, where technology and finance intersect, security is of paramount importance. The integration of security practices into the DevOps workflow has given rise to a powerful approach known as SecDevOps. In the captivating video "The True Story of Implementing SecDevOps in FinTech" by John Smith, the challenges, successes, and lessons learned from implementing SecDevOps in the FinTech industry are explored. This article will delve into the key insights from the video and shed light on the journey of implementing SecDevOps in the dynamic world of FinTech.
+В стремительно развивающемся мире FinTech, где пересекаются технологии и финансы, безопасность имеет первостепенное значение. Интеграция практик безопасности в рабочий процесс DevOps привела к появлению мощного подхода, известного как SecDevOps. В захватывающем видеоролике "Правдивая история внедрения SecDevOps в FinTech", снятом Джоном Смитом, рассказывается о проблемах, успехах и уроках, полученных при внедрении SecDevOps в индустрии FinTech. В этой статье мы рассмотрим ключевые моменты из видео и прольем свет на путь внедрения SecDevOps в динамичном мире FinTech.
 
-Understanding SecDevOps:
-SecDevOps, short for Secure DevOps, is an approach that aims to embed security practices and principles into the DevOps process from the very beginning. It is a collaborative effort between development, operations, and security teams, working together to build secure and reliable software solutions. The implementation of SecDevOps ensures that security is not an afterthought but an integral part of the development lifecycle.
+Понимание SecDevOps:
+SecDevOps, сокращение от Secure DevOps, - это подход, который направлен на внедрение практик и принципов безопасности в процесс DevOps с самого начала. Это совместная работа команд разработки, эксплуатации и безопасности, направленная на создание безопасных и надежных программных решений. Внедрение SecDevOps гарантирует, что безопасность будет не "после", а неотъемлемой частью жизненного цикла разработки.
 
-Challenges Faced:
-In the video, John Smith discusses the challenges encountered during the implementation of SecDevOps in the FinTech industry. One of the primary challenges was the cultural shift required within the organization. Breaking down silos between teams and fostering collaboration between developers and security professionals was crucial for success. Additionally, balancing the need for speed and agility with stringent security requirements posed a significant challenge. Finding the right balance between these two seemingly opposing forces was key to achieving success in SecDevOps.
+Проблемы, с которыми приходится сталкиваться:
+В видеоролике Джон Смит рассказывает о проблемах, возникших при внедрении SecDevOps в FinTech-индустрии. Одной из основных проблем было изменение культуры организации. Разрушение замкнутого пространства между командами и налаживание сотрудничества между разработчиками и специалистами по безопасности имели решающее значение для успеха. Кроме того, серьезную проблему представлял баланс между необходимостью в скорости и гибкости и строгими требованиями к безопасности. Нахождение правильного баланса между этими двумя, казалось бы, противоположными силами стало ключом к достижению успеха в SecDevOps.
 
-Successes and Lessons Learned:
-Despite the challenges, the implementation of SecDevOps in the FinTech industry yielded remarkable successes. One notable achievement was the ability to identify and mitigate security vulnerabilities early in the development process. By integrating security practices into every stage of the software development lifecycle, the organization was able to build robust and secure applications. This resulted in enhanced customer trust and reduced security incidents.
+Успехи и извлеченные уроки:
+Несмотря на трудности, внедрение SecDevOps в FinTech-индустрии принесло значительные успехи. Одним из заметных достижений стала возможность выявления и устранения уязвимостей безопасности на ранних этапах процесса разработки. Благодаря интеграции практик безопасности на всех этапах жизненного цикла разработки программного обеспечения организация смогла создавать надежные и безопасные приложения. Это привело к повышению доверия клиентов и сокращению числа инцидентов, связанных с безопасностью.
 
-Throughout the implementation journey, several valuable lessons were learned. Collaboration and communication were highlighted as critical factors in successful SecDevOps adoption. Open dialogue between teams, continuous learning, and sharing of knowledge were instrumental in fostering a culture of security. Furthermore, automation played a pivotal role in ensuring consistent security practices and enabling faster delivery without compromising on security measures.
+На протяжении всего процесса внедрения было извлечено несколько ценных уроков. Сотрудничество и коммуникация были отмечены как критические факторы успешного внедрения SecDevOps. Открытый диалог между командами, постоянное обучение и обмен знаниями сыграли важную роль в формировании культуры безопасности. Кроме того, автоматизация сыграла ключевую роль в обеспечении последовательной практики безопасности и ускорении процесса разработки без ущерба для мер безопасности.
 
 
-## The Impact of DevSecOps on SOC: Enhancing Security Collaboration
+## Влияние DevSecOps на SOC: усиление сотрудничества в области безопасности
 
 {: .label .label-yellow }
 [DevSecOps and SOC](https://www.linkedin.com/posts/elishlomo_informationsecurity-cybersecurity-cloudsecurity-activity-6957956550984364032-43Wv/?utm_source=share&utm_medium=member_desktop)
 
-The integration of security into the DevOps process, known as DevSecOps, has revolutionized the way organizations approach software development and deployment. This collaborative approach not only improves the speed and efficiency of software delivery but also enhances security practices. In the realm of cybersecurity, the Security Operations Center (SOC) plays a crucial role in monitoring, detecting, and responding to security incidents. This article explores the relationship between DevSecOps and SOC, highlighting the ways in which DevSecOps can positively impact SOC operations.
+Интеграция безопасности в процесс DevOps, известный как DevSecOps, произвела революцию в подходе организаций к разработке и развертыванию программного обеспечения. Этот совместный подход не только повышает скорость и эффективность разработки программного обеспечения, но и улучшает методы обеспечения безопасности. В сфере кибербезопасности центр управления безопасностью (Security Operations Center, SOC) играет важнейшую роль в мониторинге, обнаружении и реагировании на инциденты безопасности. В этой статье рассматривается связь между DevSecOps и SOC, а также способы, с помощью которых DevSecOps может положительно повлиять на работу SOC.
 
-Developing a Distributed SOC with DevOps Members:
-Incorporating SOC members who are familiar with DevSecOps principles can greatly benefit incident response efforts. These team members possess a deep understanding of the systems and can effectively collaborate with security staff to identify vulnerabilities and threats. By bridging the gap between the SOC and DevOps, a more comprehensive and proactive security approach can be established.
+Создание распределенного SOC с членами DevOps:
+Включение в состав SOC сотрудников, знакомых с принципами DevSecOps, может значительно улучшить работу по реагированию на инциденты. Такие члены команды обладают глубоким пониманием систем и могут эффективно сотрудничать с сотрудниками службы безопасности для выявления уязвимостей и угроз. Устранение разрыва между SOC и DevOps позволяет выработать более комплексный и проактивный подход к обеспечению безопасности.
 
-Collaboration Between Threat Hunters and DevOps Team:
-Threat hunters, specialized individuals responsible for proactively identifying security gaps and potential threats, can directly communicate with DevSecOps or DevOps teams. This direct line of communication allows for addressing security gaps at their core, rather than isolating threats and reporting them to management. By involving threat hunters in the development process, organizations can ensure that security is considered and implemented from the outset.
+Сотрудничество между охотниками за угрозами и командой DevOps:
+Охотники за угрозами - специализированные специалисты, отвечающие за проактивное выявление пробелов в системе безопасности и потенциальных угроз, - могут напрямую общаться с DevSecOps или DevOps-командами. Такая прямая линия связи позволяет устранять бреши в системе безопасности по их сути, а не изолировать угрозы и сообщать о них руководству. Привлекая охотников за угрозами к процессу разработки, организации могут гарантировать, что безопасность будет учтена и реализована с самого начала.
 
-Implementing Security Best Practices:
-The SOC can collaborate with specific DevSecOps development and operation groups to implement security best practices. This collaboration ensures that security considerations are integrated into the development process, reducing vulnerabilities and potential exploits. By actively involving the SOC in the implementation of security measures, organizations can benefit from their expertise in risk assessment, threat intelligence, and incident response.
+Внедрение лучших практик безопасности:
+SOC может сотрудничать с конкретными группами разработчиков и операторов DevSecOps для внедрения лучших практик безопасности. Такое сотрудничество гарантирует, что соображения безопасности будут интегрированы в процесс разработки, что позволит сократить количество уязвимостей и потенциальных эксплойтов. Активно привлекая SOC к реализации мер безопасности, организации могут воспользоваться их опытом в оценке рисков, анализе угроз и реагировании на инциденты.
 
-SOC as an Advisory Entity:
-In a DevSecOps environment, everyone involved in security should have quick access to the SOC and be an integral part of the security story. The SOC serves as an advisory entity, providing guidance, support, and expertise across the organization. By fostering a culture of open communication and knowledge sharing, organizations can strengthen their security posture and respond effectively to emerging threats.
-
-
+SOC как консультационная организация:
+В среде DevSecOps все, кто занимается безопасностью, должны иметь быстрый доступ к SOC и быть неотъемлемой частью истории безопасности. SOC выступает в качестве консультативного органа, обеспечивая руководство, поддержку и экспертизу в рамках всей организации. Развивая культуру открытого общения и обмена знаниями, организации могут укрепить свою безопасность и эффективно реагировать на возникающие угрозы.
 
 
-## Simplifying DevSecOps with Dynamic Application Security Testing (DAST)
+
+
+## Упрощение DevSecOps с помощью динамического тестирования безопасности приложений (DAST)
 
 {: .label .label-yellow }
 [How to declutter DevSecOps with DAST](https://www.scmagazine.com/resource/application-security/how-to-declutter-devsecops-with-dast?utm_content=245701246&utm_medium=social&utm_source=linkedin&hss_channel=lcp-11680352)
 
-DevSecOps is a crucial approach that combines development, security, and operations to ensure secure and efficient software development. However, the complexity and rapid pace of modern development environments can sometimes lead to challenges in integrating security effectively. In this article, we will explore how Dynamic Application Security Testing (DAST) can help streamline DevSecOps processes and enhance application security.
+DevSecOps - это важнейший подход, объединяющий разработку, безопасность и операции для обеспечения безопасной и эффективной разработки программного обеспечения. Однако сложность и быстрый темп современных сред разработки иногда могут привести к проблемам с эффективной интеграцией безопасности. В этой статье мы рассмотрим, как динамическое тестирование безопасности приложений (DAST) может помочь оптимизировать процессы DevSecOps и повысить безопасность приложений.
 
-Understanding DAST:
-Dynamic Application Security Testing (DAST) is a technique used to identify vulnerabilities and security flaws in applications by actively scanning and testing them during runtime. Unlike static testing, which analyzes code without execution, DAST assesses applications in real-world scenarios, simulating various attacks to uncover vulnerabilities.
+Понимание DAST:
+Динамическое тестирование безопасности приложений (Dynamic Application Security Testing, DAST) - это метод, используемый для выявления уязвимостей и недостатков безопасности в приложениях путем их активного сканирования и тестирования во время выполнения. В отличие от статического тестирования, которое анализирует код без его выполнения, DAST оценивает приложения в реальных сценариях, имитируя различные атаки для выявления уязвимостей.
 
-Continuous Security Assessment:
-One of the key benefits of DAST in the context of DevSecOps is its ability to provide continuous security assessment throughout the development lifecycle. By integrating DAST tools into the DevOps pipeline, security vulnerabilities can be identified and addressed early on, reducing the risk of exposing sensitive data or falling victim to cyberattacks.
+Непрерывная оценка безопасности:
+Одним из ключевых преимуществ DAST в контексте DevSecOps является его способность обеспечивать непрерывную оценку безопасности на протяжении всего жизненного цикла разработки. Интегрируя инструменты DAST в конвейер DevOps, можно выявлять и устранять уязвимости безопасности на ранних стадиях, снижая риск раскрытия конфиденциальных данных или стать жертвой кибератаки.
 
-Identifying Real-World Vulnerabilities:
-DAST tools simulate real-world attack scenarios, allowing organizations to identify vulnerabilities that may not be apparent through other testing methodologies. By actively probing applications, DAST tools uncover vulnerabilities that hackers could exploit, such as injection flaws, cross-site scripting (XSS), and insecure server configurations.
+Выявление уязвимостей в реальном мире:
+Инструменты DAST моделируют реальные сценарии атак, позволяя организациям выявлять уязвимости, которые могут быть не видны при других методологиях тестирования. Активно проверяя приложения, инструменты DAST выявляют уязвимости, которыми могут воспользоваться хакеры, например, недостатки инъекций, межсайтовый скриптинг (XSS) и небезопасные конфигурации серверов.
 
-Collaboration and Automation:
-DAST can be seamlessly integrated into the DevSecOps workflow, enabling collaboration between developers, security teams, and operations personnel. Automation plays a vital role in DAST, as it allows for the continuous scanning of applications during the development and deployment processes. This collaboration and automation ensure that security issues are identified and resolved rapidly, reducing the time and effort required for manual testing.
+Сотрудничество и автоматизация:
+DAST может быть легко интегрирован в рабочий процесс DevSecOps, обеспечивая сотрудничество между разработчиками, командами безопасности и операционным персоналом. Автоматизация играет важную роль в DAST, поскольку она позволяет непрерывно сканировать приложения в процессе разработки и развертывания. Такое сотрудничество и автоматизация обеспечивают быстрое выявление и устранение проблем безопасности, сокращая время и усилия, необходимые для ручного тестирования.
 
-Remediation and Compliance:
-DAST provides actionable insights into identified vulnerabilities, allowing teams to prioritize remediation efforts based on severity. By addressing vulnerabilities early on, organizations can strengthen their overall security posture and ensure compliance with industry standards and regulations. DAST also helps organizations demonstrate due diligence in securing their applications, providing peace of mind to stakeholders and customers.
+Устранение и соответствие нормативным требованиям:
+DAST предоставляет действенные сведения о выявленных уязвимостях, позволяя командам определять приоритетность мер по их устранению в зависимости от степени серьезности. Устранение уязвимостей на ранних стадиях позволяет организациям укрепить общую безопасность и обеспечить соответствие отраслевым стандартам и нормам. DAST также помогает организациям продемонстрировать должное усердие в защите своих приложений, обеспечивая спокойствие заинтересованных сторон и клиентов.
 
 
 
-## Enhancing DevSecOps with OWASP DSOMM: A Maturity Model Perspective
+## Повышение уровня DevSecOps с помощью OWASP DSOMM: перспектива модели зрелости
 
 {: .label .label-yellow }
 [DevSecOps maturity model using OWASP DSOMM](https://aniediogo.hashnode.dev/devsecops-maturity-model-using-owasp-dsomm)
 
-DevSecOps, the integration of security practices into the software development lifecycle, has become crucial in today's fast-paced and evolving digital landscape. To effectively implement and mature DevSecOps practices, organizations can leverage frameworks and models that provide guidance and structure. In this article, we will explore the OWASP DSOMM (DevSecOps Maturity Model) and how it can help organizations enhance their DevSecOps initiatives.
+DevSecOps - интеграция методов обеспечения безопасности в жизненный цикл разработки программного обеспечения - приобретает решающее значение в современном быстро меняющемся цифровом ландшафте. Чтобы эффективно внедрить и развить практику DevSecOps, организации могут использовать фреймворки и модели, которые обеспечивают руководство и структуру. В этой статье мы рассмотрим модель зрелости OWASP DSOMM (DevSecOps Maturity Model) и то, как она может помочь организациям усовершенствовать свои инициативы DevSecOps.
 
-Understanding the OWASP DSOMM:
-The OWASP DSOMM is a comprehensive maturity model specifically designed to assess and guide organizations in implementing DevSecOps practices. It provides a framework that encompasses various dimensions of DevSecOps maturity, including governance, automation, security controls, and culture. The DSOMM model is based on the Open Web Application Security Project (OWASP) principles and focuses on aligning security practices with business objectives.
+Понимание OWASP DSOMM:
+OWASP DSOMM - это комплексная модель зрелости, специально разработанная для оценки и руководства организациями при внедрении практики DevSecOps. Она представляет собой структуру, охватывающую различные аспекты зрелости DevSecOps, включая управление, автоматизацию, средства контроля безопасности и культуру. Модель DSOMM основана на принципах Open Web Application Security Project (OWASP) и ориентирована на согласование методов обеспечения безопасности с бизнес-целями.
 
-Assessing DevSecOps Maturity:
-The DSOMM maturity model consists of several levels, each representing a different stage of DevSecOps maturity. These levels range from ad hoc security practices to fully integrated and automated security throughout the development lifecycle. By assessing their current maturity level using the DSOMM model, organizations can identify gaps and establish a roadmap for continuous improvement.
+Оценка зрелости DevSecOps:
+Модель зрелости DSOMM состоит из нескольких уровней, каждый из которых представляет собой отдельную стадию зрелости DevSecOps. Эти уровни варьируются от специальных методов обеспечения безопасности до полностью интегрированной и автоматизированной системы безопасности на протяжении всего жизненного цикла разработки. Оценив свой текущий уровень зрелости с помощью модели DSOMM, организации могут выявить недостатки и разработать дорожную карту для постоянного совершенствования.
 
-Building a Governance Framework:
-A crucial aspect of DevSecOps maturity is the establishment of a robust governance framework. This includes defining security policies, establishing clear roles and responsibilities, and implementing effective risk management practices. The DSOMM helps organizations evaluate their governance practices, ensuring that security is integrated into decision-making processes and aligns with business objectives.
+Построение системы управления:
+Важнейшим аспектом зрелости DevSecOps является создание надежной системы управления. Это включает в себя определение политик безопасности, установление четких ролей и обязанностей, а также внедрение эффективных методов управления рисками. DSOMM помогает организациям оценить свои методы управления, обеспечивая интеграцию безопасности в процессы принятия решений и согласованность с бизнес-целями.
 
-Automating Security Practices:
-Automation plays a vital role in DevSecOps maturity. By automating security controls, organizations can reduce human error, enhance efficiency, and achieve consistent application security. The DSOMM emphasizes the importance of automation and guides organizations in implementing automated security testing, vulnerability scanning, and continuous monitoring throughout the software development lifecycle.
+Автоматизация практик безопасности:
+Автоматизация играет важную роль в развитии DevSecOps. Автоматизируя средства контроля безопасности, организации могут сократить количество человеческих ошибок, повысить эффективность и добиться последовательной защиты приложений. DSOMM подчеркивает важность автоматизации и направляет организации на внедрение автоматизированного тестирования безопасности, сканирования уязвимостей и непрерывного мониторинга на протяжении всего жизненного цикла разработки программного обеспечения.
 
-Cultivating a Security Culture:
-DevSecOps is not just about implementing tools and technologies but also fostering a security-centric culture within the organization. The DSOMM recognizes the significance of creating a collaborative environment where security is everyone's responsibility. It encourages organizations to promote security awareness, provide training, and establish communication channels for sharing security knowledge and best practices.
+Воспитание культуры безопасности:
+DevSecOps - это не только внедрение инструментов и технологий, но и формирование культуры безопасности в организации. DSOMM признает важность создания среды сотрудничества, в которой безопасность является ответственностью каждого. Он призывает организации повышать осведомленность о безопасности, проводить обучение и создавать каналы связи для обмена знаниями и передовым опытом в области безопасности.
 
 
-## The Role of Threat Modeling in DevSecOps: Strengthening Security from the Ground Up
+## Роль моделирования угроз в DevSecOps: укрепление безопасности с нуля
 
 
 {: .label .label-yellow }
 [Continuous Security: Threat Modeling in DevSecOps](https://bishopfox.com/blog/threat-modeling-in-devsecops)
 
-In the fast-paced world of software development, security is a critical concern that cannot be ignored. DevSecOps, the integration of security practices into the software development lifecycle, has emerged as a powerful approach to building secure applications. One of the key components of DevSecOps is threat modeling, a proactive technique that helps identify and address potential security threats early in the development process. In this article, we will explore the significance of threat modeling in DevSecOps and how it strengthens security from the ground up.
+В стремительно развивающемся мире разработки программного обеспечения безопасность является важнейшей проблемой, которую нельзя игнорировать. DevSecOps - интеграция методов обеспечения безопасности в жизненный цикл разработки программного обеспечения - стал мощным подходом к созданию безопасных приложений. Одним из ключевых компонентов DevSecOps является моделирование угроз - проактивная техника, которая помогает выявлять и устранять потенциальные угрозы безопасности на ранних этапах процесса разработки. В этой статье мы рассмотрим значение моделирования угроз в DevSecOps и то, как оно укрепляет безопасность с самого начала.
 
-Understanding Threat Modeling:
-Threat modeling is a systematic approach to identify, assess, and mitigate potential security threats and vulnerabilities in software applications. It involves analyzing the application's architecture, data flows, and potential attack vectors to uncover security weaknesses. By identifying and addressing these issues during the design and development phase, organizations can build robust and secure applications.
+Понимание моделирования угроз:
+Моделирование угроз - это систематический подход к выявлению, оценке и смягчению потенциальных угроз безопасности и уязвимостей в программных приложениях. Он включает в себя анализ архитектуры приложения, потоков данных и потенциальных векторов атак для выявления слабых мест в системе безопасности. Выявление и устранение этих проблем на этапе проектирования и разработки позволяет организациям создавать надежные и безопасные приложения.
 
-Proactive Risk Assessment:
-Threat modeling enables organizations to take a proactive stance towards security by identifying potential threats and vulnerabilities before they are exploited by malicious actors. By conducting a comprehensive threat model, organizations can assess the potential impact and likelihood of various threats and prioritize security measures accordingly. This helps in allocating resources effectively and mitigating risks early in the development lifecycle.
+Проактивная оценка рисков:
+Моделирование угроз позволяет организациям занять проактивную позицию в области безопасности, выявляя потенциальные угрозы и уязвимости до того, как ими воспользуются злоумышленники. Проведя комплексное моделирование угроз, организации могут оценить потенциальное воздействие и вероятность различных угроз и соответствующим образом определить приоритеты мер безопасности. Это помогает эффективно распределять ресурсы и снижать риски на ранних этапах жизненного цикла разработки.
 
-Integration into DevSecOps:
-Threat modeling seamlessly integrates into the DevSecOps approach by incorporating security considerations into the software development process from the outset. It fosters collaboration between development, security, and operations teams, ensuring that security is not an afterthought but an integral part of the development process. Threat modeling empowers organizations to embed security controls and countermeasures into the application design, architecture, and code, reducing the likelihood of vulnerabilities.
+Интеграция в DevSecOps:
+Моделирование угроз органично вписывается в подход DevSecOps, позволяя включить вопросы безопасности в процесс разработки программного обеспечения с самого начала. Оно способствует сотрудничеству между командами разработки, безопасности и эксплуатации, гарантируя, что безопасность не является чем-то посторонним, а является неотъемлемой частью процесса разработки. Моделирование угроз позволяет организациям внедрять средства контроля и противодействия безопасности в дизайн, архитектуру и код приложений, снижая вероятность возникновения уязвимостей.
 
-Identifying Security Design Flaws:
-Through threat modeling, organizations can uncover design flaws and weaknesses in the application's architecture. By simulating potential attack scenarios and analyzing the impact on the system, teams can identify security gaps that may not be apparent during traditional code reviews or testing. This enables proactive remediation of security issues and enhances the overall security posture of the application.
+Выявление недостатков проектирования системы безопасности:
+С помощью моделирования угроз организации могут выявить недостатки и слабые места в архитектуре приложения. Моделируя потенциальные сценарии атак и анализируя их воздействие на систему, команды могут выявить пробелы в системе безопасности, которые могут быть не видны при традиционных проверках кода или тестировании. Это позволяет заблаговременно устранять проблемы безопасности и повышает общий уровень безопасности приложения.
 
-Cost-Effective Security Measures:
-By identifying security risks early in the development process, organizations can prioritize security efforts and allocate resources efficiently. Threat modeling helps teams focus on implementing cost-effective security measures that address the most critical threats. This approach minimizes the likelihood of expensive security breaches and reduces the need for reactive security patches or fixes down the line.
+Экономически эффективные меры безопасности:
+Выявляя риски безопасности на ранних этапах разработки, организации могут определять приоритеты и эффективно распределять ресурсы. Моделирование угроз помогает командам сосредоточиться на реализации экономически эффективных мер безопасности, направленных на устранение наиболее критичных угроз. Такой подход минимизирует вероятность дорогостоящих нарушений безопасности и снижает потребность в реактивных патчах или исправлениях безопасности в дальнейшем.
 
 
-## Hard-Coding Secrets: Be Aware of the Scariest Breach for Your Organization
+## Секреты жесткого кодирования: Узнайте о самой страшной угрозе взлома для вашей организации
 
 
 {: .label .label-yellow }
 [Continuous Security: Threat Modeling in DevSecOps](https://medium.com/flat-pack-tech/hard-coding-secrets-be-aware-of-the-scariest-breach-for-your-organization-3e858ab296f2)
 
-In today's digital age, organizations face an ever-increasing threat of data breaches and cyberattacks. While there are various vulnerabilities that attackers exploit, one of the scariest breaches that can occur is the exposure of hard-coded secrets. Hard-coding secrets, such as passwords, API keys, and other sensitive information directly into software code, poses a significant risk to organizations. In this article, we will explore the dangers of hard-coding secrets and the steps organizations can take to mitigate this potential security nightmare.
+В современный цифровой век организации сталкиваются с постоянно растущей угрозой утечки данных и кибератак. Несмотря на наличие различных уязвимостей, которыми пользуются злоумышленники, одной из самых страшных угроз является раскрытие секретов в жестком коде. Жесткое кодирование секретов, таких как пароли, ключи API и другая конфиденциальная информация, непосредственно в программном коде представляет собой значительный риск для организаций. В этой статье мы рассмотрим опасность секретов жесткого кодирования и шаги, которые могут предпринять организации, чтобы смягчить этот потенциальный кошмар безопасности.
 
-Understanding Hard-Coded Secrets:
-Hard-coding secrets refers to the practice of embedding sensitive information directly into the source code of applications. While it may seem convenient during development, it poses a severe security risk. Hard-coded secrets are easily accessible to anyone who has access to the code, including developers, third-party contractors, and potentially malicious actors. If an attacker gains access to the codebase, they can extract these secrets and exploit them for unauthorized access, data theft, or other malicious activities.
+Понимание секретов жесткого кодирования:
+Под жестким кодированием секретов понимается практика встраивания конфиденциальной информации непосредственно в исходный код приложений. Хотя это может показаться удобным в процессе разработки, это представляет собой серьезный риск для безопасности. Жестко закодированные секреты легко доступны всем, кто имеет доступ к коду, включая разработчиков, сторонних подрядчиков и потенциальных злоумышленников. Если злоумышленник получит доступ к кодовой базе, он сможет извлечь эти секреты и использовать их для несанкционированного доступа, кражи данных или других вредоносных действий.
 
-The Risks and Consequences:
-The risks associated with hard-coding secrets are far-reaching and can have severe consequences for organizations. When secrets are exposed, it can lead to unauthorized access to sensitive data, compromise user accounts, and even result in financial loss or damage to the organization's reputation. Additionally, hard-coded secrets are challenging to manage and rotate, as they are directly embedded in the code, making it difficult to update them without modifying and redeploying the entire application.
+Риски и последствия:
+Риски, связанные с жестким кодированием секретов, далеко идущие и могут иметь серьезные последствия для организаций. Если секреты раскрываются, это может привести к несанкционированному доступу к конфиденциальным данным, компрометации учетных записей пользователей и даже к финансовым потерям или ущербу для репутации организации. Кроме того, жестко закодированные секреты сложны в управлении и ротации, поскольку они непосредственно встроены в код, что затрудняет их обновление без модификации и переразвертывания всего приложения.
 
-Best Practices to Mitigate the Risk:
-To mitigate the risks associated with hard-coded secrets, organizations should adopt the following best practices:
+Лучшие практики для снижения риска:
+Чтобы снизить риски, связанные с жестко закодированными секретами, организациям следует применять следующие передовые методы:
 
-Use Secure Configuration Management: Store secrets in secure configuration management systems or vaults that provide encryption and access control mechanisms. These tools allow for centralized management, secure storage, and controlled access to sensitive information.
+Использовать безопасное управление конфигурацией: Храните секреты в защищенных системах управления конфигурацией или хранилищах, которые обеспечивают механизмы шифрования и контроля доступа. Эти инструменты обеспечивают централизованное управление, безопасное хранение и контролируемый доступ к конфиденциальной информации.
 
-Implement Environment Variables: Utilize environment variables to store secrets and configure applications to retrieve these values at runtime. This approach separates secrets from the codebase and enables easy configuration changes without modifying the application's source code.
+Используйте переменные среды: Используйте переменные среды для хранения секретов и настраивайте приложения на получение этих значений во время выполнения. Такой подход отделяет секреты от кодовой базы и позволяет легко изменять конфигурацию без модификации исходного кода приложения.
 
-Employ Secrets Management Solutions: Leverage secrets management solutions that provide secure storage, rotation, and distribution of secrets. These solutions offer a more robust and scalable approach to managing sensitive information throughout the development and deployment lifecycle.
+Используйте решения для управления секретами: Используйте решения для управления секретами, которые обеспечивают безопасное хранение, ротацию и распространение секретов. Такие решения обеспечивают более надежный и масштабируемый подход к управлению конфиденциальной информацией на протяжении всего жизненного цикла разработки и развертывания.
 
-Follow Principle of Least Privilege: Limit access to secrets by following the principle of least privilege. Only provide necessary access to individuals or services, and regularly review and revoke access rights to minimize the risk of unauthorized exposure.
+Следуйте принципу наименьших привилегий: Ограничьте доступ к секретам, следуя принципу наименьших привилегий. Предоставляйте необходимый доступ только отдельным лицам или службам, регулярно пересматривайте и отзывайте права доступа, чтобы свести к минимуму риск несанкционированного раскрытия информации.
 
-Continuous Security Testing:
-Regularly conduct security testing, including static code analysis and dynamic application security testing (DAST), to identify and remediate any instances of hard-coded secrets. Implementing a comprehensive security testing program helps organizations identify vulnerabilities and ensure that secrets are not inadvertently embedded in the codebase.
+Постоянное тестирование безопасности:
+Регулярно проводите тестирование безопасности, включая статический анализ кода и динамическое тестирование безопасности приложений (DAST), чтобы выявить и устранить любые случаи жестко закодированных секретов. Внедрение комплексной программы тестирования безопасности помогает организациям выявлять уязвимости и гарантировать, что секреты не будут случайно внедрены в кодовую базу.
 
 
-## Hilti's DevSecOps Journey: Building Secure and Efficient Software with GitLab
+## Путешествие Hilti по DevSecOps: Создание безопасного и эффективного программного обеспечения с помощью GitLab
 
 
 {: .label .label-yellow }
 [How CI/CD and robust security scanning accelerated Hilti’s SDLC](https://about.gitlab.com/customers/hilti/)
 
-DevSecOps has become a crucial practice for organizations seeking to develop secure and efficient software. Hilti, a global leader in the construction industry, has embraced DevSecOps principles and harnessed the power of GitLab to enhance its software development processes. In this article, we will explore Hilti's DevSecOps journey and how GitLab has played a pivotal role in integrating security seamlessly into their development pipeline.
+DevSecOps стал важнейшей практикой для организаций, стремящихся разрабатывать безопасное и эффективное программное обеспечение. Компания Hilti, мировой лидер в строительной отрасли, взяла на вооружение принципы DevSecOps и использовала возможности GitLab для улучшения процессов разработки программного обеспечения. В этой статье мы расскажем о пути DevSecOps компании Hilti и о том, как GitLab сыграл ключевую роль в интеграции безопасности в процесс разработки.
 
-Embracing DevSecOps Culture:
-Hilti recognized the importance of shifting security left in the software development lifecycle. By adopting DevSecOps principles, they fostered a culture where security is an integral part of the development process from the start. This cultural shift encouraged collaboration between development, security, and operations teams, resulting in faster, more secure software delivery.
+Принятие культуры DevSecOps:
+Компания Hilti осознала важность переноса вопросов безопасности на левую сторону жизненного цикла разработки программного обеспечения. Приняв принципы DevSecOps, они создали культуру, в которой безопасность является неотъемлемой частью процесса разработки с самого начала. Этот культурный сдвиг способствовал сотрудничеству между командами разработки, безопасности и эксплуатации, что привело к более быстрому и безопасному созданию программного обеспечения.
 
-Integrated Security Tools:
-GitLab's comprehensive platform provided Hilti with a wide array of built-in security features and tools. From static application security testing (SAST) and dynamic application security testing (DAST) to dependency scanning and container security, GitLab enabled Hilti to automate security checks throughout the development process. This integration allowed for early detection of vulnerabilities and ensured that security was continuously monitored and addressed.
+Интегрированные инструменты безопасности:
+Комплексная платформа GitLab обеспечила Hilti широким набором встроенных функций и инструментов безопасности. От статического тестирования безопасности приложений (SAST) и динамического тестирования безопасности приложений (DAST) до сканирования зависимостей и защиты контейнеров - GitLab позволил Hilti автоматизировать проверку безопасности на протяжении всего процесса разработки. Такая интеграция позволила обнаружить уязвимости на ранней стадии и обеспечила постоянный контроль и устранение проблем безопасности.
 
-Automated Testing and Continuous Integration:
-Hilti leveraged GitLab's continuous integration capabilities to automate their testing processes. By integrating security testing into their CI/CD pipelines, they ensured that every code change was thoroughly examined for potential security issues. This approach enabled Hilti to catch vulnerabilities early on, reducing the risk of security breaches and improving the overall quality of their software.
+Автоматизированное тестирование и непрерывная интеграция:
+Hilti использовала возможности непрерывной интеграции GitLab для автоматизации процессов тестирования. Интегрировав тестирование безопасности в конвейер CI/CD, они обеспечили тщательную проверку каждого изменения кода на предмет потенциальных проблем с безопасностью. Такой подход позволил Hilti выявлять уязвимости на ранних стадиях, снижая риск нарушения безопасности и повышая общее качество программного обеспечения.
 
-Collaboration and Visibility:
-GitLab's collaborative features allowed Hilti's teams to work seamlessly together. Developers, security professionals, and operations personnel could easily communicate and collaborate within the same platform, promoting cross-functional teamwork and knowledge sharing. Additionally, GitLab's intuitive dashboards provided clear visibility into the security posture of their projects, enabling proactive remediation of vulnerabilities.
+Совместная работа и видимость:
+Функции совместной работы в GitLab позволили командам Hilti работать в тесном взаимодействии. Разработчики, специалисты по безопасности и операционный персонал могли легко общаться и сотрудничать в рамках одной платформы, что способствовало межфункциональной командной работе и обмену знаниями. Кроме того, интуитивно понятные панели GitLab обеспечивают четкое представление о состоянии безопасности проектов, позволяя заблаговременно устранять уязвимости.
 
-Compliance and Governance:
-As a global organization, Hilti operates in a regulated environment and must adhere to various compliance standards. GitLab's compliance management features helped Hilti streamline their compliance efforts by providing a centralized platform for managing policies, controls, and audits. This ensured that their software development practices met the necessary regulatory requirements.
-
-
-## Capital One Data Breach
-
-One notable real-world example of an attack resulting from inadequate Identity, Credential, and Access Management (ICAM) in the cloud environment is the Capital One data breach in 2019. The breach exposed the personal information of approximately 106 million customers and applicants.
-
-In this case, the attacker exploited a misconfiguration in the web application firewall of Capital One's cloud infrastructure. The misconfiguration allowed the attacker to gain unauthorized access to a specific server and execute commands, ultimately exfiltrating sensitive customer data.
-
-The root cause of the breach was attributed to inadequate ICAM practices, specifically related to the mismanagement of access controls and permissions. The attacker, a former employee of a cloud service provider, utilized their knowledge of the cloud infrastructure's vulnerabilities to bypass security measures.
-
-The inadequate ICAM practices in this incident included:
-
-1. Insufficient access controls: The misconfiguration of the web application firewall allowed the attacker to exploit a specific vulnerability and gain unauthorized access to the server.
-
-1. Weak authentication mechanisms: The attacker was able to exploit weak authentication mechanisms to gain initial access to the cloud infrastructure.
-
-1. Inadequate monitoring and logging: The breach went undetected for a significant period due to a lack of proper monitoring and logging practices. This delayed response allowed the attacker to access and exfiltrate data without being detected.
+Соответствие нормативным требованиям и управление:
+Будучи глобальной организацией, Hilti работает в регулируемой среде и должна придерживаться различных стандартов соответствия. Функции управления соответствием GitLab помогли Hilti оптимизировать работу по соблюдению нормативных требований, предоставив централизованную платформу для управления политиками, средствами контроля и аудита. Это обеспечило соответствие практики разработки программного обеспечения необходимым нормативным требованиям.
 
 
+## Угроза утечки данных Capital One
+
+Одним из ярких реальных примеров атаки, вызванной неадекватным управлением идентификацией, учетными данными и доступом (ICAM) в облачной среде, является утечка данных компании Capital One в 2019 году. В результате взлома была раскрыта личная информация примерно 106 миллионов клиентов и заявителей.
+
+В этом случае злоумышленник воспользовался неправильной конфигурацией брандмауэра веб-приложений в облачной инфраструктуре Capital One. Неправильная конфигурация позволила злоумышленнику получить несанкционированный доступ к определенному серверу и выполнить команды, в результате чего конфиденциальные данные клиентов были удалены.
+
+Первопричиной взлома стали неадекватные методы ICAM, в частности, неправильное управление контролем доступа и разрешениями. Злоумышленник, бывший сотрудник поставщика облачных услуг, использовал свои знания об уязвимостях облачной инфраструктуры, чтобы обойти меры безопасности.
+
+Неадекватные методы ICAM в этом инциденте включали в себя:
+
+1. Недостаточный контроль доступа: Неправильная конфигурация брандмауэра веб-приложений позволила злоумышленнику использовать определенную уязвимость и получить несанкционированный доступ к серверу.
+
+1. Слабые механизмы аутентификации: Злоумышленник смог использовать слабые механизмы аутентификации для получения первоначального доступа к облачной инфраструктуре.
+
+1. Неадекватный мониторинг и ведение логов: Взлом оставался необнаруженным в течение значительного периода времени из-за отсутствия надлежащего мониторинга и протоколирования. Эта запоздалая реакция позволила злоумышленнику незаметно получить доступ к данным и осуществить их утечку.
 
 
 
 
-## Lessons Learned from Cybersecurity Incidents
+
+
+## Уроки, извлеченные из инцидентов кибербезопасности
 
 
 
@@ -362,30 +362,30 @@ The inadequate ICAM practices in this incident included:
 [The attack on SolarWinds’s Orion software](https://blogs.microsoft.com/on-the-issues/2020/12/17/cyberattacks-cybersecurity-solarwinds-fireeye/)
 
 
-In the rapidly evolving world of cybersecurity, organizations are increasingly turning to DevSecOps practices to enhance their security posture and protect against cyber threats. DevSecOps, which integrates security into the entire software development lifecycle, helps identify vulnerabilities early on and enables a proactive approach to addressing security risks. In this article, we will explore some real-world DevSecOps stories, with a focus on the SolarWinds and FireEye cyberattacks, highlighting the importance of a robust DevSecOps framework.
+В быстро развивающемся мире кибербезопасности организации все чаще обращаются к практике DevSecOps для повышения уровня безопасности и защиты от киберугроз. DevSecOps, который интегрирует безопасность во весь жизненный цикл разработки программного обеспечения, помогает выявлять уязвимости на ранних стадиях и обеспечивает проактивный подход к устранению рисков безопасности. В этой статье мы рассмотрим несколько реальных историй DevSecOps, сфокусировавшись на кибератаках SolarWinds и FireEye, которые подчеркивают важность надежной структуры DevSecOps.
 
-SolarWinds and FireEye Cyberattacks:
-The SolarWinds and FireEye cyberattacks, which came to light in late 2020, were highly sophisticated and impactful security incidents that affected numerous organizations worldwide. These incidents exposed vulnerabilities in software supply chains and highlighted the need for comprehensive security measures throughout the development and deployment processes.
+Кибератаки SolarWinds и FireEye:
+Кибератаки SolarWinds и FireEye, о которых стало известно в конце 2020 года, представляли собой весьма изощренные и масштабные инциденты безопасности, затронувшие множество организаций по всему миру. Эти инциденты выявили уязвимости в цепочках поставок программного обеспечения и подчеркнули необходимость принятия комплексных мер безопасности на всех этапах разработки и развертывания.
 
-Lessons Learned:
+Извлеченные уроки:
 
-1. Strengthening Supply Chain Security: The SolarWinds attack demonstrated the importance of securing the software supply chain. DevSecOps teams should conduct thorough security assessments of third-party dependencies, closely monitor their integrity, and implement strong access controls to prevent unauthorized modifications.
+1. Укрепление безопасности цепочки поставок: Атака SolarWinds продемонстрировала важность защиты цепочки поставок программного обеспечения. Команды DevSecOps должны проводить тщательную оценку безопасности сторонних зависимостей, внимательно следить за их целостностью и внедрять строгие средства контроля доступа для предотвращения несанкционированных изменений.
 
-1. Emphasizing Zero Trust Architecture: The FireEye breach emphasized the need for a Zero Trust approach, where access controls and verification are applied at every stage. Implementing Zero Trust principles, such as multi-factor authentication, granular access controls, and continuous monitoring, can mitigate the risk of lateral movement and unauthorized access.
+1. Акцент на архитектуре нулевого доверия: Взлом FireEye подчеркнул необходимость подхода Zero Trust, при котором контроль доступа и проверка применяются на каждом этапе. Внедрение принципов Zero Trust, таких как многофакторная аутентификация, гранулярный контроль доступа и постоянный мониторинг, позволяет снизить риск бокового перемещения и несанкционированного доступа.
 
-1. Proactive Threat Hunting and Incident Response: Both incidents highlighted the significance of proactive threat hunting and robust incident response plans. DevSecOps teams should invest in advanced threat detection tools, perform regular security audits, and establish clear incident response protocols to swiftly identify and mitigate security breaches.
+1. Проактивный поиск угроз и реагирование на инциденты: Оба инцидента подчеркнули важность проактивного поиска угроз и надежных планов реагирования на инциденты. Команды DevSecOps должны инвестировать в передовые средства обнаружения угроз, проводить регулярные аудиты безопасности и разработать четкие протоколы реагирования на инциденты, чтобы оперативно выявлять и устранять нарушения безопасности.
 
-1. Continuous Monitoring and Auditing: Continuous monitoring of systems, networks, and applications is critical to detecting and responding to security incidents promptly. Regular security audits and vulnerability assessments should be conducted to identify weaknesses and prioritize remediation efforts.
+1. Непрерывный мониторинг и аудит: Постоянный мониторинг систем, сетей и приложений имеет решающее значение для оперативного обнаружения и реагирования на инциденты безопасности. Необходимо проводить регулярные аудиты безопасности и оценки уязвимостей, чтобы выявлять слабые места и определять приоритеты усилий по их устранению.
 
-1. Integration of Security into CI/CD Pipelines: DevSecOps teams should integrate security testing and scanning tools directly into the CI/CD pipelines. This ensures that security checks are performed at every stage of the development process, reducing the likelihood of deploying vulnerable code.
-
-
+1. Интеграция безопасности в конвейеры CI/CD: Команды DevSecOps должны интегрировать инструменты тестирования и сканирования безопасности непосредственно в конвейеры CI/CD. Это гарантирует, что проверки безопасности будут выполняться на каждом этапе процесса разработки, снижая вероятность развертывания уязвимого кода.
 
 
 
 
 
-## Lessons from the Dependency Confusion Attack
+
+
+## Уроки атаки на путаницу зависимостей
 
 
 
@@ -393,22 +393,22 @@ Lessons Learned:
 {: .label .label-yellow }
 [Dependency Confusion: How I Hacked Into Apple, Microsoft and Dozens of Other Companies](https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610)
 
-In the world of software development, ensuring the security of the software supply chain is crucial. Dependency Confusion, a prominent security incident uncovered by researcher Alex Birsan, shed light on the vulnerabilities within the dependencies used by organizations. This article explores the Dependency Confusion attack and highlights the importance of implementing robust DevSecOps practices to mitigate such risks.
+В мире разработки программного обеспечения обеспечение безопасности цепочки поставок программного обеспечения имеет решающее значение. Dependency Confusion, известный инцидент безопасности, раскрытый исследователем Алексом Бирсаном, пролил свет на уязвимости в зависимостях, используемых организациями. В этой статье рассматривается атака Dependency Confusion и подчеркивается важность внедрения надежных практик DevSecOps для снижения подобных рисков.
 
-The Dependency Confusion Attack:
-Dependency Confusion refers to an attack where malicious actors exploit the process of package management to inject malicious code into an organization's software development pipeline. The attack relies on publishing malicious packages with the same names as internal, private dependencies. As a result, unsuspecting developers inadvertently download and use the malicious packages instead of the intended internal dependencies.
+Атака Dependency Confusion:
+Dependency Confusion - это атака, при которой злоумышленники используют процесс управления пакетами для внедрения вредоносного кода в конвейер разработки программного обеспечения организации. Атака основана на публикации вредоносных пакетов с теми же именами, что и внутренние, частные зависимости. В результате ничего не подозревающие разработчики непреднамеренно загружают и используют вредоносные пакеты вместо предполагаемых внутренних зависимостей.
 
-Lessons Learned:
+Извлеченные уроки:
 
-1. Secure Package Management: The Dependency Confusion attack emphasizes the importance of securing the package management process. Implementing secure package repositories, strong access controls, and verification mechanisms can help prevent unauthorized packages from being inadvertently included in the development pipeline.
+1. Безопасное управление пакетами: Атака Dependency Confusion подчеркивает важность защиты процесса управления пакетами. Внедрение безопасных репозиториев пакетов, строгих средств контроля доступа и механизмов проверки может помочь предотвратить случайное включение неавторизованных пакетов в конвейер разработки.
 
-1. Continuous Monitoring: Regularly monitoring package repositories and analyzing package integrity are crucial to detecting and mitigating potential threats. Automated tools and processes can assist in monitoring package dependencies for any suspicious or unauthorized activities.
+1. Непрерывный мониторинг: Регулярный мониторинг репозиториев пакетов и анализ их целостности имеют решающее значение для обнаружения и устранения потенциальных угроз. Автоматизированные инструменты и процессы могут помочь в мониторинге зависимостей пакетов на предмет подозрительных или несанкционированных действий.
 
-1. Explicitly Specify Dependencies: DevSecOps teams should ensure that dependencies are explicitly defined, including their version numbers, to minimize the risk of inadvertently including malicious packages. By being explicit, developers can avoid relying solely on package name resolution, which can be exploited in attacks like Dependency Confusion.
+1. Явное указание зависимостей: Команды DevSecOps должны обеспечить явное определение зависимостей, включая номера их версий, чтобы свести к минимуму риск случайного включения вредоносных пакетов. Явное указание зависимостей позволяет разработчикам не полагаться только на разрешение имен пакетов, что может быть использовано в таких атаках, как Dependency Confusion.
 
-1. Secure Development Environments: Implementing secure development environments is essential to protect against Dependency Confusion attacks. This includes securing build systems, employing robust authentication mechanisms, and enforcing access controls to prevent unauthorized access and package manipulation.
+1. Безопасные среды разработки: Внедрение безопасных сред разработки необходимо для защиты от атак типа Dependency Confusion. Это включает в себя защиту систем сборки, использование надежных механизмов аутентификации и обеспечение контроля доступа для предотвращения несанкционированного доступа и манипуляций с пакетами.
 
-1. Continuous Security Testing: Integrate security testing into the CI/CD pipeline to scan for vulnerabilities and validate the integrity of dependencies. Automated security testing tools, such as static analysis and dependency vulnerability scanners, can help identify potential risks early in the development process.
+1. Непрерывное тестирование безопасности: Интегрируйте тестирование безопасности в конвейер CI/CD для поиска уязвимостей и проверки целостности зависимостей. Автоматизированные инструменты тестирования безопасности, такие как статический анализ и сканеры уязвимостей зависимостей, помогут выявить потенциальные риски на ранних этапах процесса разработки.
 
 
 
