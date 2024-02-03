@@ -933,7 +933,7 @@ func main() {
 
 
 
-## незащищенное хранение учетных данных
+## Незащищенное хранение учетных данных
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -965,14 +965,14 @@ func readCredentials() {
 func main() {
 	readCredentials()
 
-	// Use the credentials for authentication
+	// Используйте учетные данные для аутентификации
 	// ...
 }
 ```
 
-In this noncompliant code, the readCredentials function reads the username and password from a file (credentials.txt). However, the file is read without any encryption or protection mechanisms, leaving the credentials vulnerable to unauthorized access. Storing sensitive information in plaintext files is insecure and exposes the credentials to potential attackers who gain access to the file.
+В этом коде, не соответствующем требованиям, функция readCredentials считывает имя пользователя и пароль из файла (credentials.txt). Однако файл считывается без каких-либо механизмов шифрования или защиты, что делает учетные данные уязвимыми для несанкционированного доступа. Хранение конфиденциальной информации в файлах с открытым текстом небезопасно и подвергает учетные данные опасности для потенциальных злоумышленников, получивших доступ к файлу.
 
-To address this issue, here's an example of compliant code that protects the storage of credentials:
+Чтобы решить эту проблему, приведем пример совместимого кода, который защищает хранение учетных данных:
 
 
 
@@ -1019,10 +1019,10 @@ func authenticateUser(inputPassword []byte) bool {
 func main() {
 	readCredentials()
 
-	// Get user input for authentication
+	// Получение данных пользователя для аутентификации
 	// ...
 
-	// Hash and compare passwords
+	// Хеширование и сравнение паролей
 	inputPassword := []byte("password123")
 	if authenticateUser(inputPassword) {
 		fmt.Println("Authentication successful!")
@@ -1032,16 +1032,16 @@ func main() {
 }
 ```
 
-In the compliant code, several improvements have been made to enhance the storage of credentials:
+В соответствующем коде было сделано несколько улучшений для улучшения хранения учетных данных:
 
-1. The credentials file is stored in a separate directory named "secrets" to restrict access to authorized users.
+1. Файл учетных данных хранится в отдельном каталоге с именем "secrets", чтобы ограничить доступ авторизованных пользователей.
 
-2. The password is stored securely using a hashing algorithm. In this example, the bcrypt package is used to hash and compare passwords. This provides an extra layer of protection against unauthorized access to the plaintext password.
+2. Пароль надежно хранится с помощью алгоритма хэширования. В этом примере для хэширования и сравнения паролей используется пакет bcrypt. Это обеспечивает дополнительный уровень защиты от несанкционированного доступа к открытому тексту пароля.
 
-By applying these security measures, the compliant code ensures that credentials are stored in a more secure manner, reducing the risk of unauthorized access to sensitive information.
+Применяя эти меры безопасности, соответствующий код обеспечивает более надежное хранение учетных данных, снижая риск несанкционированного доступа к конфиденциальной информации.
 
 
-## Trust Boundary Violation
+## Нарушение границ доверия
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -1063,7 +1063,7 @@ func fetchUserData(userID string) ([]byte, error) {
 	}
 	defer response.Body.Close()
 
-	// Read the response body
+	// Прочитайте тело ответа
 	data := make([]byte, response.ContentLength)
 	_, err = response.Body.Read(data)
 	if err != nil {
@@ -1085,9 +1085,9 @@ func main() {
 }
 ```
 
-In this noncompliant code, the fetchUserData function directly fetches user data from an external API (api.example.com) without validating or sanitizing the input. The user ID is taken as input from the command-line arguments and used to construct the API URL. This introduces a trust boundary violation because the code assumes that the user ID is trusted and does not perform any input validation, allowing for potential malicious input to be passed and used in the URL.
+В этом несоответствующем коде функция fetchUserData напрямую получает данные о пользователе из внешнего API (api.example.com) без проверки и санитарной обработки входных данных. Идентификатор пользователя берется в качестве аргументов командной строки и используется для построения URL-адреса API. Это приводит к нарушению границ доверия, поскольку код предполагает, что идентификатор пользователя является доверенным, и не выполняет никакой проверки ввода, что позволяет передавать потенциально вредоносный ввод и использовать его в URL.
 
-To address this issue, here's an example of compliant code that implements input validation and enforces a trust boundary:
+Чтобы решить эту проблему, вот пример совместимого кода, в котором реализована проверка ввода и соблюдена граница доверия:
 
 
 
@@ -1108,7 +1108,7 @@ import (
 )
 
 func fetchUserData(userID string) ([]byte, error) {
-	// Validate the user ID format
+	// Проверьте формат идентификатора пользователя
 	validUserID := regexp.MustCompile(`^[a-zA-Z0-9]+$`)
 	if !validUserID.MatchString(userID) {
 		return nil, fmt.Errorf("Invalid user ID")
@@ -1121,7 +1121,7 @@ func fetchUserData(userID string) ([]byte, error) {
 	}
 	defer response.Body.Close()
 
-	// Read the response body
+	// Прочитайте тело ответа
 	data := make([]byte, response.ContentLength)
 	_, err = response.Body.Read(data)
 	if err != nil {
@@ -1144,18 +1144,18 @@ func main() {
 ```
 
 
-In the compliant code, several improvements have been made to address the trust boundary violation:
+В совместимом коде было сделано несколько улучшений для решения проблемы нарушения границ доверия:
 
-1. The user ID is validated using a regular expression to ensure that it matches the expected format (in this case, alphanumeric characters only). This helps prevent arbitrary input from being used in the API URL.
+1. Идентификатор пользователя проверяется с помощью регулярного выражения, чтобы убедиться, что он соответствует ожидаемому формату (в данном случае только буквенно-цифровые символы). Это позволяет предотвратить использование произвольного ввода в URL-адресе API.
 
-2. If the user ID fails the validation, an error is returned, indicating that the user ID is invalid.
+2. Если идентификатор пользователя не проходит проверку, возвращается ошибка, указывающая на то, что идентификатор пользователя недействителен.
 
-By implementing input validation, the compliant code enforces a trust boundary and ensures that only valid and trusted input is used in the API call, reducing the risk of malicious input leading to unexpected behavior or security vulnerabilities.
-
-
+Реализуя проверку ввода, соответствующий код обеспечивает границу доверия и гарантирует, что в вызове API будут использоваться только действительные и проверенные данные, что снижает риск того, что вредоносные данные приведут к неожиданному поведению или уязвимостям безопасности.
 
 
-## Insufficiently Protected Credentials
+
+
+## Недостаточно защищенные учетные данные
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -1189,7 +1189,7 @@ func fetchUserData(userID string) ([]byte, error) {
 	}
 	defer response.Body.Close()
 
-	// Read the response body
+	// Прочитайте тело ответа
 	data := make([]byte, response.ContentLength)
 	_, err = response.Body.Read(data)
 	if err != nil {
@@ -1211,9 +1211,9 @@ func main() {
 }
 ```
 
-In this noncompliant code, the API credentials (username and password) are hardcoded in the source code (apiUsername and apiPassword constants). Storing credentials directly in the source code poses a security risk because if an attacker gains access to the code, they will also have access to the credentials.
+В этом несоответствующем коде учетные данные API (имя пользователя и пароль) жестко закодированы в исходном коде (константы apiUsername и apiPassword). Хранение учетных данных непосредственно в исходном коде представляет собой риск безопасности, поскольку если злоумышленник получит доступ к коду, он также будет иметь доступ к учетным данным.
 
-To address this issue, here's an example of compliant code that properly protects the credentials:
+Чтобы решить эту проблему, вот пример совместимого кода, который должным образом защищает учетные данные:
 
 
 
@@ -1245,7 +1245,7 @@ func fetchUserData(userID string) ([]byte, error) {
 	}
 	defer response.Body.Close()
 
-	// Read the response body
+	// Прочитайте тело ответа
 	data := make([]byte, response.ContentLength)
 	_, err = response.Body.Read(data)
 	if err != nil {
@@ -1256,12 +1256,12 @@ func fetchUserData(userID string) ([]byte, error) {
 }
 
 func getAPIUsername() string {
-	// Retrieve the API username from a secure configuration or environment variable
+	// Получите имя пользователя API из безопасной конфигурации или переменной окружения
 	return "admin"
 }
 
 func getAPIPassword() string {
-	// Retrieve the API password from a secure configuration or environment variable
+	// Получите пароль API из безопасной конфигурации или переменной окружения
 	return "password"
 }
 
@@ -1278,16 +1278,16 @@ func main() {
 ```
 
 
-In the compliant code, the credentials are no longer hardcoded in the source code. Instead, the getAPIUsername and getAPIPassword functions retrieve the credentials from secure configurations or environment variables. This separation of sensitive information from the code helps protect the credentials and reduces the risk of exposure if the code is compromised.
+В совместимом коде учетные данные больше не хранятся в исходном коде в жестком виде. Вместо этого функции getAPIUsername и getAPIPassword получают учетные данные из защищенных конфигураций или переменных среды. Такое отделение конфиденциальной информации от кода помогает защитить учетные данные и снижает риск их раскрытия в случае компрометации кода.
 
-By properly protecting the credentials and ensuring they are obtained from secure sources, the compliant code mitigates the risk of unauthorized access to sensitive information.
-
-
+Благодаря надлежащей защите учетных данных и обеспечению их получения из безопасных источников, соответствующий код снижает риск несанкционированного доступа к конфиденциальной информации.
 
 
 
 
-## Restriction of XML External Entity Reference
+
+
+## Ограничение ссылки на внешние сущности XML
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -1342,9 +1342,9 @@ func main() {
 }
 ```
 
-In this noncompliant code, the XML data obtained from the API (response.Body) is directly read and parsed using the xml.Unmarshal function. However, there is no explicit restriction or mitigation against XML external entity (XXE) references. This makes the code vulnerable to XXE attacks, where an attacker can supply malicious XML content containing external entity references to disclose sensitive information or perform other unauthorized actions.
+В этом несовместимом коде XML-данные, полученные от API (response.Body), напрямую считываются и разбираются с помощью функции xml.Unmarshal. Однако явного ограничения или защиты от ссылок на внешние сущности XML (XXE) не существует. Это делает код уязвимым для XXE-атак, когда злоумышленник может предоставить вредоносный XML-контент, содержащий ссылки на внешние сущности, для раскрытия конфиденциальной информации или выполнения других несанкционированных действий.
 
-To address this issue, here's an example of compliant code that properly restricts XML external entity references:
+Чтобы решить эту проблему, приведем пример совместимого кода, который должным образом ограничивает ссылки на внешние сущности XML:
 
 
 
@@ -1378,8 +1378,8 @@ func getUserData(userID string) (*User, error) {
 	defer response.Body.Close()
 
 	decoder := xml.NewDecoder(response.Body)
-	decoder.Strict = true  // Enable strict XML parsing
-	decoder.Entity = xml.HTMLEntity // Disable expansion of external entities
+	decoder.Strict = true  // Включите строгий разбор XML
+	decoder.Entity = xml.HTMLEntity // Отключите расширение внешних сущностей
 
 	user := &User{}
 	err = decoder.Decode(user)
@@ -1403,15 +1403,15 @@ func main() {
 ```
 
 
-In the compliant code, we make use of the xml.Decoder to perform strict XML parsing and restrict the expansion of external entities. We set the Strict field of the decoder to true and the Entity field to xml.HTMLEntity to disable the expansion of external entities.
+В соответствующем коде мы используем xml.Decoder для строгого разбора XML и ограничения расширения внешних сущностей. Мы устанавливаем для поля Strict декодера значение true, а для поля Entity - xml.HTMLEntity, чтобы запретить расширение внешних сущностей.
 
-By enforcing strict XML parsing and disabling external entity expansion, the compliant code effectively mitigates the risk of XML external entity (XXE) attacks and ensures that only safe XML content is processed.
-
-
+Обеспечивая строгий разбор XML и запрещая расширение внешних сущностей, соответствующий код эффективно снижает риск атак на внешние сущности XML (XXE) и гарантирует, что обрабатывается только безопасный XML-контент.
 
 
 
-## Vulnerable and Outdated Components
+
+
+## Уязвимые и устаревшие компоненты
 
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
@@ -1433,9 +1433,9 @@ func main() {
 }
 ```
 
-In this noncompliant code, we import a vulnerable and outdated library (github.com/vulnerable/library) and use its OldEncryption function to encrypt sensitive information. The outdated encryption function may have known vulnerabilities or weaknesses that can be exploited by attackers.
+В этом несоответствующем коде мы импортируем уязвимую и устаревшую библиотеку (github.com/vulnerable/library) и используем ее функцию OldEncryption для шифрования конфиденциальной информации. Устаревшая функция шифрования может иметь известные уязвимости или слабые места, которые могут быть использованы злоумышленниками.
 
-To address this issue, here's an example of compliant code that avoids using vulnerable and outdated components:
+Чтобы решить эту проблему, вот пример совместимого кода, который позволяет избежать использования уязвимых и устаревших компонентов:
 
 
 
@@ -1454,23 +1454,23 @@ import (
 
 func main() {
 	data := "Sensitive information"
-	encryptedData := library.NewEncryption(data) // Using a secure and updated encryption function
+	encryptedData := library.NewEncryption(data) // Использование надежной и обновленной функции шифрования
 
 	fmt.Println("Encrypted Data:", encryptedData)
 }
 ```
 
 
-In the compliant code, we import a secure and updated library (github.com/secure/library) that provides a NewEncryption function for encrypting sensitive information. The new encryption function incorporates the latest security practices and fixes any known vulnerabilities present in the old encryption function.
+В соответствующем коде мы импортируем безопасную и обновленную библиотеку (github.com/secure/library), которая предоставляет функцию NewEncryption для шифрования конфиденциальной информации. Новая функция шифрования включает в себя новейшие методы обеспечения безопасности и устраняет все известные уязвимости, присутствующие в старой функции шифрования.
 
-By using secure and updated components, the compliant code reduces the risk of potential vulnerabilities and ensures that sensitive information is properly protected during encryption. It is important to regularly update and review the components used in an application to ensure they are free from known vulnerabilities and up to date with the latest security patches.
-
-
+Благодаря использованию безопасных и обновленных компонентов соответствующий код снижает риск потенциальных уязвимостей и обеспечивает надлежащую защиту конфиденциальной информации при шифровании. Важно регулярно обновлять и проверять компоненты, используемые в приложении, чтобы убедиться, что они не содержат известных уязвимостей и обновлены последними исправлениями безопасности.
 
 
 
 
-## Improper Validation of Certificate with Host Mismatch
+
+
+## Неправильная проверка сертификата с несоответствием хоста
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -1487,7 +1487,7 @@ import (
 func main() {
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{
-			InsecureSkipVerify: true, // Disables certificate validation
+			InsecureSkipVerify: true, // Отключает проверку сертификатов
 		},
 	}
 	client := &http.Client{Transport: tr}
@@ -1499,14 +1499,14 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	// Process the response
+	// Обработать ответ
 	// ...
 }
 ```
 
-In this noncompliant code, the InsecureSkipVerify field is set to true, which disables certificate validation. This means that the client will accept any certificate, even if it does not match the expected host (example.com in this case). This can lead to a potential security vulnerability as it allows for man-in-the-middle attacks and exposes the application to the risk of communicating with an unauthorized or malicious server.
+В этом несоответствующем коде поле InsecureSkipVerify установлено в true, что отключает проверку сертификата. Это означает, что клиент примет любой сертификат, даже если он не соответствует ожидаемому хосту (в данном случае example.com). Это может привести к потенциальной уязвимости безопасности, так как позволяет осуществлять атаки типа "человек посередине" и подвергает приложение риску взаимодействия с неавторизованным или вредоносным сервером.
 
-To address this issue, here's an example of compliant code that properly validates the certificate with the expected host:
+Чтобы решить эту проблему, приведем пример соответствующего кода, который правильно проверяет сертификат на соответствие ожидаемому хосту:
 
 
 
@@ -1527,7 +1527,7 @@ import (
 func main() {
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{
-			InsecureSkipVerify: false, // Enables certificate validation
+			InsecureSkipVerify: false, // Включает проверку сертификата
 		},
 	}
 	client := &http.Client{Transport: tr}
@@ -1539,20 +1539,20 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	// Process the response
+	// Обработка ответа
 	// ...
 }
 ```
 
 
-In the compliant code, the InsecureSkipVerify field is set to false, which enables certificate validation. This ensures that the client verifies the server's certificate and checks if it matches the expected host (example.com). By properly validating the certificate, the compliant code mitigates the risk of communicating with unauthorized or malicious servers and protects the integrity and confidentiality of the communication.
+В соответствующем коде для поля InsecureSkipVerify установлено значение false, что включает проверку сертификата. Это гарантирует, что клиент проверит сертификат сервера и убедится, что он соответствует ожидаемому хосту (example.com). Благодаря правильной проверке сертификата соответствующий код снижает риск взаимодействия с неавторизованными или вредоносными серверами и защищает целостность и конфиденциальность связи.
 
 
 
 
 
 
-## Improper Authentication
+## Неправильная аутентификация
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -1575,40 +1575,40 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
-	// Perform authentication
+	// Выполните аутентификацию
 	if username == "admin" && password == "password" {
-		// Successful authentication
+		// Успешная аутентификация
 		// ...
 		fmt.Fprintf(w, "Login successful!")
 	} else {
-		// Failed authentication
+		// Неудачная аутентификация
 		// ...
 		fmt.Fprintf(w, "Login failed!")
 	}
 }
 
 func dashboardHandler(w http.ResponseWriter, r *http.Request) {
-	// Check if the user is authenticated
+	// Проверьте, прошел ли пользователь аутентификацию
 	if isAuthenticated(r) {
-		// Show dashboard
+		// Показать приборную панель
 		// ...
 		fmt.Fprintf(w, "Welcome to the dashboard!")
 	} else {
-		// Redirect to login page
+		// Перенаправление на страницу входа в систему
 		http.Redirect(w, r, "/login", http.StatusFound)
 	}
 }
 
 func isAuthenticated(r *http.Request) bool {
-	// Check if the user is authenticated
+	// Проверьте, аутентифицирован ли пользователь.
 	// ...
 	return false
 }
 ```
 
-In this noncompliant code, the authentication mechanism is implemented using a simple username and password comparison in the loginHandler function. The credentials are sent in plain text and there is no additional security measure, such as encryption or hashing, applied to protect the sensitive information. Furthermore, the authentication state is not properly maintained, and any user can access the dashboard without being authenticated by directly visiting the /dashboard URL.
+В этом несоответствующем коде механизм аутентификации реализован с помощью простого сравнения имени пользователя и пароля в функции loginHandler. Учетные данные отправляются открытым текстом, и для защиты конфиденциальной информации не применяются дополнительные меры безопасности, такие как шифрование или хеширование. Кроме того, состояние аутентификации не поддерживается должным образом, и любой пользователь может получить доступ к приборной панели без аутентификации, напрямую посетив URL /dashboard.
 
-To address these issues, here's an example of compliant code that demonstrates proper authentication in Go:
+Чтобы решить эти проблемы, вот пример совместимого кода, который демонстрирует правильную аутентификацию в Go:
 
 
 
@@ -1636,56 +1636,56 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
-	// Retrieve the stored hashed password for the given username
+	// Получение сохраненного хэшированного пароля для данного имени пользователя
 	hashedPassword, _ := getHashedPassword(username)
 
-	// Compare the provided password with the hashed password
+	// Сравните введенный пароль с хэшированным паролем
 	err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 	if err == nil {
-		// Successful authentication
+		// Успешная аутентификация
 		// ...
 		fmt.Fprintf(w, "Login successful!")
 	} else {
-		// Failed authentication
+		// Неудачная аутентификация
 		// ...
 		fmt.Fprintf(w, "Login failed!")
 	}
 }
 
 func dashboardHandler(w http.ResponseWriter, r *http.Request) {
-	// Check if the user is authenticated
+	// Проверьте, прошел ли пользователь аутентификацию
 	if isAuthenticated(r) {
-		// Show dashboard
+		// Показать дашборд
 		// ...
 		fmt.Fprintf(w, "Welcome to the dashboard!")
 	} else {
-		// Redirect to login page
+		// Перенаправление на страницу входа в систему
 		http.Redirect(w, r, "/login", http.StatusFound)
 	}
 }
 
 func isAuthenticated(r *http.Request) bool {
-	// Check if the user is authenticated
+	// Проверьте, аутентифицирован ли пользователь.
 	// ...
 	return false
 }
 
 func getHashedPassword(username string) (string, error) {
-	// Retrieve the hashed password from the storage for the given username
+	// Извлеките из хранилища хэшированный пароль для заданного имени пользователя
 	// ...
 	return "", nil
 }
 ```
 
 
-In the compliant code, the passwords are securely stored as hashed values using the bcrypt hashing algorithm. During the login process, the provided password is hashed and compared with the stored hashed password using bcrypt.CompareHashAndPassword. This ensures that the passwords are not stored or transmitted in plain text, providing an additional layer of security. Furthermore, the authentication state is properly maintained, and unauthorized access to the dashboard
+В соответствующем коде пароли надежно хранятся в виде хэшированных значений с помощью алгоритма хэширования bcrypt. В процессе входа в систему предоставленный пароль хэшируется и сравнивается с сохраненным хэшированным паролем с помощью bcrypt.CompareHashAndPassword. Это гарантирует, что пароли не будут храниться или передаваться открытым текстом, обеспечивая дополнительный уровень безопасности. Кроме того, состояние аутентификации поддерживается должным образом, и несанкционированный доступ к приборной панели
 
 
 
 
 
 
-## Session Fixation
+## Фиксация сеанса
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -1709,33 +1709,33 @@ func main() {
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 
-	// Perform authentication
+	// Выполните аутентификацию
 	if username == "admin" {
-		// Successful authentication
+		// Успешная аутентификация
 		sessionID = "123456" // Fixed session ID
 		http.SetCookie(w, &http.Cookie{Name: "sessionID", Value: sessionID})
 		fmt.Fprintf(w, "Login successful!")
 	} else {
-		// Failed authentication
+		// Неудачная аутентификация
 		fmt.Fprintf(w, "Login failed!")
 	}
 }
 
 func dashboardHandler(w http.ResponseWriter, r *http.Request) {
-	// Check if the user has a valid session
+	// Проверьте, есть ли у пользователя действительная сессия
 	if r.Cookie != nil && r.Cookie["sessionID"] != nil && r.Cookie["sessionID"].Value == sessionID {
-		// Show dashboard
+		// Показать дашборд
 		fmt.Fprintf(w, "Welcome to the dashboard!")
 	} else {
-		// Redirect to login page
+		// Перенаправление на страницу входа в систему
 		http.Redirect(w, r, "/login", http.StatusFound)
 	}
 }
 ```
 
-In this noncompliant code, the session fixation vulnerability is present. The sessionID variable is a global variable that stores the session ID after successful authentication. The session ID is then set as a cookie value using http.SetCookie. However, the session ID is fixed and does not change between different user sessions. This allows an attacker to fix their own session ID and potentially hijack the session of a legitimate user.
+В этом несоответствующем коде присутствует уязвимость фиксации сеанса. Переменная sessionID - это глобальная переменная, которая хранит идентификатор сессии после успешной аутентификации. Затем идентификатор сессии устанавливается в качестве значения cookie с помощью http.SetCookie. Однако идентификатор сессии фиксирован и не меняется между различными пользовательскими сессиями. Это позволяет злоумышленнику зафиксировать свой собственный идентификатор сессии и потенциально перехватить сессию легитимного пользователя.
 
-To address this vulnerability, here's an example of compliant code that mitigates the session fixation vulnerability in Go:
+Чтобы устранить эту уязвимость, вот пример совместимого кода, который устраняет уязвимость фиксации сеанса в Go:
 
 
 
@@ -1761,54 +1761,54 @@ func main() {
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 
-	// Perform authentication
+	// Выполните аутентификацию
 	if username == "admin" {
-		// Generate a new session ID
+		// Генерируем новый идентификатор сессии
 		sessionID := generateSessionID()
 
-		// Set the session ID as a cookie value
+		// Установите идентификатор сессии в качестве значения cookie
 		http.SetCookie(w, &http.Cookie{Name: "sessionID", Value: sessionID})
 
-		// Redirect to the dashboard
+		// Перенаправление на дашборд
 		http.Redirect(w, r, "/dashboard", http.StatusFound)
 	} else {
-		// Failed authentication
+		// Неудачная аутентификация
 		fmt.Fprintf(w, "Login failed!")
 	}
 }
 
 func dashboardHandler(w http.ResponseWriter, r *http.Request) {
-	// Check if the user has a valid session
+	// Проверьте, есть ли у пользователя действительная сессия
 	sessionIDCookie, err := r.Cookie("sessionID")
 	if err == nil && isValidSessionID(sessionIDCookie.Value) {
-		// Show dashboard
+		// Показать дашборд
 		fmt.Fprintf(w, "Welcome to the dashboard!")
 	} else {
-		// Redirect to login page
+		// Перенаправление на страницу входа в систему
 		http.Redirect(w, r, "/login", http.StatusFound)
 	}
 }
 
 func generateSessionID() string {
-	// Generate a new session ID
+	// Создайте новый идентификатор сессии
 	// ...
 	return "generated-session-id"
 }
 
 func isValidSessionID(sessionID string) bool {
-	// Check if the session ID is valid
+	// Проверьте, действителен ли идентификатор сессии.
 	// ...
 	return true
 }
 ```
 
 
-In the compliant code, the session ID is no longer stored in a global variable but is generated dynamically using the generateSessionID function. After successful authentication, a new session ID is generated and set as a cookie value using http.SetCookie. The user is then redirected to the dashboard page.
+В соответствующем коде идентификатор сессии больше не хранится в глобальной переменной, а генерируется динамически с помощью функции generateSessionID. После успешной аутентификации генерируется новый идентификатор сессии и устанавливается в качестве значения cookie с помощью http.SetCookie. После этого пользователь перенаправляется на страницу дашборда.
 
 
 
 
-## Inclusion of Functionality from Untrusted Control
+## Включение функциональности из недоверенного управления
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -1830,7 +1830,7 @@ func main() {
 func executeHandler(w http.ResponseWriter, r *http.Request) {
 	command := r.FormValue("command")
 
-	// Execute the command received from the user
+	// Выполните команду, полученную от пользователя
 	output, err := exec.Command(command).CombinedOutput()
 	if err != nil {
 		fmt.Fprintf(w, "Error executing command: %v", err)
@@ -1841,9 +1841,9 @@ func executeHandler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-In this noncompliant code, the executeHandler function receives a command from the user as a request parameter (command). The code directly executes the received command using exec.Command, without any validation or sanitization of the command input. This introduces a significant security risk as it allows an attacker to execute arbitrary commands on the underlying system, leading to potential remote code execution and unauthorized access.
+В этом несоответствующем коде функция executeHandler получает команду от пользователя в качестве параметра запроса (command). Код напрямую выполняет полученную команду, используя exec.Command, без какой-либо проверки или санации вводимых команд. Это создает значительный риск безопасности, поскольку позволяет злоумышленнику выполнять произвольные команды на базовой системе, что может привести к удаленному выполнению кода и несанкционированному доступу.
 
-To address this security risk, here's an example of compliant code that mitigates the inclusion of functionality from untrusted control in Go:
+Чтобы устранить этот риск безопасности, приведем пример соответствующего кода, который снижает вероятность включения в Go функциональности из ненадежного управления:
 
 
 
@@ -1871,13 +1871,13 @@ func main() {
 func executeHandler(w http.ResponseWriter, r *http.Request) {
 	command := r.FormValue("command")
 
-	// Validate and sanitize the command input
+	// Проверяем и обеззараживаем вводимые команды
 	if !isValidCommand(command) {
 		fmt.Fprintf(w, "Invalid command")
 		return
 	}
 
-	// Execute the validated command
+	// Выполните подтвержденную команду
 	output, err := exec.Command(command).CombinedOutput()
 	if err != nil {
 		fmt.Fprintf(w, "Error executing command: %v", err)
@@ -1888,7 +1888,7 @@ func executeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func isValidCommand(command string) bool {
-	// Validate the command input against a whitelist of allowed commands
+	// Проверяем вводимые команды на соответствие белому списку разрешенных команд
 	allowedCommands := []string{"ls", "echo", "pwd"} // Example whitelist
 
 	for _, allowedCmd := range allowedCommands {
@@ -1902,12 +1902,12 @@ func isValidCommand(command string) bool {
 ```
 
 
-In the compliant code, the executeHandler function validates and sanitizes the command input received from the user. It checks the command against a whitelist of allowed commands (allowedCommands). Only the commands in the whitelist are considered valid and will be executed. Any command not present in the whitelist is rejected, preventing the execution of arbitrary commands. This helps to mitigate the risk of including functionality from untrusted control.
+В соответствующем коде функция executeHandler проверяет и обеззараживает входные данные команды, полученные от пользователя. Она проверяет команду на соответствие белому списку разрешенных команд (allowedCommands). Только те команды, которые присутствуют в белом списке, считаются допустимыми и будут выполнены. Любая команда, не присутствующая в белом списке, отклоняется, предотвращая выполнение произвольных команд. Это позволяет снизить риск включения функциональности из ненадежных систем управления.
 
 
 
 
-## Download of Code Without Integrity Check
+## Загрузка кода без проверки целостности
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -1926,7 +1926,7 @@ func main() {
 	url := "http://example.com/malicious-code.zip"
 	filePath := "/path/to/save/malicious-code.zip"
 
-	// Download the file from the specified URL
+	// Загрузите файл с указанного URL
 	response, err := http.Get(url)
 	if err != nil {
 		fmt.Println("Error downloading file:", err)
@@ -1934,14 +1934,14 @@ func main() {
 	}
 	defer response.Body.Close()
 
-	// Read the contents of the response body
+	// Прочитайте содержимое тела ответа
 	data, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		fmt.Println("Error reading response:", err)
 		return
 	}
 
-	// Save the downloaded file
+	// Сохраните загруженный файл
 	err = ioutil.WriteFile(filePath, data, 0644)
 	if err != nil {
 		fmt.Println("Error saving file:", err)
@@ -1952,9 +1952,9 @@ func main() {
 }
 ```
 
-In this noncompliant code, the program downloads a file from a specified URL using the http.Get function and saves it to a local file using ioutil.WriteFile. However, the code does not perform any integrity check on the downloaded file. This leaves the system vulnerable to potential attacks, such as downloading and executing malicious code or tampering with the downloaded file.
+В этом несоответствующем коде программа загружает файл с указанного URL с помощью функции http.Get и сохраняет его в локальном файле с помощью ioutil.WriteFile. Однако код не выполняет никакой проверки целостности загруженного файла. Это делает систему уязвимой для потенциальных атак, таких как загрузка и выполнение вредоносного кода или подделка загруженного файла.
 
-To address this security risk, here's an example of compliant code that incorporates an integrity check when downloading code in Go:
+Чтобы устранить этот риск безопасности, вот пример совместимого кода, который включает проверку целостности при загрузке кода в Go:
 
 
 
@@ -1977,7 +1977,7 @@ func main() {
 	url := "http://example.com/malicious-code.zip"
 	filePath := "/path/to/save/malicious-code.zip"
 
-	// Download the file from the specified URL
+	// Загрузите файл с указанного URL
 	response, err := http.Get(url)
 	if err != nil {
 		fmt.Println("Error downloading file:", err)
@@ -1985,20 +1985,20 @@ func main() {
 	}
 	defer response.Body.Close()
 
-	// Read the contents of the response body
+	// Прочитайте содержимое тела ответа
 	data, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		fmt.Println("Error reading response:", err)
 		return
 	}
 
-	// Perform an integrity check on the downloaded file
+	// Выполните проверку целостности загруженного файла
 	if !isFileIntegrityValid(data) {
 		fmt.Println("File integrity check failed!")
 		return
 	}
 
-	// Save the downloaded file
+	// Сохраните загруженный файл
 	err = ioutil.WriteFile(filePath, data, 0644)
 	if err != nil {
 		fmt.Println("Error saving file:", err)
@@ -2009,11 +2009,11 @@ func main() {
 }
 
 func isFileIntegrityValid(data []byte) bool {
-	// Implement an integrity check algorithm (e.g., cryptographic hash)
-	// to validate the integrity of the downloaded file
-	// and return true if the integrity check passes, or false otherwise
+	// Реализуйте алгоритм проверки целостности (например, криптографический хэш)
+	// для проверки целостности загруженного файла
+	// и возвращает true, если проверка целостности пройдена, или false в противном случае
 
-	// Example using SHA256 hash
+	// Пример с использованием хэша SHA256
 	expectedHash := "..."
 	actualHash := calculateHash(data)
 
@@ -2021,10 +2021,10 @@ func isFileIntegrityValid(data []byte) bool {
 }
 
 func calculateHash(data []byte) string {
-	// Calculate the hash of the data using a suitable cryptographic hash function
-	// and return the hash value as a string
+	// Вычислите хэш данных с помощью подходящей криптографической хэш-функции
+	// и возвращаем хэш-значение в виде строки
 
-	// Example using SHA256 hash
+	// Пример с использованием хэша SHA256
 	// ...
 
 	return "..."
@@ -2032,13 +2032,13 @@ func calculateHash(data []byte) string {
 ```
 
 
-In the compliant code, after reading the contents of the response body, an integrity check is performed on the downloaded file using the isFileIntegrityValid function. The function implements an integrity check algorithm, such as calculating a cryptographic hash (e.g., SHA256) of the file's data. If the integrity check passes, the file is saved to the local path. Otherwise, the code rejects the file and terminates the process. 
+В соответствующем коде после чтения содержимого тела ответа выполняется проверка целостности загруженного файла с помощью функции isFileIntegrityValid. Функция реализует алгоритм проверки целостности, например вычисление криптографического хэша (например, SHA256) данных файла. Если проверка целостности пройдена, файл сохраняется в локальном пути. В противном случае код отвергает файл и завершает процесс. 
 
 
 
 
 
-## Deserialization of Untrusted Data
+## Десериализация недоверенных данных
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -2071,9 +2071,9 @@ func main() {
 }
 ```
 
-In this noncompliant code, the program deserializes a JSON string representing a user object using json.Unmarshal. However, it does not perform any validation or sanitization on the input data. This leaves the system vulnerable to potential attacks, such as deserialization of maliciously crafted data, which could lead to code execution, information disclosure, or other security risks.
+В этом коде, не соответствующем требованиям, программа десериализует строку JSON, представляющую пользовательский объект, с помощью json.Unmarshal. Однако она не выполняет никакой проверки или санации входных данных. Это делает систему уязвимой для потенциальных атак, таких как десериализация злонамеренно созданных данных, что может привести к выполнению кода, раскрытию информации или другим рискам безопасности.
 
-To address this security risk, here's an example of compliant code that incorporates proper validation and sanitization when deserializing untrusted data in Go:
+Чтобы устранить этот риск безопасности, вот пример соответствующего кода, который включает в себя надлежащую проверку и санацию при десериализации недоверенных данных в Go:
 
 
 
@@ -2100,7 +2100,7 @@ type User struct {
 func main() {
 	data := `{"ID": 1, "Username": "john", "Email": "john@example.com"}`
 
-	// Perform input validation and sanitization
+	// Выполните проверку и санацию ввода
 	if !isValidJSON(data) {
 		log.Fatal("Invalid JSON data")
 	}
@@ -2111,7 +2111,7 @@ func main() {
 		log.Fatal("Error deserializing user:", err)
 	}
 
-	// Perform additional validation on the deserialized user object
+	// Выполните дополнительную проверку десериализованного объекта пользователя
 	if !isValidUser(user) {
 		log.Fatal("Invalid user data")
 	}
@@ -2120,19 +2120,19 @@ func main() {
 }
 
 func isValidJSON(data string) bool {
-	// Implement validation logic to ensure the input data is valid JSON
-	// and return true if valid, or false otherwise
+	// Реализуйте логику проверки, чтобы убедиться, что входные данные являются корректным JSON
+	// и возвращать true, если данные валидны, или false в противном случае.
 
-	// Example: use json.Valid function from the encoding/json package
+	// Пример: использование функции json.Valid из пакета encoding/json
 	return json.Valid([]byte(data))
 }
 
 func isValidUser(user User) bool {
-	// Implement additional validation logic on the deserialized user object
-	// to ensure it meets the application's requirements
-	// and return true if valid, or false otherwise
+	// Реализуйте дополнительную логику проверки десериализованного объекта пользователя
+	// чтобы убедиться, что он соответствует требованиям приложения
+	// и возвращать true, если он валиден, или false в противном случае
 
-	// Example: check if the username and email meet certain criteria
+	// Пример: проверка соответствия имени пользователя и электронной почты определенным критериям
 	if len(user.Username) < 3 || len(user.Email) == 0 {
 		return false
 	}
@@ -2142,16 +2142,16 @@ func isValidUser(user User) bool {
 ```
 
 
-In the compliant code, before deserializing the JSON data, the input is first validated using the isValidJSON function to ensure it is valid JSON. If the data is not valid, the process is terminated. After deserialization, additional validation is performed on the deserialized User object using the isValidUser function to ensure it meets the application's requirements. If the user data is deemed invalid, the process is terminated.
+В соответствующем коде перед десериализацией JSON-данных входные данные сначала проверяются с помощью функции isValidJSON, чтобы убедиться, что это корректный JSON. Если данные не являются валидными, процесс завершается. После десериализации выполняется дополнительная проверка десериализованного объекта User с помощью функции isValidUser, чтобы убедиться, что он соответствует требованиям приложения. Если данные пользователя считаются недействительными, процесс завершается.
 
 
-By incorporating validation and sanitization steps, the compliant code mitigates the risk of deserializing untrusted data and helps prevent potential security vulnerabilities associated with deserialization attacks.
+Благодаря включению шагов проверки и санации, соответствующий код снижает риск десериализации недоверенных данных и помогает предотвратить потенциальные уязвимости безопасности, связанные с атаками на десериализацию.
 
 
 
 
 
-## Insufficient Logging
+## Недостаточное ведение журнала
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -2172,32 +2172,31 @@ func main() {
 }
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
-	// Process the request
+	// Обработка запроса
 	// ...
 
-	// Log the request details
-	log.Println("Request received:", r.Method, r.URL.Path)
+	// Зафиксируйте данные запроса
+	log.Println("Получен запрос:", r.Method, r.URL.Path)
 
-	// Perform some sensitive operation
+	// Выполните конфиденциальную операцию
 	performSensitiveOperation()
 
-	// Log the completion of the request
-	log.Println("Request processed successfully")
+	// Зафиксируйте завершение запроса
+	log.Println("Запрос успешно обработан")
 }
 
 func performSensitiveOperation() {
-	// Perform some sensitive operation
+	// Выполняем чувствительную операцию
 	// ...
 
-	// Log the sensitive operation
-	log.Println("Sensitive operation performed")
+	// Запись в журнал о выполнении чувствительной операции
+	log.Println("Выполнена чувствительная операция")
 }
 ```
 
-In this noncompliant code, logging is used to capture request details and the execution of a sensitive operation. However, the logging is limited to using the standard logger from the log package, which typically logs to the standard error output or a predefined log file. This approach is insufficient for effective logging as it lacks important information, such as log levels, timestamps, and contextual details.
+В этом несоответствующем коде протоколирование используется для фиксации деталей запроса и выполнения конфиденциальной операции. Однако протоколирование ограничивается использованием стандартного логгера из пакета log, который обычно ведет журнал в стандартный вывод ошибок или предопределенный файл журнала. Такой подход недостаточен для эффективного протоколирования, поскольку в нем отсутствует важная информация, такая как уровни журнала, временные метки и контекстные детали.
 
-To address this issue and ensure sufficient logging, here's an example of compliant code that incorporates a more robust logging solution using a dedicated logging package, such as logrus:
-
+Чтобы решить эту проблему и обеспечить достаточное протоколирование, ниже приведен пример совместимого кода, в котором реализовано более надежное решение для протоколирования с помощью специального пакета протоколирования, например logrus:
 
 
 
@@ -2218,7 +2217,7 @@ import (
 )
 
 func main() {
-	// Initialize the logger
+	// Инициализация регистратора
 	initLogger()
 
 	http.HandleFunc("/", handleRequest)
@@ -2226,49 +2225,49 @@ func main() {
 }
 
 func initLogger() {
-	// Set the desired log output, format, and level
+	// Установите нужный вывод журнала, формат и уровень
 	log.SetOutput(os.Stdout)
 	log.SetFormatter(&log.JSONFormatter{})
 	log.SetLevel(log.InfoLevel)
 }
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
-	// Process the request
+	// Обработка запроса
 	// ...
 
-	// Log the request details
+	// Зафиксируйте детали запроса
 	log.WithFields(log.Fields{
 		"method": r.Method,
 		"path":   r.URL.Path,
 	}).Info("Request received")
 
-	// Perform some sensitive operation
+	// Выполните некоторую чувствительную операцию
 	performSensitiveOperation()
 
-	// Log the completion of the request
-	log.Info("Request processed successfully")
+	// Зафиксируйте завершение запроса
+	log.Info("Запрос успешно обработан")
 }
 
 func performSensitiveOperation() {
-	// Perform some sensitive operation
+	// Выполняем чувствительную операцию
 	// ...
 
-	// Log the sensitive operation
-	log.Warn("Sensitive operation performed")
+	// Запись в журнал о выполнении чувствительной операции
+	log.Warn("Выполнена чувствительная операция")
 }
 ```
 
 
-In the compliant code, the logrus package is used for logging. The logging is initialized in the initLogger function, where the desired log output, format, and level are set. In this example, the logs are directed to the standard output, formatted as JSON, and the log level is set to InfoLevel.
+В соответствующем коде для ведения журнала используется пакет logrus. Ведение журнала инициализируется в функции initLogger, где задается желаемый вывод журнала, формат и уровень. В данном примере логи направляются на стандартный вывод, форматируются как JSON, а уровень лога установлен на InfoLevel.
 
-The handleRequest function demonstrates how to log request details and the execution of a sensitive operation using the log.Info and log.Warn methods respectively. The logs include additional contextual information using the WithFields method to provide a structured log entry.
+Функция handleRequest демонстрирует, как заносить в журнал данные о запросе и выполнении конфиденциальной операции с помощью методов log.Info и log.Warn соответственно. В журналы включается дополнительная контекстная информация с помощью метода WithFields для создания структурированной записи журнала.
 
-By utilizing a more feature-rich logging package like logrus, the compliant code enhances the logging capabilities by providing log levels, timestamps, and contextual information. This enables better troubleshooting, monitoring, and security analysis.
-
-
+При использовании более функционального пакета протоколирования, такого как logrus, код, соответствующий требованиям, расширяет возможности протоколирования, предоставляя уровни журналов, временные метки и контекстную информацию. Это позволяет улучшить поиск и устранение неисправностей, мониторинг и анализ безопасности.
 
 
-## Improper Output Neutralization for Logs
+
+
+## Неправильная нейтрализация выхода для бревен
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -2290,17 +2289,17 @@ func main() {
 func handleRequest(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 
-	// Log the username
+	// Введите имя пользователя
 	log.Println("User logged in:", username)
 
-	// Process the request
+	// Обработка запроса
 	// ...
 }
 ```
 
-In this noncompliant code, the username received from the request is directly logged using the log.Println function. This practice is insecure because it may lead to log injection attacks or unintentional exposure of sensitive information. An attacker could potentially exploit this vulnerability by injecting special characters or newlines into the username to modify the log output or disrupt the log file's structure.
+В этом коде, не соответствующем требованиям, имя пользователя, полученное в результате запроса, напрямую записывается в журнал с помощью функции log.Println. Такая практика небезопасна, поскольку может привести к атакам с внедрением в журнал или непреднамеренному раскрытию конфиденциальной информации. Злоумышленник может воспользоваться этой уязвимостью, вставив в имя пользователя специальные символы или новые строки, чтобы изменить вывод журнала или нарушить структуру файла журнала.
 
-To address this issue and ensure proper output neutralization for logs, here's an example of compliant code that incorporates output sanitization using the log.Printf function:
+Чтобы решить эту проблему и обеспечить надлежащую нейтрализацию вывода журналов, вот пример соответствующего кода, который включает санирование вывода с помощью функции log.Printf:
 
 
 
@@ -2328,18 +2327,18 @@ func main() {
 func handleRequest(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 
-	// Sanitize the username
+	// Дезинфекция имени пользователя
 	sanitizedUsername := sanitizeString(username)
 
-	// Log the sanitized username
-	log.Printf("User logged in: %s", sanitizedUsername)
+	// Выводим в журнал санированное имя пользователя
+	log.Printf("Пользователь вошел в систему: %s", sanitizedUsername)
 
-	// Process the request
+	// Обрабатываем запрос
 	// ...
 }
 
 func sanitizeString(s string) string {
-	// Replace special characters that could affect log output
+	// Замените специальные символы, которые могут повлиять на вывод журнала
 	s = strings.ReplaceAll(s, "\n", "\\n")
 	s = strings.ReplaceAll(s, "\r", "\\r")
 	s = strings.ReplaceAll(s, "\t", "\\t")
@@ -2349,18 +2348,18 @@ func sanitizeString(s string) string {
 ```
 
 
-In the compliant code, the sanitizeString function is introduced to sanitize the username before logging. It replaces special characters such as newlines (\n), carriage returns (\r), and tabs (\t) with escape sequences to prevent their unintended interpretation or impact on the log output.
+В соответствующем коде появилась функция sanitizeString, которая обеззараживает имя пользователя перед записью в журнал. Она заменяет специальные символы, такие как новая строка (\n), возврат каретки (\r) и табуляция (\t), на экранирующие последовательности, чтобы предотвратить их непреднамеренную интерпретацию или влияние на вывод журнала.
 
-The sanitized username is then logged using log.Printf with the appropriate format specifier %s. This ensures that the log entry is properly neutralized and does not introduce any vulnerabilities or unintended behavior.
+Продезинфицированное имя пользователя затем записывается в журнал с помощью log.Printf с соответствующим спецификатором формата %s. Это гарантирует, что запись в журнале будет правильно нейтрализована и не внесет никаких уязвимостей или непреднамеренного поведения.
 
-By sanitizing the log output in this manner, the compliant code mitigates the risk of log injection attacks and ensures that sensitive information is properly protected in the log files.
-
-
+Дезинфекция вывода журнала таким образом позволяет совместимому коду снизить риск инъекционных атак на журнал и обеспечить надлежащую защиту конфиденциальной информации в файлах журнала.
 
 
 
 
-## Omission of Security-relevant Information
+
+
+## Упущение информации, имеющей отношение к безопасности
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -2383,18 +2382,18 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
-	// Log the user login event
+	// Зарегистрируйте событие входа пользователя в систему
 	log.Printf("User logged in: %s", username)
 
-	// Process the request
+	// Обработка запроса
 	// ...
 }
 ```
 
 
-In this noncompliant code, only the username is logged during the user login event. However, the password, which is a security-relevant piece of information, is not included in the log entry. Omitting such security-relevant information can hinder the ability to effectively monitor and investigate security incidents.
+В этом коде, не соответствующем требованиям, при входе пользователя в систему регистрируется только имя пользователя. Однако пароль, который является важной для безопасности информацией, не включается в запись журнала. Отсутствие такой важной для безопасности информации может помешать эффективному мониторингу и расследованию инцидентов безопасности.
 
-To address this issue and ensure the inclusion of security-relevant information in logs, here's an example of compliant code that incorporates all relevant information while logging:
+Чтобы решить эту проблему и обеспечить включение в журналы информации, имеющей отношение к безопасности, вот пример соответствующего кода, который включает всю необходимую информацию в журнал:
 
 
 
@@ -2420,26 +2419,26 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
-	// Log the user login event with all relevant information
+	// Зафиксируйте событие входа пользователя в систему со всей необходимой информацией
 	log.Printf("User logged in - Username: %s, Password: %s", username, password)
 
-	// Process the request
+	// Обработка запроса
 	// ...
 }
 ```
 
 
-In the compliant code, both the username and password are included in the log entry using the log.Printf function. By including all relevant security information, such as the username and password, in the log entry, the compliant code provides valuable details for monitoring, auditing, and investigating security incidents.
+В коде, соответствующем требованиям, имя пользователя и пароль включаются в запись журнала с помощью функции log.Printf. Включая всю необходимую информацию о безопасности, такую как имя пользователя и пароль, в запись журнала, код, соответствующий требованиям, предоставляет ценную информацию для мониторинга, аудита и расследования инцидентов безопасности.
 
-It's important to note that while logging sensitive information like passwords is generally not recommended, this example is provided to address the omission of security-relevant information in logs. In a real-world scenario, it's advisable to avoid logging sensitive information and consider using techniques like tokenization or obfuscation to protect sensitive data.
-
-
+Важно отметить, что, хотя записывать в журнал такую конфиденциальную информацию, как пароли, обычно не рекомендуется, этот пример приведен для того, чтобы рассмотреть проблему отсутствия в журналах информации, имеющей отношение к безопасности. В реальном сценарии рекомендуется избегать регистрации конфиденциальной информации и использовать такие методы, как токенизация или обфускация, для защиты конфиденциальных данных.
 
 
 
 
 
-## Sensitive Information into Log File
+
+
+## Помещение конфиденциальной информации в файл журнала
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -2463,7 +2462,7 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
-	// Log the sensitive information
+	// Зафиксируйте конфиденциальную информацию
 	logFile, err := os.OpenFile("app.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		log.Fatal(err)
@@ -2473,14 +2472,14 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	logger := log.New(logFile, "", log.LstdFlags)
 	logger.Printf("Sensitive information - Username: %s, Password: %s", username, password)
 
-	// Process the request
+	// Обработка запроса
 	// ...
 }
 ```
 
-In this noncompliant code, the sensitive information, including the username and password, is logged directly into a log file using the log.Printf function. Storing sensitive information in plain text log files can introduce security risks, as the log files may be accessible to unauthorized individuals, leading to the exposure of sensitive data.
+В этом несоответствующем коде конфиденциальная информация, включая имя пользователя и пароль, записывается непосредственно в файл журнала с помощью функции log.Printf. Хранение конфиденциальной информации в лог-файлах в виде обычного текста может создать угрозу безопасности, так как к лог-файлам могут получить доступ неавторизованные лица, что приведет к раскрытию конфиденциальных данных.
 
-To address this issue and prevent the sensitive information from being stored in the log file, here's an example of compliant code:
+Чтобы решить эту проблему и предотвратить хранение конфиденциальной информации в файле журнала, ниже приведен пример соответствующего кода:
 
 
 
@@ -2507,38 +2506,38 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
-	// Process the request
+	// Обработка запроса
 
-	// Log a message without sensitive information
+	// Зарегистрируйте сообщение, не содержащее конфиденциальной информации
 	log.Printf("Received request - Username: %s", username)
 
-	// Perform authentication
+	// Выполните аутентификацию
 	if !authenticate(username, password) {
 		log.Printf("Authentication failed for user: %s", username)
 		http.Error(w, "Authentication failed", http.StatusUnauthorized)
 		return
 	}
 
-	// Continue with the request
+	// Продолжаем запрос
 	// ...
 }
 
 func authenticate(username, password string) bool {
-	// Perform authentication logic
+	// Выполните логику аутентификации
 	// ...
 }
 ```
 
 
-In the compliant code, the sensitive information is not logged directly into the log file. Instead, the code logs a message indicating the received request without including the actual sensitive information. By avoiding the logging of sensitive data, the compliant code ensures the protection of sensitive information and mitigates the risk of unauthorized access or exposure.
+В соответствующем коде конфиденциальная информация не записывается непосредственно в файл журнала. Вместо этого код регистрирует сообщение о полученном запросе, не включая фактическую конфиденциальную информацию. Избегая регистрации конфиденциальных данных, соответствующий код обеспечивает защиту конфиденциальной информации и снижает риск несанкционированного доступа или воздействия.
 
-It's important to follow best practices for handling sensitive information, such as not storing it in log files, encrypting it when necessary, and adhering to relevant data protection regulations and security guidelines.
-
-
+Важно следовать лучшим практикам работы с конфиденциальной информацией, например не хранить ее в лог-файлах, шифровать ее при необходимости и соблюдать соответствующие правила защиты данных и рекомендации по безопасности.
 
 
 
-## Server-Side Request Forgery (SSRF)
+
+
+## Подделка запросов со стороны сервера (SSRF)
 
 <span class="d-inline-block p-2 mr-1 v-align-middle bg-red-000"></span>Несоответствующий код:
 
@@ -2561,7 +2560,7 @@ func main() {
 func handleFetch(w http.ResponseWriter, r *http.Request) {
 	url := r.FormValue("url")
 
-	// Make a request to the provided URL
+	// Выполните запрос на указанный URL
 	response, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)
@@ -2569,7 +2568,7 @@ func handleFetch(w http.ResponseWriter, r *http.Request) {
 
 	defer response.Body.Close()
 
-	// Read the response body
+	// Прочитайте тело ответа
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		log.Fatal(err)
@@ -2579,9 +2578,9 @@ func handleFetch(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-In this noncompliant code, the handleFetch function allows the user to specify a URL through the url parameter. The code then makes a request to the provided URL without performing any validation or restriction. This can lead to an SSRF vulnerability, where an attacker can potentially force the server to make unintended requests to internal resources or external systems.
+В этом несоответствующем коде функция handleFetch позволяет пользователю указать URL через параметр url. Затем код выполняет запрос к указанному URL без выполнения какой-либо проверки или ограничения. Это может привести к уязвимости SSRF, когда злоумышленник потенциально может заставить сервер выполнять непредусмотренные запросы к внутренним ресурсам или внешним системам.
 
-To address this issue and prevent SSRF attacks, here's an example of compliant code:
+Чтобы решить эту проблему и предотвратить SSRF-атаки, вот пример соответствующего кода:
 
 
 
@@ -2610,21 +2609,21 @@ func main() {
 func handleFetch(w http.ResponseWriter, r *http.Request) {
 	rawURL := r.FormValue("url")
 
-	// Parse the URL to ensure it is valid and safe
+	// Разберите URL, чтобы убедиться, что он действителен и безопасен.
 	parsedURL, err := url.ParseRequestURI(rawURL)
 	if err != nil {
 		http.Error(w, "Invalid URL", http.StatusBadRequest)
 		return
 	}
 
-	// Ensure that the URL points to a permitted domain
+	// Убедитесь, что URL указывает на разрешенный домен
 	allowedDomains := []string{"example.com", "trusteddomain.com"}
 	if !isDomainAllowed(parsedURL.Host, allowedDomains) {
 		http.Error(w, "Access to the specified domain is not allowed", http.StatusForbidden)
 		return
 	}
 
-	// Make a request to the provided URL
+	// Выполните запрос на указанный URL
 	response, err := http.Get(parsedURL.String())
 	if err != nil {
 		log.Fatal(err)
@@ -2632,7 +2631,7 @@ func handleFetch(w http.ResponseWriter, r *http.Request) {
 
 	defer response.Body.Close()
 
-	// Read the response body
+	// Прочитайте тело ответа
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		log.Fatal(err)
@@ -2652,10 +2651,10 @@ func isDomainAllowed(domain string, allowedDomains []string) bool {
 ```
 
 
-In the compliant code, several measures are taken to mitigate the SSRF vulnerability:
+В соответствующем коде предпринято несколько мер по снижению уязвимости SSRF:
 
-1. The url.ParseRequestURI function is used to parse and validate the provided URL. This ensures that the URL is well-formed and follows the expected format.
-2. An allowed domain list is defined, and the isDomainAllowed function is used to check if the parsed URL's host is present in the allowed domain list. This restricts requests to only specified domains, preventing SSRF attacks.
-3. Proper error handling is implemented to return appropriate HTTP responses for invalid URLs or unauthorized access attempts.
+1. Функция url.ParseRequestURI используется для разбора и проверки предоставленного URL. Это гарантирует, что URL хорошо сформирован и соответствует ожидаемому формату.
+2. Определяется список разрешенных доменов, а функция isDomainAllowed используется для проверки наличия хоста разобранного URL в списке разрешенных доменов. Это ограничивает запросы только указанными доменами, предотвращая атаки SSRF.
+3. Реализована корректная обработка ошибок для возврата соответствующих HTTP-ответов на недействительные URL или попытки несанкционированного доступа.
 
-By validating and restricting the URLs that can be requested, the compliant code helps prevent unauthorized or malicious access to internal or external resources, thereby mitigating the SSRF vulnerability.
+Проверяя и ограничивая URL-адреса, которые могут быть запрошены, соответствующий код помогает предотвратить несанкционированный или злонамеренный доступ к внутренним или внешним ресурсам, тем самым снижая уязвимость SSRF.
